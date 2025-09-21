@@ -24,25 +24,30 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation - Centered */}
-          <nav className="hidden lg:flex items-center space-x-8 mx-auto">
-            {navigationItems.map((item) => (
-              item.isExternal ? (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="text-gray-600 hover:text-primary transition-colors font-medium text-sm tracking-wide"
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <Link
-                  key={item.label}
-                  to={item.href}
-                  className="text-gray-600 hover:text-primary transition-colors font-medium text-sm tracking-wide"
-                >
-                  {item.label}
-                </Link>
-              )
+          <nav className="hidden lg:flex items-center mx-auto">
+            {navigationItems.map((item, index) => (
+              <React.Fragment key={item.label}>
+                {item.isExternal ? (
+                  <a
+                    href={item.href}
+                    className="text-gray-600 hover:text-primary transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2"
+                  >
+                    {item.label}
+                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
+                  </a>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className="text-gray-600 hover:text-primary transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2"
+                  >
+                    {item.label}
+                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
+                  </Link>
+                )}
+                {index < navigationItems.length - 1 && (
+                  <div className="w-px h-4 bg-gray-300 mx-2"></div>
+                )}
+              </React.Fragment>
             ))}
           </nav>
 
