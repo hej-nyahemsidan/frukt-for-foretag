@@ -21,7 +21,7 @@ const CustomerPortal = () => {
         {/* Page Title */}
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-4xl lg:text-5xl font-bold text-white drop-shadow-lg text-center">
-            Fruktexperten Kundportal
+            Fruktexpertens Kundportal
           </h1>
         </div>
       </div>
@@ -98,7 +98,7 @@ const CustomerPortal = () => {
           {/* Mobile Title (visible on small screens) */}
           <div className="lg:hidden text-center mt-12">
             <h1 className="text-2xl font-bold text-foreground">
-              Fruktexperten Kundportal
+              Fruktexpertens Kundportal
             </h1>
           </div>
         </div>
