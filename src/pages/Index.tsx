@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
-import SocialImpactSection from '@/components/SocialImpactSection';
+import FeaturesSection from '@/components/FeaturesSection';
 import ProductShowcase from '@/components/ProductShowcase';
 import AboutSection from '@/components/AboutSection';
 import ContactSection from '@/components/ContactSection';
@@ -13,7 +13,7 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
-        <SocialImpactSection />
+        <FeaturesSection />
         <ProductShowcase />
         <AboutSection />
         <ContactSection />

@@ -321,6 +321,32 @@
     }
   }
 
+  /* Features Carousel Animation */
+  .features-carousel-container {
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+  }
+  
+  .features-carousel {
+    animation: scrollFeatures 35s linear infinite;
+  }
+  
+  @keyframes scrollFeatures {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .features-card {
+    transition: transform 0.3s ease;
+  }
+  
+  .features-card:hover {
+    transform: scale(1.05);
+  }
+
   /* Responsive adjustments for mobile */
   @media (max-width: 1024px) {
     .hero-background {
