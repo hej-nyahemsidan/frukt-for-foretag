@@ -11,7 +11,7 @@ const Header = () => {
     { label: 'Sortiment', href: '/sortiment', isExternal: false }, // Product Range
     { label: 'Om Oss', href: '/om-oss', isExternal: false }, // About Us
     { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
-    { label: 'Offertförfrågan', href: '#quote', isExternal: true }, // Quote Request
+    { label: 'Offertförfrågan', href: '/offertforfragan', isExternal: false }, // Quote Request
   ];
 
   return (
