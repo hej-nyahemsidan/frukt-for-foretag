@@ -46,12 +46,6 @@ const FruktexpertenLogo: React.FC<FruktexpertenLogoProps> = ({ className = '' })
             />
           </svg>
         </div>
-        {/* Expert badge */}
-        <div className="absolute -top-1 -right-1 w-4 h-4 md:w-5 md:h-5 bg-gradient-to-br from-accent-orange to-accent-red rounded-full flex items-center justify-center shadow-sm">
-          <svg width="8" height="8" viewBox="0 0 12 12" fill="white" className="md:w-2.5 md:h-2.5">
-            <path d="M6 1l1.5 3h3l-2.5 2 1 3-3-1.5L3 9l1-3L1.5 4h3L6 1z"/>
-          </svg>
-        </div>
       </div>
       
       {/* Text */}
