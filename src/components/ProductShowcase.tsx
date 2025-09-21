@@ -36,15 +36,6 @@ const ProductShowcase = () => {
       showPrice: true
     },
     {
-      id: 'banan',
-      name: 'Fruktkorg Banan+',
-      image: fruktkorgrBananImg,
-      weight: 'Starting at 4kg',
-      currentPrice: '242 kr',
-      originalPrice: '285 kr',
-      showPrice: true
-    },
-    {
       id: 'lada',
       name: 'Fruktlåda',
       image: fruktladaImg,
