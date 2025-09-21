@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import FruktexpertenLogo from '@/components/FruktexpertenLogo';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -29,12 +30,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl md:text-3xl font-bold text-primary">
-              FruktkorgsPro
-            </h1>
-            <p className="text-xs text-muted-foreground hidden md:block">
-              Sedan 1986 {/* Since 1986 */}
-            </p>
+            <FruktexpertenLogo />
           </div>
 
           {/* Desktop Navigation */}
