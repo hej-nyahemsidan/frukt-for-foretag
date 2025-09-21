@@ -1,176 +1,294 @@
-import React from 'react';
-import { Award, Users, Leaf, Clock } from 'lucide-react';
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { ChevronDown, ChevronRight } from 'lucide-react';
+
+// Import images
+import happyEmployeesImage from '@/assets/happy-employees.jpg';
+import professionalDisplayImage from '@/assets/professional-fruit-display.jpg';
+import fruitBoxImage from '@/assets/fruit-box.jpg';
+import seasonalFruitsImage from '@/assets/seasonal-fruits.jpg';
+import officeWellnessImage from '@/assets/office-wellness.jpg';
 
 const AboutSection = () => {
-  const stats = [
+  const [expandedFAQ, setExpandedFAQ] = useState<number[]>([]);
+
+  const faqItems = [
     {
-      icon: Clock,
-      number: '2+',
-      label: 'År i branschen',
-      description: 'Sedan 2024'
+      question: "Vilka områden levererar ni till?",
+      answer: "Vi levererar till de flesta orter i Sverige. Våra huvudsakliga leveransområden inkluderar Stockholm, Göteborg, Malmö och de flesta större städer. Kontakta oss för att bekräfta leverans till er specifika adress."
     },
     {
-      icon: Users,
-      number: '200+',
-      label: 'Nöjda företag',
-      description: 'Återkommande kunder'
+      question: "Vad är minsta antal kg som ni kan leverera?",
+      answer: "Vår minsta leverans är 10 kg frukt per vecka. Detta motsvarar ungefär en mindre fruktkorg som räcker för 15-20 personer beroende på konsumtion."
     },
     {
-      icon: Leaf,
-      number: '100%',
-      label: 'Ekologisk frukt',
-      description: 'Certifierade leverantörer'
+      question: "Är frukten ekologisk?",
+      answer: "Vi erbjuder både ekologisk och konventionell frukt. All vår frukt kommer från certifierade leverantörer och vi kan anpassa sortimentet efter era önskemål och budget."
     },
     {
-      icon: Award,
-      number: '4.9/5',
-      label: 'Kundbetyg',
-      description: 'Genomsnittlig rating'
+      question: "Hur går beställningen till?",
+      answer: "Beställning görs enkelt via vår webbplats eller genom att kontakta oss direkt. Vi skapar en skräddarsydd lösning baserat på era behov och levererar sedan varje vecka på en tid som passar er."
+    },
+    {
+      question: "Vad kostar det?",
+      answer: "Priset varierar beroende på volym, frukttyper och leveransfrekvens. Vi erbjuder konkurrenskraftiga priser och ger gärna en kostnadsfri offert anpassad efter era behov."
+    },
+    {
+      question: "Levererar ni till hela Sverige?",
+      answer: "Ja, vi levererar till de flesta platser i Sverige. För mindre orter eller avlägsna områden kan vi behöva justera leveransfrekvensen, men vi hittar alltid en lösning som fungerar."
     }
   ];
 
+  const toggleFAQ = (index: number) => {
+    setExpandedFAQ(prev => 
+      prev.includes(index) 
+        ? prev.filter(i => i !== index)
+        : [...prev, index]
+    );
+  };
+
   return (
-    <section id="about" className="section-padding bg-muted/30">
-      <div className="container mx-auto">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="heading-lg text-foreground">
-              Vår Historia & Mission
-            </h2>
-            {/* Our History & Mission */}
-            <p className="text-lead max-w-3xl mx-auto">
-              Sedan 2024 har vi varit Sveriges ledande leverantör av premium frukt till företag. 
-              Vår passion för kvalitet och hållbarhet driver oss framåt varje dag.
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative bg-gray-50 py-20 px-8 overflow-hidden">
+        <div className="absolute top-10 right-10 opacity-30">
+          <img 
+            src={seasonalFruitsImage} 
+            alt="Fresh seasonal fruits" 
+            className="w-96 h-96 object-cover rounded-full"
+          />
+        </div>
+        <div className="container mx-auto relative z-10">
+          <div className="max-w-4xl">
+            <h1 className="text-6xl font-bold text-gray-900 mb-6">
+              Om oss
+            </h1>
+            <p className="text-2xl text-gray-600 leading-relaxed">
+              Fruktexperten levererar färska fruktkorgar till svenska företag sedan 2024
             </p>
-            {/* Since 1986, we have been Sweden's leading supplier of fresh fruit to companies. Our passion for quality and sustainability drives us forward every day. */}
           </div>
+        </div>
+      </section>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
-            {/* Story Content */}
-            <div className="space-y-8">
-              <div className="space-y-6">
-                <h3 className="heading-md text-foreground">
-                  En ny standard för företagsfrukt
-                </h3>
-                
-                <div className="space-y-4 text-muted-foreground leading-relaxed">
-                  <p>
-                    Allt började 2024 när grundaren hade en enkel vision: att göra det enkelt för svenska företag att erbjuda sina anställda näringsrik, färsk frukt direkt på arbetsplatsen.
-                  </p>
-                  
-                  <p>
-                    Idag är vi ett snabbväxande företag som strävar efter samma höga kvalitetsstandard som vi hade från början. Vi arbetar endast med certifierade, hållbara leverantörer och levererar till över 200 företag i hela Sverige.
-                  </p>
-                  
-                  <p>
-                    Vår mission är enkel: att skapa hälsosammare arbetsplatser och en mer hållbar framtid genom att göra näringsrik frukt tillgänglig för alla.
-                  </p>
-                </div>
-              </div>
-
-              {/* Values */}
-              <div className="space-y-4">
-                <h4 className="text-lg font-semibold text-foreground">Våra värderingar:</h4>
-                {/* Our values: */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                    <div>
-                      <p className="font-medium text-foreground">Kvalitet först</p>
-                      <p className="text-sm text-muted-foreground">Endast bästa frukter</p>
-                      {/* Quality first - Only the best fruits */}
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                    <div>
-                      <p className="font-medium text-foreground">Hållbarhet</p>
-                      <p className="text-sm text-muted-foreground">Miljömedvetet val</p>
-                      {/* Sustainability - Environmentally conscious choice */}
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                    <div>
-                      <p className="font-medium text-foreground">Pålitlighet</p>
-                      <p className="text-sm text-muted-foreground">Leveranser i tid</p>
-                      {/* Reliability - On-time deliveries */}
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                    <div>
-                      <p className="font-medium text-foreground">Kundservice</p>
-                      <p className="text-sm text-muted-foreground">Personlig support</p>
-                      {/* Customer service - Personal support */}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Business Images */}
-            <div className="space-y-6">
-              <div className="relative rounded-2xl overflow-hidden shadow-soft">
-                <img 
-                  src="/src/assets/happy-employees.jpg" 
-                  alt="Happy employees enjoying fresh fruit at the office"
-                  className="w-full h-64 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h4 className="text-lg font-semibold">Glada medarbetare</h4>
-                  <p className="text-sm opacity-90">Hälsosam frukt på arbetsplatsen</p>
-                </div>
-              </div>
+      {/* Section 1 - Company Story */}
+      <section className="py-20 px-8 bg-white">
+        <div className="container mx-auto">
+          <div className="grid lg:grid-cols-5 gap-16 items-center">
+            {/* Text Content - 60% */}
+            <div className="lg:col-span-3 space-y-6">
+              <h2 className="text-4xl font-bold text-gray-900">
+                Det enkla fruktbudet.
+              </h2>
               
-              <div className="relative rounded-2xl overflow-hidden shadow-soft">
-                <img 
-                  src="/src/assets/professional-fruit-display.jpg" 
-                  alt="Professional fruit display and arrangements"
-                  className="w-full h-64 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 text-white">
-                  <h4 className="text-lg font-semibold">Professionell service</h4>
-                  <p className="text-sm opacity-90">Premium fruktarrangemang</p>
-                </div>
+              <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
+                <p>
+                  Vi startade Fruktexperten 2024 med en enkel idé - att göra det enkelt för svenska företag att erbjuda sina anställda näringsrik frukt på arbetsplatsen. Genom att fokusera på kvalitet, hållbarhet och enkel leverans har vi vuxit till att betjäna över 200 företag.
+                </p>
+                
+                <p>
+                  Vi arbetar bara med certifierade leverantörer som delar vår passion för kvalitet och miljöansvar. Varje fruktkorg packas med omsorg för att ge era medarbetare den bästa upplevelsen.
+                </p>
               </div>
+
+              <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg text-lg">
+                Läs mer om oss
+              </Button>
+            </div>
+
+            {/* Image - 40% */}
+            <div className="lg:col-span-2">
+              <img 
+                src={fruitBoxImage} 
+                alt="Fresh fruit basket" 
+                className="w-full h-96 object-cover rounded-xl shadow-lg"
+              />
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Business Team Section */}
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="relative rounded-3xl overflow-hidden shadow-soft">
+      {/* Section 2 - Mission Statement */}
+      <section className="py-20 px-8 bg-gray-50">
+        <div className="container mx-auto">
+          <div className="grid lg:grid-cols-5 gap-16 items-center">
+            {/* Image - 40% */}
+            <div className="lg:col-span-2">
               <img 
-                src="/src/assets/office-workers-fruit.jpg" 
-                alt="Office workers enjoying fruit baskets"
-                className="w-full h-80 object-cover"
+                src={officeWellnessImage} 
+                alt="Person working at desk with healthy snacks" 
+                className="w-full h-96 object-cover rounded-xl shadow-lg"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div className="absolute bottom-6 left-6 text-white">
-                <h3 className="text-xl font-bold mb-2">Vårt team i arbete</h3>
-                <p className="text-sm opacity-90">Levererar kvalitet till svenska företag</p>
-              </div>
             </div>
-            
-            <div className="relative rounded-3xl overflow-hidden shadow-soft">
-              <img 
-                src="/src/assets/picnic-basket-fruits.jpg" 
-                alt="Premium fruit baskets and arrangements"
-                className="w-full h-80 object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-              <div className="absolute bottom-6 left-6 text-white">
-                <h3 className="text-xl font-bold mb-2">Premium fruktkorgar</h3>
-                <p className="text-sm opacity-90">Noggrant utvalda produkter för ditt företag</p>
+
+            {/* Text Content - 60% */}
+            <div className="lg:col-span-3 space-y-6">
+              <h2 className="text-4xl font-bold text-gray-900">
+                En hälsosam livsstil börjar på arbetsplatsen.
+              </h2>
+              
+              <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
+                <p>
+                  Vår mission är att förbättra välmåendet på svenska arbetsplatser. När medarbetare har tillgång till näringsrik frukt ökar både produktivitet och arbetstillfredsställelse. Vi tror på att små förändringar kan göra stor skillnad.
+                </p>
+              </div>
+
+              {/* Signature */}
+              <div className="pt-4">
+                <div className="text-2xl font-handwriting text-green-600" style={{ fontFamily: 'cursive' }}>
+                  Med vänliga hälsningar, Fruktexperten
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Section 3 - Values/Impact */}
+      <section className="relative py-20 px-8 bg-green-800 overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img 
+            src={seasonalFruitsImage} 
+            alt="Sustainable farming" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 bg-green-800/80"></div>
+        
+        <div className="container mx-auto relative z-10">
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <h2 className="text-4xl font-bold text-white">
+              En plats för engagemang hela vägen i kedjan
+            </h2>
+            <p className="text-xl text-white/90 leading-relaxed">
+              Vi arbetar nära våra leverantörer för att säkerställa hållbara odlingsmetoder och rättvisa arbetsförhållanden. Från jord till bord tar vi ansvar för hela kedjan och stödjer lokala odlare där det är möjligt.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 4 - Environmental Policy */}
+      <section className="py-20 px-8 bg-white">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto space-y-8">
+            <h2 className="text-4xl font-bold text-gray-900 text-center">
+              Miljöpolicy
+            </h2>
+            
+            <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
+              <p>
+                På Fruktexperten tar vi miljöansvar på allvar. Vår miljöpolicy genomsyrar hela vår verksamhet, från val av leverantörer till förpackning och transport.
+              </p>
+              
+              <p>
+                Vi prioriterar ekologiska produkter när det är möjligt och arbetar endast med certifierade leverantörer som följer strikta miljöstandarder. Våra förpackningar är återvinningsbara och vi strävar kontinuerligt efter att minska vårt klimatavtryck.
+              </p>
+              
+              <p>
+                Transport optimeras för att minimera utsläpp och vi använder miljövänliga fordon där det är praktiskt möjligt. Vi mäter och rapporterar vårt miljöarbete för att säkerställa kontinuerlig förbättring.
+              </p>
+              
+              <p>
+                Genom att välja Fruktexperten bidrar ditt företag till en mer hållbar framtid. Vi tror att affärer och miljöansvar går hand i hand och strävar efter att vara ett föredöme inom vår bransch.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 5 - FAQ */}
+      <section className="py-20 px-8 bg-gray-50">
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">
+            Vill du veta mer?
+          </h2>
+          
+          <div className="grid lg:grid-cols-2 gap-16">
+            {/* Left Column - Contact Form */}
+            <div className="space-y-6">
+              <div className="bg-white p-8 rounded-xl shadow-sm">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                  Kontakta oss
+                </h3>
+                
+                <form className="space-y-4">
+                  <div>
+                    <Input 
+                      placeholder="Ditt namn" 
+                      className="w-full"
+                    />
+                  </div>
+                  <div>
+                    <Input 
+                      type="email" 
+                      placeholder="Din e-post" 
+                      className="w-full"
+                    />
+                  </div>
+                  <div>
+                    <Input 
+                      placeholder="Företag" 
+                      className="w-full"
+                    />
+                  </div>
+                  <div>
+                    <Textarea 
+                      placeholder="Meddelande" 
+                      rows={4}
+                      className="w-full"
+                    />
+                  </div>
+                  
+                  <Button className="w-full bg-green-600 hover:bg-green-700 text-white py-3">
+                    Kontakta oss
+                  </Button>
+                </form>
+              </div>
+            </div>
+
+            {/* Right Column - FAQ */}
+            <div className="space-y-4">
+              {faqItems.map((item, index) => (
+                <div key={index} className="bg-white rounded-xl shadow-sm overflow-hidden">
+                  <button
+                    onClick={() => toggleFAQ(index)}
+                    className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                  >
+                    <span className="text-lg text-gray-800 font-medium">
+                      {item.question}
+                    </span>
+                    <div className="flex-shrink-0 ml-4">
+                      {expandedFAQ.includes(index) ? (
+                        <ChevronDown className="w-5 h-5 text-green-600" />
+                      ) : (
+                        <ChevronRight className="w-5 h-5 text-green-600" />
+                      )}
+                    </div>
+                  </button>
+                  
+                  <div 
+                    className={`transition-all duration-300 ease-in-out ${
+                      expandedFAQ.includes(index) 
+                        ? 'max-h-96 opacity-100' 
+                        : 'max-h-0 opacity-0'
+                    } overflow-hidden`}
+                  >
+                    <div className="px-6 pb-5">
+                      <div className="border-t border-gray-100 pt-4">
+                        <p className="text-gray-600 leading-relaxed">
+                          {item.answer}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 
