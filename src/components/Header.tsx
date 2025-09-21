@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Phone, User } from 'lucide-react';
+import { Menu, X, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import FruktexpertenLogo from '@/components/FruktexpertenLogo';
 
@@ -36,13 +36,7 @@ const Header = () => {
           </nav>
 
           {/* Right Side - Contact & Actions */}
-          <div className="hidden lg:flex items-center space-x-6">
-            {/* Phone Number */}
-            <div className="flex items-center space-x-2 text-gray-600">
-              <Phone className="w-4 h-4" />
-              <span className="text-sm font-medium">020 - 88 44 00</span>
-            </div>
-            
+          <div className="hidden lg:flex items-center space-x-6">            
             {/* Mina Sidor Link */}
             <a 
               href="#account" 
@@ -88,12 +82,7 @@ const Header = () => {
               ))}
               
               {/* Mobile Contact & Actions */}
-              <div className="pt-4 px-4 space-y-3 border-t border-gray-200 mt-4">
-                <div className="flex items-center space-x-2 text-gray-600">
-                  <Phone className="w-4 h-4" />
-                  <span className="text-sm font-medium">020 - 88 44 00</span>
-                </div>
-                
+              <div className="pt-4 px-4 space-y-3 border-t border-gray-200 mt-4">                
                 <a 
                   href="#account" 
                   className="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors"
