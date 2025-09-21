@@ -10,16 +10,18 @@ const HeroSection = () => {
         background: 'linear-gradient(to right, rgba(240,253,244,0.95) 0%, rgba(240,253,244,0.7) 40%, rgba(240,253,244,0.2) 70%, transparent 100%)'
       }}></div>
       
-      <div className="container mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="container mx-auto max-w-5xl relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Text Content */}
-          <div className="space-y-8 relative">
-            <div className="space-y-6">
-              <h1 className="text-6xl lg:text-7xl xl:text-8xl font-black leading-tight text-slate-800 shadow-sm max-w-2xl">
-                Experterna på företagsfrukt som levererar resultat
+          <div className="space-y-6 relative max-w-lg">
+            <div className="space-y-4">
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight text-slate-800 shadow-sm">
+                Experterna på<br />
+                företagsfrukt som<br />
+                levererar resultat
               </h1>
               
-              <p className="text-xl leading-relaxed text-slate-600 max-w-2xl">
+              <p className="text-lg leading-relaxed text-slate-600 max-w-lg">
                 Vi levererar handplockade fruktkorgar direkt till svenska företag varje vecka. 
                 Sedan 2024 har vi hjälpt över 500 företag att öka välmående och produktivitet genom premium frukt av världsklass.
               </p>
@@ -31,13 +33,13 @@ const HeroSection = () => {
             </div>
 
             {/* CTA Button */}
-            <Button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-4 text-lg rounded-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center gap-2">
+            <Button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-3 text-base rounded-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center gap-2">
               🧺 Beställ Gratis Provkorg
             </Button>
           </div>
 
           {/* Right Side - Empty space for background image */}
-          <div className="relative h-[600px] lg:h-[700px]">
+          <div className="relative h-[400px] lg:h-[500px]">
           </div>
         </div>
       </div>
