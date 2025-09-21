@@ -269,10 +269,10 @@ const Sortiment = () => {
             {/* Product Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {filteredProducts.map((product) => (
-                <div
-                  key={product.id}
-                  className="bg-green-50 rounded-lg shadow-sm p-4 hover:shadow-md transition-all duration-200 group"
-                >
+                  <div
+                    key={product.id}
+                    className="bg-lightgreen rounded-lg shadow-sm p-4 hover:shadow-md transition-all duration-200 group"
+                  >
                   {/* Product Image */}
                   <div className="aspect-square rounded-md overflow-hidden mb-4 bg-white">
                     <img
@@ -284,17 +284,17 @@ const Sortiment = () => {
 
                   {/* Product Info */}
                   <div className="space-y-3">
-                    <h3 className="font-semibold text-gray-800 line-clamp-2">
+                    <h3 className="font-semibold text-charcoal line-clamp-2">
                       {product.name}
                     </h3>
 
                     {/* Price */}
                     <div className="flex items-center gap-2">
-                      <span className="text-red-600 font-bold text-lg">
+                      <span className="text-warmred font-bold text-lg">
                         {typeof product.price === 'string' ? product.price : `${product.price} kr`}
                       </span>
                       {product.originalPrice && (
-                        <span className="text-gray-400 line-through text-sm">
+                        <span className="text-mediumgray line-through text-sm">
                           {product.originalPrice} kr
                         </span>
                       )}
@@ -305,13 +305,13 @@ const Sortiment = () => {
                       <Button 
                         variant="outline" 
                         size="sm"
-                        className="flex-1 border-gray-300 text-gray-700 hover:bg-gray-50"
+                        className="flex-1 border-mediumgray text-charcoal hover:bg-muted"
                       >
                         Visa
                       </Button>
                       <Button 
                         size="sm"
-                        className="flex-1 bg-green-600 hover:bg-green-700 text-white"
+                        className="flex-1 bg-secondary text-secondary-foreground hover:bg-[hsl(122_39%_44%)]"
                       >
                         Beställ Nu
                       </Button>

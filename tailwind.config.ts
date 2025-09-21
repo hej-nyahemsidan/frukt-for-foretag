@@ -41,10 +41,11 @@ export default {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
+          DEFAULT: "hsl(var(--accent-orange))",
           orange: "hsl(var(--accent-orange))",
           red: "hsl(var(--accent-red))",
-          yellow: "hsl(var(--accent-yellow))",
-          green: "hsl(var(--accent-green))",
+          blue: "hsl(var(--accent-blue))",
+          lightgreen: "hsl(var(--accent-light-green))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -54,6 +55,16 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Professional Fruktexperten Colors
+        forest: "hsl(124 53% 24%)", // Forest Green #1B5E20
+        fresh: "hsl(122 39% 49%)", // Fresh Green #4CAF50
+        lightgreen: "hsl(120 33% 93%)", // Light Green #E8F5E8
+        orange: "hsl(34 100% 50%)", // Orange Accent #FF8F00
+        warmred: "hsl(0 66% 51%)", // Warm Red #D32F2F
+        deepblue: "hsl(207 79% 42%)", // Deep Blue #1565C0
+        charcoal: "hsl(0 0% 18%)", // Charcoal #2E2E2E
+        mediumgray: "hsl(0 0% 42%)", // Medium Gray #6B6B6B
+        lightgray: "hsl(0 0% 96%)", // Light Gray #F5F5F5
       },
       borderRadius: {
         lg: "var(--radius)",

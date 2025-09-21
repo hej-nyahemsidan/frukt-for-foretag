@@ -4,58 +4,60 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Swedish Fruit Delivery Design System - Fresh & Professional */
+/* Fruktexperten Professional Design System */
 
 @layer base {
   :root {
-    /* Brand Colors - Fresh & Natural */
-    --background: 0 0% 100%;
-    --foreground: 150 15% 15%;
+    /* Professional Fruktexperten Color Palette */
+    --background: 0 0% 100%; /* Pure White */
+    --foreground: 0 0% 18%; /* Charcoal */
     
-    /* Primary - Fresh Green */
-    --primary: 100 45% 25%;
-    --primary-foreground: 0 0% 98%;
-    --primary-light: 100 35% 35%;
-    --primary-dark: 100 55% 15%;
+    /* Primary - Forest Green Brand */
+    --primary: 124 53% 24%; /* Forest Green #1B5E20 */
+    --primary-foreground: 0 0% 100%; /* Pure White */
+    --primary-light: 122 39% 49%; /* Fresh Green #4CAF50 */
+    --primary-dark: 124 53% 18%; /* Darker Forest Green */
     
-    /* Secondary - Natural Cream */
-    --secondary: 45 25% 95%;
-    --secondary-foreground: 150 15% 15%;
+    /* Secondary - Fresh Green Actions */
+    --secondary: 122 39% 49%; /* Fresh Green #4CAF50 */
+    --secondary-foreground: 0 0% 100%; /* Pure White */
     
-    /* Accent Colors - Fruit Inspired */
-    --accent-orange: 25 95% 60%;
-    --accent-red: 355 85% 55%;
-    --accent-yellow: 50 100% 65%;
-    --accent-green: 120 40% 50%;
+    /* Accent Colors - Professional Palette */
+    --accent-orange: 34 100% 50%; /* Orange Accent #FF8F00 */
+    --accent-red: 0 66% 51%; /* Warm Red #D32F2F */
+    --accent-blue: 207 79% 42%; /* Deep Blue #1565C0 */
+    --accent-light-green: 120 33% 93%; /* Light Green #E8F5E8 */
     
-    /* Neutral Palette */
-    --muted: 120 10% 96%;
-    --muted-foreground: 150 8% 45%;
-    --border: 120 15% 90%;
-    --input: 120 15% 90%;
-    --ring: 100 45% 25%;
+    /* Neutral Professional Palette */
+    --muted: 0 0% 96%; /* Light Gray #F5F5F5 */
+    --muted-foreground: 0 0% 42%; /* Medium Gray #6B6B6B */
+    --border: 0 0% 89%; /* Light border */
+    --input: 0 0% 96%; /* Light Gray for inputs */
+    --ring: 124 53% 24%; /* Forest Green for focus rings */
     
     /* Cards & Surfaces */
-    --card: 0 0% 100%;
-    --card-foreground: 150 15% 15%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 150 15% 15%;
+    --card: 0 0% 100%; /* Pure White */
+    --card-foreground: 0 0% 18%; /* Charcoal */
+    --popover: 0 0% 100%; /* Pure White */
+    --popover-foreground: 0 0% 18%; /* Charcoal */
     
     /* Interactive States */
-    --destructive: 0 75% 55%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 66% 51%; /* Warm Red */
+    --destructive-foreground: 0 0% 100%; /* Pure White */
     
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(100 45% 25%), hsl(120 40% 50%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(120 10% 98%));
-    --gradient-button: linear-gradient(135deg, hsl(100 45% 25%), hsl(100 35% 35%));
+    /* Professional Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(124 53% 24%), hsl(122 39% 49%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(120 33% 98%));
+    --gradient-button: linear-gradient(135deg, hsl(122 39% 49%), hsl(122 39% 44%));
+    --gradient-forest: linear-gradient(135deg, hsl(124 53% 24%), hsl(124 53% 18%));
     
-    /* Shadows & Effects */
-    --shadow-soft: 0 2px 20px -5px hsl(100 45% 25% / 0.1);
-    --shadow-card: 0 4px 25px -10px hsl(100 45% 25% / 0.15);
-    --shadow-button: 0 4px 15px -5px hsl(100 45% 25% / 0.3);
+    /* Professional Shadows */
+    --shadow-soft: 0 2px 20px -5px hsl(124 53% 24% / 0.08);
+    --shadow-card: 0 4px 25px -10px hsl(124 53% 24% / 0.12);
+    --shadow-button: 0 4px 15px -5px hsl(122 39% 49% / 0.25);
+    --shadow-header: 0 2px 10px -3px hsl(124 53% 24% / 0.1);
     
-    /* Animations */
+    /* Smooth Professional Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     
@@ -72,24 +74,36 @@
 }
 
 @layer components {
-  /* Hero Button Variants */
+  /* Professional Button Variants */
   .btn-hero {
-    @apply bg-[var(--gradient-button)] text-primary-foreground px-8 py-4 rounded-xl font-semibold;
-    @apply shadow-[var(--shadow-button)] transition-[var(--transition-bounce)];
-    @apply hover:scale-105 hover:shadow-lg active:scale-95;
+    @apply bg-secondary text-secondary-foreground px-8 py-4 rounded-xl font-semibold;
+    @apply shadow-[var(--shadow-button)] transition-[var(--transition-smooth)];
+    @apply hover:bg-[hsl(122_39%_44%)] hover:shadow-lg active:scale-95;
   }
   
   .btn-secondary {
-    @apply bg-secondary text-secondary-foreground px-6 py-3 rounded-lg font-medium;
-    @apply border border-border transition-[var(--transition-smooth)];
-    @apply hover:bg-primary hover:text-primary-foreground hover:border-primary;
+    @apply bg-card text-primary px-6 py-3 rounded-lg font-medium;
+    @apply border border-primary transition-[var(--transition-smooth)];
+    @apply hover:bg-primary hover:text-primary-foreground;
   }
   
-  /* Card Styles */
+  .btn-outline {
+    @apply bg-card text-primary px-6 py-3 rounded-lg font-medium;
+    @apply border border-muted-foreground transition-[var(--transition-smooth)];
+    @apply hover:bg-muted hover:border-primary;
+  }
+  
+  /* Professional Card Styles */
   .card-product {
-    @apply bg-[var(--gradient-card)] p-6 rounded-2xl;
+    @apply bg-card p-6 rounded-2xl border;
     @apply shadow-[var(--shadow-card)] transition-[var(--transition-smooth)];
-    @apply hover:scale-105 hover:shadow-lg cursor-pointer;
+    @apply hover:shadow-lg hover:scale-[1.02];
+  }
+  
+  /* Header Styles */
+  .header-professional {
+    @apply bg-primary text-primary-foreground;
+    @apply shadow-[var(--shadow-header)];
   }
   
   /* Section Styles */
@@ -97,31 +111,70 @@
     @apply px-6 py-16 md:px-8 lg:px-12 xl:px-16;
   }
   
-  /* Typography */
+  .section-light-green {
+    @apply bg-[hsl(120_33%_93%)];
+  }
+  
+  .section-muted {
+    @apply bg-muted;
+  }
+  
+  /* Professional Typography */
   .heading-xl {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground;
   }
   
   .heading-lg {
-    @apply text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight;
+    @apply text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight text-foreground;
   }
   
   .heading-md {
-    @apply text-xl md:text-2xl font-semibold;
+    @apply text-xl md:text-2xl font-semibold text-foreground;
   }
   
   .text-lead {
     @apply text-lg md:text-xl text-muted-foreground leading-relaxed;
   }
+  
+  /* Price Display */
+  .price-primary {
+    @apply text-[hsl(0_66%_51%)] font-bold;
+  }
+  
+  .price-secondary {
+    @apply text-muted-foreground line-through;
+  }
+  
+  /* Trust Elements */
+  .trust-badge {
+    @apply bg-[hsl(207_79%_42%)] text-white px-3 py-1 rounded-full text-sm font-medium;
+  }
+  
+  /* Form Styles */
+  .form-professional {
+    @apply bg-card p-8 rounded-xl shadow-[var(--shadow-card)] border;
+  }
+  
+  .input-professional {
+    @apply border-muted-foreground focus:border-primary focus:ring-primary;
+  }
+  
+  .required-field {
+    @apply text-[hsl(0_66%_51%)];
+  }
 }
 
 @layer utilities {
-  .fruit-gradient {
+  .gradient-hero {
     background: var(--gradient-hero);
   }
   
-  .card-gradient {
+  .gradient-card {
     background: var(--gradient-card);
+  }
+  
+  .gradient-forest {
+    background: var(--gradient-forest);
   }
   
   .shadow-soft {
@@ -304,8 +357,7 @@
   
   /* Hero Background with Moving Picnic Basket */
   .hero-background {
-    /* Background properties are now set inline in React component for proper asset handling */
-    background-color: #f0f9ff; /* Fallback background color */
+    background-color: hsl(0 0% 96%); /* Light Gray fallback */
   }
   
   @keyframes moveBasket {
