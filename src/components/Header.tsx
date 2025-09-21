@@ -15,12 +15,12 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 header-professional">
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-18">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
-            <FruktexpertenLogo className="text-primary-foreground" />
+            <FruktexpertenLogo />
           </Link>
 
           {/* Desktop Navigation - Centered */}
@@ -30,22 +30,22 @@ const Header = () => {
                 {item.isExternal ? (
                   <a
                     href={item.href}
-                    className="text-primary-foreground hover:text-accent-lightgreen transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2"
+                    className="text-charcoal hover:text-secondary transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2"
                   >
                     {item.label}
-                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent-lightgreen transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
+                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
                   </a>
                 ) : (
                   <Link
                     to={item.href}
-                    className="text-primary-foreground hover:text-accent-lightgreen transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2"
+                    className="text-charcoal hover:text-secondary transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2"
                   >
                     {item.label}
-                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent-lightgreen transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
+                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
                   </Link>
                 )}
                 {index < navigationItems.length - 1 && (
-                  <div className="w-px h-4 bg-primary-foreground/30 mx-2"></div>
+                  <div className="w-px h-4 bg-gray-300 mx-2"></div>
                 )}
               </React.Fragment>
             ))}
@@ -56,7 +56,7 @@ const Header = () => {
             {/* Mina Sidor Link */}
             <Link 
               to="/kundportal" 
-              className="flex items-center space-x-2 text-primary-foreground hover:text-accent-lightgreen transition-colors"
+              className="flex items-center space-x-2 text-charcoal hover:text-secondary transition-colors"
             >
               <User className="w-4 h-4" />
               <span className="text-sm font-medium">Mina Sidor</span>
@@ -70,7 +70,7 @@ const Header = () => {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="lg:hidden p-2 text-primary-foreground hover:text-accent-lightgreen transition-colors"
+            className="lg:hidden p-2 text-charcoal hover:text-secondary transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
@@ -84,14 +84,14 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-primary-foreground/20 bg-primary">
+          <div className="lg:hidden border-t border-gray-200 bg-white">
             <nav className="py-4 space-y-2">
               {navigationItems.map((item) => (
                 item.isExternal ? (
                   <a
                     key={item.label}
                     href={item.href}
-                    className="block px-4 py-3 text-primary-foreground hover:text-accent-lightgreen hover:bg-primary-light/20 rounded-lg transition-colors font-medium"
+                    className="block px-4 py-3 text-charcoal hover:text-secondary hover:bg-lightgreen rounded-lg transition-colors font-medium"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.label}
@@ -100,7 +100,7 @@ const Header = () => {
                   <Link
                     key={item.label}
                     to={item.href}
-                    className="block px-4 py-3 text-primary-foreground hover:text-accent-lightgreen hover:bg-primary-light/20 rounded-lg transition-colors font-medium"
+                    className="block px-4 py-3 text-charcoal hover:text-secondary hover:bg-lightgreen rounded-lg transition-colors font-medium"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.label}
@@ -109,10 +109,10 @@ const Header = () => {
               ))}
               
               {/* Mobile Contact & Actions */}
-              <div className="pt-4 px-4 space-y-3 border-t border-primary-foreground/20 mt-4">                
+              <div className="pt-4 px-4 space-y-3 border-t border-gray-200 mt-4">                
                 <Link 
                   to="/kundportal" 
-                  className="flex items-center space-x-2 text-primary-foreground hover:text-accent-lightgreen transition-colors"
+                  className="flex items-center space-x-2 text-charcoal hover:text-secondary transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <User className="w-4 h-4" />
