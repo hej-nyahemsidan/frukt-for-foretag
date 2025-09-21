@@ -49,13 +49,13 @@ const Header = () => {
           {/* Right Side - Contact & Actions */}
           <div className="hidden lg:flex items-center space-x-6">            
             {/* Mina Sidor Link */}
-            <a 
-              href="#account" 
+            <Link 
+              to="/kundportal" 
               className="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors"
             >
               <User className="w-4 h-4" />
               <span className="text-sm font-medium">Mina Sidor</span>
-            </a>
+            </Link>
             
             {/* Order Button */}
             <Button className="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-lg font-medium shadow-sm">
@@ -105,13 +105,14 @@ const Header = () => {
               
               {/* Mobile Contact & Actions */}
               <div className="pt-4 px-4 space-y-3 border-t border-gray-200 mt-4">                
-                <a 
-                  href="#account" 
+                <Link 
+                  to="/kundportal" 
                   className="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <User className="w-4 h-4" />
                   <span className="text-sm font-medium">Mina Sidor</span>
-                </a>
+                </Link>
                 
                 <Button className="w-full bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-lg font-medium">
                   Beställ

@@ -35,9 +35,14 @@ const CustomerPortalSection = () => {
 
         {/* Call-to-Action */}
         <div className="text-center">
-          <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg rounded-lg inline-flex items-center gap-3">
-            Kundportalen
-            <ExternalLink className="w-5 h-5" />
+          <Button 
+            asChild
+            className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg rounded-lg inline-flex items-center gap-3"
+          >
+            <a href="/kundportal">
+              Kundportalen
+              <ExternalLink className="w-5 h-5" />
+            </a>
           </Button>
         </div>
       </div>
