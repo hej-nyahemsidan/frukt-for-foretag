@@ -34,57 +34,8 @@ const HeroSection = () => {
             </Button>
           </div>
 
-          {/* Right Side - Enhanced Animated Fruits */}
+          {/* Right Side - Empty space for background image */}
           <div className="relative h-[600px] lg:h-[700px]">
-            {/* Orange 1 */}
-            <div className="absolute top-16 left-12 animate-float-enhanced-1 text-6xl drop-shadow-lg">
-              🍊
-            </div>
-
-            {/* Banana */}
-            <div className="absolute top-32 right-16 animate-float-enhanced-2 text-7xl drop-shadow-lg">
-              🍌
-            </div>
-
-            {/* Apple */}
-            <div className="absolute top-48 left-20 animate-float-enhanced-3 text-6xl drop-shadow-lg">
-              🍎
-            </div>
-
-            {/* Grapes */}
-            <div className="absolute bottom-32 right-8 animate-float-enhanced-4 text-8xl drop-shadow-lg">
-              🍇
-            </div>
-
-            {/* Strawberries */}
-            <div className="absolute top-64 right-32 animate-float-enhanced-5 text-6xl drop-shadow-lg">
-              🍓
-            </div>
-
-            {/* Kiwi */}
-            <div className="absolute bottom-48 left-8 animate-float-enhanced-6 text-7xl drop-shadow-lg">
-              🥝
-            </div>
-
-            {/* Pineapple slice */}
-            <div className="absolute top-80 left-32 animate-float-enhanced-7 text-6xl drop-shadow-lg">
-              🍍
-            </div>
-
-            {/* Cherries */}
-            <div className="absolute bottom-64 right-20 animate-float-enhanced-8 text-7xl drop-shadow-lg">
-              🍒
-            </div>
-
-            {/* Green Apple */}
-            <div className="absolute top-96 right-4 animate-float-enhanced-9 text-8xl drop-shadow-lg">
-              🍏
-            </div>
-
-            {/* Orange 2 */}
-            <div className="absolute bottom-16 left-24 animate-float-enhanced-10 text-6xl drop-shadow-lg">
-              🍊
-            </div>
           </div>
         </div>
       </div>
