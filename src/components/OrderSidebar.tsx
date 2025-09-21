@@ -23,21 +23,21 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm border">
+    <div className="bg-gray-100 p-6 rounded-lg shadow-sm border">
       {/* Step Indicator */}
       <div className="flex items-center gap-4 mb-8">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center text-sm font-medium">
+          <div className="w-8 h-8 rounded-full bg-[#6B6B6B] text-white flex items-center justify-center text-sm font-medium">
             1
           </div>
           <span className="text-sm font-medium text-charcoal">Välj dag</span>
         </div>
         <div className="w-8 border-t border-mediumgray"></div>
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full border-2 border-mediumgray text-mediumgray flex items-center justify-center text-sm font-medium">
+          <div className="w-8 h-8 rounded-full border-2 border-[#6B6B6B] text-[#6B6B6B] flex items-center justify-center text-sm font-medium">
             2
           </div>
-          <span className="text-sm text-mediumgray">Slutför</span>
+          <span className="text-sm text-[#6B6B6B]">Slutför</span>
         </div>
       </div>
 
@@ -46,15 +46,27 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
         <h3 className="text-lg font-semibold text-charcoal mb-4">Paketplan</h3>
         <RadioGroup value={packagePlan} onValueChange={setPackagePlan} className="space-y-3">
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="weekly" id="weekly" />
+            <RadioGroupItem 
+              value="weekly" 
+              id="weekly" 
+              className="border-[#4CAF50] text-[#4CAF50] data-[state=checked]:bg-[#4CAF50]" 
+            />
             <Label htmlFor="weekly" className="text-charcoal">Veckovis</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="monthly" id="monthly" />
+            <RadioGroupItem 
+              value="monthly" 
+              id="monthly"
+              className="border-[#4CAF50] text-[#4CAF50] data-[state=checked]:bg-[#4CAF50]"
+            />
             <Label htmlFor="monthly" className="text-charcoal">Månadsvis</Label>
           </div>
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="yearly" id="yearly" />
+            <RadioGroupItem 
+              value="yearly" 
+              id="yearly"
+              className="border-[#4CAF50] text-[#4CAF50] data-[state=checked]:bg-[#4CAF50]"
+            />
             <Label htmlFor="yearly" className="text-charcoal">Årsvis</Label>
           </div>
         </RadioGroup>
@@ -70,6 +82,7 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
                 id={day}
                 checked={selectedDays.includes(day)}
                 onCheckedChange={(checked) => handleDayChange(day, !!checked)}
+                className="border-[#4CAF50] data-[state=checked]:bg-[#4CAF50] data-[state=checked]:text-white"
               />
               <Label htmlFor={day} className="text-charcoal">{day}</Label>
             </div>
@@ -78,7 +91,7 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
       </div>
 
       {/* Next Button */}
-      <Button className="w-full bg-secondary hover:bg-secondary/90 text-white">
+      <Button className="w-full bg-[#4CAF50] hover:bg-[#45a049] text-white">
         Nästa
       </Button>
     </div>

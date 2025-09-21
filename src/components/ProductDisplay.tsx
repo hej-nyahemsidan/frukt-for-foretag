@@ -18,31 +18,31 @@ const ProductDisplay = ({ activeCategory, setActiveCategory }: ProductDisplayPro
         <TabsList className="w-full justify-start p-0 h-auto bg-transparent border-b rounded-none">
           <TabsTrigger 
             value="fruktkorgar" 
-            className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary px-6 py-4"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white hover:bg-gray-100 px-6 py-4"
           >
             Fruktkorgar
           </TabsTrigger>
           <TabsTrigger 
             value="fruktpaser" 
-            className="rounded-none border-b-2 border-transparent data-[state=active]:border-secondary data-[state=active]:bg-transparent data-[state=active]:text-secondary px-6 py-4"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white hover:bg-gray-100 px-6 py-4"
           >
             Fruktpåsar
           </TabsTrigger>
           <TabsTrigger 
             value="lask" 
-            className="rounded-none border-b-2 border-transparent data-[state=active]:border-secondary data-[state=active]:bg-transparent data-[state=active]:text-secondary px-6 py-4"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white hover:bg-gray-100 px-6 py-4"
           >
             Läsk
           </TabsTrigger>
           <TabsTrigger 
             value="mejeri" 
-            className="rounded-none border-b-2 border-transparent data-[state=active]:border-secondary data-[state=active]:bg-transparent data-[state=active]:text-secondary px-6 py-4"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white hover:bg-gray-100 px-6 py-4"
           >
             Mejeri
           </TabsTrigger>
           <TabsTrigger 
             value="kaffe-te" 
-            className="rounded-none border-b-2 border-transparent data-[state=active]:border-secondary data-[state=active]:bg-transparent data-[state=active]:text-secondary px-6 py-4"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white hover:bg-gray-100 px-6 py-4"
           >
             Kaffe/Te
           </TabsTrigger>
