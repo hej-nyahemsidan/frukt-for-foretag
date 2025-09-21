@@ -2,6 +2,8 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import FruktexpertenLogo from '@/components/FruktexpertenLogo';
 import citrusBackground from '@/assets/citrus-background.jpg';
 
@@ -27,7 +29,16 @@ const CustomerPortal = () => {
       </div>
 
       {/* Right Side - Login Form */}
-      <div className="w-full lg:w-1/2 bg-white flex items-center justify-center p-8">
+      <div className="w-full lg:w-1/2 bg-white flex items-center justify-center p-8 relative">
+        {/* Back Button */}
+        <Link 
+          to="/" 
+          className="absolute top-6 left-6 flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          <span className="text-sm font-medium">Tillbaka till startsidan</span>
+        </Link>
+
         <div className="w-full max-w-md mx-auto">
           {/* Logo Section */}
           <div className="text-center mb-12">
