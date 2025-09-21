@@ -30,55 +30,56 @@ const HeroSection = () => {
             </Button>
           </div>
 
-          {/* Right Side - Enhanced Animated Fruits */}
+          {/* Right Side - Fruits Floating from Basket */}
           <div className="relative h-[600px] lg:h-[700px]">
-            {/* Orange 1 */}
-            <div className="absolute top-16 left-12 animate-float-enhanced-1 text-6xl drop-shadow-lg">
+            {/* Fruit Basket - Anchor Point */}
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-basket-sway text-9xl drop-shadow-xl z-10">
+              🧺
+            </div>
+
+            {/* Fruits floating up from basket in layers */}
+            
+            {/* Layer 1 - Close to basket */}
+            <div className="absolute bottom-24 left-1/2 transform -translate-x-8 animate-float-from-basket-1 text-6xl drop-shadow-lg">
               🍊
             </div>
-
-            {/* Banana */}
-            <div className="absolute top-32 right-16 animate-float-enhanced-2 text-7xl drop-shadow-lg">
-              🍌
-            </div>
-
-            {/* Apple */}
-            <div className="absolute top-48 left-20 animate-float-enhanced-3 text-6xl drop-shadow-lg">
+            
+            <div className="absolute bottom-28 left-1/2 transform translate-x-4 animate-float-from-basket-2 text-7xl drop-shadow-lg">
               🍎
             </div>
 
-            {/* Grapes */}
-            <div className="absolute bottom-32 right-8 animate-float-enhanced-4 text-8xl drop-shadow-lg">
-              🍇
+            {/* Layer 2 - Medium height */}
+            <div className="absolute bottom-40 left-1/2 transform -translate-x-16 animate-float-from-basket-3 text-6xl drop-shadow-lg">
+              🍌
             </div>
 
-            {/* Strawberries */}
-            <div className="absolute top-64 right-32 animate-float-enhanced-5 text-6xl drop-shadow-lg">
+            <div className="absolute bottom-36 left-1/2 transform translate-x-12 animate-float-from-basket-4 text-7xl drop-shadow-lg">
               🍓
             </div>
 
-            {/* Kiwi */}
-            <div className="absolute bottom-48 left-8 animate-float-enhanced-6 text-7xl drop-shadow-lg">
+            <div className="absolute bottom-44 left-1/2 transform translate-x-0 animate-float-from-basket-5 text-6xl drop-shadow-lg">
               🥝
             </div>
 
-            {/* Pineapple slice */}
-            <div className="absolute top-80 left-32 animate-float-enhanced-7 text-6xl drop-shadow-lg">
+            {/* Layer 3 - Higher up */}
+            <div className="absolute bottom-56 left-1/2 transform -translate-x-24 animate-float-from-basket-6 text-8xl drop-shadow-lg">
+              🍇
+            </div>
+
+            <div className="absolute bottom-60 left-1/2 transform translate-x-20 animate-float-from-basket-7 text-6xl drop-shadow-lg">
               🍍
             </div>
 
-            {/* Cherries */}
-            <div className="absolute bottom-64 right-20 animate-float-enhanced-8 text-7xl drop-shadow-lg">
+            <div className="absolute bottom-52 left-1/2 transform -translate-x-6 animate-float-from-basket-8 text-7xl drop-shadow-lg">
               🍒
             </div>
 
-            {/* Green Apple */}
-            <div className="absolute top-96 right-4 animate-float-enhanced-9 text-8xl drop-shadow-lg">
+            {/* Layer 4 - Highest level */}
+            <div className="absolute bottom-72 left-1/2 transform translate-x-16 animate-float-from-basket-9 text-8xl drop-shadow-lg">
               🍏
             </div>
 
-            {/* Orange 2 */}
-            <div className="absolute bottom-16 left-24 animate-float-enhanced-10 text-6xl drop-shadow-lg">
+            <div className="absolute bottom-68 left-1/2 transform -translate-x-20 animate-float-from-basket-10 text-6xl drop-shadow-lg">
               🍊
             </div>
           </div>
