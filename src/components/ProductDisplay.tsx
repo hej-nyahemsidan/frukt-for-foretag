@@ -49,6 +49,16 @@ const ProductDisplay = ({ activeCategory, setActiveCategory }: ProductDisplayPro
         </TabsList>
 
         <div className="p-6">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-semibold text-charcoal">Välj produkter</h2>
+            <a 
+              href="/sortiment" 
+              className="text-[#4CAF50] hover:text-[#45a049] font-medium text-sm"
+            >
+              Se hela sortimentet →
+            </a>
+          </div>
+          
           <TabsContent value="fruktkorgar" className="mt-0">
             <FruktkorgarTab />
           </TabsContent>
