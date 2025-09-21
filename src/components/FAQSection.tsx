@@ -9,6 +9,22 @@ const FAQSection = () => {
 
   const faqItems = [
     {
+      question: "Kan man beställa hur många korgar som helst?",
+      answer: "Ja, vi anpassar oss efter era behov! Vi levererar allt från en enda fruktkorg för små kontor till hundratals korgar för stora företag. Det finns ingen övre eller nedre gräns - vi skräddarsyr lösningen efter er verksamhet."
+    },
+    {
+      question: "Vi är inte nöjda med vår korg, får vi ersättning?",
+      answer: "Absolut! Vi har 100% nöjdhetsgaranti. Är ni inte helt nöjda med kvaliteten eller innehållet ersätter vi korgen eller återbetalar beloppet. Kontakta oss inom 24 timmar efter leverans så löser vi det direkt."
+    },
+    {
+      question: "Jag är allergisk mot en särskild frukt, kan ni ta bort den ur korgen?",
+      answer: "Självklart kan vi anpassa korgarna efter allergier och preferenser! Vi skapar skräddarsydda fruktkorgar där vi tar bort specifika frukter och ersätter dem med andra. Bara meddela oss vid beställning eller i kundportalen."
+    },
+    {
+      question: "Hur anpassar ni utbudet efter säsongen?",
+      answer: "Vi följer säsongerna och erbjuder alltid den fräschaste frukten som är i säsong. På vintern fokuserar vi på citrusfrukter och äpplen, på sommaren på bär och stenfrukter. Detta garanterar bästa kvalitet och smak året runt."
+    },
+    {
       question: "Vart kommer frukten ifrån?",
       answer: "Vi samarbetar med certifierade leverantörer från hela Europa för att säkerställa högsta kvalitet på vår frukt. All frukt levereras färsk och genomgår kvalitetskontroller innan leverans."
     },
