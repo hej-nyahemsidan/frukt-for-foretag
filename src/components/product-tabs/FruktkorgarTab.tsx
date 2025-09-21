@@ -30,29 +30,18 @@ const fruktkorgar = [
 
 const FruktkorgarTab = () => {
   return (
-    <div className="grid grid-cols-2 gap-6">
-      {fruktkorgar.map((product, index) => (
-        <div 
-          key={product.id} 
-          className={`bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow ${
-            index === 4 ? 'col-span-2 max-w-sm mx-auto' : ''
-          }`}
-        >
-          <div className="aspect-square bg-white p-4">
+    <div className="grid grid-cols-3 gap-4">
+      {fruktkorgar.map((product) => (
+        <div key={product.id} className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+          <div className="aspect-[3/4] bg-white p-4">
             <img 
               src={product.image}
               alt={product.name}
               className="w-full h-full object-cover rounded"
             />
           </div>
-          <div className="p-4 text-center">
-            <h3 className="font-semibold text-charcoal mb-2">{product.name}</h3>
-            <a 
-              href="#" 
-              className="text-secondary hover:text-secondary/80 text-sm font-medium"
-            >
-              Läs mer
-            </a>
+          <div className="p-3 text-center">
+            <h3 className="font-medium text-charcoal text-sm">{product.name}</h3>
           </div>
         </div>
       ))}
