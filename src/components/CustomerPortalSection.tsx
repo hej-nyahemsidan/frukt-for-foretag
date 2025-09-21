@@ -34,7 +34,7 @@ const CustomerPortalSection = () => {
         </div>
 
         {/* Bouncing Fruits Section */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50 h-96 mb-12 shadow-lg">
+        <div className="relative overflow-hidden rounded-2xl bg-gray-100 h-48 mb-12 shadow-lg">
           {bouncingFruits.map((fruit) => (
             <div
               key={fruit.id}
@@ -49,18 +49,6 @@ const CustomerPortalSection = () => {
               {fruit.emoji}
             </div>
           ))}
-          
-          {/* Overlay text */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Fruktportal
-              </h3>
-              <p className="text-gray-600">
-                Hantera dina leveranser enkelt
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* Call-to-Action */}
