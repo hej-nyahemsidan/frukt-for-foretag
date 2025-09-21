@@ -1,15 +1,18 @@
 import React from 'react';
 import AddToCartButton from '@/components/AddToCartButton';
+import ecoMilkImage from '@/assets/eco-milk.jpg';
+import oatlyImage from '@/assets/oatly.jpg';
+import dairyCollectionImage from '@/assets/dairy-products-collection.jpg';
 
 const mejeri = [
-  { id: 'eko-standard', name: 'Eko Standardmjölk', price: 18 },
-  { id: 'eko-latt', name: 'Eko Lättmjölk', price: 18 },
-  { id: 'eko-laktosfri', name: 'Eko Laktosfri Mellanmjölk', price: 22 },
-  { id: 'eko-mellan', name: 'Eko Mellanmjölk', price: 18 },
-  { id: 'oatly-kaffe', name: 'Oatly iKaffe', price: 28 },
-  { id: 'oatly', name: 'Oatly', price: 25 },
-  { id: 'latte-art', name: 'Latte Art', price: 32 },
-  { id: 'alpro', name: 'Alpro', price: 26 }
+  { id: 'eko-standard', name: 'Eko Standardmjölk', price: 18, image: ecoMilkImage },
+  { id: 'eko-latt', name: 'Eko Lättmjölk', price: 18, image: ecoMilkImage },
+  { id: 'eko-laktosfri', name: 'Eko Laktosfri Mellanmjölk', price: 22, image: ecoMilkImage },
+  { id: 'eko-mellan', name: 'Eko Mellanmjölk', price: 18, image: ecoMilkImage },
+  { id: 'oatly-kaffe', name: 'Oatly iKaffe', price: 28, image: oatlyImage },
+  { id: 'oatly', name: 'Oatly', price: 25, image: oatlyImage },
+  { id: 'latte-art', name: 'Latte Art', price: 32, image: dairyCollectionImage },
+  { id: 'alpro', name: 'Alpro', price: 26, image: dairyCollectionImage }
 ];
 
 const MejeriTab = () => {
@@ -18,23 +21,26 @@ const MejeriTab = () => {
       {mejeri.map((product) => (
         <div key={product.id} className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
           <div className="aspect-[3/4] bg-white p-4">
-            <div className="w-full h-full bg-gradient-to-b from-blue-50 to-white rounded flex items-center justify-center border">
-              <span className="text-xs text-charcoal text-center px-2">{product.name}</span>
-            </div>
+            <img 
+              src={product.image}
+              alt={product.name}
+              className="w-full h-full object-contain rounded"
+            />
           </div>
-            <div className="p-3 text-center space-y-2">
-              <h3 className="font-medium text-charcoal text-xs">{product.name}</h3>
-              <p className="font-bold text-[#4CAF50] text-xs">{product.price} kr</p>
-              <AddToCartButton 
-                product={{
-                  id: product.id,
-                  name: product.name,
-                  price: product.price,
-                  category: 'mejeri'
-                }}
-                className="w-full text-xs px-1 py-1"
-              />
-            </div>
+          <div className="p-3 text-center space-y-2">
+            <h3 className="font-medium text-charcoal text-xs">{product.name}</h3>
+            <p className="font-bold text-[#4CAF50] text-xs">{product.price} kr</p>
+            <AddToCartButton 
+              product={{
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                category: 'mejeri',
+                image: product.image
+              }}
+              className="w-full text-xs px-1 py-1"
+            />
+          </div>
         </div>
       ))}
     </div>
