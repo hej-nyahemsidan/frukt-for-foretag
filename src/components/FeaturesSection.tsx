@@ -15,7 +15,7 @@ const FeaturesSection = () => {
     {
       src: deliveryBoxesImage,
       alt: 'Premium fruit delivery boxes',
-      badge: '📱 Hantera via appen'
+      badge: '📱 Hantera via kundportalen'
     },
     {
       src: arrangementImage,
