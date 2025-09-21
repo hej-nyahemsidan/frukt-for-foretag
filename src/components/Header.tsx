@@ -8,7 +8,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navigationItems = [
-    { label: 'Sortiment', href: '#products', isExternal: true }, // Product Range
+    { label: 'Sortiment', href: '/sortiment', isExternal: false }, // Product Range
     { label: 'Om Oss', href: '/om-oss', isExternal: false }, // About Us
     { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
     { label: 'Offertförfrågan', href: '#quote', isExternal: true }, // Quote Request
