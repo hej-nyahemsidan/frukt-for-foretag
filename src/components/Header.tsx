@@ -9,7 +9,7 @@ const Header = () => {
 
   const navigationItems = [
     { label: 'Sortiment', href: '#products', isExternal: true }, // Product Range
-    { label: 'Om Oss', href: '#about', isExternal: true }, // About Us
+    { label: 'Om Oss', href: '/om-oss', isExternal: false }, // About Us
     { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
     { label: 'Offertförfrågan', href: '#quote', isExternal: true }, // Quote Request
   ];
