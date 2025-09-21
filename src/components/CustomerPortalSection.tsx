@@ -1,9 +1,23 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
-import portalDashboardImg from '@/assets/customer-portal-dashboard.jpg';
 
 const CustomerPortalSection = () => {
+  // Generate 100 fruit emojis
+  const fruits = ['🍎', '🍌', '🍊', '🍇', '🍓', '🥝', '🍑', '🍒', '🥭', '🍍'];
+  const bouncingFruits = Array.from({ length: 100 }, (_, i) => ({
+    id: i,
+    emoji: fruits[i % fruits.length],
+    animationClass: `animate-float-enhanced-${(i % 10) + 1}`,
+    size: `text-${['lg', 'xl', '2xl', '3xl'][i % 4]}`,
+    position: {
+      top: `${Math.random() * 80 + 10}%`,
+      left: `${Math.random() * 90 + 5}%`,
+    },
+    zIndex: Math.floor(Math.random() * 30) + 1, // Random z-index from 1-30
+    opacity: Math.random() * 0.4 + 0.6, // Random opacity between 0.6-1.0
+  }));
+
   return (
     <section className="py-20 px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
@@ -19,14 +33,33 @@ const CustomerPortalSection = () => {
           </p>
         </div>
 
-        {/* Moving Image */}
-        <div className="relative overflow-hidden rounded-2xl shadow-lg mb-12 bg-white">
-          <div className="portal-slide">
-            <img
-              src={portalDashboardImg}
-              alt="Fruktexperten customer portal dashboard interface showing delivery management and scheduling features"
-              className="w-full h-auto object-cover"
-            />
+        {/* Bouncing Fruits Section */}
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50 h-96 mb-12 shadow-lg">
+          {bouncingFruits.map((fruit) => (
+            <div
+              key={fruit.id}
+              className={`absolute ${fruit.animationClass} ${fruit.size}`}
+              style={{
+                top: fruit.position.top,
+                left: fruit.position.left,
+                zIndex: fruit.zIndex,
+                opacity: fruit.opacity,
+              }}
+            >
+              {fruit.emoji}
+            </div>
+          ))}
+          
+          {/* Overlay text */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+              <h3 className="text-2xl font-bold text-gray-800 mb-2">
+                Fruktportal
+              </h3>
+              <p className="text-gray-600">
+                Hantera dina leveranser enkelt
+              </p>
+            </div>
           </div>
         </div>
 
