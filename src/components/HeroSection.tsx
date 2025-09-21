@@ -4,7 +4,7 @@ import picnicBasket from '@/assets/picnic-basket-fruits.jpg';
 
 const HeroSection = () => {
   return (
-    <section id="home" className="hero-background relative overflow-hidden min-h-[70vh] flex items-center py-12 px-8">
+    <section id="home" className="relative overflow-hidden min-h-[70vh] flex items-center py-12 px-8">
       {/* Gradient Fade Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-green-50/95 via-green-50/70 to-green-50/20" style={{
         background: 'linear-gradient(to right, rgba(240,253,244,0.95) 0%, rgba(240,253,244,0.7) 40%, rgba(240,253,244,0.2) 70%, transparent 100%)'
@@ -38,8 +38,13 @@ const HeroSection = () => {
             </Button>
           </div>
 
-          {/* Right Side - Empty space for background image */}
-          <div className="relative h-[400px] lg:h-[500px]">
+          {/* Right Side - Hero Image */}
+          <div className="relative h-[400px] lg:h-[500px] flex justify-center items-center">
+            <img 
+              src={picnicBasket} 
+              alt="Fresh fruit picnic basket - premium fruit delivery for offices"
+              className="w-full h-full object-cover rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-300"
+            />
           </div>
         </div>
       </div>

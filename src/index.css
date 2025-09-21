@@ -302,24 +302,6 @@
     }
   }
   
-  /* Hero Background with Moving Picnic Basket */
-  .hero-background {
-    background-image: url('./src/assets/picnic-basket-fruits.jpg');
-    background-size: 150% auto;
-    background-repeat: no-repeat;
-    background-position: 0% center;
-    background-attachment: scroll;
-    animation: moveBasket 25s ease-in-out infinite;
-  }
-  
-  @keyframes moveBasket {
-    0% { 
-      background-position: 0% center; 
-    }
-    100% { 
-      background-position: 30% center; 
-    }
-  }
 
   /* Features Carousel Animation */
   .features-carousel-container {
