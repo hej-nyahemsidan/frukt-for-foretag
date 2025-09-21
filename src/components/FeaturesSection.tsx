@@ -37,19 +37,19 @@ const FeaturesSection = () => {
   return (
     <section className="bg-[#166534] py-20 px-8 overflow-hidden">
       <div className="container mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Column - Text Content */}
-          <div className="space-y-6">
+        <div className="space-y-12">
+          {/* Text Content */}
+          <div className="text-center space-y-6">
             <h2 className="text-5xl font-bold text-white leading-tight">
               Kvalitet som levererar resultat
             </h2>
             
-            <p className="text-xl text-white leading-relaxed">
+            <p className="text-xl text-white leading-relaxed max-w-3xl mx-auto">
               Vi levererar endast premium frukt från certifierade leverantörer – våra kunder får den kvalitet och service som skapar nöjda medarbetare.
             </p>
           </div>
 
-          {/* Right Column - Moving Images */}
+          {/* Moving Images */}
           <div className="relative">
             <div className="features-carousel-container overflow-hidden rounded-xl">
               <div className="features-carousel flex gap-6">
