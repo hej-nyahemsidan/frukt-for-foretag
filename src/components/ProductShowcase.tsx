@@ -36,6 +36,15 @@ const ProductShowcase = () => {
       showPrice: true
     },
     {
+      id: 'banan',
+      name: 'Fruktkorg Banan+',
+      image: fruktkorgrBananImg,
+      weight: 'Starting at 4kg',
+      currentPrice: '245 kr',
+      originalPrice: '289 kr',
+      showPrice: true
+    },
+    {
       id: 'lada',
       name: 'Fruktlåda',
       image: fruktladaImg,
@@ -67,17 +76,8 @@ const ProductShowcase = () => {
               key={product.id}
               className="bg-green-50 rounded-xl shadow-md p-6 flex flex-col h-full"
             >
-              {/* Product Image */}
-              <div className="mb-4">
-                <img
-                  src={product.image}
-                  alt={`${product.name} - premium fruit basket from Fruktexperten`}
-                  className="w-full aspect-square object-cover rounded-lg"
-                />
-              </div>
-
-              {/* Product Content */}
-              <div className="flex-1 flex flex-col">
+              {/* Product Content - Now First */}
+              <div className="flex-1 flex flex-col mb-4">
                 {/* Weight */}
                 <p className="text-gray-500 text-sm mb-2">
                   {product.weight}
@@ -109,7 +109,7 @@ const ProductShowcase = () => {
                 </div>
 
                 {/* Buttons */}
-                <div className="mt-auto space-y-2">
+                <div className="space-y-2">
                   <Button 
                     variant="outline" 
                     className="w-full bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
@@ -120,6 +120,15 @@ const ProductShowcase = () => {
                     Beställ Nu
                   </Button>
                 </div>
+              </div>
+
+              {/* Product Image - Now Below Text */}
+              <div>
+                <img
+                  src={product.image}
+                  alt={`${product.name} - premium fruit basket from Fruktexperten`}
+                  className="w-full aspect-square object-cover rounded-lg"
+                />
               </div>
             </div>
           ))}
