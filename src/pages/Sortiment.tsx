@@ -9,8 +9,8 @@ const Sortiment = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
 
   const categories = [
-    { id: 'all', name: 'Alla Kategorier', count: 18 },
-    { id: 'fruktkorgar', name: 'Fruktkorgar', count: 3 },
+    { id: 'all', name: 'Alla Kategorier', count: 20 },
+    { id: 'fruktkorgar', name: 'Fruktkorgar', count: 5 },
     { id: 'fruktsafter', name: 'Fruktsafter', count: 3 },
     { id: 'fruktbitar', name: 'Fruktbitar', count: 2 },
     { id: 'tillbehor', name: 'Tillbehör', count: 3 },
@@ -22,35 +22,50 @@ const Sortiment = () => {
   ];
 
   const products = [
-    // Fruktkorgar
+    // Fruktkorgar - From Homepage
     {
       id: 1,
-      name: 'Eko Mellanmjölk',
-      price: 29,
-      originalPrice: null,
-      image: '/src/assets/fruktkorg-eko.jpg',
-      category: 'fruktkorgar'
-    },
-    {
-      id: 2,
-      name: 'Laktosfri mellanmjölk',
-      price: 30,
-      originalPrice: 35,
+      name: 'Fruktkorg Standard',
+      price: 230,
+      originalPrice: 271,
       image: '/src/assets/fruktkorg-standard.jpg',
       category: 'fruktkorgar'
     },
     {
-      id: 3,
-      name: 'Eko Standardmjölk',
-      price: 29,
-      originalPrice: null,
+      id: 2,
+      name: 'Fruktkorg Premium',
+      price: 263,
+      originalPrice: 310,
       image: '/src/assets/fruktkorg-premium.jpg',
       category: 'fruktkorgar'
     },
-    
-    // Fruktsafter
+    {
+      id: 3,
+      name: 'Fruktkorg Eko',
+      price: 289,
+      originalPrice: 340,
+      image: '/src/assets/fruktkorg-eko.jpg',
+      category: 'fruktkorgar'
+    },
     {
       id: 4,
+      name: 'Fruktlåda',
+      price: 'Begär offert',
+      originalPrice: null,
+      image: '/src/assets/fruktlada.jpg',
+      category: 'fruktkorgar'
+    },
+    {
+      id: 5,
+      name: 'Fruktkorg Banan+',
+      price: 195,
+      originalPrice: 230,
+      image: '/src/assets/fruktkorg-banan.jpg',
+      category: 'fruktkorgar'
+    },
+    // Fruktsafter
+    {
+      id: 6,
       name: 'Laktosfri mjölk (Lång hållbarhet)',
       price: 26,
       originalPrice: null,
@@ -58,7 +73,7 @@ const Sortiment = () => {
       category: 'fruktsafter'
     },
     {
-      id: 5,
+      id: 7,
       name: 'Laktosfri Kaffemjölk',
       price: 140,
       originalPrice: 165,
@@ -66,7 +81,7 @@ const Sortiment = () => {
       category: 'fruktsafter'
     },
     {
-      id: 6,
+      id: 8,
       name: 'Lätte Art (Latte)',
       price: 30,
       originalPrice: null,
@@ -76,7 +91,7 @@ const Sortiment = () => {
 
     // Tillbehör
     {
-      id: 7,
+      id: 9,
       name: 'iKaffe',
       price: 36,
       originalPrice: null,
@@ -84,7 +99,7 @@ const Sortiment = () => {
       category: 'tillbehor'
     },
     {
-      id: 8,
+      id: 10,
       name: 'Good Oddly Banana',
       price: 35,
       originalPrice: 42,
@@ -92,7 +107,7 @@ const Sortiment = () => {
       category: 'tillbehor'
     },
     {
-      id: 9,
+      id: 11,
       name: 'Lättmjölk (standard)',
       price: 28,
       originalPrice: null,
@@ -102,7 +117,7 @@ const Sortiment = () => {
 
     // Fruktbitar
     {
-      id: 10,
+      id: 12,
       name: 'Färska Fruktbitar Mix',
       price: 45,
       originalPrice: null,
@@ -110,7 +125,7 @@ const Sortiment = () => {
       category: 'fruktbitar'
     },
     {
-      id: 11,
+      id: 13,
       name: 'Exotiska Fruktbitar',
       price: 52,
       originalPrice: 58,
@@ -120,7 +135,7 @@ const Sortiment = () => {
 
     // Mejeri & Nötkött
     {
-      id: 12,
+      id: 14,
       name: 'Ekologisk Yoghurt',
       price: 38,
       originalPrice: null,
@@ -128,7 +143,7 @@ const Sortiment = () => {
       category: 'mejeri'
     },
     {
-      id: 13,
+      id: 15,
       name: 'Blandade Nötter Premium',
       price: 65,
       originalPrice: 75,
@@ -138,7 +153,7 @@ const Sortiment = () => {
 
     // Kaffe & Te
     {
-      id: 14,
+      id: 16,
       name: 'Premium Kaffe Blend',
       price: 89,
       originalPrice: null,
@@ -146,7 +161,7 @@ const Sortiment = () => {
       category: 'kaffe'
     },
     {
-      id: 15,
+      id: 17,
       name: 'Ekologiskt Te Selection',
       price: 55,
       originalPrice: 62,
@@ -156,7 +171,7 @@ const Sortiment = () => {
 
     // Dryck
     {
-      id: 16,
+      id: 18,
       name: 'Naturlig Mineralvatten',
       price: 22,
       originalPrice: null,
@@ -164,7 +179,7 @@ const Sortiment = () => {
       category: 'dryck'
     },
     {
-      id: 17,
+      id: 19,
       name: 'Bubbelvatten Med Smak',
       price: 28,
       originalPrice: 32,
@@ -174,7 +189,7 @@ const Sortiment = () => {
 
     // Snacks & Nötter
     {
-      id: 18,
+      id: 20,
       name: 'Hälsosamma Snacks Mix',
       price: 48,
       originalPrice: null,
@@ -276,7 +291,7 @@ const Sortiment = () => {
                     {/* Price */}
                     <div className="flex items-center gap-2">
                       <span className="text-red-600 font-bold text-lg">
-                        {product.price} kr
+                        {typeof product.price === 'string' ? product.price : `${product.price} kr`}
                       </span>
                       {product.originalPrice && (
                         <span className="text-gray-400 line-through text-sm">
