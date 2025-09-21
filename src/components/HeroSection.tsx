@@ -1,13 +1,17 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import fruitBoxImage from '@/assets/fruit-box.jpg';
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative overflow-hidden bg-gradient-to-br from-green-50 to-emerald-100 min-h-screen flex items-center py-20 px-8">
-      <div className="container mx-auto">
+    <section id="home" className="hero-section relative overflow-hidden min-h-screen flex items-center py-20 px-8">
+      {/* Text Readability Overlay */}
+      <div className="absolute inset-0 bg-white/75 md:bg-white/20"></div>
+      
+      <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Side - Text Content */}
-          <div className="space-y-8 z-10">
+          <div className="space-y-8 relative bg-white/80 md:bg-transparent p-6 md:p-0 rounded-2xl md:rounded-none backdrop-blur-sm md:backdrop-blur-none">
             <div className="space-y-6">
               <h1 className="text-6xl lg:text-7xl xl:text-8xl font-black leading-tight text-slate-800 shadow-sm max-w-2xl">
                 Experterna på företagsfrukt som levererar resultat

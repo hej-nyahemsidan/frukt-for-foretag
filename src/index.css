@@ -302,8 +302,31 @@
     }
   }
   
+  /* Hero Section Background Animation */
+  .hero-section {
+    background-image: url('/src/assets/fruit-box.jpg');
+    background-size: 120% auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+    animation: moveBackground 50s linear infinite;
+  }
+  
+  @keyframes moveBackground {
+    0% { 
+      background-position: 0% center; 
+    }
+    100% { 
+      background-position: 100% center; 
+    }
+  }
+
   /* Responsive adjustments for mobile */
   @media (max-width: 1024px) {
+    .hero-section {
+      background-size: 150% auto;
+    }
+    
     .animate-float-enhanced-1,
     .animate-float-enhanced-2,
     .animate-float-enhanced-3,
