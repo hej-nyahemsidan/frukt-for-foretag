@@ -1,8 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useCart } from '@/contexts/CartContext';
+import { AlertCircle } from 'lucide-react';
 
 interface OrderSidebarProps {
   packagePlan: string;
@@ -12,13 +16,32 @@ interface OrderSidebarProps {
 }
 
 const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDays }: OrderSidebarProps) => {
+  const navigate = useNavigate();
+  const { getTotalItems } = useCart();
   const days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
+
+  const totalItems = getTotalItems();
+  const hasSelectedDays = selectedDays.length > 0;
+  const hasItems = totalItems > 0;
+  const canProceed = hasSelectedDays && hasItems;
 
   const handleDayChange = (day: string, checked: boolean) => {
     if (checked) {
       setSelectedDays([...selectedDays, day]);
     } else {
       setSelectedDays(selectedDays.filter(d => d !== day));
+    }
+  };
+
+  const handleNext = () => {
+    if (canProceed) {
+      // Create a temporary checkout route with state
+      navigate('/checkout', { 
+        state: { 
+          packagePlan, 
+          selectedDays 
+        } 
+      });
     }
   };
 
@@ -90,9 +113,30 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
         </div>
       </div>
 
+      {/* Validation Messages */}
+      {!canProceed && (
+        <div className="mb-6">
+          <Alert>
+            <AlertCircle className="h-4 w-4" />
+            <AlertDescription>
+              {!hasItems && "Lägg till produkter i varukorgen. "}
+              {!hasSelectedDays && "Välj minst en leveransdag."}
+            </AlertDescription>
+          </Alert>
+        </div>
+      )}
+
       {/* Next Button */}
-      <Button className="w-full bg-[#4CAF50] hover:bg-[#45a049] text-white">
-        Nästa
+      <Button 
+        className={`w-full ${
+          canProceed 
+            ? 'bg-[#4CAF50] hover:bg-[#45a049] text-white' 
+            : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+        }`}
+        onClick={handleNext}
+        disabled={!canProceed}
+      >
+        Nästa {hasItems && `(${totalItems} produkter)`}
       </Button>
     </div>
   );

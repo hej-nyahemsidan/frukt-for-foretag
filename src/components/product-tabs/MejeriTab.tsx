@@ -1,14 +1,15 @@
 import React from 'react';
+import AddToCartButton from '@/components/AddToCartButton';
 
 const mejeri = [
-  { id: 1, name: 'Eko Standardmjölk' },
-  { id: 2, name: 'Eko Lättmjölk' },
-  { id: 3, name: 'Eko Laktosfri Mellanmjölk' },
-  { id: 4, name: 'Eko Mellanmjölk' },
-  { id: 5, name: 'Oatly iKaffe' },
-  { id: 6, name: 'Oatly' },
-  { id: 7, name: 'Latte Art' },
-  { id: 8, name: 'Alpro' }
+  { id: 'eko-standard', name: 'Eko Standardmjölk', price: 18 },
+  { id: 'eko-latt', name: 'Eko Lättmjölk', price: 18 },
+  { id: 'eko-laktosfri', name: 'Eko Laktosfri Mellanmjölk', price: 22 },
+  { id: 'eko-mellan', name: 'Eko Mellanmjölk', price: 18 },
+  { id: 'oatly-kaffe', name: 'Oatly iKaffe', price: 28 },
+  { id: 'oatly', name: 'Oatly', price: 25 },
+  { id: 'latte-art', name: 'Latte Art', price: 32 },
+  { id: 'alpro', name: 'Alpro', price: 26 }
 ];
 
 const MejeriTab = () => {
@@ -21,9 +22,19 @@ const MejeriTab = () => {
               <span className="text-xs text-charcoal text-center px-2">{product.name}</span>
             </div>
           </div>
-          <div className="p-3 text-center">
-            <h3 className="font-medium text-charcoal text-xs">{product.name}</h3>
-          </div>
+            <div className="p-3 text-center space-y-2">
+              <h3 className="font-medium text-charcoal text-xs">{product.name}</h3>
+              <p className="font-bold text-[#4CAF50] text-xs">{product.price} kr</p>
+              <AddToCartButton 
+                product={{
+                  id: product.id,
+                  name: product.name,
+                  price: product.price,
+                  category: 'mejeri'
+                }}
+                className="w-full text-xs px-1 py-1"
+              />
+            </div>
         </div>
       ))}
     </div>

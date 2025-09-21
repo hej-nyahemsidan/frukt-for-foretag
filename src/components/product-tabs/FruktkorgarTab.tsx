@@ -1,30 +1,36 @@
 import React from 'react';
+import AddToCartButton from '@/components/AddToCartButton';
 
 const fruktkorgar = [
   {
-    id: 1,
+    id: 'frukt-premium',
     name: 'Fruktkorg Premium',
-    image: '/src/assets/fruktkorg-premium.jpg'
+    image: '/src/assets/fruktkorg-premium.jpg',
+    price: 149
   },
   {
-    id: 2,
+    id: 'frukt-supreme',
     name: 'Fruktkorg Supreme',
-    image: '/src/assets/fruktkorg-standard.jpg'
+    image: '/src/assets/fruktkorg-standard.jpg',
+    price: 119
   },
   {
-    id: 3,
+    id: 'frukt-original',
     name: 'Fruktkorg Original',
-    image: '/src/assets/fruktkorg-eko.jpg'
+    image: '/src/assets/fruktkorg-eko.jpg',
+    price: 99
   },
   {
-    id: 4,
+    id: 'frukt-banan',
     name: 'Fruktkorg Banan Plus',
-    image: '/src/assets/fruktkorg-banan.jpg'
+    image: '/src/assets/fruktkorg-banan.jpg',
+    price: 89
   },
   {
-    id: 5,
+    id: 'frukt-bas',
     name: 'Fruktkorg Bas',
-    image: '/src/assets/fruit-box.jpg'
+    image: '/src/assets/fruit-box.jpg',
+    price: 79
   }
 ];
 
@@ -40,8 +46,19 @@ const FruktkorgarTab = () => {
               className="w-full h-full object-cover rounded"
             />
           </div>
-          <div className="p-3 text-center">
+          <div className="p-3 text-center space-y-2">
             <h3 className="font-medium text-charcoal text-sm">{product.name}</h3>
+            <p className="font-bold text-[#4CAF50]">{product.price} kr</p>
+            <AddToCartButton 
+              product={{
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                category: 'fruktkorgar',
+                image: product.image
+              }}
+              className="w-full text-xs px-2 py-1"
+            />
           </div>
         </div>
       ))}

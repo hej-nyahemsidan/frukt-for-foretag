@@ -1,9 +1,10 @@
 import React from 'react';
+import AddToCartButton from '@/components/AddToCartButton';
 
 const kaffeTe = [
-  { id: 1, name: 'Gevalia' },
-  { id: 2, name: 'Arvid Nordkvist' },
-  { id: 3, name: 'Nescafe Lyx' }
+  { id: 'gevalia', name: 'Gevalia', price: 45 },
+  { id: 'arvid-nordkvist', name: 'Arvid Nordkvist', price: 42 },
+  { id: 'nescafe-lyx', name: 'Nescafe Lyx', price: 38 }
 ];
 
 const KaffeTeTab = () => {
@@ -16,8 +17,18 @@ const KaffeTeTab = () => {
               <span className="text-xs text-charcoal text-center px-2">{product.name}</span>
             </div>
           </div>
-          <div className="p-3 text-center">
+          <div className="p-3 text-center space-y-2">
             <h3 className="font-medium text-charcoal text-sm">{product.name}</h3>
+            <p className="font-bold text-[#4CAF50]">{product.price} kr</p>
+            <AddToCartButton 
+              product={{
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                category: 'kaffe-te'
+              }}
+              className="w-full text-xs px-2 py-1"
+            />
           </div>
         </div>
       ))}

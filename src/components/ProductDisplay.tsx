@@ -1,5 +1,6 @@
 import React from 'react';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import CartIndicator from '@/components/CartIndicator';
 import FruktkorgarTab from '@/components/product-tabs/FruktkorgarTab';
 import FruktpaserTab from '@/components/product-tabs/FruktpaserTab';
 import LaskTab from '@/components/product-tabs/LaskTab';
@@ -14,6 +15,13 @@ interface ProductDisplayProps {
 const ProductDisplay = ({ activeCategory, setActiveCategory }: ProductDisplayProps) => {
   return (
     <div className="bg-white rounded-lg shadow-sm border">
+      {/* Cart Indicator */}
+      <div className="p-4 border-b bg-gray-50">
+        <div className="flex justify-end">
+          <CartIndicator />
+        </div>
+      </div>
+      
       <Tabs value={activeCategory} onValueChange={setActiveCategory} className="w-full">
         <TabsList className="w-full justify-start p-0 h-auto bg-transparent border-b rounded-none">
           <TabsTrigger 

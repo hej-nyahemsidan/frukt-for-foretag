@@ -1,15 +1,18 @@
 import React from 'react';
+import AddToCartButton from '@/components/AddToCartButton';
 
 const fruktpaser = [
   {
-    id: 1,
+    id: 'fruktpase-extra',
     name: 'Fruktpåse Extra',
-    image: '/src/assets/fresh-fruit-arrangements.jpg'
+    image: '/src/assets/fresh-fruit-arrangements.jpg',
+    price: 59
   },
   {
-    id: 2,
+    id: 'bananpase-extra',
     name: 'Bananpåse Extra',
-    image: '/src/assets/picnic-basket-fruits.jpg'
+    image: '/src/assets/picnic-basket-fruits.jpg',
+    price: 49
   }
 ];
 
@@ -25,8 +28,19 @@ const FruktpaserTab = () => {
               className="w-full h-full object-cover rounded"
             />
           </div>
-          <div className="p-3 text-center">
+          <div className="p-3 text-center space-y-2">
             <h3 className="font-medium text-charcoal text-sm">{product.name}</h3>
+            <p className="font-bold text-[#4CAF50]">{product.price} kr</p>
+            <AddToCartButton 
+              product={{
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                category: 'fruktpaser',
+                image: product.image
+              }}
+              className="w-full text-xs px-2 py-1"
+            />
           </div>
         </div>
       ))}
