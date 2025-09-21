@@ -9,6 +9,7 @@ import Contact from "./pages/Contact";
 import CustomerPortal from "./pages/CustomerPortal";
 import Sortiment from "./pages/Sortiment";
 import QuoteRequest from "./pages/QuoteRequest";
+import OrderFruitBaskets from "./pages/OrderFruitBaskets";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/sortiment" element={<Sortiment />} />
           <Route path="/kundportal" element={<CustomerPortal />} />
           <Route path="/offertforfragan" element={<QuoteRequest />} />
+          <Route path="/bestall-fruktkorgar" element={<OrderFruitBaskets />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
