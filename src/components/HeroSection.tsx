@@ -3,122 +3,83 @@ import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {
   return (
-    <section id="home" className="relative overflow-hidden bg-gradient-to-br from-green-50 to-green-100 min-h-screen flex items-center">
-      <div className="container mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section id="home" className="relative overflow-hidden bg-gradient-to-br from-green-50 to-emerald-100 min-h-screen flex items-center py-20 px-8">
+      <div className="container mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Side - Text Content */}
           <div className="space-y-8 z-10">
             <div className="space-y-6">
-              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight" style={{ color: '#2d4a3e' }}>
-                Professionella fruktleveranser för framgångsrika företag
+              <h1 className="text-6xl lg:text-7xl xl:text-8xl font-black leading-tight text-slate-800 shadow-sm max-w-2xl">
+                Experterna på företagsfrukt som levererar resultat
               </h1>
               
-              <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-                Fruktexperten levererar färska, näringsrika fruktkorgar direkt till ditt kontor sedan 2024. 
-                Vårt mål är att förbättra välmåendet på arbetsplatsen med premium frukt av högsta kvalitet.
+              <p className="text-xl leading-relaxed text-slate-600 max-w-2xl">
+                Vi levererar handplockade fruktkorgar direkt till svenska företag varje vecka. 
+                Sedan 2024 har vi hjälpt över 500 företag att öka välmående och produktivitet genom premium frukt av världsklass.
               </p>
+              
+              {/* Trust Indicator */}
+              <div className="flex items-center text-emerald-600 font-medium">
+                ✓ Över 10,000 nöjda medarbetare
+              </div>
             </div>
 
             {/* CTA Button */}
-            <Button className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 text-lg rounded-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105">
-              Beställ Gratis Provkorg
+            <Button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-4 text-lg rounded-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center gap-2">
+              🧺 Beställ Gratis Provkorg
             </Button>
           </div>
 
-          {/* Right Side - Animated Fruits */}
+          {/* Right Side - Enhanced Animated Fruits */}
           <div className="relative h-[600px] lg:h-[700px]">
             {/* Orange 1 */}
-            <div className="absolute top-16 left-12 animate-float-1">
-              <svg width="80" height="80" viewBox="0 0 80 80" className="drop-shadow-lg">
-                <defs>
-                  <radialGradient id="orangeGrad1" cx="0.3" cy="0.3" r="0.8">
-                    <stop offset="0%" stopColor="#ffffff" />
-                    <stop offset="70%" stopColor="#ff8c00" />
-                    <stop offset="100%" stopColor="#e6670a" />
-                  </radialGradient>
-                </defs>
-                <circle cx="40" cy="40" r="35" fill="url(#orangeGrad1)" />
-                <ellipse cx="40" cy="10" rx="8" ry="4" fill="#22c55e" />
-                <rect x="38" y="6" width="4" height="8" fill="#8B4513" rx="2" />
-              </svg>
+            <div className="absolute top-16 left-12 animate-float-enhanced-1 text-6xl drop-shadow-lg">
+              🍊
             </div>
 
             {/* Banana */}
-            <div className="absolute top-32 right-16 animate-float-2">
-              <svg width="90" height="40" viewBox="0 0 90 40" className="drop-shadow-lg">
-                <path d="M10 25 Q30 10, 50 15 Q70 20, 80 25 Q70 30, 50 25 Q30 30, 10 25" fill="#FFD700" stroke="#FFA500" strokeWidth="2" />
-                <ellipse cx="8" cy="25" rx="3" ry="8" fill="#8B4513" />
-              </svg>
+            <div className="absolute top-32 right-16 animate-float-enhanced-2 text-7xl drop-shadow-lg">
+              🍌
             </div>
 
             {/* Apple */}
-            <div className="absolute top-48 left-20 animate-float-3">
-              <svg width="70" height="75" viewBox="0 0 70 75" className="drop-shadow-lg">
-                <defs>
-                  <radialGradient id="appleGrad" cx="0.3" cy="0.3" r="0.8">
-                    <stop offset="0%" stopColor="#ff6b6b" />
-                    <stop offset="70%" stopColor="#dc2626" />
-                    <stop offset="100%" stopColor="#991b1b" />
-                  </radialGradient>
-                </defs>
-                <ellipse cx="35" cy="45" rx="30" ry="25" fill="url(#appleGrad)" />
-                <ellipse cx="35" cy="15" rx="6" ry="3" fill="#22c55e" />
-                <rect x="33" y="10" width="4" height="8" fill="#8B4513" rx="2" />
-              </svg>
+            <div className="absolute top-48 left-20 animate-float-enhanced-3 text-6xl drop-shadow-lg">
+              🍎
             </div>
 
             {/* Grapes */}
-            <div className="absolute bottom-32 right-8 animate-float-4">
-              <svg width="60" height="80" viewBox="0 0 60 80" className="drop-shadow-lg">
-                <defs>
-                  <radialGradient id="grapeGrad" cx="0.3" cy="0.3" r="0.8">
-                    <stop offset="0%" stopColor="#a855f7" />
-                    <stop offset="70%" stopColor="#7c3aed" />
-                    <stop offset="100%" stopColor="#5b21b6" />
-                  </radialGradient>
-                </defs>
-                {/* Grape cluster */}
-                <circle cx="30" cy="20" r="8" fill="url(#grapeGrad)" />
-                <circle cx="22" cy="28" r="8" fill="url(#grapeGrad)" />
-                <circle cx="38" cy="28" r="8" fill="url(#grapeGrad)" />
-                <circle cx="30" cy="36" r="8" fill="url(#grapeGrad)" />
-                <circle cx="22" cy="44" r="8" fill="url(#grapeGrad)" />
-                <circle cx="38" cy="44" r="8" fill="url(#grapeGrad)" />
-                <circle cx="30" cy="52" r="8" fill="url(#grapeGrad)" />
-                <ellipse cx="30" cy="8" rx="8" ry="4" fill="#22c55e" />
-              </svg>
+            <div className="absolute bottom-32 right-8 animate-float-enhanced-4 text-8xl drop-shadow-lg">
+              🍇
             </div>
 
-            {/* Orange 2 */}
-            <div className="absolute bottom-48 left-8 animate-float-5">
-              <svg width="65" height="65" viewBox="0 0 65 65" className="drop-shadow-lg">
-                <defs>
-                  <radialGradient id="orangeGrad2" cx="0.3" cy="0.3" r="0.8">
-                    <stop offset="0%" stopColor="#ffffff" />
-                    <stop offset="70%" stopColor="#ff8c00" />
-                    <stop offset="100%" stopColor="#e6670a" />
-                  </radialGradient>
-                </defs>
-                <circle cx="32" cy="32" r="28" fill="url(#orangeGrad2)" />
-                <ellipse cx="32" cy="8" rx="6" ry="3" fill="#22c55e" />
-                <rect x="30" y="5" width="4" height="6" fill="#8B4513" rx="2" />
-              </svg>
+            {/* Strawberries */}
+            <div className="absolute top-64 right-32 animate-float-enhanced-5 text-6xl drop-shadow-lg">
+              🍓
+            </div>
+
+            {/* Kiwi */}
+            <div className="absolute bottom-48 left-8 animate-float-enhanced-6 text-7xl drop-shadow-lg">
+              🥝
+            </div>
+
+            {/* Pineapple slice */}
+            <div className="absolute top-80 left-32 animate-float-enhanced-7 text-6xl drop-shadow-lg">
+              🍍
+            </div>
+
+            {/* Cherries */}
+            <div className="absolute bottom-64 right-20 animate-float-enhanced-8 text-7xl drop-shadow-lg">
+              🍒
             </div>
 
             {/* Green Apple */}
-            <div className="absolute top-64 right-24 animate-float-6">
-              <svg width="75" height="80" viewBox="0 0 75 80" className="drop-shadow-lg">
-                <defs>
-                  <radialGradient id="greenAppleGrad" cx="0.3" cy="0.3" r="0.8">
-                    <stop offset="0%" stopColor="#84cc16" />
-                    <stop offset="70%" stopColor="#65a30d" />
-                    <stop offset="100%" stopColor="#365314" />
-                  </radialGradient>
-                </defs>
-                <ellipse cx="37" cy="47" rx="32" ry="27" fill="url(#greenAppleGrad)" />
-                <ellipse cx="37" cy="15" rx="7" ry="4" fill="#22c55e" />
-                <rect x="35" y="10" width="4" height="8" fill="#8B4513" rx="2" />
-              </svg>
+            <div className="absolute top-96 right-4 animate-float-enhanced-9 text-8xl drop-shadow-lg">
+              🍏
+            </div>
+
+            {/* Orange 2 */}
+            <div className="absolute bottom-16 left-24 animate-float-enhanced-10 text-6xl drop-shadow-lg">
+              🍊
             </div>
           </div>
         </div>
@@ -127,7 +88,7 @@ const HeroSection = () => {
       {/* Background Pattern */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-green-200/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-green-300/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl"></div>
       </div>
     </section>
   );
