@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, User } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import FruktexpertenLogo from '@/components/FruktexpertenLogo';
 
@@ -7,10 +8,10 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navigationItems = [
-    { label: 'Sortiment', href: '#products' }, // Product Range
-    { label: 'Om Oss', href: '#about' }, // About Us
-    { label: 'Kontakt', href: '#contact' }, // Contact
-    { label: 'Offertförfrågan', href: '#quote' }, // Quote Request
+    { label: 'Sortiment', href: '#products', isExternal: true }, // Product Range
+    { label: 'Om Oss', href: '#about', isExternal: true }, // About Us
+    { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
+    { label: 'Offertförfrågan', href: '#quote', isExternal: true }, // Quote Request
   ];
 
   return (
@@ -25,13 +26,23 @@ const Header = () => {
           {/* Desktop Navigation - Centered */}
           <nav className="hidden lg:flex items-center space-x-8 mx-auto">
             {navigationItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-gray-600 hover:text-primary transition-colors font-medium text-sm tracking-wide"
-              >
-                {item.label}
-              </a>
+              item.isExternal ? (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="text-gray-600 hover:text-primary transition-colors font-medium text-sm tracking-wide"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="text-gray-600 hover:text-primary transition-colors font-medium text-sm tracking-wide"
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
           </nav>
 
@@ -71,14 +82,25 @@ const Header = () => {
           <div className="lg:hidden border-t border-gray-200 bg-white">
             <nav className="py-4 space-y-2">
               {navigationItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="block px-4 py-3 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
+                item.isExternal ? (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="block px-4 py-3 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    className="block px-4 py-3 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )
               ))}
               
               {/* Mobile Contact & Actions */}
