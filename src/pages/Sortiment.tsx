@@ -14,7 +14,7 @@ const Sortiment = () => {
       <Header />
       <main className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold text-charcoal text-center mb-8">
-          Beställ
+          Beställ Fruktkorg
         </h1>
         
         <div className="flex gap-8">
