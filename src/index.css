@@ -366,5 +366,20 @@
     .animate-float-enhanced-10 {
       display: none;
     }
+
+    .portal-slide {
+      animation: slidePortal 35s linear infinite;
+    }
+  }
+
+  /* Customer Portal Animation */
+  @keyframes slidePortal {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-30%); }
+  }
+
+  .portal-slide {
+    animation: slidePortal 28s linear infinite;
+    width: 130%; /* Make image wider to allow for sliding effect */
   }
 }
