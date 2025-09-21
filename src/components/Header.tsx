@@ -19,9 +19,9 @@ const Header = () => {
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-18">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <Link to="/" className="flex-shrink-0">
             <FruktexpertenLogo />
-          </div>
+          </Link>
 
           {/* Desktop Navigation - Centered */}
           <nav className="hidden lg:flex items-center space-x-8 mx-auto">
