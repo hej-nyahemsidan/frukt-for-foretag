@@ -304,12 +304,8 @@
   
   /* Hero Background with Moving Picnic Basket */
   .hero-background {
-    background-image: url('./src/assets/picnic-basket-fruits.jpg');
-    background-size: 150% auto;
-    background-repeat: no-repeat;
-    background-position: 0% center;
-    background-attachment: scroll;
-    animation: moveBasket 25s ease-in-out infinite;
+    /* Background properties are now set inline in React component for proper asset handling */
+    background-color: #f0f9ff; /* Fallback background color */
   }
   
   @keyframes moveBasket {

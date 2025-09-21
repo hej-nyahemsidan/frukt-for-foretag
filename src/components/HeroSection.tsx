@@ -4,7 +4,19 @@ import picnicBasket from '@/assets/picnic-basket-fruits.jpg';
 
 const HeroSection = () => {
   return (
-    <section id="home" className="hero-background relative overflow-hidden min-h-[70vh] flex items-center py-12 px-8">
+    <section 
+      id="home" 
+      className="hero-background relative overflow-hidden min-h-[70vh] flex items-center py-12 px-8"
+      style={{
+        backgroundImage: `url(${picnicBasket})`,
+        backgroundSize: '150% auto',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: '0% center',
+        backgroundAttachment: 'scroll',
+        backgroundColor: '#f0f9ff', // Fallback background color
+        animation: 'moveBasket 25s ease-in-out infinite'
+      }}
+    >
       {/* Gradient Fade Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-green-50/95 via-green-50/70 to-green-50/20" style={{
         background: 'linear-gradient(to right, rgba(240,253,244,0.95) 0%, rgba(240,253,244,0.7) 40%, rgba(240,253,244,0.2) 70%, transparent 100%)'
