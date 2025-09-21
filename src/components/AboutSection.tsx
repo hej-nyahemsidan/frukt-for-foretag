@@ -5,13 +5,13 @@ const AboutSection = () => {
   const stats = [
     {
       icon: Clock,
-      number: '35+',
+      number: '2+',
       label: 'År i branschen',
-      description: 'Sedan 1986'
+      description: 'Sedan 2024'
     },
     {
       icon: Users,
-      number: '500+',
+      number: '200+',
       label: 'Nöjda företag',
       description: 'Återkommande kunder'
     },
@@ -23,9 +23,9 @@ const AboutSection = () => {
     },
     {
       icon: Award,
-      number: '4.8/5',
+      number: '4.9/5',
       label: 'Kundbetyg',
-      description: 'Genomsnittligt betyg'
+      description: 'Genomsnittlig rating'
     }
   ];
 
@@ -40,7 +40,7 @@ const AboutSection = () => {
             </h2>
             {/* Our History & Mission */}
             <p className="text-lead max-w-3xl mx-auto">
-              Sedan 1986 har vi varit Sveriges ledande leverantör av frisk frukt till företag. 
+              Sedan 2024 har vi varit Sveriges ledande leverantör av premium frukt till företag. 
               Vår passion för kvalitet och hållbarhet driver oss framåt varje dag.
             </p>
             {/* Since 1986, we have been Sweden's leading supplier of fresh fruit to companies. Our passion for quality and sustainability drives us forward every day. */}
@@ -51,30 +51,21 @@ const AboutSection = () => {
             <div className="space-y-8">
               <div className="space-y-6">
                 <h3 className="heading-md text-foreground">
-                  En familjetradition av kvalitet
+                  En ny standard för företagsfrukt
                 </h3>
-                {/* A family tradition of quality */}
                 
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    Allt började 1986 när grundaren Erik Andersson hade en enkel vision: 
-                    att göra det enkelt för svenska företag att erbjuda sina anställda näringsrik, 
-                    färsk frukt direkt på arbetsplatsen.
+                    Allt började 2024 när grundaren hade en enkel vision: att göra det enkelt för svenska företag att erbjuda sina anställda näringsrik, färsk frukt direkt på arbetsplatsen.
                   </p>
-                  {/* It all started in 1986 when founder Erik Andersson had a simple vision: to make it easy for Swedish companies to offer their employees nutritious, fresh fruit directly in the workplace. */}
                   
                   <p>
-                    Idag är vi fortfarande ett familjeägt företag som strävar efter samma höga 
-                    kvalitetsstandard som vi hade från början. Vi arbetar endast med certifierade, 
-                    hållbara leverantörer och levererar till över 500 företag i hela Sverige.
+                    Idag är vi ett snabbväxande företag som strävar efter samma höga kvalitetsstandard som vi hade från början. Vi arbetar endast med certifierade, hållbara leverantörer och levererar till över 200 företag i hela Sverige.
                   </p>
-                  {/* Today we are still a family-owned company that strives for the same high quality standards that we had from the beginning. We only work with certified, sustainable suppliers and deliver to over 500 companies throughout Sweden. */}
                   
                   <p>
-                    Vår mission är enkel: att skapa hälsosammare arbetsplatser och en mer 
-                    hållbar framtid genom att göra näringsrik frukt tillgänglig för alla.
+                    Vår mission är enkel: att skapa hälsosammare arbetsplatser och en mer hållbar framtid genom att göra näringsrik frukt tillgänglig för alla.
                   </p>
-                  {/* Our mission is simple: to create healthier workplaces and a more sustainable future by making nutritious fruit available to everyone. */}
                 </div>
               </div>
 
