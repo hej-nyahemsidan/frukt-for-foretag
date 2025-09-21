@@ -19,7 +19,7 @@ const CustomerPortalSection = () => {
   }));
 
   return (
-    <section className="py-20 px-8 bg-gray-50">
+    <section className="py-20 px-8 bg-gray-200">
       <div className="max-w-7xl mx-auto">
         
         {/* Text Content */}
@@ -31,24 +31,6 @@ const CustomerPortalSection = () => {
             Med vår kundportal kan du enkelt logga in och hantera din prenumeration och leveranser. 
             Du kan ändra, avboka och lägga till leveranser från fruktbud, på ett enkelt och smidigt sätt.
           </p>
-        </div>
-
-        {/* Bouncing Fruits Section */}
-        <div className="relative overflow-hidden rounded-2xl bg-gray-100 h-48 mb-12 shadow-lg">
-          {bouncingFruits.map((fruit) => (
-            <div
-              key={fruit.id}
-              className={`absolute ${fruit.animationClass} ${fruit.size}`}
-              style={{
-                top: fruit.position.top,
-                left: fruit.position.left,
-                zIndex: fruit.zIndex,
-                opacity: fruit.opacity,
-              }}
-            >
-              {fruit.emoji}
-            </div>
-          ))}
         </div>
 
         {/* Call-to-Action */}
