@@ -1,89 +1,66 @@
 import React, { useState } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, Phone, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import FruktexpertenLogo from '@/components/FruktexpertenLogo';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const navigationItems = [
-    { label: 'Hem', href: '#home' }, // Home
-    { 
-      label: 'Sortiment', 
-      href: '#products', 
-      hasDropdown: true,
-      dropdownItems: [
-        { label: 'Fruktkorgar', href: '#fruit-baskets' }, // Fruit baskets
-        { label: 'Säsongsfrukt', href: '#seasonal' }, // Seasonal fruit
-        { label: 'Hälsosamma Snacks', href: '#snacks' }, // Healthy snacks
-        { label: 'Premiumval', href: '#premium' }, // Premium selection
-      ]
-    },
+    { label: 'Sortiment', href: '#products' }, // Product Range
     { label: 'Om Oss', href: '#about' }, // About Us
     { label: 'Kontakt', href: '#contact' }, // Contact
+    { label: 'Offertförfrågan', href: '#quote' }, // Quote Request
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="container mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-16 md:h-18">
           {/* Logo */}
           <div className="flex-shrink-0">
             <FruktexpertenLogo />
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          {/* Desktop Navigation - Centered */}
+          <nav className="hidden lg:flex items-center space-x-8 mx-auto">
             {navigationItems.map((item) => (
-              <div key={item.label} className="relative">
-                {item.hasDropdown ? (
-                  <div 
-                    className="relative"
-                    onMouseEnter={() => setIsDropdownOpen(true)}
-                    onMouseLeave={() => setIsDropdownOpen(false)}
-                  >
-                    <button className="flex items-center space-x-1 text-foreground hover:text-primary transition-colors font-medium">
-                      <span>{item.label}</span>
-                      <ChevronDown className="w-4 h-4" />
-                    </button>
-                    
-                    {isDropdownOpen && (
-                      <div className="absolute top-full left-0 mt-2 w-48 bg-card border border-border rounded-lg shadow-card py-2 z-50">
-                        {item.dropdownItems?.map((dropdownItem) => (
-                          <a
-                            key={dropdownItem.label}
-                            href={dropdownItem.href}
-                            className="block px-4 py-2 text-sm text-card-foreground hover:bg-muted hover:text-primary transition-colors"
-                          >
-                            {dropdownItem.label}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <a
-                    href={item.href}
-                    className="text-foreground hover:text-primary transition-colors font-medium"
-                  >
-                    {item.label}
-                  </a>
-                )}
-              </div>
+              <a
+                key={item.label}
+                href={item.href}
+                className="text-gray-600 hover:text-primary transition-colors font-medium text-sm tracking-wide"
+              >
+                {item.label}
+              </a>
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block">
-            <Button className="btn-hero">
-              Beställ Nu {/* Order Now */}
+          {/* Right Side - Contact & Actions */}
+          <div className="hidden lg:flex items-center space-x-6">
+            {/* Phone Number */}
+            <div className="flex items-center space-x-2 text-gray-600">
+              <Phone className="w-4 h-4" />
+              <span className="text-sm font-medium">020 - 88 44 00</span>
+            </div>
+            
+            {/* Mina Sidor Link */}
+            <a 
+              href="#account" 
+              className="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors"
+            >
+              <User className="w-4 h-4" />
+              <span className="text-sm font-medium">Mina Sidor</span>
+            </a>
+            
+            {/* Order Button */}
+            <Button className="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-lg font-medium shadow-sm">
+              Beställ
             </Button>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button
-            className="lg:hidden p-2 text-foreground hover:text-primary transition-colors"
+            className="lg:hidden p-2 text-gray-600 hover:text-primary transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
@@ -97,38 +74,36 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-border">
+          <div className="lg:hidden border-t border-gray-200 bg-white">
             <nav className="py-4 space-y-2">
               {navigationItems.map((item) => (
-                <div key={item.label}>
-                  <a
-                    href={item.href}
-                    className="block px-4 py-3 text-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors font-medium"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                  {item.hasDropdown && item.dropdownItems && (
-                    <div className="ml-4 space-y-1">
-                      {item.dropdownItems.map((dropdownItem) => (
-                        <a
-                          key={dropdownItem.label}
-                          href={dropdownItem.href}
-                          className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-muted rounded-lg transition-colors"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          {dropdownItem.label}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="block px-4 py-3 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors font-medium"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
               ))}
               
-              {/* Mobile CTA */}
-              <div className="pt-4 px-4">
-                <Button className="w-full btn-hero">
-                  Beställ Nu {/* Order Now */}
+              {/* Mobile Contact & Actions */}
+              <div className="pt-4 px-4 space-y-3 border-t border-gray-200 mt-4">
+                <div className="flex items-center space-x-2 text-gray-600">
+                  <Phone className="w-4 h-4" />
+                  <span className="text-sm font-medium">020 - 88 44 00</span>
+                </div>
+                
+                <a 
+                  href="#account" 
+                  className="flex items-center space-x-2 text-gray-600 hover:text-primary transition-colors"
+                >
+                  <User className="w-4 h-4" />
+                  <span className="text-sm font-medium">Mina Sidor</span>
+                </a>
+                
+                <Button className="w-full bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-lg font-medium">
+                  Beställ
                 </Button>
               </div>
             </nav>
