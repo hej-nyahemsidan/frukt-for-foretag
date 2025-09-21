@@ -19,8 +19,8 @@ const CustomerPortal = () => {
         }}
       >
         {/* Page Title */}
-        <div className="absolute top-12 left-12">
-          <h1 className="text-4xl lg:text-5xl font-bold text-white drop-shadow-lg">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h1 className="text-4xl lg:text-5xl font-bold text-white drop-shadow-lg text-center">
             Fruktexperten Kundportal
           </h1>
         </div>
