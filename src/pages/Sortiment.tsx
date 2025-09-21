@@ -69,7 +69,7 @@ const Sortiment = () => {
       name: 'Laktosfri mjölk (Lång hållbarhet)',
       price: 26,
       originalPrice: null,
-      image: '/src/assets/seasonal-fruits.jpg',
+      image: '/src/assets/product-placeholder.jpg',
       category: 'fruktsafter'
     },
     {
@@ -77,7 +77,7 @@ const Sortiment = () => {
       name: 'Laktosfri Kaffemjölk',
       price: 140,
       originalPrice: 165,
-      image: '/src/assets/fresh-fruit-arrangements.jpg',
+      image: '/src/assets/product-placeholder.jpg',
       category: 'fruktsafter'
     },
     {
@@ -85,7 +85,7 @@ const Sortiment = () => {
       name: 'Lätte Art (Latte)',
       price: 30,
       originalPrice: null,
-      image: '/src/assets/fruktlada.jpg',
+      image: '/src/assets/product-placeholder.jpg',
       category: 'fruktsafter'
     },
 
@@ -95,7 +95,7 @@ const Sortiment = () => {
       name: 'iKaffe',
       price: 36,
       originalPrice: null,
-      image: '/src/assets/office-wellness.jpg',
+      image: '/src/assets/product-placeholder.jpg',
       category: 'tillbehor'
     },
     {
@@ -103,7 +103,7 @@ const Sortiment = () => {
       name: 'Good Oddly Banana',
       price: 35,
       originalPrice: 42,
-      image: '/src/assets/fruktkorg-banan.jpg',
+      image: '/src/assets/product-placeholder.jpg',
       category: 'tillbehor'
     },
     {
@@ -111,7 +111,7 @@ const Sortiment = () => {
       name: 'Lättmjölk (standard)',
       price: 28,
       originalPrice: null,
-      image: '/src/assets/fruit-box.jpg',
+      image: '/src/assets/product-placeholder.jpg',
       category: 'tillbehor'
     },
 
@@ -121,7 +121,7 @@ const Sortiment = () => {
       name: 'Färska Fruktbitar Mix',
       price: 45,
       originalPrice: null,
-      image: '/src/assets/picnic-basket-fruits.jpg',
+      image: '/src/assets/product-placeholder.jpg',
       category: 'fruktbitar'
     },
     {
@@ -129,7 +129,7 @@ const Sortiment = () => {
       name: 'Exotiska Fruktbitar',
       price: 52,
       originalPrice: 58,
-      image: '/src/assets/hero-fruits.jpg',
+      image: '/src/assets/product-placeholder.jpg',
       category: 'fruktbitar'
     },
 
@@ -139,7 +139,7 @@ const Sortiment = () => {
       name: 'Ekologisk Yoghurt',
       price: 38,
       originalPrice: null,
-      image: '/src/assets/office-workers-fruit.jpg',
+      image: '/src/assets/product-placeholder.jpg',
       category: 'mejeri'
     },
     {
@@ -147,7 +147,7 @@ const Sortiment = () => {
       name: 'Blandade Nötter Premium',
       price: 65,
       originalPrice: 75,
-      image: '/src/assets/fruit-delivery-boxes.jpg',
+      image: '/src/assets/product-placeholder.jpg',
       category: 'mejeri'
     },
 
@@ -157,7 +157,7 @@ const Sortiment = () => {
       name: 'Premium Kaffe Blend',
       price: 89,
       originalPrice: null,
-      image: '/src/assets/happy-employees.jpg',
+      image: '/src/assets/product-placeholder.jpg',
       category: 'kaffe'
     },
     {
@@ -165,7 +165,7 @@ const Sortiment = () => {
       name: 'Ekologiskt Te Selection',
       price: 55,
       originalPrice: 62,
-      image: '/src/assets/professional-fruit-display.jpg',
+      image: '/src/assets/product-placeholder.jpg',
       category: 'kaffe'
     },
 
@@ -175,7 +175,7 @@ const Sortiment = () => {
       name: 'Naturlig Mineralvatten',
       price: 22,
       originalPrice: null,
-      image: '/src/assets/citrus-background.jpg',
+      image: '/src/assets/product-placeholder.jpg',
       category: 'dryck'
     },
     {
@@ -183,7 +183,7 @@ const Sortiment = () => {
       name: 'Bubbelvatten Med Smak',
       price: 28,
       originalPrice: 32,
-      image: '/src/assets/customer-portal-dashboard.jpg',
+      image: '/src/assets/product-placeholder.jpg',
       category: 'dryck'
     },
 
@@ -193,7 +193,7 @@ const Sortiment = () => {
       name: 'Hälsosamma Snacks Mix',
       price: 48,
       originalPrice: null,
-      image: '/src/assets/fruit-box.jpg',
+      image: '/src/assets/product-placeholder.jpg',
       category: 'snacks'
     }
   ];
