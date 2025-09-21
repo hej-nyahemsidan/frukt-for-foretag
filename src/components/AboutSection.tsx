@@ -110,69 +110,61 @@ const AboutSection = () => {
               </div>
             </div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((stat, index) => (
-                <div 
-                  key={index}
-                  className="bg-card rounded-2xl p-6 shadow-soft hover:shadow-card transition-all duration-300 text-center"
-                >
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <stat.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-1">
-                    {stat.number}
-                  </h3>
-                  <p className="font-medium text-foreground mb-1">
-                    {stat.label}
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    {stat.description}
-                  </p>
+            {/* Business Images */}
+            <div className="space-y-6">
+              <div className="relative rounded-2xl overflow-hidden shadow-soft">
+                <img 
+                  src="/src/assets/happy-employees.jpg" 
+                  alt="Happy employees enjoying fresh fruit at the office"
+                  className="w-full h-64 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h4 className="text-lg font-semibold">Glada medarbetare</h4>
+                  <p className="text-sm opacity-90">Hälsosam frukt på arbetsplatsen</p>
                 </div>
-              ))}
+              </div>
+              
+              <div className="relative rounded-2xl overflow-hidden shadow-soft">
+                <img 
+                  src="/src/assets/professional-fruit-display.jpg" 
+                  alt="Professional fruit display and arrangements"
+                  className="w-full h-64 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h4 className="text-lg font-semibold">Professionell service</h4>
+                  <p className="text-sm opacity-90">Premium fruktarrangemang</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Team/Certification Section */}
-          <div className="bg-card rounded-3xl p-8 lg:p-12 shadow-soft">
-            <div className="text-center space-y-6">
-              <h3 className="heading-md text-foreground">
-                Certifieringar & Partnerskap
-              </h3>
-              {/* Certifications & Partnerships */}
-              
-              <p className="text-muted-foreground max-w-3xl mx-auto">
-                Vi är stolta över våra certifieringar inom ekologisk odling, hållbar handel och 
-                livsmedelssäkerhet. Våra partnerskap med lokala odlare stödjer svensk jordbruk.
-              </p>
-              {/* We are proud of our certifications in organic farming, sustainable trade and food safety. Our partnerships with local growers support Swedish agriculture. */}
-              
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center pt-8">
-                <div className="text-center space-y-2">
-                  <div className="w-16 h-16 bg-accent-green/10 rounded-xl flex items-center justify-center mx-auto">
-                    <span className="text-2xl">🌱</span>
-                  </div>
-                  <p className="text-sm font-medium text-foreground">KRAV-certifierad</p>
-                </div>
-                <div className="text-center space-y-2">
-                  <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mx-auto">
-                    <span className="text-2xl">🏆</span>
-                  </div>
-                  <p className="text-sm font-medium text-foreground">ISO 22000</p>
-                </div>
-                <div className="text-center space-y-2">
-                  <div className="w-16 h-16 bg-accent-orange/10 rounded-xl flex items-center justify-center mx-auto">
-                    <span className="text-2xl">🤝</span>
-                  </div>
-                  <p className="text-sm font-medium text-foreground">Fairtrade</p>
-                </div>
-                <div className="text-center space-y-2">
-                  <div className="w-16 h-16 bg-accent-yellow/10 rounded-xl flex items-center justify-center mx-auto">
-                    <span className="text-2xl">🇸🇪</span>
-                  </div>
-                  <p className="text-sm font-medium text-foreground">Svenskt ursprung</p>
-                </div>
+          {/* Business Team Section */}
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="relative rounded-3xl overflow-hidden shadow-soft">
+              <img 
+                src="/src/assets/office-workers-fruit.jpg" 
+                alt="Office workers enjoying fruit baskets"
+                className="w-full h-80 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div className="absolute bottom-6 left-6 text-white">
+                <h3 className="text-xl font-bold mb-2">Vårt team i arbete</h3>
+                <p className="text-sm opacity-90">Levererar kvalitet till svenska företag</p>
+              </div>
+            </div>
+            
+            <div className="relative rounded-3xl overflow-hidden shadow-soft">
+              <img 
+                src="/src/assets/picnic-basket-fruits.jpg" 
+                alt="Premium fruit baskets and arrangements"
+                className="w-full h-80 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div className="absolute bottom-6 left-6 text-white">
+                <h3 className="text-xl font-bold mb-2">Premium fruktkorgar</h3>
+                <p className="text-sm opacity-90">Noggrant utvalda produkter för ditt företag</p>
               </div>
             </div>
           </div>
