@@ -6,8 +6,12 @@ import ProductShowcase from '@/components/ProductShowcase';
 import CustomerPortalSection from '@/components/CustomerPortalSection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
+import PromoPopup from '@/components/PromoPopup';
+import { usePromoPopup } from '@/hooks/usePromoPopup';
 
 const Index = () => {
+  const { isOpen, closePopup } = usePromoPopup();
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -19,6 +23,7 @@ const Index = () => {
         <FAQSection />
       </main>
       <Footer />
+      <PromoPopup isOpen={isOpen} onClose={closePopup} />
     </div>
   );
 };
