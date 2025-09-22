@@ -11,6 +11,7 @@ import AdminProtectedRoute from "@/admin/components/AdminProtectedRoute";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Products from "./pages/Products";
 import CustomerPortal from "./pages/CustomerPortal";
 import QuoteRequest from "./pages/QuoteRequest";
 import Checkout from "./pages/Checkout";
@@ -32,6 +33,7 @@ const App = () => (
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/produkter" element={<Products />} />
                 <Route path="/om-oss" element={<About />} />
                 <Route path="/kontakt" element={<Contact />} />
                 <Route path="/kundportal" element={<CustomerPortal />} />

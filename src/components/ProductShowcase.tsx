@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+import { ShoppingCart, Star } from 'lucide-react';
 import fruktkorgrSupremeImg from '@/assets/fruktkorg-supreme-new.jpg';
 import fruktkorgrPremiumImg from '@/assets/fruktkorg-premium-new.jpg';
 import fruktkorgrOriginalImg from '@/assets/fruktkorg-original-new.jpg';
@@ -15,7 +17,8 @@ const ProductShowcase = () => {
       weight: 'Starting at 4kg',
       currentPrice: '230 kr',
       originalPrice: '271 kr',
-      showPrice: true
+      showPrice: true,
+      popular: false
     },
     {
       id: 'premium',
@@ -24,7 +27,8 @@ const ProductShowcase = () => {
       weight: 'Starting at 4kg',
       currentPrice: '263 kr',
       originalPrice: '310 kr',
-      showPrice: true
+      showPrice: true,
+      popular: true
     },
     {
       id: 'eko',
@@ -33,7 +37,8 @@ const ProductShowcase = () => {
       weight: 'Starting at 4kg',
       currentPrice: '289 kr',
       originalPrice: '340 kr',
-      showPrice: true
+      showPrice: true,
+      popular: false
     },
     {
       id: 'banan',
@@ -42,16 +47,18 @@ const ProductShowcase = () => {
       weight: 'Starting at 4kg',
       currentPrice: '249 kr',
       originalPrice: '295 kr',
-      showPrice: true
+      showPrice: true,
+      popular: true
     },
     {
       id: 'lada',
       name: 'Fruktlåda',
       image: fruktladaImg,
       weight: 'Starting at 4kg',
-      currentPrice: 'Begär offert',
+      currentPrice: 'från 450 kr',
       originalPrice: null,
-      showPrice: false
+      showPrice: true,
+      popular: false
     }
   ];
 
@@ -59,66 +66,88 @@ const ProductShowcase = () => {
     <section id="products" className="py-16 px-8 bg-white">
       <div className="container mx-auto">
         {/* Header */}
-        <div className="mb-12">
+        <div className="mb-12 text-center">
           <h2 className="text-4xl font-bold text-charcoal mb-4">
             Fruktkorgar i olika format
           </h2>
-          <p className="text-lg text-mediumgray max-w-3xl leading-relaxed">
-            Som fruktbud erbjuder vi fruktkorgar i fyra varianter, på fyra kilo och uppåt. 
-            Läs vidare om var och en av våra fruktkorgar här nedan.
+          <p className="text-lg text-mediumgray max-w-4xl mx-auto leading-relaxed mb-6">
+            Upptäck vårt komplette utbud av fruktkorgar och hälsosamma mellanmål. 
+            Vi har flera artiklar och lösningar anpassade för alla typer av arbetsplatser.
           </p>
+          <Link 
+            to="/produkter" 
+            className="inline-flex items-center text-primary hover:text-primary/80 font-semibold transition-colors"
+          >
+            Se hela vårt produktutbud →
+          </Link>
         </div>
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-12">
-          {products.map((product) => (
+          {products.map((product, index) => (
+            <Link 
+              to={`/produkter#${product.id}`}
+              key={product.id}
+              className="group block"
+            >
               <div 
-                key={product.id}
-                className="bg-lightgreen rounded-xl shadow-md p-6 flex flex-col h-full"
+                className="bg-white rounded-xl shadow-soft p-6 flex flex-col h-full transition-all duration-300 hover:shadow-lg hover:scale-[1.02] relative overflow-hidden animate-fade-in"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-              {/* Product Image */}
-              <div className="mb-4">
-                <img
-                  src={product.image}
-                  alt={`${product.name} - premium fruit basket from Fruktexperten`}
-                  className="w-full aspect-square object-contain rounded-lg bg-white p-2"
-                />
-              </div>
+                {/* Popular Badge */}
+                {product.popular && (
+                  <div className="absolute top-3 right-3 bg-gradient-primary text-white px-2 py-1 rounded-full flex items-center gap-1 text-xs font-semibold z-10">
+                    <Star className="w-3 h-3 fill-current" />
+                    Bästsäljare
+                  </div>
+                )}
 
-              {/* Product Content */}
-              <div className="flex-1 flex flex-col">
+                {/* Product Image */}
+                <div className="mb-4 relative">
+                  <img
+                    src={product.image}
+                    alt={`${product.name} - premium fruit basket from Fruktexperten`}
+                    className="w-full aspect-square object-contain rounded-lg bg-gradient-subtle p-4 shadow-soft"
+                  />
+                </div>
+
+                {/* Product Content */}
+                <div className="flex-1 flex flex-col">
                   {/* Weight */}
-                  <p className="text-mediumgray text-sm mb-2">
+                  <p className="text-muted-foreground text-sm mb-2">
                     {product.weight}
                   </p>
 
                   {/* Product Name */}
-                  <h3 className="font-semibold text-charcoal mb-4 text-base">
+                  <h3 className="font-semibold text-foreground mb-4 text-base group-hover:text-primary transition-colors">
                     {product.name}
                   </h3>
 
                   {/* Price */}
-                  <div className="mb-4">
-                    {product.showPrice ? (
-                      <div className="flex items-center gap-2">
-                        <span className="text-warmred font-bold text-xl">
-                          {product.currentPrice}
-                        </span>
-                        {product.originalPrice && (
-                          <span className="text-mediumgray line-through text-sm">
-                            {product.originalPrice}
-                          </span>
-                        )}
-                      </div>
-                    ) : (
-                      <span className="text-secondary font-bold text-lg">
+                  <div className="mb-4 flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-primary font-bold text-xl">
                         {product.currentPrice}
                       </span>
-                    )}
+                      {product.originalPrice && (
+                        <span className="text-muted-foreground line-through text-sm">
+                          {product.originalPrice}
+                        </span>
+                      )}
+                    </div>
                   </div>
 
+                  {/* CTA Button */}
+                  <Button 
+                    className="w-full bg-primary hover:bg-primary/90 text-white transition-all duration-200 hover:scale-[1.02] shadow-sm"
+                    size="sm"
+                  >
+                    <ShoppingCart className="w-4 h-4 mr-2" />
+                    Läs mer
+                  </Button>
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
