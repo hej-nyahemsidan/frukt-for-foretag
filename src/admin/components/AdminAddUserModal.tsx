@@ -13,6 +13,7 @@ import {
 import { Eye, EyeOff, User, Mail, Lock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { createClient } from '@supabase/supabase-js';
 
 interface AdminAddUserModalProps {
   open: boolean;
@@ -59,25 +60,30 @@ const AdminAddUserModal: React.FC<AdminAddUserModalProps> = ({
     setIsLoading(true);
 
     try {
-      // In a real app, you'd use Supabase admin API to create users
-      // For demo purposes, we'll create a customer record
-      
-      // Generate a random UUID for the user
-      const mockUserId = crypto.randomUUID();
-      
-      // Insert into customers table
-      const { error: customerError } = await supabase
-        .from('customers')
-        .insert({
-          user_id: mockUserId,
-          email: formData.email,
-          contact_person: formData.fullName || 'Ny användare',
-          company_name: formData.companyName || 'Företag AB',
-          phone: '',
-          address: ''
-        });
+      // Create admin client with service role key for user creation
+      const supabaseAdmin = createClient(
+        'https://ydvnkqqtyvalvxcjhvbs.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlkdm5rcXF0eXZhbHZ4Y2podmJzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1ODUzNjU5MSwiZXhwIjoyMDc0MTEyNTkxfQ.fJPXxK0Ij6ZDsBZZIqUlMOBGxXp7cQBiQPWkF6gKKy8',
+        {
+          auth: {
+            autoRefreshToken: false,
+            persistSession: false
+          }
+        }
+      );
 
-      if (customerError) throw customerError;
+      // Create the auth user using admin API
+      const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({
+        email: formData.email,
+        password: formData.password,
+        email_confirm: true, // Skip email confirmation for admin-created users
+        user_metadata: {
+          contact_person: formData.fullName || 'Ny användare',
+          company_name: formData.companyName || 'Företag AB'
+        }
+      });
+
+      if (authError) throw authError;
 
       toast({
         title: 'Användare skapad',
