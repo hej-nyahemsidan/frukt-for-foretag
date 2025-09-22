@@ -18,7 +18,6 @@ export type Database = {
         Row: {
           created_at: string | null
           customer_email: string
-          customer_id: string | null
           customer_name: string
           id: string
           items: Json
@@ -31,7 +30,6 @@ export type Database = {
         Insert: {
           created_at?: string | null
           customer_email: string
-          customer_id?: string | null
           customer_name: string
           id?: string
           items?: Json
@@ -44,7 +42,6 @@ export type Database = {
         Update: {
           created_at?: string | null
           customer_email?: string
-          customer_id?: string | null
           customer_name?: string
           id?: string
           items?: Json
@@ -54,15 +51,7 @@ export type Database = {
           total_onetime_cost?: number | null
           updated_at?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "addition_requests_customer_id_fkey"
-            columns: ["customer_id"]
-            isOneToOne: false
-            referencedRelation: "customer_accounts"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       admin_users: {
         Row: {
@@ -81,45 +70,6 @@ export type Database = {
           created_at?: string | null
           email?: string
           id?: string
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
-      customer_accounts: {
-        Row: {
-          company: string
-          created_at: string | null
-          current_plan: string
-          delivery_days: string[]
-          email: string
-          id: string
-          name: string
-          password: string
-          status: string | null
-          updated_at: string | null
-        }
-        Insert: {
-          company: string
-          created_at?: string | null
-          current_plan: string
-          delivery_days?: string[]
-          email: string
-          id?: string
-          name: string
-          password: string
-          status?: string | null
-          updated_at?: string | null
-        }
-        Update: {
-          company?: string
-          created_at?: string | null
-          current_plan?: string
-          delivery_days?: string[]
-          email?: string
-          id?: string
-          name?: string
-          password?: string
-          status?: string | null
           updated_at?: string | null
         }
         Relationships: []
