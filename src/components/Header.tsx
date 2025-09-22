@@ -89,9 +89,11 @@ const Header = () => {
             )}
             
             {/* Order Button */}
-            <Button className="bg-secondary text-secondary-foreground px-6 py-2 rounded-lg font-medium shadow-sm hover:bg-[hsl(122_39%_44%)]">
-              Beställ
-            </Button>
+            <Link to="/sortiment">
+              <Button className="bg-secondary text-secondary-foreground px-6 py-2 rounded-lg font-medium shadow-sm hover:bg-[hsl(122_39%_44%)]">
+                Beställ
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -162,9 +164,11 @@ const Header = () => {
                   </Link>
                 )}
                 
-                <Button className="w-full bg-secondary text-secondary-foreground px-6 py-2 rounded-lg font-medium hover:bg-[hsl(122_39%_44%)]">
-                  Beställ
-                </Button>
+                <Link to="/sortiment" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button className="w-full bg-secondary text-secondary-foreground px-6 py-2 rounded-lg font-medium hover:bg-[hsl(122_39%_44%)]">
+                    Beställ
+                  </Button>
+                </Link>
               </div>
             </nav>
           </div>
