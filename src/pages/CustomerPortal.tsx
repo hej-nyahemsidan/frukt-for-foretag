@@ -4,7 +4,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import FruktexpertenLogo from '@/components/FruktexpertenLogo';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import citrusBackground from '@/assets/citrus-background.jpg';
@@ -98,9 +97,9 @@ const CustomerPortal = () => {
         </Link>
 
         <div className="w-full max-w-md mx-auto">
-          {/* Logo Section */}
+          {/* Brand Name */}
           <div className="text-center mb-12">
-            <FruktexpertenLogo className="justify-center h-20 md:h-24 w-auto" />
+            <div className="text-3xl font-bold text-primary">FRUKTEXPERTEN</div>
           </div>
 
           {/* Login Form */}

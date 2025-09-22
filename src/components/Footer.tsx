@@ -11,7 +11,6 @@ import {
   ShieldCheck,
   Leaf
 } from 'lucide-react';
-import FruktexpertenLogo from './FruktexpertenLogo';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -29,7 +28,7 @@ const Footer = () => {
           <div className="space-y-6">
             <div className="mb-6">
               <div className="p-3 bg-white/10 rounded-lg inline-block backdrop-blur-sm">
-                <FruktexpertenLogo className="h-20 md:h-24 lg:h-28 w-auto" />
+                <div className="text-2xl font-bold text-white">FRUKTEXPERTEN</div>
               </div>
             </div>
             <p className="text-gray-100 text-sm leading-relaxed">

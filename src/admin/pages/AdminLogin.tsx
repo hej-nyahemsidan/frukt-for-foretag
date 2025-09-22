@@ -4,7 +4,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import FruktexpertenLogo from '@/components/FruktexpertenLogo';
 import { useAdminAuth } from '../contexts/AdminAuthContext';
 import { useToast } from '@/hooks/use-toast';
 
@@ -77,9 +76,9 @@ const AdminLogin = () => {
 
         {/* Login Card */}
         <div className="bg-white rounded-lg shadow-md p-8">
-          {/* Logo Section */}
+          {/* Brand Name */}
           <div className="text-center mb-8">
-            <FruktexpertenLogo className="justify-center h-20 md:h-24 w-auto" />
+            <div className="text-3xl font-bold text-primary">FRUKTEXPERTEN</div>
           </div>
 
           {/* Admin Login Form */}
