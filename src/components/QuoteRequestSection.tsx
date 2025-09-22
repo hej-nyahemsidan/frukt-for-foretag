@@ -92,6 +92,13 @@ const QuoteRequestSection = () => {
 
             {/* Right Column - Quote Request Form (60%) */}
             <div className="lg:col-span-3">
+              {/* Promotional Bubble */}
+              <div className="mb-6 text-center">
+                <div className="inline-block bg-gradient-to-r from-secondary to-primary-light text-white px-6 py-3 rounded-full shadow-lg">
+                  <span className="font-semibold">🎉 Testa oss gratis i två veckor</span>
+                </div>
+              </div>
+              
               <div className="bg-white p-8 rounded-xl shadow-lg border">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">

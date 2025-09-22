@@ -79,7 +79,7 @@ const PromoPopup: React.FC<PromoPopupProps> = ({ isOpen, onClose }) => {
 
             {/* CTA Button */}
             <a
-              href="#offertforfragan"
+              href="/offertforfragan"
               onClick={handleClose}
               className="inline-flex items-center justify-center px-8 py-4 bg-secondary text-secondary-foreground font-semibold rounded-xl shadow-[var(--shadow-button)] transition-all duration-300 hover:bg-[hsl(122_39%_44%)] hover:shadow-lg hover:scale-105 active:scale-95"
             >
@@ -136,7 +136,7 @@ const PromoPopup: React.FC<PromoPopupProps> = ({ isOpen, onClose }) => {
 
             {/* CTA Button */}
             <a
-              href="#offertforfragan"
+              href="/offertforfragan"
               onClick={handleClose}
               className="block w-full text-center px-6 py-4 bg-secondary text-secondary-foreground font-semibold rounded-xl shadow-[var(--shadow-button)] transition-all duration-300 hover:bg-[hsl(122_39%_44%)] hover:shadow-lg active:scale-95"
             >
