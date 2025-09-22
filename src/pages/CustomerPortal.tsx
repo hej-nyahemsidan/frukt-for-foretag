@@ -1,13 +1,71 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import FruktexpertenLogo from '@/components/FruktexpertenLogo';
+import { useAuth } from '@/contexts/AuthContext';
+import { useToast } from '@/hooks/use-toast';
 import citrusBackground from '@/assets/citrus-background.jpg';
 
 const CustomerPortal = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { login, user } = useAuth();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      navigate('/dashboard');
+    }
+  }, [user, navigate]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const { error } = await login(email, password);
+      
+      if (error) {
+        let errorMessage = 'Ett fel uppstod vid inloggning';
+        
+        if (error.message?.includes('Invalid login credentials')) {
+          errorMessage = 'Ogiltiga inloggningsuppgifter. Kontrollera din e-post och lösenord.';
+        } else if (error.message?.includes('Email not confirmed')) {
+          errorMessage = 'E-postadressen är inte bekräftad. Kontrollera din e-post.';
+        } else if (error.message?.includes('Too many requests')) {
+          errorMessage = 'För många inloggningsförsök. Försök igen senare.';
+        }
+        
+        toast({
+          title: 'Inloggning misslyckades',
+          description: errorMessage,
+          variant: 'destructive',
+        });
+      } else {
+        toast({
+          title: 'Välkommen!',
+          description: 'Du har loggats in framgångsrikt.',
+        });
+        navigate('/dashboard');
+      }
+    } catch (error) {
+      toast({
+        title: 'Ett fel uppstod',
+        description: 'Något gick fel. Försök igen senare.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex">
       {/* Left Side - Background Image */}
@@ -49,24 +107,29 @@ const CustomerPortal = () => {
           <div className="space-y-8">
             <div className="text-center">
               <h2 className="text-3xl font-bold text-foreground mb-2">
-                Logga in
+                Logga in på kundportalen
               </h2>
+              <p className="text-muted-foreground">Hantera dina fruktleveranser</p>
             </div>
 
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               {/* Email Field */}
               <div className="space-y-2">
                 <Label 
                   htmlFor="email" 
                   className="text-muted-foreground font-medium"
                 >
-                  Epost
+                  E-postadress
                 </Label>
                 <Input
                   id="email"
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="border-border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary"
-                  placeholder="din@epost.se"
+                  placeholder="din@email.se"
+                  required
+                  disabled={isLoading}
                 />
               </div>
 
@@ -78,12 +141,30 @@ const CustomerPortal = () => {
                 >
                   Lösenord
                 </Label>
-                <Input
-                  id="password"
-                  type="password"
-                  className="border-border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary"
-                  placeholder="Ditt lösenord"
-                />
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="border-border rounded-lg px-4 py-3 pr-12 focus:ring-2 focus:ring-primary focus:border-primary"
+                    placeholder="Ditt lösenord"
+                    required
+                    disabled={isLoading}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 flex items-center pr-3"
+                    disabled={isLoading}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="h-5 w-5 text-gray-400" />
+                    ) : (
+                      <Eye className="h-5 w-5 text-gray-400" />
+                    )}
+                  </button>
+                </div>
               </div>
 
               {/* Forgot Password Link */}
@@ -99,10 +180,25 @@ const CustomerPortal = () => {
               {/* Login Button */}
               <Button 
                 type="submit"
-                className="w-full bg-accent-green hover:bg-accent-green/90 text-white py-3 rounded-lg font-semibold tracking-wide transition-colors"
+                className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold tracking-wide transition-colors"
+                disabled={isLoading}
               >
-                LOGGA IN
+                {isLoading ? (
+                  <div className="flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                    Loggar in...
+                  </div>
+                ) : (
+                  'LOGGA IN'
+                )}
               </Button>
+
+              {/* Test account info */}
+              <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <p className="text-sm font-medium text-blue-800 mb-2">Test-konto för demonstration:</p>
+                <p className="text-xs text-blue-600">E-post: test@fruktexperten.se</p>
+                <p className="text-xs text-blue-600">Lösenord: TestKund123!</p>
+              </div>
             </form>
           </div>
 
