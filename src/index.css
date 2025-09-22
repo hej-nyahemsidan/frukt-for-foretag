@@ -12,6 +12,11 @@
     --background: 0 0% 100%; /* Pure White */
     --foreground: 0 0% 18%; /* Charcoal */
     
+    /* FruktPortalen Brand Colors */
+    --frukt-green: 82 196 52; /* #52C234 - Fresh green for health and freshness */
+    --frukt-orange: 255 112 67; /* #FF7043 - Warm orange for energy and vitality */
+    --frukt-purple: 107 70 193; /* #6B46C1 - Deep purple for premium feel */
+    
     /* Primary - Forest Green Brand */
     --primary: 124 53% 24%; /* Forest Green #1B5E20 */
     --primary-foreground: 0 0% 100%; /* Pure White */

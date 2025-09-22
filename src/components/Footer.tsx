@@ -11,7 +11,7 @@ import {
   ShieldCheck,
   Leaf
 } from 'lucide-react';
-import FruktexpertenLogo from '@/components/FruktexpertenLogo';
+import FruktPortalenLogo from '@/components/FruktPortalenLogo';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -29,8 +29,9 @@ const Footer = () => {
           <div className="space-y-6">
             <div className="mb-6">
               <div className="p-3 bg-white/10 rounded-lg inline-block backdrop-blur-sm">
-                <FruktexpertenLogo 
+                <FruktPortalenLogo 
                   size="small" 
+                  variant="full"
                   monochrome={true} 
                   link="/" 
                   className="filter brightness-0 invert"
@@ -72,9 +73,9 @@ const Footer = () => {
                 <Phone className="h-5 w-5" />
                 <span>08-123 456 78</span>
               </a>
-              <a href="mailto:info@fruktexperten.se" className="flex items-center space-x-3 text-gray-100 hover:text-yellow-400 transition-colors">
+              <a href="mailto:info@fruktportalen.se" className="flex items-center space-x-3 text-gray-100 hover:text-yellow-400 transition-colors">
                 <Mail className="h-5 w-5" />
-                <span>info@fruktexperten.se</span>
+                <span>info@fruktportalen.se</span>
               </a>
               <div className="flex items-center space-x-3 text-gray-100">
                 <Clock className="h-5 w-5" />
@@ -144,7 +145,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-green-700 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="text-sm text-gray-200">
-            © {currentYear} Fruktexperten AB. Alla rättigheter förbehållna.
+            © {currentYear} FruktPortalen AB. Alla rättigheter förbehållna.
           </div>
           <div className="flex space-x-6 text-sm text-gray-200">
             <a href="#" className="hover:text-yellow-400 transition-colors">Integritetspolicy</a>
