@@ -17,20 +17,12 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
-  const publicNavigationItems = [
-    { label: 'Om Oss', href: '/om-oss', isExternal: false },   // About Us
-    { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
-    { label: 'Offertförfrågan', href: '/offertforfragan', isExternal: false },     // Quote Request
-  ];
-
-  const customerNavigationItems = [
+  const navigationItems = [
     { label: 'Beställ', href: '/sortiment', isExternal: false }, // Product Range
-    { label: 'Mina Sidor', href: '/dashboard', isExternal: false }, // Customer Dashboard
-    { label: 'Om Oss', href: '/om-oss', isExternal: false },   // About Us
+    { label: 'Om Oss', href: '/om-oss', isExternal: false }, // About Us
     { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
+    { label: 'Offertförfrågan', href: '/offertforfragan', isExternal: false }, // Quote Request
   ];
-
-  const navigationItems = user ? customerNavigationItems : publicNavigationItems;
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
@@ -96,12 +88,10 @@ const Header = () => {
               </Link>
             )}
             
-            {/* Order Button - Only show for logged in users */}
-            {user && (
-              <Button className="bg-secondary text-secondary-foreground px-6 py-2 rounded-lg font-medium shadow-sm hover:bg-[hsl(122_39%_44%)]">
-                <Link to="/sortiment">Beställ</Link>
-              </Button>
-            )}
+            {/* Order Button */}
+            <Button className="bg-secondary text-secondary-foreground px-6 py-2 rounded-lg font-medium shadow-sm hover:bg-[hsl(122_39%_44%)]">
+              Beställ
+            </Button>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -172,12 +162,9 @@ const Header = () => {
                   </Link>
                 )}
                 
-                {/* Order Button - Only show for logged in users */}
-                {user && (
-                  <Button className="w-full bg-secondary text-secondary-foreground px-6 py-2 rounded-lg font-medium hover:bg-[hsl(122_39%_44%)]">
-                    <Link to="/sortiment" onClick={() => setIsMobileMenuOpen(false)}>Beställ</Link>
-                  </Button>
-                )}
+                <Button className="w-full bg-secondary text-secondary-foreground px-6 py-2 rounded-lg font-medium hover:bg-[hsl(122_39%_44%)]">
+                  Beställ
+                </Button>
               </div>
             </nav>
           </div>

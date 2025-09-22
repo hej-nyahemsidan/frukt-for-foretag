@@ -261,24 +261,17 @@ const CustomerDashboard = () => {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {!currentOrder ? (
           <Card className="card-product text-center">
-              <CardContent className="py-12">
+            <CardContent className="py-12">
               <Package className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-              <h2 className="heading-md mb-4">Välkommen till din kundportal</h2>
+              <h2 className="heading-md mb-4">Ingen aktiv prenumeration</h2>
               <p className="text-muted-foreground mb-6">
-                Du har ingen aktiv fruktleverans just nu. Klicka nedan för att starta din beställning eller kontakta oss för hjälp.
+                Du har ingen aktiv fruktleverans just nu. Kontakta oss för att starta din prenumeration.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/sortiment">
-                  <Button className="btn-hero">
-                    Beställ frukt
-                  </Button>
-                </Link>
-                <Link to="/kontakt">
-                  <Button variant="outline">
-                    Kontakta oss
-                  </Button>
-                </Link>
-              </div>
+              <Link to="/kontakt">
+                <Button className="btn-hero">
+                  Kontakta oss
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         ) : (

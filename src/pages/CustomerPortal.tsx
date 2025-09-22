@@ -21,7 +21,7 @@ const CustomerPortal = () => {
   // Redirect if already logged in
   useEffect(() => {
     if (user) {
-      navigate('/dashboard');
+      navigate('/sortiment');
     }
   }, [user, navigate]);
 
@@ -53,7 +53,7 @@ const CustomerPortal = () => {
           title: 'Välkommen!',
           description: 'Du har loggats in framgångsrikt.',
         });
-        navigate('/dashboard');
+        navigate('/sortiment');
       }
     } catch (error) {
       toast({
