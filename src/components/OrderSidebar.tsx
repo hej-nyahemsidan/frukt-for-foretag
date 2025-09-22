@@ -19,9 +19,10 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
   const navigate = useNavigate();
   const { getTotalItems } = useCart();
   const days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
+  const [orderType, setOrderType] = React.useState('subscription');
 
   const totalItems = getTotalItems();
-  const hasSelectedDays = selectedDays.length > 0;
+  const hasSelectedDays = selectedDays.length > 0 || orderType === 'onetime';
   const hasItems = totalItems > 0;
   const canProceed = hasSelectedDays && hasItems;
 
@@ -38,6 +39,7 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
       // Create a temporary checkout route with state
       navigate('/checkout', { 
         state: { 
+          orderType,
           packagePlan, 
           selectedDays 
         } 
@@ -64,40 +66,66 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
         </div>
       </div>
 
-      {/* Package Plan Section */}
+      {/* Order Type Section */}
       <div className="mb-8">
-        <h3 className="text-lg font-semibold text-charcoal mb-4">Paketplan</h3>
-        <RadioGroup value={packagePlan} onValueChange={setPackagePlan} className="space-y-3">
+        <h3 className="text-lg font-semibold text-charcoal mb-4">Typ av beställning</h3>
+        <RadioGroup value={orderType} onValueChange={setOrderType} className="space-y-3">
           <div className="flex items-center space-x-2">
             <RadioGroupItem 
-              value="weekly" 
-              id="weekly" 
+              value="onetime" 
+              id="onetime" 
               className="border-[#4CAF50] text-[#4CAF50] data-[state=checked]:bg-[#4CAF50]" 
             />
-            <Label htmlFor="weekly" className="text-charcoal">Veckovis</Label>
+            <Label htmlFor="onetime" className="text-charcoal">Engångsköp</Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem 
-              value="monthly" 
-              id="monthly"
+              value="subscription" 
+              id="subscription"
               className="border-[#4CAF50] text-[#4CAF50] data-[state=checked]:bg-[#4CAF50]"
             />
-            <Label htmlFor="monthly" className="text-charcoal">Månadsvis</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem 
-              value="yearly" 
-              id="yearly"
-              className="border-[#4CAF50] text-[#4CAF50] data-[state=checked]:bg-[#4CAF50]"
-            />
-            <Label htmlFor="yearly" className="text-charcoal">Årsvis</Label>
+            <Label htmlFor="subscription" className="text-charcoal">Lägg till Prenumeration</Label>
           </div>
         </RadioGroup>
       </div>
 
-      {/* Select Days Section */}
-      <div className="mb-8">
-        <h3 className="text-lg font-semibold text-charcoal mb-4">Välj vilka dagar</h3>
+      {/* Package Plan Section - Only show for subscription */}
+      {orderType === 'subscription' && (
+        <div className="mb-8">
+          <h3 className="text-lg font-semibold text-charcoal mb-4">Paketplan</h3>
+          <RadioGroup value={packagePlan} onValueChange={setPackagePlan} className="space-y-3">
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem 
+                value="weekly" 
+                id="weekly" 
+                className="border-[#4CAF50] text-[#4CAF50] data-[state=checked]:bg-[#4CAF50]" 
+              />
+              <Label htmlFor="weekly" className="text-charcoal">Veckovis</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem 
+                value="monthly" 
+                id="monthly"
+                className="border-[#4CAF50] text-[#4CAF50] data-[state=checked]:bg-[#4CAF50]"
+              />
+              <Label htmlFor="monthly" className="text-charcoal">Månadsvis</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem 
+                value="yearly" 
+                id="yearly"
+                className="border-[#4CAF50] text-[#4CAF50] data-[state=checked]:bg-[#4CAF50]"
+              />
+              <Label htmlFor="yearly" className="text-charcoal">Årsvis</Label>
+            </div>
+          </RadioGroup>
+        </div>
+      )}
+
+      {/* Select Days Section - Only show for subscription */}
+      {orderType === 'subscription' && (
+        <div className="mb-8">
+          <h3 className="text-lg font-semibold text-charcoal mb-4">Välj vilka dagar</h3>
         <div className="space-y-3">
           {days.map((day) => (
             <div key={day} className="flex items-center space-x-2">
@@ -111,7 +139,8 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
             </div>
           ))}
         </div>
-      </div>
+        </div>
+      )}
 
       {/* Validation Messages */}
       {!canProceed && (
@@ -120,7 +149,7 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
               {!hasItems && "Lägg till produkter i varukorgen. "}
-              {!hasSelectedDays && "Välj minst en leveransdag."}
+              {!hasSelectedDays && orderType === 'subscription' && "Välj minst en leveransdag."}
             </AlertDescription>
           </Alert>
         </div>
