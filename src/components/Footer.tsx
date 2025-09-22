@@ -26,74 +26,9 @@ const Footer = () => {
           
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-3 mb-4">
-              {/* Enhanced Custom SVG Logo */}
-              <svg className="h-14 w-14" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style={{stopColor:'#facc15'}} />
-                    <stop offset="50%" style={{stopColor:'#f59e0b'}} />
-                    <stop offset="100%" style={{stopColor:'#fb923c'}} />
-                  </linearGradient>
-                  <linearGradient id="basketGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" style={{stopColor:'#92400e'}} />
-                    <stop offset="100%" style={{stopColor:'#451a03'}} />
-                  </linearGradient>
-                  <filter id="glow">
-                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                    <feMerge> 
-                      <feMergeNode in="coloredBlur"/>
-                      <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
-                  </filter>
-                </defs>
-                <g transform="scale(0.14) translate(30, 30)">
-                  {/* Basket base with enhanced shadow */}
-                  <ellipse cx="400" cy="560" rx="180" ry="20" fill="rgba(0,0,0,0.3)"/>
-                  
-                  {/* Main basket */}
-                  <path d="M 220 540 L 240 620 L 560 620 L 580 540 Z" fill="url(#basketGradient)" stroke="#92400e" strokeWidth="4"/>
-                  
-                  {/* Basket weave pattern */}
-                  <rect x="260" y="550" width="80" height="6" rx="3" fill="#a16207"/>
-                  <rect x="360" y="550" width="80" height="6" rx="3" fill="#a16207"/>
-                  <rect x="460" y="550" width="80" height="6" rx="3" fill="#a16207"/>
-                  <rect x="280" y="570" width="80" height="6" rx="3" fill="#a16207"/>
-                  <rect x="380" y="570" width="80" height="6" rx="3" fill="#a16207"/>
-                  <rect x="300" y="590" width="80" height="6" rx="3" fill="#a16207"/>
-                  <rect x="400" y="590" width="80" height="6" rx="3" fill="#a16207"/>
-                  
-                  {/* Enhanced fruits with glow effect */}
-                  {/* Apple */}
-                  <ellipse cx="320" cy="450" rx="65" ry="75" fill="#dc2626" filter="url(#glow)"/>
-                  <ellipse cx="315" cy="440" rx="15" ry="8" fill="#b91c1c"/>
-                  <path d="M 320 390 Q 310 380, 325 375 Q 340 380, 330 390" fill="#16a34a" stroke="#15803d" strokeWidth="2"/>
-                  
-                  {/* Orange */}
-                  <ellipse cx="450" cy="450" rx="60" ry="70" fill="url(#logoGradient)" filter="url(#glow)"/>
-                  <circle cx="450" cy="430" r="3" fill="#ea580c"/>
-                  <circle cx="440" cy="450" r="2" fill="#ea580c"/>
-                  <circle cx="460" cy="470" r="2" fill="#ea580c"/>
-                  <path d="M 450 395 Q 440 385, 455 380 Q 470 385, 460 395" fill="#16a34a" stroke="#15803d" strokeWidth="2"/>
-                  
-                  {/* Banana */}
-                  <path d="M 540 420 Q 525 380, 550 350 Q 580 360, 575 400 Q 575 480, 555 510 Q 535 520, 530 500 Q 530 460, 540 420" 
-                        fill="#eab308" filter="url(#glow)" stroke="#ca8a04" strokeWidth="2"/>
-                  <ellipse cx="550" cy="355" rx="15" ry="8" fill="#16a34a"/>
-                  <path d="M 545 420 Q 540 400, 550 405 Q 560 410, 555 430" fill="none" stroke="#ca8a04" strokeWidth="2"/>
-                  <path d="M 545 450 Q 540 440, 550 445 Q 560 450, 555 460" fill="none" stroke="#ca8a04" strokeWidth="2"/>
-                  
-                  {/* Pear */}
-                  <ellipse cx="380" cy="480" rx="45" ry="55" fill="#84cc16" filter="url(#glow)"/>
-                  <ellipse cx="380" cy="430" rx="35" ry="40" fill="#84cc16"/>
-                  <path d="M 380 395 Q 370 385, 385 380 Q 400 385, 390 395" fill="#16a34a" stroke="#15803d" strokeWidth="2"/>
-                  
-                  {/* Decorative rim */}
-                  <ellipse cx="400" cy="540" rx="185" ry="8" fill="none" stroke="url(#logoGradient)" strokeWidth="6"/>
-                </g>
-              </svg>
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                Fruktexperten
+            <div className="mb-4">
+              <h3 className="text-2xl font-bold footer-brand-name" style={{ fontWeight: 700, color: '#0b4a2e', letterSpacing: '0.02em' }}>
+                FRUKTEXPERTEN
               </h3>
             </div>
             <p className="text-gray-100 text-sm leading-relaxed">

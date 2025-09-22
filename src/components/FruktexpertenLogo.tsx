@@ -7,12 +7,16 @@ interface FruktexpertenLogoProps {
 const FruktexpertenLogo: React.FC<FruktexpertenLogoProps> = ({ className = '' }) => {
   return (
     <div className={`flex items-center gap-3 ${className}`}>
-      {/* Logo Image */}
+      {/* Logo Image with responsive srcset */}
       <div className="relative">
         <img 
-          src="/fruktexperten-logo.png" 
-          alt="Fruktexperten Logo" 
-          className="w-10 h-10 md:w-12 md:h-12 object-contain"
+          src="/fruktexperten-logo.png"
+          srcSet="/fruktexperten-logo.png 1024w, /fruktexperten-logo.png 2048w"
+          sizes="(max-width: 600px) 160px, 260px"
+          alt="FruktExperten — Fresh fruit export"
+          className="w-10 h-10 md:w-12 md:h-12 object-contain site-logo"
+          loading="eager"
+          decoding="async"
         />
       </div>
       

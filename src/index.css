@@ -162,6 +162,26 @@
   .required-field {
     @apply text-[hsl(0_66%_51%)];
   }
+  
+  /* Logo Responsive Styles */
+  .site-logo {
+    width: 260px;
+    height: auto;
+    display: block;
+  }
+  
+  @media (max-width: 600px) {
+    .site-logo {
+      width: 160px;
+    }
+  }
+  
+  /* Footer Brand Name */
+  .footer-brand-name {
+    font-weight: 700;
+    color: #0b4a2e;
+    letter-spacing: 0.02em;
+  }
 }
 
 @layer utilities {
