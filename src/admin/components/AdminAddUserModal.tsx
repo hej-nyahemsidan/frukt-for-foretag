@@ -13,7 +13,6 @@ import {
 import { Eye, EyeOff, User, Mail, Lock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { createClient } from '@supabase/supabase-js';
 
 interface AdminAddUserModalProps {
   open: boolean;
@@ -60,30 +59,18 @@ const AdminAddUserModal: React.FC<AdminAddUserModalProps> = ({
     setIsLoading(true);
 
     try {
-      // Create admin client with service role key for user creation
-      const supabaseAdmin = createClient(
-        'https://ydvnkqqtyvalvxcjhvbs.supabase.co',
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlkdm5rcXF0eXZhbHZ4Y2podmJzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1ODUzNjU5MSwiZXhwIjoyMDc0MTEyNTkxfQ.fJPXxK0Ij6ZDsBZZIqUlMOBGxXp7cQBiQPWkF6gKKy8',
-        {
-          auth: {
-            autoRefreshToken: false,
-            persistSession: false
-          }
-        }
-      );
-
-      // Create the auth user using admin API
-      const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({
-        email: formData.email,
-        password: formData.password,
-        email_confirm: true, // Skip email confirmation for admin-created users
-        user_metadata: {
-          contact_person: formData.fullName || 'Ny användare',
-          company_name: formData.companyName || 'Företag AB'
+      // Call the secure Edge Function to create the user
+      const { data, error } = await supabase.functions.invoke('create-user', {
+        body: {
+          email: formData.email,
+          password: formData.password,
+          fullName: formData.fullName,
+          companyName: formData.companyName
         }
       });
 
-      if (authError) throw authError;
+      if (error) throw error;
+      if (!data.success) throw new Error(data.error || 'Failed to create user');
 
       toast({
         title: 'Användare skapad',
