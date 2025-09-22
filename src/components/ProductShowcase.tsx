@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import fruktkorgrStandardImg from '@/assets/fruktkorg-standard.jpg';
-import fruktkorgrPremiumImg from '@/assets/fruktkorg-premium.jpg';
-import fruktkorgrEkoImg from '@/assets/fruktkorg-eko.jpg';
-import fruktkorgrBananImg from '@/assets/fruktkorg-banan.jpg';
+import fruktkorgrSupremeImg from '@/assets/fruktkorg-supreme-new.jpg';
+import fruktkorgrPremiumImg from '@/assets/fruktkorg-premium-new.jpg';
+import fruktkorgrOriginalImg from '@/assets/fruktkorg-original-new.jpg';
+import fruktkorgrBananImg from '@/assets/fruktkorg-banan-new.jpg';
 import fruktladaImg from '@/assets/fruktlada.jpg';
 
 const ProductShowcase = () => {
@@ -11,7 +11,7 @@ const ProductShowcase = () => {
     {
       id: 'standard',
       name: 'Fruktkorg Standard',
-      image: fruktkorgrStandardImg,
+      image: fruktkorgrSupremeImg,
       weight: 'Starting at 4kg',
       currentPrice: '230 kr',
       originalPrice: '271 kr',
@@ -29,7 +29,7 @@ const ProductShowcase = () => {
     {
       id: 'eko',
       name: 'Fruktkorg Eko',
-      image: fruktkorgrEkoImg,
+      image: fruktkorgrOriginalImg,
       weight: 'Starting at 4kg',
       currentPrice: '289 kr',
       originalPrice: '340 kr',
@@ -81,7 +81,7 @@ const ProductShowcase = () => {
                 <img
                   src={product.image}
                   alt={`${product.name} - premium fruit basket from Fruktexperten`}
-                  className="w-full aspect-square object-cover rounded-lg"
+                  className="w-full aspect-square object-contain rounded-lg bg-white p-2"
                 />
               </div>
 
