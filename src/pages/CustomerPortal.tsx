@@ -199,6 +199,16 @@ const CustomerPortal = () => {
                 <p className="text-xs text-blue-600">E-post: test@fruktexperten.se</p>
                 <p className="text-xs text-blue-600">Lösenord: TestKund123!</p>
               </div>
+
+              {/* Admin Link */}
+              <div className="text-center mt-8">
+                <Link 
+                  to="/admin/login" 
+                  className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  Admin
+                </Link>
+              </div>
             </form>
           </div>
 
