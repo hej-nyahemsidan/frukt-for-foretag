@@ -43,13 +43,13 @@ const Footer = () => {
               Vi brinner för kvalitet, hållbarhet och er hälsa.
             </p>
             <div className="flex space-x-3 pt-4">
-              <a href="#" className="p-2 bg-green-700 hover:bg-orange-500 rounded-full transition-all duration-300 hover:scale-110">
+              <a href="https://facebook.com/fruktportalen" target="_blank" rel="noopener noreferrer" className="p-2 bg-green-700 hover:bg-orange-500 rounded-full transition-all duration-300 hover:scale-110">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="p-2 bg-green-700 hover:bg-orange-500 rounded-full transition-all duration-300 hover:scale-110">
+              <a href="https://instagram.com/fruktportalen" target="_blank" rel="noopener noreferrer" className="p-2 bg-green-700 hover:bg-orange-500 rounded-full transition-all duration-300 hover:scale-110">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="p-2 bg-green-700 hover:bg-orange-500 rounded-full transition-all duration-300 hover:scale-110">
+              <a href="https://linkedin.com/company/fruktportalen" target="_blank" rel="noopener noreferrer" className="p-2 bg-green-700 hover:bg-orange-500 rounded-full transition-all duration-300 hover:scale-110">
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
@@ -89,27 +89,27 @@ const Footer = () => {
             <h4 className="text-lg font-semibold text-white mb-4">Våra Tjänster</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
+                <a href="/#produkter" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
                   → Fruktkorgarna
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
+                <a href="/#produkter" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
                   → Kontorsleverans
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
+                <a href="/om-oss" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
                   → Hållbarhet
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
+                <a href="/om-oss" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
                   → Om Oss
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
+                <a href="/kundportal" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
                   → Kundportal
                 </a>
               </li>
@@ -148,9 +148,9 @@ const Footer = () => {
             © {currentYear} FruktPortalen AB. Alla rättigheter förbehållna.
           </div>
           <div className="flex space-x-6 text-sm text-gray-200">
-            <a href="#" className="hover:text-yellow-400 transition-colors">Integritetspolicy</a>
-            <a href="#" className="hover:text-yellow-400 transition-colors">Villkor</a>
-            <a href="#" className="hover:text-yellow-400 transition-colors">Cookies</a>
+            <a href="/kontakt" className="hover:text-yellow-400 transition-colors">Kontakt</a>
+            <a href="/om-oss" className="hover:text-yellow-400 transition-colors">Om Oss</a>
+            <a href="/offertforfragan" className="hover:text-yellow-400 transition-colors">Offertförfrågan</a>
           </div>
         </div>
       </div>
