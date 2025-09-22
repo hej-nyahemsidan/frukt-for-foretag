@@ -13,9 +13,10 @@ interface OrderSidebarProps {
   setPackagePlan: (plan: string) => void;
   selectedDays: string[];
   setSelectedDays: (days: string[]) => void;
+  onCheckout?: () => void;
 }
 
-const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDays }: OrderSidebarProps) => {
+const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDays, onCheckout }: OrderSidebarProps) => {
   const navigate = useNavigate();
   const { getTotalItems } = useCart();
   const days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
@@ -36,14 +37,17 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
 
   const handleNext = () => {
     if (canProceed) {
-      // Create a temporary checkout route with state
-      navigate('/checkout', { 
-        state: { 
-          orderType,
-          packagePlan, 
-          selectedDays 
-        } 
-      });
+      if (onCheckout) {
+        onCheckout();
+      } else {
+        navigate('/checkout', {
+          state: {
+            orderType,
+            packagePlan,
+            selectedDays
+          }
+        });
+      }
     }
   };
 

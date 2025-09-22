@@ -24,7 +24,6 @@ const Header = () => {
   ];
 
   const customerNavigationItems = [
-    { label: 'Beställ', href: '/sortiment', isExternal: false }, // Product Range
     { label: 'Mina Sidor', href: '/dashboard', isExternal: false }, // Customer Dashboard
     { label: 'Om Oss', href: '/om-oss', isExternal: false },   // About Us
     { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
@@ -95,13 +94,6 @@ const Header = () => {
                 <span className="text-sm font-medium">Mina Sidor</span>
               </Link>
             )}
-            
-            {/* Order Button - Only show for logged in users */}
-            {user && (
-              <Button className="bg-secondary text-secondary-foreground px-6 py-2 rounded-lg font-medium shadow-sm hover:bg-[hsl(122_39%_44%)]">
-                <Link to="/sortiment">Beställ</Link>
-              </Button>
-            )}
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -170,13 +162,6 @@ const Header = () => {
                     <User className="w-4 h-4" />
                     <span className="text-sm font-medium">Mina Sidor</span>
                   </Link>
-                )}
-                
-                {/* Order Button - Only show for logged in users */}
-                {user && (
-                  <Button className="w-full bg-secondary text-secondary-foreground px-6 py-2 rounded-lg font-medium hover:bg-[hsl(122_39%_44%)]">
-                    <Link to="/sortiment" onClick={() => setIsMobileMenuOpen(false)}>Beställ</Link>
-                  </Button>
                 )}
               </div>
             </nav>
