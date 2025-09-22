@@ -38,6 +38,11 @@ const HeroSection = () => {
                 Sedan 2024 har vi hjälpt över 500 företag att öka välmående och produktivitet genom premium frukt av världsklass.
               </p>
               
+              {/* Promotional Bubble */}
+              <div className="inline-block bg-gradient-to-r from-secondary to-primary-light text-white px-6 py-3 rounded-full shadow-lg animate-float">
+                <span className="font-semibold">🎉 Testa oss gratis i två veckor</span>
+              </div>
+              
             </div>
           </div>
         </div>
