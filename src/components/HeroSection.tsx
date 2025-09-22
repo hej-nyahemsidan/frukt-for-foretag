@@ -34,10 +34,10 @@ const HeroSection = () => {
         background: 'linear-gradient(to right, rgba(240,253,244,0.95) 0%, rgba(240,253,244,0.7) 40%, rgba(240,253,244,0.2) 70%, transparent 100%)'
       }}></div>
       
-      <div className="container mx-auto max-w-5xl relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto max-w-6xl relative z-10">
+        <div className="grid lg:grid-cols-[1fr_2fr] gap-12 items-center">
           {/* Left Side - Text Content */}
-          <div className="space-y-6 relative max-w-lg">
+          <div className="space-y-6 relative max-w-md pl-4">
             <div className="space-y-4">
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight text-slate-800 shadow-sm">
                 Experterna på<br />

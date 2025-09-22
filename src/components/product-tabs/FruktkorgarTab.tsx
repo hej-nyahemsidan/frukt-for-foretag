@@ -1,35 +1,40 @@
 import React from 'react';
 import AddToCartButton from '@/components/AddToCartButton';
+import fruktkorgrPremiumImg from '@/assets/fruktkorg-premium.jpg';
+import fruktkorgrStandardImg from '@/assets/fruktkorg-standard.jpg';
+import fruktkorgrEkoImg from '@/assets/fruktkorg-eko.jpg';
+import fruktkorgrBananImg from '@/assets/fruktkorg-banan.jpg';
+import fruitBoxImg from '@/assets/fruit-box.jpg';
 
 const fruktkorgar = [
   {
     id: 'frukt-premium',
     name: 'Fruktkorg Premium',
-    image: '/src/assets/fruktkorg-premium.jpg',
+    image: fruktkorgrPremiumImg,
     price: 149
   },
   {
     id: 'frukt-supreme',
     name: 'Fruktkorg Supreme',
-    image: '/src/assets/fruktkorg-standard.jpg',
+    image: fruktkorgrStandardImg,
     price: 119
   },
   {
     id: 'frukt-original',
     name: 'Fruktkorg Original',
-    image: '/src/assets/fruktkorg-eko.jpg',
+    image: fruktkorgrEkoImg,
     price: 99
   },
   {
     id: 'frukt-banan',
     name: 'Fruktkorg Banan Plus',
-    image: '/src/assets/fruktkorg-banan.jpg',
+    image: fruktkorgrBananImg,
     price: 89
   },
   {
     id: 'frukt-bas',
     name: 'Fruktkorg Bas',
-    image: '/src/assets/fruit-box.jpg',
+    image: fruitBoxImg,
     price: 79
   }
 ];

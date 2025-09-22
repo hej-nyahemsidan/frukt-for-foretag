@@ -1,17 +1,19 @@
 import React from 'react';
 import AddToCartButton from '@/components/AddToCartButton';
+import freshFruitImage from '@/assets/fresh-fruit-arrangements.jpg';
+import picnicBasketImage from '@/assets/picnic-basket-fruits.jpg';
 
 const fruktpaser = [
   {
     id: 'fruktpase-extra',
     name: 'Fruktpåse Extra',
-    image: '/src/assets/fresh-fruit-arrangements.jpg',
+    image: freshFruitImage,
     price: 59
   },
   {
     id: 'bananpase-extra',
     name: 'Bananpåse Extra',
-    image: '/src/assets/picnic-basket-fruits.jpg',
+    image: picnicBasketImage,
     price: 49
   }
 ];
