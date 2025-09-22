@@ -94,16 +94,16 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen admin-theme">
       {/* Header */}
-      <header className="border-b bg-card">
+      <header className="admin-header border-b">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div>
-              <h1 className="text-xl font-semibold text-foreground">
+              <h1 className="text-xl font-semibold">
                 Admin Dashboard
               </h1>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-[hsl(0_0%_65%)]">
                 Välkommen, {user?.email}
               </p>
             </div>
@@ -111,6 +111,7 @@ const AdminDashboard = () => {
               <Button
                 variant="outline"
                 onClick={() => setShowRequests(true)}
+                className="admin-button"
               >
                 <Eye className="w-4 h-4 mr-2" />
                 Visa förfrågningar
@@ -118,6 +119,7 @@ const AdminDashboard = () => {
               <Button
                 onClick={handleLogout}
                 variant="outline"
+                className="admin-button"
               >
                 <LogOut className="w-4 h-4 mr-2" />
                 Logga ut
@@ -129,20 +131,23 @@ const AdminDashboard = () => {
 
       <main className="container mx-auto px-4 py-8">
         {/* Customer Management */}
-        <Card>
+        <Card className="admin-card">
           <CardHeader>
             <div className="flex justify-between items-center">
-              <CardTitle>Kundhantering</CardTitle>
+              <CardTitle className="text-[hsl(0_0%_95%)]">Kundhantering</CardTitle>
               <Dialog open={showCustomerForm} onOpenChange={setShowCustomerForm}>
                 <DialogTrigger asChild>
-                  <Button onClick={() => setEditingCustomer(null)}>
+                  <Button 
+                    onClick={() => setEditingCustomer(null)}
+                    className="admin-button"
+                  >
                     <Plus className="w-4 h-4 mr-2" />
                     Lägg till kund
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-2xl">
+                <DialogContent className="max-w-2xl admin-card">
                   <DialogHeader>
-                    <DialogTitle>
+                    <DialogTitle className="text-[hsl(0_0%_95%)]">
                       {editingCustomer ? 'Redigera kund' : 'Lägg till ny kund'}
                     </DialogTitle>
                   </DialogHeader>
@@ -167,12 +172,12 @@ const AdminDashboard = () => {
             {/* Search */}
             <div className="mb-6">
               <div className="relative">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Search className="absolute left-3 top-3 h-4 w-4 text-[hsl(0_0%_65%)]" />
                 <Input
                   placeholder="Sök kunder..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 admin-input"
                 />
               </div>
             </div>
@@ -181,48 +186,48 @@ const AdminDashboard = () => {
             {loading ? (
               <div className="text-center py-8">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-                <p className="mt-4 text-muted-foreground">Laddar kunder...</p>
+                <p className="mt-4 text-[hsl(0_0%_65%)]">Laddar kunder...</p>
               </div>
             ) : (
-              <div className="rounded-md border">
+              <div className="rounded-md border admin-table">
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Namn</TableHead>
-                      <TableHead>Företag</TableHead>
-                      <TableHead>E-post</TableHead>
-                      <TableHead>Plan</TableHead>
-                      <TableHead>Status</TableHead>
-                      <TableHead>Leveransdagar</TableHead>
-                      <TableHead className="text-right">Åtgärder</TableHead>
+                      <TableHead className="admin-table">Namn</TableHead>
+                      <TableHead className="admin-table">Företag</TableHead>
+                      <TableHead className="admin-table">E-post</TableHead>
+                      <TableHead className="admin-table">Plan</TableHead>
+                      <TableHead className="admin-table">Status</TableHead>
+                      <TableHead className="admin-table">Leveransdagar</TableHead>
+                      <TableHead className="text-right admin-table">Åtgärder</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {filteredCustomers.length === 0 ? (
                       <TableRow>
-                        <TableCell colSpan={7} className="text-center py-8 text-muted-foreground">
+                        <TableCell colSpan={7} className="text-center py-8 text-[hsl(0_0%_65%)] admin-table">
                           {searchTerm ? 'Inga kunder matchade din sökning' : 'Inga kunder hittades'}
                         </TableCell>
                       </TableRow>
                     ) : (
                       filteredCustomers.map((customer) => (
                         <TableRow key={customer.id}>
-                          <TableCell className="font-medium">{customer.name}</TableCell>
-                          <TableCell>{customer.company}</TableCell>
-                          <TableCell>{customer.email}</TableCell>
-                          <TableCell>{getPlanText(customer.current_plan)}</TableCell>
-                          <TableCell>
+                          <TableCell className="font-medium admin-table">{customer.name}</TableCell>
+                          <TableCell className="admin-table">{customer.company}</TableCell>
+                          <TableCell className="admin-table">{customer.email}</TableCell>
+                          <TableCell className="admin-table">{getPlanText(customer.current_plan)}</TableCell>
+                          <TableCell className="admin-table">
                             <Badge variant={getStatusColor(customer.status)}>
                               {customer.status === 'active' ? 'Aktiv' : 'Inaktiv'}
                             </Badge>
                           </TableCell>
-                          <TableCell>
+                          <TableCell className="admin-table">
                             {customer.delivery_days.length > 0 
                               ? customer.delivery_days.join(', ')
                               : 'Inga dagar valda'
                             }
                           </TableCell>
-                          <TableCell className="text-right">
+                          <TableCell className="text-right admin-table">
                             <div className="flex justify-end space-x-2">
                               <Button
                                 variant="outline"
@@ -231,6 +236,7 @@ const AdminDashboard = () => {
                                   setEditingCustomer(customer);
                                   setShowCustomerForm(true);
                                 }}
+                                className="admin-button"
                               >
                                 <Edit className="w-4 h-4" />
                               </Button>
@@ -238,6 +244,7 @@ const AdminDashboard = () => {
                                 variant="outline"
                                 size="sm"
                                 onClick={() => handleDeleteCustomer(customer.id)}
+                                className="admin-button"
                               >
                                 <Trash2 className="w-4 h-4" />
                               </Button>
@@ -255,9 +262,9 @@ const AdminDashboard = () => {
 
         {/* Requests Dialog */}
         <Dialog open={showRequests} onOpenChange={setShowRequests}>
-          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto admin-card">
             <DialogHeader>
-              <DialogTitle>Kundförfrågningar</DialogTitle>
+              <DialogTitle className="text-[hsl(0_0%_95%)]">Kundförfrågningar</DialogTitle>
             </DialogHeader>
             <RequestsView />
           </DialogContent>

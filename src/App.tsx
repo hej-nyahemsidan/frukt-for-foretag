@@ -35,18 +35,19 @@ const App = () => (
               <Route path="/om-oss" element={<About />} />
               <Route path="/kontakt" element={<Contact />} />
               <Route path="/sortiment" element={<Sortiment />} />
-              <Route path="/kundportal" element={<CustomerPortal />} />
-              <Route path="/dashboard" element={
-                <ProtectedRoute>
-                  <CustomerDashboard />
-                </ProtectedRoute>
-              } />
-              <Route path="/admin" element={<AdminLogin />} />
-              <Route path="/admin/dashboard" element={
-                <AdminProtectedRoute>
-                  <AdminDashboard />
-                </AdminProtectedRoute>
-              } />
+      {/* Update routing to match requirements */}
+      <Route path="/customer-portal" element={<CustomerPortal />} />
+      <Route path="/dashboard" element={
+        <ProtectedRoute>
+          <CustomerDashboard />
+        </ProtectedRoute>
+      } />
+      <Route path="/admin" element={<AdminLogin />} />
+      <Route path="/admin/dashboard" element={
+        <AdminProtectedRoute>
+          <AdminDashboard />
+        </AdminProtectedRoute>
+      } />
               <Route path="/offertforfragan" element={<QuoteRequest />} />
               <Route path="/bestall-fruktkorgar" element={<OrderFruitBaskets />} />
               <Route path="/checkout" element={<Checkout />} />

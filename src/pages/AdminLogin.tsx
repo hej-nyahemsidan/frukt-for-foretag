@@ -41,28 +41,28 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-orange-50 flex items-center justify-center p-4">
+    <div className="min-h-screen admin-theme flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Back to main site */}
         <div className="mb-6">
           <Link 
             to="/" 
-            className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors"
+            className="inline-flex items-center text-[hsl(0_0%_65%)] hover:text-[hsl(0_0%_95%)] transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Tillbaka till hemsidan
           </Link>
         </div>
 
-        <Card className="shadow-lg">
+        <Card className="admin-card shadow-lg">
           <CardHeader className="text-center">
             <div className="mx-auto w-12 h-12 bg-primary rounded-full flex items-center justify-center mb-4">
               <Lock className="w-6 h-6 text-primary-foreground" />
             </div>
-            <CardTitle className="text-2xl font-bold text-foreground">
+            <CardTitle className="text-2xl font-bold text-[hsl(0_0%_95%)]">
               Admin Inloggning
             </CardTitle>
-            <p className="text-muted-foreground">
+            <p className="text-[hsl(0_0%_65%)]">
               Logga in för att hantera kundkonton
             </p>
           </CardHeader>
@@ -76,41 +76,41 @@ const AdminLogin = () => {
               )}
 
               <div className="space-y-2">
-                <Label htmlFor="email">E-postadress</Label>
+                <Label htmlFor="email" className="text-[hsl(0_0%_85%)]">E-postadress</Label>
                 <Input
                   id="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full"
+                  className="w-full admin-input"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password">Lösenord</Label>
+                <Label htmlFor="password" className="text-[hsl(0_0%_85%)]">Lösenord</Label>
                 <Input
                   id="password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full"
+                  className="w-full admin-input"
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full"
+                className="w-full admin-button"
               >
                 {loading ? 'Loggar in...' : 'Logga in'}
               </Button>
             </form>
 
-            <div className="mt-6 p-4 bg-muted rounded-lg">
-              <h3 className="font-semibold text-sm mb-2">Standard admin-konto:</h3>
-              <p className="text-sm text-muted-foreground">
+            <div className="mt-6 p-4 bg-[hsl(220_13%_14%)] rounded-lg border border-[hsl(220_13%_18%)]">
+              <h3 className="font-semibold text-sm mb-2 text-[hsl(0_0%_85%)]">Standard admin-konto:</h3>
+              <p className="text-sm text-[hsl(0_0%_65%)]">
                 E-post: admin@fruktexperten.se<br />
                 Lösenord: AdminFrukt2024!
               </p>

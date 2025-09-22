@@ -4,16 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { LogOut, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import OrderSidebar from '@/components/OrderSidebar';
-import ProductDisplay from '@/components/ProductDisplay';
-import AdditionRequestForm from '@/components/customer/AdditionRequestForm';
+import SimpleOrderForm from '@/components/customer/SimpleOrderForm';
 
 const CustomerDashboard = () => {
   const { customer, logout } = useAuth();
   const navigate = useNavigate();
-  const [packagePlan, setPackagePlan] = useState('weekly');
-  const [selectedDays, setSelectedDays] = useState<string[]>([]);
-  const [activeCategory, setActiveCategory] = useState('fruktpaser');
 
   const handleLogout = async () => {
     await logout();
@@ -51,35 +46,15 @@ const CustomerDashboard = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-charcoal text-center mb-8">
-          Beställ Fruktkorg
-        </h1>
-        
-        <div className="space-y-8">
-          <div className="flex gap-8">
-            {/* Left Sidebar - 30% width */}
-            <div className="w-[30%]">
-              <OrderSidebar 
-                packagePlan={packagePlan}
-                setPackagePlan={setPackagePlan}
-                selectedDays={selectedDays}
-                setSelectedDays={setSelectedDays}
-              />
-            </div>
-            
-            {/* Right Main Area - 70% width */}
-            <div className="w-[70%]">
-              <ProductDisplay 
-                activeCategory={activeCategory}
-                setActiveCategory={setActiveCategory}
-              />
-            </div>
-          </div>
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl font-bold text-foreground text-center mb-2">
+            Ändra din beställning
+          </h1>
+          <p className="text-muted-foreground text-center mb-8">
+            Lägg till eller ta bort artiklar från din beställning
+          </p>
           
-          {/* Addition Request Form */}
-          <div className="max-w-4xl mx-auto">
-            <AdditionRequestForm />
-          </div>
+          <SimpleOrderForm />
         </div>
       </main>
     </div>

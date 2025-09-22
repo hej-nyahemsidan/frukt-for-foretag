@@ -44,6 +44,18 @@
     /* Interactive States */
     --destructive: 0 66% 51%; /* Warm Red */
     --destructive-foreground: 0 0% 100%; /* Pure White */
+
+    /* Admin Dark Theme */
+    --admin-background: 220 13% 9%; /* Dark charcoal */
+    --admin-foreground: 0 0% 95%; /* Light text */
+    --admin-primary: 124 53% 24%; /* Same forest green */
+    --admin-primary-foreground: 0 0% 100%;
+    --admin-muted: 220 13% 14%; /* Darker gray */
+    --admin-muted-foreground: 0 0% 65%; /* Medium light gray */
+    --admin-border: 220 13% 18%; /* Dark border */
+    --admin-card: 220 13% 11%; /* Dark card */
+    --admin-card-foreground: 0 0% 95%;
+    --admin-input: 220 13% 14%; /* Dark input */
     
     /* Professional Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(124 53% 24%), hsl(122 39% 49%));
@@ -161,6 +173,42 @@
   
   .required-field {
     @apply text-[hsl(0_66%_51%)];
+  }
+
+  /* Admin Dark Theme Styles */
+  .admin-theme {
+    @apply bg-[hsl(220_13%_9%)] text-[hsl(0_0%_95%)];
+  }
+
+  .admin-header {
+    @apply bg-[hsl(220_13%_11%)] border-[hsl(220_13%_18%)];
+    box-shadow: 0 2px 10px -3px hsl(220 13% 4% / 0.3);
+  }
+
+  .admin-card {
+    @apply bg-[hsl(220_13%_11%)] border-[hsl(220_13%_18%)] text-[hsl(0_0%_95%)];
+  }
+
+  .admin-input {
+    @apply bg-[hsl(220_13%_14%)] border-[hsl(220_13%_18%)] text-[hsl(0_0%_95%)];
+    @apply focus:border-primary focus:ring-primary;
+  }
+
+  .admin-button {
+    @apply bg-primary text-primary-foreground;
+    @apply hover:bg-[hsl(124_53%_20%)] border-0;
+  }
+
+  .admin-table {
+    @apply bg-[hsl(220_13%_11%)] border-[hsl(220_13%_18%)];
+  }
+
+  .admin-table th {
+    @apply bg-[hsl(220_13%_14%)] text-[hsl(0_0%_85%)] border-[hsl(220_13%_18%)];
+  }
+
+  .admin-table td {
+    @apply border-[hsl(220_13%_18%)] text-[hsl(0_0%_90%)];
   }
 }
 
