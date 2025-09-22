@@ -59,9 +59,25 @@ serve(async (req) => {
 
     console.log('User created successfully:', authData.user?.id);
 
-    // Defensively ensure a customers row exists (bypasses RLS with service role)
+    // Defensively ensure both customers and profiles rows exist (bypasses RLS with service role)
     const userId = authData.user?.id;
     if (userId) {
+      // Create profiles row for admin dashboard
+      const { error: profileError } = await supabaseAdmin
+        .from('profiles')
+        .insert({
+          id: userId,
+          email: authData.user?.email || '',
+          full_name: fullName || null
+        });
+
+      if (profileError && !profileError.message?.includes('duplicate')) {
+        console.error('Error creating profile row:', profileError);
+      } else {
+        console.log('Profile row created successfully');
+      }
+
+      // Create customers row for business logic
       const { data: existingCustomer } = await supabaseAdmin
         .from('customers')
         .select('id')

@@ -15,17 +15,16 @@ import { Edit, Mail, User, Lock, AlertTriangle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 
-interface User {
+interface Profile {
   id: string;
   email: string;
+  full_name: string | null;
   created_at: string;
-  email_confirmed_at: string | null;
-  last_sign_in_at: string | null;
-  raw_user_meta_data: any;
+  updated_at: string;
 }
 
 interface AdminEditUserModalProps {
-  user: User | null;
+  user: Profile | null;
   onClose: () => void;
   onUserUpdated: () => void;
 }
@@ -38,7 +37,6 @@ const AdminEditUserModal: React.FC<AdminEditUserModalProps> = ({
   const [formData, setFormData] = useState({
     email: '',
     fullName: '',
-    companyName: '',
     resetPassword: false,
     newPassword: ''
   });
@@ -51,8 +49,7 @@ const AdminEditUserModal: React.FC<AdminEditUserModalProps> = ({
     if (user) {
       setFormData({
         email: user.email,
-        fullName: user.raw_user_meta_data?.full_name || '',
-        companyName: user.raw_user_meta_data?.company_name || '',
+        fullName: user.full_name || '',
         resetPassword: false,
         newPassword: ''
       });
@@ -78,18 +75,14 @@ const AdminEditUserModal: React.FC<AdminEditUserModalProps> = ({
     setIsLoading(true);
 
     try {
-      // In a real app, you'd use Supabase admin API to update users
-      // For demo purposes, we'll update the customer record
-      
-      // Find and update customer record
+      // Update the profile record
       const { error: updateError } = await supabase
-        .from('customers')
+        .from('profiles')
         .update({
           email: formData.email,
-          contact_person: formData.fullName || 'Användare',
-          company_name: formData.companyName || 'Företag AB'
+          full_name: formData.fullName || null
         })
-        .eq('user_id', user.id);
+        .eq('id', user.id);
 
       if (updateError) throw updateError;
 
@@ -117,7 +110,6 @@ const AdminEditUserModal: React.FC<AdminEditUserModalProps> = ({
       setFormData({
         email: '',
         fullName: '',
-        companyName: '',
         resetPassword: false,
         newPassword: ''
       });
@@ -187,22 +179,6 @@ const AdminEditUserModal: React.FC<AdminEditUserModalProps> = ({
               value={formData.fullName}
               onChange={(e) => setFormData(prev => ({ ...prev, fullName: e.target.value }))}
               placeholder="För- och efternamn"
-              disabled={isLoading}
-              className="admin-form-input"
-            />
-          </div>
-
-          {/* Company Name Field */}
-          <div className="admin-form-field space-y-2">
-            <Label htmlFor="edit-company" className="admin-form-label">
-              Företagsnamn
-            </Label>
-            <Input
-              id="edit-company"
-              type="text"
-              value={formData.companyName}
-              onChange={(e) => setFormData(prev => ({ ...prev, companyName: e.target.value }))}
-              placeholder="Företag AB"
               disabled={isLoading}
               className="admin-form-input"
             />
