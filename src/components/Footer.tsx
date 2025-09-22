@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   Leaf
 } from 'lucide-react';
+import FruktexpertenLogo from './FruktexpertenLogo';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -27,9 +28,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
             <div className="mb-4">
-              <h3 className="text-2xl font-bold footer-brand-name" style={{ fontWeight: 700, color: '#0b4a2e', letterSpacing: '0.02em' }}>
-                FRUKTEXPERTEN
-              </h3>
+              <FruktexpertenLogo className="h-10 w-auto" />
             </div>
             <p className="text-gray-100 text-sm leading-relaxed">
               Stockholms ledande leverantör av färsk frukt till kontor och företag. 
