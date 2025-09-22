@@ -214,6 +214,19 @@ const CustomerPortal = () => {
                   </Link>
                 </p>
               </div>
+
+              {/* Admin login link */}
+              <div className="text-center mt-8 pt-6 border-t border-border/30">
+                <p className="text-xs text-muted-foreground/70">
+                  Administratör?{' '}
+                  <Link 
+                    to="/admin" 
+                    className="text-muted-foreground/80 hover:text-primary transition-colors font-medium"
+                  >
+                    Logga in här
+                  </Link>
+                </p>
+              </div>
             </form>
           </div>
 
