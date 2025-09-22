@@ -11,27 +11,12 @@ import {
   TableRow 
 } from '@/components/ui/table';
 import { 
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import { 
   Search, 
-  Plus, 
-  Edit, 
-  Trash2, 
-  UserPlus,
+  Edit,
   RefreshCw
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import AdminAddUserModal from './AdminAddUserModal';
 import AdminEditUserModal from './AdminEditUserModal';
 
 interface Profile {
@@ -47,9 +32,7 @@ const AdminUserManagement = () => {
   const [filteredProfiles, setFilteredProfiles] = useState<Profile[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const [showAddModal, setShowAddModal] = useState(false);
   const [editingUser, setEditingUser] = useState<Profile | null>(null);
-  const [deletingUser, setDeletingUser] = useState<Profile | null>(null);
   const { toast } = useToast();
 
   const fetchUsers = async () => {
@@ -97,43 +80,6 @@ const AdminUserManagement = () => {
     }
   }, [searchQuery, profiles]);
 
-  const handleDeleteUser = async (profile: Profile) => {
-    if (profile.email === 'admin@fruktexperten.se') {
-      toast({
-        title: 'Ej tillåtet',
-        description: 'Administratörskontot kan inte tas bort.',
-        variant: 'destructive',
-      });
-      return;
-    }
-
-    try {
-      // Delete the profile (which will cascade delete the auth user due to foreign key)
-      const { error } = await supabase
-        .from('profiles')
-        .delete()
-        .eq('id', profile.id);
-
-      if (error) throw error;
-
-      // Update local state
-      setProfiles(prev => prev.filter(p => p.id !== profile.id));
-      setDeletingUser(null);
-      
-      toast({
-        title: 'Användare borttagen',
-        description: `${profile.email} har tagits bort från systemet.`,
-      });
-      
-    } catch (error: any) {
-      toast({
-        title: 'Fel',
-        description: 'Kunde inte ta bort användaren: ' + error.message,
-        variant: 'destructive',
-      });
-    }
-  };
-
   const getStatusBadge = (profile: Profile) => {
     const isAdmin = profile.email === 'admin@fruktexperten.se';
     
@@ -175,15 +121,8 @@ const AdminUserManagement = () => {
       <div className="admin-user-header flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h2 className="admin-user-title text-2xl font-bold text-gray-900">Användarhantering</h2>
-          <p className="admin-user-subtitle text-gray-600">Hantera systemanvändare och deras behörigheter</p>
+          <p className="admin-user-subtitle text-gray-600">Visa registrerade användare i systemet</p>
         </div>
-        <Button 
-          onClick={() => setShowAddModal(true)}
-          className="admin-btn-add-user flex items-center gap-2 bg-blue-600 hover:bg-blue-700"
-        >
-          <UserPlus className="w-4 h-4" />
-          Lägg till användare
-        </Button>
       </div>
 
       {/* Search and Stats */}
@@ -244,42 +183,11 @@ const AdminUserManagement = () => {
                         size="sm"
                         onClick={() => setEditingUser(profile)}
                         className="admin-btn-edit flex items-center gap-1"
+                        disabled={profile.email === 'admin@fruktexperten.se'}
                       >
                         <Edit className="w-3 h-3" />
-                        Redigera
+                        Visa
                       </Button>
-                      
-                      <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="admin-btn-delete text-red-600 border-red-200 hover:bg-red-50 flex items-center gap-1"
-                            disabled={profile.email === 'admin@fruktexperten.se'}
-                          >
-                            <Trash2 className="w-3 h-3" />
-                            Radera
-                          </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent className="admin-delete-dialog">
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>Bekräfta borttagning</AlertDialogTitle>
-                            <AlertDialogDescription>
-                              Är du säker på att du vill ta bort användaren <strong>{profile.email}</strong>? 
-                              Denna åtgärd kan inte ångras.
-                            </AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogCancel className="admin-btn-cancel">Avbryt</AlertDialogCancel>
-                            <AlertDialogAction 
-                              onClick={() => handleDeleteUser(profile)}
-                              className="admin-btn-confirm-delete bg-red-600 hover:bg-red-700"
-                            >
-                              Radera användare
-                            </AlertDialogAction>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
                     </div>
                   </TableCell>
                 </TableRow>
@@ -289,13 +197,7 @@ const AdminUserManagement = () => {
         </Table>
       </div>
 
-      {/* Modals */}
-      <AdminAddUserModal
-        open={showAddModal}
-        onClose={() => setShowAddModal(false)}
-        onUserAdded={fetchUsers}
-      />
-
+      {/* Edit Modal */}
       <AdminEditUserModal
         user={editingUser}
         onClose={() => setEditingUser(null)}
