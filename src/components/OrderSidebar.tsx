@@ -84,6 +84,14 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
             />
             <Label htmlFor="monthly" className="text-charcoal">Månadsvis</Label>
           </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem 
+              value="yearly" 
+              id="yearly"
+              className="border-[#4CAF50] text-[#4CAF50] data-[state=checked]:bg-[#4CAF50]"
+            />
+            <Label htmlFor="yearly" className="text-charcoal">Årsvis</Label>
+          </div>
         </RadioGroup>
       </div>
 

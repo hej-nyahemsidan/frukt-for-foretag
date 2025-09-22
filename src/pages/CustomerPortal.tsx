@@ -14,20 +14,16 @@ const CustomerPortal = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { login, user, isAdmin } = useAuth();
+  const { login, user } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
   // Redirect if already logged in
   useEffect(() => {
     if (user) {
-      if (isAdmin) {
-        navigate('/admin/dashboard');
-      } else {
-        navigate('/dashboard');
-      }
+      navigate('/dashboard');
     }
-  }, [user, isAdmin, navigate]);
+  }, [user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,12 +53,7 @@ const CustomerPortal = () => {
           title: 'Välkommen!',
           description: 'Du har loggats in framgångsrikt.',
         });
-        // Redirect based on user role
-        if (isAdmin) {
-          navigate('/admin/dashboard');
-        } else {
-          navigate('/dashboard');
-        }
+        navigate('/dashboard');
       }
     } catch (error) {
       toast({
@@ -202,30 +193,11 @@ const CustomerPortal = () => {
                 )}
               </Button>
 
-              {/* Sign up link */}
-              <div className="text-center mt-6">
-                <p className="text-sm text-muted-foreground">
-                  Inget konto än?{' '}
-                  <Link 
-                    to="/kontakt" 
-                    className="text-primary hover:text-primary/80 font-medium"
-                  >
-                    Skapa ett konto
-                  </Link>
-                </p>
-              </div>
-
-              {/* Admin login link */}
-              <div className="text-center mt-8 pt-6 border-t border-border/30">
-                <p className="text-xs text-muted-foreground/70">
-                  Administratör?{' '}
-                  <Link 
-                    to="/admin" 
-                    className="text-muted-foreground/80 hover:text-primary transition-colors font-medium"
-                  >
-                    Logga in här
-                  </Link>
-                </p>
+              {/* Test account info */}
+              <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <p className="text-sm font-medium text-blue-800 mb-2">Test-konto för demonstration:</p>
+                <p className="text-xs text-blue-600">E-post: test@fruktexperten.se</p>
+                <p className="text-xs text-blue-600">Lösenord: TestKund123!</p>
               </div>
             </form>
           </div>
