@@ -59,6 +59,39 @@ serve(async (req) => {
 
     console.log('User created successfully:', authData.user?.id);
 
+    // Defensively ensure a customers row exists (bypasses RLS with service role)
+    const userId = authData.user?.id;
+    if (userId) {
+      const { data: existingCustomer } = await supabaseAdmin
+        .from('customers')
+        .select('id')
+        .eq('user_id', userId)
+        .single();
+
+      if (!existingCustomer) {
+        console.log('Creating customers row for user:', userId);
+        const { error: customerError } = await supabaseAdmin
+          .from('customers')
+          .insert({
+            user_id: userId,
+            email: authData.user?.email || '',
+            contact_person: fullName || 'Ny användare',
+            company_name: companyName || 'Företag AB',
+            phone: '',
+            address: ''
+          });
+
+        if (customerError) {
+          console.error('Error creating customer row:', customerError);
+          // Don't fail the whole operation, trigger will handle it
+        } else {
+          console.log('Customer row created successfully');
+        }
+      } else {
+        console.log('Customer row already exists');
+      }
+    }
+
     return new Response(
       JSON.stringify({ 
         success: true, 
