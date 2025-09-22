@@ -11,89 +11,53 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Eye, EyeOff, User, Mail, Lock } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/integrations/supabase/client';
 
 interface AdminAddUserModalProps {
   open: boolean;
   onClose: () => void;
-  onUserAdded: () => void;
+  onAddUser: (email: string, password: string, fullName?: string) => Promise<void>;
 }
 
 const AdminAddUserModal: React.FC<AdminAddUserModalProps> = ({
   open,
   onClose,
-  onUserAdded,
+  onAddUser,
 }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    fullName: '',
-    companyName: ''
+    fullName: ''
   });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.email || !formData.password) {
-      toast({
-        title: 'Obligatoriska fält saknas',
-        description: 'E-post och lösenord måste anges.',
-        variant: 'destructive',
-      });
+      alert('E-post och lösenord måste anges.');
       return;
     }
 
-    if (formData.password.length < 8) {
-      toast({
-        title: 'Svagt lösenord',
-        description: 'Lösenordet måste vara minst 8 tecken långt.',
-        variant: 'destructive',
-      });
+    if (formData.password.length < 6) {
+      alert('Lösenordet måste vara minst 6 tecken långt.');
       return;
     }
 
     setIsLoading(true);
 
     try {
-      // Call the secure Edge Function to create the user
-      const { data, error } = await supabase.functions.invoke('create-user', {
-        body: {
-          email: formData.email,
-          password: formData.password,
-          fullName: formData.fullName,
-          companyName: formData.companyName
-        }
-      });
-
-      if (error) throw error;
-      if (!data.success) throw new Error(data.error || 'Failed to create user');
-
-      toast({
-        title: 'Användare skapad',
-        description: `${formData.email} har lagts till i systemet.`,
-      });
-
+      await onAddUser(formData.email, formData.password, formData.fullName || undefined);
+      
       // Reset form
       setFormData({
         email: '',
         password: '',
-        fullName: '',
-        companyName: ''
+        fullName: ''
       });
       
-      onUserAdded();
-      onClose();
-      
-    } catch (error: any) {
-      toast({
-        title: 'Fel vid skapande av användare',
-        description: error.message || 'Ett oväntat fel uppstod.',
-        variant: 'destructive',
-      });
+    } catch (error) {
+      // Error handling is done in parent component
     } finally {
       setIsLoading(false);
     }
@@ -104,8 +68,7 @@ const AdminAddUserModal: React.FC<AdminAddUserModalProps> = ({
       setFormData({
         email: '',
         password: '',
-        fullName: '',
-        companyName: ''
+        fullName: ''
       });
       onClose();
     }
@@ -113,21 +76,21 @@ const AdminAddUserModal: React.FC<AdminAddUserModalProps> = ({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="admin-add-user-modal sm:max-w-md">
+      <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="admin-modal-title flex items-center gap-2">
+          <DialogTitle className="flex items-center gap-2">
             <User className="w-5 h-5" />
             Lägg till ny användare
           </DialogTitle>
-          <DialogDescription className="admin-modal-description">
+          <DialogDescription>
             Skapa en ny användare med åtkomst till kundportalen.
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="admin-add-user-form space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           {/* Email Field */}
-          <div className="admin-form-field space-y-2">
-            <Label htmlFor="add-email" className="admin-form-label flex items-center gap-2">
+          <div className="space-y-2">
+            <Label htmlFor="add-email" className="flex items-center gap-2">
               <Mail className="w-4 h-4" />
               E-postadress *
             </Label>
@@ -139,32 +102,31 @@ const AdminAddUserModal: React.FC<AdminAddUserModalProps> = ({
               placeholder="anvandare@foretag.se"
               required
               disabled={isLoading}
-              className="admin-form-input"
             />
           </div>
 
           {/* Password Field */}
-          <div className="admin-form-field space-y-2">
-            <Label htmlFor="add-password" className="admin-form-label flex items-center gap-2">
+          <div className="space-y-2">
+            <Label htmlFor="add-password" className="flex items-center gap-2">
               <Lock className="w-4 h-4" />
               Lösenord *
             </Label>
-            <div className="admin-password-input relative">
+            <div className="relative">
               <Input
                 id="add-password"
                 type={showPassword ? 'text' : 'password'}
                 value={formData.password}
                 onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
-                placeholder="Minst 8 tecken"
+                placeholder="Minst 6 tecken"
                 required
                 disabled={isLoading}
-                className="admin-form-input pr-10"
-                minLength={8}
+                className="pr-10"
+                minLength={6}
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="admin-password-toggle absolute inset-y-0 right-0 flex items-center pr-3"
+                className="absolute inset-y-0 right-0 flex items-center pr-3"
                 disabled={isLoading}
               >
                 {showPassword ? (
@@ -177,8 +139,8 @@ const AdminAddUserModal: React.FC<AdminAddUserModalProps> = ({
           </div>
 
           {/* Full Name Field */}
-          <div className="admin-form-field space-y-2">
-            <Label htmlFor="add-fullname" className="admin-form-label flex items-center gap-2">
+          <div className="space-y-2">
+            <Label htmlFor="add-fullname" className="flex items-center gap-2">
               <User className="w-4 h-4" />
               Fullständigt namn
             </Label>
@@ -189,43 +151,25 @@ const AdminAddUserModal: React.FC<AdminAddUserModalProps> = ({
               onChange={(e) => setFormData(prev => ({ ...prev, fullName: e.target.value }))}
               placeholder="För- och efternamn"
               disabled={isLoading}
-              className="admin-form-input"
             />
           </div>
 
-          {/* Company Name Field */}
-          <div className="admin-form-field space-y-2">
-            <Label htmlFor="add-company" className="admin-form-label">
-              Företagsnamn
-            </Label>
-            <Input
-              id="add-company"
-              type="text"
-              value={formData.companyName}
-              onChange={(e) => setFormData(prev => ({ ...prev, companyName: e.target.value }))}
-              placeholder="Företag AB"
-              disabled={isLoading}
-              className="admin-form-input"
-            />
-          </div>
-
-          <DialogFooter className="admin-modal-footer flex gap-2">
+          <DialogFooter className="flex gap-2">
             <Button
               type="button"
               variant="outline"
               onClick={handleClose}
               disabled={isLoading}
-              className="admin-btn-cancel"
             >
               Avbryt
             </Button>
             <Button
               type="submit"
               disabled={isLoading}
-              className="admin-btn-create bg-blue-600 hover:bg-blue-700"
+              className="bg-blue-600 hover:bg-blue-700"
             >
               {isLoading ? (
-                <div className="admin-loading-indicator flex items-center gap-2">
+                <div className="flex items-center gap-2">
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
                   Skapar...
                 </div>

@@ -13,11 +13,14 @@ import {
 import { 
   Search, 
   Edit,
-  RefreshCw
+  RefreshCw,
+  UserPlus,
+  Trash2
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import AdminEditUserModal from './AdminEditUserModal';
+import AdminAddUserModal from './AdminAddUserModal';
 
 interface Profile {
   id: string;
@@ -33,6 +36,7 @@ const AdminUserManagement = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [editingUser, setEditingUser] = useState<Profile | null>(null);
+  const [showAddModal, setShowAddModal] = useState(false);
   const { toast } = useToast();
 
   const fetchUsers = async () => {
@@ -104,6 +108,74 @@ const AdminUserManagement = () => {
     });
   };
 
+  const handleAddUser = async (email: string, password: string, fullName?: string) => {
+    try {
+      // Create auth user first
+      const { data, error } = await supabase.auth.signUp({
+        email: email.trim(),
+        password: password,
+        options: {
+          data: { full_name: fullName || '' }
+        }
+      });
+      
+      if (error) throw error;
+      
+      // The profile will be auto-created by the trigger, just refresh
+      await fetchUsers();
+      
+      // Close modal and show success
+      setShowAddModal(false);
+      toast({
+        title: 'Användare skapad',
+        description: 'Användaren har skapats framgångsrikt.',
+      });
+    } catch (error: any) {
+      toast({
+        title: 'Fel',
+        description: `Fel vid skapande av användare: ${error.message}`,
+        variant: 'destructive',
+      });
+    }
+  };
+
+  const handleDeleteUser = async (profile: Profile) => {
+    if (profile.email === 'admin@fruktexperten.se') {
+      toast({
+        title: 'Fel',
+        description: 'Admin-användaren kan inte tas bort.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    if (!confirm(`Är du säker på att du vill ta bort användaren ${profile.email}?`)) {
+      return;
+    }
+
+    try {
+      // Delete from profiles table (this should also delete from auth via cascade)
+      const { error } = await supabase
+        .from('profiles')
+        .delete()
+        .eq('id', profile.id);
+
+      if (error) throw error;
+
+      await fetchUsers();
+      toast({
+        title: 'Användare borttagen',
+        description: 'Användaren har tagits bort framgångsrikt.',
+      });
+    } catch (error: any) {
+      toast({
+        title: 'Fel',
+        description: `Fel vid borttagning av användare: ${error.message}`,
+        variant: 'destructive',
+      });
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="admin-loading-container flex items-center justify-center p-8">
@@ -121,8 +193,15 @@ const AdminUserManagement = () => {
       <div className="admin-user-header flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h2 className="admin-user-title text-2xl font-bold text-gray-900">Användarhantering</h2>
-          <p className="admin-user-subtitle text-gray-600">Visa registrerade användare i systemet</p>
+          <p className="admin-user-subtitle text-gray-600">Hantera användare i systemet</p>
         </div>
+        <Button
+          onClick={() => setShowAddModal(true)}
+          className="admin-btn-add-user bg-blue-600 hover:bg-blue-700 flex items-center gap-2"
+        >
+          <UserPlus className="w-4 h-4" />
+          Lägg till användare
+        </Button>
       </div>
 
       {/* Search and Stats */}
@@ -188,6 +267,16 @@ const AdminUserManagement = () => {
                         <Edit className="w-3 h-3" />
                         Visa
                       </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleDeleteUser(profile)}
+                        className="admin-btn-delete flex items-center gap-1 text-red-600 hover:text-red-700"
+                        disabled={profile.email === 'admin@fruktexperten.se'}
+                      >
+                        <Trash2 className="w-3 h-3" />
+                        Ta bort
+                      </Button>
                     </div>
                   </TableCell>
                 </TableRow>
@@ -196,6 +285,13 @@ const AdminUserManagement = () => {
           </TableBody>
         </Table>
       </div>
+
+      {/* Add User Modal */}
+      <AdminAddUserModal
+        open={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        onAddUser={handleAddUser}
+      />
 
       {/* Edit Modal */}
       <AdminEditUserModal
