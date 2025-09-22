@@ -137,7 +137,7 @@ const ProductShowcase = () => {
         {/* Bottom CTA */}
         <div className="text-center">
           <Button className="bg-secondary text-secondary-foreground px-8 py-3 text-lg rounded-lg hover:bg-[hsl(122_39%_44%)]">
-            Se hela Sortimentet
+            Se alla produkter
           </Button>
         </div>
       </div>

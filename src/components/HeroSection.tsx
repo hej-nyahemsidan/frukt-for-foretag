@@ -3,18 +3,6 @@ import { Button } from '@/components/ui/button';
 import picnicBasket from '@/assets/picnic-basket-fruits.jpg';
 
 const HeroSection = () => {
-  // Preload and log the resolved image path in production to diagnose asset URL issues
-  React.useEffect(() => {
-    console.log("Hero image URL:", picnicBasket);
-    const img = new Image();
-    img.src = picnicBasket;
-    img.onload = () => {
-      console.log("Hero image loaded successfully:", img.src);
-    };
-    img.onerror = (e) => {
-      console.error("Failed to load hero image:", picnicBasket, e);
-    };
-  }, []);
   return (
     <section 
       id="home" 

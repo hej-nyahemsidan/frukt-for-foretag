@@ -46,13 +46,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         .maybeSingle();
       
       if (error) {
-        console.error('Error fetching customer data:', error);
         return null;
       }
       
       return data;
     } catch (error) {
-      console.error('Error fetching customer data:', error);
       return null;
     }
   };

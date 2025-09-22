@@ -44,11 +44,11 @@ const Checkout: React.FC = () => {
 
     // Clear cart and navigate back
     clearCart();
-    navigate('/sortiment');
+    navigate('/dashboard');
   };
 
   const handleGoBack = () => {
-    navigate('/sortiment');
+    navigate('/dashboard');
   };
 
   return (

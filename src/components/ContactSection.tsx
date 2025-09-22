@@ -248,7 +248,7 @@ const ContactSection = () => {
                 <a href="/kontakt" className="hover:text-green-400 transition-colors">
                   Kontakt
                 </a>
-                <a href="/sortiment" className="hover:text-green-400 transition-colors">
+                <a href="/dashboard" className="hover:text-green-400 transition-colors">
                   Produkter
                 </a>
                 <a href="#" className="hover:text-green-400 transition-colors">
