@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
-import { Menu, X, User } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Menu, X, User, ChevronDown, LogOut } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { useAuth } from '@/contexts/AuthContext';
 import FruktexpertenLogo from '@/components/FruktexpertenLogo';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/');
+    setIsMobileMenuOpen(false);
+  };
 
   const navigationItems = [
     { label: 'Beställ', href: '/sortiment', isExternal: false }, // Product Range
@@ -53,14 +63,30 @@ const Header = () => {
 
           {/* Right Side - Contact & Actions */}
           <div className="hidden lg:flex items-center space-x-6">            
-            {/* Mina Sidor Link */}
-            <Link 
-              to="/kundportal" 
-              className="flex items-center space-x-2 text-charcoal hover:text-secondary transition-colors"
-            >
-              <User className="w-4 h-4" />
-              <span className="text-sm font-medium">Mina Sidor</span>
-            </Link>
+            {/* User Menu or Login Link */}
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center space-x-2 text-charcoal hover:text-secondary transition-colors">
+                  <User className="w-4 h-4" />
+                  <span className="text-sm font-medium">{user.email}</span>
+                  <ChevronDown className="w-3 h-3" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem onClick={handleLogout} className="text-red-600 hover:text-red-700">
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Logga ut
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link 
+                to="/kundportal" 
+                className="flex items-center space-x-2 text-charcoal hover:text-secondary transition-colors"
+              >
+                <User className="w-4 h-4" />
+                <span className="text-sm font-medium">Mina Sidor</span>
+              </Link>
+            )}
             
             {/* Order Button */}
             <Button className="bg-secondary text-secondary-foreground px-6 py-2 rounded-lg font-medium shadow-sm hover:bg-[hsl(122_39%_44%)]">
@@ -110,14 +136,31 @@ const Header = () => {
               
               {/* Mobile Contact & Actions */}
               <div className="pt-4 px-4 space-y-3 border-t border-gray-200 mt-4">                
-                <Link 
-                  to="/kundportal" 
-                  className="flex items-center space-x-2 text-charcoal hover:text-secondary transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <User className="w-4 h-4" />
-                  <span className="text-sm font-medium">Mina Sidor</span>
-                </Link>
+                {/* User Menu or Login Link */}
+                {user ? (
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2 text-charcoal px-2">
+                      <User className="w-4 h-4" />
+                      <span className="text-sm font-medium">{user.email}</span>
+                    </div>
+                    <button 
+                      onClick={handleLogout}
+                      className="flex items-center space-x-2 text-red-600 hover:text-red-700 transition-colors px-2 py-1"
+                    >
+                      <LogOut className="w-4 h-4" />
+                      <span className="text-sm font-medium">Logga ut</span>
+                    </button>
+                  </div>
+                ) : (
+                  <Link 
+                    to="/kundportal" 
+                    className="flex items-center space-x-2 text-charcoal hover:text-secondary transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <User className="w-4 h-4" />
+                    <span className="text-sm font-medium">Mina Sidor</span>
+                  </Link>
+                )}
                 
                 <Button className="w-full bg-secondary text-secondary-foreground px-6 py-2 rounded-lg font-medium hover:bg-[hsl(122_39%_44%)]">
                   Beställ
