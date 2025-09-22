@@ -18,7 +18,7 @@ const HeroSection = () => {
   return (
     <section 
       id="home" 
-      className="hero-background relative overflow-hidden min-h-[70vh] flex items-center py-12 px-8"
+      className="hero-background relative overflow-hidden min-h-[70vh] flex items-center py-12"
       style={{
         backgroundImage: `url(${picnicBasket})`,
         backgroundSize: '150% auto',
@@ -34,10 +34,10 @@ const HeroSection = () => {
         background: 'linear-gradient(to right, rgba(240,253,244,0.95) 0%, rgba(240,253,244,0.7) 40%, rgba(240,253,244,0.2) 70%, transparent 100%)'
       }}></div>
       
-      <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="grid lg:grid-cols-[1fr_2fr] gap-12 items-center">
+      <div className="relative z-10 w-full">
+        <div className="lg:relative lg:h-[500px]">
           {/* Left Side - Text Content */}
-          <div className="space-y-6 relative max-w-md pl-4">
+          <div className="space-y-6 max-w-md pl-4 lg:max-w-lg lg:pl-0 lg:ml-8 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2">
             <div className="space-y-4">
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight text-slate-800 shadow-sm">
                 Experterna på<br />
@@ -60,10 +60,6 @@ const HeroSection = () => {
             <Button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-3 text-base rounded-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center gap-2">
               🧺 Beställ Gratis Provkorg
             </Button>
-          </div>
-
-          {/* Right Side - Empty space for background image */}
-          <div className="relative h-[400px] lg:h-[500px]">
           </div>
         </div>
       </div>
