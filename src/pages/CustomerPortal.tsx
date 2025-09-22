@@ -6,6 +6,7 @@ import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
+import FruktPortalenLogo from '@/components/FruktPortalenLogo';
 import citrusBackground from '@/assets/citrus-background.jpg';
 
 const CustomerPortal = () => {
@@ -80,7 +81,7 @@ const CustomerPortal = () => {
         {/* Page Title */}
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-4xl lg:text-5xl font-bold text-white drop-shadow-lg text-center">
-            Fruktexpertens Kundportal
+            FruktPortalens Kundportal
           </h1>
         </div>
       </div>
@@ -97,9 +98,14 @@ const CustomerPortal = () => {
         </Link>
 
         <div className="w-full max-w-md mx-auto">
-          {/* Brand Name */}
+          {/* Brand Logo */}
           <div className="text-center mb-12">
-            <div className="text-3xl font-bold text-primary">FRUKTEXPERTEN</div>
+            <FruktPortalenLogo 
+              size="medium" 
+              variant="full"
+              animated={true} 
+              className="mx-auto"
+            />
           </div>
 
           {/* Login Form */}
@@ -208,7 +214,7 @@ const CustomerPortal = () => {
           {/* Mobile Title (visible on small screens) */}
           <div className="lg:hidden text-center mt-12">
             <h1 className="text-2xl font-bold text-foreground">
-              Fruktexpertens Kundportal
+              FruktPortalens Kundportal
             </h1>
           </div>
         </div>
