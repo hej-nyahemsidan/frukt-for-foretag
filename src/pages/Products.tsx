@@ -26,6 +26,7 @@ import nescafeImg from '@/assets/nescafe.jpg';
 import dairyProductsImg from '@/assets/dairy-products-collection.jpg';
 import softDrinksImg from '@/assets/soft-drinks-collection.jpg';
 import coffeeTeaImg from '@/assets/coffee-tea-collection.jpg';
+import seasonalFruitsImg from '@/assets/seasonal-fruits.jpg';
 
 const Products = () => {
   const [selectedSizes, setSelectedSizes] = useState<{ [key: string]: string }>({
