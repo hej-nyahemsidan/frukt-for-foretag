@@ -77,35 +77,24 @@ const AdminUserManagement = () => {
       
       setCustomers(customersData || []);
       
-      // For demo purposes, we'll create mock users based on customers
-      // In a real app, you'd use Supabase admin API to fetch auth.users
-      const mockUsers: User[] = (customersData || []).map(customer => ({
-        id: customer.user_id,
-        email: customer.email,
-        created_at: customer.created_at,
-        email_confirmed_at: customer.created_at,
-        last_sign_in_at: null,
-        raw_user_meta_data: {
-          full_name: customer.contact_person,
-          company_name: customer.company_name
-        }
-      }));
-
-      // Add admin user if not present
-      const hasAdmin = mockUsers.some(u => u.email === 'admin@fruktexperten.se');
-      if (!hasAdmin) {
-        mockUsers.unshift({
-          id: 'admin-id',
-          email: 'admin@fruktexperten.se',
-          created_at: new Date().toISOString(),
-          email_confirmed_at: new Date().toISOString(),
-          last_sign_in_at: new Date().toISOString(),
+      // Create users based on customers, excluding admin
+      const mockUsers: User[] = (customersData || [])
+        .filter(customer => customer.email !== 'admin@fruktexperten.se')
+        .map(customer => ({
+          id: customer.user_id,
+          email: customer.email,
+          created_at: customer.created_at,
+          email_confirmed_at: customer.created_at,
+          last_sign_in_at: null,
           raw_user_meta_data: {
-            full_name: 'System Administrator',
-            role: 'admin'
+            full_name: customer.contact_person,
+            company_name: customer.company_name
           }
-        });
-      }
+        }));
+
+      console.log('Fetched customers:', customersData?.length || 0);
+      console.log('Filtered users (excluding admin):', mockUsers.length);
+      console.log('Users:', mockUsers.map(u => u.email));
 
       setUsers(mockUsers);
       setFilteredUsers(mockUsers);
