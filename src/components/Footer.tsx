@@ -26,9 +26,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           
           {/* Company Info */}
-          <div className="space-y-4">
-            <div className="mb-4">
-              <FruktexpertenLogo className="h-10 w-auto" />
+          <div className="space-y-6">
+            <div className="mb-6">
+              <div className="p-3 bg-white/10 rounded-lg inline-block backdrop-blur-sm">
+                <FruktexpertenLogo className="h-16 md:h-20 w-auto" />
+              </div>
             </div>
             <p className="text-gray-100 text-sm leading-relaxed">
               Stockholms ledande leverantör av färsk frukt till kontor och företag. 
