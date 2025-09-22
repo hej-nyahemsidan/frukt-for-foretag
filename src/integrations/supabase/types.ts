@@ -14,6 +14,116 @@ export type Database = {
   }
   public: {
     Tables: {
+      addition_requests: {
+        Row: {
+          created_at: string | null
+          customer_email: string
+          customer_id: string | null
+          customer_name: string
+          id: string
+          items: Json
+          message: string | null
+          status: string | null
+          total_monthly_cost: number | null
+          total_onetime_cost: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          customer_email: string
+          customer_id?: string | null
+          customer_name: string
+          id?: string
+          items?: Json
+          message?: string | null
+          status?: string | null
+          total_monthly_cost?: number | null
+          total_onetime_cost?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          customer_email?: string
+          customer_id?: string | null
+          customer_name?: string
+          id?: string
+          items?: Json
+          message?: string | null
+          status?: string | null
+          total_monthly_cost?: number | null
+          total_onetime_cost?: number | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "addition_requests_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customer_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      admin_users: {
+        Row: {
+          created_at: string | null
+          email: string
+          id: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          id?: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          id?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      customer_accounts: {
+        Row: {
+          company: string
+          created_at: string | null
+          current_plan: string
+          delivery_days: string[]
+          email: string
+          id: string
+          name: string
+          password: string
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          company: string
+          created_at?: string | null
+          current_plan: string
+          delivery_days?: string[]
+          email: string
+          id?: string
+          name: string
+          password: string
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          company?: string
+          created_at?: string | null
+          current_plan?: string
+          delivery_days?: string[]
+          email?: string
+          id?: string
+          name?: string
+          password?: string
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       customers: {
         Row: {
           address: string | null
