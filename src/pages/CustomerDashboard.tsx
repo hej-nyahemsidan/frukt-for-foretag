@@ -6,6 +6,7 @@ import { LogOut, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import OrderSidebar from '@/components/OrderSidebar';
 import ProductDisplay from '@/components/ProductDisplay';
+import AdditionRequestForm from '@/components/customer/AdditionRequestForm';
 
 const CustomerDashboard = () => {
   const { customer, logout } = useAuth();
@@ -54,23 +55,30 @@ const CustomerDashboard = () => {
           Beställ Fruktkorg
         </h1>
         
-        <div className="flex gap-8">
-          {/* Left Sidebar - 30% width */}
-          <div className="w-[30%]">
-            <OrderSidebar 
-              packagePlan={packagePlan}
-              setPackagePlan={setPackagePlan}
-              selectedDays={selectedDays}
-              setSelectedDays={setSelectedDays}
-            />
+        <div className="space-y-8">
+          <div className="flex gap-8">
+            {/* Left Sidebar - 30% width */}
+            <div className="w-[30%]">
+              <OrderSidebar 
+                packagePlan={packagePlan}
+                setPackagePlan={setPackagePlan}
+                selectedDays={selectedDays}
+                setSelectedDays={setSelectedDays}
+              />
+            </div>
+            
+            {/* Right Main Area - 70% width */}
+            <div className="w-[70%]">
+              <ProductDisplay 
+                activeCategory={activeCategory}
+                setActiveCategory={setActiveCategory}
+              />
+            </div>
           </div>
           
-          {/* Right Main Area - 70% width */}
-          <div className="w-[70%]">
-            <ProductDisplay 
-              activeCategory={activeCategory}
-              setActiveCategory={setActiveCategory}
-            />
+          {/* Addition Request Form */}
+          <div className="max-w-4xl mx-auto">
+            <AdditionRequestForm />
           </div>
         </div>
       </main>
