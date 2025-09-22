@@ -31,9 +31,18 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/om-oss" element={<About />} />
               <Route path="/kontakt" element={<Contact />} />
-              <Route path="/sortiment" element={<Sortiment />} />
+              <Route path="/sortiment" element={
+                <ProtectedRoute>
+                  <Sortiment />
+                </ProtectedRoute>
+              } />
               <Route path="/kundportal" element={<CustomerPortal />} />
               <Route path="/dashboard" element={
+                <ProtectedRoute>
+                  <CustomerDashboard />
+                </ProtectedRoute>
+              } />
+              <Route path="/mina-sidor" element={
                 <ProtectedRoute>
                   <CustomerDashboard />
                 </ProtectedRoute>

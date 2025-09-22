@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useCart } from '@/contexts/CartContext';
-import { useAuth } from '@/contexts/AuthContext';
 import { AlertCircle } from 'lucide-react';
 
 interface OrderSidebarProps {
@@ -19,7 +18,6 @@ interface OrderSidebarProps {
 const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDays }: OrderSidebarProps) => {
   const navigate = useNavigate();
   const { getTotalItems } = useCart();
-  const { user, customer } = useAuth();
   const days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
   const [orderType, setOrderType] = React.useState('subscription');
 
@@ -51,22 +49,6 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
 
   return (
     <div className="bg-gray-100 p-6 rounded-lg shadow-sm border">
-      {/* Customer Info or Guest Notice */}
-      {user && customer ? (
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-          <h3 className="font-medium text-green-800 mb-1">Kundkonto</h3>
-          <p className="text-sm text-green-700">{customer.company_name}</p>
-          <p className="text-sm text-green-600">{customer.contact_person}</p>
-        </div>
-      ) : (
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-          <h3 className="font-medium text-blue-800 mb-1">Beställer som gäst</h3>
-          <p className="text-sm text-blue-700">
-            <a href="/kundportal" className="underline hover:no-underline">Logga in</a> för att spara dina uppgifter och se orderhistorik.
-          </p>
-        </div>
-      )}
-
       {/* Step Indicator */}
       <div className="flex items-center gap-4 mb-8">
         <div className="flex items-center gap-2">
