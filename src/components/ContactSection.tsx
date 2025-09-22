@@ -135,59 +135,6 @@ const ContactSection = () => {
         </div>
       </section>
 
-      {/* Contact Information Section */}
-      <section className="py-20 px-8 bg-gray-50">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Address */}
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                <MapPin className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Adress</h3>
-              <div className="text-gray-600">
-                <p className="font-medium">Huvudlager:</p>
-                <p>Vikingavägen 1, Huddinge</p>
-              </div>
-            </div>
-
-            {/* Contact */}
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                <Phone className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Kontakt</h3>
-              <div className="text-gray-600">
-                <p>020 – 88 44 00</p>
-                <p>info@fruktexperten.se</p>
-              </div>
-            </div>
-
-            {/* Opening Hours */}
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                <Clock className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Öppettider</h3>
-              <div className="text-gray-600">
-                <p>Mån – Tors    8:00 – 16:00</p>
-                <p>Fredag        8:00 – 12:00</p>
-              </div>
-            </div>
-
-            {/* Live Chat */}
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                <MessageCircle className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Chatta med oss</h3>
-              <div className="text-gray-600">
-                <p>Klicka på knappen längst ner till höger för att chatta med oss.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Enhanced Footer Section */}
       <footer className="bg-gray-900 text-white py-16 px-8">

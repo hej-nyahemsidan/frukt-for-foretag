@@ -38,16 +38,7 @@ const HeroSection = () => {
                 Sedan 2024 har vi hjälpt över 500 företag att öka välmående och produktivitet genom premium frukt av världsklass.
               </p>
               
-              {/* Trust Indicator */}
-              <div className="flex items-center text-emerald-600 font-medium">
-                ✓ Över 10,000 nöjda medarbetare
-              </div>
             </div>
-
-            {/* CTA Button */}
-            <Button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-3 text-base rounded-lg font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center gap-2">
-              🧺 Beställ Gratis Provkorg
-            </Button>
           </div>
         </div>
       </div>

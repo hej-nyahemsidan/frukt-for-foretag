@@ -117,18 +117,6 @@ const ProductShowcase = () => {
                     )}
                   </div>
 
-                  {/* Buttons */}
-                  <div className="mt-auto space-y-2">
-                    <Button 
-                      variant="outline" 
-                      className="w-full bg-card border-mediumgray text-charcoal hover:bg-muted"
-                    >
-                      Visa
-                    </Button>
-                    <Button className="w-full bg-secondary text-secondary-foreground hover:bg-[hsl(122_39%_44%)]">
-                      Beställ Nu
-                    </Button>
-                  </div>
               </div>
             </div>
           ))}
