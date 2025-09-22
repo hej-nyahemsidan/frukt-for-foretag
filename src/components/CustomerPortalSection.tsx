@@ -24,11 +24,11 @@ const CustomerPortalSection = () => {
         
         {/* Text Content */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground max-w-4xl mx-auto mb-6">
-            Hantera dina fruktleveranser enkelt med vår smidiga <span className="text-primary font-extrabold">kundportal</span>
+          <h2 className="text-4xl font-bold text-gray-800 max-w-4xl mx-auto mb-6">
+            Hantera dina fruktleveranser enkelt med vår smidiga kundportal
           </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            Med vår <span className="text-primary font-semibold">kundportal</span> kan du enkelt logga in och hantera din prenumeration och leveranser. 
+          <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
+            Med vår kundportal kan du enkelt logga in och hantera din prenumeration och leveranser. 
             Du kan ändra, avboka och lägga till leveranser från fruktbud, på ett enkelt och smidigt sätt.
           </p>
         </div>

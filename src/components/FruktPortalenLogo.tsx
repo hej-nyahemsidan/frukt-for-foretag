@@ -43,12 +43,6 @@ const FruktPortalenLogo: React.FC<FruktPortalenLogoProps> = ({
           <stop offset="50%" stopColor="#FF7043" opacity="0.5" />
           <stop offset="100%" stopColor="#6B46C1" opacity="0.3" />
         </linearGradient>
-        <linearGradient id={`textGradient-${size}-${variant}`} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#2D5016" />
-          <stop offset="30%" stopColor="#52C234" />
-          <stop offset="70%" stopColor="#7ED321" />
-          <stop offset="100%" stopColor="#A4E635" />
-        </linearGradient>
         <filter id={`glow-${size}-${variant}`}>
           <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
           <feMerge> 
@@ -138,29 +132,9 @@ const FruktPortalenLogo: React.FC<FruktPortalenLogoProps> = ({
 
   const logoText = (
     <div className="text-center">
-      <div className="font-bold tracking-wide">
-        <span 
-          className="font-extrabold"
-          style={{ 
-            background: `url(#textGradient-${size}-${variant})`,
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text'
-          }}
-        >
-          Frukt
-        </span>
-        <span 
-          className="font-semibold"
-          style={{ 
-            background: `url(#textGradient-${size}-${variant})`,
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text'
-          }}
-        >
-          Portalen
-        </span>
+      <div className="font-bold text-charcoal tracking-wide">
+        <span className="font-extrabold">Frukt</span>
+        <span className="font-semibold">Portalen</span>
       </div>
     </div>
   );
@@ -170,29 +144,9 @@ const FruktPortalenLogo: React.FC<FruktPortalenLogoProps> = ({
       <div className="flex-shrink-0" style={{ width: '40px', height: '40px' }}>
         {logoIcon}
       </div>
-      <div className="font-bold tracking-wide text-lg">
-        <span 
-          className="font-extrabold"
-          style={{ 
-            background: `url(#textGradient-${size}-${variant})`,
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text'
-          }}
-        >
-          Frukt
-        </span>
-        <span 
-          className="font-semibold"
-          style={{ 
-            background: `url(#textGradient-${size}-${variant})`,
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text'
-          }}
-        >
-          Portalen
-        </span>
+      <div className="font-bold text-charcoal tracking-wide text-lg">
+        <span className="font-extrabold">Frukt</span>
+        <span className="font-semibold">Portalen</span>
       </div>
     </div>
   );
@@ -209,16 +163,6 @@ const FruktPortalenLogo: React.FC<FruktPortalenLogoProps> = ({
           <div style={{ width: size === 'small' ? '60px' : size === 'medium' ? '80px' : '100px' }}>
             {logoIcon}
           </div>
-          <svg width="0" height="0">
-            <defs>
-              <linearGradient id={`textGradient-${size}-${variant}`} x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#2D5016" />
-                <stop offset="30%" stopColor="#52C234" />
-                <stop offset="70%" stopColor="#7ED321" />
-                <stop offset="100%" stopColor="#A4E635" />
-              </linearGradient>
-            </defs>
-          </svg>
           {logoText}
         </div>
       );
