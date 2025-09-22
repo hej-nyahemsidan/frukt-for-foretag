@@ -36,7 +36,7 @@ const App = () => (
               <Route path="/kontakt" element={<Contact />} />
               <Route path="/sortiment" element={<Sortiment />} />
       {/* Update routing to match requirements */}
-      <Route path="/customer-portal" element={<CustomerPortal />} />
+      <Route path="/kundportal" element={<CustomerPortal />} />
       <Route path="/dashboard" element={
         <ProtectedRoute>
           <CustomerDashboard />

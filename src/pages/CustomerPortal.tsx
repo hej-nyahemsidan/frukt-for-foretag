@@ -14,16 +14,20 @@ const CustomerPortal = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { login, user } = useAuth();
+  const { login, user, isAdmin } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
   // Redirect if already logged in
   useEffect(() => {
     if (user) {
-      navigate('/dashboard');
+      if (isAdmin) {
+        navigate('/admin/dashboard');
+      } else {
+        navigate('/dashboard');
+      }
     }
-  }, [user, navigate]);
+  }, [user, isAdmin, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,7 +57,12 @@ const CustomerPortal = () => {
           title: 'Välkommen!',
           description: 'Du har loggats in framgångsrikt.',
         });
-        navigate('/dashboard');
+        // Redirect based on user role
+        if (isAdmin) {
+          navigate('/admin/dashboard');
+        } else {
+          navigate('/dashboard');
+        }
       }
     } catch (error) {
       toast({
