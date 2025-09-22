@@ -100,7 +100,7 @@ const CustomerPortal = () => {
         <div className="w-full max-w-md mx-auto">
           {/* Logo Section */}
           <div className="text-center mb-12">
-            <FruktexpertenLogo className="justify-center" />
+            <FruktexpertenLogo className="justify-center h-20 md:h-24 w-auto" />
           </div>
 
           {/* Login Form */}

@@ -29,7 +29,7 @@ const Footer = () => {
           <div className="space-y-6">
             <div className="mb-6">
               <div className="p-3 bg-white/10 rounded-lg inline-block backdrop-blur-sm">
-                <FruktexpertenLogo className="h-16 md:h-20 w-auto" />
+                <FruktexpertenLogo className="h-20 md:h-24 lg:h-28 w-auto" />
               </div>
             </div>
             <p className="text-gray-100 text-sm leading-relaxed">

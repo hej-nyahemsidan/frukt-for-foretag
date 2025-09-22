@@ -36,7 +36,7 @@ const AdminDashboard = () => {
         <div className="admin-header-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="admin-header-content flex justify-between items-center h-16">
             <div className="admin-header-left flex items-center">
-              <FruktexpertenLogo />
+              <FruktexpertenLogo className="h-12 md:h-14 w-auto" />
               <span className="admin-title ml-3 text-lg font-semibold text-gray-800">Admin Dashboard</span>
             </div>
             <div className="admin-header-right flex items-center space-x-4">

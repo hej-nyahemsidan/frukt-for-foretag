@@ -79,7 +79,7 @@ const AdminLogin = () => {
         <div className="bg-white rounded-lg shadow-md p-8">
           {/* Logo Section */}
           <div className="text-center mb-8">
-            <FruktexpertenLogo className="justify-center" />
+            <FruktexpertenLogo className="justify-center h-20 md:h-24 w-auto" />
           </div>
 
           {/* Admin Login Form */}
