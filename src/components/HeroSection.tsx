@@ -38,10 +38,15 @@ const HeroSection = () => {
                 Sedan 2024 har vi hjälpt över 500 företag att öka välmående och produktivitet genom premium frukt av världsklass.
               </p>
               
-              {/* Promotional Bubble */}
-              <div className="inline-block bg-gradient-to-r from-secondary to-primary-light text-white px-6 py-3 rounded-full shadow-lg animate-float">
-                <span className="font-semibold">🎉 Testa oss gratis i två veckor</span>
-              </div>
+              {/* Promotional Button */}
+              <Button 
+                asChild
+                className="inline-block bg-gradient-to-r from-secondary to-primary-light text-white px-6 py-3 rounded-full shadow-lg animate-float hover:shadow-xl transition-shadow border-0 font-semibold"
+              >
+                <a href="/offertforfragan">
+                  🎉 Testa oss gratis i två veckor
+                </a>
+              </Button>
               
             </div>
           </div>
