@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@/contexts/AuthContext';
+import FruktexpertenLogo from '@/components/FruktexpertenLogo';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -36,12 +37,15 @@ const Header = () => {
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-18">
-          {/* Company Name */}
-          <Link to="/" className="flex-shrink-0">
-            <div className="text-2xl font-bold text-primary">
-              FRUKTEXPERTEN
-            </div>
-          </Link>
+          {/* Company Logo */}
+          <div className="flex-shrink-0">
+            <FruktexpertenLogo 
+              size="medium" 
+              animated={true} 
+              link="/" 
+              className="max-w-[150px] md:max-w-[200px]"
+            />
+          </div>
 
           {/* Desktop Navigation - Centered */}
           <nav className="hidden lg:flex items-center mx-auto">
