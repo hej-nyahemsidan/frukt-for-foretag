@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAdmin } from '@/contexts/AdminContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,7 +10,7 @@ import { ArrowLeft, Lock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const AdminLogin = () => {
-  const { login, isAdmin, user } = useAdmin();
+  const { login, isAdmin, user } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState('admin@fruktexperten.se');
   const [password, setPassword] = useState('');

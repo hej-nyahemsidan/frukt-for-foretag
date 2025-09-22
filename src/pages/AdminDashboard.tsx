@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAdmin } from '@/contexts/AdminContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -24,7 +24,7 @@ interface CustomerAccount {
 }
 
 const AdminDashboard = () => {
-  const { logout, user } = useAdmin();
+  const { logout, user } = useAuth();
   const navigate = useNavigate();
   const [customers, setCustomers] = useState<CustomerAccount[]>([]);
   const [loading, setLoading] = useState(true);

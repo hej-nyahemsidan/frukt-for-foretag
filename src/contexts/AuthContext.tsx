@@ -15,6 +15,7 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   customer: Customer | null;
+  isAdmin: boolean;
   loading: boolean;
   login: (email: string, password: string) => Promise<{ error: any }>;
   logout: () => Promise<void>;
@@ -35,6 +36,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [customer, setCustomer] = useState<Customer | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const fetchCustomerData = async (userId: string) => {
@@ -71,16 +73,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setSession(session);
         setUser(session?.user ?? null);
         
-        if (session?.user) {
-          // Fetch customer data when user logs in
-          setTimeout(async () => {
-            const customerData = await fetchCustomerData(session.user.id);
-            setCustomer(customerData);
-            setLoading(false);
-          }, 0);
-        } else {
-          setCustomer(null);
+        // Check if user is admin
+        if (session?.user?.email === 'admin@fruktexperten.se') {
+          setIsAdmin(true);
+          setCustomer(null); // Admin doesn't need customer data
           setLoading(false);
+        } else {
+          setIsAdmin(false);
+          if (session?.user) {
+            // Fetch customer data when regular user logs in
+            setTimeout(async () => {
+              const customerData = await fetchCustomerData(session.user.id);
+              setCustomer(customerData);
+              setLoading(false);
+            }, 0);
+          } else {
+            setCustomer(null);
+            setLoading(false);
+          }
         }
       }
     );
@@ -90,13 +100,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setSession(session);
       setUser(session?.user ?? null);
       
-      if (session?.user) {
-        fetchCustomerData(session.user.id).then((customerData) => {
-          setCustomer(customerData);
-          setLoading(false);
-        });
-      } else {
+      if (session?.user?.email === 'admin@fruktexperten.se') {
+        setIsAdmin(true);
+        setCustomer(null);
         setLoading(false);
+      } else {
+        setIsAdmin(false);
+        if (session?.user) {
+          fetchCustomerData(session.user.id).then((customerData) => {
+            setCustomer(customerData);
+            setLoading(false);
+          });
+        } else {
+          setLoading(false);
+        }
       }
     });
 
@@ -117,12 +134,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(null);
     setSession(null);
     setCustomer(null);
+    setIsAdmin(false);
   };
 
   const value = {
     user,
     session,
     customer,
+    isAdmin,
     loading,
     login,
     logout,
