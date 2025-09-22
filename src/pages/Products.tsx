@@ -6,7 +6,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Phone, Mail, Plus, Info } from 'lucide-react';
+import { Phone, Mail, Plus, Info, LogIn, FileText } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import fruktkorgrSupremeImg from '@/assets/fruktkorg-supreme-new.jpg';
 import fruktkorgrPremiumImg from '@/assets/fruktkorg-premium-new.jpg';
 import fruktkorgrOriginalImg from '@/assets/fruktkorg-original-new.jpg';
@@ -35,6 +36,8 @@ const Products = () => {
     'frukt-eko': '4kg',
     'frukt-banan': '4kg'
   });
+
+  const [activeTab, setActiveTab] = useState('fruktkorgar');
 
   const fruktkorgar = [
     {
@@ -240,152 +243,180 @@ const Products = () => {
         <section className="bg-gradient-hero text-white py-16">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-5xl font-bold mb-4">Vårt Sortiment</h1>
-            <p className="text-xl opacity-90 max-w-3xl mx-auto">
-              Färska frukter och kvalitetsprodukter för din arbetsplats
+            <p className="text-xl opacity-90 max-w-3xl mx-auto mb-4">
+              Upptäck vårt kompletta utbud av fruktkorgar, drycker och tillbehör för din arbetsplats
+            </p>
+            <p className="text-sm opacity-75 max-w-2xl mx-auto">
+              För att beställa, vänligen logga in på ditt företagskonto eller kontakta oss för offert
             </p>
           </div>
         </section>
 
-        {/* Important Note */}
+        {/* Info Banner */}
         <section className="py-6">
           <div className="container mx-auto px-4">
-            <Alert className="border-primary/20 bg-primary/5">
-              <Info className="h-4 w-4 text-primary" />
-              <AlertDescription className="text-sm">
-                📍 Detta är vår produktkatalog för visning. För att beställa, vänligen kontakta oss för offert eller logga in på ert företagskonto.
-                <div className="flex gap-2 mt-2">
-                  <Button variant="outline" size="sm" className="h-8">
-                    Kontakta oss
-                  </Button>
-                  <Button variant="outline" size="sm" className="h-8">
-                    Logga in
-                  </Button>
-                </div>
+            <Alert className="border-blue-200 bg-blue-50 border-l-4 border-l-blue-400">
+              <Info className="h-4 w-4 text-blue-600" />
+              <AlertDescription className="text-sm text-blue-800">
+                <strong>Observera:</strong> Detta är vår produktkatalog.{' '}
+                <Link to="/kundportal" className="underline text-blue-600 hover:text-blue-800 mx-1">
+                  Logga in
+                </Link>
+                för att se dina företagspriser eller{' '}
+                <Link to="/offertforfragan" className="underline text-blue-600 hover:text-blue-800">
+                  begär en offert
+                </Link>
+                {' '}för att komma igång.
               </AlertDescription>
             </Alert>
           </div>
         </section>
 
-        {/* Fruktkorgar Section */}
-        <section className="py-16">
+        {/* Unified Product Section */}
+        <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4">Fruktkorgar - Anpassade efter ditt behov</h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Välj mellan våra populära fruktkorgar i olika storlekar och varianter. 
-                Alla korgar innehåller noga utvalda färska frukter.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {fruktkorgar.map((product) => (
-                <Card 
-                  key={product.id} 
-                  className="group hover:shadow-elegant transition-all duration-300 hover:scale-[1.02] relative"
-                >
-                  {product.popular && (
-                    <Badge className="absolute top-4 right-4 z-10 bg-primary text-white">
-                      Populär
-                    </Badge>
-                  )}
-                  {product.eco && (
-                    <Badge className="absolute top-4 left-4 z-10 bg-green-600 text-white">
-                      Eko
-                    </Badge>
-                  )}
-                  
-                  <CardHeader className="p-0">
-                    <div className="aspect-square bg-gradient-subtle p-6 rounded-t-lg">
-                      <img
-                        src={product.image}
-                        alt={product.name}
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                  </CardHeader>
-                  
-                  <CardContent className="p-6">
-                    <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">
-                      {product.name}
-                    </CardTitle>
-                    <CardDescription className="mb-4">
-                      {product.description}
-                    </CardDescription>
-                    
-                    {!product.isCustom ? (
-                      <>
-                        {/* Size Selector */}
-                        <div className="mb-4">
-                          <p className="text-sm font-medium mb-2">Välj storlek:</p>
-                          <div className="flex gap-2 flex-wrap">
-                            {Object.keys(product.prices).map((size) => (
-                              <Button
-                                key={size}
-                                variant={selectedSizes[product.id] === size ? "default" : "outline"}
-                                size="sm"
-                                onClick={() => handleSizeChange(product.id, size)}
-                                className="h-8 px-3"
-                              >
-                                {size}
-                              </Button>
-                            ))}
-                          </div>
-                        </div>
-                        
-                        {/* Price */}
-                        <div className="mb-4">
-                          <span className="text-2xl font-bold text-primary">
-                            {getPrice(product)} kr
-                          </span>
-                        </div>
-                      </>
-                    ) : (
-                      <div className="mb-4">
-                        <p className="text-lg font-semibold text-muted-foreground">
-                          Begär offert
-                        </p>
-                      </div>
-                    )}
-                  </CardContent>
-                  
-                  <CardFooter className="p-6 pt-0">
-                    <Button className="w-full bg-primary hover:bg-primary/90">
-                      <Plus className="w-4 h-4 mr-2" />
-                      Lägg till förfrågan
-                    </Button>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Other Products Section */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4">Övriga produkter</h2>
+              <h2 className="text-4xl font-bold mb-4">Alla Produkter</h2>
               <p className="text-lg text-muted-foreground">
-                Komplettera med våra övriga produkter för en komplett lösning
+                Bläddra genom vårt kompletta sortiment organiserat i kategorier
               </p>
             </div>
 
-            <Tabs defaultValue="fruktpasar" className="w-full">
-              <TabsList className="grid w-full grid-cols-4 max-w-2xl mx-auto mb-8">
-                <TabsTrigger value="fruktpasar">Fruktpåsar</TabsTrigger>
-                <TabsTrigger value="mjolk">Mjölk</TabsTrigger>
-                <TabsTrigger value="lask">Läsk</TabsTrigger>
-                <TabsTrigger value="kaffe">Kaffe</TabsTrigger>
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+              <TabsList className="grid w-full grid-cols-5 max-w-4xl mx-auto mb-8 bg-white shadow-md">
+                <TabsTrigger 
+                  value="fruktkorgar" 
+                  className="data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-primary/10 transition-colors"
+                >
+                  Fruktkorgar
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="fruktpasar"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-primary/10 transition-colors"
+                >
+                  Fruktpåsar
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="mjolk"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-primary/10 transition-colors"
+                >
+                  Mjölk
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="lask"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-primary/10 transition-colors"
+                >
+                  Läsk
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="kaffe"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-primary/10 transition-colors"
+                >
+                  Kaffe
+                </TabsTrigger>
               </TabsList>
 
+              {/* Fruktkorgar Tab */}
+              <TabsContent value="fruktkorgar" className="animate-fade-in">
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold mb-2">Fruktkorgar - Anpassade efter ditt behov</h3>
+                  <p className="text-muted-foreground">
+                    Välj mellan våra populära fruktkorgar i olika storlekar och varianter. 
+                    Alla korgar innehåller noga utvalda färska frukter.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {fruktkorgar.map((product) => (
+                    <Card 
+                      key={product.id} 
+                      className="group hover:shadow-elegant transition-all duration-300 hover:scale-[1.02] relative bg-white"
+                    >
+                      {product.popular && (
+                        <Badge className="absolute top-4 right-4 z-10 bg-primary text-white">
+                          Populär
+                        </Badge>
+                      )}
+                      {product.eco && (
+                        <Badge className="absolute top-4 left-4 z-10 bg-green-600 text-white">
+                          Eko
+                        </Badge>
+                      )}
+                      
+                      <CardHeader className="p-0">
+                        <div className="aspect-square bg-gradient-subtle p-6 rounded-t-lg">
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      </CardHeader>
+                      
+                      <CardContent className="p-6">
+                        <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">
+                          {product.name}
+                        </CardTitle>
+                        <CardDescription className="mb-4">
+                          {product.description}
+                        </CardDescription>
+                        
+                        {!product.isCustom ? (
+                          <>
+                            {/* Size Selector */}
+                            <div className="mb-4">
+                              <p className="text-sm font-medium mb-2">Välj storlek:</p>
+                              <div className="flex gap-2 flex-wrap">
+                                {Object.keys(product.prices).map((size) => (
+                                  <Button
+                                    key={size}
+                                    variant={selectedSizes[product.id] === size ? "default" : "outline"}
+                                    size="sm"
+                                    onClick={() => handleSizeChange(product.id, size)}
+                                    className="h-8 px-3"
+                                  >
+                                    {size}
+                                  </Button>
+                                ))}
+                              </div>
+                            </div>
+                            
+                            {/* Price */}
+                            <div className="mb-4">
+                              <span className="text-2xl font-bold text-primary">
+                                {getPrice(product)} kr
+                              </span>
+                            </div>
+                          </>
+                        ) : (
+                          <div className="mb-4">
+                            <p className="text-lg font-semibold text-muted-foreground">
+                              Begär offert
+                            </p>
+                          </div>
+                        )}
+                      </CardContent>
+                      
+                      <CardFooter className="p-6 pt-0">
+                        <Link to="/offertforfragan" className="w-full">
+                          <Button className="w-full bg-primary hover:bg-primary/90" title="Klicka för att begära offert">
+                            <FileText className="w-4 h-4 mr-2" />
+                            Begär offert
+                          </Button>
+                        </Link>
+                      </CardFooter>
+                    </Card>
+                  ))}
+                </div>
+              </TabsContent>
+
               {/* Fruktpåsar Tab */}
-              <TabsContent value="fruktpasar">
+              <TabsContent value="fruktpasar" className="animate-fade-in">
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold mb-2">Fruktpåsar - Perfekt för mindre kontor</h3>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
                   {otherProducts.fruktpasar.map((product) => (
-                    <Card key={product.id} className="group hover:shadow-lg transition-all duration-300">
+                    <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white">
                       <CardHeader className="p-3">
                         <div className="aspect-square bg-gradient-subtle p-2 rounded">
                           <img
@@ -398,10 +429,12 @@ const Products = () => {
                       <CardContent className="p-3">
                         <h4 className="font-semibold text-sm mb-1">{product.name}</h4>
                         <p className="text-xs text-muted-foreground mb-3">{product.description}</p>
-                        <Button size="sm" className="w-full h-8 text-xs">
-                          <Plus className="w-3 h-3 mr-1" />
-                          Lägg till
-                        </Button>
+                        <Link to="/offertforfragan" className="w-full">
+                          <Button size="sm" className="w-full h-8 text-xs" title="Klicka för att begära offert">
+                            <FileText className="w-3 h-3 mr-1" />
+                            Begär offert
+                          </Button>
+                        </Link>
                       </CardContent>
                     </Card>
                   ))}
@@ -409,13 +442,13 @@ const Products = () => {
               </TabsContent>
 
               {/* Mjölk Tab */}
-              <TabsContent value="mjolk">
+              <TabsContent value="mjolk" className="animate-fade-in">
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold mb-2">Mjölk & Laktosfria alternativ</h3>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
                   {otherProducts.mjolk.map((product) => (
-                    <Card key={product.id} className="group hover:shadow-lg transition-all duration-300">
+                    <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white">
                       <CardHeader className="p-3">
                         <div className="aspect-square bg-gradient-subtle p-2 rounded">
                           <img
@@ -427,10 +460,12 @@ const Products = () => {
                       </CardHeader>
                       <CardContent className="p-3">
                         <h4 className="font-semibold text-sm mb-3">{product.name}</h4>
-                        <Button size="sm" className="w-full h-8 text-xs">
-                          <Plus className="w-3 h-3 mr-1" />
-                          Lägg till
-                        </Button>
+                        <Link to="/offertforfragan" className="w-full">
+                          <Button size="sm" className="w-full h-8 text-xs" title="Klicka för att begära offert">
+                            <FileText className="w-3 h-3 mr-1" />
+                            Begär offert
+                          </Button>
+                        </Link>
                       </CardContent>
                     </Card>
                   ))}
@@ -438,13 +473,13 @@ const Products = () => {
               </TabsContent>
 
               {/* Läsk Tab */}
-              <TabsContent value="lask">
+              <TabsContent value="lask" className="animate-fade-in">
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold mb-2">Läsk & Kolsyrat vatten</h3>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
                   {otherProducts.lask.map((product) => (
-                    <Card key={product.id} className="group hover:shadow-lg transition-all duration-300">
+                    <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white">
                       <CardHeader className="p-3">
                         <div className="aspect-square bg-gradient-subtle p-2 rounded">
                           <img
@@ -456,10 +491,12 @@ const Products = () => {
                       </CardHeader>
                       <CardContent className="p-3">
                         <h4 className="font-semibold text-sm mb-3">{product.name}</h4>
-                        <Button size="sm" className="w-full h-8 text-xs">
-                          <Plus className="w-3 h-3 mr-1" />
-                          Lägg till
-                        </Button>
+                        <Link to="/offertforfragan" className="w-full">
+                          <Button size="sm" className="w-full h-8 text-xs" title="Klicka för att begära offert">
+                            <FileText className="w-3 h-3 mr-1" />
+                            Begär offert
+                          </Button>
+                        </Link>
                       </CardContent>
                     </Card>
                   ))}
@@ -467,13 +504,13 @@ const Products = () => {
               </TabsContent>
 
               {/* Kaffe Tab */}
-              <TabsContent value="kaffe">
+              <TabsContent value="kaffe" className="animate-fade-in">
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold mb-2">Kaffe - För alla smaker</h3>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
                   {otherProducts.kaffe.map((product) => (
-                    <Card key={product.id} className="group hover:shadow-lg transition-all duration-300">
+                    <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white">
                       <CardHeader className="p-3">
                         <div className="aspect-square bg-gradient-subtle p-2 rounded">
                           <img
@@ -485,10 +522,12 @@ const Products = () => {
                       </CardHeader>
                       <CardContent className="p-3">
                         <h4 className="font-semibold text-sm mb-3">{product.name}</h4>
-                        <Button size="sm" className="w-full h-8 text-xs">
-                          <Plus className="w-3 h-3 mr-1" />
-                          Lägg till
-                        </Button>
+                        <Link to="/offertforfragan" className="w-full">
+                          <Button size="sm" className="w-full h-8 text-xs" title="Klicka för att begära offert">
+                            <FileText className="w-3 h-3 mr-1" />
+                            Begär offert
+                          </Button>
+                        </Link>
                       </CardContent>
                     </Card>
                   ))}
@@ -498,25 +537,67 @@ const Products = () => {
           </div>
         </section>
 
-        {/* Bottom CTA Section */}
-        <section className="py-16 bg-primary/5">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-4">Ser du inte produkten du söker?</h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Vi kan skräddarsy lösningar efter era behov. Kontakta oss så hjälper vi er hitta den perfekta lösningen för er arbetsplats.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="bg-primary hover:bg-primary/90">
-                <Phone className="w-4 h-4 mr-2" />
-                Ring oss: 08-123 456 78
-              </Button>
-              <Button variant="outline" size="lg">
-                <Mail className="w-4 h-4 mr-2" />
-                Kontakta oss för specialbeställning
-              </Button>
+        {/* Enhanced CTA Section */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-xl p-8 max-w-4xl mx-auto">
+              <div className="text-center">
+                <h2 className="text-2xl font-bold mb-4">
+                  Redo att beställa?
+                </h2>
+                <p className="text-gray-700 mb-6">
+                  Logga in på ditt företagskonto för att se dina priser och lägga beställningar, 
+                  eller kontakta oss för att få en skräddarsydd offert för din arbetsplats.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                  <Link to="/kundportal">
+                    <Button size="lg" className="bg-primary hover:bg-primary/90">
+                      <LogIn className="w-4 h-4 mr-2" />
+                      🔐 Logga in för att beställa
+                    </Button>
+                  </Link>
+                  <Link to="/offertforfragan">
+                    <Button variant="outline" size="lg">
+                      <FileText className="w-4 h-4 mr-2" />
+                      📝 Begär offert
+                    </Button>
+                  </Link>
+                </div>
+                
+                <div className="p-4 bg-white/50 rounded-lg">
+                  <p className="text-sm text-gray-600 mb-3">
+                    <span className="font-semibold">Ny kund?</span> 
+                    Kontakta oss för att skapa ett företagskonto och få tillgång till vårt fullständiga sortiment med företagspriser.
+                  </p>
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm">
+                    <a 
+                      href="tel:08-123456" 
+                      className="flex items-center gap-2 hover:text-green-600 transition-colors"
+                    >
+                      📞 08-123 456 78
+                    </a>
+                    <a 
+                      href="mailto:info@fruktportalen.se" 
+                      className="flex items-center gap-2 hover:text-green-600 transition-colors"
+                    >
+                      ✉️ info@fruktportalen.se
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
+
+        {/* Mobile Floating CTA */}
+        <div className="fixed bottom-4 right-4 sm:hidden z-50">
+          <Link to="/offertforfragan">
+            <Button className="rounded-full w-14 h-14 shadow-lg bg-primary hover:bg-primary/90">
+              <FileText className="w-6 h-6" />
+            </Button>
+          </Link>
+        </div>
       </main>
 
       <Footer />
