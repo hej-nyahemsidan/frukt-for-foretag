@@ -5,7 +5,7 @@ import { useAdminAuth } from '../contexts/AdminAuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import AdminUserManagement from '../components/AdminUserManagement';
-import FruktPortalenLogo from '@/components/FruktPortalenLogo';
+import FruktPortalenLogo from '../../components/FruktPortalenLogo';
 
 const AdminDashboard = () => {
   const { logout, user } = useAdminAuth();

@@ -6,7 +6,7 @@ import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAdminAuth } from '../contexts/AdminAuthContext';
 import { useToast } from '@/hooks/use-toast';
-import FruktPortalenLogo from '@/components/FruktPortalenLogo';
+import FruktPortalenLogo from '../../components/FruktPortalenLogo';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('admin@fruktportalen.se');
