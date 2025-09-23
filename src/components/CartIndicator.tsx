@@ -62,42 +62,50 @@ const CartIndicator = () => {
               </div>
             ) : (
               <div className="p-2 space-y-2">
-                {items.map((item) => (
-                  <div key={item.id} className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
-                    <div className="flex-1">
-                      <h4 className="font-medium text-sm text-charcoal">{item.name}</h4>
-                      <p className="text-xs text-muted-foreground">{formatPrice(item.price)} st</p>
-                    </div>
-                    
-                    <div className="flex items-center gap-2">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="h-6 w-6 p-0"
-                      >
-                        <Minus size={12} />
-                      </Button>
-                      <span className="font-medium text-sm w-6 text-center">{item.quantity}</span>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="h-6 w-6 p-0"
-                      >
-                        <Plus size={12} />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => removeItem(item.id)}
-                        className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
-                      >
-                        <Trash2 size={12} />
-                      </Button>
-                    </div>
-                  </div>
-                ))}
+                 {items.map((item) => {
+                   // Create unique identifier for cart operations
+                   const itemKey = item.size ? `${item.id}-${item.size}` : item.id;
+                   
+                   return (
+                     <div key={itemKey} className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
+                       <div className="flex-1">
+                         <h4 className="font-medium text-sm text-charcoal">{item.name}</h4>
+                         {item.size && (
+                           <p className="text-xs text-muted-foreground">Storlek: {item.size}</p>
+                         )}
+                         <p className="text-xs text-muted-foreground">{formatPrice(item.price)}/st</p>
+                       </div>
+                       
+                       <div className="flex items-center gap-2">
+                         <Button
+                           variant="outline"
+                           size="sm"
+                           onClick={() => updateQuantity(itemKey, item.quantity - 1)}
+                           className="h-6 w-6 p-0"
+                         >
+                           <Minus size={12} />
+                         </Button>
+                         <span className="font-medium text-sm w-6 text-center">{item.quantity}</span>
+                         <Button
+                           variant="outline"
+                           size="sm"
+                           onClick={() => updateQuantity(itemKey, item.quantity + 1)}
+                           className="h-6 w-6 p-0"
+                         >
+                           <Plus size={12} />
+                         </Button>
+                         <Button
+                           variant="ghost"
+                           size="sm"
+                           onClick={() => removeItem(itemKey)}
+                           className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
+                         >
+                           <Trash2 size={12} />
+                         </Button>
+                       </div>
+                     </div>
+                   );
+                 })}
               </div>
             )}
           </div>

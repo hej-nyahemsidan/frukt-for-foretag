@@ -27,9 +27,9 @@ const MejeriTab = () => {
               className="w-full h-full object-contain rounded"
             />
           </div>
-          <div className="p-3 text-center space-y-2">
-            <h3 className="font-medium text-charcoal text-xs">{product.name}</h3>
-            <p className="font-bold text-[#4CAF50] text-xs">{product.price} kr</p>
+          <div className="p-3 space-y-3">
+            <h3 className="font-medium text-charcoal text-xs text-center">{product.name}</h3>
+            <p className="font-bold text-[#4CAF50] text-xs text-center">{product.price} kr</p>
             <AddToCartButton 
               product={{
                 id: product.id,
@@ -39,6 +39,8 @@ const MejeriTab = () => {
                 image: product.image
               }}
               className="w-full text-xs px-1 py-1"
+              showQuantitySelector={true}
+              showSizeSelector={false}
             />
           </div>
         </div>

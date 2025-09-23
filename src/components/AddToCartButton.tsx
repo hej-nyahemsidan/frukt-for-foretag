@@ -7,55 +7,153 @@ interface AddToCartButtonProps {
   product: {
     id: string;
     name: string;
-    price: number;
+    price?: number;
+    prices?: { [key: string]: number }; // For fruit baskets with different sizes
     category: string;
     image?: string;
   };
   className?: string;
+  showQuantitySelector?: boolean;
+  showSizeSelector?: boolean;
 }
 
-const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product, className = "" }) => {
+const AddToCartButton: React.FC<AddToCartButtonProps> = ({ 
+  product, 
+  className = "", 
+  showQuantitySelector = true,
+  showSizeSelector = false 
+}) => {
   const [isAdded, setIsAdded] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState<string>('');
   const { addItem } = useCart();
+
+  // Initialize selected size for fruit baskets
+  React.useEffect(() => {
+    if (showSizeSelector && product.prices && !selectedSize) {
+      const sizes = Object.keys(product.prices);
+      if (sizes.length > 0) {
+        setSelectedSize(sizes[0]); // Default to first size
+      }
+    }
+  }, [showSizeSelector, product.prices, selectedSize]);
+
+  const getCurrentPrice = () => {
+    if (product.prices && selectedSize) {
+      return product.prices[selectedSize];
+    }
+    return product.price || 0;
+  };
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     
-    addItem({
+    const currentPrice = getCurrentPrice();
+    if (currentPrice === 0) return;
+
+    const itemToAdd = {
       id: product.id,
       name: product.name,
-      price: product.price,
+      price: currentPrice,
       category: product.category,
       image: product.image,
-    });
+      quantity: quantity,
+      ...(selectedSize && { size: selectedSize })
+    };
+
+    addItem(itemToAdd);
 
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 2000);
   };
 
+  const availableSizes = product.prices ? Object.keys(product.prices) : [];
+
   return (
-    <Button
-      onClick={handleAddToCart}
-      className={`transition-all duration-200 ${className} ${
-        isAdded 
-          ? 'bg-green-500 hover:bg-green-600 text-white' 
-          : 'bg-[#4CAF50] hover:bg-[#45a049] text-white'
-      }`}
-      disabled={isAdded}
-    >
-      {isAdded ? (
-        <>
-          <Check size={16} className="mr-2" />
-          Tillagd!
-        </>
-      ) : (
-        <>
-          <Plus size={16} className="mr-2" />
-          Lägg till
-        </>
+    <div className="space-y-3">
+      {/* Size Selector for Fruit Baskets */}
+      {showSizeSelector && availableSizes.length > 0 && (
+        <div>
+          <label className="block text-xs font-medium mb-2">Välj storlek:</label>
+          <div className="grid grid-cols-2 gap-1">
+            {availableSizes.map((size) => (
+              <button
+                key={size}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setSelectedSize(size);
+                }}
+                className={`p-1.5 text-xs rounded border transition-colors ${
+                  selectedSize === size
+                    ? 'bg-primary text-primary-foreground border-primary'
+                    : 'bg-background hover:bg-muted border-border'
+                }`}
+              >
+                {size}
+              </button>
+            ))}
+          </div>
+          <div className="text-xs text-center mt-1 font-semibold text-primary">
+            {getCurrentPrice()} kr
+          </div>
+        </div>
       )}
-    </Button>
+
+      {/* Quantity Selector */}
+      {showQuantitySelector && (
+        <div>
+          <label className="block text-xs font-medium mb-2">Antal:</label>
+          <div className="flex items-center justify-center gap-2">
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setQuantity(Math.max(1, quantity - 1));
+              }}
+              className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 text-sm"
+            >
+              -
+            </button>
+            <span className="text-sm font-medium w-8 text-center">{quantity}</span>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setQuantity(quantity + 1);
+              }}
+              className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 text-sm"
+            >
+              +
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Add to Cart Button */}
+      <Button
+        onClick={handleAddToCart}
+        className={`transition-all duration-200 ${className} ${
+          isAdded 
+            ? 'bg-green-500 hover:bg-green-600 text-white' 
+            : 'bg-[#4CAF50] hover:bg-[#45a049] text-white'
+        }`}
+        disabled={isAdded || (showSizeSelector && !selectedSize)}
+      >
+        {isAdded ? (
+          <>
+            <Check size={16} className="mr-2" />
+            Tillagd!
+          </>
+        ) : (
+          <>
+            <Plus size={16} className="mr-2" />
+            Lägg till
+          </>
+        )}
+      </Button>
+    </div>
   );
 };
 

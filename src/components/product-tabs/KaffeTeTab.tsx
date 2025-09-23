@@ -22,9 +22,9 @@ const KaffeTeTab = () => {
               className="w-full h-full object-contain rounded"
             />
           </div>
-          <div className="p-3 text-center space-y-2">
-            <h3 className="font-medium text-charcoal text-sm">{product.name}</h3>
-            <p className="font-bold text-[#4CAF50]">{product.price} kr</p>
+          <div className="p-3 space-y-3">
+            <h3 className="font-medium text-charcoal text-sm text-center">{product.name}</h3>
+            <p className="font-bold text-[#4CAF50] text-sm text-center">{product.price} kr</p>
             <AddToCartButton 
               product={{
                 id: product.id,
@@ -34,6 +34,8 @@ const KaffeTeTab = () => {
                 image: product.image
               }}
               className="w-full text-xs px-2 py-1"
+              showQuantitySelector={true}
+              showSizeSelector={false}
             />
           </div>
         </div>

@@ -7,13 +7,14 @@ export interface CartItem {
   quantity: number;
   category: string;
   image?: string;
+  size?: string; // For fruit baskets
 }
 
 interface CartContextType {
   items: CartItem[];
-  addItem: (item: Omit<CartItem, 'quantity'>) => void;
-  removeItem: (id: string) => void;
-  updateQuantity: (id: string, quantity: number) => void;
+  addItem: (item: Omit<CartItem, 'quantity'> & { quantity?: number }) => void;
+  removeItem: (itemKey: string) => void;
+  updateQuantity: (itemKey: string, quantity: number) => void;
   clearCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
@@ -36,33 +37,46 @@ interface CartProviderProps {
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
 
-  const addItem = (newItem: Omit<CartItem, 'quantity'>) => {
+  const addItem = (newItem: Omit<CartItem, 'quantity'> & { quantity?: number }) => {
     setItems(prev => {
-      const existingItem = prev.find(item => item.id === newItem.id);
+      // Create a unique identifier including size for fruit baskets
+      const itemKey = newItem.size ? `${newItem.id}-${newItem.size}` : newItem.id;
+      const existingItem = prev.find(item => {
+        const existingKey = item.size ? `${item.id}-${item.size}` : item.id;
+        return existingKey === itemKey;
+      });
+      
+      const quantityToAdd = newItem.quantity || 1;
+      
       if (existingItem) {
-        return prev.map(item =>
-          item.id === newItem.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
+        return prev.map(item => {
+          const existingKey = item.size ? `${item.id}-${item.size}` : item.id;
+          return existingKey === itemKey
+            ? { ...item, quantity: item.quantity + quantityToAdd }
+            : item;
+        });
       }
-      return [...prev, { ...newItem, quantity: 1 }];
+      return [...prev, { ...newItem, quantity: quantityToAdd }];
     });
   };
 
-  const removeItem = (id: string) => {
-    setItems(prev => prev.filter(item => item.id !== id));
+  const removeItem = (itemKey: string) => {
+    setItems(prev => prev.filter(item => {
+      const currentKey = item.size ? `${item.id}-${item.size}` : item.id;
+      return currentKey !== itemKey;
+    }));
   };
 
-  const updateQuantity = (id: string, quantity: number) => {
+  const updateQuantity = (itemKey: string, quantity: number) => {
     if (quantity <= 0) {
-      removeItem(id);
+      removeItem(itemKey);
       return;
     }
     setItems(prev =>
-      prev.map(item =>
-        item.id === id ? { ...item, quantity } : item
-      )
+      prev.map(item => {
+        const currentKey = item.size ? `${item.id}-${item.size}` : item.id;
+        return currentKey === itemKey ? { ...item, quantity } : item;
+      })
     );
   };
 
