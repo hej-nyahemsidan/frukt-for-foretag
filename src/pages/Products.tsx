@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import fruktkorgrSupremeImg from '@/assets/fruktkorg-supreme-new.jpg';
 import fruktkorgrPremiumImg from '@/assets/fruktkorg-premium-new.jpg';
 import fruktkorgrOriginalImg from '@/assets/fruktkorg-original-new.jpg';
-import fruktkorgrBananImg from '@/assets/fruktkorg-banan-new.jpg';
+import fruktkorgrBananImg from '@/assets/fruktkorg-bas-new.jpg';
 import fruktladaImg from '@/assets/fruktlada.jpg';
 import freshFruitImg from '@/assets/fresh-fruit-arrangements.jpg';
 import premiumCoffeeImg from '@/assets/premium-coffee.jpg';
@@ -249,26 +249,6 @@ const Products = () => {
             <p className="text-sm opacity-75 max-w-2xl mx-auto">
               För att beställa, vänligen logga in på ditt företagskonto eller kontakta oss för offert
             </p>
-          </div>
-        </section>
-
-        {/* Info Banner */}
-        <section className="py-6">
-          <div className="container mx-auto px-4">
-            <Alert className="border-blue-200 bg-blue-50 border-l-4 border-l-blue-400">
-              <Info className="h-4 w-4 text-blue-600" />
-              <AlertDescription className="text-sm text-blue-800">
-                <strong>Observera:</strong> Detta är vår produktkatalog.{' '}
-                <Link to="/kundportal" className="underline text-blue-600 hover:text-blue-800 mx-1">
-                  Logga in
-                </Link>
-                för att se dina företagspriser eller{' '}
-                <Link to="/offertforfragan" className="underline text-blue-600 hover:text-blue-800">
-                  begär en offert
-                </Link>
-                {' '}för att komma igång.
-              </AlertDescription>
-            </Alert>
           </div>
         </section>
 
