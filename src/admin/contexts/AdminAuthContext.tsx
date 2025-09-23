@@ -21,7 +21,7 @@ export const useAdminAuth = () => {
   return context;
 };
 
-const ADMIN_EMAIL = 'admin@fruktexperten.se';
+const ADMIN_EMAIL = 'admin@fruktportalen.se';
 
 export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);

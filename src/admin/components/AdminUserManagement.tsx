@@ -85,7 +85,7 @@ const AdminUserManagement = () => {
   }, [searchQuery, profiles]);
 
   const getStatusBadge = (profile: Profile) => {
-    const isAdmin = profile.email === 'admin@fruktexperten.se';
+    const isAdmin = profile.email === 'admin@fruktportalen.se';
     
     if (isAdmin) {
       return <Badge variant="destructive" className="admin-badge-admin">Admin</Badge>;
@@ -145,7 +145,7 @@ const AdminUserManagement = () => {
   };
 
   const handleDeleteUser = async (profile: Profile) => {
-    if (profile.email === 'admin@fruktexperten.se') {
+    if (profile.email === 'admin@fruktportalen.se') {
       toast({
         title: 'Fel',
         description: 'Admin-användaren kan inte tas bort.',
@@ -267,7 +267,7 @@ const AdminUserManagement = () => {
                         size="sm"
                         onClick={() => setEditingUser(profile)}
                         className="admin-btn-edit flex items-center gap-1"
-                        disabled={profile.email === 'admin@fruktexperten.se'}
+                        disabled={profile.email === 'admin@fruktportalen.se'}
                       >
                         <Edit className="w-3 h-3" />
                         Visa
@@ -277,7 +277,7 @@ const AdminUserManagement = () => {
                         size="sm"
                         onClick={() => handleDeleteUser(profile)}
                         className="admin-btn-delete flex items-center gap-1 text-red-600 hover:text-red-700"
-                        disabled={profile.email === 'admin@fruktexperten.se'}
+                        disabled={profile.email === 'admin@fruktportalen.se'}
                       >
                         <Trash2 className="w-3 h-3" />
                         Ta bort

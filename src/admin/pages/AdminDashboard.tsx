@@ -5,6 +5,7 @@ import { useAdminAuth } from '../contexts/AdminAuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import AdminUserManagement from '../components/AdminUserManagement';
+import FruktPortalenLogo from '@/components/FruktPortalenLogo';
 
 const AdminDashboard = () => {
   const { logout, user } = useAdminAuth();
@@ -35,7 +36,7 @@ const AdminDashboard = () => {
         <div className="admin-header-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="admin-header-content flex justify-between items-center h-16">
             <div className="admin-header-left flex items-center">
-              <div className="text-xl font-bold text-primary">FRUKTEXPERTEN</div>
+              <FruktPortalenLogo size="medium" variant="horizontal" />
               <span className="admin-title ml-3 text-lg font-semibold text-gray-800">Admin Dashboard</span>
             </div>
             <div className="admin-header-right flex items-center space-x-4">

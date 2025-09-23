@@ -6,9 +6,10 @@ import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAdminAuth } from '../contexts/AdminAuthContext';
 import { useToast } from '@/hooks/use-toast';
+import FruktPortalenLogo from '@/components/FruktPortalenLogo';
 
 const AdminLogin = () => {
-  const [email, setEmail] = useState('admin@fruktexperten.se');
+  const [email, setEmail] = useState('admin@fruktportalen.se');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -78,7 +79,7 @@ const AdminLogin = () => {
         <div className="bg-white rounded-lg shadow-md p-8">
           {/* Brand Name */}
           <div className="text-center mb-8">
-            <div className="text-3xl font-bold text-primary">FRUKTEXPERTEN</div>
+            <FruktPortalenLogo size="large" variant="horizontal" />
           </div>
 
           {/* Admin Login Form */}
