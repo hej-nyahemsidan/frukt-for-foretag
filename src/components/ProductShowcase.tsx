@@ -5,7 +5,7 @@ import { ShoppingCart, Star } from 'lucide-react';
 import fruktkorgrSupremeImg from '@/assets/fruktkorg-supreme-new.jpg';
 import fruktkorgrPremiumImg from '@/assets/fruktkorg-premium-new.jpg';
 import fruktkorgrOriginalImg from '@/assets/fruktkorg-original-new.jpg';
-import fruktkorgrBananImg from '@/assets/fruktkorg-banan-new.jpg';
+import fruktkorgrBananImg from '@/assets/fruktkorg-bas-new.jpg';
 import fruktladaImg from '@/assets/fruktlada.jpg';
 
 const ProductShowcase = () => {

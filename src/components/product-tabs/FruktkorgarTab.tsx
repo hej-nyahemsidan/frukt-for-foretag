@@ -3,7 +3,7 @@ import AddToCartButton from '@/components/AddToCartButton';
 import fruktkorgrPremiumImg from '@/assets/fruktkorg-premium-new.jpg';
 import fruktkorgrSupremeImg from '@/assets/fruktkorg-supreme-new.jpg';
 import fruktkorgrOriginalImg from '@/assets/fruktkorg-original-new.jpg';
-import fruktkorgrBananImg from '@/assets/fruktkorg-banan-new.jpg';
+import fruktkorgrBananImg from '@/assets/fruktkorg-bas-new.jpg';
 import fruktkorgrBasImg from '@/assets/fruktkorg-bas-new.jpg';
 
 const fruktkorgar = [
