@@ -38,6 +38,14 @@ const SimplifiedCheckout: React.FC<SimplifiedCheckoutProps> = ({
     }
   };
 
+  const getCostDescription = (plan: string) => {
+    switch (plan) {
+      case 'weekly': return 'Detta är din veckokostnad för den valda leveransplanen.';
+      case 'monthly': return 'Detta är din månadskostnad för den valda leveransplanen.';
+      default: return 'Detta är din kostnad för den valda leveransplanen.';
+    }
+  };
+
   const handleConfirmOrder = async () => {
     setIsConfirming(true);
     
@@ -163,7 +171,7 @@ const SimplifiedCheckout: React.FC<SimplifiedCheckoutProps> = ({
                 </span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Detta är din månadskostnad för den valda leveransplanen.
+                {getCostDescription(packagePlan)}
               </p>
             </div>
 
