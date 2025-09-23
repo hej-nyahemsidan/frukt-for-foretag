@@ -78,7 +78,7 @@ const AdminLogin = () => {
         {/* Login Card */}
         <div className="bg-white rounded-lg shadow-md p-8">
           {/* Brand Name */}
-          <div className="text-center mb-8">
+          <div className="flex justify-center items-center mb-8">
             <FruktPortalenLogo size="large" variant="horizontal" />
           </div>
 
