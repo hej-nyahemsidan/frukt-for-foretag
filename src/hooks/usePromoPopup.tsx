@@ -4,7 +4,16 @@ export const usePromoPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // Check if popup should be hidden
+    const params = new URLSearchParams(window.location.search);
+    const forcePromo = params.get('showPromo') === '1';
+
+    // Force show via ?showPromo=1 (ignores hidden state)
+    if (forcePromo) {
+      setIsOpen(true);
+      return;
+    }
+
+    // Check if popup should be hidden (skip if forced)
     const hiddenUntil = localStorage.getItem('promoPopupHidden');
     if (hiddenUntil) {
       const hiddenDate = new Date(parseInt(hiddenUntil));
@@ -14,44 +23,29 @@ export const usePromoPopup = () => {
     }
 
     let hasShown = false;
-    let timeoutId: NodeJS.Timeout;
 
-    // Show after 10 seconds as fallback
-    const showAfterTime = () => {
-      if (!hasShown) {
-        console.log('Popup showing after timeout');
-        setIsOpen(true);
-        hasShown = true;
-      }
-    };
-
-    // Show on 15% scroll (reduced from 25%)
+    // Show on 25% scroll
     const handleScroll = () => {
       if (hasShown) return;
       
       const scrollTop = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
-      const scrollPercent = scrollTop / (documentHeight - windowHeight);
+      const denom = documentHeight - windowHeight;
+      if (denom <= 0) return; // no scrollable area => do not show
+      const scrollPercent = scrollTop / denom;
       
-      console.log('Scroll percent:', scrollPercent);
-      
-      if (scrollPercent >= 0.15) {
-        console.log('Popup showing after scroll');
+      if (scrollPercent >= 0.25) {
         setIsOpen(true);
         hasShown = true;
         window.removeEventListener('scroll', handleScroll);
       }
     };
 
-    // Set timeout for 10 seconds as fallback
-    timeoutId = setTimeout(showAfterTime, 10000);
-
     // Add scroll listener
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
-      clearTimeout(timeoutId);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
