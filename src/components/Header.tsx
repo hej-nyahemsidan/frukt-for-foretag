@@ -29,9 +29,9 @@ const Header = () => {
   const customerNavigationItems = [
     { label: 'Hem', href: '/', isExternal: false },           // Home
     { label: 'Produkter', href: '/produkter', isExternal: false }, // Products
-    { label: 'Mina Sidor', href: '/dashboard', isExternal: false }, // Customer Dashboard
     { label: 'Om Oss', href: '/om-oss', isExternal: false },   // About Us
     { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
+    { label: 'Mina Sidor', href: '/dashboard', isExternal: false }, // Customer Dashboard - moved to end
   ];
 
   const navigationItems = user ? customerNavigationItems : publicNavigationItems;
