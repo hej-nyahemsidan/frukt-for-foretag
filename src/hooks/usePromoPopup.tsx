@@ -4,16 +4,7 @@ export const usePromoPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const forcePromo = params.get('showPromo') === '1';
-
-    // Force show via ?showPromo=1 (ignores hidden state)
-    if (forcePromo) {
-      setIsOpen(true);
-      return;
-    }
-
-    // Check if popup should be hidden (skip if forced)
+    // Check if popup should be hidden
     const hiddenUntil = localStorage.getItem('promoPopupHidden');
     if (hiddenUntil) {
       const hiddenDate = new Date(parseInt(hiddenUntil));
@@ -24,18 +15,16 @@ export const usePromoPopup = () => {
 
     let hasShown = false;
 
-    // Show on 25% scroll
+    // Show on 10% scroll
     const handleScroll = () => {
       if (hasShown) return;
       
       const scrollTop = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
-      const denom = documentHeight - windowHeight;
-      if (denom <= 0) return; // no scrollable area => do not show
-      const scrollPercent = scrollTop / denom;
+      const scrollPercent = scrollTop / (documentHeight - windowHeight);
       
-      if (scrollPercent >= 0.25) {
+      if (scrollPercent >= 0.1) {
         setIsOpen(true);
         hasShown = true;
         window.removeEventListener('scroll', handleScroll);
