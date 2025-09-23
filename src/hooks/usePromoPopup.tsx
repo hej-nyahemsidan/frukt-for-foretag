@@ -14,8 +14,18 @@ export const usePromoPopup = () => {
     }
 
     let hasShown = false;
+    let timeoutId: NodeJS.Timeout;
 
-    // Show on 25% scroll
+    // Show after 10 seconds as fallback
+    const showAfterTime = () => {
+      if (!hasShown) {
+        console.log('Popup showing after timeout');
+        setIsOpen(true);
+        hasShown = true;
+      }
+    };
+
+    // Show on 15% scroll (reduced from 25%)
     const handleScroll = () => {
       if (hasShown) return;
       
@@ -24,17 +34,24 @@ export const usePromoPopup = () => {
       const documentHeight = document.documentElement.scrollHeight;
       const scrollPercent = scrollTop / (documentHeight - windowHeight);
       
-      if (scrollPercent >= 0.25) {
+      console.log('Scroll percent:', scrollPercent);
+      
+      if (scrollPercent >= 0.15) {
+        console.log('Popup showing after scroll');
         setIsOpen(true);
         hasShown = true;
         window.removeEventListener('scroll', handleScroll);
       }
     };
 
+    // Set timeout for 10 seconds as fallback
+    timeoutId = setTimeout(showAfterTime, 10000);
+
     // Add scroll listener
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
+      clearTimeout(timeoutId);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
