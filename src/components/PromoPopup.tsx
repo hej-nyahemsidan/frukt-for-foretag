@@ -40,7 +40,7 @@ const PromoPopup: React.FC<PromoPopupProps> = ({ isOpen, onClose }) => {
       onClick={handleBackdropClick}
     >
       <div 
-        className={`bg-white rounded-[20px] shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden transition-all duration-300 ${
+        className={`bg-white rounded-[20px] shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden transition-all duration-700 ease-out ${
           shouldShow ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
         }`}
       >
