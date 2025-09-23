@@ -325,25 +325,25 @@ const Products = () => {
                     Alla korgar innehåller noga utvalda färska frukter.
                   </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {fruktkorgar.map((product) => (
                     <Card 
                       key={product.id} 
-                      className="group hover:shadow-elegant transition-all duration-300 hover:scale-[1.02] relative bg-white"
+                      className="group hover:shadow-elegant transition-all duration-300 hover:scale-[1.02] relative bg-white flex flex-col h-full"
                     >
                       {product.popular && (
-                        <Badge className="absolute top-4 right-4 z-10 bg-primary text-white">
+                        <Badge className="absolute top-2 right-2 z-10 bg-primary text-white text-xs">
                           Populär
                         </Badge>
                       )}
                       {product.eco && (
-                        <Badge className="absolute top-4 left-4 z-10 bg-green-600 text-white">
+                        <Badge className="absolute top-2 left-2 z-10 bg-green-600 text-white text-xs">
                           Eko
                         </Badge>
                       )}
                       
                       <CardHeader className="p-0">
-                        <div className="aspect-square bg-gradient-subtle p-6 rounded-t-lg">
+                        <div className="aspect-square bg-gradient-subtle p-4 rounded-t-lg">
                           <img
                             src={product.image}
                             alt={product.name}
@@ -352,58 +352,58 @@ const Products = () => {
                         </div>
                       </CardHeader>
                       
-                      <CardContent className="p-6">
-                        <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">
+                      <CardContent className="p-4 flex-1 flex flex-col">
+                        <h3 className="font-semibold text-base mb-2 line-clamp-2 group-hover:text-primary transition-colors">
                           {product.name}
-                        </CardTitle>
-                        <CardDescription className="mb-4">
+                        </h3>
+                        <p className="text-muted-foreground text-xs mb-3 line-clamp-2 flex-1">
                           {product.description}
-                        </CardDescription>
+                        </p>
                         
                         {!product.isCustom ? (
                           <>
-                            {/* Size Selector */}
-                            <div className="mb-4">
-                              <p className="text-sm font-medium mb-2">Välj storlek:</p>
-                              <div className="flex gap-2 flex-wrap">
+                            {/* Compact Size Selector */}
+                            <div className="mb-3">
+                              <div className="grid grid-cols-2 gap-1">
                                 {Object.keys(product.prices).map((size) => (
-                                  <Button
+                                  <button
                                     key={size}
-                                    variant={selectedSizes[product.id] === size ? "default" : "outline"}
-                                    size="sm"
                                     onClick={() => handleSizeChange(product.id, size)}
-                                    className="h-8 px-3"
+                                    className={`p-1.5 text-xs rounded border transition-colors ${
+                                      selectedSizes[product.id] === size
+                                        ? 'bg-primary text-primary-foreground border-primary'
+                                        : 'bg-background hover:bg-muted border-border'
+                                    }`}
                                   >
                                     {size}
-                                  </Button>
+                                  </button>
                                 ))}
                               </div>
                             </div>
                             
                             {/* Price */}
-                            <div className="mb-4">
-                              <span className="text-2xl font-bold text-primary">
+                            <div className="flex items-center justify-between mt-auto">
+                              <span className="text-sm font-bold text-primary">
                                 {getPrice(product)} kr
                               </span>
+                              <Link to="/offertforfragan">
+                                <Button size="sm" className="h-8 px-3 text-xs" title="Klicka för att begära offert">
+                                  Begär offert
+                                </Button>
+                              </Link>
                             </div>
                           </>
                         ) : (
-                          <div className="mb-4">
-                            <p className="text-lg font-semibold text-muted-foreground">
-                              Begär offert
-                            </p>
+                          <div className="mt-auto">
+                            <Link to="/offertforfragan" className="w-full">
+                              <Button size="sm" className="w-full h-8 text-xs" title="Klicka för att begära offert">
+                                <FileText className="w-3 h-3 mr-1" />
+                                Begär offert
+                              </Button>
+                            </Link>
                           </div>
                         )}
                       </CardContent>
-                      
-                      <CardFooter className="p-6 pt-0">
-                        <Link to="/offertforfragan" className="w-full">
-                          <Button className="w-full bg-primary hover:bg-primary/90" title="Klicka för att begära offert">
-                            <FileText className="w-4 h-4 mr-2" />
-                            Begär offert
-                          </Button>
-                        </Link>
-                      </CardFooter>
                     </Card>
                   ))}
                 </div>
@@ -414,11 +414,11 @@ const Products = () => {
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold mb-2">Fruktpåsar - Perfekt för mindre kontor</h3>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {otherProducts.fruktpasar.map((product) => (
-                    <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white">
-                      <CardHeader className="p-3">
-                        <div className="aspect-square bg-gradient-subtle p-2 rounded">
+                    <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white flex flex-col h-full">
+                      <CardHeader className="p-0">
+                        <div className="aspect-square bg-gradient-subtle p-4 rounded-t-lg">
                           <img
                             src={product.image}
                             alt={product.name}
@@ -426,10 +426,10 @@ const Products = () => {
                           />
                         </div>
                       </CardHeader>
-                      <CardContent className="p-3">
-                        <h4 className="font-semibold text-sm mb-1">{product.name}</h4>
-                        <p className="text-xs text-muted-foreground mb-3">{product.description}</p>
-                        <Link to="/offertforfragan" className="w-full">
+                      <CardContent className="p-4 flex-1 flex flex-col">
+                        <h3 className="font-semibold text-base mb-2 line-clamp-2">{product.name}</h3>
+                        <p className="text-xs text-muted-foreground mb-3 line-clamp-2 flex-1">{product.description}</p>
+                        <Link to="/offertforfragan" className="w-full mt-auto">
                           <Button size="sm" className="w-full h-8 text-xs" title="Klicka för att begära offert">
                             <FileText className="w-3 h-3 mr-1" />
                             Begär offert
@@ -446,11 +446,11 @@ const Products = () => {
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold mb-2">Mjölk & Laktosfria alternativ</h3>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {otherProducts.mjolk.map((product) => (
-                    <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white">
-                      <CardHeader className="p-3">
-                        <div className="aspect-square bg-gradient-subtle p-2 rounded">
+                    <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white flex flex-col h-full">
+                      <CardHeader className="p-0">
+                        <div className="aspect-square bg-gradient-subtle p-4 rounded-t-lg">
                           <img
                             src={product.image}
                             alt={product.name}
@@ -458,9 +458,9 @@ const Products = () => {
                           />
                         </div>
                       </CardHeader>
-                      <CardContent className="p-3">
-                        <h4 className="font-semibold text-sm mb-3">{product.name}</h4>
-                        <Link to="/offertforfragan" className="w-full">
+                      <CardContent className="p-4 flex-1 flex flex-col">
+                        <h3 className="font-semibold text-base mb-3 line-clamp-2 flex-1">{product.name}</h3>
+                        <Link to="/offertforfragan" className="w-full mt-auto">
                           <Button size="sm" className="w-full h-8 text-xs" title="Klicka för att begära offert">
                             <FileText className="w-3 h-3 mr-1" />
                             Begär offert
@@ -477,11 +477,11 @@ const Products = () => {
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold mb-2">Läsk & Kolsyrat vatten</h3>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {otherProducts.lask.map((product) => (
-                    <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white">
-                      <CardHeader className="p-3">
-                        <div className="aspect-square bg-gradient-subtle p-2 rounded">
+                    <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white flex flex-col h-full">
+                      <CardHeader className="p-0">
+                        <div className="aspect-square bg-gradient-subtle p-4 rounded-t-lg">
                           <img
                             src={product.image}
                             alt={product.name}
@@ -489,9 +489,9 @@ const Products = () => {
                           />
                         </div>
                       </CardHeader>
-                      <CardContent className="p-3">
-                        <h4 className="font-semibold text-sm mb-3">{product.name}</h4>
-                        <Link to="/offertforfragan" className="w-full">
+                      <CardContent className="p-4 flex-1 flex flex-col">
+                        <h3 className="font-semibold text-base mb-3 line-clamp-2 flex-1">{product.name}</h3>
+                        <Link to="/offertforfragan" className="w-full mt-auto">
                           <Button size="sm" className="w-full h-8 text-xs" title="Klicka för att begära offert">
                             <FileText className="w-3 h-3 mr-1" />
                             Begär offert
@@ -508,11 +508,11 @@ const Products = () => {
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold mb-2">Kaffe - För alla smaker</h3>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   {otherProducts.kaffe.map((product) => (
-                    <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white">
-                      <CardHeader className="p-3">
-                        <div className="aspect-square bg-gradient-subtle p-2 rounded">
+                    <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white flex flex-col h-full">
+                      <CardHeader className="p-0">
+                        <div className="aspect-square bg-gradient-subtle p-4 rounded-t-lg">
                           <img
                             src={product.image}
                             alt={product.name}
@@ -520,9 +520,9 @@ const Products = () => {
                           />
                         </div>
                       </CardHeader>
-                      <CardContent className="p-3">
-                        <h4 className="font-semibold text-sm mb-3">{product.name}</h4>
-                        <Link to="/offertforfragan" className="w-full">
+                      <CardContent className="p-4 flex-1 flex flex-col">
+                        <h3 className="font-semibold text-base mb-3 line-clamp-2 flex-1">{product.name}</h3>
+                        <Link to="/offertforfragan" className="w-full mt-auto">
                           <Button size="sm" className="w-full h-8 text-xs" title="Klicka för att begära offert">
                             <FileText className="w-3 h-3 mr-1" />
                             Begär offert
