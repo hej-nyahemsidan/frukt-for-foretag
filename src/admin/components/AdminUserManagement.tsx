@@ -110,25 +110,30 @@ const AdminUserManagement = () => {
 
   const handleAddUser = async (email: string, password: string, fullName?: string) => {
     try {
-      // Create auth user first
-      const { data, error } = await supabase.auth.signUp({
-        email: email.trim(),
-        password: password,
-        options: {
-          data: { full_name: fullName || '' }
+      // Call the Edge function to create user with email confirmation bypassed
+      const { data: functionData, error } = await supabase.functions.invoke('create-user', {
+        body: { 
+          email: email.trim(), 
+          password: password, 
+          fullName: fullName || '',
+          companyName: 'Företag AB'
         }
       });
       
       if (error) throw error;
       
-      // The profile will be auto-created by the trigger, just refresh
+      if (functionData.error) {
+        throw new Error(functionData.error);
+      }
+      
+      // Refresh users list
       await fetchUsers();
       
       // Close modal and show success
       setShowAddModal(false);
       toast({
         title: 'Användare skapad',
-        description: 'Användaren har skapats framgångsrikt.',
+        description: 'Användaren har skapats framgångsrikt och kan logga in direkt.',
       });
     } catch (error: any) {
       toast({
