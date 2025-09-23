@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, User, ChevronDown, LogOut } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@/contexts/AuthContext';
@@ -10,6 +10,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = async () => {
     await logout();
@@ -52,30 +53,46 @@ const Header = () => {
 
           {/* Desktop Navigation - Centered */}
           <nav className="hidden lg:flex items-center mx-auto">
-            {navigationItems.map((item, index) => (
-              <React.Fragment key={item.label}>
-                {item.isExternal ? (
-                  <a
-                    href={item.href}
-                    className="text-charcoal hover:text-secondary transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2"
-                  >
-                    {item.label}
-                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
-                  </a>
-                ) : (
-                  <Link
-                    to={item.href}
-                    className="text-charcoal hover:text-secondary transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2"
-                  >
-                    {item.label}
-                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
-                  </Link>
-                )}
-                {index < navigationItems.length - 1 && (
-                  <div className="w-px h-4 bg-gray-300 mx-2"></div>
-                )}
-              </React.Fragment>
-            ))}
+            {navigationItems.map((item, index) => {
+              const isActive = location.pathname === item.href;
+              const isMinaSidor = item.label === 'Mina Sidor';
+              const shouldHighlight = isMinaSidor && user;
+              
+              return (
+                <React.Fragment key={item.label}>
+                  {item.isExternal ? (
+                    <a
+                      href={item.href}
+                      className={`transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 ${
+                        shouldHighlight 
+                          ? 'text-secondary bg-secondary/10 rounded-lg' 
+                          : 'text-charcoal hover:text-secondary'
+                      }`}
+                    >
+                      {item.label}
+                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
+                    </a>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      className={`transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 ${
+                        shouldHighlight 
+                          ? 'text-secondary bg-secondary/10 rounded-lg' 
+                          : 'text-charcoal hover:text-secondary'
+                      }`}
+                    >
+                      {item.label}
+                      <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform transition-transform duration-200 origin-center ${
+                        shouldHighlight ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                      }`}></span>
+                    </Link>
+                  )}
+                  {index < navigationItems.length - 1 && (
+                    <div className="w-px h-4 bg-gray-300 mx-2"></div>
+                  )}
+                </React.Fragment>
+              );
+            })}
           </nav>
 
           {/* Right Side - Contact & Actions */}
@@ -124,12 +141,19 @@ const Header = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden border-t border-gray-200 bg-white">
             <nav className="py-4 space-y-2">
-              {navigationItems.map((item) => (
-                item.isExternal ? (
+              {navigationItems.map((item) => {
+                const isMinaSidor = item.label === 'Mina Sidor';
+                const shouldHighlight = isMinaSidor && user;
+                
+                return item.isExternal ? (
                   <a
                     key={item.label}
                     href={item.href}
-                    className="block px-4 py-3 text-charcoal hover:text-secondary hover:bg-lightgreen rounded-lg transition-colors font-medium"
+                    className={`block px-4 py-3 rounded-lg transition-colors font-medium ${
+                      shouldHighlight 
+                        ? 'text-secondary bg-secondary/10' 
+                        : 'text-charcoal hover:text-secondary hover:bg-lightgreen'
+                    }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.label}
@@ -138,13 +162,17 @@ const Header = () => {
                   <Link
                     key={item.label}
                     to={item.href}
-                    className="block px-4 py-3 text-charcoal hover:text-secondary hover:bg-lightgreen rounded-lg transition-colors font-medium"
+                    className={`block px-4 py-3 rounded-lg transition-colors font-medium ${
+                      shouldHighlight 
+                        ? 'text-secondary bg-secondary/10' 
+                        : 'text-charcoal hover:text-secondary hover:bg-lightgreen'
+                    }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.label}
                   </Link>
-                )
-              ))}
+                );
+              })}
               
               {/* Mobile Contact & Actions */}
               <div className="pt-4 px-4 space-y-3 border-t border-gray-200 mt-4">                
