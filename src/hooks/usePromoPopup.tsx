@@ -15,7 +15,7 @@ export const usePromoPopup = () => {
 
     let hasShown = false;
 
-    // Show on 10% scroll
+    // Show on 25% scroll
     const handleScroll = () => {
       if (hasShown) return;
       
@@ -24,7 +24,7 @@ export const usePromoPopup = () => {
       const documentHeight = document.documentElement.scrollHeight;
       const scrollPercent = scrollTop / (documentHeight - windowHeight);
       
-      if (scrollPercent >= 0.1) {
+      if (scrollPercent >= 0.25) {
         setIsOpen(true);
         hasShown = true;
         window.removeEventListener('scroll', handleScroll);
