@@ -8,6 +8,7 @@ export interface CartItem {
   category: string;
   image?: string;
   size?: string; // For fruit baskets
+  days?: string[]; // Days of the week this item is scheduled for
 }
 
 interface CartContextType {
@@ -39,10 +40,10 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
 
   const addItem = (newItem: Omit<CartItem, 'quantity'> & { quantity?: number }) => {
     setItems(prev => {
-      // Create a unique identifier including size for fruit baskets
-      const itemKey = newItem.size ? `${newItem.id}-${newItem.size}` : newItem.id;
+      // Create a unique identifier including size and days for uniqueness
+      const itemKey = `${newItem.id}${newItem.size ? `-${newItem.size}` : ''}${newItem.days ? `-${newItem.days.join(',')}` : ''}`;
       const existingItem = prev.find(item => {
-        const existingKey = item.size ? `${item.id}-${item.size}` : item.id;
+        const existingKey = `${item.id}${item.size ? `-${item.size}` : ''}${item.days ? `-${item.days.join(',')}` : ''}`;
         return existingKey === itemKey;
       });
       
@@ -50,7 +51,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       
       if (existingItem) {
         return prev.map(item => {
-          const existingKey = item.size ? `${item.id}-${item.size}` : item.id;
+          const existingKey = `${item.id}${item.size ? `-${item.size}` : ''}${item.days ? `-${item.days.join(',')}` : ''}`;
           return existingKey === itemKey
             ? { ...item, quantity: item.quantity + quantityToAdd }
             : item;
@@ -62,7 +63,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
 
   const removeItem = (itemKey: string) => {
     setItems(prev => prev.filter(item => {
-      const currentKey = item.size ? `${item.id}-${item.size}` : item.id;
+      const currentKey = `${item.id}${item.size ? `-${item.size}` : ''}${item.days ? `-${item.days.join(',')}` : ''}`;
       return currentKey !== itemKey;
     }));
   };
@@ -74,7 +75,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     }
     setItems(prev =>
       prev.map(item => {
-        const currentKey = item.size ? `${item.id}-${item.size}` : item.id;
+        const currentKey = `${item.id}${item.size ? `-${item.size}` : ''}${item.days ? `-${item.days.join(',')}` : ''}`;
         return currentKey === itemKey ? { ...item, quantity } : item;
       })
     );
