@@ -239,19 +239,6 @@ const Products = () => {
       <Header />
       
       <main>
-        {/* Hero Section */}
-        <section className="bg-gradient-hero text-white py-16">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="text-5xl font-bold mb-4">Vårt Sortiment</h1>
-            <p className="text-xl opacity-90 max-w-3xl mx-auto mb-4">
-              Upptäck vårt kompletta utbud av fruktkorgar, drycker och tillbehör för din arbetsplats
-            </p>
-            <p className="text-sm opacity-75 max-w-2xl mx-auto">
-              För att beställa, vänligen logga in på ditt företagskonto eller kontakta oss för offert
-            </p>
-          </div>
-        </section>
-
         {/* Unified Product Section */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
