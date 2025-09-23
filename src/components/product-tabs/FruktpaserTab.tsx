@@ -3,6 +3,10 @@ import AddToCartButton from '@/components/AddToCartButton';
 import freshFruitImage from '@/assets/fresh-fruit-arrangements.jpg';
 import picnicBasketImage from '@/assets/picnic-basket-fruits.jpg';
 
+interface FruktpaserTabProps {
+  selectedDays: string[];
+}
+
 const fruktpaser = [
   {
     id: 'fruktpase-extra',
@@ -18,7 +22,7 @@ const fruktpaser = [
   }
 ];
 
-const FruktpaserTab = () => {
+const FruktpaserTab: React.FC<FruktpaserTabProps> = ({ selectedDays }) => {
   return (
     <div className="grid grid-cols-3 gap-4">
       {fruktpaser.map((product) => (
@@ -44,6 +48,7 @@ const FruktpaserTab = () => {
               className="w-full text-xs px-2 py-1"
               showQuantitySelector={true}
               showSizeSelector={false}
+              selectedDays={selectedDays}
             />
           </div>
         </div>

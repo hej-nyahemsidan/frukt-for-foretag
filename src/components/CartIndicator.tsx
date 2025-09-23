@@ -64,7 +64,11 @@ const CartIndicator = () => {
               <div className="p-2 space-y-2">
                  {items.map((item) => {
                    // Create unique identifier for cart operations
-                   const itemKey = item.size ? `${item.id}-${item.size}` : item.id;
+                   const itemKey = [
+                     item.id,
+                     item.size || '',
+                     item.assignedDay || ''
+                   ].join('-');
                    
                    return (
                      <div key={itemKey} className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
@@ -72,6 +76,9 @@ const CartIndicator = () => {
                          <h4 className="font-medium text-sm text-charcoal">{item.name}</h4>
                          {item.size && (
                            <p className="text-xs text-muted-foreground">Storlek: {item.size}</p>
+                         )}
+                         {item.assignedDay && (
+                           <p className="text-xs text-muted-foreground">Dag: {item.assignedDay}</p>
                          )}
                          <p className="text-xs text-muted-foreground">{formatPrice(item.price)}/st</p>
                        </div>

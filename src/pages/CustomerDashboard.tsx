@@ -125,6 +125,7 @@ const CustomerDashboard = () => {
             <ProductDisplay 
               activeCategory={activeCategory}
               setActiveCategory={setActiveCategory}
+              selectedDays={selectedDays}
             />
           </div>
         </div>

@@ -4,6 +4,10 @@ import ecoMilkImage from '@/assets/eco-milk.jpg';
 import oatlyImage from '@/assets/oatly.jpg';
 import dairyCollectionImage from '@/assets/dairy-products-collection.jpg';
 
+interface MejeriTabProps {
+  selectedDays: string[];
+}
+
 const mejeri = [
   { id: 'eko-standard', name: 'Eko Standardmjölk', price: 18, image: ecoMilkImage },
   { id: 'eko-latt', name: 'Eko Lättmjölk', price: 18, image: ecoMilkImage },
@@ -15,7 +19,7 @@ const mejeri = [
   { id: 'alpro', name: 'Alpro', price: 26, image: dairyCollectionImage }
 ];
 
-const MejeriTab = () => {
+const MejeriTab: React.FC<MejeriTabProps> = ({ selectedDays }) => {
   return (
     <div className="grid grid-cols-3 gap-4">
       {mejeri.map((product) => (
@@ -41,6 +45,7 @@ const MejeriTab = () => {
               className="w-full text-xs px-1 py-1"
               showQuantitySelector={true}
               showSizeSelector={false}
+              selectedDays={selectedDays}
             />
           </div>
         </div>

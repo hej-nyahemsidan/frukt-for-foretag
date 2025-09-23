@@ -7,6 +7,10 @@ import fantaImage from '@/assets/fanta-orange.jpg';
 import bonaquaImage from '@/assets/bonaqua.jpg';
 import softDrinksImage from '@/assets/soft-drinks-collection.jpg';
 
+interface LaskTabProps {
+  selectedDays: string[];
+}
+
 const lask = [
   { id: 'coca-cola', name: 'Coca Cola', price: 25, image: colaImage },
   { id: 'coca-cola-zero', name: 'Coca Cola Zero', price: 25, image: colaZeroImage },
@@ -19,7 +23,7 @@ const lask = [
   { id: 'mer-paron', name: 'Mer Päron', price: 22, image: softDrinksImage }
 ];
 
-const LaskTab = () => {
+const LaskTab: React.FC<LaskTabProps> = ({ selectedDays }) => {
   return (
     <div className="grid grid-cols-3 gap-4">
       {lask.map((product) => (
@@ -45,6 +49,7 @@ const LaskTab = () => {
               className="w-full text-xs px-2 py-1"
               showQuantitySelector={true}
               showSizeSelector={false}
+              selectedDays={selectedDays}
             />
           </div>
         </div>

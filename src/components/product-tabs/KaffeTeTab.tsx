@@ -4,13 +4,17 @@ import gevaliaImage from '@/assets/gevalia-coffee.jpg';
 import premiumCoffeeImage from '@/assets/premium-coffee.jpg';
 import nescafeImage from '@/assets/nescafe.jpg';
 
+interface KaffeTeTabProps {
+  selectedDays: string[];
+}
+
 const kaffeTe = [
   { id: 'gevalia', name: 'Gevalia', price: 45, image: gevaliaImage },
   { id: 'arvid-nordkvist', name: 'Arvid Nordkvist', price: 42, image: premiumCoffeeImage },
   { id: 'nescafe-lyx', name: 'Nescafe Lyx', price: 38, image: nescafeImage }
 ];
 
-const KaffeTeTab = () => {
+const KaffeTeTab: React.FC<KaffeTeTabProps> = ({ selectedDays }) => {
   return (
     <div className="grid grid-cols-3 gap-4">
       {kaffeTe.map((product) => (
@@ -36,6 +40,7 @@ const KaffeTeTab = () => {
               className="w-full text-xs px-2 py-1"
               showQuantitySelector={true}
               showSizeSelector={false}
+              selectedDays={selectedDays}
             />
           </div>
         </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Check, Plus } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { Button } from '@/components/ui/button';
+import DaySelectionDialog from '@/components/DaySelectionDialog';
 
 interface AddToCartButtonProps {
   product: {
@@ -15,17 +16,20 @@ interface AddToCartButtonProps {
   className?: string;
   showQuantitySelector?: boolean;
   showSizeSelector?: boolean;
+  selectedDays: string[];
 }
 
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({ 
   product, 
   className = "", 
   showQuantitySelector = true,
-  showSizeSelector = false 
+  showSizeSelector = false,
+  selectedDays
 }) => {
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState<string>('');
+  const [showDayDialog, setShowDayDialog] = useState(false);
   const { addItem } = useCart();
 
   // Initialize selected size for fruit baskets
@@ -52,20 +56,41 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
     const currentPrice = getCurrentPrice();
     if (currentPrice === 0) return;
 
-    const itemToAdd = {
-      id: product.id,
-      name: product.name,
-      price: currentPrice,
-      category: product.category,
-      image: product.image,
-      quantity: quantity,
-      ...(selectedSize && { size: selectedSize })
-    };
+    // If multiple days are selected, show day selection dialog
+    if (selectedDays.length > 1) {
+      setShowDayDialog(true);
+      return;
+    }
 
-    addItem(itemToAdd);
+    // If only one day or no days selected, add directly
+    const assignedDays = selectedDays.length === 1 ? [selectedDays[0]] : [];
+    addProductToCart(assignedDays);
+  };
+
+  const addProductToCart = (assignedDays: string[]) => {
+    const currentPrice = getCurrentPrice();
+    
+    assignedDays.forEach(day => {
+      const itemToAdd = {
+        id: product.id,
+        name: product.name,
+        price: currentPrice,
+        category: product.category,
+        image: product.image,
+        quantity: quantity,
+        assignedDay: day,
+        ...(selectedSize && { size: selectedSize })
+      };
+
+      addItem(itemToAdd);
+    });
 
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 2000);
+  };
+
+  const handleDayConfirm = (chosenDays: string[]) => {
+    addProductToCart(chosenDays);
   };
 
   const availableSizes = product.prices ? Object.keys(product.prices) : [];
@@ -153,6 +178,15 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
           </>
         )}
       </Button>
+      
+      {/* Day Selection Dialog */}
+      <DaySelectionDialog
+        isOpen={showDayDialog}
+        onClose={() => setShowDayDialog(false)}
+        availableDays={selectedDays}
+        onConfirm={handleDayConfirm}
+        productName={product.name}
+      />
     </div>
   );
 };

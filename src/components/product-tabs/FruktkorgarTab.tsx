@@ -6,6 +6,10 @@ import fruktkorgrOriginalImg from '@/assets/fruktkorg-original-new.jpg';
 import fruktkorgrBananImg from '@/assets/fruktkorg-bas-new.jpg';
 import fruktkorgrBasImg from '@/assets/fruktkorg-bas-new.jpg';
 
+interface FruktkorgarTabProps {
+  selectedDays: string[];
+}
+
 const fruktkorgar = [
   {
     id: 'frukt-premium',
@@ -64,7 +68,7 @@ const fruktkorgar = [
   }
 ];
 
-const FruktkorgarTab = () => {
+const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
   return (
     <div className="grid grid-cols-3 gap-4">
       {fruktkorgar.map((product) => (
@@ -89,6 +93,7 @@ const FruktkorgarTab = () => {
               className="w-full text-xs px-2 py-1"
               showQuantitySelector={true}
               showSizeSelector={true}
+              selectedDays={selectedDays}
             />
           </div>
         </div>

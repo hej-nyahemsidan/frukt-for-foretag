@@ -10,9 +10,10 @@ import KaffeTeTab from '@/components/product-tabs/KaffeTeTab';
 interface ProductDisplayProps {
   activeCategory: string;
   setActiveCategory: (category: string) => void;
+  selectedDays: string[];
 }
 
-const ProductDisplay = ({ activeCategory, setActiveCategory }: ProductDisplayProps) => {
+const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays }: ProductDisplayProps) => {
   return (
     <div className="bg-white rounded-lg shadow-sm border">
       {/* Cart Indicator */}
@@ -58,23 +59,23 @@ const ProductDisplay = ({ activeCategory, setActiveCategory }: ProductDisplayPro
 
         <div className="p-6">
           <TabsContent value="fruktkorgar" className="mt-0">
-            <FruktkorgarTab />
+            <FruktkorgarTab selectedDays={selectedDays} />
           </TabsContent>
           
           <TabsContent value="fruktpaser" className="mt-0">
-            <FruktpaserTab />
+            <FruktpaserTab selectedDays={selectedDays} />
           </TabsContent>
           
           <TabsContent value="lask" className="mt-0">
-            <LaskTab />
+            <LaskTab selectedDays={selectedDays} />
           </TabsContent>
           
           <TabsContent value="mejeri" className="mt-0">
-            <MejeriTab />
+            <MejeriTab selectedDays={selectedDays} />
           </TabsContent>
           
           <TabsContent value="kaffe-te" className="mt-0">
-            <KaffeTeTab />
+            <KaffeTeTab selectedDays={selectedDays} />
           </TabsContent>
         </div>
       </Tabs>
