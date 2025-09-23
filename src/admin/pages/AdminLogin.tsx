@@ -6,7 +6,6 @@ import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAdminAuth } from '../contexts/AdminAuthContext';
 import { useToast } from '@/hooks/use-toast';
-import FruktPortalenLogo from '../../components/FruktPortalenLogo';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('admin@fruktportalen.se');
@@ -77,11 +76,6 @@ const AdminLogin = () => {
 
         {/* Login Card */}
         <div className="bg-white rounded-lg shadow-md p-8">
-          {/* Brand Name */}
-          <div className="flex justify-center items-center mb-8">
-            <FruktPortalenLogo size="large" variant="horizontal" />
-          </div>
-
           {/* Admin Login Form */}
           <div className="space-y-6">
             <div className="text-center">
