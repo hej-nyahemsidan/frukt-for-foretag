@@ -71,7 +71,7 @@ const SimplifiedCheckout: React.FC<SimplifiedCheckoutProps> = ({
             Du kommer att få en bekräftelse via e-post inom kort.
           </p>
           <Button 
-            onClick={() => navigate('/dashboard')}
+            onClick={() => navigate('/kundportal')}
             className="bg-secondary text-secondary-foreground hover:bg-[hsl(122_39%_44%)]"
           >
             Tillbaka till Mina Sidor
