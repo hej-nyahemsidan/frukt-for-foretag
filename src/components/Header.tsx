@@ -70,8 +70,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 bg-white border-t-2 border-b-2 border-t-primary border-b-primary shadow-sm">
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 md:h-24">
-          {/* Company Logo */}
-          <div className="flex-shrink-0 z-10">
+          <div className="flex-shrink-0 z-10 -my-2">
             <div onClick={handleLogoClick} className="cursor-pointer">
               <VitaminKorgenLogo 
                 size="xl" 

@@ -36,7 +36,7 @@ const VitaminKorgenLogo: React.FC<VitaminKorgenLogoProps> = ({
     <img
       src={vitaminKorgenLogo}
       alt="Vitamin Korgen - Fresh fruit delivery service"
-      className={`${sizeClasses[size]} object-contain ${animationClasses} ${monochromeClasses} ${className}`}
+      className={`${sizeClasses[size]} object-cover object-center ${animationClasses} ${monochromeClasses} ${className}`}
     />
   );
 
