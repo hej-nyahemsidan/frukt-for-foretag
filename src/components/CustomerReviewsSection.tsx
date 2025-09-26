@@ -8,62 +8,50 @@ import {
   CarouselItem,
   CarouselApi,
 } from '@/components/ui/carousel';
-import avatarOlivia from '@/assets/avatar-olivia.jpg';
-import avatarEmmy from '@/assets/avatar-emmy.jpg';
-import avatarJoel from '@/assets/avatar-joel.jpg';
-import avatarClaudio from '@/assets/avatar-claudio.jpg';
+import stockholmWalkingPerson from '@/assets/stockholm-walking-person.jpg';
 
 const reviews = [
   {
     text: "Riktigt bra service! Härlig personal med god kundservice och utmärkt med lite frukt till kontoret!",
-    author: "Olivia Nordman",
-    avatar: avatarOlivia
+    author: "Olivia Nordman"
   },
   {
     text: "Superduktiga och härliga! Glad för frukten och energin jag får varje dag 🫶🏼",
-    author: "Emmy Zachrisson",
-    avatar: avatarEmmy
+    author: "Emmy Zachrisson"
   },
   {
     text: "Livsviktig på jobbet, räddat mig många gånger!",
-    author: "Joel Yosief",
-    avatar: avatarJoel
+    author: "Joel Yosief"
   },
   {
     text: "Vi har fått fruktkorgar från Vitaminkorgen i flera år nu och vi är lika nöjda än idag som vi var efter första leveransen vi fick.",
-    author: "Claudio Leonide",
-    avatar: avatarClaudio
+    author: "Claudio Leonide"
   }
 ];
 
-const StarRating = () => (
-  <div className="flex gap-1 mb-8">
-    {[...Array(5)].map((_, i) => (
-      <Star
-        key={i}
-        className="w-10 h-10 fill-yellow-400 text-yellow-400 drop-shadow-lg"
-      />
-    ))}
-  </div>
-);
-
 const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
-  <div className="relative w-full max-w-4xl mx-auto">
+  <div className="relative w-full max-w-2xl mx-auto">
     {/* Abstract gradient art underneath */}
     <div className="absolute inset-0 -z-10">
-      <div className="absolute top-4 left-8 w-32 h-32 bg-gradient-to-br from-primary/40 to-secondary/30 rounded-full blur-xl"></div>
-      <div className="absolute bottom-6 right-12 w-24 h-24 bg-gradient-to-tl from-secondary/50 to-primary/20 rounded-full blur-lg"></div>
-      <div className="absolute top-1/2 left-1/4 w-20 h-20 bg-gradient-to-r from-primary/30 to-transparent rounded-full blur-md"></div>
-      <div className="absolute bottom-1/3 right-1/3 w-16 h-16 bg-gradient-to-bl from-secondary/40 to-transparent rounded-full blur-sm"></div>
+      <div className="absolute top-2 left-4 w-20 h-20 bg-gradient-to-br from-primary/40 to-secondary/30 rounded-full blur-lg"></div>
+      <div className="absolute bottom-3 right-6 w-16 h-16 bg-gradient-to-tl from-secondary/50 to-primary/20 rounded-full blur-md"></div>
+      <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-gradient-to-r from-primary/30 to-transparent rounded-full blur-sm"></div>
     </div>
     
-    <Card className="bg-gradient-to-br from-white/95 via-white/90 to-primary/5 backdrop-blur-md border border-white/30 shadow-2xl rounded-3xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-3xl">
-      <CardContent className="p-12 md:p-16 text-center">
-        <StarRating />
-        <blockquote className="text-2xl md:text-3xl lg:text-4xl text-foreground/90 mb-10 italic font-light leading-relaxed max-w-3xl mx-auto">
+    <Card className="bg-gradient-to-br from-white/95 via-white/90 to-primary/5 backdrop-blur-md border border-white/30 shadow-xl rounded-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+      <CardContent className="p-8 md:p-10 text-center">
+        <div className="flex justify-center gap-1 mb-6">
+          {[...Array(5)].map((_, i) => (
+            <Star
+              key={i}
+              className="w-6 h-6 fill-yellow-400 text-yellow-400 drop-shadow-lg"
+            />
+          ))}
+        </div>
+        <blockquote className="text-lg md:text-xl text-foreground/90 mb-6 italic font-light leading-relaxed">
           "{review.text}"
         </blockquote>
-        <cite className="text-xl md:text-2xl font-bold text-primary bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        <cite className="text-lg md:text-xl font-bold text-primary bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
           — {review.author}
         </cite>
       </CardContent>
@@ -129,40 +117,55 @@ const CustomerReviewsSection = () => {
           </p>
         </div>
 
-        {/* Single Review Carousel */}
-        <div className="mb-16">
-          <Carousel 
-            setApi={setApi}
-            className="w-full"
-            opts={{
-              align: "center",
-              loop: true,
-            }}
-          >
-            <CarouselContent>
-              {reviews.map((review, index) => (
-                <CarouselItem key={index}>
-                  <div className="flex justify-center">
-                    <ReviewCard review={review} />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-          
-          {/* Dots indicator */}
-          <div className="flex justify-center mt-8 gap-3">
-            {reviews.map((_, index) => (
-              <button
-                key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === current 
-                    ? 'bg-primary shadow-lg scale-125' 
-                    : 'bg-primary/30 hover:bg-primary/50'
-                }`}
-                onClick={() => api?.scrollTo(index)}
+        {/* Main content with image and carousel */}
+        <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
+          {/* Stockholm Image */}
+          <div className="order-2 lg:order-1 relative">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <img 
+                src={stockholmWalkingPerson} 
+                alt="Person walking through Stockholm" 
+                className="w-full h-[500px] object-cover"
               />
-            ))}
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
+            </div>
+          </div>
+          
+          {/* Review Carousel */}
+          <div className="order-1 lg:order-2">
+            <Carousel 
+              setApi={setApi}
+              className="w-full"
+              opts={{
+                align: "center",
+                loop: true,
+              }}
+            >
+              <CarouselContent>
+                {reviews.map((review, index) => (
+                  <CarouselItem key={index}>
+                    <div className="flex justify-center">
+                      <ReviewCard review={review} />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+            </Carousel>
+            
+            {/* Dots indicator */}
+            <div className="flex justify-center mt-8 gap-3">
+              {reviews.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === current 
+                      ? 'bg-primary shadow-lg scale-125' 
+                      : 'bg-primary/30 hover:bg-primary/50'
+                  }`}
+                  onClick={() => api?.scrollTo(index)}
+                />
+              ))}
+            </div>
           </div>
         </div>
 
