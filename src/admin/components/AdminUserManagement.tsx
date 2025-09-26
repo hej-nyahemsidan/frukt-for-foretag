@@ -28,6 +28,7 @@ interface Profile {
   full_name: string | null;
   created_at: string;
   updated_at: string;
+  company_name?: string;
 }
 
 const AdminUserManagement = () => {
@@ -43,19 +44,32 @@ const AdminUserManagement = () => {
     try {
       setIsLoading(true);
       
-      // Fetch profiles from public schema (this will work with RLS)
+      // Fetch profiles with company information
       const { data: profilesData, error: profilesError } = await supabase
         .from('profiles')
-        .select('*')
+        .select(`
+          *,
+          customers!inner(company_name)
+        `)
         .order('created_at', { ascending: false });
 
       if (profilesError) throw profilesError;
       
-      console.log('Fetched profiles:', profilesData?.length || 0);
-      console.log('Profiles:', profilesData?.map(p => p.email) || []);
+      // Transform the data to include company_name at the top level
+      const transformedProfiles = profilesData?.map(profile => ({
+        id: profile.id,
+        email: profile.email,
+        full_name: profile.full_name,
+        created_at: profile.created_at,
+        updated_at: profile.updated_at,
+        company_name: (profile.customers as any)?.[0]?.company_name || null
+      })) || [];
+      
+      console.log('Fetched profiles:', transformedProfiles?.length || 0);
+      console.log('Profiles:', transformedProfiles?.map(p => p.email) || []);
 
-      setProfiles(profilesData || []);
-      setFilteredProfiles(profilesData || []);
+      setProfiles(transformedProfiles);
+      setFilteredProfiles(transformedProfiles);
       
     } catch (error: any) {
       toast({
@@ -108,7 +122,7 @@ const AdminUserManagement = () => {
     });
   };
 
-  const handleAddUser = async (email: string, password: string, fullName?: string) => {
+  const handleAddUser = async (email: string, password: string, fullName?: string, companyName?: string) => {
     try {
       // Call the Edge function to create user with email confirmation bypassed
       const { data: functionData, error } = await supabase.functions.invoke('create-user', {
@@ -116,7 +130,7 @@ const AdminUserManagement = () => {
           email: email.trim(), 
           password: password, 
           fullName: fullName || '',
-          companyName: 'Företag AB'
+          companyName: companyName || 'Företag AB'
         }
       });
       
@@ -233,6 +247,7 @@ const AdminUserManagement = () => {
             <TableRow className="admin-table-header">
               <TableHead className="admin-th-email">E-post</TableHead>
               <TableHead className="admin-th-name">Namn</TableHead>
+              <TableHead className="admin-th-company">Företag</TableHead>
               <TableHead className="admin-th-created">Skapad</TableHead>
               <TableHead className="admin-th-status">Status</TableHead>
               <TableHead className="admin-th-actions text-right">Åtgärder</TableHead>
@@ -241,7 +256,7 @@ const AdminUserManagement = () => {
           <TableBody>
             {filteredProfiles.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5} className="admin-empty-state text-center py-8 text-gray-500">
+                <TableCell colSpan={6} className="admin-empty-state text-center py-8 text-gray-500">
                   {searchQuery ? 'Inga användare matchar sökningen' : 'Inga användare hittades'}
                 </TableCell>
               </TableRow>
@@ -253,6 +268,9 @@ const AdminUserManagement = () => {
                   </TableCell>
                   <TableCell className="admin-cell-name">
                     {profile.full_name || 'Ej angivet'}
+                  </TableCell>
+                  <TableCell className="admin-cell-company">
+                    {profile.company_name || 'Ej angivet'}
                   </TableCell>
                   <TableCell className="admin-cell-created">
                     {formatDate(profile.created_at)}

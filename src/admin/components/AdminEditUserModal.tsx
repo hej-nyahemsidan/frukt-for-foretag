@@ -11,7 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Edit, Mail, User, Lock, AlertTriangle } from 'lucide-react';
+import { Edit, Mail, User, Lock, AlertTriangle, Building2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -21,6 +21,7 @@ interface Profile {
   full_name: string | null;
   created_at: string;
   updated_at: string;
+  company_name?: string;
 }
 
 interface AdminEditUserModalProps {
@@ -37,6 +38,7 @@ const AdminEditUserModal: React.FC<AdminEditUserModalProps> = ({
   const [formData, setFormData] = useState({
     email: '',
     fullName: '',
+    companyName: '',
     resetPassword: false,
     newPassword: ''
   });
@@ -50,6 +52,7 @@ const AdminEditUserModal: React.FC<AdminEditUserModalProps> = ({
       setFormData({
         email: user.email,
         fullName: user.full_name || '',
+        companyName: user.company_name || '',
         resetPassword: false,
         newPassword: ''
       });
@@ -86,6 +89,18 @@ const AdminEditUserModal: React.FC<AdminEditUserModalProps> = ({
 
       if (updateError) throw updateError;
 
+      // Update company name in customers table
+      if (formData.companyName !== user.company_name) {
+        const { error: customerError } = await supabase
+          .from('customers')
+          .update({
+            company_name: formData.companyName || 'Företag AB'
+          })
+          .eq('user_id', user.id);
+
+        if (customerError) throw customerError;
+      }
+
       toast({
         title: 'Användare uppdaterad',
         description: `Ändringar för ${formData.email} har sparats.`,
@@ -110,6 +125,7 @@ const AdminEditUserModal: React.FC<AdminEditUserModalProps> = ({
       setFormData({
         email: '',
         fullName: '',
+        companyName: '',
         resetPassword: false,
         newPassword: ''
       });
@@ -179,6 +195,23 @@ const AdminEditUserModal: React.FC<AdminEditUserModalProps> = ({
               value={formData.fullName}
               onChange={(e) => setFormData(prev => ({ ...prev, fullName: e.target.value }))}
               placeholder="För- och efternamn"
+              disabled={isLoading}
+              className="admin-form-input"
+            />
+          </div>
+
+          {/* Company Name Field */}
+          <div className="admin-form-field space-y-2">
+            <Label htmlFor="edit-companyname" className="admin-form-label flex items-center gap-2">
+              <Building2 className="w-4 h-4" />
+              Företagsnamn
+            </Label>
+            <Input
+              id="edit-companyname"
+              type="text"
+              value={formData.companyName}
+              onChange={(e) => setFormData(prev => ({ ...prev, companyName: e.target.value }))}
+              placeholder="Företagets namn"
               disabled={isLoading}
               className="admin-form-input"
             />

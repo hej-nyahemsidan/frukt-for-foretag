@@ -10,12 +10,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { Eye, EyeOff, User, Mail, Lock } from 'lucide-react';
+import { Eye, EyeOff, User, Mail, Lock, Building2 } from 'lucide-react';
 
 interface AdminAddUserModalProps {
   open: boolean;
   onClose: () => void;
-  onAddUser: (email: string, password: string, fullName?: string) => Promise<void>;
+  onAddUser: (email: string, password: string, fullName?: string, companyName?: string) => Promise<void>;
 }
 
 const AdminAddUserModal: React.FC<AdminAddUserModalProps> = ({
@@ -26,7 +26,8 @@ const AdminAddUserModal: React.FC<AdminAddUserModalProps> = ({
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    fullName: ''
+    fullName: '',
+    companyName: ''
   });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -47,13 +48,14 @@ const AdminAddUserModal: React.FC<AdminAddUserModalProps> = ({
     setIsLoading(true);
 
     try {
-      await onAddUser(formData.email, formData.password, formData.fullName || undefined);
+      await onAddUser(formData.email, formData.password, formData.fullName || undefined, formData.companyName || undefined);
       
       // Reset form
       setFormData({
         email: '',
         password: '',
-        fullName: ''
+        fullName: '',
+        companyName: ''
       });
       
     } catch (error) {
@@ -68,7 +70,8 @@ const AdminAddUserModal: React.FC<AdminAddUserModalProps> = ({
       setFormData({
         email: '',
         password: '',
-        fullName: ''
+        fullName: '',
+        companyName: ''
       });
       onClose();
     }
@@ -150,6 +153,22 @@ const AdminAddUserModal: React.FC<AdminAddUserModalProps> = ({
               value={formData.fullName}
               onChange={(e) => setFormData(prev => ({ ...prev, fullName: e.target.value }))}
               placeholder="För- och efternamn"
+              disabled={isLoading}
+            />
+          </div>
+
+          {/* Company Name Field */}
+          <div className="space-y-2">
+            <Label htmlFor="add-companyname" className="flex items-center gap-2">
+              <Building2 className="w-4 h-4" />
+              Företagsnamn
+            </Label>
+            <Input
+              id="add-companyname"
+              type="text"
+              value={formData.companyName}
+              onChange={(e) => setFormData(prev => ({ ...prev, companyName: e.target.value }))}
+              placeholder="Företagets namn"
               disabled={isLoading}
             />
           </div>
