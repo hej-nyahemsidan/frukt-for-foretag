@@ -13,9 +13,9 @@ const HeroSection = () => {
         className="absolute inset-0 w-full h-full animate-moveBasketHorizontal"
         style={{
           backgroundImage: `url(${picnicBasket})`,
-          backgroundSize: 'cover',
+          backgroundSize: '150% auto',
           backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'scroll',
+          backgroundPosition: 'center center',
           backgroundColor: '#f0f9ff',
         }}
       >

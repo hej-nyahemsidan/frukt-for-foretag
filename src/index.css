@@ -409,18 +409,15 @@
 
   /* Horizontal Basket Animation - Right to Left */
   .animate-moveBasketHorizontal {
-    animation: moveBasketHorizontal 25s ease-in-out infinite;
+    animation: moveBasketHorizontal 20s linear infinite;
   }
 
   @keyframes moveBasketHorizontal {
     0% {
-      background-position: right center;
-    }
-    50% {
-      background-position: left center;
+      transform: translateX(15%);
     }
     100% {
-      background-position: right center;
+      transform: translateX(-15%);
     }
   }
   
