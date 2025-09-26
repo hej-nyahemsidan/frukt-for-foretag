@@ -37,27 +37,27 @@ const reviews = [
 ];
 
 const StarRating = () => (
-  <div className="flex gap-2 mb-6">
+  <div className="flex gap-1 mb-8">
     {[...Array(5)].map((_, i) => (
       <Star
         key={i}
-        className="w-8 h-8 fill-gradient-to-r from-yellow-400 to-orange-400 text-yellow-400 drop-shadow-sm"
+        className="w-10 h-10 fill-yellow-400 text-yellow-400 drop-shadow-lg"
       />
     ))}
   </div>
 );
 
 const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
-  <Card className="w-full max-w-4xl mx-auto bg-gradient-to-br from-green-50 via-orange-50 to-green-100 border-0 shadow-2xl rounded-3xl overflow-hidden">
-    <CardContent className="p-8 md:p-12">
-      <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+  <Card className="w-full max-w-5xl mx-auto bg-gradient-to-br from-white/90 via-primary/5 to-secondary/5 backdrop-blur-sm border border-white/20 shadow-2xl rounded-3xl overflow-hidden">
+    <CardContent className="p-10 md:p-16">
+      <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
         {/* Text Content */}
         <div className="order-2 md:order-1">
           <StarRating />
-          <blockquote className="text-xl md:text-2xl text-foreground/90 mb-6 italic font-light leading-relaxed">
+          <blockquote className="text-2xl md:text-3xl lg:text-4xl text-foreground/90 mb-8 italic font-light leading-relaxed">
             "{review.text}"
           </blockquote>
-          <cite className="text-lg font-semibold text-primary">
+          <cite className="text-xl md:text-2xl font-semibold text-primary">
             - {review.author}
           </cite>
         </div>
@@ -65,11 +65,11 @@ const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
         {/* Avatar */}
         <div className="order-1 md:order-2 flex justify-center">
           <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-sm opacity-30"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-full blur-lg opacity-50"></div>
             <img 
               src={review.avatar} 
               alt={review.author}
-              className="relative w-48 h-48 md:w-56 md:h-56 rounded-full object-cover shadow-xl ring-4 ring-white/50"
+              className="relative w-56 h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full object-cover shadow-2xl ring-4 ring-white/60"
             />
           </div>
         </div>
@@ -98,18 +98,20 @@ const CustomerReviewsSection = () => {
       } else {
         api.scrollTo(0);
       }
-    }, 5000);
+    }, 4500);
 
     return () => clearInterval(autoPlay);
   }, [api]);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-secondary/5 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-40 h-40 bg-primary rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-48 h-48 bg-secondary rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-accent rounded-full blur-2xl"></div>
+    <section className="py-24 bg-gradient-to-br from-background via-primary/3 to-secondary/5 relative overflow-hidden min-h-screen flex items-center">
+      {/* Abstract gradient backgrounds */}
+      <div className="absolute inset-0">
+        {/* Organic gradient shapes */}
+        <div className="absolute top-1/4 -right-32 w-96 h-96 bg-gradient-to-br from-primary/20 via-secondary/15 to-transparent rounded-full blur-3xl transform rotate-12"></div>
+        <div className="absolute bottom-1/4 -left-32 w-80 h-80 bg-gradient-to-tr from-secondary/20 via-primary/10 to-transparent rounded-full blur-3xl transform -rotate-12"></div>
+        <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-gradient-to-bl from-primary/15 to-transparent rounded-full blur-2xl"></div>
+        <div className="absolute bottom-1/3 left-1/3 w-48 h-48 bg-gradient-to-tr from-secondary/25 to-transparent rounded-full blur-xl"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -179,7 +181,7 @@ const CustomerReviewsSection = () => {
             className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground px-10 py-6 text-lg font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
           >
             <a
-              href="https://www.google.com/search?sca_esv=6fbc5b85f7533cfa&rlz=1C5CHFA_enSE1126SE1128&uds=AOm0WdE2fekQnsyfYEw8JPYozOKzfl40QptZ7MXLZb4siiCsw-as-8RddsKtLw2yiePDaTHL92LTh4CLn9IsluB0VyRv9_FlEKvLVfiUvsuRIJYEuaGir36t3QbRfcoukUVA0zbmV0CBzHr1IDacMYeFTxtvvqcGfwhtjZP54Ta9FN50MnIJuUeQjnDxkQcXf6MA41tt3g5G&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E3yhgpTOU0Jq5Iak9AL4XGxA9UY4rzdViwab-MwNaagG51K8AO1XyaZNEmVjWwAUjUiJiDM%3D&q=Vitaminkorgen+i+Stockholm+-+Frukt+p%C3%A5+jobbet+Recensioner&sa=X&ved=2ahUKEwjXxcHHt_ePAxWbLBAIHRicGZgQ3PALegQIUhAF&biw=1600&bih=812&dpr=1"
+              href="https://maps.app.goo.gl/hHiMYPXkVQBd3fDL9"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3"
