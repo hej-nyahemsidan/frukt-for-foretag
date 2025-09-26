@@ -1,34 +1,67 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 import AddToCartButton from '@/components/AddToCartButton';
-import fruktpaserImage from '@/assets/fruktpase-new.jpg';
 
 interface FruktpaserTabProps {
   selectedDays: string[];
 }
 
-const fruktpaser = [
-  {
-    id: 'fruktpase-extra',
-    name: 'Fruktpåse Extra',
-    image: fruktpaserImage,
-    price: 59
-  },
-  {
-    id: 'bananpase-extra',
-    name: 'Bananpåse Extra',
-    image: fruktpaserImage,
-    price: 49
-  }
-];
+interface Product {
+  id: string;
+  name: string;
+  category: string;
+  image_url: string;
+  prices: { [key: string]: number };
+}
 
 const FruktpaserTab: React.FC<FruktpaserTabProps> = ({ selectedDays }) => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('category', 'fruktpasar')
+        .order('name');
+
+      if (error) {
+        console.error('Error fetching fruktpasar products:', error);
+        return;
+      }
+
+      const typedProducts = data?.map(product => ({
+        ...product,
+        prices: product.prices as { [key: string]: number }
+      })) as Product[];
+
+      setProducts(typedProducts || []);
+    } catch (error) {
+      console.error('Error fetching fruktpasar products:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return <div className="text-center py-8">Laddar produkter...</div>;
+  }
+  if (products.length === 0) {
+    return <div className="text-center py-8 text-muted-foreground">Inga fruktpåsar hittades.</div>;
+  }
+
   return (
     <div className="grid grid-cols-3 gap-4">
-      {fruktpaser.map((product) => (
+      {products.map((product) => (
         <div key={product.id} className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
           <div className="aspect-[3/4] bg-white overflow-hidden">
             <img 
-              src={product.image}
+              src={product.image_url}
               alt={product.name}
               className="w-full h-full object-contain"
             />
@@ -39,9 +72,10 @@ const FruktpaserTab: React.FC<FruktpaserTabProps> = ({ selectedDays }) => {
               product={{
                 id: product.id,
                 name: product.name,
-                price: product.price,
-                category: 'fruktpaser',
-                image: product.image
+                price: product.prices?.default,
+                prices: product.prices,
+                category: 'fruktpasar',
+                image: product.image_url
               }}
               className="w-full text-xs px-2 py-1"
               showQuantitySelector={true}

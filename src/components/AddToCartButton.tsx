@@ -121,7 +121,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
             ))}
           </div>
           <div className="text-xs text-center mt-1 text-muted-foreground">
-            {/* Price removed */}
+            {getCurrentPrice()} kr
           </div>
         </div>
       )}
@@ -153,6 +153,13 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
               +
             </button>
           </div>
+        </div>
+      )}
+
+      {/* Price Display */}
+      {!showSizeSelector && (
+        <div className="text-sm text-center text-muted-foreground mb-2">
+          {getCurrentPrice()} kr
         </div>
       )}
 

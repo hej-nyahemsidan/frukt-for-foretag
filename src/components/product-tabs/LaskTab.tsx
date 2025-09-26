@@ -1,39 +1,67 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { supabase } from '@/integrations/supabase/client';
 import AddToCartButton from '@/components/AddToCartButton';
-import colaOriginalImage from '@/assets/coca-cola-original.png';
-import colaZeroImage from '@/assets/coca-cola-zero-new.png';
-import fantaOrangeImage from '@/assets/fanta-orange-new.png';
-import fantaExoticImage from '@/assets/fanta-exotic.png';
-import prilLemonImage from '@/assets/pril-lemon-lime.png';
-import prilZeroImage from '@/assets/pril-zero-sugar.png';
-import bonaquaCitronImage from '@/assets/bonaqua-citron-new.png';
-import bonaquaHallonImage from '@/assets/bonaqua-hallon-new.png';
-import merParonImage from '@/assets/mer-paron-new.png';
 
 interface LaskTabProps {
   selectedDays: string[];
 }
 
-const lask = [
-  { id: 'coca-cola', name: 'Coca Cola Original', price: 25, image: colaOriginalImage },
-  { id: 'coca-cola-zero', name: 'Coca Cola Zero Sugar', price: 25, image: colaZeroImage },
-  { id: 'pril-lemon', name: 'Pril Lemon-Lime', price: 25, image: prilLemonImage },
-  { id: 'pril-zero', name: 'Pril Zero Sugar', price: 25, image: prilZeroImage },
-  { id: 'fanta-orange', name: 'Fanta Orange', price: 25, image: fantaOrangeImage },
-  { id: 'fanta-exotic', name: 'Fanta Exotic', price: 25, image: fantaExoticImage },
-  { id: 'bonaqua-citron', name: 'Bonaqua Citron/Lime', price: 20, image: bonaquaCitronImage },
-  { id: 'bonaqua-hallon', name: 'Bonaqua Hallon/Lime', price: 20, image: bonaquaHallonImage },
-  { id: 'mer-paron', name: 'MER Päron', price: 22, image: merParonImage }
-];
+interface Product {
+  id: string;
+  name: string;
+  category: string;
+  image_url: string;
+  prices: { [key: string]: number };
+}
 
 const LaskTab: React.FC<LaskTabProps> = ({ selectedDays }) => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('category', 'lask')
+        .order('name');
+
+      if (error) {
+        console.error('Error fetching lask products:', error);
+        return;
+      }
+
+      const typedProducts = data?.map(product => ({
+        ...product,
+        prices: product.prices as { [key: string]: number }
+      })) as Product[];
+
+      setProducts(typedProducts || []);
+    } catch (error) {
+      console.error('Error fetching lask products:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return <div className="text-center py-8">Laddar produkter...</div>;
+  }
+  if (products.length === 0) {
+    return <div className="text-center py-8 text-muted-foreground">Inga läskprodukter hittades.</div>;
+  }
+
   return (
     <div className="grid grid-cols-3 gap-4">
-      {lask.map((product) => (
+      {products.map((product) => (
         <div key={product.id} className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
           <div className="aspect-[3/4] bg-white overflow-hidden">
             <img 
-              src={product.image}
+              src={product.image_url}
               alt={product.name}
               className="w-full h-full object-contain"
             />
@@ -44,9 +72,10 @@ const LaskTab: React.FC<LaskTabProps> = ({ selectedDays }) => {
               product={{
                 id: product.id,
                 name: product.name,
-                price: product.price,
+                price: product.prices?.default,
+                prices: product.prices,
                 category: 'lask',
-                image: product.image
+                image: product.image_url
               }}
               className="w-full text-xs px-2 py-1"
               showQuantitySelector={true}
