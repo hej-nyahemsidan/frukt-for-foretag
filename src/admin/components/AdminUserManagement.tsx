@@ -150,11 +150,22 @@ const AdminUserManagement = () => {
         description: 'Användaren har skapats framgångsrikt och kan logga in direkt.',
       });
     } catch (error: any) {
-      toast({
-        title: 'Fel',
-        description: `Fel vid skapande av användare: ${error.message}`,
-        variant: 'destructive',
-      });
+      // Handle specific error codes
+      if (error.message?.includes('En användare med denna e-postadress finns redan') || 
+          error.message?.includes('already been registered') ||
+          error.message?.includes('user_exists')) {
+        toast({
+          title: 'Användare finns redan',
+          description: 'En användare med denna e-postadress finns redan i systemet. Använd redigeringsfunktionen istället.',
+          variant: 'destructive',
+        });
+      } else {
+        toast({
+          title: 'Fel',
+          description: `Fel vid skapande av användare: ${error.message}`,
+          variant: 'destructive',
+        });
+      }
     }
   };
 

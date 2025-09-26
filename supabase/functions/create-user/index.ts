@@ -54,6 +54,21 @@ serve(async (req) => {
 
     if (authError) {
       console.error('Auth error:', authError);
+      
+      // Handle duplicate user error with helpful message
+      if (authError.message?.includes('already been registered')) {
+        return new Response(
+          JSON.stringify({ 
+            error: 'En användare med denna e-postadress finns redan. Använd redigeringsfunktionen istället.',
+            code: 'user_exists'
+          }),
+          { 
+            status: 409, 
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+          }
+        );
+      }
+      
       throw authError;
     }
 
