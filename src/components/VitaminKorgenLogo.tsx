@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import vitaminKorgenLogo from '@/assets/vitamin-korgen-logo.jpg';
+import vitaminKorgenLogo from '@/assets/vitamin-korgen-new-logo.jpg';
 
 interface VitaminKorgenLogoProps {
   size?: 'small' | 'medium' | 'large' | 'header' | 'xl' | '2xl';
@@ -20,12 +20,12 @@ const VitaminKorgenLogo: React.FC<VitaminKorgenLogoProps> = ({
   className = ""
 }) => {
   const sizeClasses = {
-    small: variant === 'horizontal' ? 'h-10 w-auto' : 'h-10 w-10',
-    medium: variant === 'horizontal' ? 'h-16 w-auto' : 'h-16 w-16', 
-    large: variant === 'horizontal' ? 'h-20 w-auto' : 'h-20 w-20',
-    header: variant === 'horizontal' ? 'h-24 w-auto' : 'h-24 w-24',
-    xl: variant === 'horizontal' ? 'h-32 w-auto' : 'h-32 w-32',
-    '2xl': variant === 'horizontal' ? 'h-40 w-auto' : 'h-40 w-40'
+    small: variant === 'horizontal' ? 'h-10 w-auto max-w-full' : 'h-10 w-auto max-w-full',
+    medium: variant === 'horizontal' ? 'h-16 w-auto max-w-full' : 'h-16 w-auto max-w-full', 
+    large: variant === 'horizontal' ? 'h-20 w-auto max-w-full' : 'h-20 w-auto max-w-full',
+    header: variant === 'horizontal' ? 'h-24 w-auto max-w-full' : 'h-24 w-auto max-w-full',
+    xl: variant === 'horizontal' ? 'h-32 w-auto max-w-full' : 'h-32 w-auto max-w-full',
+    '2xl': variant === 'horizontal' ? 'h-40 w-auto max-w-full' : 'h-40 w-auto max-w-full'
   };
 
   const animationClasses = animated ? 'hover:scale-105 transition-transform duration-200' : '';
