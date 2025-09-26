@@ -15,11 +15,15 @@ import fruktkorgrBananImg from '@/assets/fruktkorg-banan-new.jpg';
 import fruktladaImg from '@/assets/fruktlada-new.jpg';
 import fruktpaserImage from '@/assets/fruktpase-new.jpg';
 import premiumCoffeeImg from '@/assets/premium-coffee.jpg';
-import cocaColaImg from '@/assets/coca-cola.jpg';
-import cocaColaZeroImg from '@/assets/coca-cola-zero.jpg';
-import spriteImg from '@/assets/sprite.jpg';
-import fantaOrangeImg from '@/assets/fanta-orange.jpg';
-import bonaquaImg from '@/assets/bonaqua.jpg';
+import colaOriginalImg from '@/assets/coca-cola-original.png';
+import colaZeroImg from '@/assets/coca-cola-zero-new.png';
+import fantaOrangeImg from '@/assets/fanta-orange-new.png';
+import fantaExoticImg from '@/assets/fanta-exotic.png';
+import prilLemonImg from '@/assets/pril-lemon-lime.png';
+import prilZeroImg from '@/assets/pril-zero-sugar.png';
+import bonaquaCitronImg from '@/assets/bonaqua-citron-new.png';
+import bonaquaHallonImg from '@/assets/bonaqua-hallon-new.png';
+import merParonImg from '@/assets/mer-paron-new.png';
 import oatlyImg from '@/assets/oatly.jpg';
 import ecoMilkImg from '@/assets/eco-milk.jpg';
 import gevaliaImg from '@/assets/gevalia-coffee.jpg';
@@ -159,23 +163,23 @@ const Products = () => {
     lask: [
       {
         id: 'coca-cola',
-        name: 'Coca Cola',
-        image: cocaColaImg
+        name: 'Coca Cola Original',
+        image: colaOriginalImg
       },
       {
         id: 'coca-cola-zero',
-        name: 'Coca Cola Zero',
-        image: cocaColaZeroImg
+        name: 'Coca Cola Zero Sugar',
+        image: colaZeroImg
       },
       {
-        id: 'sprite',
-        name: 'Sprite',
-        image: spriteImg
+        id: 'pril-lemon',
+        name: 'Pril Lemon-Lime',
+        image: prilLemonImg
       },
       {
-        id: 'sprite-zero',
-        name: 'Sprite Zero',
-        image: spriteImg
+        id: 'pril-zero',
+        name: 'Pril Zero Sugar',
+        image: prilZeroImg
       },
       {
         id: 'fanta-orange',
@@ -185,22 +189,22 @@ const Products = () => {
       {
         id: 'fanta-exotic',
         name: 'Fanta Exotic',
-        image: fantaOrangeImg
+        image: fantaExoticImg
       },
       {
         id: 'bonaqua-citron',
-        name: 'Bonaqua Citron',
-        image: bonaquaImg
+        name: 'Bonaqua Citron/Lime',
+        image: bonaquaCitronImg
       },
       {
         id: 'bonaqua-hallon',
         name: 'Bonaqua Hallon/Lime',
-        image: bonaquaImg
+        image: bonaquaHallonImg
       },
       {
         id: 'mer-paron',
-        name: 'Mer Päron',
-        image: softDrinksImg
+        name: 'MER Päron',
+        image: merParonImg
       }
     ],
     kaffe: [
