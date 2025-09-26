@@ -8,7 +8,7 @@ import {
   CarouselItem,
   CarouselApi,
 } from '@/components/ui/carousel';
-import almanacImage from '@/assets/almanac-26th-crossed.jpg';
+import almanacImage from '@/assets/modern-almanac-26th.jpg';
 
 const reviews = [
   {
