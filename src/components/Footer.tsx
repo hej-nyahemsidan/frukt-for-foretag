@@ -28,14 +28,12 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <div className="mb-6">
-              <div className="p-4 bg-white rounded-lg inline-block shadow-sm">
-                <VitaminKorgenLogo 
-                  size="xl" 
-                  variant="full"
-                  link="/" 
-                  className=""
-                />
-              </div>
+              <a href="/" className="block">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-yellow-400 leading-none">Vitamin</div>
+                  <div className="text-3xl font-bold text-green-400 leading-none">Korgen</div>
+                </div>
+              </a>
             </div>
             <p className="text-gray-100 text-sm leading-relaxed">
               Stockholms ledande leverantör av färsk frukt till kontor och företag. 
