@@ -1,16 +1,16 @@
 import React from 'react';
 import AddToCartButton from '@/components/AddToCartButton';
-import gevaliaImage from '@/assets/gevalia-coffee.jpg';
-import premiumCoffeeImage from '@/assets/premium-coffee.jpg';
-import nescafeImage from '@/assets/nescafe.jpg';
+import gevaliaImage from '@/assets/gevalia-mellanrost.png';
+import arvidNordquistImage from '@/assets/arvid-nordquist-mellan.png';
+import nescafeImage from '@/assets/nescafe-lyx.png';
 
 interface KaffeTeTabProps {
   selectedDays: string[];
 }
 
 const kaffeTe = [
-  { id: 'gevalia', name: 'Gevalia', price: 45, image: gevaliaImage },
-  { id: 'arvid-nordkvist', name: 'Arvid Nordkvist', price: 42, image: premiumCoffeeImage },
+  { id: 'gevalia', name: 'Gevalia Mellanrost', price: 45, image: gevaliaImage },
+  { id: 'arvid-nordkvist', name: 'Arvid Nordquist Mellan', price: 42, image: arvidNordquistImage },
   { id: 'nescafe-lyx', name: 'Nescafe Lyx', price: 38, image: nescafeImage }
 ];
 
