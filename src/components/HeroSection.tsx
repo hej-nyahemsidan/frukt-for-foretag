@@ -15,7 +15,6 @@ const HeroSection = () => {
           backgroundImage: `url(${picnicBasket})`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center center',
           backgroundAttachment: 'scroll',
           backgroundColor: '#f0f9ff',
         }}

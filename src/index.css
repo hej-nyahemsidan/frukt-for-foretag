@@ -407,14 +407,6 @@
     background-color: hsl(0 0% 96%); /* Light Gray fallback */
   }
   
-  @keyframes moveBasket {
-    0% { 
-      background-position: 0% center; 
-    }
-    100% { 
-      background-position: 30% center; 
-    }
-  }
 
   /* Features Carousel Animation */
   .features-carousel-container {
