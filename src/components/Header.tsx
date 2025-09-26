@@ -32,6 +32,8 @@ const Header = () => {
   const publicNavigationItems = [
     { label: 'Hem', href: '/', isExternal: false },           // Home
     { label: 'Produkter', href: '/produkter', isExternal: false }, // Products
+    { label: 'Blommor', href: '/blommor', isExternal: false }, // Flowers
+    { label: 'Varuautomat', href: '/varuautomat', isExternal: false }, // Vending Machine
     { label: 'Om Oss', href: '/om-oss', isExternal: false },   // About Us
     { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
     { label: 'Offertförfrågan', href: '/offertforfragan', isExternal: false },     // Quote Request
@@ -40,6 +42,8 @@ const Header = () => {
   const customerNavigationItems = [
     { label: 'Hem', href: '/', isExternal: false },           // Home
     { label: 'Produkter', href: '/produkter', isExternal: false }, // Products
+    { label: 'Blommor', href: '/blommor', isExternal: false }, // Flowers
+    { label: 'Varuautomat', href: '/varuautomat', isExternal: false }, // Vending Machine
     { label: 'Om Oss', href: '/om-oss', isExternal: false },   // About Us
     { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
     { label: 'Mina Sidor', href: '/dashboard', isExternal: false }, // Customer Dashboard - moved to end
