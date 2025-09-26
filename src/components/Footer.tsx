@@ -31,7 +31,7 @@ const Footer = () => {
               <a href="/" className="block">
                 <div className="text-left">
                   <div className="text-5xl font-bold bg-gradient-to-r from-yellow-200 via-yellow-300 to-yellow-500 bg-clip-text text-transparent drop-shadow-lg shadow-yellow-400/50 leading-none tracking-wide">Vitamin</div>
-                  <div className="text-4xl font-bold text-green-500 leading-none tracking-wide -mt-2">Korgen</div>
+                  <div className="text-[44px] font-bold bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent leading-none tracking-wide -mt-2">Korgen</div>
                 </div>
               </a>
             </div>
