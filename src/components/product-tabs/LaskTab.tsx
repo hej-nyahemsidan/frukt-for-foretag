@@ -28,11 +28,11 @@ const LaskTab: React.FC<LaskTabProps> = ({ selectedDays }) => {
     <div className="grid grid-cols-3 gap-4">
       {lask.map((product) => (
         <div key={product.id} className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-          <div className="aspect-[3/4] bg-white p-4">
+          <div className="aspect-[3/4] bg-white overflow-hidden">
             <img 
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-contain rounded"
+              className="w-full h-full object-cover"
             />
           </div>
           <div className="p-3 space-y-3">
