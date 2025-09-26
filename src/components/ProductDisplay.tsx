@@ -6,6 +6,7 @@ import FruktpaserTab from '@/components/product-tabs/FruktpaserTab';
 import LaskTab from '@/components/product-tabs/LaskTab';
 import MejeriTab from '@/components/product-tabs/MejeriTab';
 import KaffeTeTab from '@/components/product-tabs/KaffeTeTab';
+import AnnatTab from '@/components/product-tabs/AnnatTab';
 
 interface ProductDisplayProps {
   activeCategory: string;
@@ -55,6 +56,12 @@ const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays }: Pro
           >
             Kaffe/Te
           </TabsTrigger>
+          <TabsTrigger 
+            value="annat" 
+            className="rounded-none border-b-2 border-transparent data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white hover:bg-gray-100 px-6 py-4"
+          >
+            Annat
+          </TabsTrigger>
         </TabsList>
 
         <div className="p-6">
@@ -76,6 +83,10 @@ const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays }: Pro
           
           <TabsContent value="kaffe-te" className="mt-0">
             <KaffeTeTab selectedDays={selectedDays} />
+          </TabsContent>
+          
+          <TabsContent value="annat" className="mt-0">
+            <AnnatTab selectedDays={selectedDays} />
           </TabsContent>
         </div>
       </Tabs>

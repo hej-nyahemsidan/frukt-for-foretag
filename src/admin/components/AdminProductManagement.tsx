@@ -50,7 +50,8 @@ const AdminProductManagement = () => {
     { value: 'fruktpasar', label: 'Fruktpåsar' },
     { value: 'mejeri', label: 'Mejeri' },
     { value: 'lask', label: 'Läsk' },
-    { value: 'kaffe', label: 'Kaffe & Te' }
+    { value: 'kaffe', label: 'Kaffe & Te' },
+    { value: 'annat', label: 'Annat' }
   ];
 
   const sizeOptions = ['4kg', '6kg', '9kg', '11kg'];
@@ -415,7 +416,7 @@ const AdminProductManagement = () => {
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-5">
+        <TabsList className="grid w-full grid-cols-6">
           {categories.map((category) => (
             <TabsTrigger key={category.value} value={category.value}>
               {category.label}
