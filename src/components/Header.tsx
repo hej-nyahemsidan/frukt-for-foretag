@@ -77,12 +77,13 @@ const Header = () => {
       <div className="relative max-w-screen-2xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 md:h-24">
           {/* Company Logo */}
-          <div className="flex-shrink-0 z-10 overflow-hidden -my-1">
+          <div className="flex-shrink-0 z-10 overflow-hidden -my-1 max-w-[200px] md:max-w-[250px] lg:max-w-none">
             <div onClick={handleLogoClick} className="cursor-pointer">
               <VitaminKorgenLogo 
-                size="header" 
+                size="medium" 
                 variant="horizontal"
                 animated={true}
+                className="md:h-20 lg:h-24 w-auto"
               />
             </div>
           </div>
