@@ -32,7 +32,7 @@ const AdminProductManagement = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAddDialog, setShowAddDialog] = useState(false);
-  const [editingPrices, setEditingPrices] = useState<Record<string, Record<string, number>>>({});
+  const [editingPrices, setEditingPrices] = useState<Record<string, Record<string, string | number>>>({});
   const [activeTab, setActiveTab] = useState('fruktkorgar');
   const { toast } = useToast();
 
@@ -209,14 +209,25 @@ const AdminProductManagement = () => {
   };
 
   const handlePriceChange = (productId: string, size: string, value: string) => {
-    const numValue = value === '' ? 0 : parseFloat(value) || 0;
     setEditingPrices(prev => ({
       ...prev,
       [productId]: {
         ...prev[productId],
-        [size]: numValue
+        [size]: value === '' ? '' : parseFloat(value) || 0
       }
     }));
+  };
+
+  const getProductPriceSizes = (product: Product) => {
+    if (product.category === 'fruktkorgar') {
+      return ['4kg', '6kg', '9kg', '11kg'];
+    }
+    return ['default'];
+  };
+
+  const getPriceLabel = (size: string) => {
+    if (size === 'default') return 'Pris';
+    return size;
   };
 
   const getProductsByCategory = (category: string) => {
@@ -253,13 +264,13 @@ const AdminProductManagement = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {Object.entries(product.prices).map(([size, price]) => (
+              {getProductPriceSizes(product).map(size => (
                 <div key={size} className="flex items-center justify-between gap-2">
-                  <Label className="text-sm font-medium">{size}:</Label>
+                  <Label className="text-sm font-medium">{getPriceLabel(size)}:</Label>
                   <div className="flex items-center gap-2">
                     <Input
                       type="number"
-                      value={editingPrices[product.id]?.[size] ?? price}
+                      value={editingPrices[product.id]?.[size] ?? product.prices[size] ?? ''}
                       onChange={(e) => handlePriceChange(product.id, size, e.target.value)}
                       className="w-20 text-sm text-right"
                     />
@@ -268,8 +279,11 @@ const AdminProductManagement = () => {
                       size="sm"
                       variant="outline"
                       onClick={() => {
-                        const newPrice = editingPrices[product.id]?.[size] ?? price;
-                        handleUpdatePrice(product.id, size, newPrice);
+                        const newPrice = editingPrices[product.id]?.[size] ?? product.prices[size];
+                        const numericPrice = typeof newPrice === 'string' ? parseFloat(newPrice) || 0 : newPrice;
+                        if (typeof numericPrice === 'number') {
+                          handleUpdatePrice(product.id, size, numericPrice);
+                        }
                       }}
                       className="p-1 h-8 w-8"
                     >
@@ -352,23 +366,39 @@ const AdminProductManagement = () => {
 
               <div>
                 <Label>Priser</Label>
-                <div className="grid grid-cols-2 gap-2">
-                  {sizeOptions.map(size => (
-                    <div key={size} className="flex items-center space-x-2">
-                      <Label className="w-10 text-sm">{size}:</Label>
-                      <Input
-                        type="number"
-                        value={newProductForm.prices[size] || ''}
-                        onChange={(e) => setNewProductForm({
-                          ...newProductForm,
-                          prices: { ...newProductForm.prices, [size]: e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 }
-                        })}
-                        placeholder="0"
-                        className="text-sm"
-                      />
-                    </div>
-                  ))}
-                </div>
+                {newProductForm.category === 'fruktkorgar' ? (
+                  <div className="grid grid-cols-2 gap-2">
+                    {sizeOptions.map(size => (
+                      <div key={size} className="flex items-center space-x-2">
+                        <Label className="w-10 text-sm">{size}:</Label>
+                        <Input
+                          type="number"
+                          value={newProductForm.prices[size] || ''}
+                          onChange={(e) => setNewProductForm({
+                            ...newProductForm,
+                            prices: { ...newProductForm.prices, [size]: e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 }
+                          })}
+                          placeholder=""
+                          className="text-sm"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="flex items-center space-x-2">
+                    <Label className="text-sm">Pris:</Label>
+                    <Input
+                      type="number"
+                      value={newProductForm.prices['default'] || ''}
+                      onChange={(e) => setNewProductForm({
+                        ...newProductForm,
+                        prices: { 'default': e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 }
+                      })}
+                      placeholder=""
+                      className="text-sm"
+                    />
+                  </div>
+                )}
               </div>
 
               <div className="flex gap-2">
