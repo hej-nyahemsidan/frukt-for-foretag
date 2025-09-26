@@ -29,8 +29,9 @@ import latteArtMjolkEkoImg from '@/assets/latte-art-mjolk-eko.png';
 import mellanmjolkLaktosfriImg from '@/assets/mellanmjolk-laktosfri.png';
 import mellanmjolkPortImg from '@/assets/mellanmjolk-port.png';
 import kaffemjolkLaktosfriImg from '@/assets/kaffemjolk-laktosfri.png';
-import gevaliaImg from '@/assets/gevalia-coffee.jpg';
-import nescafeImg from '@/assets/nescafe.jpg';
+import gevaliaImg from '@/assets/gevalia-mellanrost-new.png';
+import arvidNordquistImg from '@/assets/arvid-nordquist-mellanrost-new.png';
+import nescafeImg from '@/assets/nescafe-lyx-new.png';
 import dairyProductsImg from '@/assets/dairy-products-collection.jpg';
 import softDrinksImg from '@/assets/soft-drinks-collection.jpg';
 import coffeeTeaImg from '@/assets/coffee-tea-collection.jpg';
@@ -197,17 +198,17 @@ const Products = () => {
     kaffe: [
       {
         id: 'gevalia',
-        name: 'Gevalia (Mellanrost)',
+        name: 'Gevalia Mellanrost',
         image: gevaliaImg
       },
       {
         id: 'arvid-nordkvist',
-        name: 'Arvid Nordkvist (Premium)',
-        image: premiumCoffeeImg
+        name: 'Arvid Nordquist Mellan',
+        image: arvidNordquistImg
       },
       {
         id: 'nescafe-lyx',
-        name: 'Nescafe Lyx (Instant)',
+        name: 'Nescafe Lyx',
         image: nescafeImg
       }
     ]
@@ -465,11 +466,11 @@ const Products = () => {
                   {otherProducts.kaffe.map((product) => (
                     <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white flex flex-col h-full">
                       <CardHeader className="p-0">
-                        <div className="aspect-square bg-gradient-subtle overflow-hidden rounded-t-lg">
+                        <div className="aspect-[3/4] bg-gradient-subtle overflow-hidden rounded-t-lg p-4">
                           <img
                             src={product.image}
                             alt={product.name}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-contain"
                           />
                         </div>
                       </CardHeader>
