@@ -1,4 +1,4 @@
-import React from 'react';
+
 import officeWorkersImage from '@/assets/office-workers-fruit.jpg';
 import deliveryBoxesImage from '@/assets/fruit-delivery-boxes.jpg';
 import arrangementImage from '@/assets/fresh-fruit-arrangements.jpg';

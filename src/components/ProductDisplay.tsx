@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import CartIndicator from '@/components/CartIndicator';
 import FruktkorgarTab from '@/components/product-tabs/FruktkorgarTab';

@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 import vitaminKorgenLogo from '@/assets/vitamin-korgen-new-logo.jpg';
 
@@ -11,14 +11,14 @@ interface VitaminKorgenLogoProps {
   className?: string;
 }
 
-const VitaminKorgenLogo: React.FC<VitaminKorgenLogoProps> = ({ 
+const VitaminKorgenLogo = ({
   size = 'medium',
   variant = 'full',
   animated = false,
   monochrome = false,
-  link,
+  link = '/',
   className = ""
-}) => {
+}: VitaminKorgenLogoProps) => {
   const sizeClasses = {
     small: variant === 'horizontal' ? 'h-10 w-auto max-w-full' : 'h-10 w-auto max-w-full',
     medium: variant === 'horizontal' ? 'h-16 w-auto max-w-full' : 'h-16 w-auto max-w-full', 

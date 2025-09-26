@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from '@/components/ui/button';
 import picnicBasket from '@/assets/picnic-basket-fruits.jpg';
 

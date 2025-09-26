@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect, MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -20,7 +20,7 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
   const navigate = useNavigate();
   const { getTotalItems } = useCart();
   const days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
-  const [orderType, setOrderType] = React.useState('subscription');
+  const [orderType, setOrderType] = useState('subscription');
 
   // Filter days based on order type and package plan
   const availableDays = (orderType === 'subscription' && packagePlan === 'weekly') 
@@ -52,7 +52,7 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
   };
 
   // Clear selected days when changing order type or package plan to avoid conflicts
-  React.useEffect(() => {
+  useEffect(() => {
     setSelectedDays([]);
   }, [orderType, packagePlan, setSelectedDays]);
 

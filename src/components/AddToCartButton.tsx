@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect, MouseEvent } from 'react';
 import { Check, Plus } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { Button } from '@/components/ui/button';
@@ -19,13 +19,13 @@ interface AddToCartButtonProps {
   selectedDays: string[];
 }
 
-const AddToCartButton: React.FC<AddToCartButtonProps> = ({ 
+const AddToCartButton = ({ 
   product, 
   className = "", 
   showQuantitySelector = true,
   showSizeSelector = false,
   selectedDays
-}) => {
+}: AddToCartButtonProps) => {
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState<string>('');
@@ -33,7 +33,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
   const { addItem } = useCart();
 
   // Initialize selected size for fruit baskets
-  React.useEffect(() => {
+  useEffect(() => {
     if (showSizeSelector && product.prices && !selectedSize) {
       const sizes = Object.keys(product.prices);
       if (sizes.length > 0) {
@@ -49,7 +49,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
     return product.price || 0;
   };
 
-  const handleAddToCart = (e: React.MouseEvent) => {
+  const handleAddToCart = (e: MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     

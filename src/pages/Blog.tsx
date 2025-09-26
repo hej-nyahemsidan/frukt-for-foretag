@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 import Header from '@/components/Header';

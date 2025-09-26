@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { Menu, X, User, ChevronDown, LogOut, BookOpen, Shield } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -96,7 +96,7 @@ const Header = () => {
               const shouldHighlight = isMinaSidor && user;
               
               return (
-                <React.Fragment key={item.label}>
+                <Fragment key={item.label}>
                   {item.isExternal ? (
                     <a
                       href={item.href}
@@ -127,7 +127,7 @@ const Header = () => {
                   {index < navigationItems.length - 1 && (
                     <div className="w-px h-4 bg-gray-300 mx-2"></div>
                   )}
-                </React.Fragment>
+                </Fragment>
               );
             })}
             

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -18,11 +18,11 @@ interface AdminAddUserModalProps {
   onAddUser: (email: string, password: string, fullName?: string, companyName?: string) => Promise<void>;
 }
 
-const AdminAddUserModal: React.FC<AdminAddUserModalProps> = ({
+const AdminAddUserModal = ({
   open,
   onClose,
   onAddUser,
-}) => {
+}: AdminAddUserModalProps) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -32,7 +32,7 @@ const AdminAddUserModal: React.FC<AdminAddUserModalProps> = ({
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     
     if (!formData.email || !formData.password) {
