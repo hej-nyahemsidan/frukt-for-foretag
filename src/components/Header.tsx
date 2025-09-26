@@ -67,8 +67,14 @@ const Header = () => {
   const navigationItems = user ? customerNavigationItems : publicNavigationItems;
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
-      <div className="max-w-screen-2xl mx-auto px-6 lg:px-8">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-lg">
+      {/* Top accent line */}
+      <div className="h-1 bg-gradient-to-r from-secondary via-primary to-primary-light"></div>
+      
+      {/* Subtle pattern overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-30"></div>
+      
+      <div className="relative max-w-screen-2xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 md:h-24">
           {/* Company Logo */}
           <div className="flex-shrink-0 z-10 overflow-hidden -my-1">
@@ -133,7 +139,7 @@ const Header = () => {
                 <ChevronDown className="w-3 h-3" />
                 <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="center" className="w-80 max-h-96 overflow-y-auto bg-white/95 backdrop-blur-sm border border-gray-200 shadow-lg z-50">
+              <DropdownMenuContent align="center" className="w-80 max-h-96 overflow-y-auto bg-white/90 backdrop-blur-md border border-gray-200/50 shadow-xl rounded-lg z-50">
                 {blogPosts.map((post, index) => (
                   <DropdownMenuItem key={post.slug} asChild className="p-0">
                     <Link 
@@ -176,7 +182,7 @@ const Header = () => {
                   <span className="text-sm font-medium">{user.email}</span>
                   <ChevronDown className="w-3 h-3" />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-48 bg-white z-50">
+                <DropdownMenuContent align="end" className="w-48 bg-white/90 backdrop-blur-md border border-gray-200/50 shadow-xl rounded-lg z-50">
                   {isAdmin && (
                     <DropdownMenuItem asChild>
                       <Link to="/admin/dashboard" className="flex items-center w-full">
@@ -334,6 +340,9 @@ const Header = () => {
           </div>
         )}
       </div>
+      
+      {/* Bottom accent line */}
+      <div className="h-1 bg-gradient-to-r from-primary-light via-secondary to-primary shadow-sm"></div>
     </header>
   );
 };
