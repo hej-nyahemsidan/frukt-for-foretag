@@ -434,11 +434,11 @@ const Products = () => {
                   {otherProducts.lask.map((product) => (
                     <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white flex flex-col h-full">
                       <CardHeader className="p-0">
-                        <div className="aspect-square bg-gradient-subtle overflow-hidden rounded-t-lg">
+                        <div className="aspect-[3/4] bg-gradient-subtle overflow-hidden rounded-t-lg p-4">
                           <img
                             src={product.image}
                             alt={product.name}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-contain"
                           />
                         </div>
                       </CardHeader>
