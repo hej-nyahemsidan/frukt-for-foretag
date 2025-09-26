@@ -24,8 +24,11 @@ import prilZeroImg from '@/assets/pril-zero-sugar.png';
 import bonaquaCitronImg from '@/assets/bonaqua-citron-new.png';
 import bonaquaHallonImg from '@/assets/bonaqua-hallon-new.png';
 import merParonImg from '@/assets/mer-paron-new.png';
-import oatlyImg from '@/assets/oatly.jpg';
-import ecoMilkImg from '@/assets/eco-milk.jpg';
+import mellanmjolkEkoLaktosfriImg from '@/assets/mellanmjolk-eko-laktosfri.png';
+import latteArtMjolkEkoImg from '@/assets/latte-art-mjolk-eko.png';
+import mellanmjolkLaktosfriImg from '@/assets/mellanmjolk-laktosfri.png';
+import mellanmjolkPortImg from '@/assets/mellanmjolk-port.png';
+import kaffemjolkLaktosfriImg from '@/assets/kaffemjolk-laktosfri.png';
 import gevaliaImg from '@/assets/gevalia-coffee.jpg';
 import nescafeImg from '@/assets/nescafe.jpg';
 import dairyProductsImg from '@/assets/dairy-products-collection.jpg';
@@ -120,44 +123,29 @@ const Products = () => {
     ],
     mjolk: [
       {
-        id: 'eko-standard',
-        name: 'Eko Standardmjölk',
-        image: ecoMilkImg
+        id: 'mellanmjolk-eko-laktosfri',
+        name: 'Mellanmjölk Eko Laktosfri 1,5%',
+        image: mellanmjolkEkoLaktosfriImg
       },
       {
-        id: 'eko-latt',
-        name: 'Eko Lättmjölk',
-        image: ecoMilkImg
+        id: 'latte-art-mjolk-eko',
+        name: 'Latte Art Mjölk Eko 2,6%',
+        image: latteArtMjolkEkoImg
       },
       {
-        id: 'eko-laktosfri',
-        name: 'Eko Laktosfri Mellanmjölk',
-        image: ecoMilkImg
+        id: 'mellanmjolk-laktosfri',
+        name: 'Mellanmjölk Laktosfri 1,5%',
+        image: mellanmjolkLaktosfriImg
       },
       {
-        id: 'eko-mellan',
-        name: 'Eko Mellanmjölk',
-        image: ecoMilkImg
+        id: 'mellanmjolk-port',
+        name: 'Mellanmjölk Port 1,5%',
+        image: mellanmjolkPortImg
       },
       {
-        id: 'oatly-kaffe',
-        name: 'Oatly iKaffe',
-        image: oatlyImg
-      },
-      {
-        id: 'oatly-original',
-        name: 'Oatly (Original)',
-        image: oatlyImg
-      },
-      {
-        id: 'latte-art',
-        name: 'Latte Art (Barista mjölk)',
-        image: dairyProductsImg
-      },
-      {
-        id: 'alpro',
-        name: 'Alpro (Sojadryck)',
-        image: dairyProductsImg
+        id: 'kaffemjolk-laktosfri',
+        name: 'Kaffemjölk Laktosfri 1,5%',
+        image: kaffemjolkLaktosfriImg
       }
     ],
     lask: [
