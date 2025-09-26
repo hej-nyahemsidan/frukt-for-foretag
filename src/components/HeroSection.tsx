@@ -32,11 +32,11 @@ const HeroSection = () => {
                 som gör skillnad
               </h1>
               
-              <p className="text-lg leading-relaxed text-slate-600 max-w-lg">
-                Vi levererar handplockade fruktkorgar direkt till ert kontor i Stockholm. 
-                Sedan 2024 har vi försett över 500 företag med färsk energi, ökad produktivitet och 
-                bättre välmående genom våra premiumprodukter.
-              </p>
+               <p className="text-lg leading-relaxed text-slate-600 max-w-lg">
+                 Vi levererar handplockade fruktkorgar direkt till ert kontor i Stockholm. 
+                 Sedan 2021 har vi försett över 200 företag med färsk energi, ökad produktivitet och 
+                 bättre välmående genom våra premiumprodukter.
+               </p>
               
               {/* Promotional Button */}
               <Button 
