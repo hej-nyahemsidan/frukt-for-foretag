@@ -74,7 +74,7 @@ const Products = () => {
     },
     {
       id: 'frukt-eko',
-      name: 'Fruktkorg Eko',
+      name: 'Fruktkorg Säsong',
       image: fruktkorgrOriginalImg,
       description: '100% ekologiska och KRAV-märkta frukter',
       prices: {
@@ -82,8 +82,7 @@ const Products = () => {
         '6kg': 434,
         '9kg': 651,
         '11kg': 796
-      },
-      eco: true
+      }
     },
     {
       id: 'frukt-banan',
@@ -290,16 +289,11 @@ const Products = () => {
                       key={product.id} 
                       className="group hover:shadow-elegant transition-all duration-300 hover:scale-[1.02] relative bg-white flex flex-col h-full"
                     >
-                      {product.popular && (
-                        <Badge className="absolute top-2 right-2 z-10 bg-primary text-white text-xs">
-                          Populär
-                        </Badge>
-                      )}
-                      {product.eco && (
-                        <Badge className="absolute top-2 left-2 z-10 bg-green-600 text-white text-xs">
-                          Eko
-                        </Badge>
-                      )}
+                       {product.popular && (
+                         <Badge className="absolute top-2 right-2 z-10 bg-primary text-white text-xs">
+                           Populär
+                         </Badge>
+                       )}
                       
                       <CardHeader className="p-0">
                         <div className="aspect-square bg-gradient-subtle overflow-hidden rounded-t-lg">
