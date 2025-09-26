@@ -1,83 +1,71 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AddToCartButton from '@/components/AddToCartButton';
-import fruktkorgrPremiumImg from '@/assets/fruktkorg-premium-new.jpg';
-import fruktkorgrSupremeImg from '@/assets/fruktkorg-standard-new.jpg';
-import fruktkorgrOriginalImg from '@/assets/fruktkorg-eko-new.jpg';
-import fruktkorgrBananImg from '@/assets/fruktkorg-banan-new.jpg';
-import fruktkorgrBasImg from '@/assets/fruktlada-new.jpg';
+import { supabase } from '@/integrations/supabase/client';
 
 interface FruktkorgarTabProps {
   selectedDays: string[];
 }
 
-const fruktkorgar = [
-  {
-    id: 'frukt-premium',
-    name: 'Fruktkorg Premium',
-    image: fruktkorgrPremiumImg,
-    prices: {
-      '4kg': 263,
-      '6kg': 395,
-      '9kg': 592,
-      '11kg': 724
-    }
-  },
-  {
-    id: 'frukt-supreme',
-    name: 'Fruktkorg Supreme',
-    image: fruktkorgrSupremeImg,
-    prices: {
-      '4kg': 230,
-      '6kg': 345,
-      '9kg': 518,
-      '11kg': 633
-    }
-  },
-  {
-    id: 'frukt-original',
-    name: 'Fruktkorg Original',
-    image: fruktkorgrOriginalImg,
-    prices: {
-      '4kg': 289,
-      '6kg': 434,
-      '9kg': 651,
-      '11kg': 796
-    }
-  },
-  {
-    id: 'frukt-banan',
-    name: 'Fruktkorg Banan Plus',
-    image: fruktkorgrBananImg,
-    prices: {
-      '4kg': 249,
-      '6kg': 374,
-      '9kg': 560,
-      '11kg': 686
-    }
-  },
-  {
-    id: 'frukt-bas',
-    name: 'Fruktkorg Bas',
-    image: fruktkorgrBasImg,
-    prices: {
-      '4kg': 199,
-      '6kg': 299,
-      '9kg': 449,
-      '11kg': 549
-    }
-  }
-];
+interface Product {
+  id: string;
+  name: string;
+  category: string;
+  image_url: string;
+  prices: Record<string, number>;
+}
 
 const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
+  const [fruktkorgar, setFruktkorgar] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchFruktkorgar();
+  }, []);
+
+  const fetchFruktkorgar = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('category', 'fruktkorgar')
+        .order('name');
+
+      if (error) throw error;
+
+      // Type assertion to handle Json type from Supabase
+      const typedProducts: Product[] = (data || []).map(product => ({
+        ...product,
+        prices: product.prices as Record<string, number>
+      }));
+
+      setFruktkorgar(typedProducts);
+    } catch (error) {
+      console.error('Error fetching fruktkorgar:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-8">
+        <div className="text-lg">Laddar produkter...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-3 gap-4">
       {fruktkorgar.map((product) => (
         <div key={product.id} className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
           <div className="aspect-square bg-white overflow-hidden rounded-lg">
             <img 
-              src={product.image}
+              src={product.image_url}
               alt={product.name}
               className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.src = '/src/assets/product-placeholder.jpg';
+              }}
             />
           </div>
           <div className="p-3 space-y-3">
@@ -88,7 +76,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
                 name: product.name,
                 prices: product.prices,
                 category: 'fruktkorgar',
-                image: product.image
+                image: product.image_url
               }}
               className="w-full text-xs px-2 py-1"
               showQuantitySelector={true}
@@ -98,6 +86,12 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
           </div>
         </div>
       ))}
+      
+      {fruktkorgar.length === 0 && !loading && (
+        <div className="col-span-3 text-center py-8">
+          <p className="text-gray-500">Inga fruktkorgar hittades.</p>
+        </div>
+      )}
     </div>
   );
 };

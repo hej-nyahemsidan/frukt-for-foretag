@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { LogOut, Users, ShoppingCart, BarChart3 } from 'lucide-react';
 import { useAdminAuth } from '../contexts/AdminAuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import AdminUserManagement from '../components/AdminUserManagement';
+import AdminProductManagement from '../components/AdminProductManagement';
 import VitaminKorgenLogo from '../../components/VitaminKorgenLogo';
 
 const AdminDashboard = () => {
@@ -60,8 +62,26 @@ const AdminDashboard = () => {
       {/* Main Content */}
       <main className="admin-main max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="admin-main-content px-4 py-6 sm:px-0">
-          {/* User Management Section */}
-          <AdminUserManagement />
+          <Tabs defaultValue="users" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 mb-6">
+              <TabsTrigger value="users" className="flex items-center gap-2">
+                <Users className="w-4 h-4" />
+                Användare
+              </TabsTrigger>
+              <TabsTrigger value="products" className="flex items-center gap-2">
+                <ShoppingCart className="w-4 h-4" />
+                Produkter
+              </TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="users" className="space-y-4">
+              <AdminUserManagement />
+            </TabsContent>
+            
+            <TabsContent value="products" className="space-y-4">
+              <AdminProductManagement />
+            </TabsContent>
+          </Tabs>
         </div>
       </main>
     </div>
