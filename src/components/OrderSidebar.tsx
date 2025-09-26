@@ -22,9 +22,11 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
   const days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
   const [orderType, setOrderType] = React.useState('subscription');
 
-  // Filter days based on package plan
-  const availableDays = packagePlan === 'weekly' ? ['Måndag', 'Onsdag'] : days;
-  const isWeeklyPlan = packagePlan === 'weekly';
+  // Filter days based on order type and package plan
+  const availableDays = (orderType === 'subscription' && packagePlan === 'weekly') 
+    ? ['Måndag', 'Onsdag'] 
+    : days;
+  const isWeeklySubscription = orderType === 'subscription' && packagePlan === 'weekly';
 
   const totalItems = getTotalItems();
   const hasSelectedDays = selectedDays.length > 0;
@@ -32,8 +34,8 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
   const canProceed = hasSelectedDays && hasItems;
 
   const handleDayChange = (day: string, checked: boolean) => {
-    if (isWeeklyPlan) {
-      // For weekly plan, only allow one day selection (radio behavior)
+    if (isWeeklySubscription) {
+      // For weekly subscription, only allow one day selection (radio behavior)
       setSelectedDays(checked ? [day] : []);
     } else {
       // For other plans, allow multiple selections (checkbox behavior)
@@ -49,10 +51,10 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
     setSelectedDays([day]);
   };
 
-  // Clear selected days when changing package plan to avoid conflicts
+  // Clear selected days when changing order type or package plan to avoid conflicts
   React.useEffect(() => {
     setSelectedDays([]);
-  }, [packagePlan, setSelectedDays]);
+  }, [orderType, packagePlan, setSelectedDays]);
 
   const handleNext = () => {
     if (canProceed) {
@@ -141,8 +143,8 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
       <div className="mb-8">
         <h3 className="text-lg font-semibold text-charcoal mb-4">Välj vilka dagar</h3>
         <div className="space-y-3">
-          {isWeeklyPlan ? (
-            // Radio group for weekly plan (only Monday and Wednesday)
+          {isWeeklySubscription ? (
+            // Radio group for weekly subscription (only Monday and Wednesday)
             <RadioGroup 
               value={selectedDays[0] || ''} 
               onValueChange={handleWeeklyDaySelect}
