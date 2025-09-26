@@ -76,7 +76,7 @@ const ProductShowcase = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-12">
           {products.map((product, index) => (
             <Link 
-              to={`/produkter#${product.id}`}
+              to="/produkter#alla-produkter"
               key={product.id}
               className="group block"
             >
