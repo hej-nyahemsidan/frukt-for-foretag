@@ -152,10 +152,17 @@ const Footer = () => {
           <div className="text-sm text-gray-200">
             © {currentYear} FruktPortalen AB. Alla rättigheter förbehållna.
           </div>
-          <div className="flex space-x-6 text-sm text-gray-200">
-            <a href="/kontakt" className="hover:text-yellow-400 transition-colors">Kontakt</a>
-            <a href="/om-oss" className="hover:text-yellow-400 transition-colors">Om Oss</a>
-            <a href="/offertforfragan" className="hover:text-yellow-400 transition-colors">Offertförfrågan</a>
+          <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-200">
+            <div className="flex space-x-6">
+              <a href="/kontakt" className="hover:text-yellow-400 transition-colors">Kontakt</a>
+              <a href="/om-oss" className="hover:text-yellow-400 transition-colors">Om Oss</a>
+              <a href="/offertforfragan" className="hover:text-yellow-400 transition-colors">Offertförfrågan</a>
+            </div>
+            <div className="flex space-x-4 text-xs text-gray-300">
+              <a href="/integritetspolicy" className="hover:text-yellow-400 transition-colors">Integritetspolicy</a>
+              <a href="/cookiepolicy" className="hover:text-yellow-400 transition-colors">Cookiepolicy</a>
+              <a href="/villkor" className="hover:text-yellow-400 transition-colors">Villkor</a>
+            </div>
           </div>
         </div>
       </div>

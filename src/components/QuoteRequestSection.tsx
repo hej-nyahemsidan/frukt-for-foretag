@@ -105,7 +105,6 @@ const QuoteRequestSection = () => {
                     <Input
                       value={formData.companyName}
                       onChange={(e) => handleInputChange('companyName', e.target.value)}
-                      placeholder="Google AB"
                       className="w-full text-lg py-3"
                     />
                     <label className="text-sm text-gray-600">Företagsnamn</label>
@@ -115,7 +114,6 @@ const QuoteRequestSection = () => {
                     <Input
                       value={formData.contactPerson}
                       onChange={(e) => handleInputChange('contactPerson', e.target.value)}
-                      placeholder="Julia Andersson"
                       className="w-full text-lg py-3"
                       required
                     />
@@ -127,7 +125,6 @@ const QuoteRequestSection = () => {
                       type="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
-                      placeholder="dinepost@epost.se"
                       className="w-full text-lg py-3"
                       required
                     />
@@ -139,7 +136,6 @@ const QuoteRequestSection = () => {
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
-                      placeholder="+46 771 793 336"
                       className="w-full text-lg py-3"
                     />
                     <label className="text-sm text-gray-600">Telefon</label>
@@ -149,7 +145,6 @@ const QuoteRequestSection = () => {
                     <Input
                       value={formData.location}
                       onChange={(e) => handleInputChange('location', e.target.value)}
-                      placeholder="Stockholm"
                       className="w-full text-lg py-3"
                       required
                     />
@@ -160,7 +155,6 @@ const QuoteRequestSection = () => {
                     <Textarea
                       value={formData.message}
                       onChange={(e) => handleInputChange('message', e.target.value)}
-                      placeholder="Ex: Beskriv ert behov. Ex. Vi är intresserade av 2st 9 kg Eko korgar. Ena ska levereras på måndag och den andra på Onsdag."
                       rows={5}
                       className="w-full text-lg"
                     />

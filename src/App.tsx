@@ -14,6 +14,9 @@ import Contact from "./pages/Contact";
 import Products from "./pages/Products";
 import CustomerPortal from "./pages/CustomerPortal";
 import QuoteRequest from "./pages/QuoteRequest";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import CookiePolicy from "./pages/CookiePolicy";
+import Terms from "./pages/Terms";
 import Checkout from "./pages/Checkout";
 import NotFound from "./pages/NotFound";
 import CustomerDashboard from "./pages/CustomerDashboard";
@@ -51,6 +54,9 @@ const App = () => (
                   </ProtectedRoute>
                 } />
                 <Route path="/offertforfragan" element={<QuoteRequest />} />
+                <Route path="/integritetspolicy" element={<PrivacyPolicy />} />
+                <Route path="/cookiepolicy" element={<CookiePolicy />} />
+                <Route path="/villkor" element={<Terms />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/blog/:slug" element={<Blog />} />
                 <Route path="/blommor" element={<Blommor />} />
