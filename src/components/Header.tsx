@@ -38,19 +38,17 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
-      <div className="max-w-screen-2xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 md:h-24">
+      <div className="container mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 md:h-18">
           {/* Company Logo */}
           <div className="flex-shrink-0">
-            <div className="bg-white rounded-xl px-3 py-2 shadow-sm border border-gray-100">
-              <VitaminKorgenLogo 
-                size="xl" 
-                variant="horizontal"
-                animated={true} 
-                link="/" 
-                className=""
-              />
-            </div>
+            <VitaminKorgenLogo 
+              size="medium" 
+              variant="horizontal"
+              animated={true} 
+              link="/" 
+              className=""
+            />
           </div>
 
           {/* Desktop Navigation - Centered */}

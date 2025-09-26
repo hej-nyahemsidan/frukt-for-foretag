@@ -28,9 +28,9 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <div className="mb-6">
-              <div className="p-4 bg-white rounded-lg inline-block shadow-sm border border-gray-100">
+              <div className="p-3 bg-white rounded-lg inline-block shadow-sm">
                 <VitaminKorgenLogo 
-                  size="xl" 
+                  size="medium" 
                   variant="full"
                   link="/" 
                   className=""
