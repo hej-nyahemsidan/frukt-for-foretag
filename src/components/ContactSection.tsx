@@ -95,6 +95,7 @@ const ContactSection = () => {
               <div className="bg-white p-8 rounded-xl shadow-lg border">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
+                    <label className="text-sm text-gray-600 font-medium">Namn</label>
                     <Input
                       value={formData.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
@@ -102,10 +103,10 @@ const ContactSection = () => {
                       className="w-full text-lg py-3"
                       required
                     />
-                    <label className="text-sm text-gray-600">Namn</label>
                   </div>
                   
                   <div className="space-y-2">
+                    <label className="text-sm text-gray-600 font-medium">E-post*</label>
                     <Input
                       type="email"
                       value={formData.email}
@@ -114,10 +115,10 @@ const ContactSection = () => {
                       className="w-full text-lg py-3"
                       required
                     />
-                    <label className="text-sm text-gray-600">E-post*</label>
                   </div>
                   
                   <div className="space-y-2">
+                    <label className="text-sm text-gray-600 font-medium">Meddelande</label>
                     <Textarea
                       value={formData.message}
                       onChange={(e) => handleInputChange('message', e.target.value)}
@@ -125,7 +126,6 @@ const ContactSection = () => {
                       rows={5}
                       className="w-full text-lg"
                     />
-                    <label className="text-sm text-gray-600">Meddelande</label>
                   </div>
                   
                   <Button 
