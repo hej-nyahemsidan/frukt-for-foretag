@@ -5,16 +5,20 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { 
-  ShoppingCart, 
+  Monitor, 
   Smartphone, 
   Apple, 
   Headphones, 
   Users, 
-  Settings,
+  Cog,
   CheckCircle2,
   Phone,
   Mail,
-  MessageCircle
+  MessageCircle,
+  Zap,
+  Coffee,
+  CreditCard,
+  Wrench
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -28,7 +32,10 @@ const Varuautomat = () => {
         <section className="py-20 px-4 bg-gradient-to-br from-blue-50 to-purple-50">
           <div className="container mx-auto text-center">
             <div className="flex justify-center mb-6">
-              <ShoppingCart className="w-16 h-16 text-blue-600" />
+              <div className="relative">
+                <Monitor className="w-16 h-16 text-blue-600" />
+                <Coffee className="w-6 h-6 text-purple-500 absolute -top-1 -right-1 bg-white rounded-full p-1" />
+              </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
               Varuautomat på jobbet – smidig service för en trevligare arbetsdag
@@ -68,7 +75,10 @@ const Varuautomat = () => {
               <Card className="p-6 bg-white shadow-md hover:shadow-lg transition-shadow">
                 <CardHeader className="pb-4">
                   <div className="flex justify-center mb-4">
-                    <Settings className="w-12 h-12 text-blue-600" />
+                    <div className="relative">
+                      <Wrench className="w-12 h-12 text-blue-600" />
+                      <Cog className="w-4 h-4 text-purple-500 absolute -top-1 -right-1 animate-spin" style={{animationDuration: '3s'}} />
+                    </div>
                   </div>
                   <CardTitle className="text-xl text-center">Smidig installation – vi sköter allt</CardTitle>
                 </CardHeader>
@@ -85,7 +95,10 @@ const Varuautomat = () => {
               <Card className="p-6 bg-white shadow-md hover:shadow-lg transition-shadow">
                 <CardHeader className="pb-4">
                   <div className="flex justify-center mb-4">
-                    <Smartphone className="w-12 h-12 text-blue-600" />
+                    <div className="relative">
+                      <Smartphone className="w-12 h-12 text-blue-600" />
+                      <CreditCard className="w-4 h-4 text-green-500 absolute -bottom-1 -right-1 bg-white rounded p-0.5" />
+                    </div>
                   </div>
                   <CardTitle className="text-xl text-center">Moderna och kontantlösa betalningsalternativ</CardTitle>
                 </CardHeader>
@@ -101,7 +114,10 @@ const Varuautomat = () => {
               <Card className="p-6 bg-white shadow-md hover:shadow-lg transition-shadow">
                 <CardHeader className="pb-4">
                   <div className="flex justify-center mb-4">
-                    <Apple className="w-12 h-12 text-blue-600" />
+                    <div className="relative">
+                      <Apple className="w-12 h-12 text-green-600" />
+                      <Zap className="w-4 h-4 text-yellow-500 absolute -top-1 -right-1 bg-white rounded-full p-0.5" />
+                    </div>
                   </div>
                   <CardTitle className="text-xl text-center">Kombinera med frukt på jobbet</CardTitle>
                 </CardHeader>
@@ -222,7 +238,7 @@ const Varuautomat = () => {
               </Link>
               
               <Link to="/offertforfragan">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
+                <Button size="lg" variant="outline" className="border-2 border-white/80 text-white bg-white/10 backdrop-blur-sm hover:bg-white hover:text-blue-600 shadow-lg">
                   Begär offert
                 </Button>
               </Link>
