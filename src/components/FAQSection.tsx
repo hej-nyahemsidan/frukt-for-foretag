@@ -33,14 +33,6 @@ const FAQSection = () => {
       answer: "Vi följer säsongerna och erbjuder alltid den fräschaste frukten som är i säsong. På vintern fokuserar vi på citrusfrukter och äpplen, på sommaren på bär och stenfrukter."
     },
     {
-      question: "Är frukten ekologisk?",
-      answer: "Vi erbjuder både ekologisk och konventionell frukt. All vår frukt kommer från certifierade leverantörer och vi kan anpassa sortimentet efter era önskemål och budget."
-    },
-    {
-      question: "Levererar ni till hela Sverige?",
-      answer: "Vi fokuserar på Stockholmsområdet där vi kan garantera bästa kvalitet och service. För andra områden, kontakta oss för att diskutera möjligheter."
-    },
-    {
       question: "Vad är minsta beställning för fruktkorgar på jobbet?",
       answer: "Vår minsta leverans är en fruktkorg från 4kg per vecka. Detta räcker för cirka 15-20 personer beroende på konsumtion och passar perfekt för mindre kontor."
     }

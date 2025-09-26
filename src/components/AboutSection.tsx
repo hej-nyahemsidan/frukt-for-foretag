@@ -40,10 +40,6 @@ const AboutSection = () => {
       answer: "Vår minsta leverans är 10 kg frukt per vecka. Detta motsvarar ungefär en mindre fruktkorg som räcker för 15-20 personer beroende på konsumtion."
     },
     {
-      question: "Är frukten ekologisk?",
-      answer: "Vi erbjuder både ekologisk och konventionell frukt. All vår frukt kommer från certifierade leverantörer och vi kan anpassa sortimentet efter era önskemål och budget."
-    },
-    {
       question: "Hur går beställningen till?",
       answer: "Beställning görs enkelt via vår webbplats eller genom att kontakta oss direkt. Vi skapar en skräddarsydd lösning baserat på era behov och levererar sedan varje vecka på en tid som passar er."
     },
@@ -51,10 +47,6 @@ const AboutSection = () => {
       question: "Vad kostar det?",
       answer: "Priset varierar beroende på volym, frukttyper och leveransfrekvens. Vi erbjuder konkurrenskraftiga priser och ger gärna en kostnadsfri offert anpassad efter era behov."
     },
-    {
-      question: "Levererar ni till hela Sverige?",
-      answer: "Ja, vi levererar till de flesta platser i Sverige. För mindre orter eller avlägsna områden kan vi behöva justera leveransfrekvensen, men vi hittar alltid en lösning som fungerar."
-    }
   ];
 
   const toggleFAQ = (index: number) => {
