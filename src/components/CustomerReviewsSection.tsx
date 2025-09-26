@@ -157,32 +157,19 @@ const CustomerReviewsSection = () => {
         {/* Google Reviews Button */}
         <div className="text-center">
           <Button
+            asChild
             size="lg"
             className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground px-10 py-6 text-lg font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
-            onClick={() => {
-              console.log('Google Reviews button clicked');
-              // Try multiple fallback URLs for better reliability
-              const urls = [
-                'https://www.google.com/maps/place/Vitaminkorgen/@59.3293,18.0686,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d59.3293!4d18.0686',
-                'https://www.google.com/search?q=Vitaminkorgen+Stockholm+reviews',
-                'https://maps.google.com/?q=Vitaminkorgen+Stockholm'
-              ];
-              
-              for (const url of urls) {
-                try {
-                  window.open(url, '_blank', 'noopener,noreferrer');
-                  console.log('Successfully opened:', url);
-                  break;
-                } catch (error) {
-                  console.error('Failed to open URL:', url, error);
-                }
-              }
-            }}
           >
-            <span className="flex items-center gap-3">
+            <a
+              href="https://www.google.com/search?q=Vitaminkorgen+Stockholm+reviews"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3"
+            >
               Läs alla recensioner på Google
               <ExternalLink className="w-5 h-5" />
-            </span>
+            </a>
           </Button>
         </div>
       </div>
