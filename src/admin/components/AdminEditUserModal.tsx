@@ -101,9 +101,21 @@ const AdminEditUserModal: React.FC<AdminEditUserModalProps> = ({
         if (customerError) throw customerError;
       }
 
+      // Reset password if requested
+      if (formData.resetPassword && formData.newPassword) {
+        const { error: passwordError } = await supabase.functions.invoke('update-user-password', {
+          body: { 
+            userId: user.id, 
+            newPassword: formData.newPassword 
+          }
+        });
+
+        if (passwordError) throw passwordError;
+      }
+
       toast({
         title: 'Användare uppdaterad',
-        description: `Ändringar för ${formData.email} har sparats.`,
+        description: `Ändringar för ${formData.email} har sparats${formData.resetPassword ? ' och lösenord har återställts' : ''}.`,
       });
 
       onUserUpdated();
