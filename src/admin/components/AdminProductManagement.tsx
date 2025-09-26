@@ -228,7 +228,7 @@ const AdminProductManagement = () => {
   };
 
   const getPriceLabel = (size: string) => {
-    if (size === 'default') return 'Pris';
+    if (size === 'default') return 'Styckpris';
     return size;
   };
 
@@ -368,36 +368,44 @@ const AdminProductManagement = () => {
               <div>
                 <Label>Priser</Label>
                 {newProductForm.category === 'fruktkorgar' ? (
-                  <div className="grid grid-cols-2 gap-2">
-                    {sizeOptions.map(size => (
-                      <div key={size} className="flex items-center space-x-2">
-                        <Label className="w-10 text-sm">{size}:</Label>
-                        <Input
-                          type="number"
-                          value={newProductForm.prices[size] || ''}
-                          onChange={(e) => setNewProductForm({
-                            ...newProductForm,
-                            prices: { ...newProductForm.prices, [size]: e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 }
-                          })}
-                          placeholder=""
-                          className="text-sm"
-                        />
-                      </div>
-                    ))}
+                  <div className="space-y-2">
+                    <p className="text-xs text-muted-foreground">Viktbaserade priser för fruktkorgar</p>
+                    <div className="grid grid-cols-2 gap-2 p-3 bg-muted/50 rounded-md">
+                      {sizeOptions.map(size => (
+                        <div key={size} className="flex items-center space-x-2">
+                          <Label className="w-10 text-sm font-medium">{size}:</Label>
+                          <Input
+                            type="number"
+                            value={newProductForm.prices[size] || ''}
+                            onChange={(e) => setNewProductForm({
+                              ...newProductForm,
+                              prices: { ...newProductForm.prices, [size]: e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 }
+                            })}
+                            placeholder="0"
+                            className="text-sm"
+                          />
+                          <span className="text-xs text-muted-foreground">kr</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 ) : (
-                  <div className="flex items-center space-x-2">
-                    <Label className="text-sm">Pris:</Label>
-                    <Input
-                      type="number"
-                      value={newProductForm.prices['default'] || ''}
-                      onChange={(e) => setNewProductForm({
-                        ...newProductForm,
-                        prices: { 'default': e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 }
-                      })}
-                      placeholder=""
-                      className="text-sm"
-                    />
+                  <div className="space-y-2">
+                    <p className="text-xs text-muted-foreground">Styckpris för enskilda produkter</p>
+                    <div className="flex items-center space-x-2 p-3 bg-muted/50 rounded-md">
+                      <Label className="text-sm font-medium">Styckpris:</Label>
+                      <Input
+                        type="number"
+                        value={newProductForm.prices['default'] || ''}
+                        onChange={(e) => setNewProductForm({
+                          ...newProductForm,
+                          prices: { 'default': e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 }
+                        })}
+                        placeholder="0"
+                        className="text-sm flex-1"
+                      />
+                      <span className="text-sm text-muted-foreground">kr per styck</span>
+                    </div>
                   </div>
                 )}
               </div>
