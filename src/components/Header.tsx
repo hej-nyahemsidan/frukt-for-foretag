@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { Menu, X, User, ChevronDown, LogOut, BookOpen } from 'lucide-react';
+import { Menu, X, User, ChevronDown, LogOut, BookOpen, Shield } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@/contexts/AuthContext';
+import { useAdminAuth } from '@/admin/contexts/AdminAuthContext';
 import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user, logout } = useAuth();
+  const { isAdmin } = useAdminAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -152,7 +154,20 @@ const Header = () => {
           </nav>
 
           {/* Right Side - Contact & Actions */}
-          <div className="hidden lg:flex items-center space-x-6">            
+          <div className="hidden lg:flex items-center space-x-6">
+            {/* Admin Dashboard Link - Sliding Animation */}
+            {isAdmin && (
+              <div className="animate-slide-in-right">
+                <Link 
+                  to="/admin/dashboard"
+                  className="flex items-center space-x-2 text-orange-600 hover:text-orange-700 transition-colors px-3 py-2 rounded-lg bg-orange-50 hover:bg-orange-100"
+                >
+                  <Shield className="w-4 h-4" />
+                  <span className="text-sm font-medium">Admin</span>
+                </Link>
+              </div>
+            )}
+            
             {/* User Menu or Login Link */}
             {user ? (
               <DropdownMenu>
@@ -162,6 +177,14 @@ const Header = () => {
                   <ChevronDown className="w-3 h-3" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-48">
+                  {isAdmin && (
+                    <DropdownMenuItem asChild>
+                      <Link to="/admin/dashboard" className="flex items-center w-full">
+                        <Shield className="w-4 h-4 mr-2" />
+                        Admin Dashboard
+                      </Link>
+                    </DropdownMenuItem>
+                  )}
                   <DropdownMenuItem onClick={handleLogout} className="text-red-600 hover:text-red-700">
                     <LogOut className="w-4 h-4 mr-2" />
                     Logga ut
@@ -251,7 +274,21 @@ const Header = () => {
               </div>
               
               {/* Mobile Contact & Actions */}
-              <div className="pt-4 px-4 space-y-3 border-t border-gray-200 mt-4">                
+              <div className="pt-4 px-4 space-y-3 border-t border-gray-200 mt-4">
+                {/* Admin Dashboard Link for Mobile */}
+                {isAdmin && (
+                  <div className="animate-fade-in">
+                    <Link 
+                      to="/admin/dashboard"
+                      className="flex items-center space-x-2 text-orange-600 hover:text-orange-700 transition-colors px-2 py-2 rounded-lg bg-orange-50 hover:bg-orange-100"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      <Shield className="w-4 h-4" />
+                      <span className="text-sm font-medium">Admin Dashboard</span>
+                    </Link>
+                  </div>
+                )}
+                
                 {/* User Menu or Login Link */}
                 {user ? (
                   <div className="space-y-2">
