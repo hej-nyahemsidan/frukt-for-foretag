@@ -19,6 +19,7 @@ import NotFound from "./pages/NotFound";
 import CustomerDashboard from "./pages/CustomerDashboard";
 import AdminLogin from "./admin/pages/AdminLogin";
 import AdminDashboard from "./admin/pages/AdminDashboard";
+import Blog from "./pages/Blog";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,7 @@ const App = () => (
                 } />
                 <Route path="/offertforfragan" element={<QuoteRequest />} />
                 <Route path="/checkout" element={<Checkout />} />
+                <Route path="/blog/:slug" element={<Blog />} />
                 
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />

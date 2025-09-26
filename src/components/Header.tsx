@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, User, ChevronDown, LogOut } from 'lucide-react';
+import { Menu, X, User, ChevronDown, LogOut, BookOpen } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -32,6 +32,24 @@ const Header = () => {
     { label: 'Om Oss', href: '/om-oss', isExternal: false },   // About Us
     { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
     { label: 'Mina Sidor', href: '/dashboard', isExternal: false }, // Customer Dashboard - moved to end
+  ];
+
+  const blogPosts = [
+    { 
+      title: 'Därför ska du ha frukt på jobbet – en fräsch investering i välmående och energi',
+      slug: 'frukt-pa-jobbet',
+      excerpt: 'Att erbjuda frukt på jobbet har blivit allt mer populärt bland företag i Stockholm – och det är lätt att förstå varför.'
+    },
+    {
+      title: 'Frukt som mellanmål – en naturlig investering i din långsiktiga hälsa',
+      slug: 'frukt-som-mellanmal',
+      excerpt: 'Att välja frukt som mellanmål är ett av de enklaste och mest effektiva sätten att förbättra sin hälsa.'
+    },
+    {
+      title: 'Blommor & växter till jobbet – enkelt med Vitaminkorgen',
+      slug: 'blommor-vaxter-jobbet',
+      excerpt: 'Visste du att vi på Vitaminkorgen även erbjuder uthyrning av blommor och växter till företag?'
+    }
   ];
 
   const navigationItems = user ? customerNavigationItems : publicNavigationItems;
@@ -93,6 +111,34 @@ const Header = () => {
                 </React.Fragment>
               );
             })}
+            
+            {/* Blog Dropdown */}
+            <div className="w-px h-4 bg-gray-300 mx-2"></div>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 text-charcoal hover:text-secondary flex items-center space-x-1">
+                <BookOpen className="w-4 h-4" />
+                <span>Blog</span>
+                <ChevronDown className="w-3 h-3" />
+                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center" className="w-80 max-h-96 overflow-y-auto bg-white/95 backdrop-blur-sm border border-gray-200 shadow-lg">
+                {blogPosts.map((post, index) => (
+                  <DropdownMenuItem key={post.slug} asChild className="p-0">
+                    <Link 
+                      to={`/blog/${post.slug}`}
+                      className="block p-4 hover:bg-lightgreen/50 transition-colors"
+                    >
+                      <h3 className="font-medium text-charcoal text-sm leading-tight mb-2">
+                        {post.title}
+                      </h3>
+                      <p className="text-xs text-gray-600 leading-relaxed">
+                        {post.excerpt}
+                      </p>
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
 
           {/* Right Side - Contact & Actions */}
@@ -173,6 +219,26 @@ const Header = () => {
                   </Link>
                 );
               })}
+              
+              {/* Mobile Blog Section */}
+              <div className="px-4 py-2">
+                <div className="flex items-center space-x-2 text-charcoal font-medium mb-2">
+                  <BookOpen className="w-4 h-4" />
+                  <span>Blog</span>
+                </div>
+                <div className="space-y-2 pl-6">
+                  {blogPosts.map((post) => (
+                    <Link
+                      key={post.slug}
+                      to={`/blog/${post.slug}`}
+                      className="block text-sm text-gray-600 hover:text-secondary transition-colors py-1"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {post.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
               
               {/* Mobile Contact & Actions */}
               <div className="pt-4 px-4 space-y-3 border-t border-gray-200 mt-4">                
