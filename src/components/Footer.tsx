@@ -22,8 +22,8 @@ const Footer = () => {
       <div className="h-1 bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-400"></div>
       
       {/* Main footer content */}
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      <div className="container mx-auto px-6 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
           
           {/* Company Info */}
           <div className="space-y-6">
@@ -142,21 +142,14 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-green-700 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <div className="border-t border-green-700 pt-6 flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
           <div className="text-sm text-gray-200">
             © {currentYear} VitaminKorgen AB. Alla rättigheter förbehållna.
           </div>
-          <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-200">
-            <div className="flex space-x-6">
-              <a href="/kontakt" className="hover:text-yellow-400 transition-colors">Kontakt</a>
-              <a href="/om-oss" className="hover:text-yellow-400 transition-colors">Om Oss</a>
-              <a href="/offertforfragan" className="hover:text-yellow-400 transition-colors">Offertförfrågan</a>
-            </div>
-            <div className="flex space-x-4 text-xs text-gray-300">
-              <a href="/integritetspolicy" className="hover:text-yellow-400 transition-colors">Integritetspolicy</a>
-              <a href="/cookiepolicy" className="hover:text-yellow-400 transition-colors">Cookiepolicy</a>
-              <a href="/villkor" className="hover:text-yellow-400 transition-colors">Villkor</a>
-            </div>
+          <div className="flex space-x-4 text-xs text-gray-300">
+            <a href="/integritetspolicy" className="hover:text-yellow-400 transition-colors">Integritetspolicy</a>
+            <a href="/cookiepolicy" className="hover:text-yellow-400 transition-colors">Cookiepolicy</a>
+            <a href="/villkor" className="hover:text-yellow-400 transition-colors">Villkor</a>
           </div>
         </div>
       </div>
