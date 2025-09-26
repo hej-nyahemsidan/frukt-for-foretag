@@ -41,13 +41,13 @@ const StarRating = () => (
 );
 
 const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
-  <Card className="h-full bg-white/50 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+  <Card className="h-full bg-gradient-to-br from-white to-fresh/5 backdrop-blur-sm border border-fresh/20 shadow-lg hover:shadow-xl hover:shadow-fresh/20 transition-all duration-300 hover:scale-105">
     <CardContent className="p-6">
       <StarRating />
-      <blockquote className="text-foreground/80 mb-4 italic">
+      <blockquote className="text-charcoal/90 mb-4 italic font-medium">
         "{review.text}"
       </blockquote>
-      <cite className="text-sm font-medium text-primary">
+      <cite className="text-sm font-semibold text-forest">
         - {review.author}
       </cite>
     </CardContent>
@@ -56,11 +56,12 @@ const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
 
 const CustomerReviewsSection = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-green-50 via-white to-green-50 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-accent-lightgreen via-fresh/5 to-lightgreen relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-primary rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-secondary rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-fresh rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-forest rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 w-24 h-24 bg-accent-orange rounded-full blur-2xl"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -76,10 +77,10 @@ const CustomerReviewsSection = () => {
               ))}
             </div>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-4xl lg:text-5xl font-bold text-forest mb-4">
             Vad våra kunder säger
           </h2>
-          <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
+          <p className="text-xl text-charcoal/80 max-w-2xl mx-auto font-medium">
             Vi är stolta över våra 5 stjärnor på Google och håller alltid hög standard för våra kunder. 
             Här är vad några av våra nöjda kunder säger om oss.
           </p>
@@ -112,7 +113,7 @@ const CustomerReviewsSection = () => {
           <Button
             asChild
             size="lg"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            className="bg-gradient-to-r from-fresh to-forest hover:from-forest hover:to-fresh text-white px-8 py-6 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl hover:shadow-fresh/30 transition-all duration-300 hover:scale-105"
           >
             <a
               href="https://share.google/zH6hgOZS7XGevWsZ5"
