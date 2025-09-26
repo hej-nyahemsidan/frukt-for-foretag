@@ -48,34 +48,27 @@ const StarRating = () => (
 );
 
 const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
-  <Card className="w-full max-w-5xl mx-auto bg-gradient-to-br from-white/90 via-primary/5 to-secondary/5 backdrop-blur-sm border border-white/20 shadow-2xl rounded-3xl overflow-hidden">
-    <CardContent className="p-10 md:p-16">
-      <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-        {/* Text Content */}
-        <div className="order-2 md:order-1">
-          <StarRating />
-          <blockquote className="text-2xl md:text-3xl lg:text-4xl text-foreground/90 mb-8 italic font-light leading-relaxed">
-            "{review.text}"
-          </blockquote>
-          <cite className="text-xl md:text-2xl font-semibold text-primary">
-            - {review.author}
-          </cite>
-        </div>
-        
-        {/* Avatar */}
-        <div className="order-1 md:order-2 flex justify-center">
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-full blur-lg opacity-50"></div>
-            <img 
-              src={review.avatar} 
-              alt={review.author}
-              className="relative w-56 h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full object-cover shadow-2xl ring-4 ring-white/60"
-            />
-          </div>
-        </div>
-      </div>
-    </CardContent>
-  </Card>
+  <div className="relative w-full max-w-4xl mx-auto">
+    {/* Abstract gradient art underneath */}
+    <div className="absolute inset-0 -z-10">
+      <div className="absolute top-4 left-8 w-32 h-32 bg-gradient-to-br from-primary/40 to-secondary/30 rounded-full blur-xl"></div>
+      <div className="absolute bottom-6 right-12 w-24 h-24 bg-gradient-to-tl from-secondary/50 to-primary/20 rounded-full blur-lg"></div>
+      <div className="absolute top-1/2 left-1/4 w-20 h-20 bg-gradient-to-r from-primary/30 to-transparent rounded-full blur-md"></div>
+      <div className="absolute bottom-1/3 right-1/3 w-16 h-16 bg-gradient-to-bl from-secondary/40 to-transparent rounded-full blur-sm"></div>
+    </div>
+    
+    <Card className="bg-gradient-to-br from-white/95 via-white/90 to-primary/5 backdrop-blur-md border border-white/30 shadow-2xl rounded-3xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-3xl">
+      <CardContent className="p-12 md:p-16 text-center">
+        <StarRating />
+        <blockquote className="text-2xl md:text-3xl lg:text-4xl text-foreground/90 mb-10 italic font-light leading-relaxed max-w-3xl mx-auto">
+          "{review.text}"
+        </blockquote>
+        <cite className="text-xl md:text-2xl font-bold text-primary bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          — {review.author}
+        </cite>
+      </CardContent>
+    </Card>
+  </div>
 );
 
 const CustomerReviewsSection = () => {
