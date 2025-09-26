@@ -102,12 +102,24 @@ export default {
             transform: "translateY(0)"
           }
         },
+        "moveBasket": {
+          "0%": {
+            backgroundPosition: "0% 0%"
+          },
+          "50%": {
+            backgroundPosition: "100% 100%"
+          },
+          "100%": {
+            backgroundPosition: "0% 0%"
+          }
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "slide-in-right": "slide-in-right 0.3s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
+        "moveBasket": "moveBasket 20s ease-in-out infinite",
       },
     },
   },

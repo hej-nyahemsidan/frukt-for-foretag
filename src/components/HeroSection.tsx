@@ -10,7 +10,7 @@ const HeroSection = () => {
     >
       {/* Background Image Container with Proper Clipping */}
       <div 
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full animate-moveBasket"
         style={{
           backgroundImage: `url(${picnicBasket})`,
           backgroundSize: 'cover',
