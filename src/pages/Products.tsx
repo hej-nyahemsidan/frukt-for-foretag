@@ -315,38 +315,14 @@ const Products = () => {
                         </p>
                         
                         {!product.isCustom ? (
-                          <>
-                            {/* Compact Size Selector */}
-                            <div className="mb-3">
-                              <div className="grid grid-cols-2 gap-1">
-                                {Object.keys(product.prices).map((size) => (
-                                  <button
-                                    key={size}
-                                    onClick={() => handleSizeChange(product.id, size)}
-                                    className={`p-1.5 text-xs rounded border transition-colors ${
-                                      selectedSizes[product.id] === size
-                                        ? 'bg-primary text-primary-foreground border-primary'
-                                        : 'bg-background hover:bg-muted border-border'
-                                    }`}
-                                  >
-                                    {size}
-                                  </button>
-                                ))}
-                              </div>
-                            </div>
-                            
-                            {/* Price */}
-                            <div className="flex items-center justify-between mt-auto">
-                              <span className="text-sm font-bold text-primary">
-                                {getPrice(product)} kr
-                              </span>
-                              <Link to="/offertforfragan">
-                                <Button size="sm" className="h-8 px-3 text-xs" title="Klicka för att begära offert">
-                                  Begär offert
-                                </Button>
-                              </Link>
-                            </div>
-                          </>
+                          <div className="mt-auto">
+                            <Link to="/offertforfragan" className="w-full">
+                              <Button size="sm" className="w-full h-8 text-xs" title="Klicka för att begära offert">
+                                <FileText className="w-3 h-3 mr-1" />
+                                Begär offert
+                              </Button>
+                            </Link>
+                          </div>
                         ) : (
                           <div className="mt-auto">
                             <Link to="/offertforfragan" className="w-full">
