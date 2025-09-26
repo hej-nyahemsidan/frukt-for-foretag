@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Plus, Save, Trash2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { ImageUpload } from '@/components/ui/image-upload';
 import type { Json } from '@/integrations/supabase/types';
 
 interface Product {
@@ -355,12 +356,11 @@ const AdminProductManagement = () => {
               </div>
               
               <div>
-                <Label htmlFor="image_url">Bild-URL</Label>
-                <Input
-                  id="image_url"
+                <Label>Produktbild</Label>
+                <ImageUpload
                   value={newProductForm.image_url}
-                  onChange={(e) => setNewProductForm({ ...newProductForm, image_url: e.target.value })}
-                  placeholder="/src/assets/produkt-bild.jpg"
+                  onChange={(url) => setNewProductForm({ ...newProductForm, image_url: url })}
+                  onRemove={() => setNewProductForm({ ...newProductForm, image_url: '' })}
                 />
               </div>
 
