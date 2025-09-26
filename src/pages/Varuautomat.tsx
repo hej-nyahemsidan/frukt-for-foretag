@@ -21,6 +21,7 @@ import {
   Wrench
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import modernVendingMachine from '@/assets/modern-vending-machine.jpg';
 
 const Varuautomat = () => {
   return (
@@ -48,20 +49,30 @@ const Varuautomat = () => {
           </div>
         </section>
 
-        {/* Service Description */}
+        {/* Service Description with Image */}
         <section className="py-16 px-4">
-          <div className="container mx-auto max-w-4xl">
-            <div className="text-center mb-12">
-              <p className="text-lg text-gray-700 leading-relaxed mb-8">
-                Snacks, drycker, kaffe – och självklart har ni även möjlighet att lägga till frukt på jobbet 
-                med våra fruktkorgar. Det är en komplett pauslösning som levererar energi, glädje och 
-                bekvämlighet – direkt till kontoret.
-              </p>
+          <div className="container mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Snacks, drycker, kaffe – och självklart har ni även möjlighet att lägga till frukt på jobbet 
+                  med våra fruktkorgar. Det är en komplett pauslösning som levererar energi, glädje och 
+                  bekvämlighet – direkt till kontoret.
+                </p>
+                
+                <div className="bg-blue-50 rounded-lg p-6">
+                  <h2 className="text-2xl font-bold mb-4 text-gray-900">
+                    Därför ska ni välja Vitaminkorgen:
+                  </h2>
+                </div>
+              </div>
               
-              <div className="bg-blue-50 rounded-lg p-6">
-                <h2 className="text-2xl font-bold mb-4 text-gray-900">
-                  Därför ska ni välja Vitaminkorgen:
-                </h2>
+              <div className="flex justify-center">
+                <img 
+                  src={modernVendingMachine} 
+                  alt="Modern office vending machine with snacks and drinks" 
+                  className="w-full max-w-sm h-auto rounded-lg shadow-lg"
+                />
               </div>
             </div>
           </div>

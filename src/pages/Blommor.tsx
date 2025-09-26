@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Flower2, Users, Calendar, CheckCircle2, Pause, MessageCircle, Phone, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import officeBouquet from '@/assets/office-bouquet.jpg';
 
 const Blommor = () => {
   return (
@@ -30,15 +31,27 @@ const Blommor = () => {
           </div>
         </section>
 
-        {/* Service Description */}
+        {/* Service Description with Image */}
         <section className="py-16 px-4">
-          <div className="container mx-auto max-w-4xl">
-            <p className="text-lg text-gray-700 leading-relaxed mb-8">
-              Vi levererar fräscha växter och vackra blomsterarrangemang till ert kontor, entré eller fikarum. 
-              Allt sköts automatiskt, och ni kan enkelt pausa tjänsten när det behövs – till exempel under 
-              semestertider. Behöver ni lägga till extra blommor till någon som fyller år eller ska avtackas? 
-              Inga problem – det fixar vi med ett enkelt meddelande.
-            </p>
+          <div className="container mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Vi levererar fräscha växter och vackra blomsterarrangemang till ert kontor, entré eller fikarum. 
+                  Allt sköts automatiskt, och ni kan enkelt pausa tjänsten när det behövs – till exempel under 
+                  semestertider. Behöver ni lägga till extra blommor till någon som fyller år eller ska avtackas? 
+                  Inga problem – det fixar vi med ett enkelt meddelande.
+                </p>
+              </div>
+              
+              <div className="flex justify-center">
+                <img 
+                  src={officeBouquet} 
+                  alt="Beautiful flower bouquet perfect for office environments" 
+                  className="w-full max-w-md h-auto rounded-lg shadow-lg"
+                />
+              </div>
+            </div>
           </div>
         </section>
 
