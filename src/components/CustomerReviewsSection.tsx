@@ -162,7 +162,7 @@ const CustomerReviewsSection = () => {
             className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground px-10 py-6 text-lg font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
           >
             <a
-              href="https://www.google.com/search?q=Vitaminkorgen+Stockholm+reviews"
+              href="https://maps.app.goo.gl/vTXVx1tS42QXJfHz9"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3"
