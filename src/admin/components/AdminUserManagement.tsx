@@ -44,16 +44,24 @@ const AdminUserManagement = () => {
     try {
       setIsLoading(true);
       
-      // Fetch profiles with company information using the new foreign key relationship
+      // Fetch profiles and customers separately since we removed the FK relationship
       const { data: profilesData, error: profilesError } = await supabase
         .from('profiles')
-        .select(`
-          *,
-          customers(company_name)
-        `)
+        .select('*')
         .order('created_at', { ascending: false });
 
       if (profilesError) throw profilesError;
+
+      const { data: customersData, error: customersError } = await supabase
+        .from('customers')
+        .select('user_id, company_name');
+
+      if (customersError) throw customersError;
+      
+      // Create a map for easy lookup
+      const customerMap = new Map(
+        customersData?.map(customer => [customer.user_id, customer.company_name]) || []
+      );
       
       // Transform the data to include company_name at the top level
       const transformedProfiles = profilesData?.map(profile => ({
@@ -62,7 +70,7 @@ const AdminUserManagement = () => {
         full_name: profile.full_name,
         created_at: profile.created_at,
         updated_at: profile.updated_at,
-        company_name: (profile.customers as any)?.company_name || null
+        company_name: customerMap.get(profile.id) || null
       })) || [];
       
       console.log('Fetched profiles:', transformedProfiles?.length || 0);
