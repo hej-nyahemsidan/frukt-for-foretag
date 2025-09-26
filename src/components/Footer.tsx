@@ -32,7 +32,6 @@ const Footer = () => {
                 <VitaminKorgenLogo 
                   size="small" 
                   link="/" 
-                  className="filter brightness-0 invert"
                 />
               </div>
             </div>

@@ -33,7 +33,7 @@ const VitaminKorgenLogo: React.FC<VitaminKorgenLogoProps> = ({
     return (
       <Link 
         to={link} 
-        className="inline-block p-3 hover:opacity-90 transition-opacity duration-200"
+        className="inline-block hover:opacity-90 transition-opacity duration-200"
         aria-label="Gå till startsidan"
       >
         {logoImg}
@@ -41,7 +41,7 @@ const VitaminKorgenLogo: React.FC<VitaminKorgenLogoProps> = ({
     );
   }
 
-  return <div className="inline-block p-3">{logoImg}</div>;
+  return <div className="inline-block">{logoImg}</div>;
 };
 
 export default VitaminKorgenLogo;

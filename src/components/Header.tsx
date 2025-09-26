@@ -43,10 +43,9 @@ const Header = () => {
           {/* Company Logo */}
           <div className="flex-shrink-0">
             <VitaminKorgenLogo 
-              size="medium" 
+              size="small" 
               animated={true} 
               link="/" 
-              className="max-w-[150px] md:max-w-[200px]"
             />
           </div>
 

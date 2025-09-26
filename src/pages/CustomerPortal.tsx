@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
-import basketBackground from '@/assets/fruktkorg-standard-new.jpg';
+import basketBackground from '@/assets/customer-portal-dashboard.jpg';
 
 const CustomerPortal = () => {
   const [email, setEmail] = useState('');
@@ -81,7 +81,7 @@ const CustomerPortal = () => {
         {/* Page Title */}
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-4xl lg:text-5xl font-bold text-white drop-shadow-lg text-center">
-            FruktPortalens Kundportal
+            VitaminKorgens Portal
           </h1>
         </div>
       </div>
@@ -213,7 +213,7 @@ const CustomerPortal = () => {
           {/* Mobile Title (visible on small screens) */}
           <div className="lg:hidden text-center mt-12">
             <h1 className="text-2xl font-bold text-foreground">
-              FruktPortalens Kundportal
+              VitaminKorgens Portal
             </h1>
           </div>
         </div>
