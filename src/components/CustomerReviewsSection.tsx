@@ -8,7 +8,7 @@ import {
   CarouselItem,
   CarouselApi,
 } from '@/components/ui/carousel';
-import almanacImage from '@/assets/modern-almanac-26th.jpg';
+
 
 const reviews = [
   {
@@ -117,55 +117,40 @@ const CustomerReviewsSection = () => {
           </p>
         </div>
 
-        {/* Main content with image and carousel */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
-          {/* Almanac Image */}
-          <div className="order-2 lg:order-1 relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <img 
-                src={almanacImage} 
-                alt="Almanac with 26th crossed out with red X" 
-                className="w-full h-[500px] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
-            </div>
-          </div>
-          
-          {/* Review Carousel */}
-          <div className="order-1 lg:order-2">
-            <Carousel 
-              setApi={setApi}
-              className="w-full"
-              opts={{
-                align: "center",
-                loop: true,
-              }}
-            >
-              <CarouselContent>
-                {reviews.map((review, index) => (
-                  <CarouselItem key={index}>
-                    <div className="flex justify-center">
-                      <ReviewCard review={review} />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
-            
-            {/* Dots indicator */}
-            <div className="flex justify-center mt-8 gap-3">
-              {reviews.map((_, index) => (
-                <button
-                  key={index}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === current 
-                      ? 'bg-primary shadow-lg scale-125' 
-                      : 'bg-primary/30 hover:bg-primary/50'
-                  }`}
-                  onClick={() => api?.scrollTo(index)}
-                />
+        {/* Review Carousel */}
+        <div className="mb-16">
+          <Carousel 
+            setApi={setApi}
+            className="w-full"
+            opts={{
+              align: "center",
+              loop: true,
+            }}
+          >
+            <CarouselContent>
+              {reviews.map((review, index) => (
+                <CarouselItem key={index}>
+                  <div className="flex justify-center">
+                    <ReviewCard review={review} />
+                  </div>
+                </CarouselItem>
               ))}
-            </div>
+            </CarouselContent>
+          </Carousel>
+          
+          {/* Dots indicator */}
+          <div className="flex justify-center mt-8 gap-3">
+            {reviews.map((_, index) => (
+              <button
+                key={index}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === current 
+                    ? 'bg-primary shadow-lg scale-125' 
+                    : 'bg-primary/30 hover:bg-primary/50'
+                }`}
+                onClick={() => api?.scrollTo(index)}
+              />
+            ))}
           </div>
         </div>
 
