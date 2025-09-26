@@ -101,7 +101,7 @@ const CustomerPortal = () => {
           {/* Brand Logo */}
           <div className="text-center mb-12">
             <VitaminKorgenLogo 
-              size="mega" 
+              size="xl" 
               variant="full"
               animated={true} 
               className="mx-auto"

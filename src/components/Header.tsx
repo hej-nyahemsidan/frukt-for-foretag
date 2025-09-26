@@ -67,13 +67,14 @@ const Header = () => {
   const navigationItems = user ? customerNavigationItems : publicNavigationItems;
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-t-2 border-b-2 border-t-primary border-b-primary shadow-sm">
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 md:h-24">
-          <div className="flex-shrink-0 z-10 -my-2">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Company Logo */}
+          <div className="flex-shrink-0 z-10">
             <div onClick={handleLogoClick} className="cursor-pointer">
               <VitaminKorgenLogo 
-                size="xl" 
+                size="medium" 
                 variant="horizontal"
                 animated={true}
               />
@@ -92,7 +93,7 @@ const Header = () => {
                   {item.isExternal ? (
                     <a
                       href={item.href}
-                      className={`transition-all duration-200 font-medium text-base tracking-wide relative group px-6 py-1 ${
+                      className={`transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 ${
                         shouldHighlight 
                           ? 'text-secondary bg-secondary/10 rounded-lg' 
                           : 'text-charcoal hover:text-secondary'
@@ -104,14 +105,14 @@ const Header = () => {
                   ) : (
                     <Link
                       to={item.href}
-                      className={`transition-all duration-200 font-medium text-base tracking-wide relative group px-6 py-1 ${
+                      className={`transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 ${
                         shouldHighlight 
                           ? 'text-secondary bg-secondary/10 rounded-lg' 
                           : 'text-charcoal hover:text-secondary'
                       }`}
                     >
                       {item.label}
-                      <span className={`absolute bottom-0 left-6 right-6 h-0.5 bg-secondary transform transition-transform duration-200 origin-center ${
+                      <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform transition-transform duration-200 origin-center ${
                         shouldHighlight ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                       }`}></span>
                     </Link>
@@ -126,11 +127,11 @@ const Header = () => {
             {/* Blog Dropdown */}
             <div className="w-px h-4 bg-gray-300 mx-2"></div>
             <DropdownMenu>
-              <DropdownMenuTrigger className="transition-all duration-200 font-medium text-base tracking-wide relative group px-6 py-1 text-charcoal hover:text-secondary flex items-center space-x-1">
+              <DropdownMenuTrigger className="transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 text-charcoal hover:text-secondary flex items-center space-x-1">
                 <BookOpen className="w-4 h-4" />
                 <span>Blog</span>
                 <ChevronDown className="w-3 h-3" />
-                <span className="absolute bottom-0 left-6 right-6 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
+                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="center" className="w-80 max-h-96 overflow-y-auto bg-white/95 backdrop-blur-sm border border-gray-200 shadow-lg z-50">
                 {blogPosts.map((post, index) => (
@@ -225,7 +226,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden fixed inset-x-0 top-20 md:top-24 bg-white border-t border-b border-gray-200 shadow-lg z-40 max-h-[calc(100vh-5rem)] md:max-h-[calc(100vh-6rem)] overflow-y-auto"
+          <div className="lg:hidden fixed inset-x-0 top-16 md:top-20 bg-white border-t border-b border-gray-200 shadow-lg z-40 max-h-[calc(100vh-4rem)] md:max-h-[calc(100vh-5rem)] overflow-y-auto"
             style={{ 
               position: 'fixed',
               width: '100vw',

@@ -6,7 +6,7 @@ const HeroSection = () => {
   return (
     <section 
       id="home" 
-      className="hero-background relative overflow-hidden min-h-[60vh] sm:min-h-[70vh] flex items-center py-6 sm:py-12 pt-24 sm:pt-28 md:pt-32"
+      className="hero-background relative overflow-hidden min-h-[60vh] sm:min-h-[70vh] flex items-center py-6 sm:py-12 pt-20 sm:pt-24 md:pt-28"
     >
       {/* Background Image Container with Proper Clipping */}
       <div 
@@ -18,7 +18,6 @@ const HeroSection = () => {
           backgroundPosition: 'center center',
           backgroundAttachment: 'scroll',
           backgroundColor: '#f0f9ff',
-          animation: 'moveBasket 20s ease-in-out infinite alternate',
         }}
       >
         {/* Gradient Fade Overlay */}
