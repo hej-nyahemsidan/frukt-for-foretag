@@ -18,6 +18,7 @@ const HeroSection = () => {
           backgroundPosition: 'center center',
           backgroundAttachment: 'scroll',
           backgroundColor: '#f0f9ff',
+          animation: 'moveBasket 20s ease-in-out infinite alternate',
         }}
       >
         {/* Gradient Fade Overlay */}
