@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, Users, ShoppingCart, BarChart3 } from 'lucide-react';
+import { LogOut, Users, ShoppingCart, BarChart3, Home } from 'lucide-react';
 import { useAdminAuth } from '../contexts/AdminAuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
@@ -42,6 +42,15 @@ const AdminDashboard = () => {
               <span className="admin-title ml-3 text-lg font-semibold text-gray-800">Admin Dashboard</span>
             </div>
             <div className="admin-header-right flex items-center space-x-4">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => navigate('/')}
+                className="admin-home-btn flex items-center gap-2"
+              >
+                <Home className="w-4 h-4" />
+                Hem
+              </Button>
               <span className="admin-user-info text-sm text-gray-600">
                 Inloggad som: {user?.email}
               </span>
