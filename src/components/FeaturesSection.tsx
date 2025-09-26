@@ -45,9 +45,9 @@ const FeaturesSection = () => {
             </h2>
             
             <p className="text-xl text-white leading-relaxed max-w-3xl mx-auto">
-              <strong>Fri leverans i Stockholm</strong> - Smidig leverans av fruktkorgar direkt till ert kontor i hela Stockholmsområdet.<br/>
-              <strong>100% Kvalitetsgaranti</strong> - Handplockade fruktkorgar på jobbet med garanti för färskhet och kvalitet.<br/>
-              <strong>Flexibla leveransalternativ</strong> - Anpassade leveransscheman som passar just er arbetsplats.
+              <strong>Mer energi och bättre fokus</strong> - Naturligt energitillskott som håller längre än kaffe och socker.<br/>
+              <strong>Minskad sjukfrånvaro</strong> - Stärker immunförsvaret och minskar risken för förkylningar.<br/>
+              <strong>Starkare arbetskultur</strong> - Skapar naturliga mötesplatser som bygger gemenskap och teamkänsla.
             </p>
           </div>
 
