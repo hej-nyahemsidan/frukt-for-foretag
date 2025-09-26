@@ -18,6 +18,17 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (location.pathname === '/') {
+      // If already on homepage, scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      // If on different page, navigate to homepage
+      navigate('/');
+    }
+  };
+
   const publicNavigationItems = [
     { label: 'Hem', href: '/', isExternal: false },           // Home
     { label: 'Produkter', href: '/produkter', isExternal: false }, // Products
@@ -55,13 +66,14 @@ const Header = () => {
         <div className="flex items-center justify-between h-20 md:h-24">
           {/* Company Logo */}
           <div className="flex-shrink-0">
-            <VitaminKorgenLogo 
-              size="large" 
-              variant="horizontal"
-              animated={true} 
-              link="/" 
-              className="scale-120"
-            />
+            <div onClick={handleLogoClick} className="cursor-pointer">
+              <VitaminKorgenLogo 
+                size="large" 
+                variant="horizontal"
+                animated={true} 
+                className="scale-120"
+              />
+            </div>
           </div>
 
           {/* Desktop Navigation - Centered */}
