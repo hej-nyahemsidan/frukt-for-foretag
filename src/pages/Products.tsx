@@ -235,9 +235,12 @@ const Products = () => {
         <section id="alla-produkter" className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4">Alla Produkter</h2>
-              <p className="text-lg text-muted-foreground">
-                Bläddra genom vårt kompletta sortiment organiserat i kategorier
+              <h2 className="text-4xl font-bold mb-4">Några av Våra Produkter</h2>
+              <p className="text-lg text-muted-foreground mb-2">
+                Blädda genom vårt sortiment organiserat i kategorier
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Fler Produkter hittar du på Mina Sidor när du är kund
               </p>
             </div>
 
