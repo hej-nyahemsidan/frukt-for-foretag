@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Plus, Save, Trash2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
@@ -32,6 +33,7 @@ const AdminProductManagement = () => {
   const [loading, setLoading] = useState(true);
   const [showAddDialog, setShowAddDialog] = useState(false);
   const [editingPrices, setEditingPrices] = useState<Record<string, Record<string, number>>>({});
+  const [activeTab, setActiveTab] = useState('fruktkorgar');
   const { toast } = useToast();
 
   // Form state for adding new products
@@ -39,7 +41,7 @@ const AdminProductManagement = () => {
     name: '',
     category: 'fruktkorgar',
     image_url: '',
-    prices: { '4kg': 0, '6kg': 0, '9kg': 0, '11kg': 0 }
+    prices: {}
   });
 
   const categories = [
@@ -162,7 +164,7 @@ const AdminProductManagement = () => {
         name: '',
         category: 'fruktkorgar',
         image_url: '',
-        prices: { '4kg': 0, '6kg': 0, '9kg': 0, '11kg': 0 }
+        prices: {}
       });
       setShowAddDialog(false);
 
@@ -207,7 +209,7 @@ const AdminProductManagement = () => {
   };
 
   const handlePriceChange = (productId: string, size: string, value: string) => {
-    const numValue = parseFloat(value) || 0;
+    const numValue = value === '' ? 0 : parseFloat(value) || 0;
     setEditingPrices(prev => ({
       ...prev,
       [productId]: {
@@ -216,6 +218,77 @@ const AdminProductManagement = () => {
       }
     }));
   };
+
+  const getProductsByCategory = (category: string) => {
+    return products.filter(product => product.category === category);
+  };
+
+  const renderProductGrid = (categoryProducts: Product[]) => (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {categoryProducts.map((product) => (
+        <Card key={product.id} className="overflow-hidden">
+          <div className="aspect-square bg-gray-100 overflow-hidden">
+            <img 
+              src={product.image_url}
+              alt={product.name}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.currentTarget.src = '/src/assets/product-placeholder.jpg';
+              }}
+            />
+          </div>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-lg flex justify-between items-start">
+              <span>{product.name}</span>
+              <Button
+                variant="destructive"
+                size="sm"
+                onClick={() => handleDeleteProduct(product.id)}
+                className="ml-2"
+              >
+                <Trash2 className="w-4 h-4" />
+              </Button>
+            </CardTitle>
+            <p className="text-sm text-gray-500 capitalize">{product.category}</p>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {Object.entries(product.prices).map(([size, price]) => (
+                <div key={size} className="flex items-center justify-between gap-2">
+                  <Label className="text-sm font-medium">{size}:</Label>
+                  <div className="flex items-center gap-2">
+                    <Input
+                      type="number"
+                      value={editingPrices[product.id]?.[size] ?? price}
+                      onChange={(e) => handlePriceChange(product.id, size, e.target.value)}
+                      className="w-20 text-sm text-right"
+                    />
+                    <span className="text-sm text-gray-500">kr</span>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => {
+                        const newPrice = editingPrices[product.id]?.[size] ?? price;
+                        handleUpdatePrice(product.id, size, newPrice);
+                      }}
+                      className="p-1 h-8 w-8"
+                    >
+                      <Save className="w-3 h-3" />
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+      {categoryProducts.length === 0 && (
+        <div className="col-span-full text-center py-8">
+          <p className="text-gray-500">Inga produkter i denna kategori.</p>
+        </div>
+      )}
+    </div>
+  );
 
   if (loading) {
     return (
@@ -285,11 +358,12 @@ const AdminProductManagement = () => {
                       <Label className="w-10 text-sm">{size}:</Label>
                       <Input
                         type="number"
-                        value={newProductForm.prices[size] || 0}
+                        value={newProductForm.prices[size] || ''}
                         onChange={(e) => setNewProductForm({
                           ...newProductForm,
-                          prices: { ...newProductForm.prices, [size]: parseFloat(e.target.value) || 0 }
+                          prices: { ...newProductForm.prices, [size]: e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 }
                         })}
+                        placeholder="0"
                         className="text-sm"
                       />
                     </div>
@@ -310,71 +384,21 @@ const AdminProductManagement = () => {
         </Dialog>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product) => (
-          <Card key={product.id} className="overflow-hidden">
-            <div className="aspect-square bg-gray-100 overflow-hidden">
-              <img 
-                src={product.image_url}
-                alt={product.name}
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.currentTarget.src = '/src/assets/product-placeholder.jpg';
-                }}
-              />
-            </div>
-            <CardHeader className="pb-2">
-              <CardTitle className="text-lg flex justify-between items-start">
-                <span>{product.name}</span>
-                <Button
-                  variant="destructive"
-                  size="sm"
-                  onClick={() => handleDeleteProduct(product.id)}
-                  className="ml-2"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </Button>
-              </CardTitle>
-              <p className="text-sm text-gray-500 capitalize">{product.category}</p>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {Object.entries(product.prices).map(([size, price]) => (
-                  <div key={size} className="flex items-center justify-between gap-2">
-                    <Label className="text-sm font-medium">{size}:</Label>
-                    <div className="flex items-center gap-2">
-                      <Input
-                        type="number"
-                        value={editingPrices[product.id]?.[size] ?? price}
-                        onChange={(e) => handlePriceChange(product.id, size, e.target.value)}
-                        className="w-20 text-sm text-right"
-                      />
-                      <span className="text-sm text-gray-500">kr</span>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => {
-                          const newPrice = editingPrices[product.id]?.[size] ?? price;
-                          handleUpdatePrice(product.id, size, newPrice);
-                        }}
-                        className="p-1 h-8 w-8"
-                      >
-                        <Save className="w-3 h-3" />
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <TabsList className="grid w-full grid-cols-5">
+          {categories.map((category) => (
+            <TabsTrigger key={category.value} value={category.value}>
+              {category.label}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        
+        {categories.map((category) => (
+          <TabsContent key={category.value} value={category.value} className="mt-6">
+            {renderProductGrid(getProductsByCategory(category.value))}
+          </TabsContent>
         ))}
-      </div>
-
-      {products.length === 0 && (
-        <div className="text-center py-8">
-          <p className="text-gray-500">Inga produkter hittades.</p>
-        </div>
-      )}
+      </Tabs>
     </div>
   );
 };
