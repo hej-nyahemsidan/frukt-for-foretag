@@ -93,19 +93,24 @@ const Checkout: React.FC = () => {
                   <p className="text-muted-foreground">Inga produkter i varukorgen</p>
                 ) : (
                   <div className="space-y-3">
-                    {items.map((item) => (
-                      <div key={item.id} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                        <div>
-                          <h4 className="font-medium text-charcoal">{item.name}</h4>
-                          <p className="text-sm text-muted-foreground">
-                            {formatPrice(item.price)} × {item.quantity}
-                          </p>
-                        </div>
-                        <span className="font-semibold text-charcoal">
-                          {formatPrice(item.price * item.quantity)}
-                        </span>
-                      </div>
-                    ))}
+                     {items.map((item, index) => (
+                       <div key={`${item.id}-${item.assignedDay || index}`} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                         <div>
+                           <h4 className="font-medium text-charcoal">{item.name}</h4>
+                           <p className="text-sm text-muted-foreground">
+                             {formatPrice(item.price)} × {item.quantity}
+                             {item.assignedDay && (
+                               <span className="ml-2 px-2 py-1 bg-primary/10 text-primary rounded-md text-xs font-medium">
+                                 {item.assignedDay}
+                               </span>
+                             )}
+                           </p>
+                         </div>
+                         <span className="font-semibold text-charcoal">
+                           {formatPrice(item.price * item.quantity)}
+                         </span>
+                       </div>
+                     ))}
                   </div>
                 )}
               </div>
