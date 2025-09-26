@@ -137,12 +137,6 @@ const Footer = () => {
                 </div>
                 <span>100% Kvalitetsgaranti</span>
               </div>
-              <div className="flex items-center space-x-3 text-gray-100">
-                <div className="p-2 bg-yellow-500/20 rounded-lg">
-                  <Leaf className="h-4 w-4 text-yellow-400" />
-                </div>
-                <span>Ekologiska alternativ</span>
-              </div>
             </div>
           </div>
         </div>

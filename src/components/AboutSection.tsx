@@ -195,7 +195,7 @@ const AboutSection = () => {
               </p>
               
               <p>
-                Vi prioriterar ekologiska produkter när det är möjligt och arbetar endast med certifierade leverantörer som följer strikta miljöstandarder. Våra förpackningar är återvinningsbara och vi strävar kontinuerligt efter att minska vårt klimatavtryck.
+                Vi prioriterar naturliga och närproducerade produkter när det är möjligt och arbetar endast med certifierade leverantörer som följer strikta miljöstandarder. Våra förpackningar är återvinningsbara och vi strävar kontinuerligt efter att minska vårt klimatavtryck.
               </p>
               
               <p>

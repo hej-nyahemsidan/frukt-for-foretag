@@ -76,7 +76,7 @@ const Products = () => {
       id: 'frukt-eko',
       name: 'Fruktkorg Säsong',
       image: fruktkorgrOriginalImg,
-      description: '100% ekologiska och KRAV-märkta frukter',
+      description: 'Säsongsanpassade frukter av högsta kvalitet',
       prices: {
         '4kg': 289,
         '6kg': 434,

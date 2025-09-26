@@ -32,7 +32,7 @@ const blogContent = {
       
       <h2>4. Hållbar arbetsplats med omtanke</h2>
       <p>
-        Att välja fruktleverans till kontoret i Stockholm från lokala aktörer visar att ditt företag bryr sig – både om medarbetarna och om miljön. På Vitaminkorgen jobbar vi med noga utvalda frukter, ofta ekologiska, och vi levererar direkt till er dörr.
+        Att välja fruktleverans till kontoret i Stockholm från lokala aktörer visar att ditt företag bryr sig – både om medarbetarna och om miljön. På Vitaminkorgen jobbar vi med noga utvalda frukter av högsta kvalitet, och vi levererar direkt till er dörr.
       </p>
       
       <h2>Frukt på jobbet i Stockholm – enkelt med Vitaminkorgen</h2>
