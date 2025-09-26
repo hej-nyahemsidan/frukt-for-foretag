@@ -6,7 +6,7 @@ const HeroSection = () => {
   return (
     <section 
       id="home" 
-      className="hero-background relative overflow-hidden min-h-[60vh] sm:min-h-[70vh] flex items-center py-6 sm:py-12 pt-24 sm:pt-28 md:pt-32"
+      className="hero-background relative overflow-hidden min-h-[60vh] sm:min-h-[70vh] flex items-center py-6 sm:py-12 pt-36 sm:pt-44 md:pt-52 lg:pt-56"
     >
       {/* Background Image Container with Proper Clipping */}
       <div 

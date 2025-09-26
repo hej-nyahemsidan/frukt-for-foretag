@@ -69,7 +69,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 md:h-24">
+        <div className="flex items-center justify-between h-32 md:h-40 lg:h-48">
           {/* Company Logo */}
           <div className="flex-shrink-0 z-10">
             <div onClick={handleLogoClick} className="cursor-pointer">
@@ -226,7 +226,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden fixed inset-x-0 top-20 md:top-24 bg-white border-t border-b border-gray-200 shadow-lg z-40 max-h-[calc(100vh-5rem)] md:max-h-[calc(100vh-6rem)] overflow-y-auto"
+          <div className="lg:hidden fixed inset-x-0 top-32 md:top-40 lg:top-48 bg-white border-t border-b border-gray-200 shadow-lg z-40 max-h-[calc(100vh-8rem)] md:max-h-[calc(100vh-10rem)] lg:max-h-[calc(100vh-12rem)] overflow-y-auto"
             style={{ 
               position: 'fixed',
               width: '100vw',

@@ -25,7 +25,7 @@ const VitaminKorgenLogo: React.FC<VitaminKorgenLogoProps> = ({
     large: variant === 'horizontal' ? 'h-20 w-auto' : 'h-20 w-20',
     xl: variant === 'horizontal' ? 'h-32 w-auto' : 'h-32 w-32',
     '2xl': variant === 'horizontal' ? 'h-40 w-auto' : 'h-40 w-40',
-    mega: variant === 'horizontal' ? 'h-48 w-auto md:h-56' : 'h-48 w-48 md:h-56 md:w-56',
+    mega: variant === 'horizontal' ? 'h-24 w-auto md:h-32 lg:h-36' : 'h-24 w-24 md:h-32 md:w-32 lg:h-36 lg:w-36',
     ultra: variant === 'horizontal' ? 'h-56 w-auto md:h-64' : 'h-56 w-56 md:h-64 md:w-64'
   };
 
