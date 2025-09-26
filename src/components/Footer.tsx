@@ -27,11 +27,11 @@ const Footer = () => {
           
           {/* Company Info */}
           <div className="space-y-6">
-            <div className="mb-6">
+            <div className="mb-6 w-full">
               <a href="/" className="block">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-400 leading-none">Vitamin</div>
-                  <div className="text-3xl font-bold text-green-400 leading-none">Korgen</div>
+                <div className="text-left">
+                  <div className="text-5xl font-bold bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 bg-clip-text text-transparent drop-shadow-md leading-tight tracking-wide">Vitamin</div>
+                  <div className="text-5xl font-bold text-green-400 leading-tight tracking-wide">Korgen</div>
                 </div>
               </a>
             </div>
