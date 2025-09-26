@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 const blogContent = {
   'frukt-pa-jobbet': {
     title: 'Därför ska du ha frukt på jobbet – en fräsch investering i välmående och energi',
-    date: '2024-03-15',
+    date: '2021-03-15',
     readTime: '5 min',
     content: `
       <p>
@@ -58,7 +58,7 @@ const blogContent = {
   },
   'frukt-som-mellanmal': {
     title: 'Frukt som mellanmål – en naturlig investering i din långsiktiga hälsa',
-    date: '2024-03-10',
+    date: '2021-03-10',
     readTime: '8 min',
     content: `
       <p>

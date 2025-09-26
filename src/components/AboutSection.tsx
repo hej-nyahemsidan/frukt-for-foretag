@@ -58,7 +58,7 @@ const AboutSection = () => {
               Stockholms ledande leverantör av fruktkorgar på jobbet
             </h1>
             <p className="text-2xl text-gray-600 leading-relaxed">
-              Sedan 2024 har vi på Vitaminkorgen gjort det enkelt för företag i Stockholm att erbjuda fruktkorgar på jobbet.
+              Sedan 2021 har vi på Vitaminkorgen gjort det enkelt för företag i Stockholm att erbjuda fruktkorgar på jobbet.
             </p>
           </div>
         </div>
@@ -76,20 +76,20 @@ const AboutSection = () => {
               
               <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  Sedan 2024 har vi på Vitaminkorgen gjort det enkelt för företag i Stockholm 
+                  Sedan 2021 har vi på Vitaminkorgen gjort det enkelt för företag i Stockholm 
                   att erbjuda fruktkorgar på jobbet. Vi startade med en enkel vision: färsk 
                   frukt på kontoret ska vara lika självklart som morgonkaffet.
                 </p>
                 
                 <p>
-                  Idag levererar vi fruktkorgar till över 500 företag varje vecka – från 
+                  Idag levererar vi fruktkorgar till över 150 företag varje vecka – från
                   innovativa startups på Östermalm till etablerade storkontor i Kista. Alla 
                   får samma personliga service och handplockade kvalitet.
                 </p>
                 
                 <p>
                   Vi förstår att varje arbetsplats är unik. Därför erbjuder vi flexibla 
-                  lösningar som anpassas efter era behov – oavsett om ni är 5 eller 500 
+                  lösningar som anpassas efter era behov – oavsett om ni är 5 eller 150 
                   medarbetare. Våra fruktkorgar innehåller alltid säsongens bästa frukt, 
                   noggrant utvald för optimal smak och näring.
                 </p>
