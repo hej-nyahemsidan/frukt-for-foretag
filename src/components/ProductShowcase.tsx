@@ -14,7 +14,7 @@ const ProductShowcase = () => {
       id: 'standard',
       name: 'Fruktkorg Standard',
       image: fruktkorgrSupremeImg,
-      weight: 'Starting at 4kg',
+    weight: 'Från 4kg och uppåt',
       showPrice: false,
       popular: false
     },
@@ -22,7 +22,7 @@ const ProductShowcase = () => {
       id: 'premium',
       name: 'Fruktkorg Premium',
       image: fruktkorgrPremiumImg,
-      weight: 'Starting at 4kg',
+      weight: 'Från 4kg och uppåt',
       showPrice: false,
       popular: true
     },
@@ -30,7 +30,7 @@ const ProductShowcase = () => {
       id: 'eko',
       name: 'Fruktkorg Eko',
       image: fruktkorgrOriginalImg,
-      weight: 'Starting at 4kg',
+    weight: 'Från 4kg och uppåt',
       showPrice: false,
       popular: false
     },
@@ -38,7 +38,7 @@ const ProductShowcase = () => {
       id: 'banan',
       name: 'Fruktkorg Banan+',
       image: fruktkorgrBananImg,
-      weight: 'Starting at 4kg',
+    weight: 'Från 4kg och uppåt',
       showPrice: false,
       popular: true
     },
@@ -46,7 +46,7 @@ const ProductShowcase = () => {
       id: 'lada',
       name: 'Fruktlåda',
       image: fruktladaImg,
-      weight: 'Starting at 4kg',
+    weight: 'Från 4kg och uppåt',
       showPrice: false,
       popular: false
     }

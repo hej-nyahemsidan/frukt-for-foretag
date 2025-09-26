@@ -12,7 +12,7 @@ import fruktkorgrSupremeImg from '@/assets/fruktkorg-standard-new.jpg';
 import fruktkorgrPremiumImg from '@/assets/fruktkorg-premium-new.jpg';
 import fruktkorgrOriginalImg from '@/assets/fruktkorg-eko-new.jpg';
 import fruktkorgrBananImg from '@/assets/fruktkorg-banan-new.jpg';
-import fruktladaImg from '@/assets/fruktlada.jpg';
+import fruktladaImg from '@/assets/fruktlada-new.jpg';
 import fruktpaserImage from '@/assets/fruktpase-new.jpg';
 import premiumCoffeeImg from '@/assets/premium-coffee.jpg';
 import cocaColaImg from '@/assets/coca-cola.jpg';
