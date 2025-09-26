@@ -26,6 +26,7 @@ import AdminDashboard from "./admin/pages/AdminDashboard";
 import Blog from "./pages/Blog";
 import Blommor from "./pages/Blommor";
 import Varuautomat from "./pages/Varuautomat";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
             <Toaster />
             <Sonner />
             <BrowserRouter>
+              <ScrollToTop />
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/produkter" element={<Products />} />
