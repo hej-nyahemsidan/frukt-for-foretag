@@ -19,15 +19,11 @@ const SimplifiedCheckout: React.FC<SimplifiedCheckoutProps> = ({
   onBack
 }) => {
   const navigate = useNavigate();
-  const { items, getTotalPrice, clearCart } = useCart();
+  const { items, clearCart } = useCart();
   const { customer } = useAuth();
   const { toast } = useToast();
   const [isConfirming, setIsConfirming] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
-
-  const totalPrice = getTotalPrice();
-
-  const formatPrice = (price: number) => `${price} kr`;
 
   const getPlanText = (plan: string) => {
     switch (plan) {
@@ -143,12 +139,9 @@ const SimplifiedCheckout: React.FC<SimplifiedCheckoutProps> = ({
                       <div>
                         <span className="font-medium">{item.name}</span>
                         <div className="text-sm text-muted-foreground">
-                          {formatPrice(item.price)} × {item.quantity}
+                          Antal: {item.quantity}
                         </div>
                       </div>
-                      <span className="font-semibold">
-                        {formatPrice(item.price * item.quantity)}
-                      </span>
                     </div>
                   ))}
                 </div>
@@ -164,12 +157,6 @@ const SimplifiedCheckout: React.FC<SimplifiedCheckoutProps> = ({
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="p-6 bg-green-50 rounded-lg border border-green-200">
-              <div className="flex justify-between items-center mb-4">
-                <span className="text-lg font-semibold">Totalkostnad:</span>
-                <span className="text-2xl font-bold text-green-600">
-                  {formatPrice(totalPrice)}
-                </span>
-              </div>
               <p className="text-sm text-muted-foreground">
                 {getCostDescription(packagePlan)}
               </p>

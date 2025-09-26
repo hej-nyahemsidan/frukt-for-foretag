@@ -6,12 +6,9 @@ import { Badge } from '@/components/ui/badge';
 
 const CartIndicator = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { items, getTotalItems, getTotalPrice, updateQuantity, removeItem, clearCart } = useCart();
+  const { items, getTotalItems, updateQuantity, removeItem, clearCart } = useCart();
 
   const totalItems = getTotalItems();
-  const totalPrice = getTotalPrice();
-
-  const formatPrice = (price: number) => `${price} kr`;
 
   return (
     <div className="relative">
@@ -25,9 +22,6 @@ const CartIndicator = () => {
         <span className="font-medium">
           Varukorg {totalItems > 0 && `(${totalItems})`}
         </span>
-        {totalPrice > 0 && (
-          <span className="font-bold">{formatPrice(totalPrice)}</span>
-        )}
         {totalItems > 0 && (
           <Badge 
             variant="destructive" 
@@ -74,13 +68,12 @@ const CartIndicator = () => {
                      <div key={itemKey} className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
                        <div className="flex-1">
                          <h4 className="font-medium text-sm text-charcoal">{item.name}</h4>
-                         {item.size && (
-                           <p className="text-xs text-muted-foreground">Storlek: {item.size}</p>
-                         )}
-                         {item.assignedDay && (
-                           <p className="text-xs text-muted-foreground">Dag: {item.assignedDay}</p>
-                         )}
-                         <p className="text-xs text-muted-foreground">{formatPrice(item.price)}/st</p>
+                          {item.size && (
+                            <p className="text-xs text-muted-foreground">Storlek: {item.size}</p>
+                          )}
+                          {item.assignedDay && (
+                            <p className="text-xs text-muted-foreground">Dag: {item.assignedDay}</p>
+                          )}
                        </div>
                        
                        <div className="flex items-center gap-2">
@@ -119,10 +112,6 @@ const CartIndicator = () => {
 
           {items.length > 0 && (
             <div className="p-4 border-t border-gray-100">
-              <div className="flex justify-between items-center mb-3">
-                <span className="font-semibold text-charcoal">Totalt:</span>
-                <span className="font-bold text-lg text-charcoal">{formatPrice(totalPrice)}</span>
-              </div>
               <div className="space-y-2">
                 <Button 
                   variant="outline" 

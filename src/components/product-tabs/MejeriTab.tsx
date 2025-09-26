@@ -33,7 +33,6 @@ const MejeriTab: React.FC<MejeriTabProps> = ({ selectedDays }) => {
           </div>
           <div className="p-3 space-y-3">
             <h3 className="font-medium text-charcoal text-xs text-center">{product.name}</h3>
-            <p className="font-bold text-[#4CAF50] text-xs text-center">{product.price} kr</p>
             <AddToCartButton 
               product={{
                 id: product.id,

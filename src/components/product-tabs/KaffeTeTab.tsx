@@ -28,7 +28,6 @@ const KaffeTeTab: React.FC<KaffeTeTabProps> = ({ selectedDays }) => {
           </div>
           <div className="p-3 space-y-3">
             <h3 className="font-medium text-charcoal text-sm text-center">{product.name}</h3>
-            <p className="font-bold text-[#4CAF50] text-sm text-center">{product.price} kr</p>
             <AddToCartButton 
               product={{
                 id: product.id,
