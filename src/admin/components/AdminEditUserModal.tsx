@@ -43,7 +43,7 @@ const AdminEditUserModal: React.FC<AdminEditUserModalProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const isAdmin = user?.email === 'admin@fruktportalen.se';
+  const isAdmin = user?.email === 'admin@vitaminkorgen.se';
 
   useEffect(() => {
     if (user) {

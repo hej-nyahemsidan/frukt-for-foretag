@@ -531,10 +531,10 @@ const Products = () => {
                       📞 08-123 456 78
                     </a>
                     <a 
-                      href="mailto:info@fruktportalen.se" 
+                      href="mailto:info@vitaminkorgen.se" 
                       className="flex items-center gap-2 hover:text-green-600 transition-colors"
                     >
-                      ✉️ info@fruktportalen.se
+                      ✉️ info@vitaminkorgen.se
                     </a>
                   </div>
                 </div>

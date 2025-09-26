@@ -15,7 +15,7 @@ const Terms = () => {
             
             <div className="prose prose-lg max-w-none">
               <p className="text-xl text-gray-600 leading-relaxed mb-8">
-                Genom att använda FruktPortalens tjänster accepterar du dessa allmänna villkor.
+                Genom att använda VitaminKorgens tjänster accepterar du dessa allmänna villkor.
               </p>
               
               <section className="mb-8">
@@ -23,8 +23,8 @@ const Terms = () => {
                   Våra tjänster
                 </h2>
                 <p className="text-gray-600 leading-relaxed">
-                  FruktPortalen erbjuder leverans av färsk frukt, drycker och andra produkter 
-                  till kontor och företag i Stockholmsområdet. Vi strävar efter att leverera 
+                  VitaminKorgen erbjuder leverans av färsk frukt, drycker och andra produkter 
+                  till kontor och företag i Stockholmsområdet. Vi strävar efter att leverera
                   produkter av högsta kvalitet och tillhandahålla excellent service.
                 </p>
               </section>

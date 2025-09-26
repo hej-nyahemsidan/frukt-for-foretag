@@ -42,13 +42,13 @@ const Footer = () => {
               Vi brinner för kvalitet, hållbarhet och er hälsa.
             </p>
             <div className="flex space-x-3 pt-4">
-              <a href="https://facebook.com/fruktportalen" target="_blank" rel="noopener noreferrer" className="p-2 bg-green-700 hover:bg-orange-500 rounded-full transition-all duration-300 hover:scale-110">
+              <a href="https://facebook.com/vitaminkorgen" target="_blank" rel="noopener noreferrer" className="p-2 bg-green-700 hover:bg-orange-500 rounded-full transition-all duration-300 hover:scale-110">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="https://instagram.com/fruktportalen" target="_blank" rel="noopener noreferrer" className="p-2 bg-green-700 hover:bg-orange-500 rounded-full transition-all duration-300 hover:scale-110">
+              <a href="https://instagram.com/vitaminkorgen" target="_blank" rel="noopener noreferrer" className="p-2 bg-green-700 hover:bg-orange-500 rounded-full transition-all duration-300 hover:scale-110">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="https://linkedin.com/company/fruktportalen" target="_blank" rel="noopener noreferrer" className="p-2 bg-green-700 hover:bg-orange-500 rounded-full transition-all duration-300 hover:scale-110">
+              <a href="https://linkedin.com/company/vitaminkorgen" target="_blank" rel="noopener noreferrer" className="p-2 bg-green-700 hover:bg-orange-500 rounded-full transition-all duration-300 hover:scale-110">
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
@@ -150,7 +150,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-green-700 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="text-sm text-gray-200">
-            © {currentYear} FruktPortalen AB. Alla rättigheter förbehållna.
+            © {currentYear} VitaminKorgen AB. Alla rättigheter förbehållna.
           </div>
           <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 text-sm text-gray-200">
             <div className="flex space-x-6">

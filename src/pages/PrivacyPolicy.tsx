@@ -15,7 +15,7 @@ const PrivacyPolicy = () => {
             
             <div className="prose prose-lg max-w-none">
               <p className="text-xl text-gray-600 leading-relaxed mb-8">
-                Vi på FruktPortalen värnar om din integritet och är transparenta med hur vi behandlar dina personuppgifter.
+                Vi på VitaminKorgen värnar om din integritet och är transparenta med hur vi behandlar dina personuppgifter.
               </p>
               
               <section className="mb-8">
