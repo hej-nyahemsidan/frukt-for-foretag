@@ -8,12 +8,12 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Phone, Mail, Plus, Info, LogIn, FileText } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import fruktkorgrSupremeImg from '@/assets/fruktkorg-supreme-new.jpg';
+import fruktkorgrSupremeImg from '@/assets/fruktkorg-standard-new.jpg';
 import fruktkorgrPremiumImg from '@/assets/fruktkorg-premium-new.jpg';
-import fruktkorgrOriginalImg from '@/assets/fruktkorg-original-new.jpg';
-import fruktkorgrBananImg from '@/assets/fruktkorg-bas-new.jpg';
+import fruktkorgrOriginalImg from '@/assets/fruktkorg-eko-new.jpg';
+import fruktkorgrBananImg from '@/assets/fruktkorg-banan-new.jpg';
 import fruktladaImg from '@/assets/fruktlada.jpg';
-import freshFruitImg from '@/assets/fresh-fruit-arrangements.jpg';
+import fruktpaserImage from '@/assets/fruktpase-new.jpg';
 import premiumCoffeeImg from '@/assets/premium-coffee.jpg';
 import cocaColaImg from '@/assets/coca-cola.jpg';
 import cocaColaZeroImg from '@/assets/coca-cola-zero.jpg';
@@ -104,13 +104,13 @@ const Products = () => {
       {
         id: 'fruktpase-extra',
         name: 'Fruktpåse Extra',
-        image: freshFruitImg,
+        image: fruktpaserImage,
         description: 'Varierad mix av säsongens frukter'
       },
       {
         id: 'bananpase-extra',
         name: 'Bananpåse Extra',
-        image: freshFruitImg,
+        image: fruktpaserImage,
         description: 'Fokus på bananer med kompletterande frukter'
       }
     ],
@@ -310,11 +310,11 @@ const Products = () => {
                       )}
                       
                       <CardHeader className="p-0">
-                        <div className="aspect-square bg-gradient-subtle p-4 rounded-t-lg">
+                        <div className="aspect-square bg-gradient-subtle overflow-hidden rounded-t-lg">
                           <img
                             src={product.image}
                             alt={product.name}
-                            className="w-full h-full object-contain"
+                            className="w-full h-full object-cover"
                           />
                         </div>
                       </CardHeader>
@@ -385,11 +385,11 @@ const Products = () => {
                   {otherProducts.fruktpasar.map((product) => (
                     <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white flex flex-col h-full">
                       <CardHeader className="p-0">
-                        <div className="aspect-square bg-gradient-subtle p-4 rounded-t-lg">
+                        <div className="aspect-square bg-gradient-subtle overflow-hidden rounded-t-lg">
                           <img
                             src={product.image}
                             alt={product.name}
-                            className="w-full h-full object-contain"
+                            className="w-full h-full object-cover"
                           />
                         </div>
                       </CardHeader>
@@ -417,11 +417,11 @@ const Products = () => {
                   {otherProducts.mjolk.map((product) => (
                     <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white flex flex-col h-full">
                       <CardHeader className="p-0">
-                        <div className="aspect-square bg-gradient-subtle p-4 rounded-t-lg">
+                        <div className="aspect-square bg-gradient-subtle overflow-hidden rounded-t-lg">
                           <img
                             src={product.image}
                             alt={product.name}
-                            className="w-full h-full object-contain"
+                            className="w-full h-full object-cover"
                           />
                         </div>
                       </CardHeader>
@@ -448,11 +448,11 @@ const Products = () => {
                   {otherProducts.lask.map((product) => (
                     <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white flex flex-col h-full">
                       <CardHeader className="p-0">
-                        <div className="aspect-square bg-gradient-subtle p-4 rounded-t-lg">
+                        <div className="aspect-square bg-gradient-subtle overflow-hidden rounded-t-lg">
                           <img
                             src={product.image}
                             alt={product.name}
-                            className="w-full h-full object-contain"
+                            className="w-full h-full object-cover"
                           />
                         </div>
                       </CardHeader>
@@ -479,11 +479,11 @@ const Products = () => {
                   {otherProducts.kaffe.map((product) => (
                     <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 hover:scale-[1.02] bg-white flex flex-col h-full">
                       <CardHeader className="p-0">
-                        <div className="aspect-square bg-gradient-subtle p-4 rounded-t-lg">
+                        <div className="aspect-square bg-gradient-subtle overflow-hidden rounded-t-lg">
                           <img
                             src={product.image}
                             alt={product.name}
-                            className="w-full h-full object-contain"
+                            className="w-full h-full object-cover"
                           />
                         </div>
                       </CardHeader>

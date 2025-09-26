@@ -93,11 +93,11 @@ const ProductShowcase = () => {
                 )}
 
                 {/* Product Image */}
-                <div className="mb-4 relative">
+                <div className="mb-4 relative overflow-hidden">
                   <img
                     src={product.image}
                     alt={`${product.name} - premium fruit basket from Fruktexperten`}
-                    className="w-full aspect-square object-contain rounded-lg bg-gradient-subtle p-4 shadow-soft"
+                    className="w-full aspect-square object-cover rounded-lg bg-gradient-subtle shadow-soft"
                   />
                 </div>
 
