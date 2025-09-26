@@ -60,7 +60,7 @@ const Header = () => {
               variant="horizontal"
               animated={true} 
               link="/" 
-              className="scale-110"
+              className="scale-120"
             />
           </div>
 
