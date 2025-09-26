@@ -11,7 +11,7 @@ import {
   ShieldCheck,
   Leaf
 } from 'lucide-react';
-import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
+import FruktPortalenLogo from '@/components/FruktPortalenLogo';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -29,9 +29,12 @@ const Footer = () => {
           <div className="space-y-6">
             <div className="mb-6">
               <div className="p-3 bg-white/10 rounded-lg inline-block backdrop-blur-sm">
-                <VitaminKorgenLogo 
+                <FruktPortalenLogo 
                   size="small" 
+                  variant="full"
+                  monochrome={true} 
                   link="/" 
+                  className="filter brightness-0 invert"
                 />
               </div>
             </div>

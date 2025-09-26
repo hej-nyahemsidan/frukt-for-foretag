@@ -120,6 +120,9 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({
               </button>
             ))}
           </div>
+          <div className="text-xs text-center mt-1 font-semibold text-primary">
+            {getCurrentPrice()} kr
+          </div>
         </div>
       )}
 

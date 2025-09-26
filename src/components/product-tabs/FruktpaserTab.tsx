@@ -1,6 +1,7 @@
 import React from 'react';
 import AddToCartButton from '@/components/AddToCartButton';
-import fruktpaseImage from '@/assets/fruktpase-new.jpg';
+import freshFruitImage from '@/assets/fresh-fruit-arrangements.jpg';
+import picnicBasketImage from '@/assets/picnic-basket-fruits.jpg';
 
 interface FruktpaserTabProps {
   selectedDays: string[];
@@ -10,12 +11,14 @@ const fruktpaser = [
   {
     id: 'fruktpase-extra',
     name: 'Fruktpåse Extra',
-    image: fruktpaseImage
+    image: freshFruitImage,
+    price: 59
   },
   {
     id: 'bananpase-extra',
     name: 'Bananpåse Extra',
-    image: fruktpaseImage
+    image: picnicBasketImage,
+    price: 49
   }
 ];
 
@@ -33,10 +36,12 @@ const FruktpaserTab: React.FC<FruktpaserTabProps> = ({ selectedDays }) => {
           </div>
           <div className="p-3 space-y-3">
             <h3 className="font-medium text-charcoal text-sm text-center">{product.name}</h3>
+            <p className="font-bold text-[#4CAF50] text-sm text-center">{product.price} kr</p>
             <AddToCartButton 
               product={{
                 id: product.id,
                 name: product.name,
+                price: product.price,
                 category: 'fruktpaser',
                 image: product.image
               }}
