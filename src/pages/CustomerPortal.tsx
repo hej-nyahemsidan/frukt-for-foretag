@@ -6,8 +6,8 @@ import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
-import FruktPortalenLogo from '@/components/FruktPortalenLogo';
-import citrusBackground from '@/assets/citrus-background.jpg';
+import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
+import basketBackground from '@/assets/fruktkorg-standard-new.jpg';
 
 const CustomerPortal = () => {
   const [email, setEmail] = useState('');
@@ -72,7 +72,7 @@ const CustomerPortal = () => {
       <div 
         className="hidden lg:flex lg:w-1/2 relative"
         style={{
-          backgroundImage: `url(${citrusBackground})`,
+          backgroundImage: `url(${basketBackground})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
@@ -100,9 +100,8 @@ const CustomerPortal = () => {
         <div className="w-full max-w-md mx-auto">
           {/* Brand Logo */}
           <div className="text-center mb-12">
-            <FruktPortalenLogo 
+            <VitaminKorgenLogo 
               size="medium" 
-              variant="full"
               animated={true} 
               className="mx-auto"
             />

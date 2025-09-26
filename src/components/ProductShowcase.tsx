@@ -2,63 +2,53 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ShoppingCart, Star } from 'lucide-react';
-import fruktkorgrSupremeImg from '@/assets/fruktkorg-supreme-new.jpg';
-import fruktkorgrPremiumImg from '@/assets/fruktkorg-premium-new.jpg';
-import fruktkorgrOriginalImg from '@/assets/fruktkorg-original-new.jpg';
-import fruktkorgrBananImg from '@/assets/fruktkorg-bas-new.jpg';
-import fruktladaImg from '@/assets/fruktlada.jpg';
+import fruktkorgrSupremeImg from '@/assets/fruktkorg-eko-new.jpg';
+import fruktkorgrPremiumImg from '@/assets/fruktkorg-premium-updated.jpg';
+import fruktkorgrOriginalImg from '@/assets/fruktkorg-standard-new.jpg';
+import fruktkorgrBananImg from '@/assets/fruktkorg-banan-updated.jpg';
+import fruktladaImg from '@/assets/fruktlada-new.jpg';
 
 const ProductShowcase = () => {
   const products = [
     {
-      id: 'standard',
-      name: 'Fruktkorg Standard',
+      id: 'frukt-supreme',
+      name: 'Fruktkorg Supreme',
       image: fruktkorgrSupremeImg,
       weight: 'Starting at 4kg',
-      currentPrice: '230 kr',
-      originalPrice: '271 kr',
-      showPrice: true,
-      popular: false
+      showPrice: false,
+      popular: true,
     },
     {
-      id: 'premium',
+      id: 'frukt-premium', 
       name: 'Fruktkorg Premium',
       image: fruktkorgrPremiumImg,
       weight: 'Starting at 4kg',
-      currentPrice: '263 kr',
-      originalPrice: '310 kr',
-      showPrice: true,
-      popular: true
+      showPrice: false,
+      popular: false,
     },
     {
-      id: 'eko',
-      name: 'Fruktkorg Eko',
+      id: 'frukt-original',
+      name: 'Fruktkorg Original', 
       image: fruktkorgrOriginalImg,
       weight: 'Starting at 4kg',
-      currentPrice: '289 kr',
-      originalPrice: '340 kr',
-      showPrice: true,
-      popular: false
+      showPrice: false,
+      popular: false,
     },
     {
-      id: 'banan',
-      name: 'Fruktkorg Banan+',
+      id: 'frukt-banan',
+      name: 'Fruktkorg Banan Plus',
       image: fruktkorgrBananImg,
-      weight: 'Starting at 4kg',
-      currentPrice: '249 kr',
-      originalPrice: '295 kr',
-      showPrice: true,
-      popular: true
+      weight: 'Starting at 4kg', 
+      showPrice: false,
+      popular: false,
     },
     {
-      id: 'lada',
+      id: 'fruktlada',
       name: 'Fruktlåda',
       image: fruktladaImg,
       weight: 'Starting at 4kg',
-      currentPrice: 'från 450 kr',
-      originalPrice: null,
-      showPrice: true,
-      popular: false
+      showPrice: false,
+      popular: false,
     }
   ];
 
@@ -123,18 +113,9 @@ const ProductShowcase = () => {
                     {product.name}
                   </h3>
 
-                  {/* Price */}
+                  {/* Price - removed per request */}
                   <div className="mb-4 flex-1">
-                    <div className="flex items-center gap-2">
-                      <span className="text-primary font-bold text-xl">
-                        {product.currentPrice}
-                      </span>
-                      {product.originalPrice && (
-                        <span className="text-muted-foreground line-through text-sm">
-                          {product.originalPrice}
-                        </span>
-                      )}
-                    </div>
+                    {/* Prices removed from entire website */}
                   </div>
 
                   {/* CTA Button */}

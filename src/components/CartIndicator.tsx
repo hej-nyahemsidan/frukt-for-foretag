@@ -25,9 +25,6 @@ const CartIndicator = () => {
         <span className="font-medium">
           Varukorg {totalItems > 0 && `(${totalItems})`}
         </span>
-        {totalPrice > 0 && (
-          <span className="font-bold">{formatPrice(totalPrice)}</span>
-        )}
         {totalItems > 0 && (
           <Badge 
             variant="destructive" 
@@ -77,10 +74,9 @@ const CartIndicator = () => {
                          {item.size && (
                            <p className="text-xs text-muted-foreground">Storlek: {item.size}</p>
                          )}
-                         {item.assignedDay && (
-                           <p className="text-xs text-muted-foreground">Dag: {item.assignedDay}</p>
-                         )}
-                         <p className="text-xs text-muted-foreground">{formatPrice(item.price)}/st</p>
+                          {item.assignedDay && (
+                            <p className="text-xs text-muted-foreground">Dag: {item.assignedDay}</p>
+                          )}
                        </div>
                        
                        <div className="flex items-center gap-2">
@@ -119,10 +115,6 @@ const CartIndicator = () => {
 
           {items.length > 0 && (
             <div className="p-4 border-t border-gray-100">
-              <div className="flex justify-between items-center mb-3">
-                <span className="font-semibold text-charcoal">Totalt:</span>
-                <span className="font-bold text-lg text-charcoal">{formatPrice(totalPrice)}</span>
-              </div>
               <div className="space-y-2">
                 <Button 
                   variant="outline" 

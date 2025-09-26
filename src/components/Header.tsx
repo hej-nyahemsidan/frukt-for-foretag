@@ -4,7 +4,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@/contexts/AuthContext';
-import FruktPortalenLogo from '@/components/FruktPortalenLogo';
+import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -42,9 +42,8 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-18">
           {/* Company Logo */}
           <div className="flex-shrink-0">
-            <FruktPortalenLogo 
+            <VitaminKorgenLogo 
               size="medium" 
-              variant="horizontal"
               animated={true} 
               link="/" 
               className="max-w-[150px] md:max-w-[200px]"

@@ -1,10 +1,10 @@
 import React from 'react';
 import AddToCartButton from '@/components/AddToCartButton';
-import fruktkorgrPremiumImg from '@/assets/fruktkorg-premium-new.jpg';
-import fruktkorgrSupremeImg from '@/assets/fruktkorg-supreme-new.jpg';
-import fruktkorgrOriginalImg from '@/assets/fruktkorg-original-new.jpg';
-import fruktkorgrBananImg from '@/assets/fruktkorg-bas-new.jpg';
-import fruktkorgrBasImg from '@/assets/fruktkorg-bas-new.jpg';
+import fruktkorgrPremiumImg from '@/assets/fruktkorg-premium-updated.jpg';
+import fruktkorgrSupremeImg from '@/assets/fruktkorg-eko-new.jpg';
+import fruktkorgrOriginalImg from '@/assets/fruktkorg-standard-new.jpg';
+import fruktkorgrBananImg from '@/assets/fruktkorg-banan-updated.jpg';
+import fruktkorgrBasImg from '@/assets/fruktlada-new.jpg';
 
 interface FruktkorgarTabProps {
   selectedDays: string[];
@@ -14,57 +14,27 @@ const fruktkorgar = [
   {
     id: 'frukt-premium',
     name: 'Fruktkorg Premium',
-    image: fruktkorgrPremiumImg,
-    prices: {
-      '4kg': 263,
-      '6kg': 395,
-      '9kg': 592,
-      '11kg': 724
-    }
+    image: fruktkorgrPremiumImg
   },
   {
     id: 'frukt-supreme',
     name: 'Fruktkorg Supreme',
-    image: fruktkorgrSupremeImg,
-    prices: {
-      '4kg': 230,
-      '6kg': 345,
-      '9kg': 518,
-      '11kg': 633
-    }
+    image: fruktkorgrSupremeImg
   },
   {
     id: 'frukt-original',
     name: 'Fruktkorg Original',
-    image: fruktkorgrOriginalImg,
-    prices: {
-      '4kg': 289,
-      '6kg': 434,
-      '9kg': 651,
-      '11kg': 796
-    }
+    image: fruktkorgrOriginalImg
   },
   {
     id: 'frukt-banan',
     name: 'Fruktkorg Banan Plus',
-    image: fruktkorgrBananImg,
-    prices: {
-      '4kg': 249,
-      '6kg': 374,
-      '9kg': 560,
-      '11kg': 686
-    }
+    image: fruktkorgrBananImg
   },
   {
     id: 'frukt-bas',
     name: 'Fruktkorg Bas',
-    image: fruktkorgrBasImg,
-    prices: {
-      '4kg': 199,
-      '6kg': 299,
-      '9kg': 449,
-      '11kg': 549
-    }
+    image: fruktkorgrBasImg
   }
 ];
 
@@ -86,13 +56,12 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
               product={{
                 id: product.id,
                 name: product.name,
-                prices: product.prices,
                 category: 'fruktkorgar',
                 image: product.image
               }}
               className="w-full text-xs px-2 py-1"
               showQuantitySelector={true}
-              showSizeSelector={true}
+              showSizeSelector={false}
               selectedDays={selectedDays}
             />
           </div>
