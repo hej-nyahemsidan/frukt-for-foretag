@@ -11,7 +11,7 @@ import {
   ShieldCheck,
   Leaf
 } from 'lucide-react';
-import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
+
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -28,14 +28,14 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <div className="mb-6">
-              <div className="p-4 bg-white rounded-lg inline-block shadow-sm">
-                <VitaminKorgenLogo 
-                  size="xl" 
-                  variant="full"
-                  link="/" 
-                  className=""
-                />
-              </div>
+              <a href="/" className="inline-block group">
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-500 bg-clip-text text-transparent tracking-tight">
+                  Vitamin
+                </h2>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent tracking-tight -mt-1">
+                  Korgen
+                </h2>
+              </a>
             </div>
             <p className="text-gray-100 text-sm leading-relaxed">
               Stockholms ledande leverantör av färsk frukt till kontor och företag. 

@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
-import citrusBackground from '@/assets/citrus-background.jpg';
+import vitaminKorgenImage from '@/assets/vitamin-korgen-new-logo.jpg';
 
 const CustomerPortal = () => {
   const [email, setEmail] = useState('');
@@ -68,22 +68,18 @@ const CustomerPortal = () => {
 
   return (
     <div className="min-h-screen flex">
-      {/* Left Side - Background Image */}
-      <div 
-        className="hidden lg:flex lg:w-1/2 relative"
-        style={{
-          backgroundImage: `url(${citrusBackground})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      >
-        {/* Page Title */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-4xl lg:text-5xl font-bold text-white drop-shadow-lg text-center">
-            VitaminKorgens Portal
-          </h1>
+      {/* Left Side - Brand Image */}
+      <div className="hidden lg:flex lg:w-1/2 relative bg-gradient-to-br from-green-50 to-orange-50 flex-col items-center justify-center p-12">
+        <div className="max-w-lg w-full">
+          <img 
+            src={vitaminKorgenImage} 
+            alt="Vitamin Korgen - Fresh fruit delivery service" 
+            className="w-full h-auto object-contain filter brightness-110 contrast-110 drop-shadow-2xl"
+          />
         </div>
+        <h1 className="text-4xl lg:text-5xl font-bold text-green-800 mt-8 text-center tracking-tight">
+          VitaminKorgens Portal
+        </h1>
       </div>
 
       {/* Right Side - Login Form */}
