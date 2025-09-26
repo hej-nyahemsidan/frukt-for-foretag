@@ -35,7 +35,7 @@ const LaskTab: React.FC<LaskTabProps> = ({ selectedDays }) => {
             <img 
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
           <div className="p-3 space-y-3">
