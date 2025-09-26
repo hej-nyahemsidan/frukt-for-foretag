@@ -8,7 +8,7 @@ import {
   CarouselItem,
   CarouselApi,
 } from '@/components/ui/carousel';
-import stockholmWalkingPerson from '@/assets/stockholm-walking-person.jpg';
+import almanacImage from '@/assets/almanac-26th-crossed.jpg';
 
 const reviews = [
   {
@@ -119,12 +119,12 @@ const CustomerReviewsSection = () => {
 
         {/* Main content with image and carousel */}
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
-          {/* Stockholm Image */}
+          {/* Almanac Image */}
           <div className="order-2 lg:order-1 relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <img 
-                src={stockholmWalkingPerson} 
-                alt="Person walking through Stockholm" 
+                src={almanacImage} 
+                alt="Almanac with 26th crossed out with red X" 
                 className="w-full h-[500px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
@@ -177,7 +177,7 @@ const CustomerReviewsSection = () => {
             className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground px-10 py-6 text-lg font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
           >
             <a
-              href="https://maps.app.goo.gl/hHiMYPXkVQBd3fDL9"
+              href="https://maps.app.goo.gl/Lmh2g9YXw9vi47QCA"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3"
