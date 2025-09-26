@@ -28,14 +28,14 @@ const HeroSection = () => {
           <div className="space-y-6 max-w-md pl-4 lg:max-w-lg lg:pl-0 lg:ml-8 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2">
             <div className="space-y-4">
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight text-slate-800 shadow-sm">
-                Experterna på<br />
-                företagsfrukt som<br />
-                levererar resultat
+                Fruktkorgar på jobbet<br />
+                som gör skillnad
               </h1>
               
               <p className="text-lg leading-relaxed text-slate-600 max-w-lg">
-                Vi levererar handplockade fruktkorgar direkt till svenska företag varje vecka. 
-                Sedan 2024 har vi hjälpt över 500 företag att öka välmående och produktivitet genom premium frukt av världsklass.
+                Vi levererar handplockade fruktkorgar direkt till ert kontor i Stockholm. 
+                Sedan 2024 har vi försett över 500 företag med färsk energi, ökad produktivitet och 
+                bättre välmående genom våra premiumprodukter.
               </p>
               
               {/* Promotional Button */}
@@ -44,7 +44,7 @@ const HeroSection = () => {
                 className="inline-block bg-gradient-to-r from-secondary to-primary-light text-white px-6 py-3 rounded-full shadow-lg animate-float hover:shadow-xl transition-shadow border-0 font-semibold"
               >
                 <a href="/offertforfragan">
-                  🎉 Testa oss gratis i två veckor
+                  🎉 Testa fruktkorgar i två veckor gratis
                 </a>
               </Button>
               

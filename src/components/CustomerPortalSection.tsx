@@ -25,11 +25,13 @@ const CustomerPortalSection = () => {
         {/* Text Content */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-800 max-w-4xl mx-auto mb-6">
-            Hantera dina fruktleveranser enkelt med vår smidiga kundportal
+            Enkel hantering av era fruktkorgar
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-            Med vår kundportal kan du enkelt logga in och hantera din prenumeration och leveranser. 
-            Du kan ändra, avboka och lägga till leveranser från fruktbud, på ett enkelt och smidigt sätt.
+            Som kund hos Vitaminkorgen får ni tillgång till vår smidiga kundportal 
+            där ni enkelt kan pausa leveranser, ändra storlek på fruktkorgar eller 
+            lägga till extra beställningar. Perfekt när ni har konferens och behöver 
+            extra frukt, eller vill pausa under semestern.
           </p>
         </div>
 

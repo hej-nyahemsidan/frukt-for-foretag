@@ -27,8 +27,8 @@ const ProductShowcase = () => {
       popular: true
     },
     {
-      id: 'eko',
-      name: 'Fruktkorg Eko',
+      id: 'sasong',
+      name: 'Fruktkorg Säsong',
       image: fruktkorgrOriginalImg,
     weight: 'Från 4kg och uppåt',
       showPrice: false,

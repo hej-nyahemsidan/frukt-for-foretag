@@ -10,27 +10,27 @@ const FeaturesSection = () => {
     {
       src: officeWorkersImage,
       alt: 'Office workers enjoying fresh fruit',
-      badge: '🔒 Ingen Bindningstid'
+      badge: '🚚 Fri leverans i Stockholm'
     },
     {
       src: deliveryBoxesImage,
       alt: 'Premium fruit delivery boxes',
-      badge: '📱 Hantera via kundportalen'
+      badge: '🏆 100% Kvalitetsgaranti'
     },
     {
       src: arrangementImage,
       alt: 'Fresh fruit arrangements',
-      badge: '⭐ 98% nöjda kunder'
+      badge: '📅 Flexibla leveransalternativ'
     },
     {
       src: happyEmployeesImage,
       alt: 'Happy employees eating fruit',
-      badge: '🚚 Leverans varje vecka'
+      badge: '🚚 Fri leverans i Stockholm'
     },
     {
       src: professionalDisplayImage,
       alt: 'Professional fruit display',
-      badge: '🔒 Ingen Bindningstid'
+      badge: '🏆 100% Kvalitetsgaranti'
     }
   ];
 
@@ -41,11 +41,13 @@ const FeaturesSection = () => {
           {/* Text Content */}
           <div className="text-center space-y-6">
             <h2 className="text-5xl font-bold text-white leading-tight">
-              Kvalitet som levererar resultat
+              Våra fördelar med fruktkorgar på jobbet
             </h2>
             
             <p className="text-xl text-white leading-relaxed max-w-3xl mx-auto">
-              Vi levererar endast premium frukt från certifierade leverantörer – våra kunder får den kvalitet och service som skapar nöjda medarbetare.
+              <strong>Fri leverans i Stockholm</strong> - Smidig leverans av fruktkorgar direkt till ert kontor i hela Stockholmsområdet.<br/>
+              <strong>100% Kvalitetsgaranti</strong> - Handplockade fruktkorgar på jobbet med garanti för färskhet och kvalitet.<br/>
+              <strong>Flexibla leveransalternativ</strong> - Anpassade leveransscheman som passar just er arbetsplats.
             </p>
           </div>
 

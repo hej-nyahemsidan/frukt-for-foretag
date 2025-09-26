@@ -54,10 +54,12 @@ const ContactSection = () => {
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl">
             <h1 className="text-6xl font-bold text-gray-900 mb-6">
-              Kontakta Oss
+              Kontakta oss om fruktkorgar på jobbet
             </h1>
             <p className="text-2xl text-gray-700 leading-relaxed">
-              Har du frågor? Skicka oss ett meddelande så återkommer vi till dig snart.
+              Vill du veta mer om hur fruktkorgar kan förbättra arbetsmiljön på just 
+              ert kontor? Vi på Vitaminkorgen hjälper företag i hela Stockholm med 
+              skräddarsydda lösningar för fruktkorgar på jobbet.
             </p>
           </div>
         </div>
@@ -70,16 +72,20 @@ const ContactSection = () => {
             {/* Left Column - Company Message (40%) */}
             <div className="lg:col-span-2 space-y-6">
               <h2 className="text-4xl font-bold text-gray-900">
-                Hör av dig!
+                Frågor om fruktkorgar på kontoret?
               </h2>
               
               <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  Vi är ett gäng glada och entusiastiska frukttokiga personer som brinner för att leverera den absolut fräschaste och mest näringsrika frukten till våra kunder.
+                  Oavsett om ni är intresserade av veckoleveranser, vill ha en provkorg 
+                  eller behöver en offert på fruktkorg på kontoret – vi svarar alltid 
+                  inom 24 timmar.
                 </p>
                 
                 <p>
-                  Om du har några frågor, funderingar eller bara vill höra vår passionerade presentation av våra frukter, tveka inte att kontakta oss. Vi ser fram emot att höra från dig!
+                  Vi hjälper företag i hela Stockholm att förbättra arbetsmiljön med 
+                  våra skräddarsydda fruktkorgar på jobbet. Kontakta oss så berättar 
+                  vi mer om hur vi kan hjälpa just er!
                 </p>
               </div>
             </div>

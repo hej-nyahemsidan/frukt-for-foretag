@@ -79,10 +79,10 @@ const AboutSection = () => {
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl">
             <h1 className="text-6xl font-bold text-gray-900 mb-6">
-              Om oss
+              Stockholms ledande leverantör av fruktkorgar på jobbet
             </h1>
             <p className="text-2xl text-gray-600 leading-relaxed">
-              Fruktexperten levererar färska fruktkorgar till svenska företag sedan 2024
+              Sedan 2024 har vi på Vitaminkorgen gjort det enkelt för företag i Stockholm att erbjuda fruktkorgar på jobbet.
             </p>
           </div>
         </div>
@@ -95,17 +95,38 @@ const AboutSection = () => {
             {/* Text Content - 60% */}
             <div className="lg:col-span-3 space-y-6">
               <h2 className="text-4xl font-bold text-gray-900">
-                Det enkla fruktbudet.
+                Enkelt att erbjuda fruktkorgar på jobbet
               </h2>
               
               <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  Vi startade Fruktexperten 2024 med en enkel idé - att göra det enkelt för svenska företag att erbjuda sina anställda näringsrik frukt på arbetsplatsen. Genom att fokusera på kvalitet, hållbarhet och enkel leverans har vi vuxit till att betjäna över 200 företag.
+                  Sedan 2024 har vi på Vitaminkorgen gjort det enkelt för företag i Stockholm 
+                  att erbjuda fruktkorgar på jobbet. Vi startade med en enkel vision: färsk 
+                  frukt på kontoret ska vara lika självklart som morgonkaffet.
                 </p>
                 
                 <p>
-                  Vi arbetar bara med certifierade leverantörer som delar vår passion för kvalitet och miljöansvar. Varje fruktkorg packas med omsorg för att ge era medarbetare den bästa upplevelsen.
+                  Idag levererar vi fruktkorgar till över 500 företag varje vecka – från 
+                  innovativa startups på Östermalm till etablerade storkontor i Kista. Alla 
+                  får samma personliga service och handplockade kvalitet.
                 </p>
+                
+                <p>
+                  Vi förstår att varje arbetsplats är unik. Därför erbjuder vi flexibla 
+                  lösningar som anpassas efter era behov – oavsett om ni är 5 eller 500 
+                  medarbetare. Våra fruktkorgar innehåller alltid säsongens bästa frukt, 
+                  noggrant utvald för optimal smak och näring.
+                </p>
+                
+                <p>
+                  En fruktkorg på kontoret är mer än bara frukt – det är en investering i:
+                </p>
+                <ul className="list-disc list-inside space-y-1 ml-4">
+                  <li>Ökad energi och produktivitet</li>
+                  <li>Färre sjukdagar och bättre immunförsvar</li>
+                  <li>Starkare teamkänsla och trivsel</li>
+                  <li>Enkel och uppskattad personalförmån</li>
+                </ul>
               </div>
 
               <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg text-lg">

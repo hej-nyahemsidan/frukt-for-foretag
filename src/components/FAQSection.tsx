@@ -9,40 +9,40 @@ const FAQSection = () => {
 
   const faqItems = [
     {
-      question: "Kan man beställa hur många korgar som helst?",
-      answer: "Ja, vi anpassar oss efter era behov! Vi levererar allt från en enda fruktkorg för små kontor till hundratals korgar för stora företag. Det finns ingen övre eller nedre gräns - vi skräddarsyr lösningen efter er verksamhet."
+      question: "Hur fungerar fruktkorgar på jobbet från Vitaminkorgen?",
+      answer: "Vi levererar färska fruktkorgar direkt till ert kontor i Stockholm varje vecka. Ni väljer storlek och leveransdag, sedan sköter vi resten. Flexibla avtal som kan pausas vid semester."
     },
     {
-      question: "Vi är inte nöjda med vår korg, får vi ersättning?",
-      answer: "Absolut! Vi har 100% nöjdhetsgaranti. Är ni inte helt nöjda med kvaliteten eller innehållet ersätter vi korgen eller återbetalar beloppet. Kontakta oss inom 24 timmar efter leverans så löser vi det direkt."
+      question: "Vilka områden levererar ni fruktkorgar till?",
+      answer: "Vi levererar fruktkorgar på jobbet till hela Stockholmsområdet. Från city till förorterna – fri leverans överallt inom tullarna."
     },
     {
-      question: "Jag är allergisk mot en särskild frukt, kan ni ta bort den ur korgen?",
-      answer: "Självklart kan vi anpassa korgarna efter allergier och preferenser! Vi skapar skräddarsydda fruktkorgar där vi tar bort specifika frukter och ersätter dem med andra. Bara meddela oss vid beställning eller i kundportalen."
+      question: "Kan vi få en provleverans av fruktkorg på kontoret?",
+      answer: "Absolut! Testa våra fruktkorgar i två veckor helt gratis. Ingen bindningstid, inget krångel."
+    },
+    {
+      question: "Hur mycket kostar fruktkorgar från Vitaminkorgen?",
+      answer: "Priserna för våra fruktkorgar på jobbet börjar från 230 kr per vecka. Kontakta oss för en skräddarsydd offert baserad på antal medarbetare."
+    },
+    {
+      question: "Kan man anpassa fruktkorgar efter allergier?",
+      answer: "Självklart! Vi skapar skräddarsydda fruktkorgar där vi tar bort specifika frukter och ersätter dem med andra. Bara meddela oss vid beställning eller i kundportalen."
     },
     {
       question: "Hur anpassar ni utbudet efter säsongen?",
-      answer: "Vi följer säsongerna och erbjuder alltid den fräschaste frukten som är i säsong. På vintern fokuserar vi på citrusfrukter och äpplen, på sommaren på bär och stenfrukter. Detta garanterar bästa kvalitet och smak året runt."
-    },
-    {
-      question: "Vart kommer frukten ifrån?",
-      answer: "Vi samarbetar med certifierade leverantörer från hela Europa för att säkerställa högsta kvalitet på vår frukt. All frukt levereras färsk och genomgår kvalitetskontroller innan leverans."
+      answer: "Vi följer säsongerna och erbjuder alltid den fräschaste frukten som är i säsong. På vintern fokuserar vi på citrusfrukter och äpplen, på sommaren på bär och stenfrukter."
     },
     {
       question: "Är frukten ekologisk?",
-      answer: "Vi erbjuder både ekologisk och konventionell frukt. Alla våra produkter är tydligt märkta så att du enkelt kan välja det alternativ som passar dig bäst."
-    },
-    {
-      question: "Hur paketeras frukten?",
-      answer: "Vår frukt paketeras i miljövänliga förpackningar som håller frukten färsk under transport. Vi använder återvinningsbart material och minimerar förpackningsmängden."
-    },
-    {
-      question: "Hur sker leveransen?",
-      answer: "Vi levererar direkt till din arbetsplats varje vecka på en tid som passar er. Våra chaufförer ser till att frukten placeras på rätt plats och att allt ser bra ut."
+      answer: "Vi erbjuder både ekologisk och konventionell frukt. All vår frukt kommer från certifierade leverantörer och vi kan anpassa sortimentet efter era önskemål och budget."
     },
     {
       question: "Levererar ni till hela Sverige?",
-      answer: "Ja, vi levererar till de flesta orter i Sverige. Kontakta oss för att bekräfta leverans till er specifika adress och få information om leveranstider."
+      answer: "Vi fokuserar på Stockholmsområdet där vi kan garantera bästa kvalitet och service. För andra områden, kontakta oss för att diskutera möjligheter."
+    },
+    {
+      question: "Vad är minsta beställning för fruktkorgar på jobbet?",
+      answer: "Vår minsta leverans är en fruktkorg från 4kg per vecka. Detta räcker för cirka 15-20 personer beroende på konsumtion och passar perfekt för mindre kontor."
     }
   ];
 

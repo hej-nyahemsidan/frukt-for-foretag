@@ -83,30 +83,42 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <a href="/#produkter" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
-                  → Fruktkorgarna
+                  → Fruktkorgar på jobbet
                 </a>
               </li>
               <li>
                 <a href="/#produkter" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
-                  → Kontorsleverans
+                  → Fruktkorgar Stockholm
                 </a>
               </li>
               <li>
-                <a href="/om-oss" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
-                  → Hållbarhet
+                <a href="/#produkter" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
+                  → Premium fruktkorg
                 </a>
               </li>
               <li>
-                <a href="/om-oss" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
-                  → Om Oss
+                <a href="/#produkter" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
+                  → Fruktkorg på kontoret
                 </a>
               </li>
               <li>
                 <a href="/kundportal" className="text-gray-100 hover:text-yellow-400 transition-colors hover:translate-x-1 inline-block">
-                  → Kundportal
+                  → Veckoleveranser
                 </a>
               </li>
             </ul>
+          </div>
+
+          {/* Delivery Areas */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold text-white mb-4">Leveransområden Stockholm</h4>
+            <div className="space-y-2 text-sm">
+              <div className="text-gray-100">→ Fruktkorgar Östermalm</div>
+              <div className="text-gray-100">→ Fruktkorgar Södermalm</div>
+              <div className="text-gray-100">→ Fruktkorgar Norrmalm</div>
+              <div className="text-gray-100">→ Fruktkorgar Kungsholmen</div>
+              <div className="text-gray-100">→ Fruktkorgar Vasastan</div>
+            </div>
           </div>
 
           {/* Features */}
