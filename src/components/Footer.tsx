@@ -28,12 +28,12 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <div className="mb-6">
-              <div className="p-3 bg-white/10 rounded-lg inline-block backdrop-blur-sm">
+              <div className="p-3 bg-white rounded-lg inline-block shadow-sm">
                 <VitaminKorgenLogo 
-                  size="small" 
+                  size="medium" 
                   variant="full"
                   link="/" 
-                  className="bg-white/10 rounded-lg"
+                  className=""
                 />
               </div>
             </div>

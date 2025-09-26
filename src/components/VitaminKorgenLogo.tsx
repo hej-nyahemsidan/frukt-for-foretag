@@ -20,9 +20,9 @@ const VitaminKorgenLogo: React.FC<VitaminKorgenLogoProps> = ({
   className = ""
 }) => {
   const sizeClasses = {
-    small: 'h-8 w-8',
-    medium: 'h-12 w-12', 
-    large: 'h-16 w-16'
+    small: 'h-10 w-10',
+    medium: 'h-16 w-16', 
+    large: 'h-20 w-20'
   };
 
   const animationClasses = animated ? 'hover:scale-105 transition-transform duration-200' : '';
