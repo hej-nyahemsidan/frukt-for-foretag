@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import vitaminKorgenLogo from '@/assets/vitamin-korgen-logo.jpg';
 
 interface VitaminKorgenLogoProps {
-  size?: 'small' | 'medium' | 'large' | 'xl' | '2xl';
+  size?: 'small' | 'medium' | 'large' | 'xl' | '2xl' | 'mega' | 'ultra';
   variant?: 'full' | 'icon' | 'horizontal';
   animated?: boolean;
   monochrome?: boolean;
@@ -24,7 +24,9 @@ const VitaminKorgenLogo: React.FC<VitaminKorgenLogoProps> = ({
     medium: variant === 'horizontal' ? 'h-16 w-auto' : 'h-16 w-16', 
     large: variant === 'horizontal' ? 'h-20 w-auto' : 'h-20 w-20',
     xl: variant === 'horizontal' ? 'h-32 w-auto' : 'h-32 w-32',
-    '2xl': variant === 'horizontal' ? 'h-40 w-auto' : 'h-40 w-40'
+    '2xl': variant === 'horizontal' ? 'h-40 w-auto' : 'h-40 w-40',
+    mega: variant === 'horizontal' ? 'h-48 w-auto md:h-56' : 'h-48 w-48 md:h-56 md:w-56',
+    ultra: variant === 'horizontal' ? 'h-56 w-auto md:h-64' : 'h-56 w-56 md:h-64 md:w-64'
   };
 
   const animationClasses = animated ? 'hover:scale-105 transition-transform duration-200' : '';

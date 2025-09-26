@@ -6,6 +6,7 @@ import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAdminAuth } from '../contexts/AdminAuthContext';
 import { useToast } from '@/hooks/use-toast';
+import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('admin@vitaminkorgen.se');
@@ -76,6 +77,16 @@ const AdminLogin = () => {
 
         {/* Login Card */}
         <div className="bg-white rounded-lg shadow-md p-8">
+          {/* Brand Logo */}
+          <div className="text-center mb-8">
+            <VitaminKorgenLogo 
+              size="mega" 
+              variant="full"
+              animated={true} 
+              className="mx-auto"
+            />
+          </div>
+
           {/* Admin Login Form */}
           <div className="space-y-6">
             <div className="text-center">
