@@ -36,19 +36,14 @@ const Header = () => {
 
   const blogPosts = [
     { 
-      title: 'Därför ska du ha frukt på jobbet – en fräsch investering i välmående och energi',
+      title: 'Frukt på jobbet',
       slug: 'frukt-pa-jobbet',
-      excerpt: 'Att erbjuda frukt på jobbet har blivit allt mer populärt bland företag i Stockholm – och det är lätt att förstå varför.'
+      excerpt: 'Varför frukt på kontoret är en smart investering för företag.'
     },
     {
-      title: 'Frukt som mellanmål – en naturlig investering i din långsiktiga hälsa',
+      title: 'Frukt som mellanmål',
       slug: 'frukt-som-mellanmal',
-      excerpt: 'Att välja frukt som mellanmål är ett av de enklaste och mest effektiva sätten att förbättra sin hälsa.'
-    },
-    {
-      title: 'Blommor & växter till jobbet – enkelt med Vitaminkorgen',
-      slug: 'blommor-vaxter-jobbet',
-      excerpt: 'Visste du att vi på Vitaminkorgen även erbjuder uthyrning av blommor och växter till företag?'
+      excerpt: 'Hälsofördelarna med att välja frukt som mellanmål.'
     }
   ];
 

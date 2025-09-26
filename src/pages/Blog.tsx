@@ -119,36 +119,6 @@ const blogContent = {
         Frukt är ett av de mest tillgängliga, prisvärda och hälsosamma livsmedel vi har. Det är lätt att bära med sig, enkelt att förbereda och passar alla – oavsett ålder eller livsstil. Att göra frukt till en självklar del av vardagen är ett smart val för dig som vill ha mer energi, bättre fokus och en starkare kropp. På lång sikt kan det bidra till ett friskare liv, med färre sjukdagar, bättre matsmältning och mindre risk för livsstilsrelaterade sjukdomar. Det är helt enkelt en vana värd att hålla fast vid.
       </p>
     `
-  },
-  'blommor-vaxter-jobbet': {
-    title: 'Blommor & växter till jobbet – enkelt med Vitaminkorgen 🌸',
-    date: '2024-03-05',
-    readTime: '3 min',
-    content: `
-      <p>
-        Visste du att vi på Vitaminkorgen även erbjuder uthyrning av blommor och växter till företag? Det är en smidig och uppskattad tjänst som gör arbetsmiljön både trevligare och mer levande – utan att ni behöver tänka på skötsel eller inköp.
-      </p>
-      
-      <p>
-        Vi levererar fräscha växter och vackra blomsterarrangemang till ert kontor, entré eller fikarum. Allt sköts automatiskt, och ni kan enkelt pausa tjänsten när det behövs – till exempel under semestertider. Behöver ni lägga till extra blommor till någon som fyller år eller ska avtackas? Inga problem – det fixar vi med ett enkelt meddelande.
-      </p>
-      
-      <h2>🌿 Så funkar det:</h2>
-      <ul>
-        <li>Vi levererar blommor & växter efter överenskommelse</li>
-        <li>Regelbunden uppdatering och utbyte så allt håller sig fräscht</li>
-        <li>Ni kan pausa, justera eller lägga till när ni vill</li>
-        <li>Perfekt för att skapa en trivsam och välkomnande miljö</li>
-      </ul>
-      
-      <p>
-        Tjänsten passar företag som vill ha det snyggt och ombonat utan att behöva tänka på vattning, jord eller vissna blad. Vi tar hand om allt – ni bara njuter av grönskan.
-      </p>
-      
-      <p>
-        Vill du veta mer? Kontakta oss så berättar vi mer om våra lösningar för blommor och växter på jobbet!
-      </p>
-    `
   }
 };
 
