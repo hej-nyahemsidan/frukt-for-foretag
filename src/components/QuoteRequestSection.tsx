@@ -101,65 +101,71 @@ const QuoteRequestSection = () => {
               
               <div className="bg-white p-8 rounded-xl shadow-lg border">
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <Input
-                      value={formData.companyName}
-                      onChange={(e) => handleInputChange('companyName', e.target.value)}
-                      className="w-full text-lg py-3"
-                    />
-                    <label className="text-sm text-gray-600">Företagsnamn</label>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Input
-                      value={formData.contactPerson}
-                      onChange={(e) => handleInputChange('contactPerson', e.target.value)}
-                      className="w-full text-lg py-3"
-                      required
-                    />
-                    <label className="text-sm text-gray-600">Kontaktperson*</label>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Input
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange('email', e.target.value)}
-                      className="w-full text-lg py-3"
-                      required
-                    />
-                    <label className="text-sm text-gray-600">Epost*</label>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
-                      className="w-full text-lg py-3"
-                    />
-                    <label className="text-sm text-gray-600">Telefon</label>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Input
-                      value={formData.location}
-                      onChange={(e) => handleInputChange('location', e.target.value)}
-                      className="w-full text-lg py-3"
-                      required
-                    />
-                    <label className="text-sm text-gray-600">Ort*</label>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Textarea
-                      value={formData.message}
-                      onChange={(e) => handleInputChange('message', e.target.value)}
-                      rows={5}
-                      className="w-full text-lg"
-                    />
-                    <label className="text-sm text-gray-600">Meddelande</label>
-                  </div>
+                   <div className="space-y-2">
+                     <label className="text-sm text-gray-600 font-medium">Företagsnamn</label>
+                     <Input
+                       value={formData.companyName}
+                       onChange={(e) => handleInputChange('companyName', e.target.value)}
+                       className="w-full text-lg py-3"
+                       placeholder="Ditt företagsnamn"
+                     />
+                   </div>
+                   
+                   <div className="space-y-2">
+                     <label className="text-sm text-gray-600 font-medium">Kontaktperson*</label>
+                     <Input
+                       value={formData.contactPerson}
+                       onChange={(e) => handleInputChange('contactPerson', e.target.value)}
+                       className="w-full text-lg py-3"
+                       placeholder="Ditt namn"
+                       required
+                     />
+                   </div>
+                   
+                   <div className="space-y-2">
+                     <label className="text-sm text-gray-600 font-medium">Epost*</label>
+                     <Input
+                       type="email"
+                       value={formData.email}
+                       onChange={(e) => handleInputChange('email', e.target.value)}
+                       className="w-full text-lg py-3"
+                       placeholder="din.email@foretag.se"
+                       required
+                     />
+                   </div>
+                   
+                   <div className="space-y-2">
+                     <label className="text-sm text-gray-600 font-medium">Telefon</label>
+                     <Input
+                       type="tel"
+                       value={formData.phone}
+                       onChange={(e) => handleInputChange('phone', e.target.value)}
+                       className="w-full text-lg py-3"
+                       placeholder="08-123 45 67"
+                     />
+                   </div>
+                   
+                   <div className="space-y-2">
+                     <label className="text-sm text-gray-600 font-medium">Ort*</label>
+                     <Input
+                       value={formData.location}
+                       onChange={(e) => handleInputChange('location', e.target.value)}
+                       className="w-full text-lg py-3"
+                       placeholder="Stockholm"
+                       required
+                     />
+                   </div>
+                   
+                   <div className="space-y-2">
+                     <label className="text-sm text-gray-600 font-medium">Meddelande</label>
+                     <Textarea
+                       value={formData.message}
+                       onChange={(e) => handleInputChange('message', e.target.value)}
+                       rows={5}
+                       className="w-full text-lg"
+                       placeholder="Berätta vad ni behöver hjälp med..."
+                     />
+                   </div>
                   
                   <Button 
                     type="submit" 
