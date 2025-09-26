@@ -1,26 +1,29 @@
 import React from 'react';
 import AddToCartButton from '@/components/AddToCartButton';
-import colaImage from '@/assets/coca-cola.jpg';
-import colaZeroImage from '@/assets/coca-cola-zero.jpg';
-import spriteImage from '@/assets/sprite.jpg';
-import fantaImage from '@/assets/fanta-orange.jpg';
-import bonaquaImage from '@/assets/bonaqua.jpg';
-import softDrinksImage from '@/assets/soft-drinks-collection.jpg';
+import colaOriginalImage from '@/assets/coca-cola-original.png';
+import colaZeroImage from '@/assets/coca-cola-zero-new.png';
+import fantaOrangeImage from '@/assets/fanta-orange-new.png';
+import fantaExoticImage from '@/assets/fanta-exotic.png';
+import prilLemonImage from '@/assets/pril-lemon-lime.png';
+import prilZeroImage from '@/assets/pril-zero-sugar.png';
+import bonaquaCitronImage from '@/assets/bonaqua-citron-new.png';
+import bonaquaHallonImage from '@/assets/bonaqua-hallon-new.png';
+import merParonImage from '@/assets/mer-paron-new.png';
 
 interface LaskTabProps {
   selectedDays: string[];
 }
 
 const lask = [
-  { id: 'coca-cola', name: 'Coca Cola', price: 25, image: colaImage },
-  { id: 'coca-cola-zero', name: 'Coca Cola Zero', price: 25, image: colaZeroImage },
-  { id: 'sprite', name: 'Sprite', price: 25, image: spriteImage },
-  { id: 'sprite-zero', name: 'Sprite Zero', price: 25, image: spriteImage },
-  { id: 'fanta-orange', name: 'Fanta Orange', price: 25, image: fantaImage },
-  { id: 'fanta-exotic', name: 'Fanta Exotic', price: 25, image: fantaImage },
-  { id: 'bonaqua-citron', name: 'Bonaqua Citron', price: 20, image: bonaquaImage },
-  { id: 'bonaqua-hallon', name: 'Bonaqua Hallon/Lime', price: 20, image: bonaquaImage },
-  { id: 'mer-paron', name: 'Mer Päron', price: 22, image: softDrinksImage }
+  { id: 'coca-cola', name: 'Coca Cola Original', price: 25, image: colaOriginalImage },
+  { id: 'coca-cola-zero', name: 'Coca Cola Zero Sugar', price: 25, image: colaZeroImage },
+  { id: 'pril-lemon', name: 'Pril Lemon-Lime', price: 25, image: prilLemonImage },
+  { id: 'pril-zero', name: 'Pril Zero Sugar', price: 25, image: prilZeroImage },
+  { id: 'fanta-orange', name: 'Fanta Orange', price: 25, image: fantaOrangeImage },
+  { id: 'fanta-exotic', name: 'Fanta Exotic', price: 25, image: fantaExoticImage },
+  { id: 'bonaqua-citron', name: 'Bonaqua Citron/Lime', price: 20, image: bonaquaCitronImage },
+  { id: 'bonaqua-hallon', name: 'Bonaqua Hallon/Lime', price: 20, image: bonaquaHallonImage },
+  { id: 'mer-paron', name: 'MER Päron', price: 22, image: merParonImage }
 ];
 
 const LaskTab: React.FC<LaskTabProps> = ({ selectedDays }) => {
