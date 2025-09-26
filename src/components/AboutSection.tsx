@@ -45,7 +45,7 @@ const AboutSection = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative bg-gray-50 py-20 px-8 overflow-hidden">
-        <div className="absolute top-10 right-10 opacity-30">
+        <div className="absolute top-10 right-10 opacity-30 hidden min-[700px]:block">
           <img 
             src={seasonalFruitsImage} 
             alt="Fresh seasonal fruits" 
@@ -104,10 +104,6 @@ const AboutSection = () => {
                   <li>Enkel och uppskattad personalförmån</li>
                 </ul>
               </div>
-
-              <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg text-lg">
-                Läs mer om oss
-              </Button>
             </div>
 
             {/* Image - 40% */}
@@ -226,26 +222,30 @@ const AboutSection = () => {
                 </h3>
                 
                 <form className="space-y-4">
-                  <div>
+                  <div className="space-y-2">
+                    <label className="text-sm text-gray-600 font-medium">Namn</label>
                     <Input 
                       placeholder="Ditt namn" 
                       className="w-full"
                     />
                   </div>
-                  <div>
+                  <div className="space-y-2">
+                    <label className="text-sm text-gray-600 font-medium">E-post</label>
                     <Input 
                       type="email" 
                       placeholder="Din e-post" 
                       className="w-full"
                     />
                   </div>
-                  <div>
+                  <div className="space-y-2">
+                    <label className="text-sm text-gray-600 font-medium">Företag</label>
                     <Input 
                       placeholder="Företag" 
                       className="w-full"
                     />
                   </div>
-                  <div>
+                  <div className="space-y-2">
+                    <label className="text-sm text-gray-600 font-medium">Meddelande</label>
                     <Textarea 
                       placeholder="Meddelande" 
                       rows={4}
