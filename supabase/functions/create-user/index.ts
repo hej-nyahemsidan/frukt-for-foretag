@@ -41,6 +41,27 @@ serve(async (req) => {
 
     console.log('Creating user with email:', email);
 
+    // First check if user already exists in profiles table
+    const { data: existingProfile } = await supabaseAdmin
+      .from('profiles')
+      .select('id, email')
+      .eq('email', email)
+      .single();
+
+    if (existingProfile) {
+      console.log('User already exists in profiles:', existingProfile.email);
+      return new Response(
+        JSON.stringify({ 
+          error: 'En användare med denna e-postadress finns redan. Använd redigeringsfunktionen istället.',
+          code: 'user_exists'
+        }),
+        { 
+          status: 409, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
     // Create the auth user using admin API
     const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({
       email: email,
@@ -55,18 +76,27 @@ serve(async (req) => {
     if (authError) {
       console.error('Auth error:', authError);
       
-      // Handle duplicate user error with helpful message
-      if (authError.message?.includes('already been registered')) {
-        return new Response(
-          JSON.stringify({ 
-            error: 'En användare med denna e-postadress finns redan. Använd redigeringsfunktionen istället.',
-            code: 'user_exists'
-          }),
-          { 
-            status: 409, 
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-          }
-        );
+      // Handle auth errors - check if it's a duplicate issue
+      if (authError.message?.includes('already been registered') || authError.status === 500) {
+        // Double-check if user exists in profiles
+        const { data: doubleCheckProfile } = await supabaseAdmin
+          .from('profiles')
+          .select('id, email')
+          .eq('email', email)
+          .single();
+          
+        if (doubleCheckProfile) {
+          return new Response(
+            JSON.stringify({ 
+              error: 'En användare med denna e-postadress finns redan. Använd redigeringsfunktionen istället.',
+              code: 'user_exists'
+            }),
+            { 
+              status: 409, 
+              headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+            }
+          );
+        }
       }
       
       throw authError;
@@ -74,52 +104,47 @@ serve(async (req) => {
 
     console.log('User created successfully:', authData.user?.id);
 
-    // Defensively ensure both customers and profiles rows exist (bypasses RLS with service role)
+    // Defensively ensure both customers and profiles rows exist using upserts
     const userId = authData.user?.id;
     if (userId) {
-      // Create profiles row for admin dashboard
+      // Upsert profiles row for admin dashboard
       const { error: profileError } = await supabaseAdmin
         .from('profiles')
-        .insert({
+        .upsert({
           id: userId,
           email: authData.user?.email || '',
           full_name: fullName || null
+        }, { 
+          onConflict: 'id',
+          ignoreDuplicates: false 
         });
 
-      if (profileError && !profileError.message?.includes('duplicate')) {
-        console.error('Error creating profile row:', profileError);
+      if (profileError) {
+        console.error('Error upserting profile row:', profileError);
       } else {
-        console.log('Profile row created successfully');
+        console.log('Profile row upserted successfully');
       }
 
-      // Create customers row for business logic
-      const { data: existingCustomer } = await supabaseAdmin
+      // Upsert customers row for business logic
+      const { error: customerError } = await supabaseAdmin
         .from('customers')
-        .select('id')
-        .eq('user_id', userId)
-        .single();
+        .upsert({
+          user_id: userId,
+          email: authData.user?.email || '',
+          contact_person: fullName || 'Ny användare',
+          company_name: companyName || 'Företag AB',
+          phone: '',
+          address: ''
+        }, { 
+          onConflict: 'user_id',
+          ignoreDuplicates: false 
+        });
 
-      if (!existingCustomer) {
-        console.log('Creating customers row for user:', userId);
-        const { error: customerError } = await supabaseAdmin
-          .from('customers')
-          .insert({
-            user_id: userId,
-            email: authData.user?.email || '',
-            contact_person: fullName || 'Ny användare',
-            company_name: companyName || 'Företag AB',
-            phone: '',
-            address: ''
-          });
-
-        if (customerError) {
-          console.error('Error creating customer row:', customerError);
-          // Don't fail the whole operation, trigger will handle it
-        } else {
-          console.log('Customer row created successfully');
-        }
+      if (customerError) {
+        console.error('Error upserting customer row:', customerError);
+        // Don't fail the whole operation for customer creation issues
       } else {
-        console.log('Customer row already exists');
+        console.log('Customer row upserted successfully');
       }
     }
 
