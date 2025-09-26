@@ -22,18 +22,37 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
   const days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
   const [orderType, setOrderType] = React.useState('subscription');
 
+  // Filter days based on package plan
+  const availableDays = packagePlan === 'weekly' ? ['Måndag', 'Onsdag'] : days;
+  const isWeeklyPlan = packagePlan === 'weekly';
+
   const totalItems = getTotalItems();
   const hasSelectedDays = selectedDays.length > 0;
   const hasItems = totalItems > 0;
   const canProceed = hasSelectedDays && hasItems;
 
   const handleDayChange = (day: string, checked: boolean) => {
-    if (checked) {
-      setSelectedDays([...selectedDays, day]);
+    if (isWeeklyPlan) {
+      // For weekly plan, only allow one day selection (radio behavior)
+      setSelectedDays(checked ? [day] : []);
     } else {
-      setSelectedDays(selectedDays.filter(d => d !== day));
+      // For other plans, allow multiple selections (checkbox behavior)
+      if (checked) {
+        setSelectedDays([...selectedDays, day]);
+      } else {
+        setSelectedDays(selectedDays.filter(d => d !== day));
+      }
     }
   };
+
+  const handleWeeklyDaySelect = (day: string) => {
+    setSelectedDays([day]);
+  };
+
+  // Clear selected days when changing package plan to avoid conflicts
+  React.useEffect(() => {
+    setSelectedDays([]);
+  }, [packagePlan, setSelectedDays]);
 
   const handleNext = () => {
     if (canProceed) {
@@ -122,17 +141,38 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
       <div className="mb-8">
         <h3 className="text-lg font-semibold text-charcoal mb-4">Välj vilka dagar</h3>
         <div className="space-y-3">
-          {days.map((day) => (
-            <div key={day} className="flex items-center space-x-2">
-              <Checkbox
-                id={day}
-                checked={selectedDays.includes(day)}
-                onCheckedChange={(checked) => handleDayChange(day, !!checked)}
-                className="border-[#4CAF50] data-[state=checked]:bg-[#4CAF50] data-[state=checked]:text-white"
-              />
-              <Label htmlFor={day} className="text-charcoal">{day}</Label>
-            </div>
-          ))}
+          {isWeeklyPlan ? (
+            // Radio group for weekly plan (only Monday and Wednesday)
+            <RadioGroup 
+              value={selectedDays[0] || ''} 
+              onValueChange={handleWeeklyDaySelect}
+              className="space-y-3"
+            >
+              {availableDays.map((day) => (
+                <div key={day} className="flex items-center space-x-2">
+                  <RadioGroupItem 
+                    value={day}
+                    id={day}
+                    className="border-[#4CAF50] text-[#4CAF50] data-[state=checked]:bg-[#4CAF50]"
+                  />
+                  <Label htmlFor={day} className="text-charcoal">{day}</Label>
+                </div>
+              ))}
+            </RadioGroup>
+          ) : (
+            // Checkboxes for other plans
+            availableDays.map((day) => (
+              <div key={day} className="flex items-center space-x-2">
+                <Checkbox
+                  id={day}
+                  checked={selectedDays.includes(day)}
+                  onCheckedChange={(checked) => handleDayChange(day, !!checked)}
+                  className="border-[#4CAF50] data-[state=checked]:bg-[#4CAF50] data-[state=checked]:text-white"
+                />
+                <Label htmlFor={day} className="text-charcoal">{day}</Label>
+              </div>
+            ))
+          )}
         </div>
       </div>
 
