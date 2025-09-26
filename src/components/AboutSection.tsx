@@ -24,22 +24,6 @@ const AboutSection = () => {
       answer: "Absolut! Vi har 100% nöjdhetsgaranti. Är ni inte helt nöjda med kvaliteten eller innehållet ersätter vi korgen eller återbetalar beloppet. Kontakta oss inom 24 timmar efter leverans så löser vi det direkt."
     },
     {
-      question: "Jag är allergisk mot en särskild frukt, kan ni ta bort den ur korgen?",
-      answer: "Självklart kan vi anpassa korgarna efter allergier och preferenser! Vi skapar skräddarsydda fruktkorgar där vi tar bort specifika frukter och ersätter dem med andra. Bara meddela oss vid beställning eller i kundportalen."
-    },
-    {
-      question: "Hur anpassar ni utbudet efter säsongen?",
-      answer: "Vi följer säsongerna och erbjuder alltid den fräschaste frukten som är i säsong. På vintern fokuserar vi på citrusfrukter och äpplen, på sommaren på bär och stenfrukter. Detta garanterar bästa kvalitet och smak året runt."
-    },
-    {
-      question: "Vilka områden levererar ni till?",
-      answer: "Vi levererar till de flesta orter i Sverige. Våra huvudsakliga leveransområden inkluderar Stockholm, Göteborg, Malmö och de flesta större städer. Kontakta oss för att bekräfta leverans till er specifika adress."
-    },
-    {
-      question: "Vad är minsta antal kg som ni kan leverera?",
-      answer: "Vår minsta leverans är 10 kg frukt per vecka. Detta motsvarar ungefär en mindre fruktkorg som räcker för 15-20 personer beroende på konsumtion."
-    },
-    {
       question: "Hur går beställningen till?",
       answer: "Beställning görs enkelt via vår webbplats eller genom att kontakta oss direkt. Vi skapar en skräddarsydd lösning baserat på era behov och levererar sedan varje vecka på en tid som passar er."
     },
