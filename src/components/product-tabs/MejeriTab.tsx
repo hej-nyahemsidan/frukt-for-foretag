@@ -1,22 +1,21 @@
 import React from 'react';
 import AddToCartButton from '@/components/AddToCartButton';
-import ecoMilkImage from '@/assets/eco-milk.jpg';
-import oatlyImage from '@/assets/oatly.jpg';
-import dairyCollectionImage from '@/assets/dairy-products-collection.jpg';
+import mellanmjolkEkoLaktosfriImg from '@/assets/mellanmjolk-eko-laktosfri.png';
+import latteArtMjolkEkoImg from '@/assets/latte-art-mjolk-eko.png';
+import mellanmjolkLaktosfriImg from '@/assets/mellanmjolk-laktosfri.png';
+import mellanmjolkPortImg from '@/assets/mellanmjolk-port.png';
+import kaffemjolkLaktosfriImg from '@/assets/kaffemjolk-laktosfri.png';
 
 interface MejeriTabProps {
   selectedDays: string[];
 }
 
 const mejeri = [
-  { id: 'eko-standard', name: 'Eko Standardmjölk', price: 18, image: ecoMilkImage },
-  { id: 'eko-latt', name: 'Eko Lättmjölk', price: 18, image: ecoMilkImage },
-  { id: 'eko-laktosfri', name: 'Eko Laktosfri Mellanmjölk', price: 22, image: ecoMilkImage },
-  { id: 'eko-mellan', name: 'Eko Mellanmjölk', price: 18, image: ecoMilkImage },
-  { id: 'oatly-kaffe', name: 'Oatly iKaffe', price: 28, image: oatlyImage },
-  { id: 'oatly', name: 'Oatly', price: 25, image: oatlyImage },
-  { id: 'latte-art', name: 'Latte Art', price: 32, image: dairyCollectionImage },
-  { id: 'alpro', name: 'Alpro', price: 26, image: dairyCollectionImage }
+  { id: 'mellanmjolk-eko-laktosfri', name: 'Mellanmjölk Eko Laktosfri 1,5%', price: 22, image: mellanmjolkEkoLaktosfriImg },
+  { id: 'latte-art-mjolk-eko', name: 'Latte Art Mjölk Eko 2,6%', price: 32, image: latteArtMjolkEkoImg },
+  { id: 'mellanmjolk-laktosfri', name: 'Mellanmjölk Laktosfri 1,5%', price: 22, image: mellanmjolkLaktosfriImg },
+  { id: 'mellanmjolk-port', name: 'Mellanmjölk Port 1,5%', price: 18, image: mellanmjolkPortImg },
+  { id: 'kaffemjolk-laktosfri', name: 'Kaffemjölk Laktosfri 1,5%', price: 28, image: kaffemjolkLaktosfriImg }
 ];
 
 const MejeriTab: React.FC<MejeriTabProps> = ({ selectedDays }) => {
@@ -24,11 +23,11 @@ const MejeriTab: React.FC<MejeriTabProps> = ({ selectedDays }) => {
     <div className="grid grid-cols-3 gap-4">
       {mejeri.map((product) => (
         <div key={product.id} className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-          <div className="aspect-[3/4] bg-white overflow-hidden">
+          <div className="aspect-[3/4] bg-white overflow-hidden p-2">
             <img 
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
           <div className="p-3 space-y-3">
