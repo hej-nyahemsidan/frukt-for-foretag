@@ -240,7 +240,7 @@ const Products = () => {
                 Blädda genom vårt sortiment organiserat i kategorier
               </p>
               <p className="text-sm text-muted-foreground">
-                Fler Produkter hittar du på Mina Sidor när du är kund
+                Fler Produkter hittar du på Mina Sidor när du blir kund
               </p>
             </div>
 
