@@ -179,7 +179,7 @@ const CustomerReviewsSection = () => {
             className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground px-10 py-6 text-lg font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
           >
             <a
-              href="https://share.google/zH6hgOZS7XGevWsZ5"
+              href="https://www.google.com/search?sca_esv=6fbc5b85f7533cfa&rlz=1C5CHFA_enSE1126SE1128&uds=AOm0WdE2fekQnsyfYEw8JPYozOKzfl40QptZ7MXLZb4siiCsw-as-8RddsKtLw2yiePDaTHL92LTh4CLn9IsluB0VyRv9_FlEKvLVfiUvsuRIJYEuaGir36t3QbRfcoukUVA0zbmV0CBzHr1IDacMYeFTxtvvqcGfwhtjZP54Ta9FN50MnIJuUeQjnDxkQcXf6MA41tt3g5G&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E3yhgpTOU0Jq5Iak9AL4XGxA9UY4rzdViwab-MwNaagG51K8AO1XyaZNEmVjWwAUjUiJiDM%3D&q=Vitaminkorgen+i+Stockholm+-+Frukt+p%C3%A5+jobbet+Recensioner&sa=X&ved=2ahUKEwjXxcHHt_ePAxWbLBAIHRicGZgQ3PALegQIUhAF&biw=1600&bih=812&dpr=1"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3"
