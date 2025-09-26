@@ -21,7 +21,7 @@ export const useAdminAuth = () => {
   return context;
 };
 
-const ADMIN_EMAIL = 'admin@vitaminkorgen.se';
+const ADMIN_EMAIL = 'admin@fruktportalen.se';
 
 export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -51,11 +51,6 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   }, []);
 
   const login = async (email: string, password: string) => {
-    // Only allow admin email
-    if (email !== ADMIN_EMAIL) {
-      return { error: { message: 'Unauthorized access' } };
-    }
-
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
