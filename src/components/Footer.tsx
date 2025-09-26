@@ -29,7 +29,7 @@ const Footer = () => {
           <div className="space-y-6">
             <div className="mb-6">
               <a href="/" className="inline-block group">
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-500 bg-clip-text text-transparent tracking-tight">
+                <h2 className="text-3xl font-bold text-orange-400 tracking-tight">
                   Vitamin
                 </h2>
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent tracking-tight -mt-1">
