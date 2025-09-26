@@ -69,12 +69,12 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-24">
+        <div className="flex items-center justify-between h-16 md:h-20">
           {/* Company Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 z-10">
             <div onClick={handleLogoClick} className="cursor-pointer">
               <VitaminKorgenLogo 
-                size="large" 
+                size="medium" 
                 variant="horizontal"
                 animated={true}
               />
@@ -226,7 +226,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden fixed inset-x-0 top-16 md:top-24 bg-white border-t border-b border-gray-200 shadow-lg z-40 max-h-[calc(100vh-4rem)] md:max-h-[calc(100vh-6rem)] overflow-y-auto"
+          <div className="lg:hidden fixed inset-x-0 top-16 md:top-20 bg-white border-t border-b border-gray-200 shadow-lg z-40 max-h-[calc(100vh-4rem)] md:max-h-[calc(100vh-5rem)] overflow-y-auto"
             style={{ 
               position: 'fixed',
               width: '100vw',

@@ -87,6 +87,17 @@
   .text-responsive {
     @apply break-words hyphens-auto;
   }
+  
+  /* Ensure header doesn't overlap content */
+  header {
+    contain: layout style;
+  }
+  
+  /* Ensure hero section is properly contained */
+  .hero-background {
+    contain: layout style paint;
+    clip-path: inset(0);
+  }
 }
 
 @layer components {
@@ -446,6 +457,10 @@
       background-size: cover !important;
       background-position: center center !important;
       animation: none !important;
+    }
+    
+    .hero-background > div:first-child {
+      background-attachment: scroll !important;
     }
     
     /* Reduce animation intensity on mobile for better performance */

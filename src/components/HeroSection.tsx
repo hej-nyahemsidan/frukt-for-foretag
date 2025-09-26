@@ -7,19 +7,24 @@ const HeroSection = () => {
     <section 
       id="home" 
       className="hero-background relative overflow-hidden min-h-[60vh] sm:min-h-[70vh] flex items-center py-6 sm:py-12 pt-20 sm:pt-24 md:pt-28"
-      style={{
-        backgroundImage: `url(${picnicBasket})`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center center',
-        backgroundAttachment: 'scroll',
-        backgroundColor: '#f0f9ff', // Fallback background color
-      }}
     >
-      {/* Gradient Fade Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-green-50/95 via-green-50/70 to-green-50/20" style={{
-        background: 'linear-gradient(to right, rgba(240,253,244,0.95) 0%, rgba(240,253,244,0.7) 40%, rgba(240,253,244,0.2) 70%, transparent 100%)'
-      }}></div>
+      {/* Background Image Container with Proper Clipping */}
+      <div 
+        className="absolute inset-0 w-full h-full"
+        style={{
+          backgroundImage: `url(${picnicBasket})`,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundPosition: 'center center',
+          backgroundAttachment: 'scroll',
+          backgroundColor: '#f0f9ff',
+        }}
+      >
+        {/* Gradient Fade Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-green-50/95 via-green-50/70 to-green-50/20" style={{
+          background: 'linear-gradient(to right, rgba(240,253,244,0.95) 0%, rgba(240,253,244,0.7) 40%, rgba(240,253,244,0.2) 70%, transparent 100%)'
+        }}></div>
+      </div>
       
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8">
         <div className="lg:relative lg:h-[500px]">
