@@ -44,12 +44,12 @@ const AdminUserManagement = () => {
     try {
       setIsLoading(true);
       
-      // Fetch profiles with company information
+      // Fetch profiles with company information using the new foreign key relationship
       const { data: profilesData, error: profilesError } = await supabase
         .from('profiles')
         .select(`
           *,
-          customers!inner(company_name)
+          customers(company_name)
         `)
         .order('created_at', { ascending: false });
 
@@ -62,7 +62,7 @@ const AdminUserManagement = () => {
         full_name: profile.full_name,
         created_at: profile.created_at,
         updated_at: profile.updated_at,
-        company_name: (profile.customers as any)?.[0]?.company_name || null
+        company_name: (profile.customers as any)?.company_name || null
       })) || [];
       
       console.log('Fetched profiles:', transformedProfiles?.length || 0);
