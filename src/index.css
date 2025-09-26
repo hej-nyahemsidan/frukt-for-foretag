@@ -414,15 +414,15 @@
   }
   
   .features-carousel {
-    animation: scrollFeatures 12s linear infinite;
+    animation: scrollFeatures 20s linear infinite;
   }
   
   @keyframes scrollFeatures {
     0% {
-      transform: translateX(0);
+      transform: translateX(50%);
     }
     100% {
-      transform: translateX(-50%);
+      transform: translateX(0);
     }
   }
 
@@ -487,18 +487,18 @@
     }
 
     .portal-slide {
-      animation: slidePortal 35s linear infinite;
+      animation: slidePortal 50s linear infinite;
     }
   }
 
   /* Customer Portal Animation */
   @keyframes slidePortal {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-30%); }
+    0% { transform: translateX(30%); }
+    100% { transform: translateX(0%); }
   }
 
   .portal-slide {
-    animation: slidePortal 28s linear infinite;
+    animation: slidePortal 45s linear infinite;
     width: 130%; /* Make image wider to allow for sliding effect */
   }
 }
