@@ -184,13 +184,16 @@ const AdminUserManagement = () => {
     }
 
     try {
-      // Delete from profiles table (this should also delete from auth via cascade)
-      const { error } = await supabase
-        .from('profiles')
-        .delete()
-        .eq('id', profile.id);
-
+      // Use Edge function to properly delete user and all related data
+      const { data: functionData, error } = await supabase.functions.invoke('delete-user', {
+        body: { userId: profile.id }
+      });
+      
       if (error) throw error;
+      
+      if (functionData.error) {
+        throw new Error(functionData.error);
+      }
 
       await fetchUsers();
       toast({
