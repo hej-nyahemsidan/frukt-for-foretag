@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Star, ExternalLink } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Star } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import {
   Carousel,
@@ -152,25 +151,6 @@ const CustomerReviewsSection = () => {
               />
             ))}
           </div>
-        </div>
-
-        {/* Google Reviews Button */}
-        <div className="text-center">
-          <Button
-            asChild
-            size="lg"
-            className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground px-10 py-6 text-lg font-semibold rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
-          >
-            <a
-              href="https://share.google/mwMGzYM0GkS5c0Jul"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3"
-            >
-              Läs alla recensioner på Google
-              <ExternalLink className="w-5 h-5" />
-            </a>
-          </Button>
         </div>
       </div>
     </section>

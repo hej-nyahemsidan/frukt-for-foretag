@@ -61,9 +61,14 @@ const Footer = () => {
               <div className="flex items-start space-x-3 text-gray-100 hover:text-yellow-400 transition-colors">
                 <MapPin className="h-5 w-5 mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="font-medium">Huvudkontor Stockholm</p>
+                  <p className="font-medium">Varuvägen 9</p>
+                  <p>125 30 Älvsjö</p>
                 </div>
               </div>
+              <a href="tel:0101839836" className="flex items-center space-x-3 text-gray-100 hover:text-yellow-400 transition-colors">
+                <Phone className="h-5 w-5" />
+                <span>010-183 98 36</span>
+              </a>
               <a href="mailto:info@vitaminkorgen.se" className="flex items-center space-x-3 text-gray-100 hover:text-yellow-400 transition-colors">
                 <Mail className="h-5 w-5" />
                 <span>info@vitaminkorgen.se</span>
