@@ -414,10 +414,10 @@
 
   @keyframes moveBasketHorizontal {
     0% {
-      transform: translateX(15%);
+      transform: translateX(0%);
     }
     100% {
-      transform: translateX(-15%);
+      transform: translateX(-35%);
     }
   }
   
