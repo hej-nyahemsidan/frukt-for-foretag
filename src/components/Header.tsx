@@ -69,7 +69,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-lg">
       {/* Top accent line */}
-      <div className="h-3 bg-gradient-to-r from-secondary via-primary to-primary-light"></div>
+      <div className="h-2 bg-gradient-to-r from-secondary via-primary to-primary-light"></div>
       
       {/* Subtle pattern overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-30"></div>
