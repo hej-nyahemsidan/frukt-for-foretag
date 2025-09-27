@@ -46,6 +46,20 @@ const AddToCartButton = ({
     if (product.prices && selectedSize) {
       return product.prices[selectedSize];
     }
+    
+    // Handle products with prices object but no size selection
+    if (product.prices && !selectedSize) {
+      // First try to get default price
+      if (product.prices.default !== undefined) {
+        return product.prices.default;
+      }
+      // If no default, use the first available price
+      const firstPrice = Object.values(product.prices)[0];
+      if (firstPrice !== undefined) {
+        return firstPrice;
+      }
+    }
+    
     return product.price || 0;
   };
 
