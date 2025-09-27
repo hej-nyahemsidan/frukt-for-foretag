@@ -1,15 +1,15 @@
 
-import officeWorkersImage from '@/assets/office-workers-fruit.jpg';
 import deliveryBoxesImage from '@/assets/fruit-delivery-boxes.jpg';
 import arrangementImage from '@/assets/fresh-fruit-arrangements.jpg';
 import happyEmployeesImage from '@/assets/happy-employees.jpg';
 import professionalDisplayImage from '@/assets/professional-fruit-display.jpg';
+import freshFruitsArrangement2 from '@/assets/fresh-fruits-arrangement-2.jpg';
 
 const FeaturesSection = () => {
   const featureImages = [
     {
-      src: officeWorkersImage,
-      alt: 'Office workers enjoying fresh fruit',
+      src: freshFruitsArrangement2,
+      alt: 'Fresh fruit arrangement with copy space',
       badge: '🚚 Fri leverans i Stockholm'
     },
     {
