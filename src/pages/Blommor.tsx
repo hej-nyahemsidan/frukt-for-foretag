@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Flower2, Users, Calendar, CheckCircle2, Pause, MessageCircle, Phone, Mail } from 'lucide-react';
+import { Users, Calendar, CheckCircle2, Pause, MessageCircle, Phone, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import officeBouquet from '@/assets/office-bouquet.jpg';
 
@@ -28,9 +28,6 @@ const Blommor = () => {
           {/* Faded overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-green-50/90 to-blue-50/90"></div>
           <div className="container mx-auto text-center relative z-10">
-            <div className="flex justify-center mb-6">
-              <Flower2 className="w-16 h-16 text-green-600" />
-            </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
               Blommor & växter till jobbet – enkelt med Vitaminkorgen 🌸
             </h1>

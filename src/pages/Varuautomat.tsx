@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { 
-  Monitor, 
   Smartphone, 
   Apple, 
   Headphones, 
@@ -43,12 +42,6 @@ const Varuautomat = () => {
           {/* Faded overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 to-purple-50/90"></div>
           <div className="container mx-auto text-center relative z-10">
-            <div className="flex justify-center mb-6">
-              <div className="relative">
-                <Monitor className="w-16 h-16 text-blue-600" />
-                <Coffee className="w-6 h-6 text-purple-500 absolute -top-1 -right-1 bg-white rounded-full p-1" />
-              </div>
-            </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
               Varuautomat på jobbet – smidig service för en trevligare arbetsdag
             </h1>
