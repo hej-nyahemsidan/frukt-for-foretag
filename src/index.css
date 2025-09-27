@@ -415,10 +415,10 @@
 
   @keyframes moveBasketBg {
     0% {
-      background-position: 52% center;
+      background-position: 55% center;
     }
     100% {
-      background-position: 48% center;
+      background-position: 45% center;
     }
   }
 
