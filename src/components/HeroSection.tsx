@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import freshFruitsArrangement from '@/assets/fresh-fruits-arrangement.jpg';
+import fruitPlatter2 from '@/assets/fruitplatter-2.jpg';
 
 const HeroSection = () => {
   return (
@@ -11,7 +11,7 @@ const HeroSection = () => {
       <div 
         className="absolute inset-0 w-full h-full animate-moveBasketHorizontal"
         style={{
-          backgroundImage: `url(${freshFruitsArrangement})`,
+          backgroundImage: `url(${fruitPlatter2})`,
           backgroundSize: '200% auto',
           backgroundRepeat: 'repeat-x',
           backgroundPosition: '0% center',
