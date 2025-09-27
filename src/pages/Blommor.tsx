@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Flower2, Users, Calendar, CheckCircle2, Pause, MessageCircle, Phone, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import officeBouquet from '@/assets/office-bouquet.jpg';
 
 
 const Blommor = () => {
@@ -15,8 +16,18 @@ const Blommor = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="py-20 px-4 bg-gradient-to-br from-green-50 to-blue-50">
-          <div className="container mx-auto text-center">
+        <section 
+          className="py-20 px-4 bg-gradient-to-br from-green-50 to-blue-50 relative overflow-hidden"
+          style={{
+            backgroundImage: `url(${officeBouquet})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          {/* Faded overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-green-50/90 to-blue-50/90"></div>
+          <div className="container mx-auto text-center relative z-10">
             <div className="flex justify-center mb-6">
               <Flower2 className="w-16 h-16 text-green-600" />
             </div>

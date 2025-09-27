@@ -21,6 +21,7 @@ import {
   Wrench
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import fruitPlatter2 from '@/assets/fruitplatter-2.jpg';
 
 
 const Varuautomat = () => {
@@ -30,8 +31,18 @@ const Varuautomat = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="py-20 px-4 bg-gradient-to-br from-blue-50 to-purple-50">
-          <div className="container mx-auto text-center">
+        <section 
+          className="py-20 px-4 bg-gradient-to-br from-blue-50 to-purple-50 relative overflow-hidden"
+          style={{
+            backgroundImage: `url(${fruitPlatter2})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
+          {/* Faded overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/90 to-purple-50/90"></div>
+          <div className="container mx-auto text-center relative z-10">
             <div className="flex justify-center mb-6">
               <div className="relative">
                 <Monitor className="w-16 h-16 text-blue-600" />
