@@ -1,9 +1,10 @@
 
-import deliveryBoxesImage from '@/assets/fruit-delivery-boxes.jpg';
 import arrangementImage from '@/assets/fresh-fruit-arrangements.jpg';
 import happyEmployeesImage from '@/assets/happy-employees.jpg';
 import professionalDisplayImage from '@/assets/professional-fruit-display.jpg';
 import freshFruitsArrangement2 from '@/assets/fresh-fruits-arrangement-2.jpg';
+import bunchFreshJuicyFruits from '@/assets/bunch-fresh-juicy-fruits.jpg';
+import topViewTastySlicedFruits from '@/assets/top-view-tasty-sliced-fruits.jpg';
 
 const FeaturesSection = () => {
   const featureImages = [
@@ -13,13 +14,13 @@ const FeaturesSection = () => {
       badge: '🚚 Fri leverans i Stockholm'
     },
     {
-      src: deliveryBoxesImage,
-      alt: 'Premium fruit delivery boxes',
+      src: bunchFreshJuicyFruits,
+      alt: 'Fresh juicy fruits on marble table',
       badge: '🏆 100% Kvalitetsgaranti'
     },
     {
-      src: arrangementImage,
-      alt: 'Fresh fruit arrangements',
+      src: topViewTastySlicedFruits,
+      alt: 'Tasty sliced fruits and vegetables',
       badge: '📅 Flexibla leveransalternativ'
     },
     {
