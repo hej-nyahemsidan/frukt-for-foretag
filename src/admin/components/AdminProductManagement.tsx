@@ -246,7 +246,7 @@ const AdminProductManagement = () => {
               alt={product.name}
               className="w-full h-full object-cover"
               onError={(e) => {
-                e.currentTarget.src = '/src/assets/product-placeholder.jpg';
+                e.currentTarget.src = '/assets/product-placeholder.jpg';
               }}
             />
           </div>

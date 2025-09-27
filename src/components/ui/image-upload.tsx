@@ -151,7 +151,7 @@ export function ImageUpload({
             className="w-full h-full object-cover"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = '/src/assets/product-placeholder.jpg';
+              target.src = '/assets/product-placeholder.jpg';
             }}
           />
           {!disabled && (
