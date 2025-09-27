@@ -6,10 +6,12 @@ import { LogOut, ArrowLeft } from 'lucide-react';
 import OrderSidebar from '@/components/OrderSidebar';
 import ProductDisplay from '@/components/ProductDisplay';
 import SimplifiedCheckout from '@/components/SimplifiedCheckout';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const CustomerDashboard = () => {
   const { user, customer, logout } = useAuth();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const [packagePlan, setPackagePlan] = useState('weekly');
   const [selectedDays, setSelectedDays] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState('fruktkorgar');
@@ -33,29 +35,31 @@ const CustomerDashboard = () => {
       <div className="min-h-screen bg-background">
         {/* Simple Header */}
         <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
-          <div className="container mx-auto px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
-              <div className="flex items-center space-x-4">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-3 sm:py-0 sm:h-16 gap-2 sm:gap-4">
+              <div className="flex items-center space-x-2 sm:space-x-4 w-full sm:w-auto">
                 <Link to="/" className="flex items-center text-charcoal hover:text-secondary transition-colors">
-                  <ArrowLeft className="w-5 h-5 mr-2" />
-                  <span>Hem</span>
+                  <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
+                  <span className="text-sm sm:text-base">Hem</span>
                 </Link>
-                <div className="h-6 w-px bg-gray-300"></div>
-                <h1 className="text-lg font-semibold text-charcoal">
+                <div className="h-4 sm:h-6 w-px bg-gray-300 hidden sm:block"></div>
+                <h1 className="text-base sm:text-lg font-semibold text-charcoal truncate">
                   Slutför beställning
                 </h1>
               </div>
-              <div className="flex items-center space-x-4">
-                <span className="text-sm text-muted-foreground">
+              <div className="flex items-center space-x-2 sm:space-x-4 w-full sm:w-auto justify-between sm:justify-end">
+                <span className="text-xs sm:text-sm text-muted-foreground truncate max-w-32 sm:max-w-none">
                   {customer?.contact_person}
                 </span>
                 <Button 
                   onClick={handleLogout}
                   variant="outline"
-                  size="sm"
+                  size={isMobile ? "sm" : "sm"}
+                  className="flex-shrink-0"
                 >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Logga ut
+                  <LogOut className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                  <span className="hidden sm:inline">Logga ut</span>
+                  <span className="sm:hidden">Ut</span>
                 </Button>
               </div>
             </div>
@@ -77,40 +81,47 @@ const CustomerDashboard = () => {
     <div className="min-h-screen bg-background">
       {/* Simple Header */}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-3 sm:py-0 sm:h-16 gap-2 sm:gap-4">
+            <div className="flex items-center space-x-2 sm:space-x-4 w-full sm:w-auto">
               <Link to="/" className="flex items-center text-charcoal hover:text-secondary transition-colors">
-                <ArrowLeft className="w-5 h-5 mr-2" />
-                <span>Hem</span>
+                <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
+                <span className="text-sm sm:text-base">Hem</span>
               </Link>
-              <div className="h-6 w-px bg-gray-300"></div>
-              <h1 className="text-lg font-semibold text-charcoal">
-                Mina Sidor - {customer?.contact_person}
+              <div className="h-4 sm:h-6 w-px bg-gray-300 hidden sm:block"></div>
+              <h1 className="text-base sm:text-lg font-semibold text-charcoal truncate">
+                {isMobile ? 'Mina Sidor' : `Mina Sidor - ${customer?.contact_person}`}
               </h1>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4 w-full sm:w-auto justify-end">
+              {isMobile && (
+                <span className="text-xs text-muted-foreground truncate max-w-32">
+                  {customer?.contact_person}
+                </span>
+              )}
               <Button 
                 onClick={handleLogout}
                 variant="outline"
                 size="sm"
+                className="flex-shrink-0"
               >
-                <LogOut className="w-4 h-4 mr-2" />
-                Logga ut
+                <LogOut className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">Logga ut</span>
+                <span className="sm:hidden">Ut</span>
               </Button>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold text-charcoal text-center mb-8">
+      <main className="container mx-auto px-4 py-4 sm:py-8">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-charcoal text-center mb-6 sm:mb-8">
           Beställ Fruktkorg
         </h1>
         
-        <div className="flex gap-8">
-          {/* Left Sidebar - 30% width */}
-          <div className="w-[30%]">
+        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8">
+          {/* Sidebar - Full width on mobile, 30% on desktop */}
+          <div className="w-full lg:w-[30%] order-2 lg:order-1">
             <OrderSidebar 
               packagePlan={packagePlan}
               setPackagePlan={setPackagePlan}
@@ -120,8 +131,8 @@ const CustomerDashboard = () => {
             />
           </div>
           
-          {/* Right Main Area - 70% width */}
-          <div className="w-[70%]">
+          {/* Main Area - Full width on mobile, 70% on desktop */}
+          <div className="w-full lg:w-[70%] order-1 lg:order-2">
             <ProductDisplay 
               activeCategory={activeCategory}
               setActiveCategory={setActiveCategory}

@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useCart } from '@/contexts/CartContext';
 import { AlertCircle } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface OrderSidebarProps {
   packagePlan: string;
@@ -19,6 +20,7 @@ interface OrderSidebarProps {
 const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDays, onCheckout }: OrderSidebarProps) => {
   const navigate = useNavigate();
   const { getTotalItems } = useCart();
+  const isMobile = useIsMobile();
   const days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
   const [orderType, setOrderType] = useState('subscription');
 
@@ -73,27 +75,27 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
   };
 
   return (
-    <div className="bg-gray-100 p-6 rounded-lg shadow-sm border">
+    <div className="bg-gray-100 p-4 sm:p-6 rounded-lg shadow-sm border">
       {/* Step Indicator */}
-      <div className="flex items-center gap-4 mb-8">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-[#6B6B6B] text-white flex items-center justify-center text-sm font-medium">
+      <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-4 mb-6 sm:mb-8">
+        <div className="flex items-center gap-1 sm:gap-2">
+          <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#6B6B6B] text-white flex items-center justify-center text-xs sm:text-sm font-medium">
             1
           </div>
-          <span className="text-sm font-medium text-charcoal">Välj dag</span>
+          <span className="text-xs sm:text-sm font-medium text-charcoal">Välj dag</span>
         </div>
-        <div className="w-8 border-t border-mediumgray"></div>
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full border-2 border-[#6B6B6B] text-[#6B6B6B] flex items-center justify-center text-sm font-medium">
+        <div className="w-4 sm:w-8 border-t border-mediumgray"></div>
+        <div className="flex items-center gap-1 sm:gap-2">
+          <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-[#6B6B6B] text-[#6B6B6B] flex items-center justify-center text-xs sm:text-sm font-medium">
             2
           </div>
-          <span className="text-sm text-[#6B6B6B]">Slutför</span>
+          <span className="text-xs sm:text-sm text-[#6B6B6B]">Slutför</span>
         </div>
       </div>
 
       {/* Order Type Section */}
-      <div className="mb-8">
-        <h3 className="text-lg font-semibold text-charcoal mb-4">Typ av beställning</h3>
+      <div className="mb-6 sm:mb-8">
+        <h3 className="text-base sm:text-lg font-semibold text-charcoal mb-3 sm:mb-4">Typ av beställning</h3>
         <RadioGroup value={orderType} onValueChange={setOrderType} className="space-y-3">
           <div className="flex items-center space-x-2">
             <RadioGroupItem 
@@ -116,8 +118,8 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
 
       {/* Package Plan Section - Only show for subscription */}
       {orderType === 'subscription' && (
-        <div className="mb-8">
-          <h3 className="text-lg font-semibold text-charcoal mb-4">Paketplan</h3>
+        <div className="mb-6 sm:mb-8">
+          <h3 className="text-base sm:text-lg font-semibold text-charcoal mb-3 sm:mb-4">Paketplan</h3>
           <RadioGroup value={packagePlan} onValueChange={setPackagePlan} className="space-y-3">
             <div className="flex items-center space-x-2">
               <RadioGroupItem 
@@ -140,8 +142,8 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
       )}
 
       {/* Select Days Section */}
-      <div className="mb-8">
-        <h3 className="text-lg font-semibold text-charcoal mb-4">Välj vilka dagar</h3>
+      <div className="mb-6 sm:mb-8">
+        <h3 className="text-base sm:text-lg font-semibold text-charcoal mb-3 sm:mb-4">Välj vilka dagar</h3>
         <div className="space-y-3">
           {isWeeklySubscription ? (
             // Radio group for weekly subscription (only Monday and Wednesday)
@@ -193,7 +195,7 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
 
       {/* Next Button */}
       <Button 
-        className={`w-full ${
+        className={`w-full h-12 sm:h-10 text-base sm:text-sm font-medium ${
           canProceed 
             ? 'bg-[#4CAF50] hover:bg-[#45a049] text-white' 
             : 'bg-gray-300 text-gray-500 cursor-not-allowed'
