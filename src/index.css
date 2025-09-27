@@ -407,18 +407,18 @@
     background-color: hsl(0 0% 96%); /* Light Gray fallback */
   }
 
-  /* Horizontal Basket Animation - Background Position Pan */
+  /* Horizontal Basket Animation - Continuous Right to Left Scroll */
   .animate-moveBasketHorizontal {
-    animation: moveBasketBg 32s ease-in-out infinite alternate;
+    animation: moveBasketBg 20s linear infinite;
     will-change: background-position;
   }
 
   @keyframes moveBasketBg {
     0% {
-      background-position: 62% center;
+      background-position: 100% center;
     }
     100% {
-      background-position: 38% center;
+      background-position: 0% center;
     }
   }
 
