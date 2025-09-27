@@ -21,7 +21,7 @@ import {
   Wrench
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import modernVendingMachine from '@/assets/modern-vending-machine.jpg';
+
 
 const Varuautomat = () => {
   return (
@@ -67,13 +67,6 @@ const Varuautomat = () => {
                 </div>
               </div>
               
-              <div className="flex justify-center">
-                <img 
-                  src={modernVendingMachine} 
-                  alt="Modern office vending machine with snacks and drinks" 
-                  className="w-full max-w-sm h-auto rounded-lg shadow-lg"
-                />
-              </div>
             </div>
           </div>
         </section>

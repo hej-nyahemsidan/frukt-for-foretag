@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Flower2, Users, Calendar, CheckCircle2, Pause, MessageCircle, Phone, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import officeBouquet from '@/assets/office-bouquet.jpg';
+
 
 const Blommor = () => {
   return (
@@ -44,13 +44,6 @@ const Blommor = () => {
                 </p>
               </div>
               
-              <div className="flex justify-center">
-                <img 
-                  src={officeBouquet} 
-                  alt="Beautiful flower bouquet perfect for office environments" 
-                  className="w-full max-w-md h-auto rounded-lg shadow-lg"
-                />
-              </div>
             </div>
           </div>
         </section>
@@ -174,11 +167,6 @@ const Blommor = () => {
                 </Button>
               </Link>
               
-              <Link to="/offertforfragan">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-green-600">
-                  Begär offert
-                </Button>
-              </Link>
             </div>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-6 justify-center items-center text-sm opacity-90">
