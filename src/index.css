@@ -409,7 +409,7 @@
 
   /* Horizontal Basket Animation - Continuous Right to Left Scroll */
   .animate-moveBasketHorizontal {
-    animation: moveBasketBg 30s linear infinite;
+    animation: moveBasketBg 40s linear infinite;
     will-change: background-position;
   }
 
@@ -443,7 +443,7 @@
   }
   
   .features-carousel {
-    animation: scrollFeatures 20s linear infinite;
+    animation: scrollFeatures 30s linear infinite;
   }
   
   @keyframes scrollFeatures {
