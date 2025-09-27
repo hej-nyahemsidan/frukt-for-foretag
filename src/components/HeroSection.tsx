@@ -12,7 +12,7 @@ const HeroSection = () => {
         className="absolute inset-0 w-full h-full animate-moveBasketHorizontal"
         style={{
           backgroundImage: `url(${fruitPlatter})`,
-          backgroundSize: '120% auto',
+          backgroundSize: '140% auto',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center center',
           backgroundColor: '#f0f9ff',

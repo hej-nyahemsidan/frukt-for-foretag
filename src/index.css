@@ -409,21 +409,28 @@
 
   /* Horizontal Basket Animation - Background Position Pan */
   .animate-moveBasketHorizontal {
-    animation: moveBasketBg 24s ease-in-out infinite alternate;
+    animation: moveBasketBg 32s ease-in-out infinite alternate;
     will-change: background-position;
   }
 
   @keyframes moveBasketBg {
     0% {
-      background-position: 55% center;
+      background-position: 62% center;
     }
     100% {
-      background-position: 45% center;
+      background-position: 38% center;
     }
   }
 
   /* Disable hero animation on smaller screens */
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
+    .animate-moveBasketHorizontal {
+      animation: none !important;
+    }
+  }
+
+  /* Respect user's motion preference */
+  @media (prefers-reduced-motion: reduce) {
     .animate-moveBasketHorizontal {
       animation: none !important;
     }
