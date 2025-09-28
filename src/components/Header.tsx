@@ -81,6 +81,7 @@ const Header = () => {
     { label: 'Varuautomat', href: '/varuautomat', isExternal: false }, // Vending Machine
     { label: 'Om Oss', href: '/om-oss', isExternal: false },   // About Us
     { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
+    { label: 'Leveransområden', href: '/leveransomraden', isExternal: false }, // Delivery Areas
     { label: 'Offertförfrågan', href: '/offertforfragan', isExternal: false },     // Quote Request
   ];
 
@@ -91,6 +92,7 @@ const Header = () => {
     { label: 'Varuautomat', href: '/varuautomat', isExternal: false }, // Vending Machine
     { label: 'Om Oss', href: '/om-oss', isExternal: false },   // About Us
     { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
+    { label: 'Leveransområden', href: '/leveransomraden', isExternal: false }, // Delivery Areas
     { label: 'Mina Sidor', href: '/dashboard', isExternal: false }, // Customer Dashboard - moved to end
   ];
 
