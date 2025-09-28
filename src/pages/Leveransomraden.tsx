@@ -192,54 +192,6 @@ const Leveransomraden = () => {
                 </div>
               ))}
             </div>
-
-            {/* Delivery Schedule */}
-            <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-8">
-              <h3 className="text-2xl font-bold text-charcoal mb-6 text-center">
-                Leveransschema Stockholm
-              </h3>
-              
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h4 className="text-lg font-semibold text-charcoal mb-4">Måndagar</h4>
-                  <ul className="space-y-2 text-gray-600">
-                    <li>• Östermalm, Norrmalm</li>
-                    <li>• Stockholm Centrum</li>
-                  </ul>
-                </div>
-                
-                <div>
-                  <h4 className="text-lg font-semibold text-charcoal mb-4">Tisdagar</h4>
-                  <ul className="space-y-2 text-gray-600">
-                    <li>• Södermalm</li>
-                    <li>• Kungsholmen</li>
-                  </ul>
-                </div>
-                
-                <div>
-                  <h4 className="text-lg font-semibold text-charcoal mb-4">Onsdagar</h4>
-                  <ul className="space-y-2 text-gray-600">
-                    <li>• Kista</li>
-                    <li>• Solna, Sundbyberg</li>
-                  </ul>
-                </div>
-                
-                <div>
-                  <h4 className="text-lg font-semibold text-charcoal mb-4">Torsdagar</h4>
-                  <ul className="space-y-2 text-gray-600">
-                    <li>• Älvsjö och närområden</li>
-                    <li>• Specialleveranser</li>
-                  </ul>
-                </div>
-              </div>
-              
-              <div className="mt-8 p-4 bg-lightgreen/20 rounded-lg">
-                <p className="text-sm text-gray-700 text-center">
-                  <strong>Leveranstid:</strong> Alla leveranser sker mellan 07:00-16:00. 
-                  Ni får ett SMS eller e-mail när leveransen är på väg.
-                </p>
-              </div>
-            </div>
           </div>
         </section>
 
