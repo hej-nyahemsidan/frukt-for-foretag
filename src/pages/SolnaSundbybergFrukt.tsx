@@ -4,26 +4,10 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { MapPin, Clock, Factory, Building2, Zap, CheckCircle } from 'lucide-react';
+import { MapPin, Clock, Factory, Building2, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const SolnaSundbybergFrukt = () => {
-  const businessParkProducts = [
-    {
-      name: 'Företagspark Fruktkorg',
-      description: 'Stor fruktkorg för företagsparker och industriområden',
-      features: ['Stor kapacitet', 'Robust förpackning', 'Veckovis påfyllning'],
-      price: 'Från 525 kr/vecka'
-    },
-    {
-      name: 'Campus Corporate',
-      description: 'Designad för stora kontorskomplex',
-      features: ['Flera leveranspunkter', 'Koordinerad leverans', 'Bulk-rabatter'],
-      price: 'Från 750 kr/vecka'
-    }
-  ];
-
   const businessAreas = [
     {
       icon: <Factory className="w-6 h-6" />,
@@ -103,52 +87,6 @@ const SolnaSundbybergFrukt = () => {
                   </Link>
                 </Button>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Business Park Products */}
-        <section className="py-16 bg-background">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
-                Skalbar Service för Företagsparker
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Vi förstår stora företags behov och erbjuder robusta lösningar som 
-                fungerar för kontorskomplex och industrianläggningar.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
-              {businessParkProducts.map((product, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow border-2 hover:border-primary/30 bg-gradient-to-br from-white to-primary/5">
-                  <CardHeader>
-                    <div className="flex items-center mb-2">
-                      <Factory className="w-5 h-5 text-primary mr-2" />
-                      <span className="text-xs font-semibold text-primary uppercase tracking-wide">Storskalig</span>
-                    </div>
-                    <CardTitle className="text-xl text-charcoal">{product.name}</CardTitle>
-                    <CardDescription>{product.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 mb-4">
-                      {product.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-sm text-gray-600">
-                          <CheckCircle className="w-4 h-4 text-primary mr-2" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="text-2xl font-bold text-primary mb-4">{product.price}</div>
-                    <Button asChild className="w-full bg-primary hover:bg-primary/90">
-                      <Link to="/offertforfragan">
-                        Beställ för företaget
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
             </div>
           </div>
         </section>

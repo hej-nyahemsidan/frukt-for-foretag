@@ -4,26 +4,10 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { MapPin, Clock, Crown, Building, Sparkles, CheckCircle } from 'lucide-react';
+import { MapPin, Clock, Crown, Building, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const OstermalmKontorsfrukt = () => {
-  const premiumProducts = [
-    {
-      name: 'Fruktkorg Östermalm Premium',
-      description: 'Exklusiva frukter för krävande kontor',
-      features: ['Ekologiska frukter', 'Säsongsdelikatesser', 'Exklusiva sorter'],
-      price: 'Från 650 kr/vecka'
-    },
-    {
-      name: 'Executive Fruktkorg',
-      description: 'För VD-rum och styrelserum',
-      features: ['Handplockade frukter', 'Presentabel korg', 'Diskret leverans'],
-      price: 'Från 850 kr/vecka'
-    }
-  ];
-
   const clientAreas = [
     {
       icon: <Building className="w-6 h-6" />,
@@ -103,52 +87,6 @@ const OstermalmKontorsfrukt = () => {
                   </Link>
                 </Button>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Premium Products */}
-        <section className="py-16 bg-background">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
-                Premium Fruktkorgar för Östermalm
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Våra mest exklusiva fruktkorgar, skapade för att möta de höga förväntningarna 
-                från Östermalms företag och organisationer.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
-              {premiumProducts.map((product, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow border-2 hover:border-primary/30 bg-gradient-to-br from-white to-primary/5">
-                  <CardHeader>
-                    <div className="flex items-center mb-2">
-                      <Crown className="w-5 h-5 text-primary mr-2" />
-                      <span className="text-xs font-semibold text-primary uppercase tracking-wide">Premium</span>
-                    </div>
-                    <CardTitle className="text-xl text-charcoal">{product.name}</CardTitle>
-                    <CardDescription>{product.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 mb-4">
-                      {product.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-sm text-gray-600">
-                          <CheckCircle className="w-4 h-4 text-primary mr-2" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="text-2xl font-bold text-primary mb-4">{product.price}</div>
-                    <Button asChild className="w-full bg-primary hover:bg-primary/90">
-                      <Link to="/offertforfragan">
-                        Beställ premium
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
             </div>
           </div>
         </section>

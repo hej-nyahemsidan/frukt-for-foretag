@@ -4,26 +4,10 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { MapPin, Clock, Building2, TrendingUp, Users, CheckCircle } from 'lucide-react';
+import { MapPin, Clock, Building2, TrendingUp, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const NorrmalmFrukt = () => {
-  const businessProducts = [
-    {
-      name: 'Business Fruktkorg',
-      description: 'Professionell fruktkorg för affärsmöten',
-      features: ['Presentabel utseende', 'Näringsrikt urval', 'Leverans på kontorstid'],
-      price: 'Från 425 kr/vecka'
-    },
-    {
-      name: 'Corporate Plus',
-      description: 'Stor fruktkorg för företag med många anställda',
-      features: ['Extra stor storlek', 'Varierat urval', 'Veckovis påfyllning'],
-      price: 'Från 675 kr/vecka'
-    }
-  ];
-
   const businessAreas = [
     {
       icon: <Building2 className="w-6 h-6" />,
@@ -103,52 +87,6 @@ const NorrmalmFrukt = () => {
                   </Link>
                 </Button>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Business Products */}
-        <section className="py-16 bg-background">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
-                Professionella Fruktkorgar för Affärslivet
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Våra fruktkorgar är designade för att passa Norrmalmts professionella miljö 
-                och imponera på både medarbetare och kunder.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
-              {businessProducts.map((product, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow border-2 hover:border-primary/30 bg-gradient-to-br from-white to-primary/5">
-                  <CardHeader>
-                    <div className="flex items-center mb-2">
-                      <Building2 className="w-5 h-5 text-primary mr-2" />
-                      <span className="text-xs font-semibold text-primary uppercase tracking-wide">Business</span>
-                    </div>
-                    <CardTitle className="text-xl text-charcoal">{product.name}</CardTitle>
-                    <CardDescription>{product.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 mb-4">
-                      {product.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-sm text-gray-600">
-                          <CheckCircle className="w-4 h-4 text-primary mr-2" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="text-2xl font-bold text-primary mb-4">{product.price}</div>
-                    <Button asChild className="w-full bg-primary hover:bg-primary/90">
-                      <Link to="/offertforfragan">
-                        Beställ business korg
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
             </div>
           </div>
         </section>

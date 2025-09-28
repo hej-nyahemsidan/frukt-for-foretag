@@ -4,26 +4,10 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { MapPin, Clock, Zap, Code, Smartphone, CheckCircle } from 'lucide-react';
+import { MapPin, Clock, Zap, Code, Smartphone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const KistaFruktkorgar = () => {
-  const techProducts = [
-    {
-      name: 'Tech Hub Fruktkorg',
-      description: 'Energigivande frukter för utvecklare och tech-arbetare',
-      features: ['Brainfood-fokus', 'Energirika frukter', 'Tech-anpassad storlek'],
-      price: 'Från 445 kr/vecka'
-    },
-    {
-      name: 'Innovation Boost',
-      description: 'Premium fruktkorg för kreativa tech-team',
-      features: ['Superfood-tillägg', 'Exotiska smaker', 'Startup-rabatter'],
-      price: 'Från 595 kr/vecka'
-    }
-  ];
-
   const techAreas = [
     {
       icon: <Code className="w-6 h-6" />,
@@ -103,52 +87,6 @@ const KistaFruktkorgar = () => {
                   </Link>
                 </Button>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Tech Products */}
-        <section className="py-16 bg-background">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
-                Brainfood för Tech-Teams
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Våra fruktkorgar är specialdesignade för att ge tech-arbetare den energi 
-                och de näringsämnen som krävs för kreativitet och fokus.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
-              {techProducts.map((product, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow border-2 hover:border-secondary/30 bg-gradient-to-br from-white to-secondary/5">
-                  <CardHeader>
-                    <div className="flex items-center mb-2">
-                      <Code className="w-5 h-5 text-secondary mr-2" />
-                      <span className="text-xs font-semibold text-secondary uppercase tracking-wide">Tech-Optimized</span>
-                    </div>
-                    <CardTitle className="text-xl text-charcoal">{product.name}</CardTitle>
-                    <CardDescription>{product.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 mb-4">
-                      {product.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-sm text-gray-600">
-                          <CheckCircle className="w-4 h-4 text-secondary mr-2" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="text-2xl font-bold text-secondary mb-4">{product.price}</div>
-                    <Button asChild className="w-full bg-secondary hover:bg-secondary/90">
-                      <Link to="/offertforfragan">
-                        Boosta kreativiteten
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
             </div>
           </div>
         </section>

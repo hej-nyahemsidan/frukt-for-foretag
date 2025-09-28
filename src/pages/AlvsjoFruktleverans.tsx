@@ -4,26 +4,10 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { MapPin, Clock, Home, Truck, Heart, CheckCircle } from 'lucide-react';
+import { MapPin, Clock, Home, Truck, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const AlvsjoFruktleverans = () => {
-  const localProducts = [
-    {
-      name: 'Närområdes Fruktkorg',
-      description: 'Specialpris för våra grannar i Älvsjö',
-      features: ['Lokalt erbjudande', 'Snabb leverans', 'Personlig service'],
-      price: 'Från 295 kr/vecka'
-    },
-    {
-      name: 'Hemma bäst Plus',
-      description: 'Extra fräsch kvalitet från vårt närområde',
-      features: ['Samma dag leverans', 'Extra kvalitetskontroll', 'Grannrabatt'],
-      price: 'Från 395 kr/vecka'
-    }
-  ];
-
   const alvsjoAreas = [
     {
       icon: <Home className="w-6 h-6" />,
@@ -103,52 +87,6 @@ const AlvsjoFruktleverans = () => {
                   </Link>
                 </Button>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Local Products */}
-        <section className="py-16 bg-background">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
-                Specialerbjudanden för Älvsjö
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Som våra närmaste grannar erbjuder vi extra fördelar och personlig service 
-                till företag i Älvsjö och närområdet.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
-              {localProducts.map((product, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow border-2 hover:border-secondary/30 bg-gradient-to-br from-white to-lightgreen/5">
-                  <CardHeader>
-                    <div className="flex items-center mb-2">
-                      <Heart className="w-5 h-5 text-secondary mr-2" />
-                      <span className="text-xs font-semibold text-secondary uppercase tracking-wide">Grannfördel</span>
-                    </div>
-                    <CardTitle className="text-xl text-charcoal">{product.name}</CardTitle>
-                    <CardDescription>{product.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 mb-4">
-                      {product.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-sm text-gray-600">
-                          <CheckCircle className="w-4 h-4 text-secondary mr-2" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="text-2xl font-bold text-secondary mb-4">{product.price}</div>
-                    <Button asChild className="w-full bg-secondary hover:bg-secondary/90">
-                      <Link to="/offertforfragan">
-                        Beställ grannkorg
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
             </div>
           </div>
         </section>

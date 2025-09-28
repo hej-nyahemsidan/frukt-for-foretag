@@ -4,29 +4,10 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { MapPin, Clock, Star, Users, Building2, CheckCircle } from 'lucide-react';
+import { MapPin, Clock, Star, Users, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const StockholmFruktleverans = () => {
-  const popularProducts = [
-    {
-      name: 'Fruktkorg Premium',
-      description: 'Perfekt för större kontor med 15+ medarbetare',
-      price: 'Från 450 kr/vecka'
-    },
-    {
-      name: 'Fruktkorg Standard',
-      description: 'Idealisk för mindre team med 5-15 personer',
-      price: 'Från 275 kr/vecka'
-    },
-    {
-      name: 'Säsongsfrukt Extra',
-      description: 'Exklusiva säsongsfrukter för speciella tillfällen',
-      price: 'Från 320 kr/vecka'
-    }
-  ];
-
   const clientTypes = [
     {
       icon: <Building2 className="w-6 h-6" />,
@@ -105,39 +86,6 @@ const StockholmFruktleverans = () => {
           </div>
         </section>
 
-        {/* Popular Products */}
-        <section className="py-16 bg-background">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
-                Populärast i Stockholm Centrum
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Dessa fruktkorgar är mest uppskattade av företag i centrala Stockholm
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
-              {popularProducts.map((product, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow border-2 hover:border-secondary/30">
-                  <CardHeader>
-                    <CardTitle className="text-xl text-charcoal">{product.name}</CardTitle>
-                    <CardDescription>{product.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold text-secondary mb-4">{product.price}</div>
-                    <Button asChild variant="outline" className="w-full">
-                      <Link to="/produkter">
-                        Se detaljer
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Client Types */}
         <section className="py-16 bg-gradient-to-br from-lightgreen/10 to-primary/5">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -210,7 +158,7 @@ const StockholmFruktleverans = () => {
               
               <div className="mt-8 p-4 bg-secondary/5 rounded-lg border border-secondary/20">
                 <div className="flex items-start">
-                  <CheckCircle className="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold text-charcoal mb-2">Specialleverans City</h4>
                     <p className="text-sm text-gray-600">

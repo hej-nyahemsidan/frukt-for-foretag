@@ -4,26 +4,10 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { MapPin, Clock, Lightbulb, Palette, Coffee, CheckCircle } from 'lucide-react';
+import { MapPin, Clock, Lightbulb, Palette, Coffee } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const SodermalmFruktkorgar = () => {
-  const trendyProducts = [
-    {
-      name: 'Startup Fruktkorg',
-      description: 'Perfekt för kreativa team och växande företag',
-      features: ['Energigivande frukter', 'Säsongsvariation', 'Flexibel storlek'],
-      price: 'Från 295 kr/vecka'
-    },
-    {
-      name: 'Creative Boost',
-      description: 'Exotiska frukter för extra kreativitet',
-      features: ['Exotiska smaker', 'Superfood-tillägg', 'Färgglada korgar'],
-      price: 'Från 395 kr/vecka'
-    }
-  ];
-
   const sodermalmAreas = [
     {
       icon: <Coffee className="w-6 h-6" />,
@@ -103,52 +87,6 @@ const SodermalmFruktkorgar = () => {
                   </Link>
                 </Button>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Creative Products */}
-        <section className="py-16 bg-background">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
-                Kreativa Fruktkorgar för Södermalm
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Färgglada och inspirerande fruktkorgar som matchar Södermalms kreativa anda 
-                och entreprenörsanda.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
-              {trendyProducts.map((product, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow border-2 hover:border-secondary/30 bg-gradient-to-br from-white to-secondary/5">
-                  <CardHeader>
-                    <div className="flex items-center mb-2">
-                      <Lightbulb className="w-5 h-5 text-secondary mr-2" />
-                      <span className="text-xs font-semibold text-secondary uppercase tracking-wide">Kreativ</span>
-                    </div>
-                    <CardTitle className="text-xl text-charcoal">{product.name}</CardTitle>
-                    <CardDescription>{product.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2 mb-4">
-                      {product.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-sm text-gray-600">
-                          <CheckCircle className="w-4 h-4 text-secondary mr-2" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="text-2xl font-bold text-secondary mb-4">{product.price}</div>
-                    <Button asChild className="w-full bg-secondary hover:bg-secondary/90">
-                      <Link to="/offertforfragan">
-                        Beställ kreativ korg
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
             </div>
           </div>
         </section>
