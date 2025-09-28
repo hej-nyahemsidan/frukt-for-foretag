@@ -4,28 +4,10 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { MapPin, Clock, Building2, TrendingUp, Users } from 'lucide-react';
+import { MapPin, Clock, Building2, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const NorrmalmFrukt = () => {
-  const businessAreas = [
-    {
-      icon: <Building2 className="w-6 h-6" />,
-      area: 'Norrmalms City',
-      description: 'Affärsdistrikt med banker och kontor'
-    },
-    {
-      icon: <TrendingUp className="w-6 h-6" />,
-      area: 'Vasastan',
-      description: 'Moderna kontor och konsultbolag'
-    },
-    {
-      icon: <Users className="w-6 h-6" />,
-      area: 'Regeringsgatan',
-      description: 'Stora företag och myndigheter'
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
@@ -87,37 +69,6 @@ const NorrmalmFrukt = () => {
                   </Link>
                 </Button>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Business Areas */}
-        <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary/10">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
-                Vi levererar till hela Norrmalm
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Från City till Vasastan - vi täcker hela Norrmalmts affärsområden med 
-                professionell service och punktlig leverans.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {businessAreas.map((area, index) => (
-                <div key={index} className="text-center p-6 bg-white rounded-lg shadow-sm border border-primary/10">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 text-primary rounded-full mb-4">
-                    {area.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold text-charcoal mb-2">
-                    {area.area}
-                  </h3>
-                  <p className="text-gray-600">
-                    {area.description}
-                  </p>
-                </div>
-              ))}
             </div>
           </div>
         </section>

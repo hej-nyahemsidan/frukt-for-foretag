@@ -4,28 +4,10 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { MapPin, Clock, Star, Users, Building2 } from 'lucide-react';
+import { MapPin, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const StockholmFruktleverans = () => {
-  const clientTypes = [
-    {
-      icon: <Building2 className="w-6 h-6" />,
-      title: 'Banker & Finans',
-      description: 'Swedbank, SEB, Nordea och många andra finansföretag'
-    },
-    {
-      icon: <Users className="w-6 h-6" />,
-      title: 'Konsultbolag',
-      description: 'McKinsey, BCG, Deloitte och lokala konsultfirmor'
-    },
-    {
-      icon: <Star className="w-6 h-6" />,
-      title: 'Tech-företag',
-      description: 'Startup-hubbar och etablerade teknologiföretag'
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
@@ -82,37 +64,6 @@ const StockholmFruktleverans = () => {
                   </Link>
                 </Button>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Client Types */}
-        <section className="py-16 bg-gradient-to-br from-lightgreen/10 to-primary/5">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
-                Vi levererar till Stockholms största företag
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Från finansgiganter till innovativa startups - vi hjälper alla typer av 
-                företag i Stockholm att hålla sina medarbetare friska och nöjda.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {clientTypes.map((type, index) => (
-                <div key={index} className="text-center p-6 bg-white rounded-lg shadow-sm">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-secondary/10 text-secondary rounded-full mb-4">
-                    {type.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold text-charcoal mb-2">
-                    {type.title}
-                  </h3>
-                  <p className="text-gray-600">
-                    {type.description}
-                  </p>
-                </div>
-              ))}
             </div>
           </div>
         </section>

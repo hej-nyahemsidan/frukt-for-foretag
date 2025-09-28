@@ -4,28 +4,10 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { MapPin, Clock, Home, Truck, Heart } from 'lucide-react';
+import { MapPin, Clock, Home, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const AlvsjoFruktleverans = () => {
-  const alvsjoAreas = [
-    {
-      icon: <Home className="w-6 h-6" />,
-      area: 'Älvsjö Centrum',
-      description: 'Vårt hemmaområde med extra service'
-    },
-    {
-      icon: <Truck className="w-6 h-6" />,
-      area: 'Sturebyvägen',
-      description: 'Närliggande företagsområden'
-    },
-    {
-      icon: <Heart className="w-6 h-6" />,
-      area: 'Varuvägen',
-      description: 'Vårt huvudkontor - din granne!'
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
@@ -87,37 +69,6 @@ const AlvsjoFruktleverans = () => {
                   </Link>
                 </Button>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Älvsjö Areas */}
-        <section className="py-16 bg-gradient-to-br from-lightgreen/10 to-secondary/5">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
-                Vi levererar till hela Älvsjö
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Från vårt kontor på Varuvägen når vi enkelt alla delar av Älvsjö - 
-                vi känner området som våra egna fickor!
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {alvsjoAreas.map((area, index) => (
-                <div key={index} className="text-center p-6 bg-white rounded-lg shadow-sm border border-secondary/10">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-secondary/10 text-secondary rounded-full mb-4">
-                    {area.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold text-charcoal mb-2">
-                    {area.area}
-                  </h3>
-                  <p className="text-gray-600">
-                    {area.description}
-                  </p>
-                </div>
-              ))}
             </div>
           </div>
         </section>

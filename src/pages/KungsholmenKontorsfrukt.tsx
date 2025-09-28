@@ -4,28 +4,10 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { MapPin, Clock, Shield, Building, Landmark } from 'lucide-react';
+import { MapPin, Clock, Shield, Landmark } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const KungsholmenKontorsfrukt = () => {
-  const kungsholmenAreas = [
-    {
-      icon: <Shield className="w-6 h-6" />,
-      area: 'Polhemsgatan',
-      description: 'Myndigheter och offentliga kontor'
-    },
-    {
-      icon: <Building className="w-6 h-6" />,
-      area: 'Fleminggatan',
-      description: 'Privata företag och konsultbolag'
-    },
-    {
-      icon: <Landmark className="w-6 h-6" />,
-      area: 'Stadshagen',
-      description: 'Moderna kontorskomplex'
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
@@ -87,37 +69,6 @@ const KungsholmenKontorsfrukt = () => {
                   </Link>
                 </Button>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Kungsholmen Areas */}
-        <section className="py-16 bg-gradient-to-br from-secondary/5 to-primary/10">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
-                Vi levererar till hela Kungsholmen
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Från Polhemsgatan till Stadshagen - vi känner Kungsholmens särskilda behov 
-                och levererar därefter.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {kungsholmenAreas.map((area, index) => (
-                <div key={index} className="text-center p-6 bg-white rounded-lg shadow-sm border border-secondary/10">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-secondary/10 text-secondary rounded-full mb-4">
-                    {area.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold text-charcoal mb-2">
-                    {area.area}
-                  </h3>
-                  <p className="text-gray-600">
-                    {area.description}
-                  </p>
-                </div>
-              ))}
             </div>
           </div>
         </section>

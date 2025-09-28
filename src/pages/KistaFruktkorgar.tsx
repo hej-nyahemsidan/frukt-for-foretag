@@ -4,28 +4,10 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { MapPin, Clock, Zap, Code, Smartphone } from 'lucide-react';
+import { MapPin, Clock, Zap, Code } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const KistaFruktkorgar = () => {
-  const techAreas = [
-    {
-      icon: <Code className="w-6 h-6" />,
-      area: 'Kista Science Tower',
-      description: 'IT-företag och utvecklingsteam'
-    },
-    {
-      icon: <Smartphone className="w-6 h-6" />,
-      area: 'Electrum & KTH',
-      description: 'Forskningsföretag och universitet'
-    },
-    {
-      icon: <Zap className="w-6 h-6" />,
-      area: 'Kista Galleria området',
-      description: 'Startup-hubbar och tech-inkubatorer'
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
@@ -87,37 +69,6 @@ const KistaFruktkorgar = () => {
                   </Link>
                 </Button>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Tech Areas */}
-        <section className="py-16 bg-gradient-to-br from-secondary/5 to-primary/10">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-4">
-                Vi levererar till hela Kista Science City
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Från Science Tower till Electrum - vi täcker alla tech-områden i 
-                Stockholms innovationscentrum.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {techAreas.map((area, index) => (
-                <div key={index} className="text-center p-6 bg-white rounded-lg shadow-sm border border-secondary/10">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-secondary/10 text-secondary rounded-full mb-4">
-                    {area.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold text-charcoal mb-2">
-                    {area.area}
-                  </h3>
-                  <p className="text-gray-600">
-                    {area.description}
-                  </p>
-                </div>
-              ))}
             </div>
           </div>
         </section>
