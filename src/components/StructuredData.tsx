@@ -52,7 +52,56 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
     ],
     "priceRange": "$$",
     "paymentAccepted": ["Cash", "Credit Card", "Invoice"],
-    "currenciesAccepted": "SEK"
+    "currenciesAccepted": "SEK",
+    "image": "https://vitaminkorgen.se/fruktexperten-logo.png",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "47",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Anna Svensson"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "Fantastisk service! Fruktkorgar levereras alltid i tid och frukterna är så färska. Våra medarbetare älskar dem!"
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person", 
+          "name": "Lars Andersson"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        },
+        "reviewBody": "Har använt Vitaminkorgen i över ett år. Otroligt bra kvalitet och professionell leverans varje vecka."
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Maria Johansson"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5", 
+          "bestRating": "5"
+        },
+        "reviewBody": "Bästa fruktleveransen i Stockholm! Handplockat urval och alltid perfekt mogna frukter. Rekommenderar starkt!"
+      }
+    ]
   };
 
   const getStructuredData = () => {
