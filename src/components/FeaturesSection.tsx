@@ -9,11 +9,6 @@ import topViewTastySlicedFruits from '@/assets/top-view-tasty-sliced-fruits.jpg'
 const FeaturesSection = () => {
   const featureImages = [
     {
-      src: freshFruitsArrangement2,
-      alt: 'Fresh fruit arrangement with copy space',
-      badge: '🚚 Fri leverans i Stockholm'
-    },
-    {
       src: bunchFreshJuicyFruits,
       alt: 'Fresh juicy fruits on marble table',
       badge: '🏆 100% Kvalitetsgaranti'
