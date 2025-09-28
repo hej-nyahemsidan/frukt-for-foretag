@@ -164,35 +164,6 @@ const AboutSection = () => {
         </div>
       </section>
 
-      {/* Section 4 - Environmental Policy */}
-      <section className="py-20 px-8 bg-white">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto space-y-8">
-            <h2 className="text-4xl font-bold text-gray-900 text-center">
-              Miljöpolicy
-            </h2>
-            
-            <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
-              <p>
-                På Fruktexperten tar vi miljöansvar på allvar. Vår miljöpolicy genomsyrar hela vår verksamhet, från val av leverantörer till förpackning och transport.
-              </p>
-              
-              <p>
-                Vi prioriterar naturliga och närproducerade produkter när det är möjligt och arbetar endast med certifierade leverantörer som följer strikta miljöstandarder. Våra förpackningar är återvinningsbara och vi strävar kontinuerligt efter att minska vårt klimatavtryck.
-              </p>
-              
-              <p>
-                Transport optimeras för att minimera utsläpp och vi använder miljövänliga fordon där det är praktiskt möjligt. Vi mäter och rapporterar vårt miljöarbete för att säkerställa kontinuerlig förbättring.
-              </p>
-              
-              <p>
-                Genom att välja Fruktexperten bidrar ditt företag till en mer hållbar framtid. Vi tror att affärer och miljöansvar går hand i hand och strävar efter att vara ett föredöme inom vår bransch.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Section 5 - FAQ */}
       <section className="py-20 px-8 bg-gray-50">
         <div className="container mx-auto">
