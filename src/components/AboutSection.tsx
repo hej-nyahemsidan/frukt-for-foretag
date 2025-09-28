@@ -5,11 +5,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 
 // Import images
-import happyEmployeesImage from '@/assets/happy-employees.jpg';
-import professionalDisplayImage from '@/assets/professional-fruit-display.jpg';
-import fruitBoxImage from '@/assets/fruit-box.jpg';
-import seasonalFruitsImage from '@/assets/seasonal-fruits.jpg';
-import officeWellnessImage from '@/assets/office-wellness.jpg';
+import fruity2Image from '@/assets/fruity2.webp';
+import fruityImage from '@/assets/fruity.jpg';
 
 const AboutSection = () => {
   const [expandedFAQ, setExpandedFAQ] = useState<number[]>([]);
@@ -47,8 +44,8 @@ const AboutSection = () => {
       <section className="relative bg-gray-50 py-20 px-8 overflow-hidden">
         <div className="absolute top-10 right-10 opacity-30 hidden min-[700px]:block">
           <img 
-            src={seasonalFruitsImage} 
-            alt="Fresh seasonal fruits" 
+            src={fruityImage} 
+            alt="Fresh colorful fruits" 
             className="w-96 h-96 object-cover rounded-full"
           />
         </div>
@@ -109,8 +106,8 @@ const AboutSection = () => {
             {/* Image - 40% */}
             <div className="lg:col-span-2">
               <img 
-                src={fruitBoxImage} 
-                alt="Fresh fruit basket" 
+                src={fruity2Image} 
+                alt="Beautiful fruit platter on wooden board" 
                 className="w-full h-96 object-cover rounded-xl shadow-lg"
               />
             </div>
@@ -125,8 +122,8 @@ const AboutSection = () => {
             {/* Image - 40% */}
             <div className="lg:col-span-2">
               <img 
-                src={officeWellnessImage} 
-                alt="Person working at desk with healthy snacks" 
+                src={fruityImage} 
+                alt="Colorful fresh fruits arrangement" 
                 className="w-full h-96 object-cover rounded-xl shadow-lg"
               />
             </div>
@@ -158,8 +155,8 @@ const AboutSection = () => {
       <section className="relative py-20 px-8 bg-green-800 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <img 
-            src={seasonalFruitsImage} 
-            alt="Sustainable farming" 
+            src={fruity2Image} 
+            alt="Fresh fruit variety" 
             className="w-full h-full object-cover"
           />
         </div>
