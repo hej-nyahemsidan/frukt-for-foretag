@@ -3,7 +3,6 @@ import arrangementImage from '@/assets/fresh-fruit-arrangements.jpg';
 import happyEmployeesImage from '@/assets/happy-employees.jpg';
 import professionalDisplayImage from '@/assets/professional-fruit-display.jpg';
 import freshFruitsArrangement2 from '@/assets/fresh-fruits-arrangement-2.jpg';
-import bunchFreshJuicyFruits from '@/assets/bunch-fresh-juicy-fruits.jpg';
 import topViewTastySlicedFruits from '@/assets/top-view-tasty-sliced-fruits.jpg';
 
 const FeaturesSection = () => {
@@ -12,11 +11,6 @@ const FeaturesSection = () => {
       src: freshFruitsArrangement2,
       alt: 'Fresh fruit arrangement with copy space',
       badge: '🚚 Fri leverans i Stockholm'
-    },
-    {
-      src: bunchFreshJuicyFruits,
-      alt: 'Fresh juicy fruits on marble table',
-      badge: '🏆 100% Kvalitetsgaranti'
     },
     {
       src: topViewTastySlicedFruits,
