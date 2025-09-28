@@ -5,7 +5,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { ChevronDown, ChevronRight } from 'lucide-react';
 
 // Import images
-import fruity2Image from '@/assets/fruity2.webp';
 import fruityImage from '@/assets/fruity.jpg';
 
 const AboutSection = () => {
@@ -106,8 +105,8 @@ const AboutSection = () => {
             {/* Image - 40% */}
             <div className="lg:col-span-2">
               <img 
-                src={fruity2Image} 
-                alt="Beautiful fruit platter on wooden board" 
+                src={fruityImage} 
+                alt="Colorful fresh fruits arrangement" 
                 className="w-full h-96 object-cover rounded-xl shadow-lg"
               />
             </div>
@@ -155,8 +154,8 @@ const AboutSection = () => {
       <section className="relative py-20 px-8 bg-green-800 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <img 
-            src={fruity2Image} 
-            alt="Fresh fruit variety" 
+            src={fruityImage} 
+            alt="Fresh colorful fruits" 
             className="w-full h-full object-cover"
           />
         </div>
