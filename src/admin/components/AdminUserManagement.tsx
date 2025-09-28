@@ -231,48 +231,49 @@ const AdminUserManagement = () => {
   return (
     <div className="admin-user-management space-y-6">
       {/* Header */}
-      <div className="admin-user-header flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <div className="admin-user-header flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
         <div>
-          <h2 className="admin-user-title text-2xl font-bold text-gray-900">Användarhantering</h2>
-          <p className="admin-user-subtitle text-gray-600">Hantera användare i systemet</p>
+          <h2 className="admin-user-title text-xl sm:text-2xl font-bold text-gray-900">Användarhantering</h2>
+          <p className="admin-user-subtitle text-sm sm:text-base text-gray-600">Hantera användare i systemet</p>
         </div>
         <Button
           onClick={() => setShowAddModal(true)}
-          className="admin-btn-add-user bg-blue-600 hover:bg-blue-700 flex items-center gap-2"
+          className="admin-btn-add-user bg-blue-600 hover:bg-blue-700 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2 w-full sm:w-auto"
         >
-          <UserPlus className="w-4 h-4" />
-          Lägg till användare
+          <UserPlus className="w-3 h-3 sm:w-4 sm:h-4" />
+          <span className="hidden sm:inline">Lägg till användare</span>
+          <span className="sm:hidden">Lägg till</span>
         </Button>
       </div>
 
       {/* Search and Stats */}
-      <div className="admin-user-controls flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div className="admin-search-container relative flex-1 max-w-md">
+      <div className="admin-user-controls flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
+        <div className="admin-search-container relative flex-1 w-full sm:max-w-md">
           <Search className="admin-search-icon absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
           <Input
             placeholder="Sök användare..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="admin-search-input pl-10"
+            className="admin-search-input pl-10 text-sm"
           />
         </div>
-        <div className="admin-user-stats flex items-center gap-4 text-sm text-gray-600">
+        <div className="admin-user-stats flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 w-full sm:w-auto justify-between sm:justify-end">
           <span>Totalt: {profiles.length}</span>
           <span>Visas: {filteredProfiles.length}</span>
         </div>
       </div>
 
       {/* Users Table */}
-      <div className="admin-user-table-container bg-white rounded-lg border shadow-sm">
+      <div className="admin-user-table-container bg-white rounded-lg border shadow-sm overflow-x-auto">
         <Table>
           <TableHeader>
             <TableRow className="admin-table-header">
-              <TableHead className="admin-th-email">E-post</TableHead>
-              <TableHead className="admin-th-name">Namn</TableHead>
-              <TableHead className="admin-th-company">Företag</TableHead>
-              <TableHead className="admin-th-created">Skapad</TableHead>
-              <TableHead className="admin-th-status">Status</TableHead>
-              <TableHead className="admin-th-actions text-right">Åtgärder</TableHead>
+              <TableHead className="admin-th-email text-xs sm:text-sm">E-post</TableHead>
+              <TableHead className="admin-th-name text-xs sm:text-sm hidden sm:table-cell">Namn</TableHead>
+              <TableHead className="admin-th-company text-xs sm:text-sm hidden md:table-cell">Företag</TableHead>
+              <TableHead className="admin-th-created text-xs sm:text-sm hidden lg:table-cell">Skapad</TableHead>
+              <TableHead className="admin-th-status text-xs sm:text-sm">Status</TableHead>
+              <TableHead className="admin-th-actions text-right text-xs sm:text-sm">Åtgärder</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -285,42 +286,47 @@ const AdminUserManagement = () => {
             ) : (
               filteredProfiles.map((profile) => (
                 <TableRow key={profile.id} className="admin-user-row">
-                  <TableCell className="admin-cell-email font-medium">
-                    {profile.email}
+                  <TableCell className="admin-cell-email font-medium text-xs sm:text-sm">
+                    <div className="min-w-0">
+                      <div className="truncate">{profile.email}</div>
+                      <div className="sm:hidden text-xs text-gray-500 mt-1">
+                        {profile.full_name || 'Ej angivet'}
+                      </div>
+                    </div>
                   </TableCell>
-                  <TableCell className="admin-cell-name">
+                  <TableCell className="admin-cell-name hidden sm:table-cell text-xs sm:text-sm">
                     {profile.full_name || 'Ej angivet'}
                   </TableCell>
-                  <TableCell className="admin-cell-company">
+                  <TableCell className="admin-cell-company hidden md:table-cell text-xs sm:text-sm">
                     {profile.company_name || 'Ej angivet'}
                   </TableCell>
-                  <TableCell className="admin-cell-created">
+                  <TableCell className="admin-cell-created hidden lg:table-cell text-xs sm:text-sm">
                     {formatDate(profile.created_at)}
                   </TableCell>
-                  <TableCell className="admin-cell-status">
+                  <TableCell className="admin-cell-status text-xs sm:text-sm">
                     {getStatusBadge(profile)}
                   </TableCell>
                   <TableCell className="admin-cell-actions text-right">
-                    <div className="admin-action-buttons flex items-center justify-end gap-2">
+                    <div className="admin-action-buttons flex items-center justify-end gap-1 sm:gap-2">
                       <Button
                         variant="outline"
                         size="sm"
                         onClick={() => setEditingUser(profile)}
-                        className="admin-btn-edit flex items-center gap-1"
+                        className="admin-btn-edit flex items-center gap-1 text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2"
                         disabled={profile.email === 'admin@vitaminkorgen.se'}
                       >
                         <Edit className="w-3 h-3" />
-                        Visa
+                        <span className="hidden sm:inline">Visa</span>
                       </Button>
                       <Button
                         variant="outline"
                         size="sm"
                         onClick={() => handleDeleteUser(profile)}
-                        className="admin-btn-delete flex items-center gap-1 text-red-600 hover:text-red-700"
+                        className="admin-btn-delete flex items-center gap-1 text-red-600 hover:text-red-700 text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2"
                         disabled={profile.email === 'admin@vitaminkorgen.se'}
                       >
                         <Trash2 className="w-3 h-3" />
-                        Ta bort
+                        <span className="hidden sm:inline">Ta bort</span>
                       </Button>
                     </div>
                   </TableCell>

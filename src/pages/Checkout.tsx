@@ -57,27 +57,28 @@ const Checkout: React.FC = () => {
       
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-center gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
             <Button
               variant="outline"
               onClick={handleGoBack}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 text-xs sm:text-sm px-3 sm:px-4 py-2 w-full sm:w-auto"
             >
-              <ArrowLeft size={16} />
-              Tillbaka till produkter
+              <ArrowLeft size={14} className="sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">Tillbaka till produkter</span>
+              <span className="sm:hidden">Tillbaka</span>
             </Button>
-            <h1 className="text-4xl font-bold text-charcoal">Slutför beställning</h1>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-charcoal">Slutför beställning</h1>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
             {/* Order Summary - Left Side */}
-            <div className="bg-white rounded-lg shadow-sm border p-6">
-              <h2 className="text-2xl font-semibold text-charcoal mb-6">Beställningssammanfattning</h2>
+            <div className="bg-white rounded-lg shadow-sm border p-4 sm:p-6">
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-charcoal mb-4 sm:mb-6">Beställningssammanfattning</h2>
               
               {/* Delivery Plan */}
-              <div className="mb-6 p-4 bg-gray-50 rounded-lg">
-                <h3 className="font-semibold text-charcoal mb-2">Leveransplan</h3>
-                <p className="text-muted-foreground mb-2">{getPlanText(packagePlan)}</p>
+              <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-gray-50 rounded-lg">
+                <h3 className="font-semibold text-charcoal mb-2 text-sm sm:text-base">Leveransplan</h3>
+                <p className="text-muted-foreground mb-2 text-sm">{getPlanText(packagePlan)}</p>
                 <div>
                   <span className="font-medium">Valda dagar: </span>
                   <span className="text-muted-foreground">
@@ -87,46 +88,46 @@ const Checkout: React.FC = () => {
               </div>
 
               {/* Cart Items */}
-              <div className="mb-6">
-                <h3 className="font-semibold text-charcoal mb-4">Produkter</h3>
+              <div className="mb-4 sm:mb-6">
+                <h3 className="font-semibold text-charcoal mb-3 sm:mb-4 text-sm sm:text-base">Produkter</h3>
                 {items.length === 0 ? (
                   <p className="text-muted-foreground">Inga produkter i varukorgen</p>
                 ) : (
                   <div className="space-y-3">
                      {items.map((item, index) => (
-                       <div key={`${item.id}-${item.assignedDay || index}`} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                         <div>
-                           <h4 className="font-medium text-charcoal">{item.name}</h4>
-                           <p className="text-sm text-muted-foreground">
-                             {formatPrice(item.price)} × {item.quantity}
-                             {item.assignedDay && (
-                               <span className="ml-2 px-2 py-1 bg-primary/10 text-primary rounded-md text-xs font-medium">
-                                 {item.assignedDay}
-                               </span>
-                             )}
-                           </p>
-                         </div>
-                         <span className="font-semibold text-charcoal">
-                           {formatPrice(item.price * item.quantity)}
-                         </span>
-                       </div>
+                       <div key={`${item.id}-${item.assignedDay || index}`} className="flex justify-between items-start sm:items-center p-3 bg-gray-50 rounded-lg gap-2">
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-medium text-charcoal text-sm sm:text-base truncate">{item.name}</h4>
+                            <p className="text-xs sm:text-sm text-muted-foreground">
+                              {formatPrice(item.price)} × {item.quantity}
+                              {item.assignedDay && (
+                                <span className="ml-1 sm:ml-2 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-primary/10 text-primary rounded-md text-xs font-medium block sm:inline mt-1 sm:mt-0">
+                                  {item.assignedDay}
+                                </span>
+                              )}
+                            </p>
+                          </div>
+                          <span className="font-semibold text-charcoal text-sm sm:text-base flex-shrink-0">
+                            {formatPrice(item.price * item.quantity)}
+                          </span>
+                        </div>
                      ))}
                   </div>
                 )}
               </div>
 
               {/* Total Cost */}
-              <div className="border-t pt-4">
+              <div className="border-t pt-3 sm:pt-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-xl font-bold text-charcoal">Totalkostnad:</span>
-                  <span className="text-xl font-bold text-[#4CAF50]">{formatPrice(totalPrice)}</span>
+                  <span className="text-lg sm:text-xl font-bold text-charcoal">Totalkostnad:</span>
+                  <span className="text-lg sm:text-xl font-bold text-[#4CAF50]">{formatPrice(totalPrice)}</span>
                 </div>
               </div>
             </div>
 
             {/* Customer Information Form - Right Side */}
-            <div className="bg-white rounded-lg shadow-sm border p-6">
-              <h2 className="text-2xl font-semibold text-charcoal mb-6">Kundinformation</h2>
+            <div className="bg-white rounded-lg shadow-sm border p-4 sm:p-6">
+              <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-charcoal mb-4 sm:mb-6">Kundinformation</h2>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
@@ -209,7 +210,7 @@ const Checkout: React.FC = () => {
                 <div className="pt-6 space-y-4">
                   <Button
                     type="submit"
-                    className="w-full bg-[#4CAF50] hover:bg-[#45a049] text-white py-3 text-lg font-semibold"
+                    className="w-full bg-[#4CAF50] hover:bg-[#45a049] text-white py-2 sm:py-3 text-sm sm:text-base lg:text-lg font-semibold"
                     disabled={items.length === 0 || selectedDays.length === 0}
                   >
                     Slutför beställning

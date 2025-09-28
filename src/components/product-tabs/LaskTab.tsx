@@ -56,7 +56,7 @@ const LaskTab: React.FC<LaskTabProps> = ({ selectedDays }) => {
   }
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
       {products.map((product) => (
         <div key={product.id} className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
           <div className="aspect-[3/4] bg-white overflow-hidden">
@@ -66,8 +66,8 @@ const LaskTab: React.FC<LaskTabProps> = ({ selectedDays }) => {
               className="w-full h-full object-contain"
             />
           </div>
-          <div className="p-3 space-y-3">
-            <h3 className="font-medium text-charcoal text-sm text-center">{product.name}</h3>
+          <div className="p-3 sm:p-4 space-y-3">
+            <h3 className="font-medium text-charcoal text-sm sm:text-base text-center">{product.name}</h3>
             <AddToCartButton 
               product={{
                 id: product.id,
@@ -77,7 +77,7 @@ const LaskTab: React.FC<LaskTabProps> = ({ selectedDays }) => {
                 category: 'lask',
                 image: product.image_url
               }}
-              className="w-full text-xs px-2 py-1"
+              className="w-full text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2"
               showQuantitySelector={true}
               showSizeSelector={false}
               selectedDays={selectedDays}

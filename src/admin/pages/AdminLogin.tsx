@@ -63,29 +63,29 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4 sm:p-8">
       <div className="w-full max-w-md">
         {/* Back Button */}
         <Link 
           to="/kundportal" 
-          className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors mb-8"
+          className="inline-flex items-center gap-1 sm:gap-2 text-muted-foreground hover:text-primary transition-colors mb-6 sm:mb-8"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span className="text-sm">Tillbaka till kundportalen</span>
+          <span className="text-xs sm:text-sm">Tillbaka till kundportalen</span>
         </Link>
 
         {/* Login Card */}
-        <div className="bg-white rounded-lg shadow-md p-8">
+        <div className="bg-white rounded-lg shadow-md p-4 sm:p-8">
           {/* Admin Login Form */}
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-foreground mb-2">
+              <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
                 Admin Inloggning
               </h2>
-              <p className="text-muted-foreground text-sm">Administratörsportalen</p>
+              <p className="text-muted-foreground text-xs sm:text-sm">Administratörsportalen</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
               {/* Email Field */}
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-muted-foreground font-medium">
@@ -96,7 +96,7 @@ const AdminLogin = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="border-border rounded-lg px-4 py-2"
+                  className="border-border rounded-lg px-3 sm:px-4 py-2 sm:py-2 text-sm sm:text-base"
                   required
                   disabled={true} // Admin email is fixed
                 />
@@ -113,7 +113,7 @@ const AdminLogin = () => {
                     type={showPassword ? 'text' : 'password'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="border-border rounded-lg px-4 py-2 pr-12"
+                    className="border-border rounded-lg px-3 sm:px-4 py-2 sm:py-2 pr-10 sm:pr-12 text-sm sm:text-base"
                     placeholder="Admin lösenord"
                     required
                     disabled={isLoading}
@@ -136,7 +136,7 @@ const AdminLogin = () => {
               {/* Login Button */}
               <Button 
                 type="submit"
-                className="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-semibold"
+                className="w-full bg-red-600 hover:bg-red-700 text-white py-2 sm:py-2 rounded-lg font-semibold text-sm sm:text-base"
                 disabled={isLoading}
               >
                 {isLoading ? (

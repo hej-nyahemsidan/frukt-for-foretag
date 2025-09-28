@@ -91,33 +91,36 @@ const CustomerPortal = () => {
         {/* Back Button */}
         <Link 
           to="/" 
-          className="absolute top-6 left-6 flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+          className="absolute top-4 sm:top-6 left-4 sm:left-6 flex items-center gap-1 sm:gap-2 text-muted-foreground hover:text-primary transition-colors"
         >
-          <ArrowLeft className="w-5 h-5" />
-          <span className="text-sm font-medium">Tillbaka till startsidan</span>
+          <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          <span className="text-xs sm:text-sm font-medium">
+            <span className="hidden sm:inline">Tillbaka till startsidan</span>
+            <span className="sm:hidden">Tillbaka</span>
+          </span>
         </Link>
 
-        <div className="w-full max-w-md mx-auto">
+        <div className="w-full max-w-md mx-auto px-4 sm:px-0">
           {/* Brand Logo */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 sm:mb-12">
             <VitaminKorgenLogo 
               size="xl" 
               variant="full"
               animated={true} 
-              className="mx-auto"
+              className="mx-auto h-16 sm:h-20 lg:h-24 w-auto"
             />
           </div>
 
           {/* Login Form */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold text-foreground mb-2">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-2">
                 Logga in på kundportalen
               </h2>
-              <p className="text-muted-foreground">Hantera dina fruktleveranser</p>
+              <p className="text-sm sm:text-base text-muted-foreground">Hantera dina fruktleveranser</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               {/* Email Field */}
               <div className="space-y-2">
                 <Label 
@@ -131,7 +134,7 @@ const CustomerPortal = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="border-border rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="border-border rounded-lg px-3 sm:px-4 py-2 sm:py-3 focus:ring-2 focus:ring-primary focus:border-primary text-sm sm:text-base"
                   placeholder="din@email.se"
                   required
                   disabled={isLoading}
@@ -152,7 +155,7 @@ const CustomerPortal = () => {
                     type={showPassword ? 'text' : 'password'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="border-border rounded-lg px-4 py-3 pr-12 focus:ring-2 focus:ring-primary focus:border-primary"
+                    className="border-border rounded-lg px-3 sm:px-4 py-2 sm:py-3 pr-10 sm:pr-12 focus:ring-2 focus:ring-primary focus:border-primary text-sm sm:text-base"
                     placeholder="Ditt lösenord"
                     required
                     disabled={isLoading}
@@ -185,7 +188,7 @@ const CustomerPortal = () => {
               {/* Login Button */}
               <Button 
                 type="submit"
-                className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold tracking-wide transition-colors"
+                className="w-full bg-green-600 hover:bg-green-700 text-white py-2 sm:py-3 rounded-lg font-semibold tracking-wide transition-colors text-sm sm:text-base"
                 disabled={isLoading}
               >
                 {isLoading ? (
@@ -212,8 +215,8 @@ const CustomerPortal = () => {
           </div>
 
           {/* Mobile Title (visible on small screens) */}
-          <div className="lg:hidden text-center mt-12">
-            <h1 className="text-2xl font-bold text-foreground">
+          <div className="lg:hidden text-center mt-8 sm:mt-12">
+            <h1 className="text-xl sm:text-2xl font-bold text-foreground">
               VitaminKorgens Portal
             </h1>
           </div>

@@ -237,7 +237,7 @@ const AdminProductManagement = () => {
   };
 
   const renderProductGrid = (categoryProducts: Product[]) => (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
       {categoryProducts.map((product) => (
         <Card key={product.id} className="overflow-hidden">
           <div className="aspect-square bg-gray-100 overflow-hidden">
@@ -316,13 +316,14 @@ const AdminProductManagement = () => {
 
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-gray-900">Produkthantering</h2>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Produkthantering</h2>
         <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
           <DialogTrigger asChild>
-            <Button className="flex items-center gap-2">
-              <Plus className="w-4 h-4" />
-              Lägg till produkt
+            <Button className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 py-2 w-full sm:w-auto">
+              <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">Lägg till produkt</span>
+              <span className="sm:hidden">Lägg till</span>
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-md">
@@ -424,13 +425,19 @@ const AdminProductManagement = () => {
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-6">
-          {categories.map((category) => (
-            <TabsTrigger key={category.value} value={category.value}>
-              {category.label}
-            </TabsTrigger>
-          ))}
-        </TabsList>
+        <div className="overflow-x-auto">
+          <TabsList className="grid w-full min-w-max sm:min-w-0 grid-cols-6 h-auto">
+            {categories.map((category) => (
+              <TabsTrigger 
+                key={category.value} 
+                value={category.value}
+                className="text-xs sm:text-sm px-2 sm:px-4 py-2 sm:py-3 whitespace-nowrap"
+              >
+                {category.label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </div>
         
         {categories.map((category) => (
           <TabsContent key={category.value} value={category.value} className="mt-6">

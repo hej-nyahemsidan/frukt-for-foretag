@@ -114,8 +114,8 @@ const AddToCartButton = ({
       {/* Size Selector for Fruit Baskets */}
       {showSizeSelector && availableSizes.length > 0 && (
         <div>
-          <label className="block text-xs font-medium mb-2">Välj storlek:</label>
-          <div className="grid grid-cols-2 gap-1">
+          <label className="block text-xs sm:text-sm font-medium mb-2">Välj storlek:</label>
+          <div className="grid grid-cols-2 gap-1 sm:gap-2">
             {availableSizes.map((size) => (
               <button
                 key={size}
@@ -124,7 +124,7 @@ const AddToCartButton = ({
                   e.stopPropagation();
                   setSelectedSize(size);
                 }}
-                className={`p-1.5 text-xs rounded border transition-colors ${
+                className={`p-1.5 sm:p-2 text-xs sm:text-sm rounded border transition-colors ${
                   selectedSize === size
                     ? 'bg-primary text-primary-foreground border-primary'
                     : 'bg-background hover:bg-muted border-border'
@@ -143,7 +143,7 @@ const AddToCartButton = ({
       {/* Quantity Selector */}
       {showQuantitySelector && (
         <div>
-          <label className="block text-xs font-medium mb-2">Antal:</label>
+          <label className="block text-xs sm:text-sm font-medium mb-2">Antal:</label>
           <div className="flex items-center justify-center gap-2">
             <button
               onClick={(e) => {
@@ -151,18 +151,18 @@ const AddToCartButton = ({
                 e.stopPropagation();
                 setQuantity(Math.max(1, quantity - 1));
               }}
-              className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 text-sm"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 text-xs sm:text-sm"
             >
               -
             </button>
-            <span className="text-sm font-medium w-8 text-center">{quantity}</span>
+            <span className="text-xs sm:text-sm font-medium w-8 text-center">{quantity}</span>
             <button
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 setQuantity(quantity + 1);
               }}
-              className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 text-sm"
+              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 text-xs sm:text-sm"
             >
               +
             </button>
