@@ -1,6 +1,6 @@
 
 import arrangementImage from '@/assets/fresh-fruit-arrangements.jpg';
-import happyEmployeesImage from '@/assets/happy-employees.jpg';
+import realisticOfficeWorkersImage from '@/assets/realistic-office-workers-fruit.jpg';
 import professionalDisplayImage from '@/assets/professional-fruit-display.jpg';
 import freshFruitsArrangement2 from '@/assets/fresh-fruits-arrangement-2.jpg';
 import bunchFreshJuicyFruits from '@/assets/bunch-fresh-juicy-fruits.jpg';
@@ -24,8 +24,8 @@ const FeaturesSection = () => {
       badge: '📅 Flexibla leveransalternativ'
     },
     {
-      src: happyEmployeesImage,
-      alt: 'Happy employees eating fruit',
+      src: realisticOfficeWorkersImage,
+      alt: 'Office workers enjoying healthy fruit snacks',
       badge: '🚚 Fri leverans i Stockholm'
     }
   ];
