@@ -4,7 +4,7 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { MapPin, Clock, Zap, Code } from 'lucide-react';
+import { MapPin, Clock, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const KistaFruktkorgar = () => {
@@ -73,19 +73,19 @@ const KistaFruktkorgar = () => {
           </div>
         </section>
 
-        {/* Tech Service Details */}
+        {/* Service Details */}
         <section className="py-16 bg-background">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <div className="bg-gradient-to-br from-white to-secondary/5 rounded-lg shadow-lg border border-secondary/20 p-8">
               <h2 className="text-2xl font-bold text-charcoal mb-6 text-center">
-                Tech-Anpassad Service för Kista
+                Leveransservice för Kista
               </h2>
               
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-lg font-semibold text-charcoal mb-4 flex items-center">
                     <MapPin className="w-5 h-5 text-secondary mr-2" />
-                    Tech-Områden vi täcker
+                    Områden vi täcker
                   </h3>
                   <ul className="space-y-2 text-gray-600">
                     <li>• Kista Science Tower</li>
@@ -100,27 +100,27 @@ const KistaFruktkorgar = () => {
                 <div>
                   <h3 className="text-lg font-semibold text-charcoal mb-4 flex items-center">
                     <Zap className="w-5 h-5 text-secondary mr-2" />
-                    Tech-Fokuserad Service
+                    Service & Fördelar
                   </h3>
                   <ul className="space-y-2 text-gray-600">
-                    <li>• Brainfood-optimerade val</li>
+                    <li>• Näringsrika fruktval</li>
                     <li>• Flexibla leveranstider (08:00-16:00)</li>
-                    <li>• Startup-vänliga avtal</li>
-                    <li>• Digital orderhantering</li>
-                    <li>• Scrum-anpassade leveranser</li>
-                    <li>• Innovation-rabatter</li>
+                    <li>• Anpassade avtal efter behov</li>
+                    <li>• Enkel orderhantering</li>
+                    <li>• Pålitliga leveranser</li>
+                    <li>• Konkurrenskraftiga priser</li>
                   </ul>
                 </div>
               </div>
               
               <div className="mt-8 p-4 bg-secondary/10 rounded-lg border border-secondary/30">
                 <div className="flex items-start">
-                  <Code className="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-charcoal mb-2">Tech-Community Partnership</h4>
+                    <h4 className="font-semibold text-charcoal mb-2">Lokal kunskap</h4>
                     <p className="text-sm text-gray-600">
-                      Vi förstår tech-kulturens behov av snabb energi, flexibilitet och innovation. 
-                      Våra leveranser är anpassade efter agila arbetsmetoder och startup-tempo.
+                      Vi känner Kista-området väl och anpassar våra leveranser efter områdets 
+                      behov och företagens önskemål för bästa möjliga service.
                     </p>
                   </div>
                 </div>

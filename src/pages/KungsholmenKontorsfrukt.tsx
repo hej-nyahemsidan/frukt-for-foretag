@@ -4,7 +4,7 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { MapPin, Clock, Shield, Landmark } from 'lucide-react';
+import { MapPin, Clock, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const KungsholmenKontorsfrukt = () => {
@@ -73,19 +73,19 @@ const KungsholmenKontorsfrukt = () => {
           </div>
         </section>
 
-        {/* Government Service Details */}
+        {/* Service Details */}
         <section className="py-16 bg-background">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <div className="bg-gradient-to-br from-white to-secondary/5 rounded-lg shadow-lg border border-secondary/20 p-8">
               <h2 className="text-2xl font-bold text-charcoal mb-6 text-center">
-                Specialiserad Service för Kungsholmen
+                Leveransservice för Kungsholmen
               </h2>
               
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-lg font-semibold text-charcoal mb-4 flex items-center">
                     <MapPin className="w-5 h-5 text-secondary mr-2" />
-                    Leveransområden
+                    Områden vi täcker
                   </h3>
                   <ul className="space-y-2 text-gray-600">
                     <li>• Polhemsgatan & myndighetshus</li>
@@ -100,7 +100,7 @@ const KungsholmenKontorsfrukt = () => {
                 <div>
                   <h3 className="text-lg font-semibold text-charcoal mb-4 flex items-center">
                     <Shield className="w-5 h-5 text-secondary mr-2" />
-                    Myndighetsservice
+                    Service & Fördelar
                   </h3>
                   <ul className="space-y-2 text-gray-600">
                     <li>• Upphandlingsanpassade avtal</li>
@@ -115,12 +115,12 @@ const KungsholmenKontorsfrukt = () => {
               
               <div className="mt-8 p-4 bg-secondary/10 rounded-lg border border-secondary/30">
                 <div className="flex items-start">
-                  <Landmark className="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-charcoal mb-2">Offentlig Sektor Specialisering</h4>
+                    <h4 className="font-semibold text-charcoal mb-2">Lokal kunskap</h4>
                     <p className="text-sm text-gray-600">
-                      Vi har lång erfarenhet av att arbeta med myndigheter och offentlig sektor. 
-                      Vi förstår era krav på transparens, miljöhänsyn och upphandlingsprocesser.
+                      Vi har lång erfarenhet av leveranser på Kungsholmen och förstår områdets 
+                      särskilda behov med både offentliga och privata organisationer.
                     </p>
                   </div>
                 </div>

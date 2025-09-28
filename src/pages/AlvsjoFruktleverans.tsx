@@ -73,19 +73,19 @@ const AlvsjoFruktleverans = () => {
           </div>
         </section>
 
-        {/* Local Service Details */}
+        {/* Service Details */}
         <section className="py-16 bg-background">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <div className="bg-gradient-to-br from-white to-lightgreen/5 rounded-lg shadow-lg border border-secondary/20 p-8">
               <h2 className="text-2xl font-bold text-charcoal mb-6 text-center">
-                Grannservice i Älvsjö
+                Leveransservice för Älvsjö
               </h2>
               
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-lg font-semibold text-charcoal mb-4 flex items-center">
                     <MapPin className="w-5 h-5 text-secondary mr-2" />
-                    Vårt Närområde
+                    Områden vi täcker
                   </h3>
                   <ul className="space-y-2 text-gray-600">
                     <li>• Varuvägen (vårt huvudkontor)</li>
@@ -100,7 +100,7 @@ const AlvsjoFruktleverans = () => {
                 <div>
                   <h3 className="text-lg font-semibold text-charcoal mb-4 flex items-center">
                     <Heart className="w-5 h-5 text-secondary mr-2" />
-                    Grannfördelar
+                    Service & Fördelar
                   </h3>
                   <ul className="space-y-2 text-gray-600">
                     <li>• Samma dag leverans möjlig</li>
@@ -115,12 +115,12 @@ const AlvsjoFruktleverans = () => {
               
               <div className="mt-8 p-4 bg-secondary/10 rounded-lg border border-secondary/30">
                 <div className="flex items-start">
-                  <Home className="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-charcoal mb-2">Vårt Hemmaområde</h4>
+                    <h4 className="font-semibold text-charcoal mb-2">Lokal kunskap</h4>
                     <p className="text-sm text-gray-600">
-                      Älvsjö är inte bara vårt affärsområde - det är vårt hem. Vi bor och arbetar här, 
-                      vilket betyder att vi bryr oss extra mycket om våra grannar och deras upplevelse.
+                      Älvsjö är vårt hemmaområde. Vi bor och arbetar här, vilket betyder att vi 
+                      känner området väl och kan erbjuda extra personlig service till våra grannar.
                     </p>
                   </div>
                 </div>

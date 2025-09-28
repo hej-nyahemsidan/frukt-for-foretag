@@ -73,19 +73,19 @@ const OstermalmKontorsfrukt = () => {
           </div>
         </section>
 
-        {/* Premium Service Details */}
+        {/* Service Details */}
         <section className="py-16 bg-background">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <div className="bg-gradient-to-br from-white to-primary/5 rounded-lg shadow-lg border border-primary/20 p-8">
               <h2 className="text-2xl font-bold text-charcoal mb-6 text-center">
-                Premium Service för Östermalm
+                Leveransservice för Östermalm
               </h2>
               
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-lg font-semibold text-charcoal mb-4 flex items-center">
                     <MapPin className="w-5 h-5 text-primary mr-2" />
-                    Exklusiva Leveransområden
+                    Områden vi täcker
                   </h3>
                   <ul className="space-y-2 text-gray-600">
                     <li>• Stureplan & Sturegatan</li>
@@ -100,7 +100,7 @@ const OstermalmKontorsfrukt = () => {
                 <div>
                   <h3 className="text-lg font-semibold text-charcoal mb-4 flex items-center">
                     <Sparkles className="w-5 h-5 text-primary mr-2" />
-                    Premium Service
+                    Service & Fördelar
                   </h3>
                   <ul className="space-y-2 text-gray-600">
                     <li>• Diskret morgonleverans (07:00-11:00)</li>
@@ -115,12 +115,12 @@ const OstermalmKontorsfrukt = () => {
               
               <div className="mt-8 p-4 bg-primary/10 rounded-lg border border-primary/30">
                 <div className="flex items-start">
-                  <Crown className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-charcoal mb-2">VIP-behandling</h4>
+                    <h4 className="font-semibold text-charcoal mb-2">Lokal kunskap</h4>
                     <p className="text-sm text-gray-600">
-                      Alla våra kunder på Östermalm får VIP-behandling med personlig service, 
-                      flexibla leveranstider och möjlighet till specialbeställningar.
+                      Vi känner Östermalms särskilda behov och levererar service efter de höga 
+                      förväntningar som finns i området med professionalism och diskretion.
                     </p>
                   </div>
                 </div>

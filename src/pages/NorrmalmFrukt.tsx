@@ -73,19 +73,19 @@ const NorrmalmFrukt = () => {
           </div>
         </section>
 
-        {/* Professional Service Details */}
+        {/* Service Details */}
         <section className="py-16 bg-background">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <div className="bg-gradient-to-br from-white to-primary/5 rounded-lg shadow-lg border border-primary/20 p-8">
               <h2 className="text-2xl font-bold text-charcoal mb-6 text-center">
-                Professionell Service för Norrmalm
+                Leveransservice för Norrmalm
               </h2>
               
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-lg font-semibold text-charcoal mb-4 flex items-center">
                     <MapPin className="w-5 h-5 text-primary mr-2" />
-                    Affärsområden vi täcker
+                    Områden vi täcker
                   </h3>
                   <ul className="space-y-2 text-gray-600">
                     <li>• T-Centralen & Sergels torg</li>
@@ -100,7 +100,7 @@ const NorrmalmFrukt = () => {
                 <div>
                   <h3 className="text-lg font-semibold text-charcoal mb-4 flex items-center">
                     <TrendingUp className="w-5 h-5 text-primary mr-2" />
-                    Business Service
+                    Service & Fördelar
                   </h3>
                   <ul className="space-y-2 text-gray-600">
                     <li>• Leverans under kontorstid (07:30-14:00)</li>
@@ -115,9 +115,9 @@ const NorrmalmFrukt = () => {
               
               <div className="mt-8 p-4 bg-primary/10 rounded-lg border border-primary/30">
                 <div className="flex items-start">
-                  <Building2 className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-charcoal mb-2">City-Specialiserad Service</h4>
+                    <h4 className="font-semibold text-charcoal mb-2">Lokal kunskap</h4>
                     <p className="text-sm text-gray-600">
                       Vi förstår Norrmalmts affärstempo och levererar därför tidigt på dagen 
                       för att säkerställa att era fruktkorgar är redo när medarbetarna kommer.

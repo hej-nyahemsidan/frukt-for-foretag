@@ -4,7 +4,7 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { MapPin, Clock, Lightbulb, Coffee, Palette } from 'lucide-react';
+import { MapPin, Clock, Palette, Coffee } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const SodermalmFruktkorgar = () => {
@@ -73,19 +73,19 @@ const SodermalmFruktkorgar = () => {
           </div>
         </section>
 
-        {/* Creative Service Details */}
+        {/* Service Details */}
         <section className="py-16 bg-background">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <div className="bg-gradient-to-br from-white to-secondary/5 rounded-lg shadow-lg border border-secondary/20 p-8">
               <h2 className="text-2xl font-bold text-charcoal mb-6 text-center">
-                Anpassad Service för Södermalm
+                Leveransservice för Södermalm
               </h2>
               
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-lg font-semibold text-charcoal mb-4 flex items-center">
                     <MapPin className="w-5 h-5 text-secondary mr-2" />
-                    Kreativa Leveransområden
+                    Områden vi täcker
                   </h3>
                   <ul className="space-y-2 text-gray-600">
                     <li>• SoFo (South of Folkungagatan)</li>
@@ -100,27 +100,27 @@ const SodermalmFruktkorgar = () => {
                 <div>
                   <h3 className="text-lg font-semibold text-charcoal mb-4 flex items-center">
                     <Coffee className="w-5 h-5 text-secondary mr-2" />
-                    Startup-Vänlig Service
+                    Service & Fördelar
                   </h3>
                   <ul className="space-y-2 text-gray-600">
                     <li>• Flexibla leveranstider (08:00-15:00)</li>
-                    <li>• Startup-rabatter tillgängliga</li>
+                    <li>• Rabatter för mindre företag</li>
                     <li>• Skalbar service (växer med er)</li>
-                    <li>• Kreativa presentationer</li>
                     <li>• Miljövänliga förpackningar</li>
                     <li>• Enkel onlinebokning</li>
+                    <li>• Pålitliga leveranser</li>
                   </ul>
                 </div>
               </div>
               
               <div className="mt-8 p-4 bg-secondary/10 rounded-lg border border-secondary/30">
                 <div className="flex items-start">
-                  <Lightbulb className="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-charcoal mb-2">Startup-Friendly</h4>
+                    <h4 className="font-semibold text-charcoal mb-2">Lokal kunskap</h4>
                     <p className="text-sm text-gray-600">
-                      Vi förstår att många företag på Södermalm är växande startups. 
-                      Därför erbjuder vi flexibla avtal, skalbar service och specialpriser för nystartade företag.
+                      Vi förstår Södermalms unika karaktär med många växande företag och 
+                      erbjuder därför flexibla lösningar som passar både etablerade och nystartade verksamheter.
                     </p>
                   </div>
                 </div>

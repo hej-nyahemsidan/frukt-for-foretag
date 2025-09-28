@@ -4,7 +4,7 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { MapPin, Clock, Factory, Zap } from 'lucide-react';
+import { MapPin, Clock, Factory } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const SolnaSundbybergFrukt = () => {
@@ -73,19 +73,19 @@ const SolnaSundbybergFrukt = () => {
           </div>
         </section>
 
-        {/* Enterprise Service Details */}
+        {/* Service Details */}
         <section className="py-16 bg-background">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <div className="bg-gradient-to-br from-white to-primary/5 rounded-lg shadow-lg border border-primary/20 p-8">
               <h2 className="text-2xl font-bold text-charcoal mb-6 text-center">
-                Företagspark Service Solna & Sundbyberg
+                Leveransservice för Solna & Sundbyberg
               </h2>
               
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-lg font-semibold text-charcoal mb-4 flex items-center">
                     <MapPin className="w-5 h-5 text-primary mr-2" />
-                    Stora Leveransområden
+                    Områden vi täcker
                   </h3>
                   <ul className="space-y-2 text-gray-600">
                     <li>• Solna Business Park</li>
@@ -100,27 +100,27 @@ const SolnaSundbybergFrukt = () => {
                 <div>
                   <h3 className="text-lg font-semibold text-charcoal mb-4 flex items-center">
                     <Factory className="w-5 h-5 text-primary mr-2" />
-                    Företagspark Service
+                    Service & Fördelar
                   </h3>
                   <ul className="space-y-2 text-gray-600">
                     <li>• Stora volymleveranser</li>
                     <li>• Flera leveranspunkter per område</li>
                     <li>• Koordinerad leverans (07:00-15:00)</li>
-                    <li>• Bulk-rabatter för stora beställningar</li>
+                    <li>• Volymrabatter för stora beställningar</li>
                     <li>• Robust förpackning för transport</li>
-                    <li>• Företagsanpassade faktureringsrutiner</li>
+                    <li>• Anpassade faktureringsrutiner</li>
                   </ul>
                 </div>
               </div>
               
               <div className="mt-8 p-4 bg-primary/10 rounded-lg border border-primary/30">
                 <div className="flex items-start">
-                  <Zap className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 text-primary mr-3 mt-0.5 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold text-charcoal mb-2">Effektiv Storskalig Service</h4>
+                    <h4 className="font-semibold text-charcoal mb-2">Lokal kunskap</h4>
                     <p className="text-sm text-gray-600">
-                      Vi har specialutrustning och rutiner för stora leveranser till företagsparker. 
-                      Våra fordon och personal är anpassade för att hantera stora volymer effektivt.
+                      Vi har omfattande erfarenhet av leveranser till Solna och Sundbyberg och 
+                      förstår områdenas behov av effektiva och pålitliga leveranser.
                     </p>
                   </div>
                 </div>
