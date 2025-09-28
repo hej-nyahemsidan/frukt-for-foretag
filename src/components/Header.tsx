@@ -163,9 +163,9 @@ const Header = () => {
           </div>
 
           {/* Tablet Navigation - Horizontal Scroll */}
-          <div className="hidden lg:flex xl:hidden items-center mx-auto max-w-[600px]">
-            <div className="overflow-x-auto scrollbar-hide">
-              <nav className="flex items-center space-x-1 px-2">
+          <div className="hidden lg:flex xl:hidden items-center mx-auto max-w-[450px] w-full">
+            <div className="overflow-x-auto scrollbar-hide w-full">
+              <nav className="flex items-center space-x-1 px-2 min-w-max">
                 {navigationItems.map((item, index) => {
                   const isMinaSidor = item.label === 'Mina Sidor';
                   const shouldHighlight = isMinaSidor && user;
