@@ -133,7 +133,7 @@ const AboutSection = () => {
               {/* Signature */}
               <div className="pt-4">
                 <div className="text-2xl font-handwriting text-green-600" style={{ fontFamily: 'cursive' }}>
-                  Med vänliga hälsningar, Fruktexperten
+                  Med Vänliga hälsningar, Vitamin Korgen
                 </div>
               </div>
             </div>
