@@ -101,14 +101,6 @@ const StockholmFruktleverans = () => {
                   </Link>
                 </Button>
               </div>
-              
-              <div className="lg:text-right">
-                <img 
-                  src="/assets/stockholm-walking-person.jpg" 
-                  alt="Stockholm city fruktleverans"
-                  className="rounded-lg shadow-xl w-full max-w-md ml-auto"
-                />
-              </div>
             </div>
           </div>
         </section>

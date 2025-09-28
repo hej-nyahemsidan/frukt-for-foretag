@@ -103,14 +103,6 @@ const AlvsjoFruktleverans = () => {
                   </Link>
                 </Button>
               </div>
-              
-              <div className="lg:text-right">
-                <img 
-                  src="/assets/vitamin-korgen-new-logo.jpg" 
-                  alt="Vitaminkorgen huvudkontor Älvsjö"
-                  className="rounded-lg shadow-xl w-full max-w-md ml-auto"
-                />
-              </div>
             </div>
           </div>
         </section>

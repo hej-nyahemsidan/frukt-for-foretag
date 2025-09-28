@@ -103,14 +103,6 @@ const SodermalmFruktkorgar = () => {
                   </Link>
                 </Button>
               </div>
-              
-              <div className="lg:text-right">
-                <img 
-                  src="/assets/fresh-fruits-arrangement-2.jpg" 
-                  alt="Kreativa fruktkorgar Södermalm"
-                  className="rounded-lg shadow-xl w-full max-w-md ml-auto"
-                />
-              </div>
             </div>
           </div>
         </section>

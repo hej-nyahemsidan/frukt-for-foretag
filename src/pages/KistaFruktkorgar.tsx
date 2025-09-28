@@ -103,14 +103,6 @@ const KistaFruktkorgar = () => {
                   </Link>
                 </Button>
               </div>
-              
-              <div className="lg:text-right">
-                <img 
-                  src="/assets/modern-almanac-26th.jpg" 
-                  alt="Tech företag fruktkorgar Kista"
-                  className="rounded-lg shadow-xl w-full max-w-md ml-auto"
-                />
-              </div>
             </div>
           </div>
         </section>

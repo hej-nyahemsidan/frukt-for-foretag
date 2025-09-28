@@ -103,14 +103,6 @@ const KungsholmenKontorsfrukt = () => {
                   </Link>
                 </Button>
               </div>
-              
-              <div className="lg:text-right">
-                <img 
-                  src="/assets/office-wellness.jpg" 
-                  alt="Kontorsfrukt Kungsholmen myndigheter"
-                  className="rounded-lg shadow-xl w-full max-w-md ml-auto"
-                />
-              </div>
             </div>
           </div>
         </section>
