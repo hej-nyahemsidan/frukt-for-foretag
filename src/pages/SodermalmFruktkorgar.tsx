@@ -103,12 +103,12 @@ const SodermalmFruktkorgar = () => {
                     Service & Fördelar
                   </h3>
                   <ul className="space-y-2 text-gray-600">
-                    <li>• Flexibla leveranstider (08:00-15:00)</li>
-                    <li>• Rabatter för mindre företag</li>
-                    <li>• Skalbar service (växer med er)</li>
-                    <li>• Miljövänliga förpackningar</li>
-                    <li>• Enkel onlinebokning</li>
+                    <li>• Enkel orderhantering</li>
                     <li>• Pålitliga leveranser</li>
+                    <li>• Konkurrenskraftiga priser</li>
+                    <li>• Professionell presentation</li>
+                    <li>• Flexibla avtal</li>
+                    <li>• Säsongsanpassade urval</li>
                   </ul>
                 </div>
               </div>

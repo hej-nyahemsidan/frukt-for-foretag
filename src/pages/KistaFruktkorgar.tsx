@@ -103,12 +103,12 @@ const KistaFruktkorgar = () => {
                     Service & Fördelar
                   </h3>
                   <ul className="space-y-2 text-gray-600">
-                    <li>• Näringsrika fruktval</li>
-                    <li>• Flexibla leveranstider (08:00-16:00)</li>
-                    <li>• Anpassade avtal efter behov</li>
                     <li>• Enkel orderhantering</li>
                     <li>• Pålitliga leveranser</li>
                     <li>• Konkurrenskraftiga priser</li>
+                    <li>• Professionell presentation</li>
+                    <li>• Flexibla avtal</li>
+                    <li>• Säsongsanpassade urval</li>
                   </ul>
                 </div>
               </div>

@@ -103,12 +103,12 @@ const SolnaSundbybergFrukt = () => {
                     Service & Fördelar
                   </h3>
                   <ul className="space-y-2 text-gray-600">
-                    <li>• Stora volymleveranser</li>
-                    <li>• Flera leveranspunkter per område</li>
-                    <li>• Koordinerad leverans (07:00-15:00)</li>
-                    <li>• Volymrabatter för stora beställningar</li>
-                    <li>• Robust förpackning för transport</li>
-                    <li>• Anpassade faktureringsrutiner</li>
+                    <li>• Enkel orderhantering</li>
+                    <li>• Pålitliga leveranser</li>
+                    <li>• Konkurrenskraftiga priser</li>
+                    <li>• Professionell presentation</li>
+                    <li>• Flexibla avtal</li>
+                    <li>• Säsongsanpassade urval</li>
                   </ul>
                 </div>
               </div>

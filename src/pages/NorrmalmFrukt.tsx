@@ -103,12 +103,12 @@ const NorrmalmFrukt = () => {
                     Service & Fördelar
                   </h3>
                   <ul className="space-y-2 text-gray-600">
-                    <li>• Leverans under kontorstid (07:30-14:00)</li>
+                    <li>• Enkel orderhantering</li>
+                    <li>• Pålitliga leveranser</li>
+                    <li>• Konkurrenskraftiga priser</li>
                     <li>• Professionell presentation</li>
-                    <li>• Fakturering enligt era rutiner</li>
-                    <li>• Anpassning för affärsmöten</li>
+                    <li>• Flexibla avtal</li>
                     <li>• Säsongsanpassade urval</li>
-                    <li>• Flexibla avtal och pauser</li>
                   </ul>
                 </div>
               </div>

@@ -103,12 +103,12 @@ const AlvsjoFruktleverans = () => {
                     Service & Fördelar
                   </h3>
                   <ul className="space-y-2 text-gray-600">
-                    <li>• Samma dag leverans möjlig</li>
-                    <li>• Extra kvalitetskontroll</li>
-                    <li>• Personlig service från grundarna</li>
-                    <li>• Flexibla leveranstider (08:00-16:00)</li>
-                    <li>• Specialpriser för närområdet</li>
-                    <li>• Snabb hjälp vid problem</li>
+                    <li>• Enkel orderhantering</li>
+                    <li>• Pålitliga leveranser</li>
+                    <li>• Konkurrenskraftiga priser</li>
+                    <li>• Professionell presentation</li>
+                    <li>• Flexibla avtal</li>
+                    <li>• Säsongsanpassade urval</li>
                   </ul>
                 </div>
               </div>

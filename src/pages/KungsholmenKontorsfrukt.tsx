@@ -103,12 +103,12 @@ const KungsholmenKontorsfrukt = () => {
                     Service & Fördelar
                   </h3>
                   <ul className="space-y-2 text-gray-600">
-                    <li>• Upphandlingsanpassade avtal</li>
-                    <li>• Miljöcertifierade produkter</li>
-                    <li>• Leverans under kontorstid</li>
-                    <li>• Säkerhetsanpassad leverans</li>
-                    <li>• Långsiktiga avtalsperioder</li>
-                    <li>• Transparenta kostnader</li>
+                    <li>• Enkel orderhantering</li>
+                    <li>• Pålitliga leveranser</li>
+                    <li>• Konkurrenskraftiga priser</li>
+                    <li>• Professionell presentation</li>
+                    <li>• Flexibla avtal</li>
+                    <li>• Säsongsanpassade urval</li>
                   </ul>
                 </div>
               </div>
