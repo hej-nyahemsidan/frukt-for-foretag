@@ -10,6 +10,8 @@ import { AdminAuthProvider } from "@/admin/contexts/AdminAuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import AdminProtectedRoute from "@/admin/components/AdminProtectedRoute";
 import CookieConsent from "@/components/CookieConsent";
+import PerformanceMonitor from "@/components/PerformanceMonitor";
+import AccessibilityEnhancer from "@/components/AccessibilityEnhancer";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -39,6 +41,7 @@ const App = () => (
           <TooltipProvider>
             <Toaster />
             <Sonner />
+            <PerformanceMonitor />
             <BrowserRouter>
               <ScrollToTop />
               <Routes>
@@ -78,6 +81,7 @@ const App = () => (
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <CookieConsent />
+              <AccessibilityEnhancer />
             </BrowserRouter>
           </TooltipProvider>
         </CartProvider>

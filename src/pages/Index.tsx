@@ -8,6 +8,7 @@ import CustomerPortalSection from '@/components/CustomerPortalSection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 import PromoPopup from '@/components/PromoPopup';
+import SEOHead from '@/components/SEOHead';
 import { usePromoPopup } from '@/hooks/usePromoPopup';
 
 const Index = () => {
@@ -15,6 +16,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead type="homepage" />
       <Header />
       <main>
         <HeroSection />
