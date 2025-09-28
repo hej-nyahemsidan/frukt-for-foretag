@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Plus, Minus } from 'lucide-react';
 
@@ -75,9 +76,11 @@ const FAQSection = () => {
             <p className="text-lg text-gray-600">
               Har du en fråga? Vi har svaret.
             </p>
-            <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full">
-              Kontakta Oss
-            </Button>
+            <Link to="/kontakt">
+              <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full">
+                Kontakta Oss
+              </Button>
+            </Link>
           </div>
 
           {/* Right Column - FAQ Items */}
