@@ -95,14 +95,15 @@ const StockholmFruktleverans = () => {
                 <div>
                   <h3 className="text-lg font-semibold text-charcoal mb-4 flex items-center">
                     <Clock className="w-5 h-5 text-secondary mr-2" />
-                    Leveranstider
+                    Service & Fördelar
                   </h3>
                   <ul className="space-y-2 text-gray-600">
-                    <li>• Måndag: 07:00-12:00</li>
-                    <li>• Tisdag: 08:00-15:00</li>
-                    <li>• Expressleverans: Samma dag</li>
-                    <li>• SMS-notifiering 30 min innan</li>
-                    <li>• Kontaktlös leverans tillgänglig</li>
+                    <li>• Enkel orderhantering</li>
+                    <li>• Pålitliga leveranser</li>
+                    <li>• Konkurrenskraftiga priser</li>
+                    <li>• Professionell presentation</li>
+                    <li>• Flexibla avtal</li>
+                    <li>• Säsongsanpassade urval</li>
                   </ul>
                 </div>
               </div>
