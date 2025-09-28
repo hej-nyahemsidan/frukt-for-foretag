@@ -63,9 +63,9 @@ const AboutSection = () => {
       {/* Section 1 - Company Story */}
       <section className="py-20 px-8 bg-white">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-5 gap-16 items-center">
-            {/* Text Content - 60% */}
-            <div className="lg:col-span-3 space-y-6">
+          <div className="max-w-4xl mx-auto">
+            {/* Text Content Only */}
+            <div className="space-y-6">
               <h2 className="text-4xl font-bold text-gray-900">
                 Enkelt att erbjuda fruktkorgar på jobbet
               </h2>
@@ -100,15 +100,6 @@ const AboutSection = () => {
                   <li>Enkel och uppskattad personalförmån</li>
                 </ul>
               </div>
-            </div>
-
-            {/* Image - 40% */}
-            <div className="lg:col-span-2">
-              <img 
-                src={fruityImage} 
-                alt="Colorful fresh fruits arrangement" 
-                className="w-full h-96 object-cover rounded-xl shadow-lg"
-              />
             </div>
           </div>
         </div>
