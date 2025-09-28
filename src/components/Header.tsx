@@ -88,80 +88,157 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Desktop Navigation - Centered */}
-          <nav className="hidden lg:flex items-center mx-auto">
-            {navigationItems.map((item, index) => {
-              const isActive = location.pathname === item.href;
-              const isMinaSidor = item.label === 'Mina Sidor';
-              const shouldHighlight = isMinaSidor && user;
+          {/* Desktop Navigation - Centered with Scroll */}
+          <div className="hidden xl:flex items-center mx-auto">
+            <nav className="flex items-center">
+              {navigationItems.map((item, index) => {
+                const isActive = location.pathname === item.href;
+                const isMinaSidor = item.label === 'Mina Sidor';
+                const shouldHighlight = isMinaSidor && user;
+                
+                return (
+                  <Fragment key={item.label}>
+                    {item.isExternal ? (
+                      <a
+                        href={item.href}
+                        className={`transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 ${
+                          shouldHighlight 
+                            ? 'text-secondary bg-secondary/10 rounded-lg' 
+                            : 'text-charcoal hover:text-secondary'
+                        }`}
+                      >
+                        {item.label}
+                        <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
+                      </a>
+                    ) : (
+                      <Link
+                        to={item.href}
+                        className={`transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 ${
+                          shouldHighlight 
+                            ? 'text-secondary bg-secondary/10 rounded-lg' 
+                            : 'text-charcoal hover:text-secondary'
+                        }`}
+                      >
+                        {item.label}
+                        <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform transition-transform duration-200 origin-center ${
+                          shouldHighlight ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                        }`}></span>
+                      </Link>
+                    )}
+                    {index < navigationItems.length - 1 && (
+                      <div className="w-px h-4 bg-gray-300 mx-2"></div>
+                    )}
+                  </Fragment>
+                );
+              })}
               
-              return (
-                <Fragment key={item.label}>
-                  {item.isExternal ? (
-                    <a
-                      href={item.href}
-                      className={`transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 ${
-                        shouldHighlight 
-                          ? 'text-secondary bg-secondary/10 rounded-lg' 
-                          : 'text-charcoal hover:text-secondary'
-                      }`}
-                    >
-                      {item.label}
-                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
-                    </a>
-                  ) : (
-                    <Link
-                      to={item.href}
-                      className={`transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 ${
-                        shouldHighlight 
-                          ? 'text-secondary bg-secondary/10 rounded-lg' 
-                          : 'text-charcoal hover:text-secondary'
-                      }`}
-                    >
-                      {item.label}
-                      <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform transition-transform duration-200 origin-center ${
-                        shouldHighlight ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                      }`}></span>
-                    </Link>
-                  )}
-                  {index < navigationItems.length - 1 && (
-                    <div className="w-px h-4 bg-gray-300 mx-2"></div>
-                  )}
-                </Fragment>
-              );
-            })}
-            
-            {/* Blog Dropdown */}
-            <div className="w-px h-4 bg-gray-300 mx-2"></div>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 text-charcoal hover:text-secondary flex items-center space-x-1">
-                <BookOpen className="w-4 h-4" />
-                <span>Blog</span>
-                <ChevronDown className="w-3 h-3" />
-                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="center" className="w-80 max-h-96 overflow-y-auto bg-white/90 backdrop-blur-md border border-gray-200/50 shadow-xl rounded-lg z-50">
-                {blogPosts.map((post, index) => (
-                  <DropdownMenuItem key={post.slug} asChild className="p-0">
-                    <Link 
-                      to={`/blog/${post.slug}`}
-                      className="block p-4 hover:bg-lightgreen/50 transition-colors"
-                    >
-                      <h3 className="font-medium text-charcoal text-sm leading-tight mb-2">
-                        {post.title}
-                      </h3>
-                      <p className="text-xs text-gray-600 leading-relaxed">
-                        {post.excerpt}
-                      </p>
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </nav>
+              {/* Blog Dropdown */}
+              <div className="w-px h-4 bg-gray-300 mx-2"></div>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 text-charcoal hover:text-secondary flex items-center space-x-1">
+                  <BookOpen className="w-4 h-4" />
+                  <span>Blog</span>
+                  <ChevronDown className="w-3 h-3" />
+                  <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="center" className="w-80 max-h-96 overflow-y-auto bg-white/90 backdrop-blur-md border border-gray-200/50 shadow-xl rounded-lg z-50">
+                  {blogPosts.map((post, index) => (
+                    <DropdownMenuItem key={post.slug} asChild className="p-0">
+                      <Link 
+                        to={`/blog/${post.slug}`}
+                        className="block p-4 hover:bg-lightgreen/50 transition-colors"
+                      >
+                        <h3 className="font-medium text-charcoal text-sm leading-tight mb-2">
+                          {post.title}
+                        </h3>
+                        <p className="text-xs text-gray-600 leading-relaxed">
+                          {post.excerpt}
+                        </p>
+                      </Link>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </nav>
+          </div>
+
+          {/* Tablet Navigation - Horizontal Scroll */}
+          <div className="hidden lg:flex xl:hidden items-center mx-auto max-w-[600px]">
+            <div className="overflow-x-auto scrollbar-hide">
+              <nav className="flex items-center space-x-1 px-2">
+                {navigationItems.map((item, index) => {
+                  const isMinaSidor = item.label === 'Mina Sidor';
+                  const shouldHighlight = isMinaSidor && user;
+                  
+                  return (
+                    <Fragment key={item.label}>
+                      {item.isExternal ? (
+                        <a
+                          href={item.href}
+                          className={`transition-all duration-200 font-medium text-sm tracking-wide relative group px-3 py-2 whitespace-nowrap ${
+                            shouldHighlight 
+                              ? 'text-secondary bg-secondary/10 rounded-lg' 
+                              : 'text-charcoal hover:text-secondary'
+                          }`}
+                        >
+                          {item.label}
+                          <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
+                        </a>
+                      ) : (
+                        <Link
+                          to={item.href}
+                          className={`transition-all duration-200 font-medium text-sm tracking-wide relative group px-3 py-2 whitespace-nowrap ${
+                            shouldHighlight 
+                              ? 'text-secondary bg-secondary/10 rounded-lg' 
+                              : 'text-charcoal hover:text-secondary'
+                          }`}
+                        >
+                          {item.label}
+                          <span className={`absolute bottom-0 left-3 right-3 h-0.5 bg-secondary transform transition-transform duration-200 origin-center ${
+                            shouldHighlight ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                          }`}></span>
+                        </Link>
+                      )}
+                      {index < navigationItems.length - 1 && (
+                        <div className="w-px h-3 bg-gray-300 mx-1"></div>
+                      )}
+                    </Fragment>
+                  );
+                })}
+                
+                {/* Compact Blog Dropdown */}
+                <div className="w-px h-3 bg-gray-300 mx-1"></div>
+                <DropdownMenu>
+                  <DropdownMenuTrigger className="transition-all duration-200 font-medium text-sm tracking-wide relative group px-3 py-2 text-charcoal hover:text-secondary flex items-center space-x-1 whitespace-nowrap">
+                    <BookOpen className="w-3 h-3" />
+                    <span>Blog</span>
+                    <ChevronDown className="w-2 h-2" />
+                    <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="center" className="w-72 max-h-80 overflow-y-auto bg-white/90 backdrop-blur-md border border-gray-200/50 shadow-xl rounded-lg z-50">
+                    {blogPosts.map((post, index) => (
+                      <DropdownMenuItem key={post.slug} asChild className="p-0">
+                        <Link 
+                          to={`/blog/${post.slug}`}
+                          className="block p-3 hover:bg-lightgreen/50 transition-colors"
+                        >
+                          <h3 className="font-medium text-charcoal text-xs leading-tight mb-1">
+                            {post.title}
+                          </h3>
+                          <p className="text-xs text-gray-600 leading-relaxed">
+                            {post.excerpt}
+                          </p>
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </nav>
+            </div>
+          </div>
 
           {/* Right Side - Contact & Actions */}
-          <div className="hidden lg:flex items-center space-x-6">
+          <div className="hidden xl:flex items-center space-x-6">
             {/* Admin Dashboard Link - Sliding Animation */}
             {isAdmin && (
               <div className="animate-slide-in-right">
@@ -209,9 +286,57 @@ const Header = () => {
             )}
           </div>
 
+          {/* Tablet Right Side - Compact */}
+          <div className="hidden lg:flex xl:hidden items-center space-x-3">
+            {/* Admin Dashboard Link - Compact */}
+            {isAdmin && (
+              <Link 
+                to="/admin/dashboard"
+                className="flex items-center text-orange-600 hover:text-orange-700 transition-colors p-2 rounded-lg bg-orange-50 hover:bg-orange-100"
+                title="Admin Dashboard"
+              >
+                <Shield className="w-4 h-4" />
+              </Link>
+            )}
+            
+            {/* User Menu or Login Link - Compact */}
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center space-x-1 text-charcoal hover:text-secondary transition-colors">
+                  <User className="w-4 h-4" />
+                  <span className="text-xs font-medium max-w-[80px] truncate">{user.email}</span>
+                  <ChevronDown className="w-3 h-3" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-44 bg-white/90 backdrop-blur-md border border-gray-200/50 shadow-xl rounded-lg z-50">
+                  {isAdmin && (
+                    <DropdownMenuItem asChild>
+                      <Link to="/admin/dashboard" className="flex items-center w-full text-xs">
+                        <Shield className="w-3 h-3 mr-2" />
+                        Admin Dashboard
+                      </Link>
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuItem onClick={handleLogout} className="text-red-600 hover:text-red-700 text-xs">
+                    <LogOut className="w-3 h-3 mr-2" />
+                    Logga ut
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link 
+                to="/kundportal" 
+                className="flex items-center space-x-1 text-charcoal hover:text-secondary transition-colors"
+                title="Mina Sidor"
+              >
+                <User className="w-4 h-4" />
+                <span className="text-xs font-medium">Login</span>
+              </Link>
+            )}
+          </div>
+
           {/* Mobile Menu Toggle */}
           <button
-            className="lg:hidden p-2 text-charcoal hover:text-secondary transition-colors"
+            className="xl:hidden p-2 text-charcoal hover:text-secondary transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
@@ -226,14 +351,14 @@ const Header = () => {
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
           <div 
-            className="lg:hidden fixed inset-0 bg-black bg-opacity-25 z-30"
+            className="xl:hidden fixed inset-0 bg-black bg-opacity-25 z-30"
             onClick={() => setIsMobileMenuOpen(false)}
           />
         )}
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden fixed inset-x-0 top-20 md:top-24 bg-white border-t border-b border-gray-200 shadow-lg z-40 max-h-[calc(100vh-5rem)] md:max-h-[calc(100vh-6rem)] overflow-y-auto"
+          <div className="xl:hidden fixed inset-x-0 top-20 md:top-24 bg-white border-t border-b border-gray-200 shadow-lg z-40 max-h-[calc(100vh-5rem)] md:max-h-[calc(100vh-6rem)] overflow-y-auto"
             style={{ 
               position: 'fixed',
               width: '100vw',
