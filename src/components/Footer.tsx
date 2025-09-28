@@ -9,43 +9,12 @@ import {
   Linkedin,
   Truck,
   ShieldCheck,
-  Leaf,
-  Copy,
-  Check,
-  ExternalLink
+  Leaf
 } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import { toast } from '@/components/ui/use-toast';
 import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const [isInIframe, setIsInIframe] = useState(false);
-  const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    setIsInIframe(window.self !== window.top);
-  }, []);
-
-  const address = "Varuvägen 9, 125 30 Älvsjö";
-  
-  const copyAddress = async () => {
-    try {
-      await navigator.clipboard.writeText(address);
-      setCopied(true);
-      toast({
-        title: "Adress kopierad!",
-        description: "Adressen har kopierats till urklipp.",
-      });
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      toast({
-        title: "Kunde inte kopiera",
-        description: "Försök markera och kopiera manuellt.",
-        variant: "destructive",
-      });
-    }
-  };
 
   return (
     <footer className="relative bg-gradient-to-br from-green-900 via-green-800 to-green-900 text-white">
@@ -89,62 +58,18 @@ const Footer = () => {
               <span className="mr-2">📍</span> Kontakt & Plats
             </h4>
             <div className="space-y-3 text-sm">
-              {/* Address with copy functionality */}
-              <div className="flex items-start space-x-3 text-gray-100 group">
+              <a 
+                href="https://maps.app.goo.gl/jBgC3caVb9ARf5Vp7" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-start space-x-3 text-gray-100 hover:text-yellow-400 transition-colors"
+              >
                 <MapPin className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                <div className="flex-1">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-medium">Varuvägen 9</p>
-                      <p>125 30 Älvsjö</p>
-                    </div>
-                    <button
-                      onClick={copyAddress}
-                      className="ml-2 p-1.5 bg-green-700/50 hover:bg-green-600 rounded transition-colors"
-                      title="Kopiera adress"
-                    >
-                      {copied ? (
-                        <Check className="h-4 w-4 text-green-300" />
-                      ) : (
-                        <Copy className="h-4 w-4 text-gray-300" />
-                      )}
-                    </button>
-                  </div>
-                  
-                  {/* Map options */}
-                  <div className="mt-2 flex flex-wrap gap-2 text-xs">
-                    <a 
-                      href="https://www.openstreetmap.org/?mlat=59.2872&mlon=17.9881&zoom=16"
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-2 py-1 bg-blue-600 hover:bg-blue-700 rounded text-white transition-colors"
-                    >
-                      <ExternalLink className="h-3 w-3" />
-                      Karta
-                    </a>
-                    <a 
-                      href="https://maps.apple.com/?q=Varuvägen+9,+125+30+Älvsjö"
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-2 py-1 bg-gray-600 hover:bg-gray-700 rounded text-white transition-colors"
-                    >
-                      <ExternalLink className="h-3 w-3" />
-                      Apple Maps
-                    </a>
-                    {!isInIframe && (
-                      <a 
-                        href="https://maps.app.goo.gl/jBgC3caVb9ARf5Vp7"
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 px-2 py-1 bg-green-600 hover:bg-green-700 rounded text-white transition-colors"
-                      >
-                        <ExternalLink className="h-3 w-3" />
-                        Google Maps
-                      </a>
-                    )}
-                  </div>
+                <div>
+                  <p className="font-medium">Varuvägen 9</p>
+                  <p>125 30 Älvsjö</p>
                 </div>
-              </div>
+              </a>
               <a href="tel:0101839836" className="flex items-center space-x-3 text-gray-100 hover:text-yellow-400 transition-colors">
                 <Phone className="h-5 w-5" />
                 <span>010-183 98 36</span>
