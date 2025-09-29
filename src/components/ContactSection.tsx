@@ -53,10 +53,10 @@ const ContactSection = () => {
         
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl">
-            <h1 className="text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
               Kontakta oss om fruktkorgar på jobbet
             </h1>
-            <p className="text-2xl text-gray-700 leading-relaxed">
+            <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 leading-relaxed">
               Vill du veta mer om hur fruktkorgar kan förbättra arbetsmiljön på just 
               ert kontor? Vi på Vitaminkorgen hjälper företag i hela Stockholm med 
               skräddarsydda lösningar för fruktkorgar på jobbet.

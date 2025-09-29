@@ -56,10 +56,10 @@ const QuoteRequestSection = () => {
         
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl">
-            <h1 className="text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
               Offertförfrågan
             </h1>
-            <p className="text-2xl text-gray-700 leading-relaxed">
+            <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 leading-relaxed">
               Behöver ni lite mer frukt eller en specialbeställning? Fyll i offertformuläret nedan så hör vi av oss direkt.
             </p>
           </div>

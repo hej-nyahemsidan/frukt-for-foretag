@@ -50,10 +50,10 @@ const AboutSection = () => {
         </div>
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl">
-            <h1 className="text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
               Stockholms ledande leverantör av fruktkorgar på jobbet
             </h1>
-            <p className="text-2xl text-gray-600 leading-relaxed">
+            <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 leading-relaxed">
               Sedan 2021 har vi på Vitaminkorgen gjort det enkelt för företag i Stockholm att erbjuda fruktkorgar på jobbet.
             </p>
           </div>
