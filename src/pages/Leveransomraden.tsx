@@ -220,26 +220,6 @@ const Leveransomraden = () => {
                 </div>
               ))}
             </div>
-
-            {/* Additional feature highlights */}
-            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="text-center p-6 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20">
-                <div className="text-3xl font-bold text-secondary mb-2">100%</div>
-                <p className="text-gray-600 text-sm">Kvalitetsgaranti</p>
-              </div>
-              <div className="text-center p-6 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20">
-                <div className="text-3xl font-bold text-secondary mb-2">5 dagar</div>
-                <p className="text-gray-600 text-sm">Leveransdagar</p>
-              </div>
-              <div className="text-center p-6 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20">
-                <div className="text-3xl font-bold text-secondary mb-2">9 tim</div>
-                <p className="text-gray-600 text-sm">Leveransfönster</p>
-              </div>
-              <div className="text-center p-6 bg-white/50 backdrop-blur-sm rounded-xl border border-white/20">
-                <div className="text-3xl font-bold text-secondary mb-2">500+</div>
-                <p className="text-gray-600 text-sm">Nöjda kunder</p>
-              </div>
-            </div>
           </div>
         </section>
 
