@@ -53,20 +53,25 @@ const ProductShowcase = () => {
   ];
 
   return (
-    <section id="products" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-accent-light-green to-background">
+    <section id="products" className="py-16 px-8 bg-white">
       <div className="container mx-auto">
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6">
-            Några av Våra Produkter
+        {/* Header */}
+        <div className="mb-12 text-center">
+          <h2 className="text-4xl font-bold text-charcoal mb-4">
+            Fruktkorgar i olika format
           </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Bläddra genom vårt sortiment organiserat i kategorier
+          <p className="text-lg text-mediumgray max-w-4xl mx-auto leading-relaxed mb-6">
+            Upptäck vårt komplette utbud av fruktkorgar och hälsosamma mellanmål. 
+            Vi har flera artiklar och lösningar anpassade för alla typer av arbetsplatser.
           </p>
-          <p className="text-base sm:text-lg text-muted-foreground mt-3">
-            Fler Produkter hittar du på Mina Sidor när du blir kund
-          </p>
+          <Link 
+            to="/produkter" 
+            className="inline-flex items-center text-primary hover:text-primary/80 font-semibold transition-colors"
+          >
+            Se en del av vårt produktutbud
+          </Link>
         </div>
-        
+
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-12">
           {products.map((product, index) => (
@@ -107,6 +112,8 @@ const ProductShowcase = () => {
                   <h3 className="font-semibold text-foreground mb-4 text-base group-hover:text-primary transition-colors">
                     {product.name}
                   </h3>
+
+                  {/* Price removed */}
 
                   {/* CTA Button */}
                   <Button 
