@@ -245,34 +245,34 @@ const Products = () => {
             </div>
 
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-5 max-w-4xl mx-auto mb-8 bg-white shadow-md">
+              <TabsList className="grid w-full grid-cols-5 max-w-4xl mx-auto mb-8 bg-white shadow-md h-auto">
                 <TabsTrigger 
                   value="fruktkorgar" 
-                  className="data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-primary/10 transition-colors"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-primary/10 transition-colors text-xs sm:text-sm px-2 py-3 h-auto whitespace-nowrap"
                 >
                   Fruktkorgar
                 </TabsTrigger>
                 <TabsTrigger 
                   value="fruktpasar"
-                  className="data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-primary/10 transition-colors"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-primary/10 transition-colors text-xs sm:text-sm px-2 py-3 h-auto whitespace-nowrap"
                 >
                   Fruktpåsar
                 </TabsTrigger>
                 <TabsTrigger 
                   value="mjolk"
-                  className="data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-primary/10 transition-colors"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-primary/10 transition-colors text-xs sm:text-sm px-2 py-3 h-auto whitespace-nowrap"
                 >
                   Mjölk
                 </TabsTrigger>
                 <TabsTrigger 
                   value="lask"
-                  className="data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-primary/10 transition-colors"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-primary/10 transition-colors text-xs sm:text-sm px-2 py-3 h-auto whitespace-nowrap"
                 >
                   Läsk
                 </TabsTrigger>
                 <TabsTrigger 
                   value="kaffe"
-                  className="data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-primary/10 transition-colors"
+                  className="data-[state=active]:bg-primary data-[state=active]:text-white hover:bg-primary/10 transition-colors text-xs sm:text-sm px-2 py-3 h-auto whitespace-nowrap"
                 >
                   Kaffe
                 </TabsTrigger>
