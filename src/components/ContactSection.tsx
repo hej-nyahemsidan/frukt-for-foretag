@@ -20,17 +20,17 @@ const ContactSection = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     
-    // Simulate form submission
-    toast({
-      title: "Tack för ditt meddelande!",
-      description: "Vi återkommer till dig snart.",
-    });
+    // Create mailto link with form data
+    const subject = encodeURIComponent('Kontakt från webbsidan');
+    const body = encodeURIComponent(`Namn: ${formData.name}\nE-post: ${formData.email}\n\nMeddelande:\n${formData.message}`);
+    const mailtoLink = `mailto:info@vitaminkorgen.se?subject=${subject}&body=${body}`;
     
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      message: ''
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    toast({
+      title: "E-postklient öppnas...",
+      description: "Skicka e-posten från din e-postklient för att kontakta oss.",
     });
   };
 

@@ -23,20 +23,17 @@ const QuoteRequestSection = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     
-    // Simulate form submission
-    toast({
-      title: "Tack för din offertförfrågan!",
-      description: "Vi återkommer med ett skräddarsytt förslag inom 24 timmar.",
-    });
+    // Create mailto link with form data
+    const subject = encodeURIComponent('Offertförfrågan från webbsidan');
+    const body = encodeURIComponent(`Företagsnamn: ${formData.companyName}\nKontaktperson: ${formData.contactPerson}\nE-post: ${formData.email}\nTelefon: ${formData.phone}\nOrt: ${formData.location}\n\nMeddelande:\n${formData.message}`);
+    const mailtoLink = `mailto:info@vitaminkorgen.se?subject=${subject}&body=${body}`;
     
-    // Reset form
-    setFormData({
-      companyName: '',
-      contactPerson: '',
-      email: '',
-      phone: '',
-      location: '',
-      message: ''
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    toast({
+      title: "E-postklient öppnas...",
+      description: "Skicka e-posten från din e-postklient för att skicka offertförfrågan.",
     });
   };
 
