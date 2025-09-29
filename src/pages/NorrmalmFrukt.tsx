@@ -21,49 +21,49 @@ const NorrmalmFrukt = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-br from-primary/15 via-background to-secondary/15">
+        <section className="relative py-12 md:py-20 bg-gradient-to-br from-primary/15 via-background to-secondary/15">
           <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5"></div>
           
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div>
-                <div className="mb-6">
+                <div className="mb-4 md:mb-6">
                   <VitaminKorgenLogo 
                     size="medium" 
                     variant="horizontal"
                     animated={true}
-                    className="h-16 w-auto"
+                    className="h-12 md:h-16 w-auto"
                   />
                 </div>
                 
                 <div className="flex items-center mb-4">
-                  <Building2 className="w-8 h-8 text-primary mr-3" />
-                  <span className="text-primary font-semibold">BUSINESS LEVERANS</span>
+                  <Building2 className="w-6 md:w-8 h-6 md:h-8 text-primary mr-2 md:mr-3" />
+                  <span className="text-primary font-semibold text-sm md:text-base">BUSINESS LEVERANS</span>
                 </div>
                 
-                <h1 className="text-4xl md:text-5xl font-bold text-charcoal mb-6">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal mb-4 md:mb-6">
                   Kontorsfrukt till
                   <span className="text-primary block">Norrmalm & City</span>
                 </h1>
                 
-                <p className="text-xl text-gray-600 mb-8">
+                <p className="text-lg md:text-xl text-gray-600 mb-6 md:mb-8">
                   Professionella fruktkorgar för Stockholms affärshjärta. Vi levererar 
                   kvalitetsfrukt till företag i Norrmalm, City och Vasastan - perfekt 
                   för affärsmöten och vardagsenergi.
                 </p>
                 
-                <div className="flex items-center space-x-4 mb-8">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0 mb-6 md:mb-8">
                   <div className="flex items-center text-sm text-gray-600">
-                    <MapPin className="w-4 h-4 mr-1 text-primary" />
-                    Leverans: Måndag & Tisdag
+                    <MapPin className="w-4 h-4 mr-1 text-primary flex-shrink-0" />
+                    <span>Leverans: Måndag & Tisdag</span>
                   </div>
                   <div className="flex items-center text-sm text-gray-600">
-                    <Clock className="w-4 h-4 mr-1 text-primary" />
-                    Tid: 07:30-14:00
+                    <Clock className="w-4 h-4 mr-1 text-primary flex-shrink-0" />
+                    <span>Tid: 07:30-14:00</span>
                   </div>
                 </div>
                 
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white">
+                <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-white w-full sm:w-auto">
                   <Link to="/offertforfragan">
                     Begär business offert
                   </Link>

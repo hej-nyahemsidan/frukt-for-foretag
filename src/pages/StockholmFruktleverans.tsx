@@ -21,44 +21,44 @@ const StockholmFruktleverans = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-br from-lightgreen/20 via-background to-primary/10">
+        <section className="relative py-12 md:py-20 bg-gradient-to-br from-lightgreen/20 via-background to-primary/10">
           <div className="absolute inset-0 bg-gradient-to-r from-secondary/5 via-transparent to-primary/5"></div>
           
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div>
-                <div className="mb-6">
+                <div className="mb-4 md:mb-6">
                   <VitaminKorgenLogo 
                     size="medium" 
                     variant="horizontal"
                     animated={true}
-                    className="h-16 w-auto"
+                    className="h-12 md:h-16 w-auto"
                   />
                 </div>
                 
-                <h1 className="text-4xl md:text-5xl font-bold text-charcoal mb-6">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal mb-4 md:mb-6">
                   Fruktleverans till
                   <span className="text-secondary block">Stockholm Centrum</span>
                 </h1>
                 
-                <p className="text-xl text-gray-600 mb-8">
+                <p className="text-lg md:text-xl text-gray-600 mb-6 md:mb-8">
                   Vi levererar färska fruktkorgar till företag i hela centrala Stockholm. 
                   Från Gamla Stan till T-Centralen - vi täcker hela city med kvalitetsfrukt 
                   varje vecka.
                 </p>
                 
-                <div className="flex items-center space-x-4 mb-8">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0 mb-6 md:mb-8">
                   <div className="flex items-center text-sm text-gray-600">
-                    <MapPin className="w-4 h-4 mr-1 text-secondary" />
-                    Leverans: Måndag & Tisdag
+                    <MapPin className="w-4 h-4 mr-1 text-secondary flex-shrink-0" />
+                    <span>Leverans: Måndag & Tisdag</span>
                   </div>
                   <div className="flex items-center text-sm text-gray-600">
-                    <Clock className="w-4 h-4 mr-1 text-secondary" />
-                    Tid: 07:00-15:00
+                    <Clock className="w-4 h-4 mr-1 text-secondary flex-shrink-0" />
+                    <span>Tid: 07:00-15:00</span>
                   </div>
                 </div>
                 
-                <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-white">
+                <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-white w-full sm:w-auto">
                   <Link to="/offertforfragan">
                     Begär offert för Stockholm
                   </Link>
@@ -69,14 +69,14 @@ const StockholmFruktleverans = () => {
         </section>
 
         {/* Delivery Details */}
-        <section className="py-16 bg-background">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-8">
-              <h2 className="text-2xl font-bold text-charcoal mb-6 text-center">
+        <section className="py-12 md:py-16 bg-background">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-white rounded-lg shadow-lg border border-gray-100 p-4 sm:p-6 md:p-8">
+              <h2 className="text-xl md:text-2xl font-bold text-charcoal mb-4 md:mb-6 text-center">
                 Leveransdetaljer Stockholm Centrum
               </h2>
               
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-6 md:gap-8">
                 <div>
                   <h3 className="text-lg font-semibold text-charcoal mb-4 flex items-center">
                     <MapPin className="w-5 h-5 text-secondary mr-2" />
@@ -125,12 +125,12 @@ const StockholmFruktleverans = () => {
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-secondary text-white">
-          <div className="max-w-4xl mx-auto text-center px-6 lg:px-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <section className="py-12 md:py-16 bg-secondary text-white">
+          <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
               Börja med fruktleverans idag
             </h2>
-            <p className="text-xl mb-8 text-secondary-foreground/90">
+            <p className="text-lg md:text-xl mb-6 md:mb-8 text-secondary-foreground/90">
               Gör era medarbetare i Stockholm gladare och friskare med våra färska fruktkorgar.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

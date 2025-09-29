@@ -21,49 +21,49 @@ const AlvsjoFruktleverans = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-br from-lightgreen/20 via-background to-secondary/15">
+        <section className="relative py-12 md:py-20 bg-gradient-to-br from-lightgreen/20 via-background to-secondary/15">
           <div className="absolute inset-0 bg-gradient-to-r from-lightgreen/5 via-transparent to-secondary/5"></div>
           
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div>
-                <div className="mb-6">
+                <div className="mb-4 md:mb-6">
                   <VitaminKorgenLogo 
                     size="medium" 
                     variant="horizontal"
                     animated={true}
-                    className="h-16 w-auto"
+                    className="h-12 md:h-16 w-auto"
                   />
                 </div>
                 
                 <div className="flex items-center mb-4">
-                  <Home className="w-8 h-8 text-secondary mr-3" />
-                  <span className="text-secondary font-semibold">HEMMAOMRÅDE</span>
+                  <Home className="w-6 md:w-8 h-6 md:h-8 text-secondary mr-2 md:mr-3" />
+                  <span className="text-secondary font-semibold text-sm md:text-base">HEMMAOMRÅDE</span>
                 </div>
                 
-                <h1 className="text-4xl md:text-5xl font-bold text-charcoal mb-6">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal mb-4 md:mb-6">
                   Fruktleverans till
                   <span className="text-secondary block">Älvsjö - vårt hem</span>
                 </h1>
                 
-                <p className="text-xl text-gray-600 mb-8">
+                <p className="text-lg md:text-xl text-gray-600 mb-6 md:mb-8">
                   Välkommen till vårt hemmaområde! Från vårt huvudkontor på Varuvägen 9 
                   levererar vi färska fruktkorgar till företag i hela Älvsjö. Som våra 
                   grannar får ni extra omtanke och service.
                 </p>
                 
-                <div className="flex items-center space-x-4 mb-8">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0 mb-6 md:mb-8">
                   <div className="flex items-center text-sm text-gray-600">
-                    <MapPin className="w-4 h-4 mr-1 text-secondary" />
-                    Leverans: Torsdag
+                    <MapPin className="w-4 h-4 mr-1 text-secondary flex-shrink-0" />
+                    <span>Leverans: Torsdag</span>
                   </div>
                   <div className="flex items-center text-sm text-gray-600">
-                    <Clock className="w-4 h-4 mr-1 text-secondary" />
-                    Tid: 08:00-16:00
+                    <Clock className="w-4 h-4 mr-1 text-secondary flex-shrink-0" />
+                    <span>Tid: 08:00-16:00</span>
                   </div>
                 </div>
                 
-                <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-white">
+                <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-white w-full sm:w-auto">
                   <Link to="/offertforfragan">
                     Grannrabatt - begär offert
                   </Link>

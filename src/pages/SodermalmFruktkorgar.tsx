@@ -21,49 +21,49 @@ const SodermalmFruktkorgar = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-br from-secondary/20 via-background to-lightgreen/10">
+        <section className="relative py-12 md:py-20 bg-gradient-to-br from-secondary/20 via-background to-lightgreen/10">
           <div className="absolute inset-0 bg-gradient-to-r from-secondary/5 via-transparent to-lightgreen/5"></div>
           
-          <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div>
-                <div className="mb-6">
+                <div className="mb-4 md:mb-6">
                   <VitaminKorgenLogo 
                     size="medium" 
                     variant="horizontal"
                     animated={true}
-                    className="h-16 w-auto"
+                    className="h-12 md:h-16 w-auto"
                   />
                 </div>
                 
                 <div className="flex items-center mb-4">
-                  <Palette className="w-8 h-8 text-secondary mr-3" />
-                  <span className="text-secondary font-semibold">KREATIV LEVERANS</span>
+                  <Palette className="w-6 md:w-8 h-6 md:h-8 text-secondary mr-2 md:mr-3" />
+                  <span className="text-secondary font-semibold text-sm md:text-base">KREATIV LEVERANS</span>
                 </div>
                 
-                <h1 className="text-4xl md:text-5xl font-bold text-charcoal mb-6">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal mb-4 md:mb-6">
                   Fruktkorgar till
                   <span className="text-secondary block">Södermalm</span>
                 </h1>
                 
-                <p className="text-xl text-gray-600 mb-8">
+                <p className="text-lg md:text-xl text-gray-600 mb-6 md:mb-8">
                   Kreativa fruktkorgar för Stockholms mest trendiga stadsdel. Vi levererar 
                   inspiration och energi till startups, designstudios och innovativa företag 
                   på hela Södermalm.
                 </p>
                 
-                <div className="flex items-center space-x-4 mb-8">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0 mb-6 md:mb-8">
                   <div className="flex items-center text-sm text-gray-600">
-                    <MapPin className="w-4 h-4 mr-1 text-secondary" />
-                    Leverans: Tisdag
+                    <MapPin className="w-4 h-4 mr-1 text-secondary flex-shrink-0" />
+                    <span>Leverans: Tisdag</span>
                   </div>
                   <div className="flex items-center text-sm text-gray-600">
-                    <Clock className="w-4 h-4 mr-1 text-secondary" />
-                    Tid: 08:00-15:00
+                    <Clock className="w-4 h-4 mr-1 text-secondary flex-shrink-0" />
+                    <span>Tid: 08:00-15:00</span>
                   </div>
                 </div>
                 
-                <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-white">
+                <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-white w-full sm:w-auto">
                   <Link to="/offertforfragan">
                     Starta kreativ fruktleverans
                   </Link>
