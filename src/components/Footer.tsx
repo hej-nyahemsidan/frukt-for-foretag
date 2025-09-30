@@ -58,30 +58,14 @@ const Footer = () => {
               <span className="mr-2">📍</span> Kontakt & Plats
             </h4>
             <div className="space-y-3 text-sm">
-              <a 
-                href="https://maps.app.goo.gl/jBgC3caVb9ARf5Vp7" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-start space-x-3 text-gray-100 hover:text-yellow-400 transition-colors"
-              >
-                <MapPin className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="font-medium">Varuvägen 9</p>
-                  <p>125 30 Älvsjö</p>
-                </div>
-              </a>
-              <a href="tel:0101839836" className="flex items-center space-x-3 text-gray-100 hover:text-yellow-400 transition-colors">
+              <a href="tel:+46762862693" className="flex items-center space-x-3 text-gray-100 hover:text-yellow-400 transition-colors">
                 <Phone className="h-5 w-5" />
-                <span>010-183 98 36</span>
+                <span>+46-76 286 26 93</span>
               </a>
               <a href="mailto:info@vitaminkorgen.se" className="flex items-center space-x-3 text-gray-100 hover:text-yellow-400 transition-colors">
                 <Mail className="h-5 w-5" />
                 <span>info@vitaminkorgen.se</span>
               </a>
-              <div className="flex items-center space-x-3 text-gray-100">
-                <Clock className="h-5 w-5" />
-                <span>Mån-Fre: 07:00-17:00</span>
-              </div>
             </div>
           </div>
 
