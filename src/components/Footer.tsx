@@ -39,15 +39,15 @@ const Footer = () => {
               Stockholms ledande leverantör av färsk frukt till kontor och företag. 
               Vi brinner för kvalitet, hållbarhet och er hälsa.
             </p>
-            <div className="flex space-x-3 pt-4">
-              <a href="https://facebook.com/vitaminkorgen" target="_blank" rel="noopener noreferrer" className="p-2 bg-green-700 hover:bg-orange-500 rounded-full transition-all duration-300 hover:scale-110">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="https://instagram.com/vitaminkorgen" target="_blank" rel="noopener noreferrer" className="p-2 bg-green-700 hover:bg-orange-500 rounded-full transition-all duration-300 hover:scale-110">
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a href="https://linkedin.com/company/vitaminkorgen" target="_blank" rel="noopener noreferrer" className="p-2 bg-green-700 hover:bg-orange-500 rounded-full transition-all duration-300 hover:scale-110">
-                <Linkedin className="h-5 w-5" />
+            <div className="pt-4">
+              <a 
+                href="https://www.google.com/search?sa=X&sca_esv=13677aa2df667dbd&tbm=lcl&sxsrf=AE3TifP960pKcOc8yw6b-P3P-YY67jPYTA:1759235931553&q=Vitaminkorgen+i+Stockholm+-+Frukt+p%C3%A5+jobbet+Recensioner&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDU3sLSwMDOwMLCwMDS2tDS1tNzAyPiK0SIssyQxNzMvO78oPTVPIVMhuCQ_OTsjPydXQVfBrag0u0Sh4PBShaz8pKTUEoWg1OTUvOLM_LzUokWsZGsFANIybPSRAAAA&rldimm=15709886080881399599&hl=sv-SE&ved=2ahUKEwiW35rGwICQAxUNAhAIHdfIPOsQ9fQKegQIUxAF&biw=1600&bih=864&dpr=1.8#lkt=LocalPoiReviews" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center space-x-2 px-4 py-2 bg-green-700 hover:bg-orange-500 rounded-lg transition-all duration-300 hover:scale-105 text-sm font-medium"
+              >
+                <span>⭐</span>
+                <span>Läs våra Google-recensioner</span>
               </a>
             </div>
           </div>
