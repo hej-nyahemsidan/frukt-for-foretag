@@ -55,7 +55,7 @@ const Footer = () => {
           {/* Contact Info */}
           <div className="space-y-4">
             <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
-              <span className="mr-2">📍</span> Kontakt & Plats
+              <span className="mr-2">📍</span> Kontakt
             </h4>
             <div className="space-y-3 text-sm">
               <a href="tel:+46762862693" className="flex items-center space-x-3 text-gray-100 hover:text-yellow-400 transition-colors">
