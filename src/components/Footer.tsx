@@ -58,9 +58,9 @@ const Footer = () => {
               <span className="mr-2">📍</span> Kontakt
             </h4>
             <div className="space-y-3 text-sm">
-              <a href="tel:+46762862693" className="flex items-center space-x-3 text-gray-100 hover:text-yellow-400 transition-colors">
+              <a href="tel:010-183 98 36" className="flex items-center space-x-3 text-gray-100 hover:text-yellow-400 transition-colors">
                 <Phone className="h-5 w-5" />
-                <span>+46-76 286 26 93</span>
+                <span>010-183 98 36</span>
               </a>
               <a href="mailto:info@vitaminkorgen.se" className="flex items-center space-x-3 text-gray-100 hover:text-yellow-400 transition-colors">
                 <Mail className="h-5 w-5" />
