@@ -29,15 +29,6 @@ import AdminDashboard from "./admin/pages/AdminDashboard";
 import Blog from "./pages/Blog";
 import Blommor from "./pages/Blommor";
 import Varuautomat from "./pages/Varuautomat";
-import Leveransomraden from "./pages/Leveransomraden";
-import StockholmFruktleverans from "./pages/StockholmFruktleverans";
-import OstermalmKontorsfrukt from "./pages/OstermalmKontorsfrukt";
-import SodermalmFruktkorgar from "./pages/SodermalmFruktkorgar";
-import NorrmalmFrukt from "./pages/NorrmalmFrukt";
-import KungsholmenKontorsfrukt from "./pages/KungsholmenKontorsfrukt";
-import AlvsjoFruktleverans from "./pages/AlvsjoFruktleverans";
-import SolnaSundbybergFrukt from "./pages/SolnaSundbybergFrukt";
-import KistaFruktkorgar from "./pages/KistaFruktkorgar";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -77,15 +68,6 @@ const App = () => (
                 <Route path="/blog/:slug" element={<Blog />} />
                 <Route path="/blommor" element={<Blommor />} />
                 <Route path="/varuautomat" element={<Varuautomat />} />
-                <Route path="/leveransomraden" element={<Leveransomraden />} />
-                <Route path="/stockholm-fruktleverans" element={<StockholmFruktleverans />} />
-                <Route path="/ostermalm-kontorsfrukt" element={<OstermalmKontorsfrukt />} />
-                <Route path="/sodermalm-fruktkorgar" element={<SodermalmFruktkorgar />} />
-                <Route path="/norrmalm-frukt" element={<NorrmalmFrukt />} />
-                <Route path="/kungsholmen-kontorsfrukt" element={<KungsholmenKontorsfrukt />} />
-                <Route path="/alvsjo-fruktleverans" element={<AlvsjoFruktleverans />} />
-                <Route path="/solna-sundbyberg-frukt" element={<SolnaSundbybergFrukt />} />
-                <Route path="/kista-fruktkorgar" element={<KistaFruktkorgar />} />
                 
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />
