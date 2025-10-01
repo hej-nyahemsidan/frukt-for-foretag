@@ -41,10 +41,10 @@ const Leveransomraden = () => {
       keywords: 'Kungsholmen kontorsfrukt, fruktleverans kungsholmen'
     },
     {
-      name: 'Älvsjö',
-      href: '/alvsjo-fruktleverans',
-      description: 'Älvsjö med företagsområden och kontor',
-      keywords: 'Älvsjö fruktleverans, kontorsfrukt älvsjö'
+      name: 'Vasastan',
+      href: '/vasastan-fruktleverans',
+      description: 'Vasastan med företag och kontor',
+      keywords: 'Vasastan fruktleverans, kontorsfrukt vasastan'
     },
     {
       name: 'Solna & Sundbyberg',
