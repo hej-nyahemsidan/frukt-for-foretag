@@ -13,6 +13,9 @@ export default {
       },
     },
     extend: {
+      screens: {
+        'xxl': '1375px',
+      },
       fontFamily: {
         sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
       },

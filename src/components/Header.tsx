@@ -134,7 +134,7 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation - Centered with Scroll */}
-          <div className="hidden xl:flex items-center mx-auto">
+          <div className="hidden xxl:flex items-center mx-auto">
             <nav className="flex items-center">
               {navigationItems.map((item, index) => {
                 const isActive = location.pathname === item.href;
@@ -208,7 +208,7 @@ const Header = () => {
           </div>
 
           {/* Tablet Navigation - Horizontal Scroll */}
-          <div className="hidden lg:flex xl:hidden items-center mx-auto max-w-[450px] w-full">
+          <div className="hidden lg:flex xxl:hidden items-center mx-auto max-w-[450px] w-full">
             <div 
               ref={scrollRef}
               className={`overflow-x-auto scrollbar-hide w-full select-none ${
@@ -299,7 +299,7 @@ const Header = () => {
           </div>
 
           {/* Right Side - Contact & Actions */}
-          <div className="hidden xl:flex items-center space-x-6">
+          <div className="hidden xxl:flex items-center space-x-6">
             {/* Admin Dashboard Link - Sliding Animation */}
             {isAdmin && (
               <div className="animate-slide-in-right">
@@ -348,7 +348,7 @@ const Header = () => {
           </div>
 
           {/* Tablet Right Side - Compact */}
-          <div className="hidden lg:flex xl:hidden items-center space-x-3">
+          <div className="hidden lg:flex xxl:hidden items-center space-x-3">
             {/* Admin Dashboard Link - Compact */}
             {isAdmin && (
               <Link 
