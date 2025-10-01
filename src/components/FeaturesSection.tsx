@@ -4,7 +4,7 @@ import professionalDisplayImage from '@/assets/professional-fruit-display.jpg';
 import freshFruitsArrangement2 from '@/assets/fresh-fruits-arrangement-2.jpg';
 import bunchFreshJuicyFruits from '@/assets/bunch-fresh-juicy-fruits.jpg';
 import topViewTastySlicedFruits from '@/assets/top-view-tasty-sliced-fruits.jpg';
-import freeDeliveryFeature from '@/assets/free-delivery-feature.png';
+import freeDeliveryFeature from '@/assets/free-delivery-feature.jpg';
 
 const FeaturesSection = () => {
   const featureImages = [
