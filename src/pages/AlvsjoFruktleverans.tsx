@@ -129,27 +129,6 @@ const AlvsjoFruktleverans = () => {
           </div>
         </section>
 
-        {/* Meet the Team Section */}
-        <section className="py-16 bg-gradient-to-br from-secondary/5 to-lightgreen/10">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-charcoal mb-6">
-              Träffa era grannar på Varuvägen 9
-            </h2>
-            <p className="text-lg text-gray-600 mb-8">
-              Vi på Vitaminkorgen arbetar varje dag från vårt kontor på Varuvägen 9 i Älvsjö. 
-              Som era grannar förstår vi lokala behov och kan erbjuda personlig service som 
-              stora leverantörer inte kan matcha.
-            </p>
-            <div className="bg-white rounded-lg p-6 shadow-sm border border-secondary/10">
-              <p className="text-charcoal font-medium">
-                "Vi startade Vitaminkorgen här i Älvsjö och är stolta över att kunna erbjuda 
-                våra grannar den allra bästa servicen. Kom gärna förbi vårt kontor för en kopp kaffe!"
-              </p>
-              <p className="text-sm text-gray-600 mt-2">- Vitaminkorgen teamet</p>
-            </div>
-          </div>
-        </section>
-
         {/* CTA */}
         <section className="py-16 bg-secondary text-white">
           <div className="max-w-4xl mx-auto text-center px-6 lg:px-8">
