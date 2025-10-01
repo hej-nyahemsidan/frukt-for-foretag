@@ -4,16 +4,16 @@ import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import StructuredData from '@/components/StructuredData';
 import { Button } from '@/components/ui/button';
-import { MapPin, Clock, Home, Heart } from 'lucide-react';
+import { MapPin, Clock, Truck, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const AlvsjoFruktleverans = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Fruktleverans Älvsjö - Lokala Fruktkorgar från Grannen"
-        description="Fruktleverans till Älvsjö från vårt huvudkontor på Varuvägen. Lokala fruktkorgar med grannservice och specialpriser för vårt hemmaområde."
-        keywords="fruktleverans älvsjö, lokala fruktkorgar älvsjö, kontorsfrukt älvsjö, varuvägen frukt"
+        title="Fruktleverans Älvsjö - Färska Fruktkorgar till Kontoret"
+        description="Fruktleverans till Älvsjö. Handplockade fruktkorgar levererade direkt till ert kontor varje vecka. Beställ idag!"
+        keywords="fruktleverans älvsjö, fruktkorgar älvsjö, kontorsfrukt älvsjö"
       />
       <StructuredData type="products" />
       
@@ -36,20 +36,15 @@ const AlvsjoFruktleverans = () => {
                   />
                 </div>
                 
-                <div className="flex items-center mb-4">
-                  <Home className="w-6 md:w-8 h-6 md:h-8 text-secondary mr-2 md:mr-3" />
-                  <span className="text-secondary font-semibold text-sm md:text-base">HEMMAOMRÅDE</span>
-                </div>
                 
                 <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-charcoal mb-4 md:mb-6">
                   Fruktleverans till
-                  <span className="text-secondary block">Älvsjö - vårt hem</span>
+                  <span className="text-secondary block">Älvsjö</span>
                 </h1>
                 
                 <p className="text-lg md:text-xl text-gray-600 mb-6 md:mb-8">
-                  Välkommen till vårt hemmaområde! Från vårt huvudkontor på Varuvägen 9 
-                  levererar vi färska fruktkorgar till företag i hela Älvsjö. Som våra 
-                  grannar får ni extra omtanke och service.
+                  Vi levererar färska fruktkorgar till företag i hela Älvsjö. Välj bland vårt 
+                  kompletta sortiment av handplockade frukter och få leverans direkt till ert kontor.
                 </p>
                 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 space-y-2 sm:space-y-0 mb-6 md:mb-8">
@@ -65,7 +60,7 @@ const AlvsjoFruktleverans = () => {
                 
                 <Button asChild size="lg" className="bg-secondary hover:bg-secondary/90 text-white w-full sm:w-auto">
                   <Link to="/offertforfragan">
-                    Grannrabatt - begär offert
+                    Begär offert
                   </Link>
                 </Button>
               </div>
@@ -88,7 +83,6 @@ const AlvsjoFruktleverans = () => {
                     Områden vi täcker
                   </h3>
                   <ul className="space-y-2 text-gray-600">
-                    <li>• Varuvägen (vårt huvudkontor)</li>
                     <li>• Älvsjö Centrum & Stationsområdet</li>
                     <li>• Sturebyvägen & företagsområden</li>
                     <li>• Älvsjö Industriområde</li>
@@ -112,19 +106,6 @@ const AlvsjoFruktleverans = () => {
                   </ul>
                 </div>
               </div>
-              
-              <div className="mt-8 p-4 bg-secondary/10 rounded-lg border border-secondary/30">
-                <div className="flex items-start">
-                  <MapPin className="w-5 h-5 text-secondary mr-3 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <h4 className="font-semibold text-charcoal mb-2">Lokal kunskap</h4>
-                    <p className="text-sm text-gray-600">
-                      Älvsjö är vårt hemmaområde. Vi bor och arbetar här, vilket betyder att vi 
-                      känner området väl och kan erbjuda extra personlig service till våra grannar.
-                    </p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -133,20 +114,20 @@ const AlvsjoFruktleverans = () => {
         <section className="py-16 bg-secondary text-white">
           <div className="max-w-4xl mx-auto text-center px-6 lg:px-8">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Välkommen hem till oss!
+              Redo att beställa?
             </h2>
             <p className="text-xl mb-8 text-secondary-foreground/90">
-              Som våra grannar i Älvsjö får ni vår allra bästa service och de fräschaste fruktkorgar.
+              Få färska fruktkorgar levererade till ert kontor i Älvsjö varje vecka.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" variant="outline" className="bg-white text-secondary hover:bg-gray-50">
                 <Link to="/offertforfragan">
-                  Begär grannoffert
+                  Begär offert
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10">
                 <Link to="/kontakt">
-                  Kom förbi vårt kontor
+                  Kontakta oss
                 </Link>
               </Button>
             </div>

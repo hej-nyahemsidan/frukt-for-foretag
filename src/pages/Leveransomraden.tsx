@@ -43,7 +43,7 @@ const Leveransomraden = () => {
     {
       name: 'Älvsjö',
       href: '/alvsjo-fruktleverans',
-      description: 'Älvsjö - vårt huvudkontor och närområde',
+      description: 'Älvsjö med företagsområden och kontor',
       keywords: 'Älvsjö fruktleverans, kontorsfrukt älvsjö'
     },
     {
