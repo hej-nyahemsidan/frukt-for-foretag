@@ -44,17 +44,44 @@ const FeaturesSection = () => {
     <section className="bg-[#166534] py-20 px-8 overflow-hidden">
       <div className="container mx-auto">
         <div className="space-y-12">
-          {/* Text Content */}
-          <div className="text-center space-y-6">
+          {/* Heading */}
+          <div className="text-center">
             <h2 className="text-5xl font-bold text-white leading-tight">
               Våra fördelar med fruktkorgar på jobbet
             </h2>
-            
-            <p className="text-xl text-white leading-relaxed max-w-3xl mx-auto">
-              <strong>Mer energi och bättre fokus</strong> - Naturligt energitillskott som håller längre än kaffe och socker.<br/>
-              <strong>Minskad sjukfrånvaro</strong> - Stärker immunförsvaret och minskar risken för förkylningar.<br/>
-              <strong>Starkare arbetskultur</strong> - Skapar naturliga mötesplatser som bygger gemenskap och teamkänsla.
-            </p>
+          </div>
+
+          {/* USP Boxes */}
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-8">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
+              <div className="text-4xl mb-4">⚡</div>
+              <h3 className="text-xl font-bold text-white mb-3">
+                Mer energi och bättre fokus
+              </h3>
+              <p className="text-white/90 text-sm leading-relaxed">
+                Naturligt energitillskott som håller längre än kaffe och socker.
+              </p>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
+              <div className="text-4xl mb-4">🛡️</div>
+              <h3 className="text-xl font-bold text-white mb-3">
+                Minskad sjukfrånvaro
+              </h3>
+              <p className="text-white/90 text-sm leading-relaxed">
+                Stärker immunförsvaret och minskar risken för förkylningar.
+              </p>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
+              <div className="text-4xl mb-4">🤝</div>
+              <h3 className="text-xl font-bold text-white mb-3">
+                Starkare arbetskultur
+              </h3>
+              <p className="text-white/90 text-sm leading-relaxed">
+                Skapar naturliga mötesplatser som bygger gemenskap och teamkänsla.
+              </p>
+            </div>
           </div>
 
           {/* Moving Images */}
