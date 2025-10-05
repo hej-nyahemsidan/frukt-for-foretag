@@ -1,13 +1,13 @@
 
-import professionalDisplayImage from '@/assets/professional-fruit-display.jpg';
+import qualityGuaranteeFeature from '@/assets/quality-guarantee-feature.jpg';
 import officeWorkersFruit from '@/assets/office-workers-fruit.jpg';
 import freeDeliveryFeature from '@/assets/free-delivery-feature.jpg';
 
 const FeaturesSection = () => {
   const featureImages = [
     {
-      src: professionalDisplayImage,
-      alt: 'Professionell fruktdisplay med högkvalitativa frukter',
+      src: qualityGuaranteeFeature,
+      alt: 'Högkvalitativa premium frukter med kvalitetsgaranti',
       badge: '🏆 100% Kvalitetsgaranti'
     },
     {
