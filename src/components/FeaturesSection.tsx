@@ -1,26 +1,23 @@
 
-import arrangementImage from '@/assets/fresh-fruit-arrangements.jpg';
 import professionalDisplayImage from '@/assets/professional-fruit-display.jpg';
-import freshFruitsArrangement2 from '@/assets/fresh-fruits-arrangement-2.jpg';
-import bunchFreshJuicyFruits from '@/assets/bunch-fresh-juicy-fruits.jpg';
-import topViewTastySlicedFruits from '@/assets/top-view-tasty-sliced-fruits.jpg';
+import officeWorkersFruit from '@/assets/office-workers-fruit.jpg';
 import freeDeliveryFeature from '@/assets/free-delivery-feature.jpg';
 
 const FeaturesSection = () => {
   const featureImages = [
     {
-      src: bunchFreshJuicyFruits,
-      alt: 'Fresh juicy fruits on marble table',
+      src: professionalDisplayImage,
+      alt: 'Professionell fruktdisplay med högkvalitativa frukter',
       badge: '🏆 100% Kvalitetsgaranti'
     },
     {
-      src: topViewTastySlicedFruits,
-      alt: 'Tasty sliced fruits and vegetables',
+      src: officeWorkersFruit,
+      alt: 'Kontorsanställda njuter av färska frukter',
       badge: '📅 Flexibla leveransalternativ'
     },
     {
       src: freeDeliveryFeature,
-      alt: 'Free delivery in Stockholm',
+      alt: 'Färsk frukt levererad till ditt kontor i Stockholm',
       badge: '🚚 Fri leverans i Stockholm'
     }
   ];

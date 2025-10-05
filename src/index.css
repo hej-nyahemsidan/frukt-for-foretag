@@ -452,7 +452,7 @@
   }
   
   .features-carousel {
-    animation: scrollFeatures 30s linear infinite;
+    animation: scrollFeatures 15s linear infinite;
   }
   
   @keyframes scrollFeatures {
