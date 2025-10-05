@@ -2,6 +2,9 @@
 import qualityGuaranteeFeature from '@/assets/quality-guarantee-feature.jpg';
 import officeWorkersFruit from '@/assets/office-workers-fruit.jpg';
 import freeDeliveryFeature from '@/assets/free-delivery-feature.jpg';
+import seasonalFruits from '@/assets/seasonal-fruits.jpg';
+import happyEmployees from '@/assets/happy-employees.jpg';
+import ecoMilk from '@/assets/eco-milk.jpg';
 
 const FeaturesSection = () => {
   const featureImages = [
@@ -19,6 +22,21 @@ const FeaturesSection = () => {
       src: freeDeliveryFeature,
       alt: 'Färsk frukt levererad till ditt kontor i Stockholm',
       badge: '🚚 Fri leverans i Stockholm'
+    },
+    {
+      src: seasonalFruits,
+      alt: 'Färska säsongsfrukter',
+      badge: '🍎 Färska frukter dagligen'
+    },
+    {
+      src: happyEmployees,
+      alt: 'Glada medarbetare på kontoret',
+      badge: '💪 Ökar produktiviteten'
+    },
+    {
+      src: ecoMilk,
+      alt: 'Ekologiska produkter',
+      badge: '🌱 Hållbart & miljövänligt'
     }
   ];
 
