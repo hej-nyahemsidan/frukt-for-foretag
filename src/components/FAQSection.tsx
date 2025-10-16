@@ -70,14 +70,19 @@ const FAQSection = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left Column - Text Content */}
           <div className="space-y-8">
-            <h2 className="text-4xl font-bold text-gray-800">
-              Har du en fråga
-            </h2>
-            <p className="text-lg text-gray-600">
-              Har du en fråga? Vi har svaret.
-            </p>
+            <div className="space-y-6">
+              <div className="inline-block">
+                <div className="h-1 w-16 bg-gradient-to-r from-green-600 to-green-400 rounded-full mb-6"></div>
+              </div>
+              <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                Har du en fråga?
+              </h2>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Vi har svaret. Utforska våra vanliga frågor eller kontakta oss direkt.
+              </p>
+            </div>
             <Link to="/kontakt">
-              <Button className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-full">
+              <Button className="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                 Kontakta Oss
               </Button>
             </Link>
