@@ -69,7 +69,7 @@ const FAQSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left Column - Text Content */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             <h2 className="text-4xl font-bold text-gray-800">
               Har du en fråga
             </h2>
