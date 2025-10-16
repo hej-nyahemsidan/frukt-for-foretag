@@ -42,7 +42,7 @@ const SEOHead = ({
         keywords: 'kontakt vitaminkorgen, offert fruktkorgar, fruktkorgar stockholm kontakt, företagsfrukt offert'
       },
       about: {
-        title: 'Om Oss - Stockholms ledande leverantör av fruktkorgar | Vitaminkorgen',
+        title: 'Om Oss - Leverantör av fruktkorgar i Stockholm | Vitaminkorgen',
         description: 'Sedan 2021 har Vitaminkorgen varit Stockholms pålitliga partner för kontorsfrukt. Över 150 nöjda företagskunder och tusentals levererade fruktkorgar.',
         keywords: 'om vitaminkorgen, fruktkorgar stockholm historia, kontorsfrukt leverantör, företagsfrukt stockholm'
       }

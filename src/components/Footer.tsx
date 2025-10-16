@@ -36,7 +36,7 @@ const Footer = () => {
               </a>
             </div>
             <p className="text-gray-100 text-sm leading-relaxed">
-              Stockholms ledande leverantör av färsk frukt till kontor och företag. 
+              Leverantör av färsk frukt till kontor och företag i Stockholm. 
               Vi brinner för kvalitet, hållbarhet och er hälsa.
             </p>
           </div>
