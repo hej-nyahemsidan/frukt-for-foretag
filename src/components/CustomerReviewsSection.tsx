@@ -111,7 +111,7 @@ const CustomerReviewsSection = () => {
             Vad våra kunder säger
           </h2>
           <p className="text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-            Vi är stolta över våra 5 stjärnor på Google och håller alltid hög standard för våra kunder. 
+            <span className="font-bold text-foreground">5/5 stjärnor på alla våra recensioner sedan 2021!</span> Vi är stolta över vårt perfekta betyg på Google och håller alltid högsta standard för våra kunder. 
             Här är vad några av våra nöjda kunder säger om oss.
           </p>
         </div>
