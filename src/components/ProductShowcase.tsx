@@ -12,9 +12,9 @@ const ProductShowcase = () => {
   const products = [
     {
       id: 'standard',
-      name: 'Fruktkorg Standard',
+      name: 'Fruktkorg Original',
       image: fruktkorgrSupremeImg,
-    weight: 'Från 4kg och uppåt',
+      weight: 'Från 4kg och uppåt',
       showPrice: false,
       popular: false
     },
