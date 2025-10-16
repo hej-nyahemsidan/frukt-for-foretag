@@ -126,7 +126,7 @@ const CustomerReviewsSection = () => {
         </div>
 
         {/* Review Carousel */}
-        <div className="mb-16">
+        <div className="mb-16 px-4 sm:px-8">
           <Carousel 
             setApi={setApi}
             className="w-full"
@@ -135,10 +135,10 @@ const CustomerReviewsSection = () => {
               loop: true,
             }}
           >
-            <CarouselContent>
+            <CarouselContent className="py-8">
               {reviews.map((review, index) => (
                 <CarouselItem key={index}>
-                  <div className="flex justify-center">
+                  <div className="flex justify-center px-4">
                     <ReviewCard review={review} />
                   </div>
                 </CarouselItem>
