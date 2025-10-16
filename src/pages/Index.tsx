@@ -18,7 +18,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <SEOHead type="homepage" />
       <Header />
-      <main>
+      <main className="space-y-0">
         <HeroSection />
         <CustomerReviewsSection />
         <FeaturesSection />

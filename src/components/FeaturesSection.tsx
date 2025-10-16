@@ -41,7 +41,7 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section className="bg-[#166534] py-20 px-8 overflow-hidden">
+    <section className="bg-[#166534] py-20 sm:py-24 px-4 sm:px-8 overflow-hidden">
       <div className="container mx-auto">
         <div className="space-y-12">
           {/* Heading */}

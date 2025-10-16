@@ -53,7 +53,7 @@ const ProductShowcase = () => {
   ];
 
   return (
-    <section id="products" className="py-16 px-8 bg-white">
+    <section id="products" className="py-20 sm:py-24 px-4 sm:px-8 bg-white">
       <div className="container mx-auto">
         {/* Header */}
         <div className="mb-12 text-center">
