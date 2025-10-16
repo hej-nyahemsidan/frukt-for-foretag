@@ -43,10 +43,11 @@ const HeroSection = () => {
               {/* Promotional Button */}
               <Button 
                 asChild
-                className="inline-block bg-gradient-to-r from-secondary to-primary-light text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg animate-float hover:shadow-xl transition-shadow border-0 font-semibold text-sm sm:text-base"
+                className="bg-gradient-to-r from-secondary to-primary-light text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full shadow-lg animate-float hover:shadow-xl transition-shadow border-0 font-semibold text-sm sm:text-base"
               >
-                <a href="/offertforfragan">
-                  🎉 Testa fruktkorgar i två veckor gratis
+                <a href="/offertforfragan" className="flex items-center justify-center gap-2">
+                  <span>🎉</span>
+                  <span>Testa fruktkorgar i två veckor gratis</span>
                 </a>
               </Button>
               
