@@ -111,7 +111,16 @@ const CustomerReviewsSection = () => {
             Vad våra kunder säger
           </h2>
           <p className="text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-            <span className="font-bold text-foreground">5/5 stjärnor på alla våra recensioner sedan 2021!</span> Vi är stolta över vårt perfekta betyg på Google och håller alltid högsta standard för våra kunder. 
+            <span className="font-bold text-foreground">5/5 stjärnor på alla våra recensioner sedan 2021!</span> Vi är stolta över vårt perfekta betyg på{" "}
+            <a 
+              href="https://www.google.com/search?sca_esv=3bbeda8844e2ec09&tbm=lcl&sxsrf=AE3TifPln30D3Uui1vlTRajPRXNFp1pEtA:1760618770804&q=Vitaminkorgen+i+Stockholm+-+Frukt+p%C3%A5+jobbet+Recensioner&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDU3sLSwMDOwMLCwMDS2tDS1tNzAyPiK0SIssyQxNzMvO78oPTVPIVMhuCQ_OTsjPydXQVfBrag0u0Sh4PBShaz8pKTUEoWg1OTUvOLM_LzUokWsZGsFANIybPSRAAAA&rldimm=15709886080881399599&hl=sv-SE&sa=X&ved=2ahUKEwjttayD4KiQAxVvFBAIHSa6A7UQ9fQKegQIURAF&biw=1600&bih=864&dpr=1.8#lkt=LocalPoiReviews"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80 underline font-semibold"
+            >
+              Google
+            </a>{" "}
+            och håller alltid högsta standard för våra kunder. 
             Här är vad några av våra nöjda kunder säger om oss.
           </p>
         </div>
