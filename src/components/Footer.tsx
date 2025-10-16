@@ -39,17 +39,6 @@ const Footer = () => {
               Stockholms ledande leverantör av färsk frukt till kontor och företag. 
               Vi brinner för kvalitet, hållbarhet och er hälsa.
             </p>
-            <div className="pt-4">
-              <a 
-                href="https://www.google.com/search?sa=X&sca_esv=13677aa2df667dbd&tbm=lcl&sxsrf=AE3TifP960pKcOc8yw6b-P3P-YY67jPYTA:1759235931553&q=Vitaminkorgen+i+Stockholm+-+Frukt+p%C3%A5+jobbet+Recensioner&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDU3sLSwMDOwMLCwMDS2tDS1tNzAyPiK0SIssyQxNzMvO78oPTVPIVMhuCQ_OTsjPydXQVfBrag0u0Sh4PBShaz8pKTUEoWg1OTUvOLM_LzUokWsZGsFANIybPSRAAAA&rldimm=15709886080881399599&hl=sv-SE&ved=2ahUKEwiW35rGwICQAxUNAhAIHdfIPOsQ9fQKegQIUxAF&biw=1600&bih=864&dpr=1.8#lkt=LocalPoiReviews" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="inline-flex items-center space-x-2 px-4 py-2 bg-green-700 hover:bg-orange-500 rounded-lg transition-all duration-300 hover:scale-105 text-sm font-medium"
-              >
-                <span>⭐</span>
-                <span>Läs våra Google-recensioner</span>
-              </a>
-            </div>
           </div>
 
           {/* Contact Info */}
