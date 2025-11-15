@@ -279,7 +279,7 @@ const AdminProductManagement = () => {
   const renderProductGrid = (categoryProducts: Product[]) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
       {categoryProducts.map((product) => (
-        <Card key={product.id} className="overflow-hidden">
+        <Card key={product.id} className="overflow-hidden flex flex-col">
           <div className="aspect-square bg-gray-100 overflow-hidden">
             <img 
               src={product.image_url}
@@ -290,30 +290,30 @@ const AdminProductManagement = () => {
               }}
             />
           </div>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-lg flex justify-between items-start">
+          <CardHeader className="pb-2 pt-3">
+            <CardTitle className="text-base flex justify-between items-start">
               <span>{product.name}</span>
               <Button
                 variant="destructive"
                 size="sm"
                 onClick={() => handleDeleteProduct(product.id)}
-                className="ml-2"
+                className="ml-2 h-7 w-7 p-0"
               >
-                <Trash2 className="w-4 h-4" />
+                <Trash2 className="w-3 h-3" />
               </Button>
             </CardTitle>
-            <p className="text-sm text-gray-500 capitalize">{product.category}</p>
+            <p className="text-xs text-gray-500 capitalize">{product.category}</p>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              <div className="space-y-2">
-                <Label className="text-sm font-medium">Beskrivning:</Label>
-                <div className="flex items-start gap-2">
+          <CardContent className="pt-0 pb-3 flex-1">
+            <div className="space-y-2">
+              <div className="space-y-1">
+                <Label className="text-xs font-medium">Beskrivning:</Label>
+                <div className="flex items-start gap-1">
                   <textarea
                     value={editingDescriptions[product.id] ?? product.description ?? ''}
                     onChange={(e) => setEditingDescriptions(prev => ({ ...prev, [product.id]: e.target.value }))}
                     placeholder="Ingen beskrivning..."
-                    className="w-full min-h-[60px] px-2 py-1 text-sm rounded-md border border-input bg-background"
+                    className="w-full min-h-[40px] px-2 py-1 text-xs rounded-md border border-input bg-background resize-none"
                   />
                   <Button
                     size="sm"
@@ -322,23 +322,23 @@ const AdminProductManagement = () => {
                       const newDescription = editingDescriptions[product.id] ?? product.description ?? '';
                       handleUpdateDescription(product.id, newDescription);
                     }}
-                    className="p-1 h-8 w-8 flex-shrink-0"
+                    className="p-1 h-7 w-7 flex-shrink-0"
                   >
                     <Save className="w-3 h-3" />
                   </Button>
                 </div>
               </div>
               {getProductPriceSizes(product).map(size => (
-                <div key={size} className="flex items-center justify-between gap-2">
-                  <Label className="text-sm font-medium">{getPriceLabel(size)}:</Label>
-                  <div className="flex items-center gap-2">
+                <div key={size} className="flex items-center justify-between gap-1">
+                  <Label className="text-xs font-medium">{getPriceLabel(size)}:</Label>
+                  <div className="flex items-center gap-1">
                     <Input
                       type="number"
                       value={editingPrices[product.id]?.[size] ?? product.prices[size] ?? ''}
                       onChange={(e) => handlePriceChange(product.id, size, e.target.value)}
-                      className="w-20 text-sm text-right"
+                      className="w-16 text-xs text-right h-7 px-2"
                     />
-                    <span className="text-sm text-gray-500">kr</span>
+                    <span className="text-xs text-gray-500">kr</span>
                     <Button
                       size="sm"
                       variant="outline"
@@ -349,7 +349,7 @@ const AdminProductManagement = () => {
                           handleUpdatePrice(product.id, size, numericPrice);
                         }
                       }}
-                      className="p-1 h-8 w-8"
+                      className="p-1 h-7 w-7"
                     >
                       <Save className="w-3 h-3" />
                     </Button>
