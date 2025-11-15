@@ -112,7 +112,7 @@ const Products = () => {
                   Logga in
                 </Button>
               </Link>
-              <Link to="/begaran-om-offert" className="w-full sm:w-auto">
+              <Link to="/offertforfragan" className="w-full sm:w-auto">
                 <Button size="lg" variant="outline" className="w-full sm:w-auto gap-2 text-sm sm:text-base px-6 sm:px-8">
                   <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
                   Begär offert
@@ -141,7 +141,7 @@ const Products = () => {
 
       {/* Floating CTA Button - Mobile Only */}
       <div className="sm:hidden fixed bottom-4 right-4 z-50">
-        <Link to="/begaran-om-offert">
+        <Link to="/offertforfragan">
           <Button size="lg" className="rounded-full shadow-lg hover:shadow-xl transition-all">
             <FileText className="w-5 h-5 mr-2" />
             Begär offert
