@@ -30,7 +30,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
         .from('products')
         .select('*')
         .eq('category', 'fruktkorgar')
-        .order('name');
+        .order('display_order', { ascending: true });
 
       if (error) throw error;
 

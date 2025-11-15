@@ -29,7 +29,7 @@ const ProductShowcase = () => {
         .from('products')
         .select('id, name, image_url')
         .eq('category', 'fruktkorgar')
-        .order('name');
+        .order('display_order', { ascending: true });
 
       if (error) throw error;
 
