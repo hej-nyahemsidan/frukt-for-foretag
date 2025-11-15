@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { Check } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 interface SimplifiedCheckoutProps {
   packagePlan: string;
@@ -31,22 +32,64 @@ const SimplifiedCheckout = ({
     return type === 'subscription' ? 'Prenumeration' : 'Engångsköp';
   };
 
+  const calculateTotal = () => {
+    return items.reduce((total, item) => total + (item.price * item.quantity), 0);
+  };
+
   const handleConfirmOrder = async () => {
     setIsConfirming(true);
     
-    // Simulate order processing
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Show success message
-    toast({
-      title: "Beställning bekräftad!",
-      description: "Din fruktleverans har uppdaterats framgångsrikt.",
-    });
+    try {
+      // Send order confirmation email
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          formType: 'Orderbekräftelse',
+          customerInfo: {
+            company: customer?.company_name,
+            contact: customer?.contact_person,
+            email: customer?.email,
+            phone: customer?.phone,
+            address: customer?.address,
+          },
+          orderType: getOrderTypeText(orderType),
+          selectedDays: selectedDays,
+          items: items.map(item => ({
+            name: item.name,
+            quantity: item.quantity,
+            price: item.price,
+            assignedDay: item.assignedDay,
+          })),
+          totalPrice: calculateTotal(),
+        }
+      });
 
-    // Clear cart and show confirmation
-    clearCart();
-    setOrderConfirmed(true);
-    setIsConfirming(false);
+      if (error) {
+        console.error('Error sending order email:', error);
+        toast({
+          title: "Varning",
+          description: "Beställningen registrerades men e-postbekräftelsen misslyckades.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Beställning bekräftad!",
+          description: "Din fruktleverans har uppdaterats framgångsrikt.",
+        });
+      }
+
+      // Clear cart and show confirmation
+      clearCart();
+      setOrderConfirmed(true);
+    } catch (error) {
+      console.error('Error confirming order:', error);
+      toast({
+        title: "Ett fel uppstod",
+        description: "Kunde inte bekräfta beställningen. Vänligen försök igen.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsConfirming(false);
+    }
   };
 
   if (orderConfirmed) {
@@ -128,11 +171,22 @@ const SimplifiedCheckout = ({
                       <div>
                         <span className="font-medium">{item.name}</span>
                         <div className="text-sm text-muted-foreground">
-                          Antal: {item.quantity}
+                          Antal: {item.quantity} × {item.price} kr
                         </div>
                       </div>
+                      <span className="font-semibold text-charcoal">
+                        {item.price * item.quantity} kr
+                      </span>
                     </div>
                   ))}
+                  
+                  {/* Total Price */}
+                  <div className="flex justify-between items-center p-4 bg-green-50 rounded-lg border-2 border-green-200 mt-4">
+                    <span className="text-lg font-bold text-charcoal">Totalpris:</span>
+                    <span className="text-2xl font-bold text-green-600">
+                      {calculateTotal()} kr
+                    </span>
+                  </div>
                 </div>
               )}
             </div>
