@@ -27,32 +27,41 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  // Check if user has admin role
+  // Check if user has admin role (deferred-safe, tolerant to no rows)
   const checkAdminRole = async (userId: string) => {
-    const { data, error } = await supabase
-      .from('user_roles')
-      .select('role')
-      .eq('user_id', userId)
-      .eq('role', 'admin')
-      .single();
-
-    setIsAdmin(!error && data !== null);
+    try {
+      const { data, error } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', userId)
+        .eq('role', 'admin')
+        .maybeSingle();
+      if (error) {
+        console.warn('Admin role check error:', error);
+      }
+      setIsAdmin(!!data && data.role === 'admin');
+    } catch (e) {
+      console.error('Admin role check failed:', e);
+      setIsAdmin(false);
+    }
   };
 
   useEffect(() => {
-    // Set up auth state listener
+    // Set up auth state listener (no async work inside to avoid deadlocks)
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      (_event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
-        
+
         if (session?.user) {
-          await checkAdminRole(session.user.id);
+          // Defer role check to avoid blocking the auth callback
+          setTimeout(() => {
+            checkAdminRole(session.user!.id).finally(() => setLoading(false));
+          }, 0);
         } else {
           setIsAdmin(false);
+          setLoading(false);
         }
-        
-        setLoading(false);
       }
     );
 
@@ -63,8 +72,9 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       
       if (session?.user) {
         await checkAdminRole(session.user.id);
+      } else {
+        setIsAdmin(false);
       }
-      
       setLoading(false);
     });
 
