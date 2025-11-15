@@ -1,56 +1,51 @@
 
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { ShoppingCart, Star } from 'lucide-react';
-import fruktkorgrSupremeImg from '@/assets/fruktkorg-standard-new.jpg';
-import fruktkorgrPremiumImg from '@/assets/fruktkorg-premium-new.jpg';
-import fruktkorgrOriginalImg from '@/assets/fruktkorg-eko-new.jpg';
-import fruktkorgrBananImg from '@/assets/fruktkorg-banan-new.jpg';
-import fruktladaImg from '@/assets/fruktlada-new.jpg';
+import { supabase } from '@/integrations/supabase/client';
+
+interface Product {
+  id: string;
+  name: string;
+  image_url: string;
+  popular?: boolean;
+}
 
 const ProductShowcase = () => {
-  const products = [
-    {
-      id: 'standard',
-      name: 'Fruktkorg Original',
-      image: fruktkorgrSupremeImg,
-      weight: 'Från 4kg och uppåt',
-      showPrice: false,
-      popular: false
-    },
-    {
-      id: 'premium',
-      name: 'Fruktkorg Premium',
-      image: fruktkorgrPremiumImg,
-      weight: 'Från 4kg och uppåt',
-      showPrice: false,
-      popular: true
-    },
-    {
-      id: 'sasong',
-      name: 'Fruktkorg Säsong',
-      image: fruktkorgrOriginalImg,
-    weight: 'Från 4kg och uppåt',
-      showPrice: false,
-      popular: false
-    },
-    {
-      id: 'banan',
-      name: 'Fruktkorg Banan+',
-      image: fruktkorgrBananImg,
-    weight: 'Från 4kg och uppåt',
-      showPrice: false,
-      popular: true
-    },
-    {
-      id: 'lada',
-      name: 'Fruktlåda',
-      image: fruktladaImg,
-    weight: 'Från 4kg och uppåt',
-      showPrice: false,
-      popular: false
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Define which products should have the popular badge
+  const popularProductNames = ['Fruktkorg Premium', 'Fruktkorg Banan Plus'];
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .select('id, name, image_url')
+        .eq('category', 'fruktkorgar')
+        .order('name');
+
+      if (error) throw error;
+
+      // Mark popular products
+      const productsWithPopular = (data || []).map(product => ({
+        ...product,
+        popular: popularProductNames.includes(product.name)
+      }));
+
+      setProducts(productsWithPopular);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
 
   return (
     <section id="products" className="py-20 sm:py-24 px-4 sm:px-8 bg-white">
@@ -72,9 +67,15 @@ const ProductShowcase = () => {
           </Link>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-12">
-          {products.map((product, index) => (
+        {loading ? (
+          <div className="text-center py-8">
+            <p className="text-muted-foreground">Laddar produkter...</p>
+          </div>
+        ) : (
+          <>
+            {/* Products Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-12">
+              {products.map((product, index) => (
             <Link 
               to="/produkter"
               key={product.id}
@@ -95,9 +96,12 @@ const ProductShowcase = () => {
                 {/* Product Image */}
                 <div className="mb-4 relative overflow-hidden">
                   <img
-                    src={product.image}
+                    src={product.image_url}
                     alt={`${product.name} - premium fruit basket from Fruktexperten`}
                     className="w-full aspect-square object-cover rounded-lg bg-gradient-subtle shadow-soft"
+                    onError={(e) => {
+                      e.currentTarget.src = '/assets/product-placeholder.jpg';
+                    }}
                   />
                 </div>
 
@@ -105,7 +109,7 @@ const ProductShowcase = () => {
                 <div className="flex-1 flex flex-col">
                   {/* Weight */}
                   <p className="text-muted-foreground text-sm mb-2">
-                    {product.weight}
+                    Från 4kg och uppåt
                   </p>
 
                   {/* Product Name */}
@@ -128,7 +132,8 @@ const ProductShowcase = () => {
             </Link>
           ))}
         </div>
-
+        </>
+        )}
       </div>
     </section>
   );
