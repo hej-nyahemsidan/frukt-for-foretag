@@ -52,8 +52,15 @@ serve(async (req) => {
       );
     }
 
-    // Verify admin status
-    if (user.email !== 'admin@vitaminkorgen.se') {
+    // Verify admin status by checking user_roles table
+    const { data: roleData, error: roleError } = await supabaseAdmin
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', user.id)
+      .eq('role', 'admin')
+      .single();
+
+    if (roleError || !roleData) {
       return new Response(
         JSON.stringify({ error: 'Forbidden: Admin access required' }),
         { 
@@ -184,6 +191,21 @@ serve(async (req) => {
         // Don't fail the whole operation for customer creation issues
       } else {
         console.log('Customer row upserted successfully');
+      }
+
+      // Assign default 'user' role
+      const { error: roleError } = await supabaseAdmin
+        .from('user_roles')
+        .insert({
+          user_id: userId,
+          role: 'user'
+        });
+
+      if (roleError) {
+        console.error('Error assigning user role:', roleError);
+        // Don't fail the whole operation for role assignment issues
+      } else {
+        console.log('User role assigned successfully');
       }
     }
 

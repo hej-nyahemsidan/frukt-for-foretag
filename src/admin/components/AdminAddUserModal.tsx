@@ -40,8 +40,8 @@ const AdminAddUserModal = ({
       return;
     }
 
-    if (formData.password.length < 6) {
-      alert('Lösenordet måste vara minst 6 tecken långt.');
+    if (formData.password.length < 8) {
+      alert('Lösenordet måste vara minst 8 tecken långt.');
       return;
     }
 
@@ -120,11 +120,11 @@ const AdminAddUserModal = ({
                 type={showPassword ? 'text' : 'password'}
                 value={formData.password}
                 onChange={(e) => setFormData(prev => ({ ...prev, password: e.target.value }))}
-                placeholder="Minst 6 tecken"
+                placeholder="Minst 8 tecken"
                 required
                 disabled={isLoading}
                 className="pr-10"
-                minLength={6}
+                minLength={8}
               />
               <button
                 type="button"

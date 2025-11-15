@@ -78,16 +78,33 @@ const AdminEditUserModal = ({
     setIsLoading(true);
 
     try {
-      // Update the profile record
-      const { error: updateError } = await supabase
+      const { data: { session } } = await supabase.auth.getSession();
+
+      // If email changed, use the edge function to update it everywhere
+      if (formData.email !== user.email) {
+        const { data: emailData, error: emailError } = await supabase.functions.invoke('update-user-email', {
+          body: {
+            userId: user.id,
+            newEmail: formData.email,
+          },
+          headers: {
+            Authorization: `Bearer ${session?.access_token}`,
+          },
+        });
+
+        if (emailError) throw new Error(emailError.message || 'Failed to update email');
+        if (emailData?.error) throw new Error(emailData.error);
+      }
+
+      // Update profile (only full_name, email is handled above)
+      const { error: profileError } = await supabase
         .from('profiles')
         .update({
-          email: formData.email,
           full_name: formData.fullName || null
         })
         .eq('id', user.id);
 
-      if (updateError) throw updateError;
+      if (profileError) throw profileError;
 
       // Update company name in customers table
       if (formData.companyName !== user.company_name) {
@@ -103,14 +120,18 @@ const AdminEditUserModal = ({
 
       // Reset password if requested
       if (formData.resetPassword && formData.newPassword) {
-        const { error: passwordError } = await supabase.functions.invoke('update-user-password', {
+        const { data: passwordData, error: passwordError } = await supabase.functions.invoke('update-user-password', {
           body: { 
             userId: user.id, 
             newPassword: formData.newPassword 
-          }
+          },
+          headers: {
+            Authorization: `Bearer ${session?.access_token}`,
+          },
         });
 
-        if (passwordError) throw passwordError;
+        if (passwordError) throw new Error(passwordError.message || 'Failed to update password');
+        if (passwordData?.error) throw new Error(passwordData.error);
       }
 
       toast({
