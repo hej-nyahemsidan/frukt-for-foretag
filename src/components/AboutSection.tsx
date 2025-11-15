@@ -51,10 +51,10 @@ const AboutSection = () => {
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl">
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
-              Leverantör av fruktkorgar på jobbet i Stockholm
+              Fruktkorgar till jobbet - Leverantör i Stockholm
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 leading-relaxed">
-              Sedan 2021 har vi på Vitaminkorgen gjort det enkelt för företag i Stockholm att erbjuda fruktkorgar på jobbet.
+              Sedan 2021 har vi på Vitaminkorgen gjort det enkelt för företag i Stockholm att erbjuda frukt på jobbet. Vi levererar färska fruktkorgar till jobbet varje vecka.
             </p>
           </div>
         </div>
@@ -67,20 +67,20 @@ const AboutSection = () => {
             {/* Text Content Only */}
             <div className="space-y-6">
               <h2 className="text-4xl font-bold text-gray-900">
-                Enkelt att erbjuda fruktkorgar på jobbet
+                Enkelt att erbjuda frukt på jobbet
               </h2>
               
               <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
                 <p>
                   Sedan 2021 har vi på Vitaminkorgen gjort det enkelt för företag i Stockholm 
-                  att erbjuda fruktkorgar på jobbet. Vi startade med en enkel vision: färsk 
-                  frukt på kontoret ska vara lika självklart som morgonkaffet.
+                  att erbjuda fruktkorgar till jobbet. Vi startade med en enkel vision: frukt på jobbet Stockholm 
+                  ska vara lika självklart som morgonkaffet.
                 </p>
                 
                 <p>
                   Idag levererar vi fruktkorgar till över 150 företag varje vecka – från
                   innovativa startups på Östermalm till etablerade storkontor i Kista. Alla 
-                  får samma personliga service och handplockade kvalitet.
+                  får samma personliga service och handplockade fruktkorgar.
                 </p>
                 
                 <p>

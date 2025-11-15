@@ -35,7 +35,7 @@ const HeroSection = () => {
               </h1>
               
               <p className="text-base sm:text-lg leading-relaxed text-slate-600 max-w-lg">
-                Vi levererar noggrant utvalda fruktkorgar av högsta kvalitet direkt till ert kontor i Stockholm. Med färska frukter och personlig service hjälper vi företag att främja energi, fokus och välmående på arbetsplatsen. Våra nöjda kunder uppskattar vår pålitlighet, höga standard och smidiga leveranser – varje vecka.
+                Vi levererar noggrant utvalda fruktkorgar av högsta kvalitet direkt till ert kontor i Stockholm. Med färska fruktkorgar till jobbet och personlig service hjälper vi företag att främja energi, fokus och välmående på arbetsplatsen. Våra nöjda kunder uppskattar vår pålitlighet och smidiga leveranser av frukt på jobbet Stockholm – varje vecka.
               </p>
               
               {/* Promotional Button */}
