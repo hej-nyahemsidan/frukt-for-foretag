@@ -30,8 +30,8 @@ const FAQSection = () => {
       answer: "Självklart! Vi skapar skräddarsydda fruktkorgar där vi tar bort specifika frukter och ersätter dem med andra. Bara meddela oss vid beställning eller i kundportalen."
     },
     {
-      question: "Hur anpassar ni utbudet efter säsongen?",
-      answer: "Vi följer säsongerna och erbjuder alltid den fräschaste frukten som är i säsong. På vintern fokuserar vi på citrusfrukter och äpplen, på sommaren på bär och stenfrukter."
+      question: "Kan man lägga till andra varor som mjölk eller kaffe till leveranserna?",
+      answer: "Ja, det går utmärkt! Du kan enkelt lägga till andra varor via din inloggning till kundportalen eller kontakta vår kundservice så hjälper vi dig."
     },
     {
       question: "Vad är minsta beställning för fruktkorgar på jobbet?",
