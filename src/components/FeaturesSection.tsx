@@ -55,7 +55,7 @@ const FeaturesSection = () => {
           <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
               <div className="text-4xl mb-4">⚡</div>
-              <h3 className="text-xl font-bold text-white mb-3">
+              <h3 className="text-xl font-bold text-white mb-3 min-h-[56px]">
                 Mer energi och bättre fokus
               </h3>
               <p className="text-white/90 text-sm leading-relaxed">
@@ -65,7 +65,7 @@ const FeaturesSection = () => {
 
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
               <div className="text-4xl mb-4">🍎</div>
-              <h3 className="text-xl font-bold text-white mb-3">
+              <h3 className="text-xl font-bold text-white mb-3 min-h-[56px]">
                 Färsk frukt av hög kvalitet
               </h3>
               <p className="text-white/90 text-sm leading-relaxed">
@@ -75,7 +75,7 @@ const FeaturesSection = () => {
 
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
               <div className="text-4xl mb-4">😊</div>
-              <h3 className="text-xl font-bold text-white mb-3">
+              <h3 className="text-xl font-bold text-white mb-3 min-h-[56px]">
                 Nöjda kunder över hela Stockholm
               </h3>
               <p className="text-white/90 text-sm leading-relaxed">
