@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import AddToCartButton from '@/components/AddToCartButton';
 import { ShoppingCart } from 'lucide-react';
 
@@ -62,6 +63,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {fruktkorgar.map((product) => {
+          const [selectedSize, setSelectedSize] = useState('4kg');
           const sizes = ['4kg', '6kg', '9kg', '11kg'];
           
           return (
@@ -84,29 +86,37 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
                   {product.name}
                 </h3>
                 
-                {/* Size options grid */}
-                <div className="space-y-2">
-                  {sizes.map((size) => (
-                    <div key={size} className="flex items-center justify-between gap-2 p-2 bg-white rounded border border-gray-200">
-                      <div className="flex-1">
-                        <span className="text-xs font-medium text-gray-600">{size}</span>
-                        <span className="ml-2 text-sm font-bold text-green-600">
-                          {product.prices[size] || 0} kr
-                        </span>
-                      </div>
-                      <AddToCartButton
-                        product={{
-                          id: product.id,
-                          name: `${product.name} (${size})`,
-                          price: product.prices[size] || 0,
-                          category: product.category,
-                          image: product.image_url
-                        }}
-                        selectedDays={selectedDays}
-                        className="flex-shrink-0"
-                      />
-                    </div>
-                  ))}
+                {/* Single size selector */}
+                <div className="space-y-3 p-3 bg-white rounded border border-gray-200">
+                  <div className="flex items-center justify-between gap-2">
+                    <Select value={selectedSize} onValueChange={setSelectedSize}>
+                      <SelectTrigger className="w-24">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {sizes.map((size) => (
+                          <SelectItem key={size} value={size}>
+                            {size}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <span className="text-lg font-bold text-green-600">
+                      {product.prices[selectedSize] || 0} kr
+                    </span>
+                  </div>
+                  
+                  <AddToCartButton
+                    product={{
+                      id: product.id,
+                      name: `${product.name} (${selectedSize})`,
+                      price: product.prices[selectedSize] || 0,
+                      category: product.category,
+                      image: product.image_url
+                    }}
+                    selectedDays={selectedDays}
+                    className="w-full"
+                  />
                 </div>
               </div>
             </div>
