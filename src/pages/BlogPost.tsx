@@ -58,6 +58,17 @@ const BlogPost = () => {
   const categoryTitle = category === 'tips' ? 'Tips' : 'Recept';
   const displayDate = post?.published_at || post?.created_at || null;
 
+  // Function to render text with bold markdown
+  const renderContent = (text: string) => {
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, index) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={index}>{part.slice(2, -2)}</strong>;
+      }
+      return part;
+    });
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
@@ -105,7 +116,7 @@ const BlogPost = () => {
             <div className="prose prose-lg max-w-none">
               {post.content.split('\n').map((paragraph, index) => (
                 <p key={index} className="mb-4 leading-relaxed">
-                  {paragraph}
+                  {renderContent(paragraph)}
                 </p>
               ))}
             </div>
