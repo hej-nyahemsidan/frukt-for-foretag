@@ -67,7 +67,7 @@ const Products = () => {
               value="annat" 
               className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
             >
-              Annat
+              Skafferi
             </TabsTrigger>
           </TabsList>
 
