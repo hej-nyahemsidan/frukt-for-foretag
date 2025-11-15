@@ -27,6 +27,8 @@ import CustomerDashboard from "./pages/CustomerDashboard";
 import AdminLogin from "./admin/pages/AdminLogin";
 import AdminDashboard from "./admin/pages/AdminDashboard";
 import Blog from "./pages/Blog";
+import BlogList from "./pages/BlogList";
+import BlogPost from "./pages/BlogPost";
 import Blommor from "./pages/Blommor";
 import Varuautomat from "./pages/Varuautomat";
 import ScrollToTop from "./components/ScrollToTop";
@@ -66,6 +68,8 @@ const App = () => (
                 <Route path="/villkor" element={<Terms />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/blog/:slug" element={<Blog />} />
+                <Route path="/blogg/:category" element={<BlogList />} />
+                <Route path="/blogg/:category/:slug" element={<BlogPost />} />
                 <Route path="/blommor" element={<Blommor />} />
                 <Route path="/varuautomat" element={<Varuautomat />} />
                 
