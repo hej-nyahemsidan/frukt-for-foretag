@@ -62,14 +62,14 @@ const LaskTab: React.FC<LaskTabProps> = ({ selectedDays }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {products.map((product) => (
           <div key={product.id} className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-            <div className="aspect-[3/4] bg-white overflow-hidden">
+            <div className="aspect-square bg-white overflow-hidden rounded-lg">
               <img 
                 src={product.image_url}
                 alt={product.name}
                 className="w-full h-full object-contain"
               />
             </div>
-            <div className="p-3 sm:p-4 space-y-3">
+            <div className="p-3 sm:p-4 space-y-2">
               <h3 
                 className="font-bold text-charcoal text-base sm:text-lg text-center cursor-pointer hover:text-primary hover:underline transition-all"
                 onClick={() => setSelectedProduct(product)}

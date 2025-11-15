@@ -71,7 +71,7 @@ const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays }) => {
                 }}
               />
             </div>
-            <div className="p-3 sm:p-4 space-y-3">
+            <div className="p-3 sm:p-4 space-y-2">
               <h3 
                 className="font-bold text-charcoal text-base sm:text-lg text-center cursor-pointer hover:text-primary hover:underline transition-all"
                 onClick={() => setSelectedProduct(product)}
