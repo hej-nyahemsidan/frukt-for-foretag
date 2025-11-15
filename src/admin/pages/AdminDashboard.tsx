@@ -39,13 +39,16 @@ const AdminDashboard = () => {
         <div className="admin-header-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="admin-header-content flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 py-3 sm:py-0 sm:h-16">
             <div className="admin-header-left flex items-center w-full sm:w-auto">
-              <div className="flex-shrink-0">
+              <button 
+                onClick={() => navigate('/admin/dashboard')}
+                className="flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
+              >
                 <VitaminKorgenLogo 
                   size="small" 
                   variant="horizontal" 
                   className="h-8 w-auto max-w-[120px] sm:h-10 sm:max-w-[150px]" 
                 />
-              </div>
+              </button>
               <span className="admin-title ml-2 sm:ml-3 text-sm sm:text-lg font-semibold text-gray-800 truncate">
                 Admin Dashboard
               </span>

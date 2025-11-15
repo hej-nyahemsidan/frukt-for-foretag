@@ -109,7 +109,7 @@ serve(async (req) => {
     }
 
     // Create the auth user using admin API
-    const { data: authData, error: authError } = await supabaseAdmin.auth.admin.createUser({
+    const { data: authData, error: createError } = await supabaseAdmin.auth.admin.createUser({
       email: email,
       password: password,
       email_confirm: true, // Skip email confirmation for admin-created users
@@ -119,11 +119,11 @@ serve(async (req) => {
       }
     });
 
-    if (authError) {
-      console.error('Auth error:', authError);
+    if (createError) {
+      console.error('Auth error:', createError);
       
       // Handle auth errors - check if it's a duplicate issue
-      if (authError.message?.includes('already been registered') || authError.status === 500) {
+      if (createError.message?.includes('already been registered') || createError.status === 500) {
         // Double-check if user exists in profiles
         const { data: doubleCheckProfile } = await supabaseAdmin
           .from('profiles')
@@ -145,7 +145,7 @@ serve(async (req) => {
         }
       }
       
-      throw authError;
+      throw createError;
     }
 
     console.log('User created successfully:', authData.user?.id);
