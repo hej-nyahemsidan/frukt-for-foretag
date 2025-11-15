@@ -431,13 +431,6 @@
     }
   }
 
-  /* Disable hero animation on smaller screens */
-  @media (max-width: 768px) {
-    .animate-moveBasketHorizontal {
-      animation: none !important;
-    }
-  }
-
   /* Respect user's motion preference */
   @media (prefers-reduced-motion: reduce) {
     .animate-moveBasketHorizontal {
