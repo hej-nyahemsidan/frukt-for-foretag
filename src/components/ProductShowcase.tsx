@@ -113,7 +113,7 @@ const ProductShowcase = () => {
                   </p>
 
                   {/* Product Name */}
-                  <h3 className="font-semibold text-foreground mb-4 text-base group-hover:text-primary transition-colors">
+                  <h3 className="font-semibold text-foreground mb-4 text-base group-hover:text-primary transition-colors min-h-[3rem]">
                     {product.name}
                   </h3>
 
