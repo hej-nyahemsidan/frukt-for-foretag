@@ -1,4 +1,4 @@
-import { useState, useEffect, MouseEvent } from 'react';
+import { useState, useEffect, useRef, MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -24,6 +24,10 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, se
   const { getTotalItems } = useCart();
   const isMobile = useIsMobile();
   const days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
+  
+  // Track previous values to detect actual changes
+  const prevOrderTypeRef = useRef(orderType);
+  const prevPackagePlanRef = useRef(packagePlan);
 
   // Auto-set package plan to weekly when subscription is selected
   useEffect(() => {
@@ -61,9 +65,18 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, se
     setSelectedDays([day]);
   };
 
-  // Clear selected days when changing order type or package plan to avoid conflicts
+  // Clear selected days only when order type or package plan actually changes (not on mount)
   useEffect(() => {
-    setSelectedDays([]);
+    const orderTypeChanged = prevOrderTypeRef.current !== orderType;
+    const packagePlanChanged = prevPackagePlanRef.current !== packagePlan;
+    
+    if (orderTypeChanged || packagePlanChanged) {
+      setSelectedDays([]);
+    }
+    
+    // Update refs for next comparison
+    prevOrderTypeRef.current = orderType;
+    prevPackagePlanRef.current = packagePlan;
   }, [orderType, packagePlan, setSelectedDays]);
 
   const handleNext = () => {
