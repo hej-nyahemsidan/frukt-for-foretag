@@ -35,7 +35,7 @@ const FAQSection = () => {
     },
     {
       question: "Vad är minsta beställning för fruktkorgar på jobbet?",
-      answer: "Vår minsta leverans är en fruktkorg från 4kg per vecka. Detta räcker för cirka 15-20 personer beroende på konsumtion och passar perfekt för mindre kontor."
+      answer: "Vår minsta leverans är en fruktkorg från 4kg per vecka."
     }
   ];
 
