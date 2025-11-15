@@ -7,10 +7,11 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
-import { Pencil, Trash2, Plus, Eye, Loader2 } from 'lucide-react';
+import { Pencil, Trash2, Plus, Loader2 } from 'lucide-react';
 import { format } from 'date-fns';
+import { useAdminAuth } from '../contexts/AdminAuthContext';
 
 interface BlogPost {
   id: string;
@@ -28,10 +29,13 @@ interface BlogPost {
 }
 
 const AdminBlogManagement = () => {
+  const { user } = useAdminAuth();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState<string | null>(null);
   const [isAddingNew, setIsAddingNew] = useState(false);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [postToDelete, setPostToDelete] = useState<string | null>(null);
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -50,18 +54,32 @@ const AdminBlogManagement = () => {
   }, []);
 
   const fetchPosts = async () => {
+    console.log('Fetching blog posts...');
+    console.log('Current user email:', user?.email);
+    
+    setLoading(true);
     try {
       const { data, error } = await supabase
         .from('blog_posts')
         .select('*')
         .order('created_at', { ascending: false });
 
-      if (error) throw error;
-      setPosts((data || []) as BlogPost[]);
+      if (error) {
+        console.error('Error fetching blog posts:', error);
+        toast({
+          title: 'Fel',
+          description: 'Kunde inte hämta blogginlägg: ' + error.message,
+          variant: 'destructive',
+        });
+      } else {
+        console.log('Fetched blog posts:', data);
+        setPosts((data || []) as BlogPost[]);
+      }
     } catch (error) {
+      console.error('Unexpected error:', error);
       toast({
         title: 'Fel',
-        description: 'Kunde inte hämta blogginlägg',
+        description: 'Ett oväntat fel uppstod',
         variant: 'destructive',
       });
     } finally {
@@ -124,6 +142,7 @@ const AdminBlogManagement = () => {
       resetForm();
       fetchPosts();
     } catch (error) {
+      console.error('Error saving blog post:', error);
       toast({
         title: 'Fel',
         description: 'Kunde inte spara blogginlägget',
@@ -133,6 +152,8 @@ const AdminBlogManagement = () => {
   };
 
   const handleEdit = (post: BlogPost) => {
+    setEditing(post.id);
+    setIsAddingNew(true);
     setFormData({
       title: post.title,
       slug: post.slug,
@@ -143,34 +164,47 @@ const AdminBlogManagement = () => {
       author: post.author,
       published: post.published,
     });
-    setEditing(post.id);
-    setIsAddingNew(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleDelete = async (id: string) => {
+  const confirmDelete = (id: string) => {
+    setPostToDelete(id);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleDelete = async () => {
+    if (!postToDelete) return;
+
     try {
       const { error } = await supabase
         .from('blog_posts')
         .delete()
-        .eq('id', id);
+        .eq('id', postToDelete);
 
       if (error) throw error;
 
       toast({
-        title: 'Raderat',
-        description: 'Blogginlägget har raderats',
+        title: 'Borttaget',
+        description: 'Blogginlägget har tagits bort',
       });
+
       fetchPosts();
     } catch (error) {
+      console.error('Error deleting blog post:', error);
       toast({
         title: 'Fel',
-        description: 'Kunde inte radera blogginlägget',
+        description: 'Kunde inte ta bort blogginlägget',
         variant: 'destructive',
       });
+    } finally {
+      setDeleteDialogOpen(false);
+      setPostToDelete(null);
     }
   };
 
   const resetForm = () => {
+    setEditing(null);
+    setIsAddingNew(false);
     setFormData({
       title: '',
       slug: '',
@@ -181,40 +215,131 @@ const AdminBlogManagement = () => {
       author: 'Vitaminkorgen',
       published: false,
     });
-    setEditing(null);
-    setIsAddingNew(false);
   };
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center p-8">
-        <Loader2 className="h-8 w-8 animate-spin" />
-      </div>
-    );
-  }
-
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Blogginlägg</h2>
-        {!isAddingNew && (
-          <Button onClick={() => setIsAddingNew(true)}>
-            <Plus className="w-4 h-4 mr-2" />
-            Nytt inlägg
-          </Button>
-        )}
+    <div className="p-8">
+      {/* Debug Panel */}
+      <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+        <p className="text-sm font-medium mb-2">Debug Info:</p>
+        <p className="text-xs text-gray-700">Inloggad som: {user?.email}</p>
+        <p className="text-xs text-gray-700">Blogginlägg hittade: {posts.length}</p>
+        <Button
+          type="button"
+          size="sm"
+          className="mt-3"
+          onClick={async () => {
+            const { data, error } = await supabase
+              .from('blog_posts')
+              .select('id, title, published')
+              .limit(10);
+            console.log('Direct query result:', { data, error });
+            alert(`Hittade ${data?.length || 0} inlägg. Kolla konsolen för detaljer.`);
+          }}
+        >
+          Testa Databasanslutning
+        </Button>
       </div>
 
+      {/* Blog Posts List */}
+      {loading ? (
+        <div className="p-8 text-center">
+          <Loader2 className="h-12 w-12 animate-spin mx-auto text-primary" />
+          <p className="mt-4 text-muted-foreground">Laddar blogginlägg...</p>
+        </div>
+      ) : posts.length > 0 ? (
+        <Card className="mb-8">
+          <CardHeader className="flex flex-row items-center justify-between">
+            <CardTitle>Befintliga Blogginlägg ({posts.length})</CardTitle>
+            <Button onClick={() => setIsAddingNew(true)}>
+              <Plus className="h-4 w-4 mr-2" />
+              Nytt inlägg
+            </Button>
+          </CardHeader>
+          <CardContent>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b">
+                    <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">Titel</th>
+                    <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">Kategori</th>
+                    <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">Status</th>
+                    <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">Skapad</th>
+                    <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">Åtgärder</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y">
+                  {posts.map((post) => (
+                    <tr key={post.id}>
+                      <td className="px-4 py-4 text-sm font-medium">{post.title}</td>
+                      <td className="px-4 py-4 text-sm capitalize">{post.category}</td>
+                      <td className="px-4 py-4 text-sm">
+                        {post.published ? (
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            ✓ Publicerad
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                            ⏸ Utkast
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-4 py-4 text-sm text-muted-foreground">
+                        {format(new Date(post.created_at), 'yyyy-MM-dd')}
+                      </td>
+                      <td className="px-4 py-4 text-sm">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleEdit(post)}
+                          className="mr-2"
+                        >
+                          <Pencil className="h-4 w-4 mr-1" />
+                          Redigera
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => confirmDelete(post.id)}
+                          className="text-destructive hover:text-destructive"
+                        >
+                          <Trash2 className="h-4 w-4 mr-1" />
+                          Ta bort
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+      ) : (
+        <Card className="mb-8">
+          <CardContent className="p-8 text-center">
+            <p className="text-muted-foreground mb-2">Inga blogginlägg hittades.</p>
+            <p className="text-sm text-muted-foreground mb-4">
+              Klicka på 'Nytt inlägg' för att skapa ditt första blogginlägg.
+            </p>
+            <Button onClick={() => setIsAddingNew(true)}>
+              <Plus className="h-4 w-4 mr-2" />
+              Nytt inlägg
+            </Button>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Add/Edit Form */}
       {isAddingNew && (
         <Card>
           <CardHeader>
-            <CardTitle>{editing ? 'Redigera inlägg' : 'Nytt inlägg'}</CardTitle>
+            <CardTitle>{editing ? 'Redigera Blogginlägg' : 'Nytt Blogginlägg'}</CardTitle>
             <CardDescription>
-              {editing ? 'Uppdatera blogginlägget' : 'Skapa ett nytt blogginlägg'}
+              {editing ? 'Uppdatera befintligt blogginlägg' : 'Skapa ett nytt blogginlägg'}
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="title">Titel *</Label>
                 <Input
@@ -222,26 +347,29 @@ const AdminBlogManagement = () => {
                   value={formData.title}
                   onChange={(e) => handleTitleChange(e.target.value)}
                   required
+                  placeholder="Ange blogginläggets titel"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="slug">Slug (URL) *</Label>
+                <Label htmlFor="slug">Slug (URL-vänlig) *</Label>
                 <Input
                   id="slug"
                   value={formData.slug}
                   onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
                   required
+                  placeholder="automatiskt-genererad-slug"
                 />
+                <p className="text-xs text-muted-foreground">
+                  Genereras automatiskt från titeln, men kan redigeras
+                </p>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="category">Kategori *</Label>
                 <Select
                   value={formData.category}
-                  onValueChange={(value: 'tips' | 'recept') =>
-                    setFormData({ ...formData, category: value })
-                  }
+                  onValueChange={(value: 'tips' | 'recept') => setFormData({ ...formData, category: value })}
                 >
                   <SelectTrigger>
                     <SelectValue />
@@ -254,11 +382,12 @@ const AdminBlogManagement = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="excerpt">Kort beskrivning</Label>
+                <Label htmlFor="excerpt">Utdrag</Label>
                 <Textarea
                   id="excerpt"
                   value={formData.excerpt}
                   onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
+                  placeholder="Kort beskrivning av blogginlägget"
                   rows={3}
                 />
               </div>
@@ -269,19 +398,24 @@ const AdminBlogManagement = () => {
                   id="content"
                   value={formData.content}
                   onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                  rows={10}
                   required
+                  placeholder="Skriv blogginläggets innehåll här..."
+                  rows={12}
+                  className="font-mono text-sm"
                 />
+                <p className="text-xs text-muted-foreground">
+                  Markdown-formatering stöds
+                </p>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="image_url">Bild-URL</Label>
                 <Input
                   id="image_url"
-                  type="url"
                   value={formData.image_url}
                   onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
-                  placeholder="https://..."
+                  placeholder="https://example.com/image.jpg"
+                  type="url"
                 />
               </div>
 
@@ -291,6 +425,7 @@ const AdminBlogManagement = () => {
                   id="author"
                   value={formData.author}
                   onChange={(e) => setFormData({ ...formData, author: e.target.value })}
+                  placeholder="Vitaminkorgen"
                 />
               </div>
 
@@ -298,14 +433,14 @@ const AdminBlogManagement = () => {
                 <Switch
                   id="published"
                   checked={formData.published}
-                  onCheckedChange={(checked) =>
-                    setFormData({ ...formData, published: checked })
-                  }
+                  onCheckedChange={(checked) => setFormData({ ...formData, published: checked })}
                 />
-                <Label htmlFor="published">Publicerad</Label>
+                <Label htmlFor="published" className="cursor-pointer">
+                  Publicera direkt
+                </Label>
               </div>
 
-              <div className="flex gap-2">
+              <div className="flex gap-2 pt-4">
                 <Button type="submit">
                   {editing ? 'Uppdatera' : 'Skapa'}
                 </Button>
@@ -318,68 +453,26 @@ const AdminBlogManagement = () => {
         </Card>
       )}
 
-      <div className="grid gap-4">
-        {posts.map((post) => (
-          <Card key={post.id}>
-            <CardHeader>
-              <div className="flex justify-between items-start">
-                <div>
-                  <CardTitle className="text-lg">{post.title}</CardTitle>
-                  <CardDescription>
-                    {post.category === 'tips' ? 'Tips' : 'Recept'} •{' '}
-                    {post.published ? 'Publicerad' : 'Utkast'} •{' '}
-                    {format(new Date(post.created_at), 'dd MMM yyyy')}
-                  </CardDescription>
-                </div>
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() =>
-                      window.open(`/blogg/${post.category}/${post.slug}`, '_blank')
-                    }
-                  >
-                    <Eye className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleEdit(post)}
-                  >
-                    <Pencil className="w-4 h-4" />
-                  </Button>
-                  <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                      <Button variant="outline" size="sm">
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>Är du säker?</AlertDialogTitle>
-                        <AlertDialogDescription>
-                          Detta kommer att permanent radera blogginlägget.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Avbryt</AlertDialogCancel>
-                        <AlertDialogAction onClick={() => handleDelete(post.id)}>
-                          Radera
-                        </AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
-                </div>
-              </div>
-            </CardHeader>
-            {post.excerpt && (
-              <CardContent>
-                <p className="text-sm text-muted-foreground">{post.excerpt}</p>
-              </CardContent>
-            )}
-          </Card>
-        ))}
-      </div>
+      {/* Delete Confirmation Dialog */}
+      <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Är du säker?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Är du säker på att du vill ta bort detta blogginlägg? Denna åtgärd kan inte ångras.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => setPostToDelete(null)}>Avbryt</AlertDialogCancel>
+            <AlertDialogAction 
+              onClick={handleDelete} 
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              Ta bort
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
