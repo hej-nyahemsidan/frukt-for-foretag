@@ -65,13 +65,13 @@ const PromoPopup: React.FC<PromoPopupProps> = ({ isOpen, onClose }) => {
 
             {/* Headline */}
             <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6 leading-tight">
-              Testa oss gratis i 2 veckor!
+              Beställ en gratis provkorg
             </h2>
 
             {/* Body Text */}
             <p className="text-lg text-muted-foreground leading-relaxed mb-8">
               Upplev skillnaden med våra premiumprodukter utan någon som helst förpliktelse! 
-              Vi erbjuder dig möjligheten att prova vårt kompletta sortiment helt gratis i två veckor. 
+              Vi erbjuder dig möjligheten att prova vårt kompletta sortiment med en gratis provkorg. 
               Vi är så övertygade om att du kommer att älska vår kvalitet och service att vi ger dig 
               denna riskfria chans att upptäcka det själv. Inga dolda avgifter, inga bindningstider—bara 
               en fantastisk upplevelse. Ta chansen idag och låt oss överträffa dina förväntningar!
@@ -124,13 +124,13 @@ const PromoPopup: React.FC<PromoPopupProps> = ({ isOpen, onClose }) => {
           <div className="p-6">
             {/* Headline */}
             <h2 className="text-2xl font-bold text-foreground mb-4 text-center">
-              Testa oss gratis i 2 veckor!
+              Beställ en gratis provkorg
             </h2>
 
             {/* Body Text */}
             <p className="text-muted-foreground leading-relaxed mb-6 text-center">
               Upplev skillnaden med våra premiumprodukter utan någon förpliktelse! 
-              Vi erbjuder dig möjligheten att prova vårt kompletta sortiment helt gratis i två veckor. 
+              Vi erbjuder dig möjligheten att prova vårt kompletta sortiment med en gratis provkorg. 
               Inga dolda avgifter, inga bindningstider—bara en fantastisk upplevelse.
             </p>
 
