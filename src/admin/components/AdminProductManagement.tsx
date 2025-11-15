@@ -388,111 +388,125 @@ const AdminProductManagement = () => {
               <span className="sm:hidden">Lägg till</span>
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-md">
-            <DialogHeader>
-              <DialogTitle>Lägg till ny produkt</DialogTitle>
-            </DialogHeader>
-            <div className="space-y-4">
-              <div>
-                <Label htmlFor="name">Produktnamn</Label>
-                <Input
-                  id="name"
-                  value={newProductForm.name}
-                  onChange={(e) => setNewProductForm({ ...newProductForm, name: e.target.value })}
-                  placeholder="T.ex. Fruktkorg Premium"
-                />
-              </div>
+          <DialogContent className="max-w-md sm:max-w-lg p-0">
+            <form 
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleAddProduct();
+              }}
+              className="max-h-[85vh] flex flex-col"
+            >
+              <DialogHeader className="p-4 pb-3 border-b">
+                <DialogTitle>Lägg till ny produkt</DialogTitle>
+              </DialogHeader>
               
-              <div>
-                <Label htmlFor="category">Kategori</Label>
-                <Select value={newProductForm.category} onValueChange={(value) => setNewProductForm({ ...newProductForm, category: value })}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {categories.map(cat => (
-                      <SelectItem key={cat.value} value={cat.value}>
-                        {cat.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div>
-                <Label>Produktbild</Label>
-                <ImageUpload
-                  value={newProductForm.image_url}
-                  onChange={(url) => setNewProductForm({ ...newProductForm, image_url: url })}
-                  onRemove={() => setNewProductForm({ ...newProductForm, image_url: '' })}
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="description">Beskrivning (valfri)</Label>
-                <textarea
-                  id="description"
-                  value={newProductForm.description}
-                  onChange={(e) => setNewProductForm({ ...newProductForm, description: e.target.value })}
-                  placeholder="Produktbeskrivning..."
-                  className="w-full min-h-[80px] px-3 py-2 text-sm rounded-md border border-input bg-background"
-                />
-              </div>
-
-              <div>
-                <Label>Priser</Label>
-                {newProductForm.category === 'fruktkorgar' ? (
-                  <div className="space-y-2">
-                    <p className="text-xs text-muted-foreground">Viktbaserade priser för fruktkorgar</p>
-                    <div className="grid grid-cols-2 gap-2 p-3 bg-muted/50 rounded-md">
-                      {sizeOptions.map(size => (
-                        <div key={size} className="flex items-center space-x-2">
-                          <Label className="w-10 text-sm font-medium">{size}:</Label>
-                          <Input
-                            type="number"
-                            value={newProductForm.prices[size] || ''}
-                            onChange={(e) => setNewProductForm({
-                              ...newProductForm,
-                              prices: { ...newProductForm.prices, [size]: e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 }
-                            })}
-                            placeholder="0"
-                            className="text-sm"
-                          />
-                          <span className="text-xs text-muted-foreground">kr</span>
-                        </div>
+              <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                <div>
+                  <Label htmlFor="name">Produktnamn</Label>
+                  <Input
+                    id="name"
+                    value={newProductForm.name}
+                    onChange={(e) => setNewProductForm({ ...newProductForm, name: e.target.value })}
+                    placeholder="T.ex. Fruktkorg Premium"
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <Label htmlFor="category">Kategori</Label>
+                  <Select value={newProductForm.category} onValueChange={(value) => setNewProductForm({ ...newProductForm, category: value })}>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categories.map(cat => (
+                        <SelectItem key={cat.value} value={cat.value}>
+                          {cat.label}
+                        </SelectItem>
                       ))}
-                    </div>
-                  </div>
-                ) : (
-                  <div className="space-y-2">
-                    <p className="text-xs text-muted-foreground">Styckpris för enskilda produkter</p>
-                    <div className="flex items-center space-x-2 p-3 bg-muted/50 rounded-md">
-                      <Label className="text-sm font-medium">Styckpris:</Label>
-                      <Input
-                        type="number"
-                        value={newProductForm.prices['default'] || ''}
-                        onChange={(e) => setNewProductForm({
-                          ...newProductForm,
-                          prices: { 'default': e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 }
-                        })}
-                        placeholder="0"
-                        className="text-sm flex-1"
-                      />
-                      <span className="text-sm text-muted-foreground">kr per styck</span>
-                    </div>
-                  </div>
-                )}
-              </div>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div>
+                  <Label>Produktbild</Label>
+                  <ImageUpload
+                    value={newProductForm.image_url}
+                    onChange={(url) => setNewProductForm({ ...newProductForm, image_url: url })}
+                    onRemove={() => setNewProductForm({ ...newProductForm, image_url: '' })}
+                  />
+                </div>
 
-              <div className="flex gap-2">
-                <Button onClick={handleAddProduct} className="flex-1">
-                  Lägg till
-                </Button>
-                <Button variant="outline" onClick={() => setShowAddDialog(false)} className="flex-1">
+                <div>
+                  <Label htmlFor="description">Beskrivning (valfri)</Label>
+                  <textarea
+                    id="description"
+                    value={newProductForm.description}
+                    onChange={(e) => setNewProductForm({ ...newProductForm, description: e.target.value })}
+                    placeholder="Produktbeskrivning..."
+                    className="w-full min-h-[80px] px-3 py-2 text-sm rounded-md border border-input bg-background"
+                  />
+                </div>
+
+                <div>
+                  <Label>Priser</Label>
+                  {newProductForm.category === 'fruktkorgar' ? (
+                    <div className="space-y-2">
+                      <p className="text-xs text-muted-foreground">Viktbaserade priser för fruktkorgar</p>
+                      <div className="grid grid-cols-2 gap-2 p-3 bg-muted/50 rounded-md">
+                        {sizeOptions.map(size => (
+                          <div key={size} className="flex items-center space-x-2">
+                            <Label className="w-10 text-sm font-medium">{size}:</Label>
+                            <Input
+                              type="number"
+                              value={newProductForm.prices[size] || ''}
+                              onChange={(e) => setNewProductForm({
+                                ...newProductForm,
+                                prices: { ...newProductForm.prices, [size]: e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 }
+                              })}
+                              placeholder="0"
+                              className="text-sm"
+                            />
+                            <span className="text-xs text-muted-foreground">kr</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      <p className="text-xs text-muted-foreground">Styckpris för enskilda produkter</p>
+                      <div className="flex items-center space-x-2 p-3 bg-muted/50 rounded-md">
+                        <Label className="text-sm font-medium">Styckpris:</Label>
+                        <Input
+                          type="number"
+                          value={newProductForm.prices['default'] || ''}
+                          onChange={(e) => setNewProductForm({
+                            ...newProductForm,
+                            prices: { 'default': e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 }
+                          })}
+                          placeholder="0"
+                          className="text-sm flex-1"
+                        />
+                        <span className="text-sm text-muted-foreground">kr per styck</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+              
+              <div className="border-t bg-background p-3 sticky bottom-0 flex justify-end gap-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setShowAddDialog(false)}
+                >
                   Avbryt
                 </Button>
+                <Button type="submit">
+                  Lägg till
+                </Button>
               </div>
-            </div>
+            </form>
           </DialogContent>
         </Dialog>
       </div>
