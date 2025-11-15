@@ -63,7 +63,7 @@ const ProductShowcase = () => {
             to="/produkter" 
             className="inline-flex items-center text-primary hover:text-primary/80 font-semibold transition-colors"
           >
-            Se en del av vårt produktutbud
+            Se hela vårt produktutbud
           </Link>
         </div>
 
