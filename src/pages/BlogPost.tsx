@@ -17,7 +17,8 @@ interface BlogPostType {
   image_url: string | null;
   category: string;
   author: string;
-  published_at: string;
+  published_at: string | null;
+  created_at?: string | null;
 }
 
 const BlogPost = () => {
@@ -55,6 +56,7 @@ const BlogPost = () => {
   };
 
   const categoryTitle = category === 'tips' ? 'Tips' : 'Recept';
+  const displayDate = post?.published_at || post?.created_at || null;
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -92,9 +94,11 @@ const BlogPost = () => {
               <div className="flex items-center text-muted-foreground mb-6">
                 <span>{post.author}</span>
                 <span className="mx-2">•</span>
-                <time dateTime={post.published_at}>
-                  {format(new Date(post.published_at), 'dd MMMM yyyy', { locale: sv })}
-                </time>
+                {displayDate && (
+                  <time dateTime={displayDate}>
+                    {format(new Date(displayDate), 'dd MMMM yyyy', { locale: sv })}
+                  </time>
+                )}
               </div>
               {post.image_url && (
                 <img
