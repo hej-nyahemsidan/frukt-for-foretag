@@ -74,18 +74,18 @@ const BlogPost = () => {
               Tyvärr kunde vi inte hitta det blogginlägg du letade efter.
             </p>
             <Button asChild>
-              <Link to={`/blogg/${category}`}>
+              <Link to="/">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Tillbaka till {categoryTitle}
+                Tillbaka till startsidan
               </Link>
             </Button>
           </div>
         ) : (
           <article className="max-w-4xl mx-auto">
             <Button variant="ghost" asChild className="mb-6">
-              <Link to={`/blogg/${category}`}>
+              <Link to="/">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Tillbaka till {categoryTitle}
+                Tillbaka till startsidan
               </Link>
             </Button>
 
@@ -100,13 +100,6 @@ const BlogPost = () => {
                   </time>
                 )}
               </div>
-              {post.image_url && (
-                <img
-                  src={post.image_url}
-                  alt={post.title}
-                  className="w-full h-96 object-cover rounded-lg"
-                />
-              )}
             </header>
 
             <div className="prose prose-lg max-w-none">
@@ -119,9 +112,9 @@ const BlogPost = () => {
 
             <footer className="mt-12 pt-8 border-t">
               <Button asChild>
-                <Link to={`/blogg/${category}`}>
+                <Link to="/">
                   <ArrowLeft className="mr-2 h-4 w-4" />
-                  Tillbaka till {categoryTitle}
+                  Tillbaka till startsidan
                 </Link>
               </Button>
             </footer>

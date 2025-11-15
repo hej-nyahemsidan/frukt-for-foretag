@@ -55,13 +55,6 @@ const BlogHome = () => {
   const PostCard = ({ post }: { post: BlogPost }) => (
     <Link to={`/blogg/${post.category}/${post.slug}`}>
       <Card className="hover:shadow-lg transition-shadow h-full">
-        {post.image_url && (
-          <img
-            src={post.image_url}
-            alt={post.title}
-            className="w-full h-48 object-cover rounded-t-lg"
-          />
-        )}
         <CardHeader>
           <CardTitle className="text-xl">{post.title}</CardTitle>
           <CardDescription>
