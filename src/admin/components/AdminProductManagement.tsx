@@ -277,9 +277,9 @@ const AdminProductManagement = () => {
   };
 
   const renderProductGrid = (categoryProducts: Product[]) => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
       {categoryProducts.map((product) => (
-        <Card key={product.id} className="overflow-hidden flex flex-col">
+        <Card key={product.id} className="overflow-hidden flex flex-col max-w-[280px]">
           <div className="aspect-square bg-gray-100 overflow-hidden">
             <img 
               src={product.image_url}
@@ -290,30 +290,30 @@ const AdminProductManagement = () => {
               }}
             />
           </div>
-          <CardHeader className="pb-2 pt-3">
-            <CardTitle className="text-base flex justify-between items-start">
-              <span>{product.name}</span>
+          <CardHeader className="pb-1 pt-2 px-3">
+            <CardTitle className="text-xs flex justify-between items-start leading-tight">
+              <span className="line-clamp-2">{product.name}</span>
               <Button
                 variant="destructive"
                 size="sm"
                 onClick={() => handleDeleteProduct(product.id)}
-                className="ml-2 h-7 w-7 p-0"
+                className="ml-1 h-6 w-6 p-0 flex-shrink-0"
               >
-                <Trash2 className="w-3 h-3" />
+                <Trash2 className="w-2.5 h-2.5" />
               </Button>
             </CardTitle>
-            <p className="text-xs text-gray-500 capitalize">{product.category}</p>
+            <p className="text-[10px] text-gray-500 capitalize">{product.category}</p>
           </CardHeader>
-          <CardContent className="pt-0 pb-3 flex-1">
-            <div className="space-y-2">
-              <div className="space-y-1">
-                <Label className="text-xs font-medium">Beskrivning:</Label>
+          <CardContent className="pt-0 pb-2 px-3 flex-1">
+            <div className="space-y-1.5">
+              <div className="space-y-0.5">
+                <Label className="text-[10px] font-medium">Beskrivning:</Label>
                 <div className="flex items-start gap-1">
                   <textarea
                     value={editingDescriptions[product.id] ?? product.description ?? ''}
                     onChange={(e) => setEditingDescriptions(prev => ({ ...prev, [product.id]: e.target.value }))}
                     placeholder="Ingen beskrivning..."
-                    className="w-full min-h-[40px] px-2 py-1 text-xs rounded-md border border-input bg-background resize-none"
+                    className="w-full min-h-[32px] px-1.5 py-1 text-[10px] rounded-md border border-input bg-background resize-none"
                   />
                   <Button
                     size="sm"
@@ -322,23 +322,23 @@ const AdminProductManagement = () => {
                       const newDescription = editingDescriptions[product.id] ?? product.description ?? '';
                       handleUpdateDescription(product.id, newDescription);
                     }}
-                    className="p-1 h-7 w-7 flex-shrink-0"
+                    className="p-0.5 h-6 w-6 flex-shrink-0"
                   >
-                    <Save className="w-3 h-3" />
+                    <Save className="w-2.5 h-2.5" />
                   </Button>
                 </div>
               </div>
               {getProductPriceSizes(product).map(size => (
-                <div key={size} className="flex items-center justify-between gap-1">
-                  <Label className="text-xs font-medium">{getPriceLabel(size)}:</Label>
-                  <div className="flex items-center gap-1">
+                <div key={size} className="flex items-center justify-between gap-0.5">
+                  <Label className="text-[10px] font-medium">{getPriceLabel(size)}:</Label>
+                  <div className="flex items-center gap-0.5">
                     <Input
                       type="number"
                       value={editingPrices[product.id]?.[size] ?? product.prices[size] ?? ''}
                       onChange={(e) => handlePriceChange(product.id, size, e.target.value)}
-                      className="w-16 text-xs text-right h-7 px-2"
+                      className="w-12 text-[10px] text-right h-6 px-1"
                     />
-                    <span className="text-xs text-gray-500">kr</span>
+                    <span className="text-[10px] text-gray-500">kr</span>
                     <Button
                       size="sm"
                       variant="outline"
@@ -349,9 +349,9 @@ const AdminProductManagement = () => {
                           handleUpdatePrice(product.id, size, numericPrice);
                         }
                       }}
-                      className="p-1 h-7 w-7"
+                      className="p-0.5 h-6 w-6"
                     >
-                      <Save className="w-3 h-3" />
+                      <Save className="w-2.5 h-2.5" />
                     </Button>
                   </div>
                 </div>

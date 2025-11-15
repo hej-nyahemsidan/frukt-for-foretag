@@ -58,9 +58,9 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
         {fruktkorgar.map((product) => (
-          <div key={product.id} className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+          <div key={product.id} className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow max-w-[280px]">
             <div className="aspect-square bg-white overflow-hidden rounded-lg">
               <img 
                 src={product.image_url}
@@ -71,15 +71,15 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
                 }}
               />
             </div>
-            <div className="p-3 sm:p-4 space-y-2">
-              <p className="text-xs text-gray-500 text-center">Från 4kg</p>
+            <div className="p-2 sm:p-2.5 space-y-1">
+              <p className="text-[10px] text-gray-500 text-center">Från 4kg</p>
               <h3 
-                className="font-bold text-charcoal text-base sm:text-lg text-center cursor-pointer hover:text-primary hover:underline transition-all"
+                className="font-bold text-charcoal text-sm text-center cursor-pointer hover:text-primary hover:underline transition-all line-clamp-2"
                 onClick={() => setSelectedProduct(product)}
               >
                 {product.name}
               </h3>
-              <div className="text-base sm:text-lg font-bold text-green-600 text-center">
+              <div className="text-sm font-bold text-green-600 text-center">
                 {product.prices['4kg'] || 0} kr
               </div>
             </div>
