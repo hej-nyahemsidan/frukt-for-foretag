@@ -51,10 +51,10 @@ const AboutSection = () => {
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl">
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
-              Fruktkorgar till jobbet - Leverantör i Stockholm
+              Fruktkorg på jobbet i Stockholm – enkelt, fräscht och uppskattat
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 leading-relaxed">
-              Sedan 2021 har vi på Vitaminkorgen gjort det enkelt för företag i Stockholm att erbjuda frukt på jobbet. Vi levererar färska fruktkorgar till jobbet varje vecka.
+              Att erbjuda en fruktkorg på jobbet är ett enkelt sätt att främja hälsa, trivsel och energi på arbetsplatsen. Vi på Vitaminkorgen levererar fruktkorgar till företag i Stockholm – alltid fyllda med noggrant utvald, säsongsanpassad frukt av hög kvalitet.
             </p>
           </div>
         </div>
@@ -67,37 +67,39 @@ const AboutSection = () => {
             {/* Text Content Only */}
             <div className="space-y-6">
               <h2 className="text-4xl font-bold text-gray-900">
-                Enkelt att erbjuda frukt på jobbet
+                Flexibla lösningar för varje arbetsplats
               </h2>
               
               <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  Sedan 2021 har vi på Vitaminkorgen gjort det enkelt för företag i Stockholm 
-                  att erbjuda fruktkorgar till jobbet. Vi startade med en enkel vision: frukt på jobbet Stockholm 
-                  ska vara lika självklart som morgonkaffet.
+                  Vi levererar fruktkorgar till alla typer av företag, från snabbväxande startups på Östermalm till väletablerade kontor i Kista. Oavsett storlek på arbetsplatsen får ni samma personliga service, smidiga leverans och handplockad frukt.
                 </p>
                 
                 <p>
-                  Idag levererar vi fruktkorgar till över 150 företag varje vecka – från
-                  innovativa startups på Östermalm till etablerade storkontor i Kista. Alla 
-                  får samma personliga service och handplockade fruktkorgar.
+                  Varje arbetsplats är unik – därför erbjuder vi flexibla lösningar anpassade efter era behov, oavsett om ni är 5 eller 150 medarbetare. Våra fruktkorgar innehåller alltid färsk frukt som är utvald för att ge maximal smak, näring och energi.
                 </p>
                 
                 <p>
-                  Vi förstår att varje arbetsplats är unik. Därför erbjuder vi flexibla 
-                  lösningar som anpassas efter era behov – oavsett om ni är 5 eller 150 
-                  medarbetare. Våra fruktkorgar innehåller alltid säsongens bästa frukt, 
-                  noggrant utvald för optimal smak och näring.
+                  Att ha en fruktkorg på kontoret är mer än bara ett hälsosamt alternativ – det är en investering i:
                 </p>
                 
-                <p>
-                  En fruktkorg på kontoret är mer än bara frukt – det är en investering i:
-                </p>
-                <ul className="list-disc list-inside space-y-1 ml-4">
-                  <li>Ökad energi och produktivitet</li>
-                  <li>Färre sjukdagar och bättre immunförsvar</li>
-                  <li>Starkare teamkänsla och trivsel</li>
-                  <li>Enkel och uppskattad personalförmån</li>
+                <ul className="space-y-2 ml-6">
+                  <li className="flex items-start">
+                    <span className="text-green-600 mr-2">•</span>
+                    <span>Ökad energi och produktivitet</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-600 mr-2">•</span>
+                    <span>Färre sjukdagar och bättre immunförsvar</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-600 mr-2">•</span>
+                    <span>Starkare teamkänsla och trivsel</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-600 mr-2">•</span>
+                    <span>En enkel och uppskattad personalförmån</span>
+                  </li>
                 </ul>
               </div>
             </div>
