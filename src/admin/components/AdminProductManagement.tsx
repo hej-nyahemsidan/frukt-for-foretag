@@ -18,6 +18,7 @@ interface Product {
   category: string;
   image_url: string;
   prices: Record<string, number>;
+  description?: string;
   created_at?: string;
   updated_at?: string;
 }
@@ -27,6 +28,7 @@ interface ProductFormData {
   category: string;
   image_url: string;
   prices: Record<string, number>;
+  description: string;
 }
 
 const AdminProductManagement = () => {
@@ -34,6 +36,7 @@ const AdminProductManagement = () => {
   const [loading, setLoading] = useState(true);
   const [showAddDialog, setShowAddDialog] = useState(false);
   const [editingPrices, setEditingPrices] = useState<Record<string, Record<string, string | number>>>({});
+  const [editingDescriptions, setEditingDescriptions] = useState<Record<string, string>>({});
   const [activeTab, setActiveTab] = useState('fruktkorgar');
   const { toast } = useToast();
 
@@ -42,7 +45,8 @@ const AdminProductManagement = () => {
     name: '',
     category: 'fruktkorgar',
     image_url: '',
-    prices: {}
+    prices: {},
+    description: ''
   });
 
   const categories = [
@@ -149,7 +153,8 @@ const AdminProductManagement = () => {
           name: newProductForm.name,
           category: newProductForm.category,
           image_url: newProductForm.image_url,
-          prices: newProductForm.prices as Json
+          prices: newProductForm.prices as Json,
+          description: newProductForm.description || null
         }])
         .select()
         .single();
@@ -166,7 +171,8 @@ const AdminProductManagement = () => {
         name: '',
         category: 'fruktkorgar',
         image_url: '',
-        prices: {}
+        prices: {},
+        description: ''
       });
       setShowAddDialog(false);
 
@@ -220,6 +226,40 @@ const AdminProductManagement = () => {
     }));
   };
 
+  const handleUpdateDescription = async (productId: string, newDescription: string) => {
+    try {
+      const { error } = await supabase
+        .from('products')
+        .update({ description: newDescription || null })
+        .eq('id', productId);
+
+      if (error) throw error;
+
+      setProducts(products.map(p => 
+        p.id === productId 
+          ? { ...p, description: newDescription }
+          : p
+      ));
+
+      setEditingDescriptions(prev => {
+        const updated = { ...prev };
+        delete updated[productId];
+        return updated;
+      });
+
+      toast({
+        title: 'Sparat',
+        description: 'Beskrivningen har uppdaterats.',
+      });
+    } catch (error) {
+      toast({
+        title: 'Fel',
+        description: 'Kunde inte uppdatera beskrivningen.',
+        variant: 'destructive',
+      });
+    }
+  };
+
   const getProductPriceSizes = (product: Product) => {
     if (product.category === 'fruktkorgar') {
       return ['4kg', '6kg', '9kg', '11kg'];
@@ -266,6 +306,28 @@ const AdminProductManagement = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
+              <div className="space-y-2">
+                <Label className="text-sm font-medium">Beskrivning:</Label>
+                <div className="flex items-start gap-2">
+                  <textarea
+                    value={editingDescriptions[product.id] ?? product.description ?? ''}
+                    onChange={(e) => setEditingDescriptions(prev => ({ ...prev, [product.id]: e.target.value }))}
+                    placeholder="Ingen beskrivning..."
+                    className="w-full min-h-[60px] px-2 py-1 text-sm rounded-md border border-input bg-background"
+                  />
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => {
+                      const newDescription = editingDescriptions[product.id] ?? product.description ?? '';
+                      handleUpdateDescription(product.id, newDescription);
+                    }}
+                    className="p-1 h-8 w-8 flex-shrink-0"
+                  >
+                    <Save className="w-3 h-3" />
+                  </Button>
+                </div>
+              </div>
               {getProductPriceSizes(product).map(size => (
                 <div key={size} className="flex items-center justify-between gap-2">
                   <Label className="text-sm font-medium">{getPriceLabel(size)}:</Label>
@@ -363,6 +425,17 @@ const AdminProductManagement = () => {
                   value={newProductForm.image_url}
                   onChange={(url) => setNewProductForm({ ...newProductForm, image_url: url })}
                   onRemove={() => setNewProductForm({ ...newProductForm, image_url: '' })}
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="description">Beskrivning (valfri)</Label>
+                <textarea
+                  id="description"
+                  value={newProductForm.description}
+                  onChange={(e) => setNewProductForm({ ...newProductForm, description: e.target.value })}
+                  placeholder="Produktbeskrivning..."
+                  className="w-full min-h-[80px] px-3 py-2 text-sm rounded-md border border-input bg-background"
                 />
               </div>
 
