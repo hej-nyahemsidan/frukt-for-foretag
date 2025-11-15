@@ -108,7 +108,7 @@ const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays }) => {
       </div>
 
       <Dialog open={!!selectedProduct} onOpenChange={() => setSelectedProduct(null)}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-sm">
           <DialogHeader>
             <DialogTitle>{selectedProduct?.name}</DialogTitle>
           </DialogHeader>
@@ -117,7 +117,7 @@ const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays }) => {
               <img 
                 src={selectedProduct.image_url} 
                 alt={selectedProduct.name}
-                className="w-full rounded-lg"
+                className="w-full max-h-64 object-contain rounded-lg"
               />
             )}
             <p className="text-sm text-gray-600">

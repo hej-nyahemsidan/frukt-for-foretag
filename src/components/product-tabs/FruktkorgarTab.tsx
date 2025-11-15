@@ -143,7 +143,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
       </div>
 
       <Dialog open={!!selectedProduct} onOpenChange={() => setSelectedProduct(null)}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-sm">
           <DialogHeader>
             <DialogTitle>{selectedProduct?.name}</DialogTitle>
           </DialogHeader>
@@ -152,7 +152,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
               <img 
                 src={selectedProduct.image_url} 
                 alt={selectedProduct.name}
-                className="w-full rounded-lg"
+                className="w-full max-h-64 object-contain rounded-lg"
               />
             )}
             {selectedProduct?.description && (
