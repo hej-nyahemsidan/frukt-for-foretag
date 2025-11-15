@@ -1,14 +1,24 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { ChevronDown, ChevronRight } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 // Import images
 import fruityImage from '@/assets/fruity.jpg';
 
 const AboutSection = () => {
   const [expandedFAQ, setExpandedFAQ] = useState<number[]>([]);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   const faqItems = [
     {
@@ -35,6 +45,57 @@ const AboutSection = () => {
         ? prev.filter(i => i !== index)
         : [...prev, index]
     );
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    
+    // Validate inputs
+    if (!formData.name.trim() || !formData.email.trim()) {
+      toast({
+        title: "Fyll i alla obligatoriska fält",
+        description: "Namn och e-post måste fyllas i.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          formType: 'Kontaktformulär (Om oss)',
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          message: formData.message,
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Meddelande skickat!",
+        description: "Vi återkommer så snart som möjligt.",
+      });
+
+      // Clear form
+      setFormData({ name: '', email: '', company: '', message: '' });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Något gick fel",
+        description: "Kunde inte skicka meddelandet. Försök igen senare.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -181,25 +242,33 @@ const AboutSection = () => {
                   Kontakta oss
                 </h3>
                 
-                <form className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-2">
-                    <label className="text-sm text-gray-600 font-medium">Namn</label>
+                    <label className="text-sm text-gray-600 font-medium">Namn*</label>
                     <Input 
+                      value={formData.name}
+                      onChange={(e) => handleInputChange('name', e.target.value)}
                       placeholder="Ditt namn" 
                       className="w-full"
+                      required
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm text-gray-600 font-medium">E-post</label>
+                    <label className="text-sm text-gray-600 font-medium">E-post*</label>
                     <Input 
                       type="email" 
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
                       placeholder="Din e-post" 
                       className="w-full"
+                      required
                     />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm text-gray-600 font-medium">Företag</label>
                     <Input 
+                      value={formData.company}
+                      onChange={(e) => handleInputChange('company', e.target.value)}
                       placeholder="Företag" 
                       className="w-full"
                     />
@@ -207,14 +276,20 @@ const AboutSection = () => {
                   <div className="space-y-2">
                     <label className="text-sm text-gray-600 font-medium">Meddelande</label>
                     <Textarea 
+                      value={formData.message}
+                      onChange={(e) => handleInputChange('message', e.target.value)}
                       placeholder="Meddelande" 
                       rows={4}
                       className="w-full"
                     />
                   </div>
                   
-                  <Button className="w-full bg-green-600 hover:bg-green-700 text-white py-3">
-                    Kontakta oss
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full bg-green-600 hover:bg-green-700 text-white py-3 disabled:opacity-50"
+                  >
+                    {isSubmitting ? 'Skickar...' : 'Kontakta oss'}
                   </Button>
                 </form>
               </div>

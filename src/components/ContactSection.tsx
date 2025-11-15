@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { MapPin, Phone, Clock, MessageCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 // Import images
 import officeWellnessImage from '@/assets/office-wellness.jpg';
@@ -14,24 +15,54 @@ const ContactSection = () => {
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const { toast } = useToast();
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     
-    // Create mailto link with form data
-    const subject = encodeURIComponent('Kontakt från webbsidan');
-    const body = encodeURIComponent(`Namn: ${formData.name}\nE-post: ${formData.email}\n\nMeddelande:\n${formData.message}`);
-    const mailtoLink = `mailto:info@vitaminkorgen.se?subject=${subject}&body=${body}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
-    
-    toast({
-      title: "E-postklient öppnas...",
-      description: "Skicka e-posten från din e-postklient för att kontakta oss.",
-    });
+    // Validate inputs
+    if (!formData.name.trim() || !formData.email.trim()) {
+      toast({
+        title: "Fyll i alla obligatoriska fält",
+        description: "Namn och e-post måste fyllas i.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          formType: 'Kontaktformulär',
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Meddelande skickat!",
+        description: "Vi återkommer så snart som möjligt.",
+      });
+
+      // Clear form
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Något gick fel",
+        description: "Kunde inte skicka meddelandet. Försök igen senare.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -129,9 +160,10 @@ const ContactSection = () => {
                   
                   <Button 
                     type="submit" 
-                    className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg rounded-lg"
+                    disabled={isSubmitting}
+                    className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg rounded-lg disabled:opacity-50"
                   >
-                    Submit
+                    {isSubmitting ? 'Skickar...' : 'Skicka'}
                   </Button>
                 </form>
               </div>
