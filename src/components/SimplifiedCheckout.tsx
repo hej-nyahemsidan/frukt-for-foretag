@@ -126,111 +126,98 @@ const SimplifiedCheckout = ({
         </Button>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        {/* Order Summary */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Beställningssammanfattning</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {/* Customer Info */}
-            <div className="p-4 bg-gray-50 rounded-lg">
-              <h3 className="font-semibold text-charcoal mb-2">Kundinformation</h3>
-              <p className="text-sm text-muted-foreground">
-                <strong>Företag:</strong> {customer?.company_name || 'Ej angivet'}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                <strong>Kontakt:</strong> {customer?.contact_person || 'Ej angivet'}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                <strong>E-post:</strong> {customer?.email || 'Ej angivet'}
-              </p>
-            </div>
+      {/* Single Card with Order Summary and Confirmation */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Beställningssammanfattning</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          {/* Customer Info */}
+          <div className="p-4 bg-gray-50 rounded-lg">
+            <h3 className="font-semibold text-charcoal mb-2">Kundinformation</h3>
+            <p className="text-sm text-muted-foreground">
+              <strong>Företag:</strong> {customer?.company_name || 'Ej angivet'}
+            </p>
+            <p className="text-sm text-muted-foreground">
+              <strong>Kontakt:</strong> {customer?.contact_person || 'Ej angivet'}
+            </p>
+            <p className="text-sm text-muted-foreground">
+              <strong>E-post:</strong> {customer?.email || 'Ej angivet'}
+            </p>
+          </div>
 
-            {/* Delivery Plan */}
-            <div className="p-4 bg-gray-50 rounded-lg">
-              <h3 className="font-semibold text-charcoal mb-2">Leveransplan</h3>
-              <p className="text-muted-foreground mb-2">{getOrderTypeText(orderType)}</p>
-              <div>
-                <span className="font-medium">Leveransdagar: </span>
-                <span className="text-muted-foreground">
-                  {selectedDays.length > 0 ? selectedDays.join(', ') : 'Inga dagar valda'}
-                </span>
-              </div>
-            </div>
-
-            {/* Products */}
+          {/* Delivery Plan */}
+          <div className="p-4 bg-gray-50 rounded-lg">
+            <h3 className="font-semibold text-charcoal mb-2">Leveransplan</h3>
+            <p className="text-muted-foreground mb-2">{getOrderTypeText(orderType)}</p>
             <div>
-              <h3 className="font-semibold text-charcoal mb-3">Produkter</h3>
-              {items.length === 0 ? (
-                <p className="text-muted-foreground">Inga produkter valda</p>
-              ) : (
-                <div className="space-y-2">
-                  {items.map((item) => (
-                    <div key={item.id} className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                      <div>
-                        <span className="font-medium">{item.name}</span>
-                        <div className="text-sm text-muted-foreground">
-                          Antal: {item.quantity} × {item.price} kr
-                        </div>
+              <span className="font-medium">Leveransdagar: </span>
+              <span className="text-muted-foreground">
+                {selectedDays.length > 0 ? selectedDays.join(', ') : 'Inga dagar valda'}
+              </span>
+            </div>
+          </div>
+
+          {/* Products */}
+          <div>
+            <h3 className="font-semibold text-charcoal mb-3">Produkter</h3>
+            {items.length === 0 ? (
+              <p className="text-muted-foreground">Inga produkter valda</p>
+            ) : (
+              <div className="space-y-2">
+                {items.map((item) => (
+                  <div key={item.id} className="flex justify-between items-center p-3 bg-gray-50 rounded">
+                    <div>
+                      <span className="font-medium">{item.name}</span>
+                      <div className="text-sm text-muted-foreground">
+                        Antal: {item.quantity} × {item.price} kr
                       </div>
-                      <span className="font-semibold text-charcoal">
-                        {item.price * item.quantity} kr
-                      </span>
                     </div>
-                  ))}
-                  
-                  {/* Total Price */}
-                  <div className="flex justify-between items-center p-4 bg-green-50 rounded-lg border-2 border-green-200 mt-4">
-                    <span className="text-lg font-bold text-charcoal">Totalpris:</span>
-                    <span className="text-2xl font-bold text-green-600">
-                      {calculateTotal()} kr
+                    <span className="font-semibold text-charcoal">
+                      {item.price * item.quantity} kr
                     </span>
                   </div>
+                ))}
+                
+                {/* Total Price */}
+                <div className="flex justify-between items-center p-4 bg-green-50 rounded-lg border-2 border-green-200 mt-4">
+                  <span className="text-lg font-bold text-charcoal">Totalpris:</span>
+                  <span className="text-2xl font-bold text-green-600">
+                    {calculateTotal()} kr
+                  </span>
                 </div>
-              )}
-            </div>
-          </CardContent>
-        </Card>
+              </div>
+            )}
+          </div>
 
-        {/* Confirmation */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Bekräfta och slutför</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-4">
-              <p className="text-sm text-muted-foreground">
-                Genom att bekräfta din beställning uppdaterar vi din befintliga 
-                fruktleverans enligt dina nya val. Leveransen kommer att börja 
-                gälla från nästa leveranstillfälle.
+          {/* Confirmation Section */}
+          <div className="pt-6 border-t mt-6">
+            <h3 className="font-semibold text-charcoal mb-4">Bekräfta och slutför</h3>
+            
+            <Button
+              onClick={handleConfirmOrder}
+              disabled={items.length === 0 || selectedDays.length === 0 || isConfirming}
+              className="w-full bg-green-600 hover:bg-green-700 text-white py-3 text-lg font-semibold"
+            >
+              {isConfirming ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                  Bekräftar beställning...
+                </>
+              ) : (
+                'Bekräfta beställning'
+              )}
+            </Button>
+
+            {(items.length === 0 || selectedDays.length === 0) && (
+              <p className="text-sm text-red-600 text-center mt-3">
+                {items.length === 0 && "Lägg till produkter i varukorgen. "}
+                {selectedDays.length === 0 && "Välj minst en leveransdag."}
               </p>
-
-              <Button
-                onClick={handleConfirmOrder}
-                disabled={items.length === 0 || selectedDays.length === 0 || isConfirming}
-                className="w-full bg-green-600 hover:bg-green-700 text-white py-3 text-lg font-semibold"
-              >
-                {isConfirming ? (
-                  <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                    Bekräftar beställning...
-                  </>
-                ) : (
-                  'Bekräfta beställning'
-                )}
-              </Button>
-
-              {(items.length === 0 || selectedDays.length === 0) && (
-                <p className="text-sm text-red-600 text-center">
-                  {items.length === 0 && "Lägg till produkter i varukorgen. "}
-                  {selectedDays.length === 0 && "Välj minst en leveransdag."}
-                </p>
-              )}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+            )}
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };
