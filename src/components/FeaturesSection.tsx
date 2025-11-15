@@ -4,7 +4,7 @@ import officeWorkersFruit from '@/assets/office-workers-fruit.jpg';
 import freeDeliveryFeature from '@/assets/free-delivery-feature.jpg';
 import seasonalFruits from '@/assets/seasonal-fruits.jpg';
 import happyEmployees from '@/assets/happy-employees.jpg';
-import ecoMilk from '@/assets/eco-milk.jpg';
+import fruitTruck from '@/assets/fruit-delivery-truck.jpg';
 
 const FeaturesSection = () => {
   const featureImages = [
@@ -34,8 +34,8 @@ const FeaturesSection = () => {
       badge: '💪 Ökar produktiviteten'
     },
     {
-      src: ecoMilk,
-      alt: 'Ekologiska produkter',
+      src: fruitTruck,
+      alt: 'Miljövänlig fruktleverans med lastbil',
       badge: '🌱 Hållbart & miljövänligt'
     }
   ];
