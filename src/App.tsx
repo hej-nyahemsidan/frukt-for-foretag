@@ -29,6 +29,7 @@ import AdminDashboard from "./admin/pages/AdminDashboard";
 import BlogHome from "./pages/BlogHome";
 import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
+import LegacyBlogRedirect from "./pages/LegacyBlogRedirect";
 import Blommor from "./pages/Blommor";
 import Varuautomat from "./pages/Varuautomat";
 import ScrollToTop from "./components/ScrollToTop";
@@ -70,6 +71,8 @@ const App = () => (
                 <Route path="/blogg" element={<BlogHome />} />
                 <Route path="/blogg/:category" element={<BlogList />} />
                 <Route path="/blogg/:category/:slug" element={<BlogPost />} />
+                {/* Legacy URL support */}
+                <Route path="/blog/:slug" element={<LegacyBlogRedirect />} />
                 <Route path="/blommor" element={<Blommor />} />
                 <Route path="/varuautomat" element={<Varuautomat />} />
                 
