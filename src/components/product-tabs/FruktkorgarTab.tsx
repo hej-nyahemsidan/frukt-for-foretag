@@ -73,16 +73,16 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
             </div>
             <div className="p-3 sm:p-4 space-y-3">
               <h3 
-                className="font-medium text-charcoal text-sm sm:text-base text-center cursor-pointer hover:text-primary transition-colors"
+                className="font-bold text-charcoal text-base sm:text-lg text-center cursor-pointer hover:text-primary hover:underline transition-all"
                 onClick={() => setSelectedProduct(product)}
               >
                 {product.name}
               </h3>
               <div className="space-y-1 text-center">
-                <div className="text-lg sm:text-xl font-semibold text-charcoal">
+                <div className="text-lg sm:text-xl font-bold text-charcoal">
                   4kg: {product.prices['4kg'] || 0} kr
                 </div>
-                <div className="text-sm text-gray-600 space-y-0.5">
+                <div className="text-sm text-charcoal space-y-0.5 font-semibold">
                   <div>6kg: {product.prices['6kg'] || 0} kr</div>
                   <div>9kg: {product.prices['9kg'] || 0} kr</div>
                   <div>11kg: {product.prices['11kg'] || 0} kr</div>
