@@ -91,7 +91,6 @@ const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays }) => {
                   image: product.image_url
                 }}
                 selectedDays={selectedDays}
-                showQuantitySelector={false}
                 className="w-full"
               />
             </div>

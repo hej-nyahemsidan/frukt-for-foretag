@@ -103,7 +103,6 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
                           image: product.image_url
                         }}
                         selectedDays={selectedDays}
-                        showQuantitySelector={false}
                         className="flex-shrink-0"
                       />
                     </div>

@@ -1,14 +1,29 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ShoppingCart, X, Plus, Minus, Trash2 } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
-const CartIndicator = () => {
+interface CartIndicatorProps {
+  onCheckout?: () => void;
+}
+
+const CartIndicator = ({ onCheckout }: CartIndicatorProps = { onCheckout: undefined }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
   const { items, getTotalItems, updateQuantity, removeItem, clearCart } = useCart();
 
   const totalItems = getTotalItems();
+
+  const handleGoToCheckout = () => {
+    setIsOpen(false);
+    if (onCheckout) {
+      onCheckout();
+    } else {
+      navigate('/dashboard');
+    }
+  };
 
   return (
     <div className="relative">
@@ -111,16 +126,20 @@ const CartIndicator = () => {
           </div>
 
           {items.length > 0 && (
-            <div className="p-4 border-t border-gray-100">
-              <div className="space-y-2">
-                <Button 
-                  variant="outline" 
-                  className="w-full text-sm"
-                  onClick={clearCart}
-                >
-                  Rensa varukorg
-                </Button>
-              </div>
+            <div className="p-4 border-t border-gray-100 space-y-2">
+              <Button 
+                onClick={handleGoToCheckout}
+                className="w-full bg-[#4CAF50] hover:bg-[#45a049] text-white"
+              >
+                Gå till kassan
+              </Button>
+              <Button 
+                variant="outline" 
+                className="w-full text-sm"
+                onClick={clearCart}
+              >
+                Rensa varukorg
+              </Button>
             </div>
           )}
         </div>

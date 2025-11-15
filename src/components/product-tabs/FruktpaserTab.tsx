@@ -89,7 +89,6 @@ const FruktpaserTab: React.FC<FruktpaserTabProps> = ({ selectedDays }) => {
                   image: product.image_url
                 }}
                 selectedDays={selectedDays}
-                showQuantitySelector={false}
                 className="w-full"
               />
             </div>

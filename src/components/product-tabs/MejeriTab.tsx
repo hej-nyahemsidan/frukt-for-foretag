@@ -89,7 +89,6 @@ const MejeriTab: React.FC<MejeriTabProps> = ({ selectedDays }) => {
                   image: product.image_url
                 }}
                 selectedDays={selectedDays}
-                showQuantitySelector={false}
                 className="w-full"
               />
             </div>
