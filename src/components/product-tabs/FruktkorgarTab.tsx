@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import AddToCartButton from '@/components/AddToCartButton';
+import { ShoppingCart } from 'lucide-react';
 
 interface FruktkorgarTabProps {
   selectedDays: string[];
@@ -59,32 +61,58 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {fruktkorgar.map((product) => (
-          <div key={product.id} className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow max-w-[280px]">
-            <div className="aspect-square bg-white overflow-hidden rounded-lg">
-              <img 
-                src={product.image_url}
-                alt={product.name}
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.currentTarget.src = '/assets/product-placeholder.jpg';
-                }}
-              />
-            </div>
-            <div className="p-2 sm:p-2.5 space-y-1">
-              <p className="text-[10px] text-gray-500 text-center">Från 4kg</p>
-              <h3 
-                className="font-bold text-charcoal text-sm text-center cursor-pointer hover:text-primary hover:underline transition-all line-clamp-2"
-                onClick={() => setSelectedProduct(product)}
-              >
-                {product.name}
-              </h3>
-              <div className="text-sm font-bold text-green-600 text-center">
-                {product.prices['4kg'] || 0} kr
+        {fruktkorgar.map((product) => {
+          const sizes = ['4kg', '6kg', '9kg', '11kg'];
+          
+          return (
+            <div key={product.id} className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              <div className="aspect-square bg-white overflow-hidden rounded-lg">
+                <img 
+                  src={product.image_url}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = '/assets/product-placeholder.jpg';
+                  }}
+                />
+              </div>
+              <div className="p-3 space-y-3">
+                <h3 
+                  className="font-bold text-charcoal text-sm text-center cursor-pointer hover:text-primary hover:underline transition-all line-clamp-2"
+                  onClick={() => setSelectedProduct(product)}
+                >
+                  {product.name}
+                </h3>
+                
+                {/* Size options grid */}
+                <div className="space-y-2">
+                  {sizes.map((size) => (
+                    <div key={size} className="flex items-center justify-between gap-2 p-2 bg-white rounded border border-gray-200">
+                      <div className="flex-1">
+                        <span className="text-xs font-medium text-gray-600">{size}</span>
+                        <span className="ml-2 text-sm font-bold text-green-600">
+                          {product.prices[size] || 0} kr
+                        </span>
+                      </div>
+                      <AddToCartButton
+                        product={{
+                          id: product.id,
+                          name: `${product.name} (${size})`,
+                          price: product.prices[size] || 0,
+                          category: product.category,
+                          image: product.image_url
+                        }}
+                        selectedDays={selectedDays}
+                        showQuantitySelector={false}
+                        className="flex-shrink-0"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
         
         {fruktkorgar.length === 0 && !loading && (
           <div className="col-span-3 text-center py-8">

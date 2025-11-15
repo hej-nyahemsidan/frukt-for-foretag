@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import AddToCartButton from '@/components/AddToCartButton';
 
 interface LaskTabProps {
   selectedDays: string[];
@@ -69,7 +70,7 @@ const LaskTab: React.FC<LaskTabProps> = ({ selectedDays }) => {
                 className="w-full h-full object-contain"
               />
             </div>
-            <div className="p-2 sm:p-2.5 space-y-1">
+            <div className="p-2 sm:p-2.5 space-y-2">
               <h3 
                 className="font-bold text-charcoal text-sm text-center cursor-pointer hover:text-primary hover:underline transition-all line-clamp-2"
                 onClick={() => setSelectedProduct(product)}
@@ -79,6 +80,18 @@ const LaskTab: React.FC<LaskTabProps> = ({ selectedDays }) => {
               <div className="text-sm font-bold text-green-600 text-center">
                 {product.prices?.default || 0} kr
               </div>
+              <AddToCartButton
+                product={{
+                  id: product.id,
+                  name: product.name,
+                  price: product.prices?.default || 0,
+                  category: product.category,
+                  image: product.image_url
+                }}
+                selectedDays={selectedDays}
+                showQuantitySelector={false}
+                className="w-full"
+              />
             </div>
           </div>
         ))}
