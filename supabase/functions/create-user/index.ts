@@ -150,49 +150,10 @@ serve(async (req) => {
 
     console.log('User created successfully:', authData.user?.id);
 
-    // Defensively ensure both customers and profiles rows exist using upserts
+    // Note: Database triggers automatically create profiles and customers rows
+    // We just need to assign the user role
     const userId = authData.user?.id;
     if (userId) {
-      // Upsert profiles row for admin dashboard
-      const { error: profileError } = await supabaseAdmin
-        .from('profiles')
-        .upsert({
-          id: userId,
-          email: authData.user?.email || '',
-          full_name: fullName || null
-        }, { 
-          onConflict: 'id',
-          ignoreDuplicates: false 
-        });
-
-      if (profileError) {
-        console.error('Error upserting profile row:', profileError);
-      } else {
-        console.log('Profile row upserted successfully');
-      }
-
-      // Upsert customers row for business logic
-      const { error: customerError } = await supabaseAdmin
-        .from('customers')
-        .upsert({
-          user_id: userId,
-          email: authData.user?.email || '',
-          contact_person: fullName || 'Ny användare',
-          company_name: companyName || 'Företag AB',
-          phone: '',
-          address: ''
-        }, { 
-          onConflict: 'user_id',
-          ignoreDuplicates: false 
-        });
-
-      if (customerError) {
-        console.error('Error upserting customer row:', customerError);
-        // Don't fail the whole operation for customer creation issues
-      } else {
-        console.log('Customer row upserted successfully');
-      }
-
       // Assign default 'user' role
       const { error: roleError } = await supabaseAdmin
         .from('user_roles')
@@ -203,10 +164,29 @@ serve(async (req) => {
 
       if (roleError) {
         console.error('Error assigning user role:', roleError);
-        // Don't fail the whole operation for role assignment issues
+        // Check if role already exists
+        if (!roleError.message?.includes('duplicate')) {
+          console.error('Failed to assign user role:', roleError);
+        }
       } else {
         console.log('User role assigned successfully');
       }
+
+      // Verify profile and customer were created by triggers
+      const { data: profile } = await supabaseAdmin
+        .from('profiles')
+        .select('id')
+        .eq('id', userId)
+        .single();
+      
+      const { data: customer } = await supabaseAdmin
+        .from('customers')
+        .select('id')
+        .eq('user_id', userId)
+        .single();
+
+      console.log('Profile created by trigger:', !!profile);
+      console.log('Customer created by trigger:', !!customer);
     }
 
     return new Response(
