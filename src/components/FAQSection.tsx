@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Plus, Minus } from 'lucide-react';
+import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 
 const FAQSection = () => {
   const [expandedItems, setExpandedItems] = useState<number[]>([]);
@@ -71,8 +72,8 @@ const FAQSection = () => {
           {/* Left Column - Text Content */}
           <div className="space-y-8">
             <div className="space-y-6">
-              <div className="inline-block">
-                <div className="h-1 w-16 bg-gradient-to-r from-green-600 to-green-400 rounded-full mb-6"></div>
+              <div className="mb-6">
+                <VitaminKorgenLogo className="h-16" />
               </div>
               <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 Har du en fråga?
