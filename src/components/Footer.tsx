@@ -9,7 +9,8 @@ import {
   Linkedin,
   Truck,
   ShieldCheck,
-  Leaf
+  Leaf,
+  ShoppingCart
 } from 'lucide-react';
 import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 
@@ -67,13 +68,19 @@ const Footer = () => {
                 <div className="p-2 bg-yellow-500/20 rounded-lg">
                   <Truck className="h-4 w-4 text-yellow-400" />
                 </div>
-                <span>Fri leverans i Stockholm</span>
+                <span>Fri leverans i hela Stockholm, Södertälje, Uppsala</span>
               </div>
               <div className="flex items-center space-x-3 text-gray-100">
                 <div className="p-2 bg-yellow-500/20 rounded-lg">
                   <ShieldCheck className="h-4 w-4 text-yellow-400" />
                 </div>
-                <span>100% Kvalitetsgaranti</span>
+                <span>100% kvalitetsgaranti</span>
+              </div>
+              <div className="flex items-center space-x-3 text-gray-100">
+                <div className="p-2 bg-yellow-500/20 rounded-lg">
+                  <ShoppingCart className="h-4 w-4 text-yellow-400" />
+                </div>
+                <span>Webshop för skafferi & snacks</span>
               </div>
             </div>
           </div>
