@@ -219,28 +219,6 @@ const AdminBlogManagement = () => {
 
   return (
     <div className="p-8">
-      {/* Debug Panel */}
-      <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-        <p className="text-sm font-medium mb-2">Debug Info:</p>
-        <p className="text-xs text-gray-700">Inloggad som: {user?.email}</p>
-        <p className="text-xs text-gray-700">Blogginlägg hittade: {posts.length}</p>
-        <Button
-          type="button"
-          size="sm"
-          className="mt-3"
-          onClick={async () => {
-            const { data, error } = await supabase
-              .from('blog_posts')
-              .select('id, title, published')
-              .limit(10);
-            console.log('Direct query result:', { data, error });
-            alert(`Hittade ${data?.length || 0} inlägg. Kolla konsolen för detaljer.`);
-          }}
-        >
-          Testa Databasanslutning
-        </Button>
-      </div>
-
       {/* Blog Posts List */}
       {loading ? (
         <div className="p-8 text-center">
