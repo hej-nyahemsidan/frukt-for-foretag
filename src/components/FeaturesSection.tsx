@@ -47,7 +47,7 @@ const FeaturesSection = () => {
           {/* Heading */}
           <div className="text-center">
             <h2 className="text-5xl font-bold text-white leading-tight">
-              Våra fördelar med fruktkorgar på jobbet
+              Våra fördelar med frukt på jobbet Stockholm
             </h2>
           </div>
 

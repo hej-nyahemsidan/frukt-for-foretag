@@ -53,11 +53,11 @@ const ProductShowcase = () => {
         {/* Header */}
         <div className="mb-12 text-center">
           <h2 className="text-4xl font-bold text-charcoal mb-4">
-            Fruktkorgar i olika format
+            Fruktkorgar till jobbet i olika format
           </h2>
           <p className="text-lg text-mediumgray max-w-4xl mx-auto leading-relaxed mb-6">
-            Upptäck vårt komplette utbud av fruktkorgar och hälsosamma mellanmål. 
-            Vi har flera artiklar och lösningar anpassade för alla typer av arbetsplatser.
+            Upptäck vårt kompletta utbud av fruktkorgar och hälsosamma mellanmål. 
+            Vi har flera artiklar och lösningar anpassade för alla typer av arbetsplatser. Frukt på jobbet Stockholm levererat direkt till kontoret.
           </p>
           <Link 
             to="/produkter" 

@@ -28,23 +28,23 @@ const SEOHead = ({
     const defaults = {
       homepage: {
         title: 'Fruktkorgar Stockholm - Fruktkorg på kontoret | Vitaminkorgen',
-        description: 'Vi levererar färska fruktkorgar på jobbet i Stockholm. Handplockade fruktkorgar direkt till kontoret varje vecka. Sedan 2021 har vi hjälpt över 150 företag att öka välmående och produktivitet.',
-        keywords: 'fruktkorgar på jobbet, fruktkorgar stockholm, fruktkorg, fruktkorg på kontoret, frukt till företag, kontorsfrukt, företagsfrukt, vitaminkorgen'
+        description: 'Vi levererar färska fruktkorgar på jobbet i Stockholm. Handplockade fruktkorgar till jobbet direkt till kontoret varje vecka. Frukt på jobbet Stockholm - Sedan 2021 har vi hjälpt över 150 företag.',
+        keywords: 'fruktkorgar, frukt på jobbet, frukt på jobbet stockholm, fruktkorgar till jobbet, fruktkorgar på jobbet, fruktkorgar stockholm, fruktkorg, fruktkorg på kontoret, frukt till företag, kontorsfrukt'
       },
       products: {
-        title: 'Produkter - Fruktkorgar och Kontorsprodukter | Vitaminkorgen',
-        description: 'Upptäck vårt sortiment av färska fruktkorgar, drycker och snacks för kontoret. Premium kvalitet levererad direkt till ert företag i Stockholm.',
-        keywords: 'fruktkorgar sortiment, kontorsprodukter, premium fruktkorgar, företagsfrukt stockholm, kontorstillbehör'
+        title: 'Produkter - Fruktkorgar till jobbet och Kontorsprodukter | Vitaminkorgen',
+        description: 'Upptäck vårt sortiment av färska fruktkorgar på jobbet, drycker och snacks för kontoret. Premium fruktkorgar Stockholm levererad direkt till ert företag.',
+        keywords: 'fruktkorgar, frukt på jobbet, fruktkorgar till jobbet, fruktkorgar sortiment, kontorsprodukter, premium fruktkorgar, företagsfrukt stockholm'
       },
       contact: {
-        title: 'Kontakt - Få offert på fruktkorgar | Vitaminkorgen Stockholm',
-        description: 'Kontakta oss för personlig offert på fruktkorgar till ert kontor. Gratis leverans i Stockholm. Ring 08-123-45-67 eller fyll i vårt kontaktformulär.',
-        keywords: 'kontakt vitaminkorgen, offert fruktkorgar, fruktkorgar stockholm kontakt, företagsfrukt offert'
+        title: 'Kontakt - Få offert på fruktkorgar till jobbet | Vitaminkorgen Stockholm',
+        description: 'Kontakta oss för personlig offert på fruktkorgar till ert kontor. Frukt på jobbet Stockholm - Gratis leverans. Ring 010-183 98 36 eller fyll i vårt kontaktformulär.',
+        keywords: 'kontakt vitaminkorgen, offert fruktkorgar, fruktkorgar till jobbet, frukt på jobbet stockholm, fruktkorgar stockholm kontakt, företagsfrukt offert'
       },
       about: {
-        title: 'Om Oss - Leverantör av fruktkorgar i Stockholm | Vitaminkorgen',
-        description: 'Sedan 2021 har Vitaminkorgen varit Stockholms pålitliga partner för kontorsfrukt. Över 150 nöjda företagskunder och tusentals levererade fruktkorgar.',
-        keywords: 'om vitaminkorgen, fruktkorgar stockholm historia, kontorsfrukt leverantör, företagsfrukt stockholm'
+        title: 'Om Oss - Leverantör av fruktkorgar på jobbet i Stockholm | Vitaminkorgen',
+        description: 'Sedan 2021 har Vitaminkorgen varit Stockholms pålitliga partner för frukt på jobbet. Över 150 nöjda företagskunder och tusentals levererade fruktkorgar till jobbet.',
+        keywords: 'om vitaminkorgen, fruktkorgar stockholm, frukt på jobbet, fruktkorgar till jobbet, kontorsfrukt leverantör, företagsfrukt stockholm'
       }
     };
     return defaults[type] || defaults.homepage;
