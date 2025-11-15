@@ -1,4 +1,4 @@
-import { useState, Fragment, useRef } from 'react';
+import { useState, Fragment, useRef, useEffect } from 'react';
 import { Menu, X, User, ChevronDown, LogOut, BookOpen, Shield } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -6,9 +6,11 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { useAuth } from '@/contexts/AuthContext';
 import { useAdminAuth } from '@/admin/contexts/AdminAuthContext';
 import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
+import { supabase } from '@/integrations/supabase/client';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [blogPosts, setBlogPosts] = useState<Array<{ title: string; slug: string; category: string }>>([]);
   const { user, logout } = useAuth();
   const { isAdmin } = useAdminAuth();
   const navigate = useNavigate();
@@ -94,18 +96,25 @@ const Header = () => {
     { label: 'Mina Sidor', href: '/dashboard', isExternal: false }, // Customer Dashboard - moved to end
   ];
 
-  const blogPosts = [
-    { 
-      title: 'Frukt på jobbet',
-      slug: 'frukt-pa-jobbet',
-      excerpt: 'Varför frukt på kontoret är en smart investering för företag.'
-    },
-    {
-      title: 'Frukt som mellanmål',
-      slug: 'frukt-som-mellanmal',
-      excerpt: 'Hälsofördelarna med att välja frukt som mellanmål.'
+  useEffect(() => {
+    fetchBlogPosts();
+  }, []);
+
+  const fetchBlogPosts = async () => {
+    const { data } = await supabase
+      .from('blog_posts')
+      .select('title, slug, category')
+      .eq('published', true)
+      .order('published_at', { ascending: false })
+      .limit(10);
+    
+    if (data) {
+      setBlogPosts(data);
     }
-  ];
+  };
+
+  const tipsPosts = blogPosts.filter(post => post.category === 'tips');
+  const receptPosts = blogPosts.filter(post => post.category === 'recept');
 
   const navigationItems = user ? customerNavigationItems : publicNavigationItems;
 
@@ -180,26 +189,53 @@ const Header = () => {
               <DropdownMenu>
                 <DropdownMenuTrigger className="transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 text-charcoal hover:text-secondary flex items-center space-x-1">
                   <BookOpen className="w-4 h-4" />
-                  <span>Blog</span>
+                  <span>Blogg</span>
                   <ChevronDown className="w-3 h-3" />
                   <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="center" className="w-80 max-h-96 overflow-y-auto bg-white/90 backdrop-blur-md border border-gray-200/50 shadow-xl rounded-lg z-50">
-                  {blogPosts.map((post, index) => (
-                    <DropdownMenuItem key={post.slug} asChild className="p-0">
-                      <Link 
-                        to={`/blog/${post.slug}`}
-                        className="block p-4 hover:bg-lightgreen/50 transition-colors"
-                      >
-                        <h3 className="font-medium text-charcoal text-sm leading-tight mb-2">
-                          {post.title}
-                        </h3>
-                        <p className="text-xs text-gray-600 leading-relaxed">
-                          {post.excerpt}
-                        </p>
-                      </Link>
-                    </DropdownMenuItem>
-                  ))}
+                  <DropdownMenuItem asChild className="p-0">
+                    <Link 
+                      to="/blogg"
+                      className="block p-4 hover:bg-lightgreen/50 transition-colors font-semibold"
+                    >
+                      Alla inlägg
+                    </Link>
+                  </DropdownMenuItem>
+                  {tipsPosts.length > 0 && (
+                    <>
+                      <div className="px-4 py-2 text-sm font-semibold text-gray-600">Tips</div>
+                      {tipsPosts.map((post) => (
+                        <DropdownMenuItem key={post.slug} asChild className="p-0">
+                          <Link 
+                            to={`/blogg/${post.category}/${post.slug}`}
+                            className="block p-4 pl-6 hover:bg-lightgreen/50 transition-colors"
+                          >
+                            <h3 className="font-medium text-charcoal text-sm leading-tight">
+                              {post.title}
+                            </h3>
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </>
+                  )}
+                  {receptPosts.length > 0 && (
+                    <>
+                      <div className="px-4 py-2 text-sm font-semibold text-gray-600">Recept</div>
+                      {receptPosts.map((post) => (
+                        <DropdownMenuItem key={post.slug} asChild className="p-0">
+                          <Link 
+                            to={`/blogg/${post.category}/${post.slug}`}
+                            className="block p-4 pl-6 hover:bg-lightgreen/50 transition-colors"
+                          >
+                            <h3 className="font-medium text-charcoal text-sm leading-tight">
+                              {post.title}
+                            </h3>
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </>
+                  )}
                 </DropdownMenuContent>
               </DropdownMenu>
             </nav>
@@ -270,26 +306,53 @@ const Header = () => {
                 <DropdownMenu>
                   <DropdownMenuTrigger className="transition-all duration-200 font-medium text-sm tracking-wide relative group px-3 py-2 text-charcoal hover:text-secondary flex items-center space-x-1 whitespace-nowrap">
                     <BookOpen className="w-3 h-3" />
-                    <span>Blog</span>
+                    <span>Blogg</span>
                     <ChevronDown className="w-2 h-2" />
                     <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="center" className="w-72 max-h-80 overflow-y-auto bg-white/90 backdrop-blur-md border border-gray-200/50 shadow-xl rounded-lg z-50">
-                    {blogPosts.map((post, index) => (
-                      <DropdownMenuItem key={post.slug} asChild className="p-0">
-                        <Link 
-                          to={`/blog/${post.slug}`}
-                          className="block p-3 hover:bg-lightgreen/50 transition-colors"
-                        >
-                          <h3 className="font-medium text-charcoal text-xs leading-tight mb-1">
-                            {post.title}
-                          </h3>
-                          <p className="text-xs text-gray-600 leading-relaxed">
-                            {post.excerpt}
-                          </p>
-                        </Link>
-                      </DropdownMenuItem>
-                    ))}
+                    <DropdownMenuItem asChild className="p-0">
+                      <Link 
+                        to="/blogg"
+                        className="block p-3 hover:bg-lightgreen/50 transition-colors font-semibold"
+                      >
+                        Alla inlägg
+                      </Link>
+                    </DropdownMenuItem>
+                    {tipsPosts.length > 0 && (
+                      <>
+                        <div className="px-3 py-1.5 text-xs font-semibold text-gray-600">Tips</div>
+                        {tipsPosts.map((post) => (
+                          <DropdownMenuItem key={post.slug} asChild className="p-0">
+                            <Link 
+                              to={`/blogg/${post.category}/${post.slug}`}
+                              className="block p-3 pl-5 hover:bg-lightgreen/50 transition-colors"
+                            >
+                              <h3 className="font-medium text-charcoal text-xs leading-tight">
+                                {post.title}
+                              </h3>
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </>
+                    )}
+                    {receptPosts.length > 0 && (
+                      <>
+                        <div className="px-3 py-1.5 text-xs font-semibold text-gray-600">Recept</div>
+                        {receptPosts.map((post) => (
+                          <DropdownMenuItem key={post.slug} asChild className="p-0">
+                            <Link 
+                              to={`/blogg/${post.category}/${post.slug}`}
+                              className="block p-3 pl-5 hover:bg-lightgreen/50 transition-colors"
+                            >
+                              <h3 className="font-medium text-charcoal text-xs leading-tight">
+                                {post.title}
+                              </h3>
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </>
+                    )}
                   </DropdownMenuContent>
                 </DropdownMenu>
               </nav>
