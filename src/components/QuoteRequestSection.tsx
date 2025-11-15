@@ -78,11 +78,11 @@ const QuoteRequestSection = () => {
               
               <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  Vi är ett gäng glada och entusiastiska frukttokiga personer som brinner för att leverera den absolut fräschaste och mest smakrika frukten till våra kunder.
+                  Vi är ett gäng glada och entusiastiska personer som brinner för att leverera den absolut fräschaste och mest smakrika frukten till våra kunder.
                 </p>
                 
                 <p>
-                  Om du har några frågor, funderingar eller bara vill höra vår passionerade presentation av våra frukter, tveka inte att kontakta oss. Vi ser fram emot att höra från dig!
+                  Vill du beställa en gratis provkorg? Fyll i formuläret så hör vi av oss och sätter upp en leverans. Om du har några frågor eller funderingar, tveka inte att kontakta oss. Vi ser fram emot att höra från dig!
                 </p>
               </div>
             </div>
@@ -92,7 +92,7 @@ const QuoteRequestSection = () => {
               {/* Promotional Bubble */}
               <div className="mb-6 text-center">
                 <div className="inline-block bg-gradient-to-r from-secondary to-primary-light text-white px-6 py-3 rounded-full shadow-lg">
-                  <span className="font-semibold">🎉 Testa oss gratis i två veckor</span>
+                  <span className="font-semibold">🎉 Beställ en gratis provkorg</span>
                 </div>
               </div>
               
