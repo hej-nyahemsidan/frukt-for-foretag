@@ -73,7 +73,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
             </div>
             <div className="p-3 sm:p-4 space-y-2">
               <p className="text-xs text-gray-500 text-center">Från 4kg</p>
-              <div className="text-xl sm:text-2xl font-bold text-charcoal text-center">
+              <div className="text-xs font-bold text-primary text-center">
                 {product.prices['4kg'] || 0} kr
               </div>
               <h3 
