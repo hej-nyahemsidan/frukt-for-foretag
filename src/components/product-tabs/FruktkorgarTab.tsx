@@ -58,7 +58,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {fruktkorgar.map((product) => (
           <div key={product.id} className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow max-w-[280px]">
             <div className="aspect-square bg-white overflow-hidden rounded-lg">
