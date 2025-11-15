@@ -170,13 +170,6 @@ const AddToCartButton = ({
         </div>
       )}
 
-      {/* Price Display */}
-      {!showSizeSelector && (
-        <div className="text-sm text-center text-muted-foreground mb-2">
-          {getCurrentPrice()} kr
-        </div>
-      )}
-
       {/* Add to Cart Button */}
       <Button
         onClick={handleAddToCart}
