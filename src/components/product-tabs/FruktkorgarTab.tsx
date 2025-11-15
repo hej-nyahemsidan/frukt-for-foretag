@@ -22,6 +22,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
   const [fruktkorgar, setFruktkorgar] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedSizes, setSelectedSizes] = useState<Record<string, string>>({});
 
   useEffect(() => {
     fetchFruktkorgar();
@@ -44,6 +45,13 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
       }));
 
       setFruktkorgar(typedProducts);
+      
+      // Initialize selected sizes for all products
+      const initialSizes: Record<string, string> = {};
+      typedProducts.forEach(product => {
+        initialSizes[product.id] = '4kg';
+      });
+      setSelectedSizes(initialSizes);
     } catch (error) {
       console.error('Error fetching fruktkorgar:', error);
     } finally {
@@ -63,8 +71,8 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {fruktkorgar.map((product) => {
-          const [selectedSize, setSelectedSize] = useState('4kg');
           const sizes = ['4kg', '6kg', '9kg', '11kg'];
+          const currentSize = selectedSizes[product.id] || '4kg';
           
           return (
             <div key={product.id} className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
@@ -89,7 +97,10 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
                 {/* Single size selector */}
                 <div className="space-y-3 p-3 bg-white rounded border border-gray-200">
                   <div className="flex items-center justify-between gap-2">
-                    <Select value={selectedSize} onValueChange={setSelectedSize}>
+                    <Select 
+                      value={currentSize} 
+                      onValueChange={(value) => setSelectedSizes(prev => ({ ...prev, [product.id]: value }))}
+                    >
                       <SelectTrigger className="w-24">
                         <SelectValue />
                       </SelectTrigger>
@@ -102,15 +113,15 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
                       </SelectContent>
                     </Select>
                     <span className="text-lg font-bold text-green-600">
-                      {product.prices[selectedSize] || 0} kr
+                      {product.prices[currentSize] || 0} kr
                     </span>
                   </div>
                   
                   <AddToCartButton
                     product={{
                       id: product.id,
-                      name: `${product.name} (${selectedSize})`,
-                      price: product.prices[selectedSize] || 0,
+                      name: `${product.name} (${currentSize})`,
+                      price: product.prices[currentSize] || 0,
                       category: product.category,
                       image: product.image_url
                     }}
