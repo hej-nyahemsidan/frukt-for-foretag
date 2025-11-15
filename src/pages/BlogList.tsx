@@ -79,34 +79,21 @@ const BlogList = () => {
               {posts.map((post) => (
                 <Link key={post.id} to={`/blogg/${post.category}/${post.slug}`}>
                   <Card className="hover:shadow-lg transition-shadow">
-                    <div className="md:flex">
-                      {post.image_url && (
-                        <div className="md:w-1/3">
-                          <img
-                            src={post.image_url}
-                            alt={post.title}
-                            className="w-full h-48 md:h-full object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none"
-                          />
-                        </div>
-                      )}
-                      <div className={post.image_url ? 'md:w-2/3' : 'w-full'}>
-                        <CardHeader>
-                          <CardTitle className="text-2xl">{post.title}</CardTitle>
-                          <CardDescription>
-                            {post.author} •{' '}
-                            {format(new Date(post.published_at), 'dd MMMM yyyy', { locale: sv })}
-                          </CardDescription>
-                        </CardHeader>
-                        {post.excerpt && (
-                          <CardContent>
-                            <p className="text-muted-foreground line-clamp-3">{post.excerpt}</p>
-                            <Button variant="link" className="mt-4 px-0">
-                              Läs mer →
-                            </Button>
-                          </CardContent>
-                        )}
-                      </div>
-                    </div>
+                    <CardHeader>
+                      <CardTitle className="text-2xl">{post.title}</CardTitle>
+                      <CardDescription>
+                        {post.author} •{' '}
+                        {format(new Date(post.published_at), 'dd MMMM yyyy', { locale: sv })}
+                      </CardDescription>
+                    </CardHeader>
+                    {post.excerpt && (
+                      <CardContent>
+                        <p className="text-muted-foreground line-clamp-3">{post.excerpt}</p>
+                        <Button variant="link" className="mt-4 px-0">
+                          Läs mer →
+                        </Button>
+                      </CardContent>
+                    )}
                   </Card>
                 </Link>
               ))}
