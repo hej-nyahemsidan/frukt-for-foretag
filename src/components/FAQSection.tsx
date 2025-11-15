@@ -73,7 +73,7 @@ const FAQSection = () => {
           <div className="space-y-8">
             <div className="space-y-6">
               <div className="mb-6">
-                <VitaminKorgenLogo className="h-16" />
+                <VitaminKorgenLogo className="h-20 opacity-90" />
               </div>
               <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 Har du en fråga?
