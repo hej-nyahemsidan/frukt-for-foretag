@@ -4,6 +4,8 @@ import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Check } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
@@ -27,6 +29,7 @@ const SimplifiedCheckout = ({
   const { toast } = useToast();
   const [isConfirming, setIsConfirming] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
+  const [message, setMessage] = useState('');
 
   const getOrderTypeText = (type: string) => {
     return type === 'subscription' ? 'Prenumeration' : 'Engångsköp';
@@ -60,6 +63,7 @@ const SimplifiedCheckout = ({
             assignedDay: item.assignedDay,
           })),
           totalPrice: calculateTotal(),
+          message: message.trim() || undefined,
         }
       });
 
@@ -192,7 +196,25 @@ const SimplifiedCheckout = ({
 
           {/* Confirmation Section */}
           <div className="pt-6 border-t mt-6">
-            <h3 className="font-semibold text-charcoal mb-4">Bekräfta och slutför</h3>
+            <h3 className="font-semibold text-charcoal mb-4">Meddelande (valfritt)</h3>
+            <div className="mb-4">
+              <Label htmlFor="order-message" className="text-sm text-muted-foreground mb-2 block">
+                Lägg till extra information om din beställning
+              </Label>
+              <Textarea
+                id="order-message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="T.ex. särskilda leveransinstruktioner, allergier, eller andra önskemål..."
+                className="min-h-[100px] resize-none"
+                maxLength={500}
+              />
+              <p className="text-xs text-muted-foreground mt-1 text-right">
+                {message.length}/500 tecken
+              </p>
+            </div>
+
+            <h3 className="font-semibold text-charcoal mb-4 mt-6">Bekräfta och slutför</h3>
             
             <Button
               onClick={handleConfirmOrder}

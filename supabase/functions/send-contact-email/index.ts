@@ -35,6 +35,7 @@ interface ContactEmailRequest {
     assignedDay?: string;
   }>;
   totalPrice?: number;
+  message?: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -65,6 +66,13 @@ const handler = async (req: Request): Promise<Response> => {
           <h3 style="color: #4CAF50; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 20px;">Beställningsdetaljer</h3>
           <p><strong>Typ:</strong> ${data.orderType || 'Ej angivet'}</p>
           <p><strong>Leveransdagar:</strong> ${data.selectedDays?.join(', ') || 'Inga dagar valda'}</p>
+          
+          ${data.message ? `
+          <h3 style="color: #4CAF50; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 20px;">Meddelande från kund</h3>
+          <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #4CAF50; margin-bottom: 20px;">
+            <p style="margin: 0; white-space: pre-wrap;">${data.message.replace(/\n/g, '<br>')}</p>
+          </div>
+          ` : ''}
           
           <h3 style="color: #4CAF50; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 20px;">Produkter</h3>
           <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
