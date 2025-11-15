@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { MapPin, Phone, Clock, MessageCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/integrations/supabase/client';
 
 // Import images
 import officeWellnessImage from '@/assets/office-wellness.jpg';
@@ -17,24 +18,57 @@ const QuoteRequestSection = () => {
     location: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const { toast } = useToast();
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     
-    // Create mailto link with form data
-    const subject = encodeURIComponent('Offertförfrågan från webbsidan');
-    const body = encodeURIComponent(`Företagsnamn: ${formData.companyName}\nKontaktperson: ${formData.contactPerson}\nE-post: ${formData.email}\nTelefon: ${formData.phone}\nOrt: ${formData.location}\n\nMeddelande:\n${formData.message}`);
-    const mailtoLink = `mailto:info@vitaminkorgen.se?subject=${subject}&body=${body}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
-    
-    toast({
-      title: "E-postklient öppnas...",
-      description: "Skicka e-posten från din e-postklient för att skicka offertförfrågan.",
-    });
+    // Validate inputs
+    if (!formData.companyName.trim() || !formData.contactPerson.trim() || !formData.email.trim()) {
+      toast({
+        title: "Fyll i alla obligatoriska fält",
+        description: "Företagsnamn, kontaktperson och e-post måste fyllas i.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          formType: 'Offertförfrågan',
+          companyName: formData.companyName,
+          contactPerson: formData.contactPerson,
+          email: formData.email,
+          phone: formData.phone,
+          location: formData.location,
+          message: formData.message,
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Offertförfrågan skickad!",
+        description: "Vi återkommer så snart som möjligt med en offert.",
+      });
+
+      // Clear form
+      setFormData({ companyName: '', contactPerson: '', email: '', phone: '', location: '', message: '' });
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Något gick fel",
+        description: "Kunde inte skicka offertförfrågan. Försök igen senare.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -164,12 +198,13 @@ const QuoteRequestSection = () => {
                      />
                    </div>
                   
-                  <Button 
-                    type="submit" 
-                    className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg rounded-lg w-full"
-                  >
-                    Skicka
-                  </Button>
+                   <Button 
+                     type="submit" 
+                     disabled={isSubmitting}
+                     className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg rounded-lg w-full disabled:opacity-50"
+                   >
+                     {isSubmitting ? 'Skickar...' : 'Skicka offertförfrågan'}
+                   </Button>
                 </form>
               </div>
             </div>
