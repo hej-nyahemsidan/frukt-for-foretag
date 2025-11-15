@@ -78,7 +78,7 @@ const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays }) => {
               >
                 {product.name}
               </h3>
-              <div className="text-xl sm:text-2xl font-bold text-charcoal text-center">
+              <div className="text-base sm:text-lg font-bold text-green-600 text-center">
                 {product.prices?.default || 0} kr
               </div>
             </div>
