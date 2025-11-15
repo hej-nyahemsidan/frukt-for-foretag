@@ -35,9 +35,7 @@ const HeroSection = () => {
               </h1>
               
               <p className="text-base sm:text-lg leading-relaxed text-slate-600 max-w-lg">
-                Vi levererar handplockade fruktkorgar direkt till ert kontor i Stockholm. 
-                Sedan 2021 har vi försett över 150 företag med färsk energi, ökad produktivitet och 
-                bättre välmående genom våra premiumprodukter.
+                Vi levererar noggrant utvalda fruktkorgar av högsta kvalitet direkt till ert kontor i Stockholm. Med färska frukter och personlig service hjälper vi företag att främja energi, fokus och välmående på arbetsplatsen. Våra nöjda kunder uppskattar vår pålitlighet, höga standard och smidiga leveranser – varje vecka.
               </p>
               
               {/* Promotional Button */}
@@ -47,7 +45,7 @@ const HeroSection = () => {
               >
                 <a href="/offertforfragan" className="flex items-center justify-center gap-2">
                   <span>🎉</span>
-                  <span>Testa fruktkorgar i två veckor gratis</span>
+                  <span>Beställ en gratis provkorg</span>
                 </a>
               </Button>
               
