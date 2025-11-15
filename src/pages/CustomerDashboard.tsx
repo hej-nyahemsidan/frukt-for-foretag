@@ -119,9 +119,9 @@ const CustomerDashboard = () => {
           Beställ Fruktkorg
         </h1>
         
-        <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8">
-          {/* Sidebar - Full width on mobile, 30% on desktop */}
-          <div className="w-full lg:w-[30%] order-2 lg:order-1">
+        <div className="flex flex-col gap-6 sm:gap-8">
+          {/* Order Selection Section - Now on top */}
+          <div className="w-full">
             <OrderSidebar 
               packagePlan={packagePlan}
               setPackagePlan={setPackagePlan}
@@ -131,8 +131,8 @@ const CustomerDashboard = () => {
             />
           </div>
           
-          {/* Main Area - Full width on mobile, 70% on desktop */}
-          <div className="w-full lg:w-[70%] order-1 lg:order-2">
+          {/* Products Section - Now below */}
+          <div className="w-full">
             <ProductDisplay 
               activeCategory={activeCategory}
               setActiveCategory={setActiveCategory}

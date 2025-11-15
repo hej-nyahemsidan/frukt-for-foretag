@@ -84,17 +84,24 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
   return (
     <div className="bg-gray-100 p-4 sm:p-6 rounded-lg shadow-sm border">
       {/* Step Indicator */}
-      <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-4 mb-6 sm:mb-8">
+      <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-3 mb-6 sm:mb-8">
         <div className="flex items-center gap-1 sm:gap-2">
           <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#6B6B6B] text-white flex items-center justify-center text-xs sm:text-sm font-medium">
             1
           </div>
           <span className="text-xs sm:text-sm font-medium text-charcoal">Välj dag</span>
         </div>
-        <div className="w-4 sm:w-8 border-t border-mediumgray"></div>
+        <div className="w-4 sm:w-6 border-t border-mediumgray"></div>
         <div className="flex items-center gap-1 sm:gap-2">
           <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-[#6B6B6B] text-[#6B6B6B] flex items-center justify-center text-xs sm:text-sm font-medium">
             2
+          </div>
+          <span className="text-xs sm:text-sm text-[#6B6B6B]">Välj produkter</span>
+        </div>
+        <div className="w-4 sm:w-6 border-t border-mediumgray"></div>
+        <div className="flex items-center gap-1 sm:gap-2">
+          <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-[#6B6B6B] text-[#6B6B6B] flex items-center justify-center text-xs sm:text-sm font-medium">
+            3
           </div>
           <span className="text-xs sm:text-sm text-[#6B6B6B]">Slutför</span>
         </div>
