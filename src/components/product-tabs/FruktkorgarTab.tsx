@@ -72,6 +72,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
               />
             </div>
             <div className="p-3 sm:p-4 space-y-2">
+              <p className="text-xs text-gray-500 text-center">Från 4kg</p>
               <h3 
                 className="font-bold text-charcoal text-base sm:text-lg text-center cursor-pointer hover:text-primary hover:underline transition-all"
                 onClick={() => setSelectedProduct(product)}
@@ -81,7 +82,6 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
               <div className="text-base sm:text-lg font-bold text-green-600 text-center">
                 {product.prices['4kg'] || 0} kr
               </div>
-              <p className="text-xs text-gray-500 text-center">Från 4kg</p>
             </div>
           </div>
         ))}
