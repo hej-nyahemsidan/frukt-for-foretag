@@ -75,7 +75,11 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
           const currentSize = selectedSizes[product.id] || '4kg';
           
           return (
-            <div key={product.id} className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <div 
+              key={product.id} 
+              className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer"
+              onClick={() => setSelectedProduct(product)}
+            >
               <div className="aspect-square bg-white overflow-hidden rounded-lg">
                 <img 
                   src={product.image_url}
@@ -87,15 +91,12 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
                 />
               </div>
               <div className="p-3 space-y-3">
-                <h3 
-                  className="font-bold text-charcoal text-sm text-center cursor-pointer hover:text-primary hover:underline transition-all line-clamp-2"
-                  onClick={() => setSelectedProduct(product)}
-                >
+                <h3 className="font-bold text-charcoal text-sm text-center line-clamp-2">
                   {product.name}
                 </h3>
                 
                 {/* Single size selector */}
-                <div className="space-y-3 p-3 bg-white rounded border border-gray-200">
+                <div className="space-y-3 p-3 bg-white rounded border border-gray-200" onClick={(e) => e.stopPropagation()}>
                   <div className="flex items-center justify-between gap-2">
                     <Select 
                       value={currentSize} 
