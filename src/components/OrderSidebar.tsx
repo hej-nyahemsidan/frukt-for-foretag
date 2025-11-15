@@ -24,6 +24,13 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
   const days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
   const [orderType, setOrderType] = useState('subscription');
 
+  // Auto-set package plan to weekly when subscription is selected
+  useEffect(() => {
+    if (orderType === 'subscription') {
+      setPackagePlan('weekly');
+    }
+  }, [orderType, setPackagePlan]);
+
   // Filter days based on order type and package plan
   const availableDays = (orderType === 'subscription' && packagePlan === 'weekly') 
     ? ['Måndag', 'Onsdag'] 
@@ -116,30 +123,6 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDa
         </RadioGroup>
       </div>
 
-      {/* Package Plan Section - Only show for subscription */}
-      {orderType === 'subscription' && (
-        <div className="mb-6 sm:mb-8">
-          <h3 className="text-base sm:text-lg font-semibold text-charcoal mb-3 sm:mb-4">Paketplan</h3>
-          <RadioGroup value={packagePlan} onValueChange={setPackagePlan} className="space-y-3">
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem 
-                value="weekly" 
-                id="weekly" 
-                className="border-[#4CAF50] text-[#4CAF50] data-[state=checked]:bg-[#4CAF50]" 
-              />
-              <Label htmlFor="weekly" className="text-charcoal">Veckovis</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem 
-                value="monthly" 
-                id="monthly"
-                className="border-[#4CAF50] text-[#4CAF50] data-[state=checked]:bg-[#4CAF50]"
-              />
-              <Label htmlFor="monthly" className="text-charcoal">Månadsvis</Label>
-            </div>
-          </RadioGroup>
-        </div>
-      )}
 
       {/* Select Days Section */}
       <div className="mb-6 sm:mb-8">
