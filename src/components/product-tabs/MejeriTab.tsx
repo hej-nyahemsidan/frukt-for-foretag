@@ -71,12 +71,12 @@ const MejeriTab: React.FC<MejeriTabProps> = ({ selectedDays }) => {
             </div>
             <div className="p-3 sm:p-4 space-y-3">
               <h3 
-                className="font-medium text-charcoal text-xs sm:text-sm text-center cursor-pointer hover:text-primary transition-colors"
+                className="font-bold text-charcoal text-base sm:text-lg text-center cursor-pointer hover:text-primary hover:underline transition-all"
                 onClick={() => setSelectedProduct(product)}
               >
                 {product.name}
               </h3>
-              <div className="text-xl sm:text-2xl font-semibold text-charcoal text-center">
+              <div className="text-xl sm:text-2xl font-bold text-charcoal text-center">
                 {product.prices?.default || 0} kr
               </div>
             </div>
