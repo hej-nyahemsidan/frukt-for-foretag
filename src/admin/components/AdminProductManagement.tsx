@@ -55,7 +55,7 @@ const AdminProductManagement = () => {
     { value: 'mejeri', label: 'Mejeri' },
     { value: 'lask', label: 'Läsk' },
     { value: 'kaffe', label: 'Kaffe & Te' },
-    { value: 'annat', label: 'Annat' }
+    { value: 'annat', label: 'Skafferi' }
   ];
 
   const sizeOptions = ['4kg', '6kg', '9kg', '11kg'];
