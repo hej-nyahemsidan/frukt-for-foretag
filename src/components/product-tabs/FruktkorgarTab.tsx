@@ -71,23 +71,17 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
                 }}
               />
             </div>
-            <div className="p-3 sm:p-4 space-y-3">
+            <div className="p-3 sm:p-4 space-y-2">
+              <p className="text-xs text-gray-500 text-center">Från 4kg</p>
+              <div className="text-xl sm:text-2xl font-bold text-charcoal text-center">
+                {product.prices['4kg'] || 0} kr
+              </div>
               <h3 
                 className="font-bold text-charcoal text-base sm:text-lg text-center cursor-pointer hover:text-primary hover:underline transition-all"
                 onClick={() => setSelectedProduct(product)}
               >
                 {product.name}
               </h3>
-              <div className="space-y-1 text-center">
-                <div className="text-base sm:text-lg font-bold text-charcoal">
-                  4kg: {product.prices['4kg'] || 0} kr
-                </div>
-                <div className="text-base sm:text-lg text-charcoal space-y-0.5 font-bold">
-                  <div>6kg: {product.prices['6kg'] || 0} kr</div>
-                  <div>9kg: {product.prices['9kg'] || 0} kr</div>
-                  <div>11kg: {product.prices['11kg'] || 0} kr</div>
-                </div>
-              </div>
             </div>
           </div>
         ))}
@@ -112,9 +106,28 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
                 className="w-full rounded-lg"
               />
             )}
-            <p className="text-sm text-gray-600">
-              {selectedProduct?.description || 'Ingen beskrivning tillgänglig.'}
-            </p>
+            {selectedProduct?.description && (
+              <p className="text-sm text-gray-600">
+                {selectedProduct.description}
+              </p>
+            )}
+            <div className="space-y-2 pt-2 border-t">
+              <h4 className="font-semibold text-charcoal">Priser:</h4>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="text-sm">
+                  <span className="font-medium">4kg:</span> {selectedProduct?.prices['4kg'] || 0} kr
+                </div>
+                <div className="text-sm">
+                  <span className="font-medium">6kg:</span> {selectedProduct?.prices['6kg'] || 0} kr
+                </div>
+                <div className="text-sm">
+                  <span className="font-medium">9kg:</span> {selectedProduct?.prices['9kg'] || 0} kr
+                </div>
+                <div className="text-sm">
+                  <span className="font-medium">11kg:</span> {selectedProduct?.prices['11kg'] || 0} kr
+                </div>
+              </div>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
