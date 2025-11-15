@@ -15,7 +15,7 @@ const FAQSection = () => {
     },
     {
       question: "Vilka områden levererar ni fruktkorgar till?",
-      answer: "Vi levererar fruktkorgar på jobbet till hela Stockholmsområdet. Från city till förorterna – fri leverans överallt inom tullarna."
+      answer: "Vi levererar fruktkorgar på jobbet till hela Stockholm, Södertälje och Uppsala – fri leverans överallt."
     },
     {
       question: "Kan vi få en provleverans av fruktkorg på kontoret?",
@@ -23,7 +23,7 @@ const FAQSection = () => {
     },
     {
       question: "Hur mycket kostar fruktkorgar från Vitaminkorgen?",
-      answer: "Priserna för våra fruktkorgar på jobbet börjar från 230 kr per vecka. Kontakta oss för en skräddarsydd offert baserad på antal medarbetare."
+      answer: "Priserna för våra fruktkorgar på jobbet börjar från 230 kr per vecka. Se alla priser på vår hemsida eller kontakta oss för en skräddarsydd offert baserad på antal medarbetare."
     },
     {
       question: "Kan man anpassa fruktkorgar efter allergier?",
