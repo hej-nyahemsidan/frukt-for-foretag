@@ -5,7 +5,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { useToast } from '@/hooks/use-toast';
@@ -43,8 +42,6 @@ const AdminBlogManagement = () => {
     slug: '',
     content: '',
     excerpt: '',
-    image_url: '',
-    category: 'tips' as 'tips' | 'recept',
     author: 'Vitaminkorgen',
     published: false,
   });
@@ -111,6 +108,8 @@ const AdminBlogManagement = () => {
     try {
       const postData = {
         ...formData,
+        category: 'tips', // Default category since we removed the selector
+        image_url: null, // No images anymore
         published_at: formData.published ? new Date().toISOString() : null,
       };
 
@@ -159,8 +158,6 @@ const AdminBlogManagement = () => {
       slug: post.slug,
       content: post.content,
       excerpt: post.excerpt || '',
-      image_url: post.image_url || '',
-      category: post.category,
       author: post.author,
       published: post.published,
     });
@@ -210,8 +207,6 @@ const AdminBlogManagement = () => {
       slug: '',
       content: '',
       excerpt: '',
-      image_url: '',
-      category: 'tips',
       author: 'Vitaminkorgen',
       published: false,
     });
@@ -240,7 +235,6 @@ const AdminBlogManagement = () => {
                 <thead>
                   <tr className="border-b">
                     <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">Titel</th>
-                    <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">Kategori</th>
                     <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">Status</th>
                     <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">Skapad</th>
                     <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">Åtgärder</th>
@@ -250,7 +244,6 @@ const AdminBlogManagement = () => {
                   {posts.map((post) => (
                     <tr key={post.id}>
                       <td className="px-4 py-4 text-sm font-medium">{post.title}</td>
-                      <td className="px-4 py-4 text-sm capitalize">{post.category}</td>
                       <td className="px-4 py-4 text-sm">
                         {post.published ? (
                           <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
@@ -344,22 +337,6 @@ const AdminBlogManagement = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="category">Kategori *</Label>
-                <Select
-                  value={formData.category}
-                  onValueChange={(value: 'tips' | 'recept') => setFormData({ ...formData, category: value })}
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="tips">Tips</SelectItem>
-                    <SelectItem value="recept">Recept</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="space-y-2">
                 <Label htmlFor="excerpt">Utdrag</Label>
                 <Textarea
                   id="excerpt"
@@ -372,6 +349,33 @@ const AdminBlogManagement = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="content">Innehåll *</Label>
+                <div className="flex gap-2 mb-2">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      const textarea = document.getElementById('content') as HTMLTextAreaElement;
+                      if (!textarea) return;
+                      const start = textarea.selectionStart;
+                      const end = textarea.selectionEnd;
+                      const selectedText = formData.content.substring(start, end);
+                      const newText = formData.content.substring(0, start) + 
+                        '**' + selectedText + '**' + 
+                        formData.content.substring(end);
+                      setFormData({ ...formData, content: newText });
+                      setTimeout(() => {
+                        textarea.focus();
+                        textarea.setSelectionRange(start + 2, end + 2);
+                      }, 0);
+                    }}
+                  >
+                    <strong>B</strong>
+                  </Button>
+                  <span className="text-xs text-muted-foreground flex items-center">
+                    Markera text och klicka på B för att göra den fet
+                  </span>
+                </div>
                 <Textarea
                   id="content"
                   value={formData.content}
@@ -382,19 +386,8 @@ const AdminBlogManagement = () => {
                   className="font-mono text-sm"
                 />
                 <p className="text-xs text-muted-foreground">
-                  Markdown-formatering stöds
+                  Använd **text** för att göra text fet
                 </p>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="image_url">Bild-URL</Label>
-                <Input
-                  id="image_url"
-                  value={formData.image_url}
-                  onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
-                  placeholder="https://example.com/image.jpg"
-                  type="url"
-                />
               </div>
 
               <div className="space-y-2">
