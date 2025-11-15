@@ -388,18 +388,18 @@ const AdminProductManagement = () => {
               <span className="sm:hidden">Lägg till</span>
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-md sm:max-w-lg p-0">
+          <DialogContent className="max-w-md sm:max-w-lg p-0 flex flex-col max-h-[90vh]">
+            <DialogHeader className="p-4 pb-3 border-b shrink-0">
+              <DialogTitle>Lägg till ny produkt</DialogTitle>
+            </DialogHeader>
+            
             <form 
               onSubmit={(e) => {
                 e.preventDefault();
                 handleAddProduct();
               }}
-              className="max-h-[85vh] flex flex-col"
+              className="flex flex-col flex-1 min-h-0"
             >
-              <DialogHeader className="p-4 pb-3 border-b">
-                <DialogTitle>Lägg till ny produkt</DialogTitle>
-              </DialogHeader>
-              
               <div className="flex-1 overflow-y-auto p-4 space-y-4">
                 <div>
                   <Label htmlFor="name">Produktnamn</Label>
@@ -494,7 +494,7 @@ const AdminProductManagement = () => {
                 </div>
               </div>
               
-              <div className="border-t bg-background p-3 sticky bottom-0 flex justify-end gap-2">
+              <div className="border-t bg-background p-3 shrink-0 flex justify-end gap-2">
                 <Button
                   type="button"
                   variant="outline"
