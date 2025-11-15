@@ -79,10 +79,10 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
                 {product.name}
               </h3>
               <div className="space-y-1 text-center">
-                <div className="text-lg sm:text-xl font-bold text-charcoal">
+                <div className="text-base sm:text-lg font-bold text-charcoal">
                   4kg: {product.prices['4kg'] || 0} kr
                 </div>
-                <div className="text-sm text-charcoal space-y-0.5 font-semibold">
+                <div className="text-base sm:text-lg text-charcoal space-y-0.5 font-bold">
                   <div>6kg: {product.prices['6kg'] || 0} kr</div>
                   <div>9kg: {product.prices['9kg'] || 0} kr</div>
                   <div>11kg: {product.prices['11kg'] || 0} kr</div>
