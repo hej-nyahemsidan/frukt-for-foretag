@@ -109,11 +109,11 @@ serve(async (req) => {
     }
 
     // Finally, delete the auth user using admin API
-    const { error: authError } = await supabaseAdmin.auth.admin.deleteUser(userId);
+    const { error: deleteError } = await supabaseAdmin.auth.admin.deleteUser(userId);
 
-    if (authError) {
-      console.error('Auth error:', authError);
-      throw authError;
+    if (deleteError) {
+      console.error('Auth delete error:', deleteError);
+      throw deleteError;
     }
 
     console.log('User deleted successfully:', userId);
