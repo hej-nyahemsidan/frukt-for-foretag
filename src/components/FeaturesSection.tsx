@@ -79,7 +79,7 @@ const FeaturesSection = () => {
                 Nöjda kunder över hela Stockholm
               </h3>
               <p className="text-white/90 text-sm leading-relaxed">
-                Tusentals företag litar på oss för att leverera färsk frukt varje vecka.
+                Företag över hela Stockholm litar på oss för att leverera färsk frukt varje vecka.
               </p>
             </div>
           </div>
