@@ -13,9 +13,10 @@ interface ProductDisplayProps {
   activeCategory: string;
   setActiveCategory: (category: string) => void;
   selectedDays: string[];
+  onCheckout?: () => void;
 }
 
-const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays }: ProductDisplayProps) => {
+const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays, onCheckout }: ProductDisplayProps) => {
   const isMobile = useIsMobile();
   
   return (
@@ -26,7 +27,7 @@ const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays }: Pro
           {isMobile && (
             <h2 className="text-sm font-medium text-charcoal">Produkter</h2>
           )}
-          <CartIndicator />
+          <CartIndicator onCheckout={onCheckout} />
         </div>
       </div>
       

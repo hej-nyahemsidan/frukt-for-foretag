@@ -89,7 +89,6 @@ const KaffeTeTab: React.FC<KaffeTeTabProps> = ({ selectedDays }) => {
                   image: product.image_url
                 }}
                 selectedDays={selectedDays}
-                showQuantitySelector={false}
                 className="w-full"
               />
             </div>

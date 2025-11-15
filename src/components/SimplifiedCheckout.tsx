@@ -9,12 +9,14 @@ import { Check } from 'lucide-react';
 
 interface SimplifiedCheckoutProps {
   packagePlan: string;
+  orderType: string;
   selectedDays: string[];
   onBack: () => void;
 }
 
 const SimplifiedCheckout = ({
   packagePlan,
+  orderType,
   selectedDays,
   onBack
 }) => {
@@ -25,21 +27,8 @@ const SimplifiedCheckout = ({
   const [isConfirming, setIsConfirming] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
 
-  const getPlanText = (plan: string) => {
-    switch (plan) {
-      case 'weekly': return 'Veckovis';
-      case 'monthly': return 'Månadsvis';
-      case 'yearly': return 'Årsvis';
-      default: return plan;
-    }
-  };
-
-  const getCostDescription = (plan: string) => {
-    switch (plan) {
-      case 'weekly': return 'Detta är din veckokostnad för den valda leveransplanen.';
-      case 'monthly': return 'Detta är din månadskostnad för den valda leveransplanen.';
-      default: return 'Detta är din kostnad för den valda leveransplanen.';
-    }
+  const getOrderTypeText = (type: string) => {
+    return type === 'subscription' ? 'Prenumeration' : 'Engångsköp';
   };
 
   const handleConfirmOrder = async () => {
@@ -118,7 +107,7 @@ const SimplifiedCheckout = ({
             {/* Delivery Plan */}
             <div className="p-4 bg-gray-50 rounded-lg">
               <h3 className="font-semibold text-charcoal mb-2">Leveransplan</h3>
-              <p className="text-muted-foreground mb-2">{getPlanText(packagePlan)}</p>
+              <p className="text-muted-foreground mb-2">{getOrderTypeText(orderType)}</p>
               <div>
                 <span className="font-medium">Leveransdagar: </span>
                 <span className="text-muted-foreground">
@@ -156,12 +145,6 @@ const SimplifiedCheckout = ({
             <CardTitle>Bekräfta och slutför</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="p-6 bg-green-50 rounded-lg border border-green-200">
-              <p className="text-sm text-muted-foreground">
-                {getCostDescription(packagePlan)}
-              </p>
-            </div>
-
             <div className="space-y-4">
               <p className="text-sm text-muted-foreground">
                 Genom att bekräfta din beställning uppdaterar vi din befintliga 

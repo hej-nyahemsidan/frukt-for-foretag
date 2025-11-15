@@ -13,6 +13,7 @@ const CustomerDashboard = () => {
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   const [packagePlan, setPackagePlan] = useState('weekly');
+  const [orderType, setOrderType] = useState('subscription');
   const [selectedDays, setSelectedDays] = useState<string[]>([]);
   const [activeCategory, setActiveCategory] = useState('fruktkorgar');
   const [showCheckout, setShowCheckout] = useState(false);
@@ -69,6 +70,7 @@ const CustomerDashboard = () => {
         <main className="container mx-auto px-4 py-8">
           <SimplifiedCheckout 
             packagePlan={packagePlan}
+            orderType={orderType}
             selectedDays={selectedDays}
             onBack={handleBackFromCheckout}
           />
@@ -125,6 +127,8 @@ const CustomerDashboard = () => {
             <OrderSidebar 
               packagePlan={packagePlan}
               setPackagePlan={setPackagePlan}
+              orderType={orderType}
+              setOrderType={setOrderType}
               selectedDays={selectedDays}
               setSelectedDays={setSelectedDays}
               onCheckout={handleCheckout}
@@ -137,6 +141,7 @@ const CustomerDashboard = () => {
               activeCategory={activeCategory}
               setActiveCategory={setActiveCategory}
               selectedDays={selectedDays}
+              onCheckout={handleCheckout}
             />
           </div>
         </div>

@@ -89,7 +89,6 @@ const LaskTab: React.FC<LaskTabProps> = ({ selectedDays }) => {
                   image: product.image_url
                 }}
                 selectedDays={selectedDays}
-                showQuantitySelector={false}
                 className="w-full"
               />
             </div>

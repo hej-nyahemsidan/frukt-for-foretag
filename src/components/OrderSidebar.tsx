@@ -12,17 +12,18 @@ import { useIsMobile } from '@/hooks/use-mobile';
 interface OrderSidebarProps {
   packagePlan: string;
   setPackagePlan: (plan: string) => void;
+  orderType: string;
+  setOrderType: (type: string) => void;
   selectedDays: string[];
   setSelectedDays: (days: string[]) => void;
   onCheckout?: () => void;
 }
 
-const OrderSidebar = ({ packagePlan, setPackagePlan, selectedDays, setSelectedDays, onCheckout }: OrderSidebarProps) => {
+const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, selectedDays, setSelectedDays, onCheckout }: OrderSidebarProps) => {
   const navigate = useNavigate();
   const { getTotalItems } = useCart();
   const isMobile = useIsMobile();
   const days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
-  const [orderType, setOrderType] = useState('subscription');
 
   // Auto-set package plan to weekly when subscription is selected
   useEffect(() => {
