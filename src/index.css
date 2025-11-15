@@ -485,21 +485,6 @@
     .hero-background > div:first-child {
       background-attachment: scroll !important;
     }
-    
-    /* Reduce animation intensity on mobile for better performance */
-    .animate-float-enhanced-1,
-    .animate-float-enhanced-2,
-    .animate-float-enhanced-3,
-    .animate-float-enhanced-4,
-    .animate-float-enhanced-5,
-    .animate-float-enhanced-6,
-    .animate-float-enhanced-7,
-    .animate-float-enhanced-8,
-    .animate-float-enhanced-9,
-    .animate-float-enhanced-10 {
-      animation-duration: 8s;
-      animation-timing-function: ease-in-out;
-    }
 
     /* Hide some floating elements on small screens to reduce clutter */
     @media (max-width: 640px) {
