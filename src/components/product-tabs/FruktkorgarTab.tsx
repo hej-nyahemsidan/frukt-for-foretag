@@ -12,6 +12,7 @@ interface Product {
   category: string;
   image_url: string;
   prices: Record<string, number>;
+  description?: string;
 }
 
 const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
@@ -70,7 +71,10 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
           </div>
           <div className="p-3 sm:p-4 space-y-3">
             <h3 className="font-medium text-charcoal text-sm sm:text-base text-center">{product.name}</h3>
-            <AddToCartButton 
+            {product.description && (
+              <p className="text-xs sm:text-sm text-gray-600 text-center">{product.description}</p>
+            )}
+            <AddToCartButton
               product={{
                 id: product.id,
                 name: product.name,
