@@ -26,7 +26,7 @@ import NotFound from "./pages/NotFound";
 import CustomerDashboard from "./pages/CustomerDashboard";
 import AdminLogin from "./admin/pages/AdminLogin";
 import AdminDashboard from "./admin/pages/AdminDashboard";
-import Blog from "./pages/Blog";
+import BlogHome from "./pages/BlogHome";
 import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
 import Blommor from "./pages/Blommor";
@@ -67,7 +67,7 @@ const App = () => (
                 <Route path="/cookiepolicy" element={<CookiePolicy />} />
                 <Route path="/villkor" element={<Terms />} />
                 <Route path="/checkout" element={<Checkout />} />
-                <Route path="/blog/:slug" element={<Blog />} />
+                <Route path="/blogg" element={<BlogHome />} />
                 <Route path="/blogg/:category" element={<BlogList />} />
                 <Route path="/blogg/:category/:slug" element={<BlogPost />} />
                 <Route path="/blommor" element={<Blommor />} />
