@@ -64,22 +64,22 @@ const FeaturesSection = () => {
             </div>
 
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
-              <div className="text-4xl mb-4">🛡️</div>
+              <div className="text-4xl mb-4">🍎</div>
               <h3 className="text-xl font-bold text-white mb-3">
-                Minskad sjukfrånvaro
+                Färsk frukt av hög kvalitet
               </h3>
               <p className="text-white/90 text-sm leading-relaxed">
-                Stärker immunförsvaret och minskar risken för förkylningar.
+                Vi levererar endast den fräschaste och mest smakrika frukten till våra kunder.
               </p>
             </div>
 
             <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300">
-              <div className="text-4xl mb-4">🤝</div>
+              <div className="text-4xl mb-4">😊</div>
               <h3 className="text-xl font-bold text-white mb-3">
-                Starkare arbetskultur
+                Nöjda kunder över hela Stockholm
               </h3>
               <p className="text-white/90 text-sm leading-relaxed">
-                Skapar naturliga mötesplatser som bygger gemenskap och teamkänsla.
+                Tusentals företag litar på oss för att leverera färsk frukt varje vecka.
               </p>
             </div>
           </div>
