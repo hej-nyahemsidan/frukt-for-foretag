@@ -101,19 +101,19 @@ const FAQSection = () => {
                 }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div className="bg-gray-50 rounded-xl shadow-md border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
                   <button
                     onClick={() => toggleItem(index)}
-                    className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                    className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200"
                   >
-                    <span className="text-lg text-gray-800 font-medium">
+                    <span className="text-lg text-gray-900 font-medium">
                       {item.question}
                     </span>
                     <div className="flex-shrink-0 ml-4">
                       {expandedItems.includes(index) ? (
-                        <Minus className="w-5 h-5 text-gray-600" />
+                        <Minus className="w-5 h-5 text-green-600" />
                       ) : (
-                        <Plus className="w-5 h-5 text-gray-600" />
+                        <Plus className="w-5 h-5 text-green-600" />
                       )}
                     </div>
                   </button>
