@@ -78,8 +78,7 @@ const ContactSection = () => {
               <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
                 <p>
                   Oavsett om ni är intresserade av veckoleveranser, vill ha en provkorg 
-                  eller behöver en offert på fruktkorg på kontoret – vi svarar alltid 
-                  inom 24 timmar.
+                  eller behöver en offert på fruktkorg på kontoret.
                 </p>
                 
                 <p>
