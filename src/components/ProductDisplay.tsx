@@ -13,10 +13,11 @@ interface ProductDisplayProps {
   activeCategory: string;
   setActiveCategory: (category: string) => void;
   selectedDays: string[];
+  currentDay: string;
   onCheckout?: () => void;
 }
 
-const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays, onCheckout }: ProductDisplayProps) => {
+const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays, currentDay, onCheckout }: ProductDisplayProps) => {
   const isMobile = useIsMobile();
   
   return (
@@ -75,27 +76,27 @@ const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays, onChe
 
         <div className="p-4 sm:p-6">
           <TabsContent value="fruktkorgar" className="mt-0">
-            <FruktkorgarTab selectedDays={selectedDays} />
+            <FruktkorgarTab selectedDays={selectedDays} currentDay={currentDay} />
           </TabsContent>
           
           <TabsContent value="fruktpaser" className="mt-0">
-            <FruktpaserTab selectedDays={selectedDays} />
+            <FruktpaserTab selectedDays={selectedDays} currentDay={currentDay} />
           </TabsContent>
           
           <TabsContent value="lask" className="mt-0">
-            <LaskTab selectedDays={selectedDays} />
+            <LaskTab selectedDays={selectedDays} currentDay={currentDay} />
           </TabsContent>
           
           <TabsContent value="mejeri" className="mt-0">
-            <MejeriTab selectedDays={selectedDays} />
+            <MejeriTab selectedDays={selectedDays} currentDay={currentDay} />
           </TabsContent>
           
           <TabsContent value="kaffe-te" className="mt-0">
-            <KaffeTeTab selectedDays={selectedDays} />
+            <KaffeTeTab selectedDays={selectedDays} currentDay={currentDay} />
           </TabsContent>
           
           <TabsContent value="annat" className="mt-0">
-            <AnnatTab selectedDays={selectedDays} />
+            <AnnatTab selectedDays={selectedDays} currentDay={currentDay} />
           </TabsContent>
         </div>
       </Tabs>

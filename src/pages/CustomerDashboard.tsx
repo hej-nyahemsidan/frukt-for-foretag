@@ -15,6 +15,7 @@ const CustomerDashboard = () => {
   const [packagePlan, setPackagePlan] = useState('weekly');
   const [orderType, setOrderType] = useState('subscription');
   const [selectedDays, setSelectedDays] = useState<string[]>([]);
+  const [currentDay, setCurrentDay] = useState<string>(''); // Active day for adding products
   const [activeCategory, setActiveCategory] = useState('fruktkorgar');
   const [showCheckout, setShowCheckout] = useState(false);
 
@@ -72,6 +73,7 @@ const CustomerDashboard = () => {
             packagePlan={packagePlan}
             orderType={orderType}
             selectedDays={selectedDays}
+            currentDay={currentDay}
             onBack={handleBackFromCheckout}
           />
         </main>
@@ -131,6 +133,8 @@ const CustomerDashboard = () => {
               setOrderType={setOrderType}
               selectedDays={selectedDays}
               setSelectedDays={setSelectedDays}
+              currentDay={currentDay}
+              setCurrentDay={setCurrentDay}
               onCheckout={handleCheckout}
             />
           </div>
@@ -138,9 +142,10 @@ const CustomerDashboard = () => {
           {/* Products Section - Now below */}
           <div className="w-full">
             <ProductDisplay 
-              activeCategory={activeCategory}
+              activeCategory={activeCategory} 
               setActiveCategory={setActiveCategory}
               selectedDays={selectedDays}
+              currentDay={currentDay}
               onCheckout={handleCheckout}
             />
           </div>

@@ -17,6 +17,7 @@ interface AddToCartButtonProps {
   showQuantitySelector?: boolean;
   showSizeSelector?: boolean;
   selectedDays: string[];
+  currentDay: string;
 }
 
 const AddToCartButton = ({ 
@@ -24,7 +25,8 @@ const AddToCartButton = ({
   className = "", 
   showQuantitySelector = true,
   showSizeSelector = false,
-  selectedDays
+  selectedDays,
+  currentDay
 }: AddToCartButtonProps) => {
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -70,7 +72,13 @@ const AddToCartButton = ({
     const currentPrice = getCurrentPrice();
     if (currentPrice === 0) return;
 
-    // If multiple days are selected, show day selection dialog
+    // If currentDay is set (from dashboard), use it directly
+    if (currentDay) {
+      addProductToCart([currentDay]);
+      return;
+    }
+
+    // If multiple days are selected but no currentDay, show day selection dialog
     if (selectedDays.length > 1) {
       setShowDayDialog(true);
       return;

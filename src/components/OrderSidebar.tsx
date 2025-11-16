@@ -16,10 +16,12 @@ interface OrderSidebarProps {
   setOrderType: (type: string) => void;
   selectedDays: string[];
   setSelectedDays: (days: string[]) => void;
+  currentDay: string;
+  setCurrentDay: (day: string) => void;
   onCheckout?: () => void;
 }
 
-const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, selectedDays, setSelectedDays, onCheckout }: OrderSidebarProps) => {
+const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, selectedDays, setSelectedDays, currentDay, setCurrentDay, onCheckout }: OrderSidebarProps) => {
   const navigate = useNavigate();
   const { getTotalItems } = useCart();
   const isMobile = useIsMobile();
@@ -49,8 +51,22 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, se
 
   const handleDayChange = (day: string, checked: boolean) => {
     if (isWeeklySubscription) {
-      // For weekly subscription, only allow one day selection (radio behavior)
-      setSelectedDays(checked ? [day] : []);
+      // For weekly subscription, allow multiple day selection
+      if (checked) {
+        const newDays = [...selectedDays, day];
+        setSelectedDays(newDays);
+        // Set as current day if it's the first one
+        if (!currentDay) {
+          setCurrentDay(day);
+        }
+      } else {
+        const newDays = selectedDays.filter(d => d !== day);
+        setSelectedDays(newDays);
+        // If removing current day, switch to another or clear
+        if (currentDay === day) {
+          setCurrentDay(newDays.length > 0 ? newDays[0] : '');
+        }
+      }
     } else {
       // For other plans, allow multiple selections (checkbox behavior)
       if (checked) {
@@ -150,39 +166,61 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, se
         <h3 className="text-base sm:text-lg font-semibold text-charcoal mb-3 sm:mb-4">Välj vilka dagar</h3>
         <div className="space-y-3">
           {isWeeklySubscription ? (
-            // Radio group for weekly subscription (only Monday and Wednesday)
-            <RadioGroup 
-              value={selectedDays[0] || ''} 
-              onValueChange={handleWeeklyDaySelect}
-              className="space-y-3"
-            >
-              {availableDays.map((day) => (
-                <div key={day} className="flex items-center space-x-2">
-                  <RadioGroupItem 
-                    value={day}
-                    id={day}
-                    className="border-[#4CAF50] text-[#4CAF50] data-[state=checked]:bg-[#4CAF50]"
-                  />
-                  <Label htmlFor={day} className="text-charcoal">{day}</Label>
-                </div>
-              ))}
-            </RadioGroup>
-          ) : (
-            // Checkboxes for other plans
+            // Checkboxes for weekly subscription (Monday and Wednesday)
             availableDays.map((day) => (
               <div key={day} className="flex items-center space-x-2">
                 <Checkbox
                   id={day}
                   checked={selectedDays.includes(day)}
-                  onCheckedChange={(checked) => handleDayChange(day, !!checked)}
+                  onCheckedChange={(checked) => handleDayChange(day, checked as boolean)}
                   className="border-[#4CAF50] data-[state=checked]:bg-[#4CAF50] data-[state=checked]:text-white"
                 />
-                <Label htmlFor={day} className="text-charcoal">{day}</Label>
+                <Label htmlFor={day} className="text-charcoal cursor-pointer">
+                  {day}
+                </Label>
+              </div>
+            ))
+          ) : (
+            // Checkboxes for other order types
+            availableDays.map((day) => (
+              <div key={day} className="flex items-center space-x-2">
+                <Checkbox
+                  id={day}
+                  checked={selectedDays.includes(day)}
+                  onCheckedChange={(checked) => handleDayChange(day, checked as boolean)}
+                  className="border-[#4CAF50] data-[state=checked]:bg-[#4CAF50] data-[state=checked]:text-white"
+                />
+                <Label htmlFor={day} className="text-charcoal cursor-pointer">
+                  {day}
+                </Label>
               </div>
             ))
           )}
         </div>
       </div>
+
+      {/* Current Day Switcher for Weekly Subscription */}
+      {isWeeklySubscription && selectedDays.length > 1 && (
+        <div className="mb-6 sm:mb-8 p-4 bg-green-50 rounded-lg border border-green-200">
+          <h3 className="text-sm font-semibold text-charcoal mb-3">Lägg till produkter för:</h3>
+          <div className="flex gap-2">
+            {selectedDays.map((day) => (
+              <Button
+                key={day}
+                onClick={() => setCurrentDay(day)}
+                variant={currentDay === day ? "default" : "outline"}
+                className={currentDay === day ? "bg-[#4CAF50] hover:bg-[#45a049]" : ""}
+                size="sm"
+              >
+                {day}
+              </Button>
+            ))}
+          </div>
+          <p className="text-xs text-muted-foreground mt-2">
+            Välj en dag ovan för att lägga till produkter för den dagen
+          </p>
+        </div>
+      )}
 
       {/* Validation Messages */}
       {!canProceed && (

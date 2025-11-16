@@ -72,27 +72,27 @@ const Products = () => {
           </TabsList>
 
           <TabsContent value="fruktkorgar" className="mt-6">
-            <FruktkorgarTab selectedDays={selectedDays} />
+            <FruktkorgarTab selectedDays={selectedDays} currentDay="" />
           </TabsContent>
 
           <TabsContent value="fruktpasar" className="mt-6">
-            <FruktpaserTab selectedDays={selectedDays} />
+            <FruktpaserTab selectedDays={selectedDays} currentDay="" />
           </TabsContent>
 
           <TabsContent value="lask" className="mt-6">
-            <LaskTab selectedDays={selectedDays} />
+            <LaskTab selectedDays={selectedDays} currentDay="" />
           </TabsContent>
 
           <TabsContent value="mejeri" className="mt-6">
-            <MejeriTab selectedDays={selectedDays} />
+            <MejeriTab selectedDays={selectedDays} currentDay="" />
           </TabsContent>
 
           <TabsContent value="kaffe" className="mt-6">
-            <KaffeTeTab selectedDays={selectedDays} />
+            <KaffeTeTab selectedDays={selectedDays} currentDay="" />
           </TabsContent>
 
           <TabsContent value="annat" className="mt-6">
-            <AnnatTab selectedDays={selectedDays} />
+            <AnnatTab selectedDays={selectedDays} currentDay="" />
           </TabsContent>
         </Tabs>
 
