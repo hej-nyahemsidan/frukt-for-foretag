@@ -145,37 +145,54 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
       </div>
 
       <Dialog open={!!selectedProduct} onOpenChange={() => setSelectedProduct(null)}>
-        <DialogContent className="sm:max-w-sm">
-          <DialogHeader>
-            <DialogTitle>{selectedProduct?.name}</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-4">
+        <DialogContent className="sm:max-w-3xl">
+          <div className="flex flex-col sm:flex-row gap-6">
             {selectedProduct?.image_url && (
-              <img 
-                src={selectedProduct.image_url} 
-                alt={selectedProduct.name}
-                className="w-full max-h-64 object-contain rounded-lg"
-              />
+              <div className="flex-shrink-0 w-full sm:w-2/5 bg-lightgray rounded-lg p-4">
+                <img 
+                  src={selectedProduct.image_url} 
+                  alt={selectedProduct.name}
+                  className="w-full h-full object-contain rounded-lg"
+                />
+              </div>
             )}
-            {selectedProduct?.description && (
-              <p className="text-sm text-gray-600">
-                {selectedProduct.description}
-              </p>
-            )}
-            <div className="space-y-2 pt-2 border-t">
-              <h4 className="font-semibold text-charcoal">Priser:</h4>
-              <div className="grid grid-cols-2 gap-2">
-                <div className="text-sm">
-                  <span className="font-medium">4kg:</span> {selectedProduct?.prices['4kg'] || 0} kr
+            <div className="flex-1 space-y-4">
+              <div className="space-y-2">
+                <p className="text-sm text-muted-foreground">Från 4kg</p>
+                <h2 className="text-3xl sm:text-4xl font-bold text-foreground leading-tight">
+                  {selectedProduct?.name}
+                </h2>
+              </div>
+              
+              {selectedProduct?.description && (
+                <p className="text-base text-muted-foreground leading-relaxed">
+                  {selectedProduct.description}
+                </p>
+              )}
+              
+              <div className="space-y-3 pt-2">
+                <div className="flex items-baseline gap-3">
+                  <span className="text-3xl font-bold text-red-600">
+                    SEK {selectedProduct?.prices['4kg'] || 0}.00
+                  </span>
                 </div>
-                <div className="text-sm">
-                  <span className="font-medium">6kg:</span> {selectedProduct?.prices['6kg'] || 0} kr
-                </div>
-                <div className="text-sm">
-                  <span className="font-medium">9kg:</span> {selectedProduct?.prices['9kg'] || 0} kr
-                </div>
-                <div className="text-sm">
-                  <span className="font-medium">11kg:</span> {selectedProduct?.prices['11kg'] || 0} kr
+                
+                <div className="pt-2 border-t">
+                  <h4 className="font-semibold text-foreground mb-2">Alla storlekar:</h4>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="text-sm">
+                      <span className="font-medium">4kg:</span> {selectedProduct?.prices['4kg'] || 0} kr
+                    </div>
+                    <div className="text-sm">
+                      <span className="font-medium">6kg:</span> {selectedProduct?.prices['6kg'] || 0} kr
+                    </div>
+                    <div className="text-sm">
+                      <span className="font-medium">9kg:</span> {selectedProduct?.prices['9kg'] || 0} kr
+                    </div>
+                    <div className="text-sm">
+                      <span className="font-medium">11kg:</span> {selectedProduct?.prices['11kg'] || 0} kr
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
