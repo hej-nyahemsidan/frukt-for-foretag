@@ -110,21 +110,34 @@ const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays, currentDay }) => {
       </div>
 
       <Dialog open={!!selectedProduct} onOpenChange={() => setSelectedProduct(null)}>
-        <DialogContent className="sm:max-w-sm">
-          <DialogHeader>
-            <DialogTitle>{selectedProduct?.name}</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-4">
+        <DialogContent className="sm:max-w-3xl">
+          <div className="flex flex-col sm:flex-row gap-6">
             {selectedProduct?.image_url && (
-              <img 
-                src={selectedProduct.image_url} 
-                alt={selectedProduct.name}
-                className="w-full max-h-64 object-contain rounded-lg"
-              />
+              <div className="flex-shrink-0 w-full sm:w-2/5 bg-lightgray rounded-lg p-4">
+                <img 
+                  src={selectedProduct.image_url} 
+                  alt={selectedProduct.name}
+                  className="w-full h-full object-contain rounded-lg"
+                />
+              </div>
             )}
-            <p className="text-sm text-gray-600">
-              {selectedProduct?.description || 'Ingen beskrivning tillgänglig.'}
-            </p>
+            <div className="flex-1 space-y-4">
+              <div className="space-y-2">
+                <h2 className="text-3xl sm:text-4xl font-bold text-foreground leading-tight">
+                  {selectedProduct?.name}
+                </h2>
+              </div>
+              
+              <p className="text-base text-muted-foreground leading-relaxed">
+                {selectedProduct?.description || 'Ingen beskrivning tillgänglig.'}
+              </p>
+              
+              <div className="pt-2">
+                <span className="text-3xl font-bold text-red-600">
+                  SEK {selectedProduct?.prices?.default || 0}.00
+                </span>
+              </div>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
