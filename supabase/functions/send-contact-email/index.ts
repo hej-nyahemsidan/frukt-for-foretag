@@ -49,85 +49,225 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Received form submission:", data.formType);
 
     // Build email content based on form type
-    let emailContent = `<h2>${data.formType}</h2>`;
     let emailSubject = "Hemsida Formulär";
+    let emailContent = "";
+    
+    // Common email styles
+    const emailStyles = `
+      <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 0 auto; background-color: #ffffff; }
+        .header { background: linear-gradient(135deg, #4CAF50, #66BB6A); padding: 30px 20px; text-align: center; }
+        .header h1 { color: white; margin: 0; font-size: 24px; }
+        .content { padding: 30px 20px; }
+        .section { margin-bottom: 25px; }
+        .section-title { color: #4CAF50; font-size: 18px; font-weight: bold; border-bottom: 2px solid #4CAF50; padding-bottom: 8px; margin-bottom: 15px; }
+        .info-row { margin: 10px 0; padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
+        .info-label { font-weight: bold; color: #333; display: inline-block; min-width: 140px; }
+        .info-value { color: #666; }
+        .message-box { background-color: #f9f9f9; padding: 15px; border-left: 4px solid #4CAF50; margin: 15px 0; white-space: pre-wrap; color: #555; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th { background-color: #4CAF50; color: white; padding: 12px; text-align: left; font-weight: bold; }
+        td { padding: 10px; border: 1px solid #ddd; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .total-row { background-color: #4CAF50 !important; color: white; font-weight: bold; font-size: 16px; }
+        .footer { background-color: #f5f5f5; padding: 20px; text-align: center; color: #999; font-size: 12px; }
+      </style>
+    `;
     
     if (data.formType === "Orderbekräftelse") {
-      emailSubject = "Ny Orderbekräftelse";
-      emailContent += `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h3 style="color: #4CAF50; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">Kundinformation</h3>
-          <p><strong>Företag:</strong> ${data.customerInfo?.company || 'Ej angivet'}</p>
-          <p><strong>Kontaktperson:</strong> ${data.customerInfo?.contact || 'Ej angivet'}</p>
-          <p><strong>E-post:</strong> ${data.customerInfo?.email || 'Ej angivet'}</p>
-          <p><strong>Telefon:</strong> ${data.customerInfo?.phone || 'Ej angivet'}</p>
-          <p><strong>Adress:</strong> ${data.customerInfo?.address || 'Ej angivet'}</p>
-          
-          <h3 style="color: #4CAF50; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 20px;">Beställningsdetaljer</h3>
-          <p><strong>Typ:</strong> ${data.orderType || 'Ej angivet'}</p>
-          <p><strong>Leveransdagar:</strong> ${data.selectedDays?.join(', ') || 'Inga dagar valda'}</p>
-          
-          ${data.message ? `
-          <h3 style="color: #4CAF50; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 20px;">Meddelande från kund</h3>
-          <div style="background-color: #f9f9f9; padding: 15px; border-left: 4px solid #4CAF50; margin-bottom: 20px;">
-            <p style="margin: 0; white-space: pre-wrap;">${data.message.replace(/\n/g, '<br>')}</p>
+      emailSubject = "Ny Orderbekräftelse - Vitaminkorgen";
+      emailContent = `
+        <!DOCTYPE html>
+        <html>
+        <head>${emailStyles}</head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h1>🛒 Ny Orderbekräftelse</h1>
+            </div>
+            <div class="content">
+              <div class="section">
+                <div class="section-title">👤 Kundinformation</div>
+                <div class="info-row">
+                  <span class="info-label">Företag:</span>
+                  <span class="info-value">${data.customerInfo?.company || 'Ej angivet'}</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Kontaktperson:</span>
+                  <span class="info-value">${data.customerInfo?.contact || 'Ej angivet'}</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">E-post:</span>
+                  <span class="info-value">${data.customerInfo?.email || 'Ej angivet'}</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Telefon:</span>
+                  <span class="info-value">${data.customerInfo?.phone || 'Ej angivet'}</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Adress:</span>
+                  <span class="info-value">${data.customerInfo?.address || 'Ej angivet'}</span>
+                </div>
+              </div>
+              
+              <div class="section">
+                <div class="section-title">📦 Beställningsdetaljer</div>
+                <div class="info-row">
+                  <span class="info-label">Leveranstyp:</span>
+                  <span class="info-value">${data.orderType || 'Ej angivet'}</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Leveransdagar:</span>
+                  <span class="info-value">${data.selectedDays?.join(', ') || 'Inga dagar valda'}</span>
+                </div>
+              </div>
+              
+              ${data.message ? `
+              <div class="section">
+                <div class="section-title">💬 Meddelande från kund</div>
+                <div class="message-box">${data.message.replace(/\n/g, '<br>')}</div>
+              </div>
+              ` : ''}
+              
+              <div class="section">
+                <div class="section-title">🛍️ Beställda Produkter</div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Produkt</th>
+                      <th style="text-align: center;">Antal</th>
+                      <th style="text-align: right;">Pris/st</th>
+                      <th style="text-align: right;">Totalt</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${data.items?.map(item => `
+                      <tr>
+                        <td>${item.name}${item.assignedDay ? ` <span style="color: #4CAF50;">(${item.assignedDay})</span>` : ''}</td>
+                        <td style="text-align: center;">${item.quantity}</td>
+                        <td style="text-align: right;">${item.price} kr</td>
+                        <td style="text-align: right;"><strong>${(item.price * item.quantity).toFixed(2)} kr</strong></td>
+                      </tr>
+                    `).join('') || '<tr><td colspan="4" style="text-align: center; color: #999;">Inga produkter</td></tr>'}
+                  </tbody>
+                  <tfoot>
+                    <tr class="total-row">
+                      <td colspan="3" style="text-align: right; padding: 15px;">TOTALPRIS:</td>
+                      <td style="text-align: right; padding: 15px; font-size: 18px;">${data.totalPrice || 0} kr</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+            <div class="footer">
+              Skickat från vitaminkorgen.se<br>
+              © ${new Date().getFullYear()} Vitaminkorgen
+            </div>
           </div>
-          ` : ''}
-          
-          <h3 style="color: #4CAF50; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; margin-top: 20px;">Produkter</h3>
-          <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-            <thead>
-              <tr style="background-color: #f5f5f5;">
-                <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Produkt</th>
-                <th style="padding: 10px; text-align: center; border: 1px solid #ddd;">Antal</th>
-                <th style="padding: 10px; text-align: right; border: 1px solid #ddd;">Pris/st</th>
-                <th style="padding: 10px; text-align: right; border: 1px solid #ddd;">Totalt</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${data.items?.map(item => `
-                <tr>
-                  <td style="padding: 10px; border: 1px solid #ddd;">${item.name}${item.assignedDay ? ` (${item.assignedDay})` : ''}</td>
-                  <td style="padding: 10px; text-align: center; border: 1px solid #ddd;">${item.quantity}</td>
-                  <td style="padding: 10px; text-align: right; border: 1px solid #ddd;">${item.price} kr</td>
-                  <td style="padding: 10px; text-align: right; border: 1px solid #ddd;">${item.price * item.quantity} kr</td>
-                </tr>
-              `).join('') || '<tr><td colspan="4" style="padding: 10px; text-align: center;">Inga produkter</td></tr>'}
-            </tbody>
-            <tfoot>
-              <tr style="background-color: #4CAF50; color: white; font-weight: bold;">
-                <td colspan="3" style="padding: 15px; text-align: right; border: 1px solid #4CAF50;">TOTALPRIS:</td>
-                <td style="padding: 15px; text-align: right; border: 1px solid #4CAF50; font-size: 18px;">${data.totalPrice || 0} kr</td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
+        </body>
+        </html>
       `;
     } else if (data.formType === "Offertförfrågan") {
-      emailContent += `
-        <p><strong>Företag:</strong> ${data.companyName || data.company || 'Ej angivet'}</p>
-        <p><strong>Kontaktperson:</strong> ${data.contactPerson || data.name}</p>
-        <p><strong>E-post:</strong> ${data.email}</p>
-        <p><strong>Telefon:</strong> ${data.phone || 'Ej angivet'}</p>
-        <p><strong>Plats/Stad:</strong> ${data.location || 'Ej angivet'}</p>
-        ${data.message ? `<p><strong>Meddelande:</strong></p><p>${data.message.replace(/\n/g, '<br>')}</p>` : ''}
+      emailSubject = "Ny Offertförfrågan - Vitaminkorgen";
+      emailContent = `
+        <!DOCTYPE html>
+        <html>
+        <head>${emailStyles}</head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h1>📋 Ny Offertförfrågan</h1>
+            </div>
+            <div class="content">
+              <div class="section">
+                <div class="section-title">🏢 Företagsinformation</div>
+                <div class="info-row">
+                  <span class="info-label">Företag:</span>
+                  <span class="info-value">${data.companyName || data.company || 'Ej angivet'}</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Kontaktperson:</span>
+                  <span class="info-value">${data.contactPerson || data.name || 'Ej angivet'}</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">E-post:</span>
+                  <span class="info-value">${data.email || 'Ej angivet'}</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Telefon:</span>
+                  <span class="info-value">${data.phone || 'Ej angivet'}</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Plats/Stad:</span>
+                  <span class="info-value">${data.location || 'Ej angivet'}</span>
+                </div>
+              </div>
+              
+              ${data.message ? `
+              <div class="section">
+                <div class="section-title">💬 Meddelande</div>
+                <div class="message-box">${data.message.replace(/\n/g, '<br>')}</div>
+              </div>
+              ` : ''}
+            </div>
+            <div class="footer">
+              Skickat från vitaminkorgen.se<br>
+              © ${new Date().getFullYear()} Vitaminkorgen
+            </div>
+          </div>
+        </body>
+        </html>
       `;
     } else {
-      emailContent += `
-        <p><strong>Namn:</strong> ${data.name}</p>
-        <p><strong>E-post:</strong> ${data.email}</p>
-        ${data.company ? `<p><strong>Företag:</strong> ${data.company}</p>` : ''}
-        ${data.message ? `<p><strong>Meddelande:</strong></p><p>${data.message.replace(/\n/g, '<br>')}</p>` : ''}
+      emailSubject = "Nytt Kontaktformulär - Vitaminkorgen";
+      emailContent = `
+        <!DOCTYPE html>
+        <html>
+        <head>${emailStyles}</head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h1>✉️ Nytt Kontaktformulär</h1>
+            </div>
+            <div class="content">
+              <div class="section">
+                <div class="section-title">👤 Kontaktinformation</div>
+                <div class="info-row">
+                  <span class="info-label">Namn:</span>
+                  <span class="info-value">${data.name || 'Ej angivet'}</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">E-post:</span>
+                  <span class="info-value">${data.email || 'Ej angivet'}</span>
+                </div>
+                ${data.company ? `
+                <div class="info-row">
+                  <span class="info-label">Företag:</span>
+                  <span class="info-value">${data.company}</span>
+                </div>
+                ` : ''}
+              </div>
+              
+              ${data.message ? `
+              <div class="section">
+                <div class="section-title">💬 Meddelande</div>
+                <div class="message-box">${data.message.replace(/\n/g, '<br>')}</div>
+              </div>
+              ` : ''}
+            </div>
+            <div class="footer">
+              Skickat från vitaminkorgen.se<br>
+              © ${new Date().getFullYear()} Vitaminkorgen
+            </div>
+          </div>
+        </body>
+        </html>
       `;
     }
 
-    emailContent += `
-      <hr style="margin: 20px 0; border: none; border-top: 1px solid #eee;">
-      <p style="color: #666; font-size: 12px;">Skickat från vitaminkorgen.se kontaktformulär</p>
-    `;
-
     const emailResponse = await resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: "kontakt@vitaminkorgen.se",
       to: ["info@vitaminkorgen.se"],
       subject: emailSubject,
       html: emailContent,
