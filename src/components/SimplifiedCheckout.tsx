@@ -14,6 +14,7 @@ interface SimplifiedCheckoutProps {
   packagePlan: string;
   orderType: string;
   selectedDays: string[];
+  currentDay: string;
   onBack: () => void;
 }
 
@@ -21,6 +22,7 @@ const SimplifiedCheckout = ({
   packagePlan,
   orderType,
   selectedDays,
+  currentDay,
   onBack
 }) => {
   const navigate = useNavigate();
@@ -168,20 +170,32 @@ const SimplifiedCheckout = ({
             {items.length === 0 ? (
               <p className="text-muted-foreground">Inga produkter valda</p>
             ) : (
-              <div className="space-y-2">
-                {items.map((item) => (
-                  <div key={item.id} className="flex justify-between items-center p-3 bg-gray-50 rounded">
-                    <div>
-                      <span className="font-medium">{item.name}</span>
-                      <div className="text-sm text-muted-foreground">
-                        Antal: {item.quantity} × {item.price} kr
+              <div className="space-y-4">
+                {selectedDays.map((day) => {
+                  const dayItems = items.filter(item => item.assignedDay === day);
+                  if (dayItems.length === 0) return null;
+                  
+                  return (
+                    <div key={day} className="border rounded-lg p-4 bg-gray-50">
+                      <h4 className="font-semibold text-green-600 mb-3">{day}</h4>
+                      <div className="space-y-2">
+                        {dayItems.map((item, idx) => (
+                          <div key={`${item.id}-${idx}`} className="flex justify-between items-center p-2 bg-white rounded">
+                            <div>
+                              <span className="font-medium">{item.name}</span>
+                              <div className="text-sm text-muted-foreground">
+                                Antal: {item.quantity} × {item.price} kr
+                              </div>
+                            </div>
+                            <span className="font-semibold text-charcoal">
+                              {item.price * item.quantity} kr
+                            </span>
+                          </div>
+                        ))}
                       </div>
                     </div>
-                    <span className="font-semibold text-charcoal">
-                      {item.price * item.quantity} kr
-                    </span>
-                  </div>
-                ))}
+                  );
+                })}
                 
                 {/* Total Price */}
                 <div className="flex justify-between items-center p-4 bg-green-50 rounded-lg border-2 border-green-200 mt-4">

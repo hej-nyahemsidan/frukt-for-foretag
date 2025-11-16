@@ -5,6 +5,7 @@ import AddToCartButton from '@/components/AddToCartButton';
 
 interface KaffeTeTabProps {
   selectedDays: string[];
+  currentDay: string;
 }
 
 interface Product {
@@ -16,7 +17,7 @@ interface Product {
   description?: string;
 }
 
-const KaffeTeTab: React.FC<KaffeTeTabProps> = ({ selectedDays }) => {
+const KaffeTeTab: React.FC<KaffeTeTabProps> = ({ selectedDays, currentDay }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -91,6 +92,7 @@ const KaffeTeTab: React.FC<KaffeTeTabProps> = ({ selectedDays }) => {
                     image: product.image_url
                   }}
                   selectedDays={selectedDays}
+                  currentDay={currentDay}
                   className="w-full"
                 />
               </div>

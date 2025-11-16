@@ -7,6 +7,7 @@ import { ShoppingCart } from 'lucide-react';
 
 interface FruktkorgarTabProps {
   selectedDays: string[];
+  currentDay: string;
 }
 
 interface Product {
@@ -18,7 +19,7 @@ interface Product {
   description?: string;
 }
 
-const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
+const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDay }) => {
   const [fruktkorgar, setFruktkorgar] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -127,6 +128,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays }) => {
                       image: product.image_url
                     }}
                     selectedDays={selectedDays}
+                    currentDay={currentDay}
                     className="w-full"
                   />
                 </div>

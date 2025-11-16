@@ -5,6 +5,7 @@ import AddToCartButton from '@/components/AddToCartButton';
 
 interface AnnatTabProps {
   selectedDays: string[];
+  currentDay: string;
 }
 
 interface Product {
@@ -16,7 +17,7 @@ interface Product {
   description?: string;
 }
 
-const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays }) => {
+const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays, currentDay }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -93,6 +94,7 @@ const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays }) => {
                     image: product.image_url
                   }}
                   selectedDays={selectedDays}
+                  currentDay={currentDay}
                   className="w-full"
                 />
               </div>
