@@ -101,14 +101,6 @@ const handler = async (req: Request): Promise<Response> => {
                   <span class="info-label">E-post:</span>
                   <span class="info-value">${data.customerInfo?.email || 'Ej angivet'}</span>
                 </div>
-                <div class="info-row">
-                  <span class="info-label">Telefon:</span>
-                  <span class="info-value">${data.customerInfo?.phone || 'Ej angivet'}</span>
-                </div>
-                <div class="info-row">
-                  <span class="info-label">Adress:</span>
-                  <span class="info-value">${data.customerInfo?.address || 'Ej angivet'}</span>
-                </div>
               </div>
               
               <div class="section">
