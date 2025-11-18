@@ -34,6 +34,14 @@ interface ContactEmailRequest {
     price: number;
     assignedDay?: string;
   }>;
+  cartItems?: Array<{
+    id: string;
+    name: string;
+    quantity: number;
+    price: number;
+    category: string;
+    image?: string;
+  }>;
   totalPrice?: number;
   message?: string;
 }
@@ -195,6 +203,38 @@ const handler = async (req: Request): Promise<Response> => {
                   <span class="info-value">${data.location || 'Ej angivet'}</span>
                 </div>
               </div>
+              
+              ${data.cartItems && data.cartItems.length > 0 ? `
+              <div class="section">
+                <div class="section-title">🛒 Valda Produkter</div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Produkt</th>
+                      <th style="text-align: center;">Antal</th>
+                      <th style="text-align: right;">Pris</th>
+                      <th style="text-align: right;">Totalt</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${data.cartItems.map(item => `
+                      <tr>
+                        <td>${item.name}</td>
+                        <td style="text-align: center;">${item.quantity} st</td>
+                        <td style="text-align: right;">${item.price} kr</td>
+                        <td style="text-align: right;"><strong>${item.price * item.quantity} kr</strong></td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                  <tfoot>
+                    <tr class="total-row">
+                      <td colspan="3" style="text-align: right;">Totalt:</td>
+                      <td style="text-align: right;"><strong>${data.totalPrice || 0} kr</strong></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              ` : ''}
               
               ${data.message ? `
               <div class="section">
