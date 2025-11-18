@@ -3,8 +3,9 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Phone, Mail, LogIn, FileText } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Phone, Mail, LogIn, FileText, ShoppingCart, X, Plus, Minus } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { usePublicCart } from '@/contexts/PublicCartContext';
 import FruktkorgarTab from '@/components/product-tabs/FruktkorgarTab';
 import FruktpaserTab from '@/components/product-tabs/FruktpaserTab';
 import LaskTab from '@/components/product-tabs/LaskTab';
@@ -14,6 +15,8 @@ import AnnatTab from '@/components/product-tabs/AnnatTab';
 
 const Products = () => {
   const [activeTab, setActiveTab] = useState('fruktkorgar');
+  const navigate = useNavigate();
+  const { items, getTotalItems, getTotalPrice, updateQuantity, removeItem } = usePublicCart();
   // No selectedDays needed for Products page - just display products
   const selectedDays: string[] = [];
 
@@ -95,6 +98,81 @@ const Products = () => {
             <AnnatTab selectedDays={selectedDays} currentDay="" isPublicPage={true} />
           </TabsContent>
         </Tabs>
+
+        {/* Cart Summary Section */}
+        {items.length > 0 && (
+          <div className="mt-12 sm:mt-16 bg-white rounded-xl p-6 sm:p-8 border-2 border-primary shadow-lg">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <ShoppingCart className="h-7 w-7 text-primary" />
+                Din varukorg ({getTotalItems()} produkter)
+              </h2>
+              
+              <div className="space-y-4 mb-6 max-h-[400px] overflow-y-auto">
+                {items.map((item) => (
+                  <div key={item.id} className="flex gap-4 pb-4 border-b last:border-b-0">
+                    {item.image && (
+                      <img 
+                        src={item.image} 
+                        alt={item.name}
+                        className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded"
+                      />
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-sm sm:text-base truncate">{item.name}</h3>
+                      <p className="text-primary font-bold text-lg">{item.price} kr</p>
+                      <div className="flex items-center gap-3 mt-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        >
+                          <Minus className="h-4 w-4" />
+                        </Button>
+                        <span className="font-semibold w-12 text-center">{item.quantity} st</span>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        >
+                          <Plus className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="ml-auto text-destructive hover:text-destructive"
+                          onClick={() => removeItem(item.id)}
+                        >
+                          <X className="h-4 w-4 mr-1" />
+                          Ta bort
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-bold text-xl text-primary">{item.price * item.quantity} kr</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="border-t pt-6 mb-6">
+                <div className="flex justify-between items-center mb-6">
+                  <span className="text-2xl font-bold text-gray-900">Totalt:</span>
+                  <span className="text-3xl font-bold text-primary">{getTotalPrice()} kr</span>
+                </div>
+                
+                <Button 
+                  onClick={() => navigate('/offertforfragan')}
+                  size="lg"
+                  className="w-full text-lg"
+                >
+                  <FileText className="h-5 w-5 mr-2" />
+                  Gå till offertförfrågan
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Enhanced CTA Section */}
         <div className="mt-12 sm:mt-16 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl p-6 sm:p-8 border border-primary/20">
