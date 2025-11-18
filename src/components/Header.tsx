@@ -6,6 +6,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { useAuth } from '@/contexts/AuthContext';
 import { useAdminAuth } from '@/admin/contexts/AdminAuthContext';
 import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
+import PublicCartIndicator from '@/components/PublicCartIndicator';
 import { supabase } from '@/integrations/supabase/client';
 
 const Header = () => {
@@ -374,6 +375,9 @@ const Header = () => {
               </div>
             )}
             
+            {/* Shopping Cart */}
+            <PublicCartIndicator />
+            
             {/* User Menu or Login Link */}
             {user ? (
               <DropdownMenu>
@@ -420,6 +424,9 @@ const Header = () => {
                 <Shield className="w-4 h-4" />
               </Link>
             )}
+            
+            {/* Shopping Cart */}
+            <PublicCartIndicator />
             
             {/* User Menu or Login Link - Compact */}
             {user ? (
@@ -544,6 +551,11 @@ const Header = () => {
               
               {/* Mobile Contact & Actions */}
               <div className="pt-4 px-4 space-y-3 border-t border-gray-200 mt-4">
+                {/* Shopping Cart for Mobile */}
+                <div className="flex justify-center pb-2">
+                  <PublicCartIndicator />
+                </div>
+                
                 {/* Admin Dashboard Link for Mobile */}
                 {isAdmin && (
                   <div className="animate-fade-in">

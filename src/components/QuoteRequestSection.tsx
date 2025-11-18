@@ -2,9 +2,11 @@ import { useState, FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { MapPin, Phone, Clock, MessageCircle } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox';
+import { MapPin, Phone, Clock, MessageCircle, ShoppingBasket, Plus, Minus, X } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { usePublicCart } from '@/contexts/PublicCartContext';
 
 // Import images
 import officeWellnessImage from '@/assets/office-wellness.jpg';
@@ -19,8 +21,11 @@ const QuoteRequestSection = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [freeFruitBasket, setFreeFruitBasket] = useState(false);
+  const [orderConfirmed, setOrderConfirmed] = useState(false);
   
   const { toast } = useToast();
+  const { items, getTotalPrice, updateQuantity, removeItem, clearCart } = usePublicCart();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -47,6 +52,9 @@ const QuoteRequestSection = () => {
           phone: formData.phone,
           location: formData.location,
           message: formData.message,
+          cartItems: items,
+          totalPrice: getTotalPrice(),
+          freeFruitBasket,
         }
       });
 
@@ -57,8 +65,11 @@ const QuoteRequestSection = () => {
         description: "Vi återkommer så snart som möjligt med en offert.",
       });
 
-      // Clear form
+      // Clear form and cart
       setFormData({ companyName: '', contactPerson: '', email: '', phone: '', location: '', message: '' });
+      clearCart();
+      setFreeFruitBasket(false);
+      setOrderConfirmed(true);
     } catch (error) {
       console.error('Error sending email:', error);
       toast({
@@ -74,6 +85,27 @@ const QuoteRequestSection = () => {
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
+
+  if (orderConfirmed) {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-8">
+        <div className="max-w-2xl text-center">
+          <div className="mb-8">
+            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <MessageCircle className="w-10 h-10 text-green-600" />
+            </div>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Tack för din offertförfrågan!</h2>
+            <p className="text-xl text-gray-600">
+              Vi har tagit emot din beställning och återkommer så snart som möjligt med en offert.
+            </p>
+          </div>
+          <Button onClick={() => window.location.href = '/'} size="lg">
+            Tillbaka till startsidan
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen">
@@ -99,6 +131,104 @@ const QuoteRequestSection = () => {
           </div>
         </div>
       </section>
+
+      {/* Cart Summary Section */}
+      {items.length > 0 && (
+        <section className="py-12 px-8 bg-gradient-to-b from-green-50 to-white">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+              <ShoppingBasket className="h-8 w-8 text-primary" />
+              Din varukorg
+            </h2>
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="space-y-4 mb-6">
+                {items.map((item) => (
+                  <div key={item.id} className="flex gap-4 pb-4 border-b last:border-b-0">
+                    {item.image && (
+                      <img 
+                        src={item.image} 
+                        alt={item.name}
+                        className="w-20 h-20 object-cover rounded"
+                      />
+                    )}
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-lg">{item.name}</h3>
+                      <p className="text-primary font-bold text-lg">{item.price} kr</p>
+                      <div className="flex items-center gap-3 mt-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        >
+                          <Minus className="h-4 w-4" />
+                        </Button>
+                        <span className="font-semibold w-12 text-center">{item.quantity} st</span>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        >
+                          <Plus className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="ml-auto text-destructive hover:text-destructive"
+                          onClick={() => removeItem(item.id)}
+                        >
+                          <X className="h-4 w-4 mr-1" />
+                          Ta bort
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-bold text-xl text-primary">{item.price * item.quantity} kr</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Free Fruit Basket Option */}
+              <div className="bg-green-50 border-2 border-primary rounded-lg p-6 mb-6">
+                <div className="flex items-start gap-4">
+                  <Checkbox
+                    id="freeFruitBasket"
+                    checked={freeFruitBasket}
+                    onCheckedChange={(checked) => setFreeFruitBasket(checked as boolean)}
+                    className="mt-1"
+                  />
+                  <label
+                    htmlFor="freeFruitBasket"
+                    className="flex-1 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <ShoppingBasket className="h-6 w-6 text-primary" />
+                      <span className="text-lg font-bold text-gray-900">
+                        Lägg till en gratis fruktkorg till din första beställning!
+                      </span>
+                    </div>
+                    <p className="text-gray-600">
+                      Som ny kund får du en fruktkorg på köpet. Kryssa i rutan för att lägga till den i din offert.
+                    </p>
+                  </label>
+                </div>
+              </div>
+
+              <div className="border-t pt-6">
+                <div className="flex justify-between items-center">
+                  <span className="text-2xl font-bold text-gray-900">Totalt:</span>
+                  <span className="text-3xl font-bold text-primary">{getTotalPrice()} kr</span>
+                </div>
+                {freeFruitBasket && (
+                  <p className="text-sm text-green-600 text-right mt-2 font-semibold">
+                    + Gratis fruktkorg på första beställningen
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Main Content Section */}
       <section className="py-20 px-8 bg-white">
