@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import AddToCartButton from '@/components/AddToCartButton';
+import PublicAddToCartButton from '@/components/PublicAddToCartButton';
 
 interface AnnatTabProps {
   selectedDays: string[];
   currentDay: string;
+  isPublicPage?: boolean;
 }
 
 interface Product {
@@ -17,7 +19,7 @@ interface Product {
   description?: string;
 }
 
-const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays, currentDay }) => {
+const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays, currentDay, isPublicPage = false }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -85,18 +87,11 @@ const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays, currentDay }) => {
                 {product.prices?.default || 0} kr
               </div>
               <div onClick={(e) => e.stopPropagation()}>
-                <AddToCartButton
-                  product={{
-                    id: product.id,
-                    name: product.name,
-                    price: product.prices?.default || 0,
-                    category: product.category,
-                    image: product.image_url
-                  }}
-                  selectedDays={selectedDays}
-                  currentDay={currentDay}
-                  className="w-full"
-                />
+                {isPublicPage ? (
+                  <PublicAddToCartButton productId={product.id} productName={product.name} price={product.prices?.default || 0} category={product.category} image={product.image_url} className="w-full" />
+                ) : (
+                  <AddToCartButton product={{ id: product.id, name: product.name, price: product.prices?.default || 0, category: product.category, image: product.image_url }} selectedDays={selectedDays} currentDay={currentDay} className="w-full" />
+                )}
               </div>
             </div>
           </div>

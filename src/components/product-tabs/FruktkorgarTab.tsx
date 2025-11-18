@@ -3,11 +3,13 @@ import { supabase } from '@/integrations/supabase/client';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import AddToCartButton from '@/components/AddToCartButton';
+import PublicAddToCartButton from '@/components/PublicAddToCartButton';
 import { ShoppingCart } from 'lucide-react';
 
 interface FruktkorgarTabProps {
   selectedDays: string[];
   currentDay: string;
+  isPublicPage?: boolean;
 }
 
 interface Product {
@@ -19,7 +21,7 @@ interface Product {
   description?: string;
 }
 
-const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDay }) => {
+const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDay, isPublicPage = false }) => {
   const [fruktkorgar, setFruktkorgar] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -119,18 +121,29 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
                     </span>
                   </div>
                   
-                  <AddToCartButton
-                    product={{
-                      id: product.id,
-                      name: `${product.name} (${currentSize})`,
-                      price: product.prices[currentSize] || 0,
-                      category: product.category,
-                      image: product.image_url
-                    }}
-                    selectedDays={selectedDays}
-                    currentDay={currentDay}
-                    className="w-full"
-                  />
+                  {isPublicPage ? (
+                    <PublicAddToCartButton
+                      productId={product.id}
+                      productName={`${product.name} (${currentSize})`}
+                      price={product.prices[currentSize] || 0}
+                      category={product.category}
+                      image={product.image_url}
+                      className="w-full"
+                    />
+                  ) : (
+                    <AddToCartButton
+                      product={{
+                        id: product.id,
+                        name: `${product.name} (${currentSize})`,
+                        price: product.prices[currentSize] || 0,
+                        category: product.category,
+                        image: product.image_url
+                      }}
+                      selectedDays={selectedDays}
+                      currentDay={currentDay}
+                      className="w-full"
+                    />
+                  )}
                 </div>
               </div>
             </div>
