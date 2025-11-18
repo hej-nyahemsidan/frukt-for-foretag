@@ -2,7 +2,6 @@ import { useState, FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Checkbox } from '@/components/ui/checkbox';
 import { MapPin, Phone, Clock, MessageCircle, ShoppingBasket, Plus, Minus, X } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
@@ -21,7 +20,6 @@ const QuoteRequestSection = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [freeFruitBasket, setFreeFruitBasket] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
   
   const { toast } = useToast();
@@ -54,7 +52,6 @@ const QuoteRequestSection = () => {
           message: formData.message,
           cartItems: items,
           totalPrice: getTotalPrice(),
-          freeFruitBasket,
         }
       });
 
@@ -68,7 +65,6 @@ const QuoteRequestSection = () => {
       // Clear form and cart
       setFormData({ companyName: '', contactPerson: '', email: '', phone: '', location: '', message: '' });
       clearCart();
-      setFreeFruitBasket(false);
       setOrderConfirmed(true);
     } catch (error) {
       console.error('Error sending email:', error);
@@ -187,43 +183,12 @@ const QuoteRequestSection = () => {
                   </div>
                 ))}
               </div>
-              
-              {/* Free Fruit Basket Option */}
-              <div className="bg-green-50 border-2 border-primary rounded-lg p-6 mb-6">
-                <div className="flex items-start gap-4">
-                  <Checkbox
-                    id="freeFruitBasket"
-                    checked={freeFruitBasket}
-                    onCheckedChange={(checked) => setFreeFruitBasket(checked as boolean)}
-                    className="mt-1"
-                  />
-                  <label
-                    htmlFor="freeFruitBasket"
-                    className="flex-1 cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2 mb-2">
-                      <ShoppingBasket className="h-6 w-6 text-primary" />
-                      <span className="text-lg font-bold text-gray-900">
-                        Lägg till en gratis fruktkorg till din första beställning!
-                      </span>
-                    </div>
-                    <p className="text-gray-600">
-                      Som ny kund får du en fruktkorg på köpet. Kryssa i rutan för att lägga till den i din offert.
-                    </p>
-                  </label>
-                </div>
-              </div>
 
               <div className="border-t pt-6">
                 <div className="flex justify-between items-center">
                   <span className="text-2xl font-bold text-gray-900">Totalt:</span>
                   <span className="text-3xl font-bold text-primary">{getTotalPrice()} kr</span>
                 </div>
-                {freeFruitBasket && (
-                  <p className="text-sm text-green-600 text-right mt-2 font-semibold">
-                    + Gratis fruktkorg på första beställningen
-                  </p>
-                )}
               </div>
             </div>
           </div>
