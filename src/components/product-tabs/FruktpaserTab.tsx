@@ -92,6 +92,7 @@ const FruktpaserTab: React.FC<FruktpaserTabProps> = ({ selectedDays, currentDay,
                     price={product.prices?.default || 0}
                     category={product.category}
                     image={product.image_url}
+                    selectedDay={currentDay}
                     className="w-full"
                   />
                 ) : (

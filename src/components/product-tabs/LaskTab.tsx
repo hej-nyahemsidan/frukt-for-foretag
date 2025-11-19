@@ -92,6 +92,7 @@ const LaskTab: React.FC<LaskTabProps> = ({ selectedDays, currentDay, isPublicPag
                     price={product.prices?.default || 0}
                     category={product.category}
                     image={product.image_url}
+                    selectedDay={currentDay}
                     className="w-full"
                   />
                 ) : (
