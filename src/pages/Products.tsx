@@ -22,7 +22,7 @@ const Products = () => {
   const [selectedDays, setSelectedDays] = useState<string[]>([]);
   const [currentDay, setCurrentDay] = useState<string>('');
   const navigate = useNavigate();
-  const { items, getTotalItems, getTotalPrice, updateQuantity, removeItem } = usePublicCart();
+  const { items, getTotalItems, getTotalPrice, updateQuantity, removeItem, clearCart } = usePublicCart();
 
   const handleDayToggle = (day: string, checked: boolean) => {
     if (checked) {
@@ -211,10 +211,21 @@ const Products = () => {
         {items.length > 0 && (
           <div className="mt-12 sm:mt-16 bg-white rounded-xl p-6 sm:p-8 border-2 border-primary shadow-lg">
             <div className="max-w-3xl mx-auto">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                <ShoppingCart className="h-7 w-7 text-primary" />
-                Din varukorg ({getTotalItems()} produkter)
-              </h2>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-2">
+                  <ShoppingCart className="h-7 w-7 text-primary" />
+                  Din varukorg ({getTotalItems()} produkter)
+                </h2>
+                <Button
+                  onClick={clearCart}
+                  variant="ghost"
+                  size="sm"
+                  className="text-destructive hover:text-destructive"
+                >
+                  <X className="h-4 w-4 mr-1" />
+                  Töm varukorg
+                </Button>
+              </div>
               
               <div className="space-y-6 mb-6 max-h-[400px] overflow-y-auto">
                 {Object.entries(itemsByDay).map(([day, dayItems]) => (
