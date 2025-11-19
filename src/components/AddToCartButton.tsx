@@ -18,6 +18,7 @@ interface AddToCartButtonProps {
   showSizeSelector?: boolean;
   selectedDays: string[];
   currentDay: string;
+  orderType: string;
 }
 
 const AddToCartButton = ({ 
@@ -26,7 +27,8 @@ const AddToCartButton = ({
   showQuantitySelector = true,
   showSizeSelector = false,
   selectedDays,
-  currentDay
+  currentDay,
+  orderType
 }: AddToCartButtonProps) => {
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -101,6 +103,7 @@ const AddToCartButton = ({
         image: product.image,
         quantity: quantity,
         assignedDay: day,
+        orderType: orderType,
         ...(selectedSize && { size: selectedSize })
       };
 

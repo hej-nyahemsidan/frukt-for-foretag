@@ -141,13 +141,14 @@ const CustomerDashboard = () => {
           
           {/* Products Section - Now below */}
           <div className="w-full">
-            <ProductDisplay 
-              activeCategory={activeCategory} 
-              setActiveCategory={setActiveCategory}
-              selectedDays={selectedDays}
-              currentDay={currentDay}
-              onCheckout={handleCheckout}
-            />
+          <ProductDisplay 
+            activeCategory={activeCategory}
+            setActiveCategory={setActiveCategory}
+            selectedDays={selectedDays}
+            currentDay={currentDay}
+            orderType={orderType}
+            onCheckout={handleCheckout}
+          />
           </div>
         </div>
       </main>

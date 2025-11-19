@@ -26,19 +26,22 @@ const SimplifiedCheckout = ({
   onBack
 }) => {
   const navigate = useNavigate();
-  const { items, clearCart } = useCart();
+  const { items, clearCart, getItemsByOrderType } = useCart();
   const { customer } = useAuth();
   const { toast } = useToast();
   const [isConfirming, setIsConfirming] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
   const [message, setMessage] = useState('');
+  
+  // Filter items by current order type
+  const relevantItems = getItemsByOrderType(orderType);
 
   const getOrderTypeText = (type: string) => {
     return type === 'subscription' ? 'Prenumeration' : 'Engångsköp';
   };
 
   const calculateTotal = () => {
-    return items.reduce((total, item) => total + (item.price * item.quantity), 0);
+    return relevantItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
   const handleConfirmOrder = async () => {
@@ -58,7 +61,7 @@ const SimplifiedCheckout = ({
           },
           orderType: getOrderTypeText(orderType),
           selectedDays: selectedDays,
-          items: items.map(item => ({
+          items: relevantItems.map(item => ({
             name: item.name,
             quantity: item.quantity,
             price: item.price,
@@ -167,13 +170,13 @@ const SimplifiedCheckout = ({
           {/* Products */}
           <div>
             <h3 className="font-semibold text-charcoal mb-3">Produkter</h3>
-            {items.length === 0 ? (
+            {relevantItems.length === 0 ? (
               <p className="text-muted-foreground">Inga produkter valda</p>
             ) : (
-              <div className="space-y-4">
-                {selectedDays.map((day) => {
-                  const dayItems = items.filter(item => item.assignedDay === day);
-                  if (dayItems.length === 0) return null;
+            <div className="space-y-6">
+              {selectedDays.map(day => {
+                const dayItems = relevantItems.filter(item => item.assignedDay === day);
+                if (dayItems.length === 0) return null;
                   
                   return (
                     <div key={day} className="border rounded-lg p-4 bg-gray-50">
@@ -232,7 +235,7 @@ const SimplifiedCheckout = ({
             
             <Button
               onClick={handleConfirmOrder}
-              disabled={items.length === 0 || selectedDays.length === 0 || isConfirming}
+              disabled={isConfirming || relevantItems.length === 0 || selectedDays.length === 0}
               className="w-full bg-green-600 hover:bg-green-700 text-white py-3 text-lg font-semibold"
             >
               {isConfirming ? (
@@ -245,9 +248,9 @@ const SimplifiedCheckout = ({
               )}
             </Button>
 
-            {(items.length === 0 || selectedDays.length === 0) && (
+            {(relevantItems.length === 0 || selectedDays.length === 0) && (
               <p className="text-sm text-red-600 text-center mt-3">
-                {items.length === 0 && "Lägg till produkter i varukorgen. "}
+                {relevantItems.length === 0 && "Lägg till produkter i varukorgen. "}
                 {selectedDays.length === 0 && "Välj minst en leveransdag."}
               </p>
             )}

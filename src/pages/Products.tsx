@@ -183,27 +183,27 @@ const Products = () => {
           </TabsList>
 
           <TabsContent value="fruktkorgar" className="mt-6">
-            <FruktkorgarTab selectedDays={selectedDays} currentDay={currentDay} isPublicPage={true} />
+            <FruktkorgarTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
           </TabsContent>
 
           <TabsContent value="fruktpasar" className="mt-6">
-            <FruktpaserTab selectedDays={selectedDays} currentDay={currentDay} isPublicPage={true} />
+            <FruktpaserTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
           </TabsContent>
 
           <TabsContent value="lask" className="mt-6">
-            <LaskTab selectedDays={selectedDays} currentDay={currentDay} isPublicPage={true} />
+            <LaskTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
           </TabsContent>
 
           <TabsContent value="mejeri" className="mt-6">
-            <MejeriTab selectedDays={selectedDays} currentDay={currentDay} isPublicPage={true} />
+            <MejeriTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
           </TabsContent>
 
           <TabsContent value="kaffe" className="mt-6">
-            <KaffeTeTab selectedDays={selectedDays} currentDay={currentDay} isPublicPage={true} />
+            <KaffeTeTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
           </TabsContent>
 
           <TabsContent value="annat" className="mt-6">
-            <AnnatTab selectedDays={selectedDays} currentDay={currentDay} isPublicPage={true} />
+            <AnnatTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
           </TabsContent>
         </Tabs>
 

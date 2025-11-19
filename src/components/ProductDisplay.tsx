@@ -14,10 +14,11 @@ interface ProductDisplayProps {
   setActiveCategory: (category: string) => void;
   selectedDays: string[];
   currentDay: string;
+  orderType: string;
   onCheckout?: () => void;
 }
 
-const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays, currentDay, onCheckout }: ProductDisplayProps) => {
+const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays, currentDay, orderType, onCheckout }: ProductDisplayProps) => {
   const isMobile = useIsMobile();
   
   return (
@@ -76,27 +77,27 @@ const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays, curre
 
         <div className="p-4 sm:p-6">
           <TabsContent value="fruktkorgar" className="mt-0">
-            <FruktkorgarTab selectedDays={selectedDays} currentDay={currentDay} />
+            <FruktkorgarTab selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} />
           </TabsContent>
           
           <TabsContent value="fruktpaser" className="mt-0">
-            <FruktpaserTab selectedDays={selectedDays} currentDay={currentDay} />
+            <FruktpaserTab selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} />
           </TabsContent>
           
           <TabsContent value="lask" className="mt-0">
-            <LaskTab selectedDays={selectedDays} currentDay={currentDay} />
+            <LaskTab selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} />
           </TabsContent>
           
           <TabsContent value="mejeri" className="mt-0">
-            <MejeriTab selectedDays={selectedDays} currentDay={currentDay} />
+            <MejeriTab selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} />
           </TabsContent>
           
           <TabsContent value="kaffe-te" className="mt-0">
-            <KaffeTeTab selectedDays={selectedDays} currentDay={currentDay} />
+            <KaffeTeTab selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} />
           </TabsContent>
           
           <TabsContent value="annat" className="mt-0">
-            <AnnatTab selectedDays={selectedDays} currentDay={currentDay} />
+            <AnnatTab selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} />
           </TabsContent>
         </div>
       </Tabs>
