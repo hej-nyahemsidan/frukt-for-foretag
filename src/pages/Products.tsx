@@ -57,9 +57,14 @@ const Products = () => {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
             Våra Produkter
           </h1>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
+          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4 mb-4">
             Upptäck vårt sortiment av färska frukter, mejerivaror, drycker och kaffe
           </p>
+          <div className="bg-primary/10 border border-primary/20 rounded-lg p-4 max-w-3xl mx-auto">
+            <p className="text-sm sm:text-base text-gray-700">
+              <strong>Ny kund?</strong> Välj dina leveransdagar, lägg till produkter i varukorgen och gå vidare till offertförfrågan för att få din första leverans. Vi återkommer med en offert och sätter upp leveransen!
+            </p>
+          </div>
         </div>
 
         {/* Day Selector */}

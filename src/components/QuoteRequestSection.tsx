@@ -16,6 +16,8 @@ const QuoteRequestSection = () => {
     contactPerson: '',
     email: '',
     phone: '',
+    address: '',
+    postalCode: '',
     location: '',
     message: ''
   });
@@ -56,6 +58,8 @@ const QuoteRequestSection = () => {
           contactPerson: formData.contactPerson,
           email: formData.email,
           phone: formData.phone,
+          address: formData.address,
+          postalCode: formData.postalCode,
           location: formData.location,
           message: formData.message,
           cartItems: items,
@@ -71,7 +75,7 @@ const QuoteRequestSection = () => {
       });
 
       // Clear form and cart
-      setFormData({ companyName: '', contactPerson: '', email: '', phone: '', location: '', message: '' });
+      setFormData({ companyName: '', contactPerson: '', email: '', phone: '', address: '', postalCode: '', location: '', message: '' });
       clearCart();
       setOrderConfirmed(true);
     } catch (error) {
@@ -130,7 +134,7 @@ const QuoteRequestSection = () => {
               Offertförfrågan
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 leading-relaxed">
-              Behöver ni lite mer frukt eller en specialbeställning? Fyll i offertformuläret nedan så hör vi av oss direkt.
+              Fyll i formuläret nedan för att göra din första beställning. Vi återkommer snabbt med en offert och sätter upp leveransen till er adress!
             </p>
           </div>
         </div>
@@ -230,7 +234,7 @@ const QuoteRequestSection = () => {
                 </p>
                 
                 <p>
-                  Vill du beställa en gratis provkorg? Fyll i formuläret så hör vi av oss och sätter upp en leverans. Om du har några frågor eller funderingar, tveka inte att kontakta oss. Vi ser fram emot att höra från dig!
+                  Vill du beställa en gratis provkorg? Fyll i formuläret med din leveransadress så hör vi av oss och sätter upp en leverans. Om du har några frågor eller funderingar, tveka inte att kontakta oss. Vi ser fram emot att höra från dig!
                 </p>
               </div>
             </div>
@@ -291,14 +295,38 @@ const QuoteRequestSection = () => {
                    </div>
                    
                    <div className="space-y-2">
-                     <label className="text-sm text-gray-600 font-medium">Ort*</label>
+                     <label className="text-sm text-gray-600 font-medium">Leveransadress*</label>
                      <Input
-                       value={formData.location}
-                       onChange={(e) => handleInputChange('location', e.target.value)}
+                       value={formData.address}
+                       onChange={(e) => handleInputChange('address', e.target.value)}
                        className="w-full text-lg py-3"
-                       placeholder="Stockholm"
+                       placeholder="Gatuadress 123"
                        required
                      />
+                   </div>
+                   
+                   <div className="grid grid-cols-2 gap-4">
+                     <div className="space-y-2">
+                       <label className="text-sm text-gray-600 font-medium">Postnummer*</label>
+                       <Input
+                         value={formData.postalCode}
+                         onChange={(e) => handleInputChange('postalCode', e.target.value)}
+                         className="w-full text-lg py-3"
+                         placeholder="123 45"
+                         required
+                       />
+                     </div>
+                     
+                     <div className="space-y-2">
+                       <label className="text-sm text-gray-600 font-medium">Ort*</label>
+                       <Input
+                         value={formData.location}
+                         onChange={(e) => handleInputChange('location', e.target.value)}
+                         className="w-full text-lg py-3"
+                         placeholder="Stockholm"
+                         required
+                       />
+                     </div>
                    </div>
                    
                    <div className="space-y-2">
