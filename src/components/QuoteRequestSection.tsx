@@ -142,64 +142,66 @@ const QuoteRequestSection = () => {
 
       {/* Cart Summary Section */}
       {items.length > 0 && (
-        <section className="py-12 px-8 bg-gradient-to-b from-green-50 to-white">
+        <section className="py-12 px-4 sm:px-8 bg-gradient-to-b from-green-50 to-white overflow-x-hidden">
           <div className="container mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-              <ShoppingBasket className="h-8 w-8 text-primary" />
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+              <ShoppingBasket className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
               Din varukorg
             </h2>
-            <div className="bg-white rounded-lg shadow-lg p-6">
+            <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6">
               <div className="space-y-6 mb-6">
                 {Object.entries(itemsByDay).map(([day, dayItems]) => (
                   <div key={day} className="mb-4 last:mb-0">
                     <div className="flex items-center gap-2 mb-4 pb-2 border-b-2 border-primary/20">
-                      <Calendar className="h-5 w-5 text-primary" />
-                      <h3 className="text-lg font-bold text-primary">{day}</h3>
-                      <span className="text-sm text-muted-foreground">
+                      <Calendar className="h-5 w-5 text-primary flex-shrink-0" />
+                      <h3 className="text-base sm:text-lg font-bold text-primary break-words min-w-0">{day}</h3>
+                      <span className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
                         ({dayItems.reduce((sum, item) => sum + item.quantity, 0)} produkter)
                       </span>
                     </div>
                     {dayItems.map((item) => (
-                      <div key={`${item.id}-${item.day}`} className="flex gap-4 pb-4 border-b last:border-b-0 mb-4 last:mb-0">
+                      <div key={`${item.id}-${item.day}`} className="flex flex-col sm:flex-row gap-3 sm:gap-4 pb-4 border-b last:border-b-0 mb-4 last:mb-0">
                         {item.image && (
                           <img 
                             src={item.image} 
                             alt={item.name}
-                            className="w-20 h-20 object-cover rounded"
+                            className="w-full sm:w-20 h-32 sm:h-20 object-cover rounded flex-shrink-0"
                           />
                         )}
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-lg">{item.name}</h4>
-                          <p className="text-primary font-bold text-lg">{item.price} kr</p>
-                          <div className="flex items-center gap-3 mt-2">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                            >
-                              <Minus className="h-4 w-4" />
-                            </Button>
-                            <span className="font-semibold w-12 text-center">{item.quantity} st</span>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            >
-                              <Plus className="h-4 w-4" />
-                            </Button>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-semibold text-base sm:text-lg break-words">{item.name}</h4>
+                          <p className="text-primary font-bold text-base sm:text-lg">{item.price} kr</p>
+                          <div className="flex flex-wrap items-center gap-2 mt-2">
+                            <div className="flex items-center gap-2">
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                              >
+                                <Minus className="h-4 w-4" />
+                              </Button>
+                              <span className="font-semibold w-12 text-center text-sm">{item.quantity} st</span>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                              >
+                                <Plus className="h-4 w-4" />
+                              </Button>
+                            </div>
                             <Button
                               variant="ghost"
                               size="sm"
-                              className="ml-auto text-destructive hover:text-destructive"
+                              className="text-destructive hover:text-destructive"
                               onClick={() => removeItem(item.id)}
                             >
-                              <X className="h-4 w-4 mr-1" />
-                              Ta bort
+                              <X className="h-4 w-4 sm:mr-1" />
+                              <span className="hidden sm:inline">Ta bort</span>
                             </Button>
                           </div>
                         </div>
-                        <div className="text-right">
-                          <p className="font-bold text-xl text-primary">{item.price * item.quantity} kr</p>
+                        <div className="text-left sm:text-right flex-shrink-0">
+                          <p className="font-bold text-lg sm:text-xl text-primary">{item.price * item.quantity} kr</p>
                         </div>
                       </div>
                     ))}
@@ -208,9 +210,9 @@ const QuoteRequestSection = () => {
               </div>
 
               <div className="border-t pt-6">
-                <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-gray-900">Totalt:</span>
-                  <span className="text-3xl font-bold text-primary">{getTotalPrice()} kr</span>
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                  <span className="text-xl sm:text-2xl font-bold text-gray-900">Totalt:</span>
+                  <span className="text-2xl sm:text-3xl font-bold text-primary">{getTotalPrice()} kr</span>
                 </div>
               </div>
             </div>
