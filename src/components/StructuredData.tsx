@@ -125,8 +125,8 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
               },
               {
                 "@type": "Product",
-                "name": "Fruktkorg Standard",
-                "description": "Standard fruktkorg med färska frukter för kontoret",
+                "name": "Fruktkorg Original",
+                "description": "Original fruktkorg med färska frukter för kontoret",
                 "category": "Fruktkorgar",
                 "brand": "Vitaminkorgen"
               }
