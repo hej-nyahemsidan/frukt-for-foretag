@@ -13,6 +13,7 @@ interface PublicAddToCartButtonProps {
   variant?: 'default' | 'outline' | 'secondary' | 'ghost';
   className?: string;
   selectedDay?: string;
+  size?: string;
 }
 
 const PublicAddToCartButton = ({
@@ -24,6 +25,7 @@ const PublicAddToCartButton = ({
   variant = 'default',
   className = '',
   selectedDay,
+  size,
 }: PublicAddToCartButtonProps) => {
   const { addItem } = usePublicCart();
   const { toast } = useToast();
@@ -49,6 +51,7 @@ const PublicAddToCartButton = ({
       image,
       day: selectedDay,
       quantity: quantity,
+      size: size,
     });
 
     toast({
