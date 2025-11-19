@@ -60,8 +60,9 @@ const PublicAddToCartButton = ({
       variant={variant}
       className={className}
     >
-      <ShoppingCart className="h-4 w-4 mr-2" />
-      Lägg till i varukorgen
+      <ShoppingCart className="h-4 w-4 sm:mr-2" />
+      <span className="hidden sm:inline">Lägg till i varukorgen</span>
+      <span className="inline sm:hidden">Lägg till</span>
     </Button>
   );
 };
