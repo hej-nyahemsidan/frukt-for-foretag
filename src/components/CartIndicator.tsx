@@ -6,15 +6,17 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 interface CartIndicatorProps {
+  orderType?: string;
   onCheckout?: () => void;
 }
 
-const CartIndicator = ({ onCheckout }: CartIndicatorProps = { onCheckout: undefined }) => {
+const CartIndicator = ({ orderType, onCheckout }: CartIndicatorProps = { orderType: undefined, onCheckout: undefined }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const { items, getTotalItems, updateQuantity, removeItem, clearCart } = useCart();
+  const { items, updateQuantity, removeItem, clearCart, getItemsByOrderType } = useCart();
 
-  const totalItems = getTotalItems();
+  const relevantItems = orderType ? getItemsByOrderType(orderType) : items;
+  const totalItems = relevantItems.reduce((sum, item) => sum + item.quantity, 0);
 
   const handleGoToCheckout = () => {
     setIsOpen(false);
@@ -65,18 +67,19 @@ const CartIndicator = ({ onCheckout }: CartIndicatorProps = { onCheckout: undefi
           </div>
 
           <div className="max-h-64 overflow-y-auto">
-            {items.length === 0 ? (
+            {relevantItems.length === 0 ? (
               <div className="p-4 text-center text-muted-foreground">
                 Varukorgen är tom
               </div>
             ) : (
               <div className="p-2 space-y-2">
-                 {items.map((item) => {
+                 {relevantItems.map((item) => {
                    // Create unique identifier for cart operations
                    const itemKey = [
                      item.id,
                      item.size || '',
-                     item.assignedDay || ''
+                     item.assignedDay || '',
+                     item.orderType || ''
                    ].join('-');
                    
                    return (
@@ -125,7 +128,7 @@ const CartIndicator = ({ onCheckout }: CartIndicatorProps = { onCheckout: undefi
             )}
           </div>
 
-          {items.length > 0 && (
+          {relevantItems.length > 0 && (
             <div className="p-4 border-t border-gray-100 space-y-2">
               <Button 
                 onClick={handleGoToCheckout}
