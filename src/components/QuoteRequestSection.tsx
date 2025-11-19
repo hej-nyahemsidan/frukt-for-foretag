@@ -133,8 +133,11 @@ const QuoteRequestSection = () => {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
               Offertförfrågan
             </h1>
-            <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 leading-relaxed">
+            <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 leading-relaxed mb-4">
               Fyll i formuläret nedan för att göra din första beställning. Vi återkommer snabbt med en offert och sätter upp leveransen till er adress!
+            </p>
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
+              Vill du beställa en gratis provkorg? Fyll i formuläret med din leveransadress så hör vi av oss. Tveka inte att kontakta oss om du har frågor!
             </p>
           </div>
         </div>
@@ -222,27 +225,7 @@ const QuoteRequestSection = () => {
 
       {/* Main Content Section */}
       <section className="py-20 px-8 bg-white">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-5 gap-16">
-            {/* Left Column - Company Message (40%) */}
-            <div className="lg:col-span-2 space-y-6">
-              <h2 className="text-4xl font-bold text-gray-900">
-                Offertförfrågan.
-              </h2>
-              
-              <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
-                <p>
-                  Vi är ett gäng glada och entusiastiska personer som brinner för att leverera den absolut fräschaste och mest smakrika frukten till våra kunder.
-                </p>
-                
-                <p>
-                  Vill du beställa en gratis provkorg? Fyll i formuläret med din leveransadress så hör vi av oss och sätter upp en leverans. Om du har några frågor eller funderingar, tveka inte att kontakta oss. Vi ser fram emot att höra från dig!
-                </p>
-              </div>
-            </div>
-
-            {/* Right Column - Quote Request Form (60%) */}
-            <div className="lg:col-span-3">
+        <div className="container mx-auto max-w-3xl">
               {/* Promotional Bubble */}
               <div className="mb-6 text-center">
                 <div className="inline-block bg-gradient-to-r from-secondary to-primary-light text-white px-6 py-3 rounded-full shadow-lg">
@@ -351,8 +334,6 @@ const QuoteRequestSection = () => {
                    </Button>
                 </form>
               </div>
-            </div>
-          </div>
         </div>
       </section>
     </div>
