@@ -41,7 +41,6 @@ interface ContactEmailRequest {
     price: number;
     category: string;
     image?: string;
-    deliveryDay: string;
   }>;
   totalPrice?: number;
   message?: string;
@@ -208,44 +207,29 @@ const handler = async (req: Request): Promise<Response> => {
               ${data.cartItems && data.cartItems.length > 0 ? `
               <div class="section">
                 <div class="section-title">🛒 Valda Produkter</div>
-                ${Object.entries(
-                  data.cartItems.reduce((acc: any, item: any) => {
-                    if (!acc[item.deliveryDay]) {
-                      acc[item.deliveryDay] = [];
-                    }
-                    acc[item.deliveryDay].push(item);
-                    return acc;
-                  }, {})
-                ).map(([day, items]: [string, any]) => `
-                  <div style="margin-bottom: 20px;">
-                    <h3 style="color: #22c55e; font-size: 18px; border-bottom: 2px solid #22c55e; padding-bottom: 8px; margin-bottom: 12px;">${day}</h3>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Produkt</th>
-                          <th style="text-align: center;">Antal</th>
-                          <th style="text-align: right;">Pris</th>
-                          <th style="text-align: right;">Totalt</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        ${items.map((item: any) => `
-                          <tr>
-                            <td>${item.name}</td>
-                            <td style="text-align: center;">${item.quantity} st</td>
-                            <td style="text-align: right;">${item.price} kr</td>
-                            <td style="text-align: right;"><strong>${item.price * item.quantity} kr</strong></td>
-                          </tr>
-                        `).join('')}
-                      </tbody>
-                    </table>
-                  </div>
-                `).join('')}
                 <table>
+                  <thead>
+                    <tr>
+                      <th>Produkt</th>
+                      <th style="text-align: center;">Antal</th>
+                      <th style="text-align: right;">Pris</th>
+                      <th style="text-align: right;">Totalt</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${data.cartItems.map(item => `
+                      <tr>
+                        <td>${item.name}</td>
+                        <td style="text-align: center;">${item.quantity} st</td>
+                        <td style="text-align: right;">${item.price} kr</td>
+                        <td style="text-align: right;"><strong>${item.price * item.quantity} kr</strong></td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
                   <tfoot>
                     <tr class="total-row">
-                      <td colspan="3" style="text-align: right; font-size: 18px;">Totalt:</td>
-                      <td style="text-align: right;"><strong style="font-size: 20px;">${data.totalPrice || 0} kr</strong></td>
+                      <td colspan="3" style="text-align: right;">Totalt:</td>
+                      <td style="text-align: right;"><strong>${data.totalPrice || 0} kr</strong></td>
                     </tr>
                   </tfoot>
                 </table>

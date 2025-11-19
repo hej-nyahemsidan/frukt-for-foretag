@@ -36,60 +36,47 @@ const PublicCartIndicator = () => {
             <p className="text-muted-foreground text-center py-8">Din varukorg är tom</p>
           ) : (
             <>
-              <div className="space-y-6 mb-4">
-                {Object.entries(
-                  items.reduce((acc, item) => {
-                    if (!acc[item.deliveryDay]) {
-                      acc[item.deliveryDay] = [];
-                    }
-                    acc[item.deliveryDay].push(item);
-                    return acc;
-                  }, {} as Record<string, typeof items>)
-                ).map(([day, dayItems]) => (
-                  <div key={day} className="space-y-3">
-                    <h3 className="font-bold text-sm text-primary border-b pb-1">{day}</h3>
-                    {dayItems.map((item) => (
-                      <div key={`${item.id}-${item.deliveryDay}`} className="flex gap-3 pb-3 border-b last:border-b-0">
-                        {item.image && (
-                          <img 
-                            src={item.image} 
-                            alt={item.name}
-                            className="w-12 h-12 object-cover rounded"
-                          />
-                        )}
-                        <div className="flex-1 min-w-0">
-                          <p className="font-medium text-xs truncate">{item.name}</p>
-                          <p className="text-xs text-primary font-semibold">{item.price} kr</p>
-                          <div className="flex items-center gap-2 mt-1">
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="h-7 w-7 p-0"
-                              onClick={() => updateQuantity(item.id, item.deliveryDay, item.quantity - 1)}
-                            >
-                              <Minus className="h-3 w-3" />
-                            </Button>
-                            <span className="text-xs w-6 text-center">{item.quantity}</span>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              className="h-7 w-7 p-0"
-                              onClick={() => updateQuantity(item.id, item.deliveryDay, item.quantity + 1)}
-                            >
-                              <Plus className="h-3 w-3" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              className="h-7 w-7 p-0 ml-auto text-destructive hover:text-destructive"
-                              onClick={() => removeItem(item.id, item.deliveryDay)}
-                            >
-                              <X className="h-3 w-3" />
-                            </Button>
-                          </div>
-                        </div>
+              <div className="space-y-4 mb-4">
+                {items.map((item) => (
+                  <div key={item.id} className="flex gap-3 pb-3 border-b">
+                    {item.image && (
+                      <img 
+                        src={item.image} 
+                        alt={item.name}
+                        className="w-16 h-16 object-cover rounded"
+                      />
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium text-sm truncate">{item.name}</p>
+                      <p className="text-sm text-primary font-semibold">{item.price} kr</p>
+                      <div className="flex items-center gap-2 mt-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-7 w-7 p-0"
+                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                        >
+                          <Minus className="h-3 w-3" />
+                        </Button>
+                        <span className="text-sm w-8 text-center">{item.quantity}</span>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-7 w-7 p-0"
+                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                        >
+                          <Plus className="h-3 w-3" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-7 w-7 p-0 ml-auto text-destructive hover:text-destructive"
+                          onClick={() => removeItem(item.id)}
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
                       </div>
-                    ))}
+                    </div>
                   </div>
                 ))}
               </div>

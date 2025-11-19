@@ -7,14 +7,13 @@ export interface PublicCartItem {
   quantity: number;
   category: string;
   image?: string;
-  deliveryDay: string;
 }
 
 interface PublicCartContextType {
   items: PublicCartItem[];
   addItem: (item: Omit<PublicCartItem, 'quantity'> & { quantity?: number }) => void;
-  removeItem: (itemId: string, deliveryDay: string) => void;
-  updateQuantity: (itemId: string, deliveryDay: string, quantity: number) => void;
+  removeItem: (itemId: string) => void;
+  updateQuantity: (itemId: string, quantity: number) => void;
   clearCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
@@ -65,12 +64,12 @@ export const PublicCartProvider: React.FC<PublicCartProviderProps> = ({ children
 
   const addItem = (newItem: Omit<PublicCartItem, 'quantity'> & { quantity?: number }) => {
     setItems(prev => {
-      const existingItem = prev.find(item => item.id === newItem.id && item.deliveryDay === newItem.deliveryDay);
+      const existingItem = prev.find(item => item.id === newItem.id);
       const quantityToAdd = newItem.quantity || 1;
       
       if (existingItem) {
         return prev.map(item =>
-          item.id === newItem.id && item.deliveryDay === newItem.deliveryDay
+          item.id === newItem.id
             ? { ...item, quantity: item.quantity + quantityToAdd }
             : item
         );
@@ -79,18 +78,18 @@ export const PublicCartProvider: React.FC<PublicCartProviderProps> = ({ children
     });
   };
 
-  const removeItem = (itemId: string, deliveryDay: string) => {
-    setItems(prev => prev.filter(item => !(item.id === itemId && item.deliveryDay === deliveryDay)));
+  const removeItem = (itemId: string) => {
+    setItems(prev => prev.filter(item => item.id !== itemId));
   };
 
-  const updateQuantity = (itemId: string, deliveryDay: string, quantity: number) => {
+  const updateQuantity = (itemId: string, quantity: number) => {
     if (quantity <= 0) {
-      removeItem(itemId, deliveryDay);
+      removeItem(itemId);
       return;
     }
     setItems(prev =>
       prev.map(item =>
-        item.id === itemId && item.deliveryDay === deliveryDay ? { ...item, quantity } : item
+        item.id === itemId ? { ...item, quantity } : item
       )
     );
   };
