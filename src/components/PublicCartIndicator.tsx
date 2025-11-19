@@ -9,7 +9,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 const PublicCartIndicator = () => {
-  const { items, getTotalItems, updateQuantity, removeItem, getTotalPrice } = usePublicCart();
+  const { items, getTotalItems, updateQuantity, removeItem, getTotalPrice, clearCart } = usePublicCart();
   const navigate = useNavigate();
   const totalItems = getTotalItems();
 
@@ -101,12 +101,21 @@ const PublicCartIndicator = () => {
                   <span className="font-semibold">Totalt:</span>
                   <span className="text-lg font-bold text-primary">{getTotalPrice()} kr</span>
                 </div>
-                <Button 
-                  onClick={handleGoToCheckout}
-                  className="w-full"
-                >
-                  Gå till offertförfrågan
-                </Button>
+                <div className="space-y-2">
+                  <Button 
+                    onClick={handleGoToCheckout}
+                    className="w-full"
+                  >
+                    Gå till offertförfrågan
+                  </Button>
+                  <Button 
+                    onClick={clearCart}
+                    variant="outline"
+                    className="w-full text-destructive hover:text-destructive"
+                  >
+                    Töm varukorg
+                  </Button>
+                </div>
               </div>
             </>
           )}
