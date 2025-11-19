@@ -7,6 +7,7 @@ import PublicAddToCartButton from '@/components/PublicAddToCartButton';
 interface AnnatTabProps {
   selectedDays: string[];
   currentDay: string;
+  orderType: string;
   isPublicPage?: boolean;
 }
 
@@ -19,7 +20,7 @@ interface Product {
   description?: string;
 }
 
-const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays, currentDay, isPublicPage = false }) => {
+const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays, currentDay, orderType, isPublicPage = false }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -90,7 +91,7 @@ const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays, currentDay, isPublicP
                 {isPublicPage ? (
                   <PublicAddToCartButton productId={product.id} productName={product.name} price={product.prices?.default || 0} category={product.category} image={product.image_url} selectedDay={currentDay} className="w-full" />
                 ) : (
-                  <AddToCartButton product={{ id: product.id, name: product.name, price: product.prices?.default || 0, category: product.category, image: product.image_url }} selectedDays={selectedDays} currentDay={currentDay} className="w-full" />
+                  <AddToCartButton product={{ id: product.id, name: product.name, price: product.prices?.default || 0, category: product.category, image: product.image_url }} selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} className="w-full" />
                 )}
               </div>
             </div>

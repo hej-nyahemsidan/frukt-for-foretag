@@ -7,6 +7,7 @@ import PublicAddToCartButton from '@/components/PublicAddToCartButton';
 interface LaskTabProps {
   selectedDays: string[];
   currentDay: string;
+  orderType: string;
   isPublicPage?: boolean;
 }
 
@@ -19,7 +20,7 @@ interface Product {
   description?: string;
 }
 
-const LaskTab: React.FC<LaskTabProps> = ({ selectedDays, currentDay, isPublicPage = false }) => {
+const LaskTab: React.FC<LaskTabProps> = ({ selectedDays, currentDay, orderType, isPublicPage = false }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -106,6 +107,7 @@ const LaskTab: React.FC<LaskTabProps> = ({ selectedDays, currentDay, isPublicPag
                     }}
                     selectedDays={selectedDays}
                     currentDay={currentDay}
+                    orderType={orderType}
                     className="w-full"
                   />
                 )}

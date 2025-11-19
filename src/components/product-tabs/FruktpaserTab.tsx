@@ -7,6 +7,7 @@ import PublicAddToCartButton from '@/components/PublicAddToCartButton';
 interface FruktpaserTabProps {
   selectedDays: string[];
   currentDay: string;
+  orderType: string;
   isPublicPage?: boolean;
 }
 
@@ -19,7 +20,7 @@ interface Product {
   description?: string;
 }
 
-const FruktpaserTab: React.FC<FruktpaserTabProps> = ({ selectedDays, currentDay, isPublicPage = false }) => {
+const FruktpaserTab: React.FC<FruktpaserTabProps> = ({ selectedDays, currentDay, orderType, isPublicPage = false }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -106,6 +107,7 @@ const FruktpaserTab: React.FC<FruktpaserTabProps> = ({ selectedDays, currentDay,
                     }}
                     selectedDays={selectedDays}
                     currentDay={currentDay}
+                    orderType={orderType}
                     className="w-full"
                   />
                 )}

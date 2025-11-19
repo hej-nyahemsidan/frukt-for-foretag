@@ -23,13 +23,17 @@ interface OrderSidebarProps {
 
 const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, selectedDays, setSelectedDays, currentDay, setCurrentDay, onCheckout }: OrderSidebarProps) => {
   const navigate = useNavigate();
-  const { getTotalItems } = useCart();
+  const { getItemsByOrderType } = useCart();
   const isMobile = useIsMobile();
   const days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
   
   // Track previous values to detect actual changes
   const prevOrderTypeRef = useRef(orderType);
   const prevPackagePlanRef = useRef(packagePlan);
+  
+  // Calculate total items for current order type only
+  const relevantItems = getItemsByOrderType(orderType);
+  const totalItems = relevantItems.reduce((sum, item) => sum + item.quantity, 0);
 
   // Auto-set package plan to weekly when subscription is selected
   useEffect(() => {
@@ -44,7 +48,6 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, se
     : days;
   const isWeeklySubscription = orderType === 'subscription' && packagePlan === 'weekly';
 
-  const totalItems = getTotalItems();
   const hasSelectedDays = selectedDays.length > 0;
   const hasItems = totalItems > 0;
   const canProceed = hasSelectedDays && hasItems;

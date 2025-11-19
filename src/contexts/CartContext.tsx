@@ -9,6 +9,7 @@ export interface CartItem {
   image?: string;
   size?: string; // For fruit baskets
   assignedDay?: string; // For day-specific deliveries
+  orderType?: string; // 'subscription' or 'onetime'
 }
 
 interface CartContextType {
@@ -19,6 +20,7 @@ interface CartContextType {
   clearCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
+  getItemsByOrderType: (orderType: string) => CartItem[];
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -86,18 +88,20 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
 
   const addItem = (newItem: Omit<CartItem, 'quantity'> & { quantity?: number }) => {
     setItems(prev => {
-      // Create a unique identifier including size and assigned day
+      // Create a unique identifier including size, assigned day, and order type
       const itemKey = [
         newItem.id,
         newItem.size || '',
-        newItem.assignedDay || ''
+        newItem.assignedDay || '',
+        newItem.orderType || ''
       ].join('-');
       
       const existingItem = prev.find(item => {
         const existingKey = [
           item.id,
           item.size || '',
-          item.assignedDay || ''
+          item.assignedDay || '',
+          item.orderType || ''
         ].join('-');
         return existingKey === itemKey;
       });
@@ -109,7 +113,8 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
           const existingKey = [
             item.id,
             item.size || '',
-            item.assignedDay || ''
+            item.assignedDay || '',
+            item.orderType || ''
           ].join('-');
           return existingKey === itemKey
             ? { ...item, quantity: item.quantity + quantityToAdd }
@@ -125,7 +130,8 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
       const currentKey = [
         item.id,
         item.size || '',
-        item.assignedDay || ''
+        item.assignedDay || '',
+        item.orderType || ''
       ].join('-');
       return currentKey !== itemKey;
     }));
@@ -141,7 +147,8 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         const currentKey = [
           item.id,
           item.size || '',
-          item.assignedDay || ''
+          item.assignedDay || '',
+          item.orderType || ''
         ].join('-');
         return currentKey === itemKey ? { ...item, quantity } : item;
       })
@@ -160,6 +167,10 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     return items.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
+  const getItemsByOrderType = (orderType: string) => {
+    return items.filter(item => item.orderType === orderType);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -170,6 +181,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         clearCart,
         getTotalItems,
         getTotalPrice,
+        getItemsByOrderType,
       }}
     >
       {children}
