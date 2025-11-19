@@ -70,7 +70,7 @@ const LaskTab: React.FC<LaskTabProps> = ({ selectedDays, currentDay, isPublicPag
             className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer max-w-[280px]"
             onClick={() => setSelectedProduct(product)}
           >
-            <div className="aspect-square bg-white overflow-hidden rounded-lg">
+            <div className="aspect-square bg-white overflow-hidden rounded-lg p-2 sm:p-3">
               <img 
                 src={product.image_url}
                 alt={product.name}
