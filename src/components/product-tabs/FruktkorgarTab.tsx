@@ -134,19 +134,20 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
                       className="w-full"
                     />
                   ) : (
-                    <AddToCartButton
-                      product={{
-                        id: product.id,
-                        name: `${product.name} (${currentSize})`,
-                        price: product.prices[currentSize] || 0,
-                        category: product.category,
-                        image: product.image_url
-                      }}
-                      selectedDays={selectedDays}
-                      currentDay={currentDay}
-                      orderType={orderType}
-                      className="w-full"
-                    />
+                  <AddToCartButton
+                    product={{
+                      id: product.id,
+                      name: `${product.name} (${currentSize})`,
+                      price: product.prices[currentSize] || 0,
+                      category: product.category,
+                      image: product.image_url
+                    }}
+                    size={currentSize}
+                    selectedDays={selectedDays}
+                    currentDay={currentDay}
+                    orderType={orderType}
+                    className="w-full"
+                  />
                   )}
                 </div>
               </div>

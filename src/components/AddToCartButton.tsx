@@ -19,6 +19,7 @@ interface AddToCartButtonProps {
   selectedDays: string[];
   currentDay: string;
   orderType: string;
+  size?: string; // Explicitly passed size for fruit baskets
 }
 
 const AddToCartButton = ({ 
@@ -28,7 +29,8 @@ const AddToCartButton = ({
   showSizeSelector = false,
   selectedDays,
   currentDay,
-  orderType
+  orderType,
+  size
 }: AddToCartButtonProps) => {
   const [isAdded, setIsAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -104,7 +106,7 @@ const AddToCartButton = ({
         quantity: quantity,
         assignedDay: day,
         orderType: orderType,
-        ...(selectedSize && { size: selectedSize })
+        ...((size || selectedSize) && { size: size || selectedSize })
       };
 
       addItem(itemToAdd);
