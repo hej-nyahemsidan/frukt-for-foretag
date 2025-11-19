@@ -7,6 +7,7 @@ export interface PublicCartItem {
   quantity: number;
   category: string;
   image?: string;
+  day?: string;
 }
 
 interface PublicCartContextType {
@@ -64,12 +65,15 @@ export const PublicCartProvider: React.FC<PublicCartProviderProps> = ({ children
 
   const addItem = (newItem: Omit<PublicCartItem, 'quantity'> & { quantity?: number }) => {
     setItems(prev => {
-      const existingItem = prev.find(item => item.id === newItem.id);
+      // Consider both id AND day for uniqueness (same product on different days = separate items)
+      const existingItem = prev.find(item => 
+        item.id === newItem.id && item.day === newItem.day
+      );
       const quantityToAdd = newItem.quantity || 1;
       
       if (existingItem) {
         return prev.map(item =>
-          item.id === newItem.id
+          (item.id === newItem.id && item.day === newItem.day)
             ? { ...item, quantity: item.quantity + quantityToAdd }
             : item
         );

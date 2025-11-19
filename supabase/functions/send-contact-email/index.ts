@@ -41,6 +41,7 @@ interface ContactEmailRequest {
     price: number;
     category: string;
     image?: string;
+    day?: string;
   }>;
   totalPrice?: number;
   message?: string;
@@ -207,25 +208,44 @@ const handler = async (req: Request): Promise<Response> => {
               ${data.cartItems && data.cartItems.length > 0 ? `
               <div class="section">
                 <div class="section-title">🛒 Valda Produkter</div>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Produkt</th>
-                      <th style="text-align: center;">Antal</th>
-                      <th style="text-align: right;">Pris</th>
-                      <th style="text-align: right;">Totalt</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    ${data.cartItems.map(item => `
-                      <tr>
-                        <td>${item.name}</td>
-                        <td style="text-align: center;">${item.quantity} st</td>
-                        <td style="text-align: right;">${item.price} kr</td>
-                        <td style="text-align: right;"><strong>${item.price * item.quantity} kr</strong></td>
-                      </tr>
-                    `).join('')}
-                  </tbody>
+                ${(() => {
+                  // Group items by day
+                  const itemsByDay = data.cartItems.reduce((acc: any, item) => {
+                    const day = item.day || 'Ingen dag';
+                    if (!acc[day]) acc[day] = [];
+                    acc[day].push(item);
+                    return acc;
+                  }, {});
+                  
+                  return Object.entries(itemsByDay).map(([day, dayItems]: [string, any]) => `
+                    <div style="margin-bottom: 20px;">
+                      <h3 style="color: #4CAF50; font-size: 16px; margin-bottom: 10px; border-bottom: 1px solid #4CAF50; padding-bottom: 5px;">
+                        📅 ${day}
+                      </h3>
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Produkt</th>
+                            <th style="text-align: center;">Antal</th>
+                            <th style="text-align: right;">Pris</th>
+                            <th style="text-align: right;">Totalt</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          ${dayItems.map((item: any) => `
+                            <tr>
+                              <td>${item.name}</td>
+                              <td style="text-align: center;">${item.quantity} st</td>
+                              <td style="text-align: right;">${item.price} kr</td>
+                              <td style="text-align: right;"><strong>${item.price * item.quantity} kr</strong></td>
+                            </tr>
+                          `).join('')}
+                        </tbody>
+                      </table>
+                    </div>
+                  `).join('');
+                })()}
+                <table style="margin-top: 20px;">
                   <tfoot>
                     <tr class="total-row">
                       <td colspan="3" style="text-align: right;">Totalt:</td>

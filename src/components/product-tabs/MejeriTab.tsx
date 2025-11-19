@@ -86,7 +86,7 @@ const MejeriTab: React.FC<MejeriTabProps> = ({ selectedDays, currentDay, isPubli
               </div>
               <div onClick={(e) => e.stopPropagation()}>
                 {isPublicPage ? (
-                  <PublicAddToCartButton productId={product.id} productName={product.name} price={product.prices?.default || 0} category={product.category} image={product.image_url} className="w-full" />
+                  <PublicAddToCartButton productId={product.id} productName={product.name} price={product.prices?.default || 0} category={product.category} image={product.image_url} selectedDay={currentDay} className="w-full" />
                 ) : (
                   <AddToCartButton product={{ id: product.id, name: product.name, price: product.prices?.default || 0, category: product.category, image: product.image_url }} selectedDays={selectedDays} currentDay={currentDay} className="w-full" />
                 )}

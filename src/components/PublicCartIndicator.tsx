@@ -1,4 +1,4 @@
-import { ShoppingCart, X, Plus, Minus } from 'lucide-react';
+import { ShoppingCart, X, Plus, Minus, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { usePublicCart } from '@/contexts/PublicCartContext';
 import {
@@ -16,6 +16,14 @@ const PublicCartIndicator = () => {
   const handleGoToCheckout = () => {
     navigate('/offertforfragan');
   };
+
+  // Group items by day
+  const itemsByDay = items.reduce((acc, item) => {
+    const day = item.day || 'Ingen dag';
+    if (!acc[day]) acc[day] = [];
+    acc[day].push(item);
+    return acc;
+  }, {} as Record<string, typeof items>);
 
   return (
     <DropdownMenu>
@@ -37,46 +45,54 @@ const PublicCartIndicator = () => {
           ) : (
             <>
               <div className="space-y-4 mb-4">
-                {items.map((item) => (
-                  <div key={item.id} className="flex gap-3 pb-3 border-b">
-                    {item.image && (
-                      <img 
-                        src={item.image} 
-                        alt={item.name}
-                        className="w-16 h-16 object-cover rounded"
-                      />
-                    )}
-                    <div className="flex-1 min-w-0">
-                      <p className="font-medium text-sm truncate">{item.name}</p>
-                      <p className="text-sm text-primary font-semibold">{item.price} kr</p>
-                      <div className="flex items-center gap-2 mt-2">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="h-7 w-7 p-0"
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        >
-                          <Minus className="h-3 w-3" />
-                        </Button>
-                        <span className="text-sm w-8 text-center">{item.quantity}</span>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="h-7 w-7 p-0"
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        >
-                          <Plus className="h-3 w-3" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="h-7 w-7 p-0 ml-auto text-destructive hover:text-destructive"
-                          onClick={() => removeItem(item.id)}
-                        >
-                          <X className="h-4 w-4" />
-                        </Button>
-                      </div>
+                {Object.entries(itemsByDay).map(([day, dayItems]) => (
+                  <div key={day} className="mb-4 last:mb-0">
+                    <div className="flex items-center gap-2 mb-3 pb-2 border-b border-primary/20">
+                      <Calendar className="h-4 w-4 text-primary" />
+                      <p className="font-semibold text-sm text-primary">{day}</p>
                     </div>
+                    {dayItems.map((item) => (
+                      <div key={`${item.id}-${item.day}`} className="flex gap-3 pb-3 border-b last:border-0 mb-3 last:mb-0">
+                        {item.image && (
+                          <img 
+                            src={item.image} 
+                            alt={item.name}
+                            className="w-16 h-16 object-cover rounded"
+                          />
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium text-sm truncate">{item.name}</p>
+                          <p className="text-sm text-primary font-semibold">{item.price} kr</p>
+                          <div className="flex items-center gap-2 mt-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-7 w-7 p-0"
+                              onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                            >
+                              <Minus className="h-3 w-3" />
+                            </Button>
+                            <span className="text-sm w-8 text-center">{item.quantity}</span>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-7 w-7 p-0"
+                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                            >
+                              <Plus className="h-3 w-3" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-7 w-7 p-0 ml-auto text-destructive hover:text-destructive"
+                              onClick={() => removeItem(item.id)}
+                            >
+                              <X className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 ))}
               </div>
