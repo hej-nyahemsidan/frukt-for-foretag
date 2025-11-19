@@ -55,7 +55,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         console.error('Failed to parse cart from cookie:', error);
       }
     }
-  }, [getCookie]);
+  }, []);
 
   // Save cart to cookie whenever items change
   useEffect(() => {
