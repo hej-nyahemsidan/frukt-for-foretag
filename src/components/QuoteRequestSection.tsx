@@ -133,11 +133,8 @@ const QuoteRequestSection = () => {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
               Offertförfrågan
             </h1>
-            <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 leading-relaxed mb-4">
+            <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 leading-relaxed">
               Fyll i formuläret nedan för att göra din första beställning. Vi återkommer snabbt med en offert och sätter upp leveransen till er adress!
-            </p>
-            <p className="text-base sm:text-lg lg:text-xl text-gray-600 leading-relaxed">
-              Vill du beställa en gratis provkorg? Fyll i formuläret med din leveransadress så hör vi av oss. Tveka inte att kontakta oss om du har frågor!
             </p>
           </div>
         </div>
