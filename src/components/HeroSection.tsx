@@ -38,12 +38,11 @@ const HeroSection = () => {
                 Vi levererar noggrant utvalda fruktkorgar av högsta kvalitet direkt till ert kontor i Stockholm. Med färska fruktkorgar till jobbet och personlig service hjälper vi företag att främja energi, fokus och välmående på arbetsplatsen. Våra nöjda kunder uppskattar vår pålitlighet och smidiga leveranser av frukt på jobbet Stockholm – varje vecka.
               </p>
               
-              {/* Promotional Button */}
               <Button 
                 asChild
                 className="bg-gradient-to-r from-secondary to-primary-light text-white px-4 sm:px-6 py-3 sm:py-4 rounded-full shadow-lg animate-float hover:shadow-xl transition-shadow border-0 font-semibold text-sm sm:text-base"
               >
-                <a href="/offertforfragan" className="flex items-center justify-center gap-2">
+                <a href="/produkter" className="flex items-center justify-center gap-2">
                   <span>🎉</span>
                   <span>Beställ en gratis provkorg</span>
                 </a>
