@@ -130,6 +130,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
                       category={product.category}
                       image={product.image_url}
                       selectedDay={currentDay}
+                      size={currentSize}
                       className="w-full"
                     />
                   ) : (

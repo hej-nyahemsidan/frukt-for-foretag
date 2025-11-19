@@ -64,7 +64,7 @@ const PublicCartIndicator = () => {
                       <p className="font-semibold text-sm text-primary">{day}</p>
                     </div>
                     {dayItems.map((item) => (
-                      <div key={`${item.id}-${item.day}`} className="flex gap-3 pb-3 border-b last:border-0 mb-3 last:mb-0">
+                      <div key={`${item.id}-${item.day}-${item.size || ''}`} className="flex gap-3 pb-3 border-b last:border-0 mb-3 last:mb-0">
                         {item.image && (
                           <img 
                             src={item.image} 
@@ -80,7 +80,7 @@ const PublicCartIndicator = () => {
                               variant="outline"
                               size="sm"
                               className="h-7 w-7 p-0"
-                              onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                              onClick={() => updateQuantity(item.id, item.quantity - 1, item.day, item.size)}
                             >
                               <Minus className="h-3 w-3" />
                             </Button>
@@ -89,7 +89,7 @@ const PublicCartIndicator = () => {
                               variant="outline"
                               size="sm"
                               className="h-7 w-7 p-0"
-                              onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                              onClick={() => updateQuantity(item.id, item.quantity + 1, item.day, item.size)}
                             >
                               <Plus className="h-3 w-3" />
                             </Button>
@@ -97,7 +97,7 @@ const PublicCartIndicator = () => {
                               variant="ghost"
                               size="sm"
                               className="h-7 w-7 p-0 ml-auto text-destructive hover:text-destructive"
-                              onClick={() => removeItem(item.id)}
+                              onClick={() => removeItem(item.id, item.day, item.size)}
                             >
                               <X className="h-4 w-4" />
                             </Button>

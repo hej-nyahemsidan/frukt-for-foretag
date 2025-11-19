@@ -8,13 +8,14 @@ export interface PublicCartItem {
   category: string;
   image?: string;
   day?: string;
+  size?: string;
 }
 
 interface PublicCartContextType {
   items: PublicCartItem[];
   addItem: (item: Omit<PublicCartItem, 'quantity'> & { quantity?: number }) => void;
-  removeItem: (itemId: string) => void;
-  updateQuantity: (itemId: string, quantity: number) => void;
+  removeItem: (itemId: string, day?: string, size?: string) => void;
+  updateQuantity: (itemId: string, quantity: number, day?: string, size?: string) => void;
   clearCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
@@ -65,15 +66,15 @@ export const PublicCartProvider: React.FC<PublicCartProviderProps> = ({ children
 
   const addItem = (newItem: Omit<PublicCartItem, 'quantity'> & { quantity?: number }) => {
     setItems(prev => {
-      // Consider both id AND day for uniqueness (same product on different days = separate items)
+      // Consider id, day, AND size for uniqueness (same product with different size/day = separate items)
       const existingItem = prev.find(item => 
-        item.id === newItem.id && item.day === newItem.day
+        item.id === newItem.id && item.day === newItem.day && item.size === newItem.size
       );
       const quantityToAdd = newItem.quantity || 1;
       
       if (existingItem) {
         return prev.map(item =>
-          (item.id === newItem.id && item.day === newItem.day)
+          (item.id === newItem.id && item.day === newItem.day && item.size === newItem.size)
             ? { ...item, quantity: item.quantity + quantityToAdd }
             : item
         );
@@ -82,19 +83,33 @@ export const PublicCartProvider: React.FC<PublicCartProviderProps> = ({ children
     });
   };
 
-  const removeItem = (itemId: string) => {
-    setItems(prev => prev.filter(item => item.id !== itemId));
+  const removeItem = (itemId: string, day?: string, size?: string) => {
+    setItems(prev => prev.filter(item => {
+      // If day and size are provided, match all three properties
+      if (day !== undefined && size !== undefined) {
+        return !(item.id === itemId && item.day === day && item.size === size);
+      }
+      // Otherwise, just match by id (backward compatibility)
+      return item.id !== itemId;
+    }));
   };
 
-  const updateQuantity = (itemId: string, quantity: number) => {
+  const updateQuantity = (itemId: string, quantity: number, day?: string, size?: string) => {
     if (quantity <= 0) {
-      removeItem(itemId);
+      removeItem(itemId, day, size);
       return;
     }
     setItems(prev =>
-      prev.map(item =>
-        item.id === itemId ? { ...item, quantity } : item
-      )
+      prev.map(item => {
+        // If day and size are provided, match all three properties
+        if (day !== undefined && size !== undefined) {
+          return (item.id === itemId && item.day === day && item.size === size)
+            ? { ...item, quantity }
+            : item;
+        }
+        // Otherwise, just match by id (backward compatibility)
+        return item.id === itemId ? { ...item, quantity } : item;
+      })
     );
   };
 

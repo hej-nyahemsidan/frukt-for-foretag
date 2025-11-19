@@ -160,7 +160,7 @@ const QuoteRequestSection = () => {
                       </span>
                     </div>
                     {dayItems.map((item) => (
-                      <div key={`${item.id}-${item.day}`} className="flex flex-col sm:flex-row gap-3 sm:gap-4 pb-4 border-b last:border-b-0 mb-4 last:mb-0">
+                      <div key={`${item.id}-${item.day}-${item.size || ''}`} className="flex flex-col sm:flex-row gap-3 sm:gap-4 pb-4 border-b last:border-b-0 mb-4 last:mb-0">
                         {item.image && (
                           <img 
                             src={item.image} 
@@ -176,7 +176,7 @@ const QuoteRequestSection = () => {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                onClick={() => updateQuantity(item.id, item.quantity - 1, item.day, item.size)}
                               >
                                 <Minus className="h-4 w-4" />
                               </Button>
@@ -184,7 +184,7 @@ const QuoteRequestSection = () => {
                               <Button
                                 variant="outline"
                                 size="sm"
-                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                onClick={() => updateQuantity(item.id, item.quantity + 1, item.day, item.size)}
                               >
                                 <Plus className="h-4 w-4" />
                               </Button>
@@ -193,7 +193,7 @@ const QuoteRequestSection = () => {
                               variant="ghost"
                               size="sm"
                               className="text-destructive hover:text-destructive"
-                              onClick={() => removeItem(item.id)}
+                              onClick={() => removeItem(item.id, item.day, item.size)}
                             >
                               <X className="h-4 w-4 sm:mr-1" />
                               <span className="hidden sm:inline">Ta bort</span>
