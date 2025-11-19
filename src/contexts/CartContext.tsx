@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useCookieConsent } from '@/hooks/useCookieConsent';
 
 export interface CartItem {
   id: string;
@@ -38,9 +37,27 @@ interface CartProviderProps {
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
-  const { setCookie, getCookie } = useCookieConsent();
   
   const CART_COOKIE_NAME = 'shopping-cart';
+  
+  // Simple cookie utilities for cart storage (necessary cookies)
+  const setCookie = (name: string, value: string, days: number = 30) => {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
+  };
+  
+  const getCookie = (name: string): string | null => {
+    if (typeof document === 'undefined') return null;
+    const nameEQ = name + '=';
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  };
 
   // Load cart from cookie on mount
   useEffect(() => {
@@ -60,12 +77,12 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   // Save cart to cookie whenever items change
   useEffect(() => {
     if (items.length > 0) {
-      setCookie(CART_COOKIE_NAME, JSON.stringify(items), 'necessary', 30); // 30 days expiry
+      setCookie(CART_COOKIE_NAME, JSON.stringify(items), 30); // 30 days expiry
     } else {
       // Clear cookie when cart is empty
-      setCookie(CART_COOKIE_NAME, '', 'necessary', -1);
+      setCookie(CART_COOKIE_NAME, '', -1);
     }
-  }, [items, setCookie]);
+  }, [items]);
 
   const addItem = (newItem: Omit<CartItem, 'quantity'> & { quantity?: number }) => {
     setItems(prev => {
