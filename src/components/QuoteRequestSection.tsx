@@ -137,49 +137,62 @@ const QuoteRequestSection = () => {
               Din varukorg
             </h2>
             <div className="bg-white rounded-lg shadow-lg p-6">
-              <div className="space-y-4 mb-6">
-                {items.map((item) => (
-                  <div key={item.id} className="flex gap-4 pb-4 border-b last:border-b-0">
-                    {item.image && (
-                      <img 
-                        src={item.image} 
-                        alt={item.name}
-                        className="w-20 h-20 object-cover rounded"
-                      />
-                    )}
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-lg">{item.name}</h3>
-                      <p className="text-primary font-bold text-lg">{item.price} kr</p>
-                      <div className="flex items-center gap-3 mt-2">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        >
-                          <Minus className="h-4 w-4" />
-                        </Button>
-                        <span className="font-semibold w-12 text-center">{item.quantity} st</span>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        >
-                          <Plus className="h-4 w-4" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="ml-auto text-destructive hover:text-destructive"
-                          onClick={() => removeItem(item.id)}
-                        >
-                          <X className="h-4 w-4 mr-1" />
-                          Ta bort
-                        </Button>
+              <div className="space-y-6 mb-6">
+                {Object.entries(
+                  items.reduce((acc, item) => {
+                    if (!acc[item.deliveryDay]) {
+                      acc[item.deliveryDay] = [];
+                    }
+                    acc[item.deliveryDay].push(item);
+                    return acc;
+                  }, {} as Record<string, typeof items>)
+                ).map(([day, dayItems]) => (
+                  <div key={day} className="space-y-4">
+                    <h3 className="font-bold text-xl text-primary border-b-2 border-primary/20 pb-2">{day}</h3>
+                    {dayItems.map((item) => (
+                      <div key={`${item.id}-${item.deliveryDay}`} className="flex gap-4 pb-4 border-b last:border-b-0">
+                        {item.image && (
+                          <img 
+                            src={item.image} 
+                            alt={item.name}
+                            className="w-20 h-20 object-cover rounded"
+                          />
+                        )}
+                        <div className="flex-1">
+                          <h4 className="font-semibold text-lg">{item.name}</h4>
+                          <p className="text-primary font-bold text-lg">{item.price} kr</p>
+                          <div className="flex items-center gap-3 mt-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => updateQuantity(item.id, item.deliveryDay, item.quantity - 1)}
+                            >
+                              <Minus className="h-4 w-4" />
+                            </Button>
+                            <span className="font-semibold w-12 text-center">{item.quantity} st</span>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => updateQuantity(item.id, item.deliveryDay, item.quantity + 1)}
+                            >
+                              <Plus className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="ml-auto text-destructive hover:text-destructive"
+                              onClick={() => removeItem(item.id, item.deliveryDay)}
+                            >
+                              <X className="h-4 w-4 mr-1" />
+                              Ta bort
+                            </Button>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="font-bold text-xl text-primary">{item.price * item.quantity} kr</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-bold text-xl text-primary">{item.price * item.quantity} kr</p>
-                    </div>
+                    ))}
                   </div>
                 ))}
               </div>
