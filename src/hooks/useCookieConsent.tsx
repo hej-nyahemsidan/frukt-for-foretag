@@ -19,48 +19,48 @@ const CONSENT_COOKIE_NAME = 'cookie-consent';
 const SETTINGS_COOKIE_NAME = 'cookie-settings';
 const COOKIE_EXPIRY_DAYS = 365;
 
+// Cookie utility functions (defined outside component to avoid recreation)
+const setCookieUtil = (name: string, value: string, days: number = COOKIE_EXPIRY_DAYS) => {
+  const expires = new Date();
+  expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
+};
+
+const getCookieUtil = (name: string): string | null => {
+  if (typeof document === 'undefined') return null;
+  
+  const nameEQ = name + '=';
+  const ca = document.cookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
+};
+
+const deleteCookieUtil = (name: string) => {
+  document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+};
+
 export const useCookieConsent = () => {
   const [hasConsented, setHasConsented] = useState<boolean | null>(null);
   const [cookieSettings, setCookieSettings] = useState<CookieSettings>(DEFAULT_SETTINGS);
   const [showBanner, setShowBanner] = useState(false);
 
-  // Cookie utility functions
-  const setCookie = useCallback((name: string, value: string, days: number = COOKIE_EXPIRY_DAYS) => {
-    const expires = new Date();
-    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
-  }, []);
-
-  const getCookie = useCallback((name: string): string | null => {
-    if (typeof document === 'undefined') return null;
-    
-    const nameEQ = name + '=';
-    const ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  }, []);
-
-  const deleteCookie = useCallback((name: string) => {
-    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
-  }, []);
-
   // Set cookie only if consent allows it
   const setConsentCookie = useCallback((name: string, value: string, category: CookieCategory = 'necessary', days?: number) => {
     if (category === 'necessary' || cookieSettings[category]) {
-      setCookie(name, value, days);
+      setCookieUtil(name, value, days);
       return true;
     }
     return false;
-  }, [cookieSettings, setCookie]);
+  }, [cookieSettings]);
 
   // Initialize consent status on mount
   useEffect(() => {
-    const consentStatus = getCookie(CONSENT_COOKIE_NAME);
-    const savedSettings = getCookie(SETTINGS_COOKIE_NAME);
+    const consentStatus = getCookieUtil(CONSENT_COOKIE_NAME);
+    const savedSettings = getCookieUtil(SETTINGS_COOKIE_NAME);
 
     if (consentStatus !== null) {
       setHasConsented(consentStatus === 'true');
@@ -89,8 +89,8 @@ export const useCookieConsent = () => {
       marketing: true,
     };
     
-    setCookie(CONSENT_COOKIE_NAME, 'true');
-    setCookie(SETTINGS_COOKIE_NAME, JSON.stringify(newSettings));
+    setCookieUtil(CONSENT_COOKIE_NAME, 'true');
+    setCookieUtil(SETTINGS_COOKIE_NAME, JSON.stringify(newSettings));
     
     setHasConsented(true);
     setCookieSettings(newSettings);
@@ -101,8 +101,8 @@ export const useCookieConsent = () => {
   const acceptNecessaryOnly = () => {
     const newSettings: CookieSettings = DEFAULT_SETTINGS;
     
-    setCookie(CONSENT_COOKIE_NAME, 'true');
-    setCookie(SETTINGS_COOKIE_NAME, JSON.stringify(newSettings));
+    setCookieUtil(CONSENT_COOKIE_NAME, 'true');
+    setCookieUtil(SETTINGS_COOKIE_NAME, JSON.stringify(newSettings));
     
     setHasConsented(true);
     setCookieSettings(newSettings);
@@ -116,7 +116,7 @@ export const useCookieConsent = () => {
   const updateSettings = (newSettings: Partial<CookieSettings>) => {
     const updatedSettings = { ...cookieSettings, ...newSettings, necessary: true };
     
-    setCookie(SETTINGS_COOKIE_NAME, JSON.stringify(updatedSettings));
+    setCookieUtil(SETTINGS_COOKIE_NAME, JSON.stringify(updatedSettings));
     setCookieSettings(updatedSettings);
     
     // If disabling categories, clean up those cookies
@@ -137,19 +137,19 @@ export const useCookieConsent = () => {
         cookies.forEach(cookie => {
           const cookieName = cookie.split('=')[0].trim();
           if (cookieName.startsWith(prefix)) {
-            deleteCookie(cookieName);
+            deleteCookieUtil(cookieName);
           }
         });
       } else {
-        deleteCookie(pattern);
+        deleteCookieUtil(pattern);
       }
     });
   };
 
   // Reset all consent (for testing or user request)
   const resetConsent = () => {
-    deleteCookie(CONSENT_COOKIE_NAME);
-    deleteCookie(SETTINGS_COOKIE_NAME);
+    deleteCookieUtil(CONSENT_COOKIE_NAME);
+    deleteCookieUtil(SETTINGS_COOKIE_NAME);
     setHasConsented(null);
     setCookieSettings(DEFAULT_SETTINGS);
     setShowBanner(true);
@@ -163,9 +163,8 @@ export const useCookieConsent = () => {
     acceptNecessaryOnly,
     updateSettings,
     resetConsent,
-    setConsentCookie,
-    getCookie,
-    setCookie: (name: string, value: string, category: CookieCategory = 'necessary', days?: number) => 
-      setConsentCookie(name, value, category, days),
+    setCookie: setConsentCookie,
+    getCookie: getCookieUtil,
+    deleteCookie: deleteCookieUtil,
   };
 };
