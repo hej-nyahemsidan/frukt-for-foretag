@@ -53,29 +53,19 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, se
   const canProceed = hasSelectedDays && hasItems;
 
   const handleDayChange = (day: string, checked: boolean) => {
-    if (isWeeklySubscription) {
-      // For weekly subscription, allow multiple day selection
-      if (checked) {
-        const newDays = [...selectedDays, day];
-        setSelectedDays(newDays);
-        // Set as current day if it's the first one
-        if (!currentDay) {
-          setCurrentDay(day);
-        }
-      } else {
-        const newDays = selectedDays.filter(d => d !== day);
-        setSelectedDays(newDays);
-        // If removing current day, switch to another or clear
-        if (currentDay === day) {
-          setCurrentDay(newDays.length > 0 ? newDays[0] : '');
-        }
+    if (checked) {
+      const newDays = [...new Set([...selectedDays, day])];
+      setSelectedDays(newDays);
+      // Set the newly selected day as current day if none is set
+      if (!currentDay) {
+        setCurrentDay(day);
       }
     } else {
-      // For other plans, allow multiple selections (checkbox behavior)
-      if (checked) {
-        setSelectedDays([...selectedDays, day]);
-      } else {
-        setSelectedDays(selectedDays.filter(d => d !== day));
+      const newDays = selectedDays.filter(d => d !== day);
+      setSelectedDays(newDays);
+      // If we removed the current day, switch to another day or clear
+      if (currentDay === day) {
+        setCurrentDay(newDays.length > 0 ? newDays[0] : '');
       }
     }
   };
@@ -91,12 +81,13 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, se
     
     if (orderTypeChanged || packagePlanChanged) {
       setSelectedDays([]);
+      setCurrentDay('');
     }
     
     // Update refs for next comparison
     prevOrderTypeRef.current = orderType;
     prevPackagePlanRef.current = packagePlan;
-  }, [orderType, packagePlan, setSelectedDays]);
+  }, [orderType, packagePlan, setSelectedDays, setCurrentDay]);
 
   const handleNext = () => {
     if (canProceed) {
@@ -202,8 +193,8 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, se
         </div>
       </div>
 
-      {/* Current Day Switcher for Weekly Subscription */}
-      {isWeeklySubscription && selectedDays.length > 1 && (
+      {/* Current Day Switcher - For any order type with multiple days */}
+      {selectedDays.length > 1 && (
         <div className="mb-6 sm:mb-8 p-4 bg-green-50 rounded-lg border border-green-200">
           <h3 className="text-sm font-semibold text-charcoal mb-3">Lägg till produkter för:</h3>
           <div className="flex gap-2">

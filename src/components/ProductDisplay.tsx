@@ -29,7 +29,7 @@ const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays, curre
           {isMobile && (
             <h2 className="text-sm font-medium text-charcoal">Produkter</h2>
           )}
-          <CartIndicator onCheckout={onCheckout} />
+          <CartIndicator orderType={orderType} onCheckout={onCheckout} />
         </div>
       </div>
       
