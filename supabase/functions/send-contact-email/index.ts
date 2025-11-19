@@ -16,6 +16,8 @@ interface ContactEmailRequest {
   message?: string;
   company?: string;
   phone?: string;
+  address?: string;
+  postalCode?: string;
   location?: string;
   companyName?: string;
   contactPerson?: string;
@@ -199,8 +201,20 @@ const handler = async (req: Request): Promise<Response> => {
                   <span class="info-label">Telefon:</span>
                   <span class="info-value">${data.phone || 'Ej angivet'}</span>
                 </div>
+              </div>
+              
+              <div class="section">
+                <div class="section-title">📍 Leveransadress</div>
                 <div class="info-row">
-                  <span class="info-label">Plats/Stad:</span>
+                  <span class="info-label">Adress:</span>
+                  <span class="info-value">${data.address || 'Ej angivet'}</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Postnummer:</span>
+                  <span class="info-value">${data.postalCode || 'Ej angivet'}</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Ort:</span>
                   <span class="info-value">${data.location || 'Ej angivet'}</span>
                 </div>
               </div>
