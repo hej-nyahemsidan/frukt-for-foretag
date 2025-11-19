@@ -87,7 +87,10 @@ const CustomerPortal = () => {
       </div>
 
       {/* Right Side - Login Form */}
-      <div className="w-full lg:w-1/2 bg-white flex items-center justify-center p-8 relative">
+      <div 
+        className="w-full lg:w-1/2 bg-white flex items-start lg:items-center justify-center p-4 sm:p-8 pt-16 sm:pt-8 relative overflow-y-auto"
+        style={{ WebkitOverflowScrolling: 'touch' }}
+      >
         {/* Back Button */}
         <Link 
           to="/" 
@@ -100,7 +103,7 @@ const CustomerPortal = () => {
           </span>
         </Link>
 
-        <div className="w-full max-w-md mx-auto px-4 sm:px-0">
+        <div className="w-full max-w-md mx-auto px-4 sm:px-0 pb-8">
           {/* Brand Logo */}
           <div className="text-center mb-8 sm:mb-12">
             <VitaminKorgenLogo 
