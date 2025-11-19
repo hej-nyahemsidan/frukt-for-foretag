@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 // Cookie categories
 export type CookieCategory = 'necessary' | 'analytics' | 'marketing';
@@ -25,13 +25,13 @@ export const useCookieConsent = () => {
   const [showBanner, setShowBanner] = useState(false);
 
   // Cookie utility functions
-  const setCookie = (name: string, value: string, days: number = COOKIE_EXPIRY_DAYS) => {
+  const setCookie = useCallback((name: string, value: string, days: number = COOKIE_EXPIRY_DAYS) => {
     const expires = new Date();
     expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
     document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
-  };
+  }, []);
 
-  const getCookie = (name: string): string | null => {
+  const getCookie = useCallback((name: string): string | null => {
     if (typeof document === 'undefined') return null;
     
     const nameEQ = name + '=';
@@ -42,20 +42,20 @@ export const useCookieConsent = () => {
       if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
     }
     return null;
-  };
+  }, []);
 
-  const deleteCookie = (name: string) => {
+  const deleteCookie = useCallback((name: string) => {
     document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
-  };
+  }, []);
 
   // Set cookie only if consent allows it
-  const setConsentCookie = (name: string, value: string, category: CookieCategory = 'necessary', days?: number) => {
+  const setConsentCookie = useCallback((name: string, value: string, category: CookieCategory = 'necessary', days?: number) => {
     if (category === 'necessary' || cookieSettings[category]) {
       setCookie(name, value, days);
       return true;
     }
     return false;
-  };
+  }, [cookieSettings, setCookie]);
 
   // Initialize consent status on mount
   useEffect(() => {
