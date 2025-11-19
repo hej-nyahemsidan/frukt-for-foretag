@@ -39,7 +39,19 @@ const PublicCartIndicator = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-80 max-h-[500px] overflow-auto">
         <div className="p-4">
-          <h3 className="font-semibold text-lg mb-4">Varukorg</h3>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold text-lg">Varukorg</h3>
+            {items.length > 0 && (
+              <Button 
+                onClick={clearCart}
+                variant="ghost"
+                size="sm"
+                className="text-destructive hover:text-destructive"
+              >
+                Töm varukorg
+              </Button>
+            )}
+          </div>
           {items.length === 0 ? (
             <p className="text-muted-foreground text-center py-8">Din varukorg är tom</p>
           ) : (
@@ -101,21 +113,12 @@ const PublicCartIndicator = () => {
                   <span className="font-semibold">Totalt:</span>
                   <span className="text-lg font-bold text-primary">{getTotalPrice()} kr</span>
                 </div>
-                <div className="space-y-2">
-                  <Button 
-                    onClick={handleGoToCheckout}
-                    className="w-full"
-                  >
-                    Gå till offertförfrågan
-                  </Button>
-                  <Button 
-                    onClick={clearCart}
-                    variant="outline"
-                    className="w-full text-destructive hover:text-destructive"
-                  >
-                    Töm varukorg
-                  </Button>
-                </div>
+                <Button 
+                  onClick={handleGoToCheckout}
+                  className="w-full"
+                >
+                  Gå till offertförfrågan
+                </Button>
               </div>
             </>
           )}
