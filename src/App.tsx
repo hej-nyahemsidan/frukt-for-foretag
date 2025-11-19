@@ -95,7 +95,6 @@ const App = () => (
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <CookieConsent />
-              <AccessibilityEnhancer />
             </BrowserRouter>
           </TooltipProvider>
         </CartProvider>
