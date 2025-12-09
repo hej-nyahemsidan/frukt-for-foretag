@@ -1,8 +1,7 @@
-
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Star } from 'lucide-react';
+import { ShoppingCart, Star, Info } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 
 interface Product {
@@ -82,7 +81,7 @@ const ProductShowcase = () => {
               className="group block"
             >
               <div 
-                className="bg-white rounded-xl shadow-soft p-6 flex flex-col h-full transition-all duration-300 hover:shadow-lg hover:scale-[1.02] relative overflow-hidden animate-fade-in"
+                className="bg-white rounded-xl shadow-soft p-6 flex flex-col h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 relative overflow-hidden animate-fade-in"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {/* Popular Badge */}
@@ -92,6 +91,11 @@ const ProductShowcase = () => {
                     Bästsäljare
                   </div>
                 )}
+
+                {/* Info indicator */}
+                <div className="absolute bottom-3 right-3 z-10 bg-primary/90 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <Info className="w-4 h-4" />
+                </div>
 
                 {/* Product Image */}
                 <div className="mb-4 relative overflow-hidden">
