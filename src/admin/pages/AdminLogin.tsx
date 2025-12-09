@@ -12,16 +12,25 @@ const AdminLogin = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { login, user, isAdmin } = useAdminAuth();
+  const { login, user, isAdmin, loading: authLoading } = useAdminAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  // Redirect if already logged in as admin
+  // Redirect if already logged in as admin - wait for auth to initialize first
   useEffect(() => {
-    if (user && isAdmin) {
+    if (!authLoading && user && isAdmin) {
       navigate('/admin/dashboard');
     }
-  }, [user, isAdmin, navigate]);
+  }, [user, isAdmin, authLoading, navigate]);
+
+  // Show loading spinner while auth is initializing
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600"></div>
+      </div>
+    );
+  }
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();

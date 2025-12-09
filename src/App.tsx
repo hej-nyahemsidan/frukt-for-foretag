@@ -13,6 +13,7 @@ import AdminProtectedRoute from "@/admin/components/AdminProtectedRoute";
 import CookieConsent from "@/components/CookieConsent";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
 import AccessibilityEnhancer from "@/components/AccessibilityEnhancer";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -39,6 +40,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
+    <ErrorBoundary>
     <AuthProvider>
       <AdminAuthProvider>
         <PublicCartProvider>
@@ -101,6 +103,7 @@ const App = () => (
       </PublicCartProvider>
       </AdminAuthProvider>
     </AuthProvider>
+    </ErrorBoundary>
   </QueryClientProvider>
 );
 
