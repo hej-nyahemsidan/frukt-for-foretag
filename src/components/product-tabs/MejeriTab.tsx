@@ -3,6 +3,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import AddToCartButton from '@/components/AddToCartButton';
 import PublicAddToCartButton from '@/components/PublicAddToCartButton';
+import { Info } from 'lucide-react';
 
 interface MejeriTabProps {
   selectedDays: string[];
@@ -68,9 +69,13 @@ const MejeriTab: React.FC<MejeriTabProps> = ({ selectedDays, currentDay, orderTy
         {products.map((product) => (
           <div 
             key={product.id} 
-            className="bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all cursor-pointer max-w-[280px]"
+            className="group relative bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer max-w-[280px]"
             onClick={() => setSelectedProduct(product)}
           >
+            {/* Info indicator */}
+            <div className="absolute bottom-2 right-2 z-10 bg-primary/90 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <Info className="w-3.5 h-3.5" />
+            </div>
             <div className="aspect-square bg-white overflow-hidden rounded-lg p-2">
               <img 
                 src={product.image_url}
