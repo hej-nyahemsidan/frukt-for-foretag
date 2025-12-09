@@ -47,16 +47,23 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   };
 
   useEffect(() => {
-    // Set up auth state listener (no async work inside to avoid deadlocks)
+    let isMounted = true;
+
+    // Set up auth state listener FIRST (no async callback to avoid deadlocks)
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (_event, session) => {
+        if (!isMounted) return;
+        
         setSession(session);
         setUser(session?.user ?? null);
 
         if (session?.user) {
           // Defer role check to avoid blocking the auth callback
           setTimeout(() => {
-            checkAdminRole(session.user!.id).finally(() => setLoading(false));
+            if (!isMounted) return;
+            checkAdminRole(session.user!.id).finally(() => {
+              if (isMounted) setLoading(false);
+            });
           }, 0);
         } else {
           setIsAdmin(false);
@@ -65,20 +72,36 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       }
     );
 
-    // Check for existing session
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
+    // THEN check for existing session
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
+      if (!isMounted) return;
+      
+      if (error) {
+        console.error('Error getting session:', error);
+        setLoading(false);
+        return;
+      }
+      
       setSession(session);
       setUser(session?.user ?? null);
       
       if (session?.user) {
-        await checkAdminRole(session.user.id);
+        checkAdminRole(session.user.id).finally(() => {
+          if (isMounted) setLoading(false);
+        });
       } else {
         setIsAdmin(false);
+        setLoading(false);
       }
-      setLoading(false);
+    }).catch((error) => {
+      console.error('Session fetch failed:', error);
+      if (isMounted) setLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      isMounted = false;
+      subscription.unsubscribe();
+    };
   }, []);
 
   const login = async (email: string, password: string) => {

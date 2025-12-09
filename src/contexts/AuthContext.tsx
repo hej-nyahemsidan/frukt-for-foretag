@@ -63,18 +63,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   useEffect(() => {
-    // Set up auth state listener
+    let isMounted = true;
+
+    // Set up auth state listener FIRST (no async callback to avoid deadlocks)
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      (event, session) => {
+        if (!isMounted) return;
+        
         setSession(session);
         setUser(session?.user ?? null);
         
         if (session?.user) {
-          // Fetch customer data when user logs in
-          setTimeout(async () => {
-            const customerData = await fetchCustomerData(session.user.id);
-            setCustomer(customerData);
-            setLoading(false);
+          // Defer data fetch to avoid blocking auth callback
+          setTimeout(() => {
+            if (!isMounted) return;
+            fetchCustomerData(session.user.id).then((customerData) => {
+              if (isMounted) {
+                setCustomer(customerData);
+                setLoading(false);
+              }
+            });
           }, 0);
         } else {
           setCustomer(null);
@@ -83,22 +91,38 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
     );
 
-    // Check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    // THEN check for existing session
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
+      if (!isMounted) return;
+      
+      if (error) {
+        console.error('Error getting session:', error);
+        setLoading(false);
+        return;
+      }
+      
       setSession(session);
       setUser(session?.user ?? null);
       
       if (session?.user) {
         fetchCustomerData(session.user.id).then((customerData) => {
-          setCustomer(customerData);
-          setLoading(false);
+          if (isMounted) {
+            setCustomer(customerData);
+            setLoading(false);
+          }
         });
       } else {
         setLoading(false);
       }
+    }).catch((error) => {
+      console.error('Session fetch failed:', error);
+      if (isMounted) setLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      isMounted = false;
+      subscription.unsubscribe();
+    };
   }, []);
 
   const login = async (email: string, password: string) => {
