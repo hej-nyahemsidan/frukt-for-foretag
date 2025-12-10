@@ -7,6 +7,8 @@ import LaskTab from '@/components/product-tabs/LaskTab';
 import MejeriTab from '@/components/product-tabs/MejeriTab';
 import KaffeTeTab from '@/components/product-tabs/KaffeTeTab';
 import AnnatTab from '@/components/product-tabs/AnnatTab';
+import GronsakerTab from '@/components/product-tabs/GronsakerTab';
+import StadTab from '@/components/product-tabs/StadTab';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 interface ProductDisplayProps {
@@ -72,6 +74,18 @@ const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays, curre
             >
               Skafferi
             </TabsTrigger>
+            <TabsTrigger 
+              value="gronsaker" 
+              className="rounded-none border-b-2 border-transparent data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white hover:bg-gray-100 px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap"
+            >
+              Grönsaker
+            </TabsTrigger>
+            <TabsTrigger 
+              value="stad" 
+              className="rounded-none border-b-2 border-transparent data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white hover:bg-gray-100 px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap"
+            >
+              Städ
+            </TabsTrigger>
           </TabsList>
         </div>
 
@@ -98,6 +112,14 @@ const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays, curre
           
           <TabsContent value="annat" className="mt-0">
             <AnnatTab selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} />
+          </TabsContent>
+          
+          <TabsContent value="gronsaker" className="mt-0">
+            <GronsakerTab selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} />
+          </TabsContent>
+          
+          <TabsContent value="stad" className="mt-0">
+            <StadTab selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} />
           </TabsContent>
         </div>
       </Tabs>

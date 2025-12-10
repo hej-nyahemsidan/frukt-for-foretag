@@ -14,6 +14,8 @@ import LaskTab from '@/components/product-tabs/LaskTab';
 import MejeriTab from '@/components/product-tabs/MejeriTab';
 import KaffeTeTab from '@/components/product-tabs/KaffeTeTab';
 import AnnatTab from '@/components/product-tabs/AnnatTab';
+import GronsakerTab from '@/components/product-tabs/GronsakerTab';
+import StadTab from '@/components/product-tabs/StadTab';
 
 const WEEKDAYS = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
 
@@ -143,7 +145,7 @@ const Products = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3 sm:grid-cols-6 gap-1 sm:gap-2 mb-6 sm:mb-8 bg-gray-100 p-1 rounded-lg h-auto">
+          <TabsList className="grid w-full grid-cols-4 sm:grid-cols-8 gap-1 sm:gap-2 mb-6 sm:mb-8 bg-gray-100 p-1 rounded-lg h-auto">
             <TabsTrigger 
               value="fruktkorgar" 
               className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
@@ -180,6 +182,18 @@ const Products = () => {
             >
               Skafferi
             </TabsTrigger>
+            <TabsTrigger 
+              value="gronsaker" 
+              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+            >
+              Grönsaker
+            </TabsTrigger>
+            <TabsTrigger 
+              value="stad" 
+              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+            >
+              Städ
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="fruktkorgar" className="mt-6">
@@ -204,6 +218,14 @@ const Products = () => {
 
           <TabsContent value="annat" className="mt-6">
             <AnnatTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
+          </TabsContent>
+
+          <TabsContent value="gronsaker" className="mt-6">
+            <GronsakerTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
+          </TabsContent>
+
+          <TabsContent value="stad" className="mt-6">
+            <StadTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
           </TabsContent>
         </Tabs>
 

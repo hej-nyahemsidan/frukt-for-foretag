@@ -55,10 +55,13 @@ const AdminProductManagement = () => {
     { value: 'mejeri', label: 'Mejeri' },
     { value: 'lask', label: 'Läsk' },
     { value: 'kaffe', label: 'Kaffe & Te' },
-    { value: 'annat', label: 'Skafferi' }
+    { value: 'annat', label: 'Skafferi' },
+    { value: 'gronsaker', label: 'Grönsaker' },
+    { value: 'stad', label: 'Städ' }
   ];
 
   const sizeOptions = ['4kg', '6kg', '9kg', '11kg'];
+  const gronsakerSizeOptions = ['styck', 'pase'];
 
   useEffect(() => {
     fetchProducts();
@@ -264,11 +267,16 @@ const AdminProductManagement = () => {
     if (product.category === 'fruktkorgar') {
       return ['4kg', '6kg', '9kg', '11kg'];
     }
+    if (product.category === 'gronsaker') {
+      return ['styck', 'pase'];
+    }
     return ['default'];
   };
 
   const getPriceLabel = (size: string) => {
     if (size === 'default') return 'Styckpris';
+    if (size === 'styck') return 'Styck';
+    if (size === 'pase') return 'Påse';
     return size;
   };
 
@@ -472,6 +480,28 @@ const AdminProductManagement = () => {
                         ))}
                       </div>
                     </div>
+                  ) : newProductForm.category === 'gronsaker' ? (
+                    <div className="space-y-2">
+                      <p className="text-xs text-muted-foreground">Priser för grönsaker (styck eller påse)</p>
+                      <div className="grid grid-cols-2 gap-2 p-3 bg-muted/50 rounded-md">
+                        {gronsakerSizeOptions.map(size => (
+                          <div key={size} className="flex items-center space-x-2">
+                            <Label className="w-12 text-sm font-medium">{size === 'styck' ? 'Styck' : 'Påse'}:</Label>
+                            <Input
+                              type="number"
+                              value={newProductForm.prices[size] || ''}
+                              onChange={(e) => setNewProductForm({
+                                ...newProductForm,
+                                prices: { ...newProductForm.prices, [size]: e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 }
+                              })}
+                              placeholder="0"
+                              className="text-sm"
+                            />
+                            <span className="text-xs text-muted-foreground">kr</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   ) : (
                     <div className="space-y-2">
                       <p className="text-xs text-muted-foreground">Styckpris för enskilda produkter</p>
@@ -513,7 +543,7 @@ const AdminProductManagement = () => {
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <div className="overflow-x-auto">
-          <TabsList className="grid w-full min-w-max sm:min-w-0 grid-cols-6 h-auto">
+          <TabsList className="grid w-full min-w-max sm:min-w-0 grid-cols-4 sm:grid-cols-8 h-auto">
             {categories.map((category) => (
               <TabsTrigger 
                 key={category.value} 
