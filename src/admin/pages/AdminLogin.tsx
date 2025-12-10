@@ -8,7 +8,7 @@ import { useAdminAuth } from '../contexts/AdminAuthContext';
 import { useToast } from '@/hooks/use-toast';
 
 const AdminLogin = () => {
-  const [email, setEmail] = useState('admin@vitaminkorgen.se');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -106,8 +106,9 @@ const AdminLogin = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="border-border rounded-lg px-3 sm:px-4 py-2 sm:py-2 text-sm sm:text-base"
+                  placeholder="admin@example.com"
                   required
-                  disabled={true} // Admin email is fixed
+                  disabled={isLoading}
                 />
               </div>
 
