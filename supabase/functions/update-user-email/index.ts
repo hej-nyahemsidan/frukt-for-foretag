@@ -39,9 +39,28 @@ Deno.serve(async (req) => {
       throw new Error('Invalid user token');
     }
 
-    // Check if user is admin
-    if (user.email !== 'admin@vitaminkorgen.se') {
-      throw new Error('Unauthorized: Admin access required');
+    // Create admin client to check user role
+    const supabaseAdmin = createClient(
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false,
+        },
+      }
+    );
+
+    // Check if user is admin using user_roles table
+    const { data: roleData, error: roleError } = await supabaseAdmin
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', user.id)
+      .eq('role', 'admin')
+      .single();
+
+    if (roleError || !roleData) {
+      throw new Error('Forbidden: Admin access required');
     }
 
     // Parse request body
@@ -57,17 +76,6 @@ Deno.serve(async (req) => {
       throw new Error('Invalid email format');
     }
 
-    // Create admin client
-    const supabaseAdmin = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
-      {
-        auth: {
-          autoRefreshToken: false,
-          persistSession: false,
-        },
-      }
-    );
 
     // Check if email already exists in profiles
     const { data: existingProfile, error: checkError } = await supabaseAdmin
