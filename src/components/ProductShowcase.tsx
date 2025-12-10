@@ -92,11 +92,6 @@ const ProductShowcase = () => {
                   </div>
                 )}
 
-                {/* Info indicator */}
-                <div className="absolute bottom-3 right-3 z-10 bg-primary/90 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Info className="w-4 h-4" />
-                </div>
-
                 {/* Product Image */}
                 <div className="mb-4 relative overflow-hidden">
                   <img
@@ -107,6 +102,10 @@ const ProductShowcase = () => {
                       e.currentTarget.src = '/assets/product-placeholder.jpg';
                     }}
                   />
+                  {/* Info indicator */}
+                  <div className="absolute bottom-2 right-2 z-10 bg-primary/90 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Info className="w-4 h-4" />
+                  </div>
                 </div>
 
                 {/* Product Content */}

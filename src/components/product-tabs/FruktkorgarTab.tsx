@@ -84,11 +84,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
               className="group relative bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedProduct(product)}
             >
-              {/* Info indicator */}
-              <div className="absolute bottom-2 right-2 z-10 bg-primary/90 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <Info className="w-3.5 h-3.5" />
-              </div>
-              <div className="aspect-square bg-white overflow-hidden rounded-lg">
+              <div className="relative aspect-square bg-white overflow-hidden rounded-lg">
                 <img 
                   src={product.image_url}
                   alt={product.name}
@@ -97,6 +93,10 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
                     e.currentTarget.src = '/assets/product-placeholder.jpg';
                   }}
                 />
+                {/* Info indicator */}
+                <div className="absolute bottom-2 right-2 z-10 bg-primary/90 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <Info className="w-3.5 h-3.5" />
+                </div>
               </div>
               <div className="p-3 space-y-3">
                 <h3 className="font-bold text-charcoal text-sm text-center line-clamp-2">
