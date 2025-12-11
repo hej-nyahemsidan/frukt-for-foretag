@@ -61,7 +61,6 @@ const AdminProductManagement = () => {
   ];
 
   const sizeOptions = ['4kg', '6kg', '9kg', '11kg'];
-  const gronsakerSizeOptions = ['styck', 'pase'];
 
   useEffect(() => {
     fetchProducts();
@@ -481,25 +480,47 @@ const AdminProductManagement = () => {
                       </div>
                     </div>
                   ) : newProductForm.category === 'gronsaker' ? (
-                    <div className="space-y-2">
-                      <p className="text-xs text-muted-foreground">Priser för grönsaker (styck eller påse)</p>
-                      <div className="grid grid-cols-2 gap-2 p-3 bg-muted/50 rounded-md">
-                        {gronsakerSizeOptions.map(size => (
-                          <div key={size} className="flex items-center space-x-2">
-                            <Label className="w-12 text-sm font-medium">{size === 'styck' ? 'Styck' : 'Påse'}:</Label>
-                            <Input
-                              type="number"
-                              value={newProductForm.prices[size] || ''}
-                              onChange={(e) => setNewProductForm({
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <Label className="text-sm font-medium">Typ</Label>
+                        <Select
+                          value={newProductForm.prices['styck'] ? 'styck' : newProductForm.prices['pase'] ? 'pase' : 'styck'}
+                          onValueChange={(value) => {
+                            const currentPrice = newProductForm.prices['styck'] || newProductForm.prices['pase'] || 0;
+                            setNewProductForm({
+                              ...newProductForm,
+                              prices: { [value]: currentPrice }
+                            });
+                          }}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Välj typ" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="styck">Styck</SelectItem>
+                            <SelectItem value="pase">Påse</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-2">
+                        <Label className="text-sm font-medium">Pris</Label>
+                        <div className="flex items-center space-x-2">
+                          <Input
+                            type="number"
+                            value={newProductForm.prices['styck'] || newProductForm.prices['pase'] || ''}
+                            onChange={(e) => {
+                              const type = newProductForm.prices['styck'] !== undefined ? 'styck' : 'pase';
+                              const activeType = newProductForm.prices['styck'] ? 'styck' : newProductForm.prices['pase'] ? 'pase' : 'styck';
+                              setNewProductForm({
                                 ...newProductForm,
-                                prices: { ...newProductForm.prices, [size]: e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 }
-                              })}
-                              placeholder="0"
-                              className="text-sm"
-                            />
-                            <span className="text-xs text-muted-foreground">kr</span>
-                          </div>
-                        ))}
+                                prices: { [activeType]: e.target.value === '' ? 0 : parseFloat(e.target.value) || 0 }
+                              });
+                            }}
+                            placeholder="0"
+                            className="text-sm"
+                          />
+                          <span className="text-xs text-muted-foreground">kr</span>
+                        </div>
                       </div>
                     </div>
                   ) : (
