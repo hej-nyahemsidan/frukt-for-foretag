@@ -1,16 +1,31 @@
-import { useState, useEffect, FormEvent } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Plus, Save, Trash2 } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { ImageUpload } from '@/components/ui/image-upload';
 import type { Json } from '@/integrations/supabase/types';
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  rectSortingStrategy,
+} from '@dnd-kit/sortable';
+import SortableProductCard from './SortableProductCard';
 
 interface Product {
   id: string;
@@ -282,100 +297,113 @@ const AdminProductManagement = () => {
   };
 
   const getProductsByCategory = (category: string) => {
-    return products.filter(product => product.category === category);
+    return products
+      .filter(product => product.category === category)
+      .sort((a, b) => {
+        const orderA = (a as any).display_order ?? 999;
+        const orderB = (b as any).display_order ?? 999;
+        return orderA - orderB;
+      });
   };
 
-  const renderProductGrid = (categoryProducts: Product[]) => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
-      {categoryProducts.map((product) => (
-        <Card key={product.id} className="overflow-hidden flex flex-col max-w-[280px]">
-          <div className="aspect-square bg-gray-100 overflow-hidden">
-            <img 
-              src={product.image_url}
-              alt={product.name}
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                e.currentTarget.src = '/assets/product-placeholder.jpg';
-              }}
-            />
-          </div>
-          <CardHeader className="pb-1 pt-2 px-3">
-            <CardTitle className="text-xs flex justify-between items-start leading-tight">
-              <span className="line-clamp-2">{product.name}</span>
-              <Button
-                variant="destructive"
-                size="sm"
-                onClick={() => handleDeleteProduct(product.id)}
-                className="ml-1 h-6 w-6 p-0 flex-shrink-0"
-              >
-                <Trash2 className="w-2.5 h-2.5" />
-              </Button>
-            </CardTitle>
-            <p className="text-[10px] text-gray-500 capitalize">{product.category}</p>
-          </CardHeader>
-          <CardContent className="pt-0 pb-2 px-3 flex-1">
-            <div className="space-y-1.5">
-              <div className="space-y-0.5">
-                <Label className="text-[10px] font-medium">Beskrivning:</Label>
-                <div className="flex items-start gap-1">
-                  <textarea
-                    value={editingDescriptions[product.id] ?? product.description ?? ''}
-                    onChange={(e) => setEditingDescriptions(prev => ({ ...prev, [product.id]: e.target.value }))}
-                    placeholder="Ingen beskrivning..."
-                    className="w-full min-h-[32px] px-1.5 py-1 text-[10px] rounded-md border border-input bg-background resize-none"
-                  />
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => {
-                      const newDescription = editingDescriptions[product.id] ?? product.description ?? '';
-                      handleUpdateDescription(product.id, newDescription);
-                    }}
-                    className="p-0.5 h-6 w-6 flex-shrink-0"
-                  >
-                    <Save className="w-2.5 h-2.5" />
-                  </Button>
-                </div>
-              </div>
-              {getProductPriceSizes(product).map(size => (
-                <div key={size} className="flex items-center justify-between gap-0.5">
-                  <Label className="text-[10px] font-medium">{getPriceLabel(size)}:</Label>
-                  <div className="flex items-center gap-0.5">
-                    <Input
-                      type="number"
-                      value={editingPrices[product.id]?.[size] ?? product.prices[size] ?? ''}
-                      onChange={(e) => handlePriceChange(product.id, size, e.target.value)}
-                      className="w-12 text-[10px] text-right h-6 px-1"
-                    />
-                    <span className="text-[10px] text-gray-500">kr</span>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onClick={() => {
-                        const newPrice = editingPrices[product.id]?.[size] ?? product.prices[size];
-                        const numericPrice = typeof newPrice === 'string' ? parseFloat(newPrice) || 0 : newPrice;
-                        if (typeof numericPrice === 'number') {
-                          handleUpdatePrice(product.id, size, numericPrice);
-                        }
-                      }}
-                      className="p-0.5 h-6 w-6"
-                    >
-                      <Save className="w-2.5 h-2.5" />
-                    </Button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      ))}
-      {categoryProducts.length === 0 && (
-        <div className="col-span-full text-center py-8">
-          <p className="text-gray-500">Inga produkter i denna kategori.</p>
-        </div>
-      )}
-    </div>
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
   );
+
+  const handleDragEnd = async (event: DragEndEvent, category: string) => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      const categoryProducts = getProductsByCategory(category);
+      const oldIndex = categoryProducts.findIndex((p) => p.id === active.id);
+      const newIndex = categoryProducts.findIndex((p) => p.id === over.id);
+
+      const reorderedProducts = arrayMove(categoryProducts, oldIndex, newIndex);
+
+      // Update display_order for all products in this category
+      const updates = reorderedProducts.map((product, index) => ({
+        id: product.id,
+        display_order: index + 1,
+      }));
+
+      // Optimistically update local state
+      setProducts((prev) => {
+        const otherProducts = prev.filter((p) => p.category !== category);
+        const updatedCategoryProducts = reorderedProducts.map((p, index) => ({
+          ...p,
+          display_order: index + 1,
+        }));
+        return [...otherProducts, ...updatedCategoryProducts];
+      });
+
+      // Update in database
+      try {
+        for (const update of updates) {
+          await supabase
+            .from('products')
+            .update({ display_order: update.display_order })
+            .eq('id', update.id);
+        }
+
+        toast({
+          title: 'Ordning sparad',
+          description: 'Produktordningen har uppdaterats.',
+        });
+      } catch (error) {
+        toast({
+          title: 'Fel',
+          description: 'Kunde inte spara produktordningen.',
+          variant: 'destructive',
+        });
+        // Refetch to restore original order on error
+        fetchProducts();
+      }
+    }
+  };
+
+  const renderProductGrid = (category: string) => {
+    const categoryProducts = getProductsByCategory(category);
+    
+    return (
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={(event) => handleDragEnd(event, category)}
+      >
+        <SortableContext items={categoryProducts.map(p => p.id)} strategy={rectSortingStrategy}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+            {categoryProducts.map((product) => (
+              <SortableProductCard
+                key={product.id}
+                product={product}
+                editingDescriptions={editingDescriptions}
+                editingPrices={editingPrices}
+                onDescriptionChange={(id, value) => setEditingDescriptions(prev => ({ ...prev, [id]: value }))}
+                onDescriptionSave={handleUpdateDescription}
+                onPriceChange={handlePriceChange}
+                onPriceSave={handleUpdatePrice}
+                onDelete={handleDeleteProduct}
+                getProductPriceSizes={getProductPriceSizes}
+                getPriceLabel={getPriceLabel}
+              />
+            ))}
+            {categoryProducts.length === 0 && (
+              <div className="col-span-full text-center py-8">
+                <p className="text-gray-500">Inga produkter i denna kategori.</p>
+              </div>
+            )}
+          </div>
+        </SortableContext>
+      </DndContext>
+    );
+  };
 
   if (loading) {
     return (
@@ -581,7 +609,7 @@ const AdminProductManagement = () => {
         
         {categories.map((category) => (
           <TabsContent key={category.value} value={category.value} className="mt-6">
-            {renderProductGrid(getProductsByCategory(category.value))}
+            {renderProductGrid(category.value)}
           </TabsContent>
         ))}
       </Tabs>
