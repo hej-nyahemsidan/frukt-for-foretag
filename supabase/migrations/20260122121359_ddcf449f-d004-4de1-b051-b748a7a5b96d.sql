@@ -1,0 +1,1 @@
+UPDATE products SET category = 'snacks' WHERE category = 'annat';
