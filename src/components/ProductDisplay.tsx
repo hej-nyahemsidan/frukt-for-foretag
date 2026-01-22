@@ -9,6 +9,8 @@ import KaffeTeTab from '@/components/product-tabs/KaffeTeTab';
 import AnnatTab from '@/components/product-tabs/AnnatTab';
 import GronsakerTab from '@/components/product-tabs/GronsakerTab';
 import StadTab from '@/components/product-tabs/StadTab';
+import FrukostTab from '@/components/product-tabs/FrukostTab';
+import SnacksTab from '@/components/product-tabs/SnacksTab';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 interface ProductDisplayProps {
@@ -86,6 +88,18 @@ const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays, curre
             >
               Städ
             </TabsTrigger>
+            <TabsTrigger 
+              value="frukost" 
+              className="rounded-none border-b-2 border-transparent data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white hover:bg-gray-100 px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap"
+            >
+              Frukost & mellanmål
+            </TabsTrigger>
+            <TabsTrigger 
+              value="snacks" 
+              className="rounded-none border-b-2 border-transparent data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white hover:bg-gray-100 px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap"
+            >
+              Snacks
+            </TabsTrigger>
           </TabsList>
         </div>
 
@@ -120,6 +134,14 @@ const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays, curre
           
           <TabsContent value="stad" className="mt-0">
             <StadTab selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} />
+          </TabsContent>
+          
+          <TabsContent value="frukost" className="mt-0">
+            <FrukostTab selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} />
+          </TabsContent>
+          
+          <TabsContent value="snacks" className="mt-0">
+            <SnacksTab selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} />
           </TabsContent>
         </div>
       </Tabs>
