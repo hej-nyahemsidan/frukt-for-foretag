@@ -30,27 +30,27 @@ const reviews = [
 
 const ReviewCard = ({ review }: { review: typeof reviews[0] }) => (
   <div className="relative w-full max-w-2xl mx-auto">
-    {/* Abstract gradient art underneath */}
+    {/* Soft organic gradient art underneath */}
     <div className="absolute inset-0 -z-10">
-      <div className="absolute top-2 left-4 w-20 h-20 bg-gradient-to-br from-primary/40 to-secondary/30 rounded-full blur-lg"></div>
-      <div className="absolute bottom-3 right-6 w-16 h-16 bg-gradient-to-tl from-secondary/50 to-primary/20 rounded-full blur-md"></div>
-      <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-gradient-to-r from-primary/30 to-transparent rounded-full blur-sm"></div>
+      <div className="absolute top-4 left-6 w-24 h-24 bg-gradient-to-br from-primary/30 to-secondary/20 rounded-full blur-2xl"></div>
+      <div className="absolute bottom-4 right-8 w-20 h-20 bg-gradient-to-tl from-[hsl(28_85%_58%)]/30 to-primary/15 rounded-full blur-xl"></div>
+      <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-r from-secondary/25 to-transparent rounded-full blur-lg"></div>
     </div>
     
-    <Card className="bg-gradient-to-br from-white/95 via-white/90 to-primary/5 backdrop-blur-md border border-white/30 shadow-xl rounded-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl">
-      <CardContent className="p-8 md:p-10 text-center">
-        <div className="flex justify-center gap-1 mb-6">
+    <Card className="bg-gradient-to-br from-white/98 via-white/95 to-[hsl(140_30%_97%)] backdrop-blur-lg border border-white/40 shadow-[0_12px_40px_-12px_hsl(142_30%_30%/0.15)] rounded-3xl overflow-hidden transform transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_20px_60px_-15px_hsl(142_30%_30%/0.2)]">
+      <CardContent className="p-8 md:p-12 text-center">
+        <div className="flex justify-center gap-1.5 mb-6">
           {[...Array(5)].map((_, i) => (
             <Star
               key={i}
-              className="w-6 h-6 fill-yellow-400 text-yellow-400 drop-shadow-lg"
+              className="w-6 h-6 fill-[hsl(40_90%_55%)] text-[hsl(40_90%_55%)] drop-shadow-md"
             />
           ))}
         </div>
         <blockquote className="text-lg md:text-xl text-foreground/90 mb-6 italic font-light leading-relaxed">
           "{review.text}"
         </blockquote>
-        <cite className="text-lg md:text-xl font-bold text-primary bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        <cite className="text-lg md:text-xl font-bold bg-gradient-to-r from-primary via-[hsl(145_40%_40%)] to-secondary bg-clip-text text-transparent">
           — {review.author}
         </cite>
       </CardContent>
@@ -84,14 +84,13 @@ const CustomerReviewsSection = () => {
   }, [api]);
 
   return (
-    <section className="py-20 sm:py-24 bg-gradient-to-br from-background via-primary/3 to-secondary/5 relative overflow-hidden min-h-screen flex items-center">
-      {/* Abstract gradient backgrounds */}
+    <section className="py-20 sm:py-24 bg-gradient-to-br from-[hsl(45_30%_98%)] via-[hsl(140_25%_97%)] to-[hsl(28_40%_96%)] relative overflow-hidden min-h-screen flex items-center">
+      {/* Soft organic gradient backgrounds */}
       <div className="absolute inset-0">
-        {/* Organic gradient shapes */}
-        <div className="absolute top-1/4 -right-32 w-96 h-96 bg-gradient-to-br from-primary/20 via-secondary/15 to-transparent rounded-full blur-3xl transform rotate-12"></div>
-        <div className="absolute bottom-1/4 -left-32 w-80 h-80 bg-gradient-to-tr from-secondary/20 via-primary/10 to-transparent rounded-full blur-3xl transform -rotate-12"></div>
-        <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-gradient-to-bl from-primary/15 to-transparent rounded-full blur-2xl"></div>
-        <div className="absolute bottom-1/3 left-1/3 w-48 h-48 bg-gradient-to-tr from-secondary/25 to-transparent rounded-full blur-xl"></div>
+        <div className="absolute top-1/4 -right-32 w-[500px] h-[500px] bg-gradient-to-br from-primary/15 via-secondary/10 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 -left-32 w-[400px] h-[400px] bg-gradient-to-tr from-[hsl(28_85%_58%)]/15 via-primary/8 to-transparent rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-gradient-to-bl from-secondary/12 to-transparent rounded-full blur-2xl"></div>
+        <div className="absolute bottom-1/3 left-1/3 w-60 h-60 bg-gradient-to-tr from-primary/15 to-transparent rounded-full blur-xl"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
@@ -102,13 +101,13 @@ const CustomerReviewsSection = () => {
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className="w-10 h-10 fill-yellow-400 text-yellow-400 drop-shadow-lg"
+                  className="w-10 h-10 fill-[hsl(40_90%_55%)] text-[hsl(40_90%_55%)] drop-shadow-lg"
                 />
               ))}
             </div>
           </div>
-          <h2 className="text-4xl lg:text-6xl font-bold text-foreground mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent leading-tight px-4 py-2">
-            Vad våra kunder säger
+          <h2 className="text-4xl lg:text-6xl font-bold text-foreground mb-6 leading-tight px-4 py-2">
+            <span className="bg-gradient-to-r from-primary via-[hsl(145_40%_40%)] to-secondary bg-clip-text text-transparent">Vad våra kunder säger</span>
           </h2>
           <p className="text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
             <span className="font-bold text-foreground">5/5 stjärnor på alla våra recensioner sedan 2021!</span> Vi är stolta över vårt perfekta betyg på Google och håller alltid högsta standard för våra kunder. 
@@ -142,10 +141,10 @@ const CustomerReviewsSection = () => {
             {reviews.map((_, index) => (
               <button
                 key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`transition-all duration-400 rounded-full ${
                   index === current 
-                    ? 'bg-primary shadow-lg scale-125' 
-                    : 'bg-primary/30 hover:bg-primary/50'
+                    ? 'w-8 h-3 bg-gradient-to-r from-primary to-secondary shadow-lg' 
+                    : 'w-3 h-3 bg-primary/25 hover:bg-primary/40'
                 }`}
                 onClick={() => api?.scrollTo(index)}
               />

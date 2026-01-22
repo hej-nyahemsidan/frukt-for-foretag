@@ -8,65 +8,68 @@
 
 @layer base {
   :root {
-    /* Professional Fruktexperten Color Palette */
-    --background: 0 0% 100%; /* Pure White */
-    --foreground: 0 0% 18%; /* Charcoal */
+    /* Soft Organic Color Palette - Nature-inspired, warm tones */
+    --background: 45 30% 98%; /* Warm cream white */
+    --foreground: 30 25% 18%; /* Warm charcoal */
     
-    /* VitaminKorgen Brand Colors */
-    --frukt-green: 82 196 52; /* #52C234 - Fresh green for health and freshness */
-    --frukt-orange: 255 112 67; /* #FF7043 - Warm orange for energy and vitality */
-    --frukt-purple: 107 70 193; /* #6B46C1 - Deep purple for premium feel */
+    /* VitaminKorgen Brand Colors - Softened */
+    --frukt-green: 82 196 52;
+    --frukt-orange: 255 112 67;
+    --frukt-purple: 107 70 193;
     
-    /* Primary - Forest Green Brand */
-    --primary: 124 53% 24%; /* Forest Green #1B5E20 */
-    --primary-foreground: 0 0% 100%; /* Pure White */
-    --primary-light: 122 39% 49%; /* Fresh Green #4CAF50 */
-    --primary-dark: 124 53% 18%; /* Darker Forest Green */
+    /* Primary - Soft Forest Green */
+    --primary: 142 45% 32%; /* Softer, warmer forest green */
+    --primary-foreground: 45 30% 98%; /* Warm white */
+    --primary-light: 145 40% 52%; /* Soft sage green */
+    --primary-dark: 142 45% 24%; /* Deeper forest */
     
-    /* Secondary - Fresh Green Actions */
-    --secondary: 122 39% 49%; /* Fresh Green #4CAF50 */
-    --secondary-foreground: 0 0% 100%; /* Pure White */
+    /* Secondary - Warm Sage Green */
+    --secondary: 145 35% 48%; /* Warm sage */
+    --secondary-foreground: 45 30% 98%; /* Warm white */
     
-    /* Accent Colors - Professional Palette */
-    --accent-orange: 34 100% 50%; /* Orange Accent #FF8F00 */
-    --accent-red: 0 66% 51%; /* Warm Red #D32F2F */
-    --accent-blue: 207 79% 42%; /* Deep Blue #1565C0 */
-    --accent-light-green: 120 33% 93%; /* Light Green #E8F5E8 */
+    /* Accent Colors - Warm, Nature-Inspired */
+    --accent-orange: 28 85% 58%; /* Warm peach-orange */
+    --accent-red: 8 65% 55%; /* Warm coral red */
+    --accent-blue: 200 60% 50%; /* Soft sky blue */
+    --accent-light-green: 140 35% 94%; /* Soft mint cream */
     
-    /* Neutral Professional Palette */
-    --muted: 0 0% 96%; /* Light Gray #F5F5F5 */
-    --muted-foreground: 0 0% 42%; /* Medium Gray #6B6B6B */
-    --border: 0 0% 89%; /* Light border */
-    --input: 0 0% 96%; /* Light Gray for inputs */
-    --ring: 124 53% 24%; /* Forest Green for focus rings */
+    /* Neutral Warm Palette */
+    --muted: 40 20% 95%; /* Warm off-white */
+    --muted-foreground: 30 15% 45%; /* Warm gray */
+    --border: 40 15% 88%; /* Warm light border */
+    --input: 40 20% 96%; /* Warm input background */
+    --ring: 142 45% 32%; /* Soft green focus ring */
     
-    /* Cards & Surfaces */
-    --card: 0 0% 100%; /* Pure White */
-    --card-foreground: 0 0% 18%; /* Charcoal */
-    --popover: 0 0% 100%; /* Pure White */
-    --popover-foreground: 0 0% 18%; /* Charcoal */
+    /* Cards & Surfaces - Creamy warm tones */
+    --card: 45 40% 99%; /* Creamy white */
+    --card-foreground: 30 25% 18%; /* Warm charcoal */
+    --popover: 45 40% 99%; /* Creamy white */
+    --popover-foreground: 30 25% 18%; /* Warm charcoal */
     
     /* Interactive States */
-    --destructive: 0 66% 51%; /* Warm Red */
-    --destructive-foreground: 0 0% 100%; /* Pure White */
+    --destructive: 8 65% 55%; /* Warm coral */
+    --destructive-foreground: 45 30% 98%; /* Warm white */
     
-    /* Professional Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(124 53% 24%), hsl(122 39% 49%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(120 33% 98%));
-    --gradient-button: linear-gradient(135deg, hsl(122 39% 49%), hsl(122 39% 44%));
-    --gradient-forest: linear-gradient(135deg, hsl(124 53% 24%), hsl(124 53% 18%));
+    /* Organic Gradients - Soft & Natural */
+    --gradient-hero: linear-gradient(135deg, hsl(142 45% 32%), hsl(145 40% 52%));
+    --gradient-card: linear-gradient(180deg, hsl(45 40% 99%), hsl(140 35% 97%));
+    --gradient-button: linear-gradient(135deg, hsl(145 40% 52%), hsl(142 45% 44%));
+    --gradient-forest: linear-gradient(135deg, hsl(142 45% 32%), hsl(142 45% 24%));
+    --gradient-warm: linear-gradient(135deg, hsl(40 60% 96%), hsl(140 35% 96%));
+    --gradient-organic: linear-gradient(160deg, hsl(45 40% 99%) 0%, hsl(140 30% 97%) 50%, hsl(28 40% 96%) 100%);
     
-    /* Professional Shadows */
-    --shadow-soft: 0 2px 20px -5px hsl(124 53% 24% / 0.08);
-    --shadow-card: 0 4px 25px -10px hsl(124 53% 24% / 0.12);
-    --shadow-button: 0 4px 15px -5px hsl(122 39% 49% / 0.25);
-    --shadow-header: 0 2px 10px -3px hsl(124 53% 24% / 0.1);
+    /* Soft Organic Shadows - Warm & Gentle */
+    --shadow-soft: 0 4px 24px -6px hsl(142 30% 30% / 0.08);
+    --shadow-card: 0 8px 32px -12px hsl(142 30% 30% / 0.12), 0 2px 8px -2px hsl(30 30% 50% / 0.04);
+    --shadow-button: 0 6px 20px -6px hsl(145 40% 45% / 0.3);
+    --shadow-header: 0 4px 16px -4px hsl(142 30% 30% / 0.08);
+    --shadow-glow: 0 0 40px -10px hsl(145 40% 52% / 0.25);
     
-    /* Smooth Professional Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    /* Smooth Organic Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     
-    --radius: 0.75rem;
+    --radius: 1rem;
   }
 
   * {
@@ -101,30 +104,36 @@
 }
 
 @layer components {
-  /* Professional Button Variants */
+  /* Soft Organic Button Variants */
   .btn-hero {
-    @apply bg-secondary text-secondary-foreground px-8 py-4 rounded-xl font-semibold;
-    @apply shadow-[var(--shadow-button)] transition-[var(--transition-smooth)];
-    @apply hover:bg-[hsl(122_39%_44%)] hover:shadow-lg active:scale-95;
+    @apply bg-gradient-to-br from-secondary to-primary text-secondary-foreground px-8 py-4 rounded-2xl font-semibold;
+    @apply shadow-[var(--shadow-button)] transition-all duration-400;
+    @apply hover:shadow-[var(--shadow-glow)] hover:scale-[1.02] active:scale-[0.98];
   }
   
   .btn-secondary {
-    @apply bg-card text-primary px-6 py-3 rounded-lg font-medium;
-    @apply border border-primary transition-[var(--transition-smooth)];
-    @apply hover:bg-primary hover:text-primary-foreground;
+    @apply bg-card text-primary px-6 py-3 rounded-xl font-medium;
+    @apply border-2 border-primary/20 transition-all duration-300;
+    @apply hover:bg-primary hover:text-primary-foreground hover:border-primary hover:shadow-md;
   }
   
   .btn-outline {
-    @apply bg-card text-primary px-6 py-3 rounded-lg font-medium;
-    @apply border border-muted-foreground transition-[var(--transition-smooth)];
-    @apply hover:bg-muted hover:border-primary;
+    @apply bg-transparent text-primary px-6 py-3 rounded-xl font-medium;
+    @apply border-2 border-muted-foreground/30 transition-all duration-300;
+    @apply hover:bg-muted hover:border-primary/40 hover:shadow-sm;
   }
   
-  /* Professional Card Styles */
+  /* Soft Organic Card Styles */
   .card-product {
-    @apply bg-card p-6 rounded-2xl border;
-    @apply shadow-[var(--shadow-card)] transition-[var(--transition-smooth)];
-    @apply hover:shadow-lg hover:scale-[1.02];
+    @apply bg-gradient-to-br from-card to-[hsl(140_30%_98%)] p-6 rounded-3xl border border-border/50;
+    @apply shadow-[var(--shadow-card)] transition-all duration-400;
+    @apply hover:shadow-[0_12px_40px_-12px_hsl(142_30%_30%/0.15)] hover:scale-[1.02] hover:-translate-y-1;
+  }
+  
+  /* Organic Glass Card */
+  .card-glass {
+    @apply bg-white/70 backdrop-blur-lg p-6 rounded-3xl border border-white/40;
+    @apply shadow-[var(--shadow-card)] transition-all duration-400;
   }
   
   /* Header Styles */
