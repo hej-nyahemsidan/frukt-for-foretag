@@ -35,8 +35,8 @@ const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays, currentDay, orderType
       const { data, error } = await supabase
         .from('products')
         .select('*')
-        .eq('category', 'snacks')
-        .order('display_order', { ascending: true });
+        .eq('category', 'annat')
+        .order('name');
 
       if (error) throw error;
 
