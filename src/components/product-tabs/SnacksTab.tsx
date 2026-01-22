@@ -25,6 +25,7 @@ const SnacksTab: React.FC<SnacksTabProps> = ({ selectedDays, currentDay, orderTy
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     fetchProducts();
@@ -32,6 +33,7 @@ const SnacksTab: React.FC<SnacksTabProps> = ({ selectedDays, currentDay, orderTy
 
   const fetchProducts = async () => {
     try {
+      setErrorMessage(null);
       const { data, error } = await supabase
         .from('products')
         .select('*')
@@ -39,6 +41,11 @@ const SnacksTab: React.FC<SnacksTabProps> = ({ selectedDays, currentDay, orderTy
         .order('display_order', { ascending: true });
 
       if (error) throw error;
+
+      console.log('[SnacksTab] fetched products:', {
+        count: (data || []).length,
+        sample: (data || [])[0]?.name,
+      });
 
       const typedProducts: Product[] = (data || []).map(product => ({
         ...product,
@@ -48,6 +55,7 @@ const SnacksTab: React.FC<SnacksTabProps> = ({ selectedDays, currentDay, orderTy
       setProducts(typedProducts);
     } catch (error) {
       console.error('Error fetching snacks products:', error);
+      setErrorMessage(error instanceof Error ? error.message : String(error));
     } finally {
       setLoading(false);
     }
@@ -57,6 +65,15 @@ const SnacksTab: React.FC<SnacksTabProps> = ({ selectedDays, currentDay, orderTy
     return (
       <div className="flex items-center justify-center py-8">
         <div className="text-lg">Laddar produkter...</div>
+      </div>
+    );
+  }
+
+  if (errorMessage) {
+    return (
+      <div className="py-8 text-center">
+        <p className="text-sm text-muted-foreground">Kunde inte ladda Snacks just nu.</p>
+        <p className="mt-2 text-xs text-muted-foreground">{errorMessage}</p>
       </div>
     );
   }
