@@ -13,6 +13,7 @@ import FruktpaserTab from '@/components/product-tabs/FruktpaserTab';
 import LaskTab from '@/components/product-tabs/LaskTab';
 import MejeriTab from '@/components/product-tabs/MejeriTab';
 import KaffeTeTab from '@/components/product-tabs/KaffeTeTab';
+import FrukostTab from '@/components/product-tabs/FrukostTab';
 import SnacksTab from '@/components/product-tabs/SnacksTab';
 import GronsakerTab from '@/components/product-tabs/GronsakerTab';
 import StadTab from '@/components/product-tabs/StadTab';
@@ -145,7 +146,7 @@ const Products = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-4 sm:grid-cols-8 gap-1 sm:gap-2 mb-6 sm:mb-8 bg-gray-100 p-1 rounded-lg h-auto">
+          <TabsList className="grid w-full grid-cols-4 sm:grid-cols-9 gap-1 sm:gap-2 mb-6 sm:mb-8 bg-gray-100 p-1 rounded-lg h-auto">
             <TabsTrigger 
               value="fruktkorgar" 
               className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
@@ -176,6 +177,14 @@ const Products = () => {
             >
               Kaffe
             </TabsTrigger>
+
+            <TabsTrigger 
+              value="frukost" 
+              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+            >
+              Frukost & mellanmål
+            </TabsTrigger>
+
             <TabsTrigger 
               value="snacks" 
               className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
@@ -214,6 +223,10 @@ const Products = () => {
 
           <TabsContent value="kaffe" className="mt-6">
             <KaffeTeTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
+          </TabsContent>
+
+          <TabsContent value="frukost" className="mt-6">
+            <FrukostTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
           </TabsContent>
 
           <TabsContent value="snacks" className="mt-6">
