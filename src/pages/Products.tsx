@@ -13,7 +13,7 @@ import FruktpaserTab from '@/components/product-tabs/FruktpaserTab';
 import LaskTab from '@/components/product-tabs/LaskTab';
 import MejeriTab from '@/components/product-tabs/MejeriTab';
 import KaffeTeTab from '@/components/product-tabs/KaffeTeTab';
-import AnnatTab from '@/components/product-tabs/AnnatTab';
+import SnacksTab from '@/components/product-tabs/SnacksTab';
 import GronsakerTab from '@/components/product-tabs/GronsakerTab';
 import StadTab from '@/components/product-tabs/StadTab';
 
@@ -177,10 +177,10 @@ const Products = () => {
               Kaffe
             </TabsTrigger>
             <TabsTrigger 
-              value="annat" 
+              value="snacks" 
               className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
             >
-              Skafferi
+              Snacks
             </TabsTrigger>
             <TabsTrigger 
               value="gronsaker" 
@@ -216,8 +216,8 @@ const Products = () => {
             <KaffeTeTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
           </TabsContent>
 
-          <TabsContent value="annat" className="mt-6">
-            <AnnatTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
+          <TabsContent value="snacks" className="mt-6">
+            <SnacksTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
           </TabsContent>
 
           <TabsContent value="gronsaker" className="mt-6">
