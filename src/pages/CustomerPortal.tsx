@@ -214,14 +214,14 @@ const CustomerPortal = () => {
               </Button>
 
 
-              {/* Admin Link */}
-              <div className="text-center mt-8">
+              {/* Discreet Admin Link - appears as a small dot */}
+              <div className="flex justify-center mt-8">
                 <Link 
                   to="/admin/login" 
-                  className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
-                >
-                  Admin
-                </Link>
+                  className="w-2 h-2 rounded-full bg-gray-200 hover:bg-gray-400 transition-colors opacity-30 hover:opacity-100"
+                  aria-label="Admin"
+                  title=""
+                />
               </div>
             </form>
           </div>
