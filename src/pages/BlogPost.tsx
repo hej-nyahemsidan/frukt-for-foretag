@@ -58,14 +58,38 @@ const BlogPost = () => {
   const categoryTitle = category === 'tips' ? 'Tips' : 'Recept';
   const displayDate = post?.published_at || post?.created_at || null;
 
-  // Function to render text with bold markdown
+  // Function to render text with bold markdown and links
   const renderContent = (text: string) => {
-    const parts = text.split(/(\*\*.*?\*\*)/g);
+    // First split by links, then handle bold within each part
+    const linkRegex = /(\[.*?\]\(.*?\))/g;
+    const parts = text.split(linkRegex);
+    
     return parts.map((part, index) => {
-      if (part.startsWith('**') && part.endsWith('**')) {
-        return <strong key={index}>{part.slice(2, -2)}</strong>;
+      // Check if this part is a link
+      const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/);
+      if (linkMatch) {
+        const [, linkText, url] = linkMatch;
+        return (
+          <a 
+            key={index} 
+            href={url} 
+            className="text-primary hover:underline"
+            target={url.startsWith('http') ? '_blank' : undefined}
+            rel={url.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+            {linkText}
+          </a>
+        );
       }
-      return part;
+      
+      // Handle bold text
+      const boldParts = part.split(/(\*\*.*?\*\*)/g);
+      return boldParts.map((boldPart, boldIndex) => {
+        if (boldPart.startsWith('**') && boldPart.endsWith('**')) {
+          return <strong key={`${index}-${boldIndex}`}>{boldPart.slice(2, -2)}</strong>;
+        }
+        return boldPart;
+      });
     });
   };
 
