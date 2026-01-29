@@ -78,7 +78,7 @@ const Terms = () => {
                 </p>
                 <ul className="list-disc list-inside text-gray-600 mt-3 space-y-2">
                   <li>1 till 2 korgar per vecka: 5 månader ca 12kg</li>
-                  <li>3 till 4 korgar per vecka månader ca 21kg eller mer 12 månader.</li>
+                  <li>3 till 4 korgar per vecka 12 månader uppsägningstid ca 21kg +</li>
                 </ul>
                 <p className="text-gray-600 leading-relaxed mt-3">
                   Korgar och returlådor hämtas veckan efter sista leveransen.
