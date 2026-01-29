@@ -56,7 +56,7 @@ const Terms = () => {
                   Behörig beställare måste skriftligen meddela Vitaminkorgen senast 10 arbetsdagar före önskat leveransuppehåll till <a href="mailto:info@vitaminkorgen.se" className="text-primary hover:underline">info@vitaminkorgen.se</a> eller ringa till vår kundservice.
                 </p>
                 <p className="text-gray-600 leading-relaxed mt-3">
-                  Leveransuppehållet kan ej nyttjas under uppsägningstid. Under uppsägningstiden får volymen/beställningen inte justeras ner.
+                  Leveransuppehållet får ej nyttjas under uppsägningstid (gäller kunder med avtal innehållande villkor för uppsägningstid). Under uppsägningstiden får volymen/beställningen inte justeras ner med mer än maximalt 10 %.
                 </p>
               </section>
 
