@@ -1,5 +1,5 @@
 import { useState, Fragment, useRef, useEffect } from 'react';
-import { Menu, X, User, ChevronDown, LogOut, BookOpen, Shield } from 'lucide-react';
+import { Menu, X, User, ChevronDown, LogOut, BookOpen, Shield, Phone } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -362,6 +362,14 @@ const Header = () => {
 
           {/* Right Side - Contact & Actions */}
           <div className="hidden xxl:flex items-center space-x-6">
+            {/* Phone Number */}
+            <a 
+              href="tel:010-1839836" 
+              className="flex items-center space-x-2 text-charcoal hover:text-secondary transition-colors"
+            >
+              <Phone className="w-4 h-4" />
+              <span className="text-sm font-medium">010-183 98 36</span>
+            </a>
             {/* Admin Dashboard Link - Sliding Animation */}
             {isAdmin && (
               <div className="animate-slide-in-right">
