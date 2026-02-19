@@ -138,7 +138,7 @@ const QuoteRequestSection = () => {
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-              Offertförfrågan
+              Beställ din fruktkorg på jobbet
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 leading-relaxed">
               Fyll i formuläret nedan för att göra din första beställning. Vi återkommer snabbt med en offert och sätter upp leveransen till er adress!
