@@ -349,7 +349,7 @@ const AdminBlogManagement = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="content">Innehåll *</Label>
-                <div className="flex gap-2 mb-2">
+                <div className="flex gap-2 mb-2 flex-wrap">
                   <Button
                     type="button"
                     variant="outline"
@@ -372,8 +372,30 @@ const AdminBlogManagement = () => {
                   >
                     <strong>B</strong>
                   </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      const textarea = document.getElementById('content') as HTMLTextAreaElement;
+                      if (!textarea) return;
+                      const start = textarea.selectionStart;
+                      const end = textarea.selectionEnd;
+                      const selectedText = formData.content.substring(start, end) || 'länktext';
+                      const url = prompt('Ange URL (t.ex. /fruktkorg/sodermalm eller https://...):');
+                      if (!url) return;
+                      const linkMarkdown = `[${selectedText}](${url})`;
+                      const newText = formData.content.substring(0, start) + linkMarkdown + formData.content.substring(end);
+                      setFormData({ ...formData, content: newText });
+                      setTimeout(() => {
+                        textarea.focus();
+                      }, 0);
+                    }}
+                  >
+                    🔗 Länk
+                  </Button>
                   <span className="text-xs text-muted-foreground flex items-center">
-                    Markera text och klicka på B för att göra den fet
+                    Markera text → klicka B (fetstil) eller 🔗 (länk)
                   </span>
                 </div>
                 <Textarea
@@ -386,7 +408,7 @@ const AdminBlogManagement = () => {
                   className="font-mono text-sm"
                 />
                 <p className="text-xs text-muted-foreground">
-                  Använd **text** för att göra text fet
+                  Använd **text** för fetstil och [text](url) för länkar. T.ex: [Fruktkorg Södermalm](/fruktkorg/sodermalm)
                 </p>
               </div>
 
