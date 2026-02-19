@@ -354,7 +354,7 @@ const QuoteRequestSection = () => {
                        onChange={(e) => handleInputChange('message', e.target.value)}
                        rows={5}
                        className="w-full text-lg"
-                       placeholder="Berätta vad ni behöver hjälp med..."
+                       placeholder="Berätta gärna om ni har allergier eller någon portkod"
                      />
                    </div>
                   
