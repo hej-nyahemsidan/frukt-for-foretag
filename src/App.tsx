@@ -37,6 +37,7 @@ import Varuautomat from "./pages/Varuautomat";
 import FruktkorgStockholm from "./pages/FruktkorgStockholm";
 import FruktkorgForetag from "./pages/FruktkorgForetag";
 import FruktkorgPaJobbet from "./pages/FruktkorgPaJobbet";
+import AreaLanding from "./pages/AreaLanding";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -85,6 +86,7 @@ const App = () => (
                 <Route path="/fruktkorg-stockholm" element={<FruktkorgStockholm />} />
                 <Route path="/fruktkorg-foretag" element={<FruktkorgForetag />} />
                 <Route path="/fruktkorg-pa-jobbet" element={<FruktkorgPaJobbet />} />
+                <Route path="/fruktkorg/:area" element={<AreaLanding />} />
                 
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />
