@@ -1,11 +1,16 @@
 import { useState, FormEvent } from 'react';
+import { format } from 'date-fns';
+import { sv } from 'date-fns/locale';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { MapPin, Phone, Clock, MessageCircle, ShoppingBasket, Plus, Minus, X, Calendar } from 'lucide-react';
+import { Calendar as CalendarComponent } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { MapPin, Phone, Clock, MessageCircle, ShoppingBasket, Plus, Minus, X, Calendar, CalendarIcon } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { usePublicCart } from '@/contexts/PublicCartContext';
+import { cn } from '@/lib/utils';
 
 // Import images
 import officeWellnessImage from '@/assets/office-wellness.jpg';
@@ -23,6 +28,7 @@ const QuoteRequestSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
+  const [startDate, setStartDate] = useState<Date>();
   
   const { toast } = useToast();
   const { items, getTotalPrice, updateQuantity, removeItem, clearCart } = usePublicCart();
@@ -62,6 +68,7 @@ const QuoteRequestSection = () => {
           postalCode: formData.postalCode,
           location: formData.location,
           message: formData.message,
+          startDate: startDate ? format(startDate, 'yyyy-MM-dd') : undefined,
           cartItems: items,
           totalPrice: getTotalPrice(),
         }
@@ -70,8 +77,8 @@ const QuoteRequestSection = () => {
       if (error) throw error;
 
       toast({
-        title: "Offertförfrågan skickad!",
-        description: "Vi återkommer så snart som möjligt med en offert.",
+        title: "Beställning skickad!",
+        description: "Vi återkommer så snart som möjligt.",
       });
 
       // Clear form and cart
@@ -82,7 +89,7 @@ const QuoteRequestSection = () => {
       console.error('Error sending email:', error);
       toast({
         title: "Något gick fel",
-        description: "Kunde inte skicka offertförfrågan. Försök igen senare.",
+        description: "Kunde inte skicka beställningen. Försök igen senare.",
         variant: "destructive",
       });
     } finally {
@@ -102,9 +109,9 @@ const QuoteRequestSection = () => {
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <MessageCircle className="w-10 h-10 text-green-600" />
             </div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Tack för din offertförfrågan!</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Tack för din beställning!</h2>
             <p className="text-xl text-gray-600">
-              Vi har tagit emot din beställning och återkommer så snart som möjligt med en offert.
+              Vi har tagit emot din beställning och återkommer så snart som möjligt.
             </p>
           </div>
           <Button onClick={() => window.location.href = '/'} size="lg">
@@ -311,6 +318,35 @@ const QuoteRequestSection = () => {
                      </div>
                    </div>
                    
+                   {/* Start Date Picker */}
+                   <div className="space-y-2">
+                     <label className="text-sm text-gray-600 font-medium">Önskat startdatum*</label>
+                     <Popover>
+                       <PopoverTrigger asChild>
+                         <Button
+                           variant="outline"
+                           className={cn(
+                             "w-full justify-start text-left text-lg py-3 font-normal",
+                             !startDate && "text-muted-foreground"
+                           )}
+                         >
+                           <CalendarIcon className="mr-2 h-4 w-4" />
+                           {startDate ? format(startDate, 'PPP', { locale: sv }) : 'Välj startdatum'}
+                         </Button>
+                       </PopoverTrigger>
+                       <PopoverContent className="w-auto p-0" align="start">
+                         <CalendarComponent
+                           mode="single"
+                           selected={startDate}
+                           onSelect={setStartDate}
+                           disabled={(date) => date < new Date()}
+                           initialFocus
+                           className={cn("p-3 pointer-events-auto")}
+                         />
+                       </PopoverContent>
+                     </Popover>
+                   </div>
+
                    <div className="space-y-2">
                      <label className="text-sm text-gray-600 font-medium">Meddelande</label>
                      <Textarea
@@ -327,7 +363,7 @@ const QuoteRequestSection = () => {
                      disabled={isSubmitting}
                      className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg rounded-lg w-full disabled:opacity-50"
                    >
-                     {isSubmitting ? 'Skickar...' : 'Skicka offertförfrågan'}
+                     {isSubmitting ? 'Skickar...' : 'Skicka din beställning'}
                    </Button>
                 </form>
               </div>
