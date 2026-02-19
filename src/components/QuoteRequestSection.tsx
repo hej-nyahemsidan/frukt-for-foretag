@@ -141,7 +141,7 @@ const QuoteRequestSection = () => {
               Beställ din fruktkorg på jobbet
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 leading-relaxed">
-              Fyll i formuläret nedan för att göra din första beställning. Vi återkommer snabbt med en offert och sätter upp leveransen till er adress!
+              Fyll i formuläret nedan för att göra din första beställning.
             </p>
           </div>
         </div>
