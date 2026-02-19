@@ -34,6 +34,9 @@ import BlogPost from "./pages/BlogPost";
 import LegacyBlogRedirect from "./pages/LegacyBlogRedirect";
 import Blommor from "./pages/Blommor";
 import Varuautomat from "./pages/Varuautomat";
+import FruktkorgStockholm from "./pages/FruktkorgStockholm";
+import FruktkorgForetag from "./pages/FruktkorgForetag";
+import FruktkorgPaJobbet from "./pages/FruktkorgPaJobbet";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -79,6 +82,9 @@ const App = () => (
                 <Route path="/blog/:slug" element={<LegacyBlogRedirect />} />
                 <Route path="/blommor" element={<Blommor />} />
                 <Route path="/varuautomat" element={<Varuautomat />} />
+                <Route path="/fruktkorg-stockholm" element={<FruktkorgStockholm />} />
+                <Route path="/fruktkorg-foretag" element={<FruktkorgForetag />} />
+                <Route path="/fruktkorg-pa-jobbet" element={<FruktkorgPaJobbet />} />
                 
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />
