@@ -16,7 +16,7 @@ const FruktkorgPaJobbet = () => {
       <SEOHead 
         title="Fruktkorg på jobbet – Färsk frukt till arbetsplatsen | Vitaminkorgen Stockholm"
         description="Fruktkorg på jobbet ✓ Leverans av färska fruktkorgar till arbetsplatsen i Stockholm. Öka välmåendet, minska sjukfrånvaron. Fri leverans & gratis provkorg."
-        keywords="fruktkorg på jobbet, frukt på jobbet, fruktkorg arbetsplats, frukt till jobbet, fruktkorg kontor, fruktkorgar på jobbet, fruktkorg på arbetsplatsen"
+        keywords="fruktkorg på jobbet, frukt på jobbet, fruktkorg arbetsplats, frukt till jobbet, fruktbud, fruktleverans, fruktkorg kontor, fruktkorgar på jobbet, fruktkorg på arbetsplatsen"
         type="products"
       />
       <Header />

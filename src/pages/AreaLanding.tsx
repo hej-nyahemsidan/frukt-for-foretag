@@ -26,7 +26,7 @@ const AreaLanding = () => {
       <SEOHead
         title={`Fruktkorg ${name} – Fruktkorgar till kontor i ${name} | Vitaminkorgen`}
         description={`Fruktkorg ${name} ✓ ${description} Fri leverans, ingen bindningstid. Beställ idag!`}
-        keywords={`fruktkorg ${name.toLowerCase()}, fruktkorgar ${name.toLowerCase()}, frukt kontor ${name.toLowerCase()}, fruktleverans ${name.toLowerCase()}, fruktkorg på jobbet ${name.toLowerCase()}`}
+        keywords={`fruktkorg ${name.toLowerCase()}, fruktkorgar ${name.toLowerCase()}, frukt kontor ${name.toLowerCase()}, fruktleverans ${name.toLowerCase()}, fruktbud ${name.toLowerCase()}, fruktkorg på jobbet ${name.toLowerCase()}`}
         type="products"
       />
       <Header />
