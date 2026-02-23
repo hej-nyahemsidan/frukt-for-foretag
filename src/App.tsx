@@ -39,6 +39,7 @@ import FruktkorgForetag from "./pages/FruktkorgForetag";
 import FruktkorgPaJobbet from "./pages/FruktkorgPaJobbet";
 import AreaLanding from "./pages/AreaLanding";
 import ScrollToTop from "./components/ScrollToTop";
+import ExitIntentPopup from "./components/ExitIntentPopup";
 
 const queryClient = new QueryClient();
 
@@ -105,6 +106,7 @@ const App = () => (
                 <Route path="*" element={<NotFound />} />
               </Routes>
               <CookieConsent />
+              <ExitIntentPopup />
             </BrowserRouter>
           </TooltipProvider>
         </CartProvider>
