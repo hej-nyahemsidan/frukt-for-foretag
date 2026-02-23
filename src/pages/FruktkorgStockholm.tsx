@@ -16,7 +16,7 @@ const FruktkorgStockholm = () => {
       <SEOHead 
         title="Fruktkorg Stockholm – Färska fruktkorgar levererade i Stockholm | Vitaminkorgen"
         description="Fruktkorg Stockholm ✓ Beställ färska fruktkorgar med fri leverans i hela Stockholmsområdet. Handplockad frukt levererad till din dörr. Över 150 nöjda kunder."
-        keywords="fruktkorg stockholm, fruktkorgar stockholm, fruktleverans stockholm, färsk frukt stockholm, fruktkorg leverans stockholm, beställa fruktkorg stockholm"
+        keywords="fruktkorg stockholm, fruktkorgar stockholm, fruktleverans stockholm, fruktbud stockholm, färsk frukt stockholm, fruktkorg leverans stockholm, beställa fruktkorg stockholm"
         type="products"
       />
       <Header />

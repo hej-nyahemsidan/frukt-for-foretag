@@ -15,7 +15,7 @@ const FruktkorgForetag = () => {
       <SEOHead 
         title="Fruktkorg företag – Fruktkorgar för kontor och arbetsplatser | Vitaminkorgen"
         description="Fruktkorg företag ✓ Beställ fruktkorgar till ert företag med fri leverans. Öka välmåendet på arbetsplatsen med färsk frukt. 150+ nöjda företagskunder i Stockholm."
-        keywords="fruktkorg företag, fruktkorgar företag, frukt till företag, företagsfrukt, fruktkorgar arbetsplats, frukt kontor företag, fruktleverans företag"
+        keywords="fruktkorg företag, fruktkorgar företag, frukt till företag, företagsfrukt, fruktbud företag, fruktleverans företag, fruktkorgar arbetsplats, frukt kontor företag"
         type="products"
       />
       <Header />
