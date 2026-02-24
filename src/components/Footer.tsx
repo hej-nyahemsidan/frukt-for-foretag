@@ -86,6 +86,43 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Area Links for SEO */}
+        <div className="border-t border-green-700 pt-6 mb-6">
+          <h4 className="text-sm font-semibold text-gray-200 mb-3">Vi levererar fruktkorgar till</h4>
+          <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-300">
+            {[
+              { name: 'Stockholm', slug: 'stockholm' },
+              { name: 'Östermalm', slug: 'ostermalm' },
+              { name: 'Kungsholmen', slug: 'kungsholmen' },
+              { name: 'Södermalm', slug: 'sodermalm' },
+              { name: 'Gamla stan', slug: 'gamla-stan' },
+              { name: 'Gärdet', slug: 'gardet' },
+              { name: 'Solna', slug: 'solna' },
+              { name: 'Sundbyberg', slug: 'sundbyberg' },
+              { name: 'Bromma', slug: 'bromma' },
+              { name: 'Nacka', slug: 'nacka' },
+              { name: 'Täby', slug: 'taby' },
+              { name: 'Huddinge', slug: 'huddinge' },
+              { name: 'Järfälla', slug: 'jarfalla' },
+              { name: 'Haninge', slug: 'haninge' },
+              { name: 'Tyresö', slug: 'tyreso' },
+              { name: 'Farsta', slug: 'farsta' },
+              { name: 'Älvsjö', slug: 'alvsjo' },
+              { name: 'Hägersten', slug: 'hagersten' },
+              { name: 'Hammarby sjöstad', slug: 'hammarby-sjostad' },
+              { name: 'Bandhagen', slug: 'bandhagen' },
+              { name: 'Botkyrka', slug: 'botkyrka' },
+            ].map((area, i, arr) => (
+              <span key={area.slug}>
+                <a href={`/fruktkorg/${area.slug}`} className="hover:text-yellow-400 transition-colors">
+                  {area.name}
+                </a>
+                {i < arr.length - 1 && <span className="ml-3 text-green-600">·</span>}
+              </span>
+            ))}
+          </div>
+        </div>
+
         {/* Bottom Bar */}
         <div className="border-t border-green-700 pt-6 flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
           <div className="text-sm text-gray-200">
