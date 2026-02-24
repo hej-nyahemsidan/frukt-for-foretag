@@ -230,12 +230,6 @@ const QuoteRequestSection = () => {
       {/* Main Content Section */}
       <section className="py-20 px-8 bg-white">
         <div className="container mx-auto max-w-3xl">
-              {/* Promotional Bubble */}
-              <div className="mb-6 text-center">
-                <div className="inline-block bg-gradient-to-r from-secondary to-primary-light text-white px-6 py-3 rounded-full shadow-lg">
-                  <span className="font-semibold">🎉 Beställ en gratis provkorg</span>
-                </div>
-              </div>
               
               <div className="bg-white p-8 rounded-xl shadow-lg border">
                 <form onSubmit={handleSubmit} className="space-y-6">
