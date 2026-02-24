@@ -338,6 +338,28 @@ const Products = () => {
             </div>
           </div>
         )}
+
+        {/* Sticky bottom bar */}
+        {items.length > 0 && (
+          <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-t shadow-lg p-3 sm:p-4">
+            <div className="container mx-auto flex items-center justify-between gap-4 max-w-4xl">
+              <div className="flex items-center gap-2 text-sm sm:text-base">
+                <ShoppingCart className="h-5 w-5 text-primary" />
+                <span className="font-semibold">{getTotalItems()} produkter</span>
+                <span className="text-muted-foreground hidden sm:inline">•</span>
+                <span className="font-bold text-primary hidden sm:inline">{getTotalPrice()} kr</span>
+              </div>
+              <Button 
+                onClick={() => navigate('/offertforfragan')}
+                size="lg"
+                className="text-sm sm:text-base"
+              >
+                <FileText className="h-4 w-4 mr-2" />
+                Skicka din beställning
+              </Button>
+            </div>
+          </div>
+        )}
       </main>
 
       <Footer />
