@@ -35,7 +35,7 @@ const FruktkorgPaJobbet = () => {
               </h1>
               <p className="text-lg md:text-xl text-gray-100 mb-8 leading-relaxed">
                 Ge era medarbetare energi och glädje med en fruktkorg på jobbet. 
-                Vi levererar handplockad, färsk frukt direkt till arbetsplatsen – varje vecka.
+                Ert fruktbud levererar handplockad, färsk frukt direkt till arbetsplatsen – varje vecka.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/offertforfragan">

@@ -34,7 +34,7 @@ const FruktkorgForetag = () => {
               </h1>
               <p className="text-lg md:text-xl text-gray-100 mb-8 leading-relaxed">
                 Investera i era medarbetares hälsa med färska fruktkorgar till företaget. 
-                En enkel åtgärd som minskar sjukfrånvaro och ökar trivseln på arbetsplatsen.
+                Som ert fruktbud sköter vi allt – en enkel åtgärd som minskar sjukfrånvaro och ökar trivseln på arbetsplatsen.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/offertforfragan">

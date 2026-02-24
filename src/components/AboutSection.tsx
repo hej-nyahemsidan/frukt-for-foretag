@@ -115,7 +115,7 @@ const AboutSection = () => {
               Fruktkorg på jobbet i Stockholm – enkelt, fräscht och uppskattat
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 leading-relaxed">
-              Att erbjuda en fruktkorg på jobbet är ett enkelt sätt att främja hälsa, trivsel och energi på arbetsplatsen. Vi på Vitaminkorgen levererar fruktkorgar till företag i Stockholm – alltid fyllda med noggrant utvald, säsongsanpassad frukt av hög kvalitet.
+              Att erbjuda en fruktkorg på jobbet är ett enkelt sätt att främja hälsa, trivsel och energi på arbetsplatsen. Vi på Vitaminkorgen är ert fruktbud i Stockholm – vi levererar fruktkorgar till företag, alltid fyllda med noggrant utvald, säsongsanpassad frukt av hög kvalitet.
             </p>
           </div>
         </div>

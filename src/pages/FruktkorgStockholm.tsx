@@ -34,7 +34,7 @@ const FruktkorgStockholm = () => {
                 Fruktkorg Stockholm – Färska fruktkorgar levererade till dig
               </h1>
               <p className="text-lg md:text-xl text-gray-100 mb-8 leading-relaxed">
-                Vi levererar handplockade fruktkorgar i hela Stockholmsområdet. 
+                Som ert lokala fruktbud levererar vi handplockade fruktkorgar i hela Stockholmsområdet. 
                 Färsk, säsongsanpassad frukt direkt till ditt kontor eller hem – med gratis leverans.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -153,7 +153,7 @@ const FruktkorgStockholm = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-green-900 mb-6">
-                  Lokal fruktleverantör i Stockholm sedan 2021
+                  Ert lokala fruktbud i Stockholm sedan 2021
                 </h2>
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   Vitaminkorgen har levererat färska fruktkorgar till företag i Stockholm sedan 2021. 

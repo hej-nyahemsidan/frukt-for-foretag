@@ -37,7 +37,7 @@ const Footer = () => {
               </a>
             </div>
             <p className="text-gray-100 text-sm leading-relaxed">
-              Leverantör av färska fruktkorgar till jobbet för kontor och företag i Stockholm. 
+              Ert pålitliga fruktbud i Stockholm – vi levererar färska fruktkorgar till jobbet för kontor och företag. 
               Vi brinner för kvalitet, hållbarhet och er hälsa med frukt på jobbet.
             </p>
           </div>
