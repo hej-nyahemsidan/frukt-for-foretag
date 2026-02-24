@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -12,6 +13,11 @@ import officeBouquet from '@/assets/office-bouquet.jpg';
 const Blommor = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Blommor till kontoret Stockholm – Blomsterabonnemang för företag | Vitaminkorgen"
+        description="Blommor till kontoret ✓ Fräscha blomsterarrangemang levererade till ert företag i Stockholm. Skapa en trivsam arbetsplats. Fri leverans & flexibelt abonnemang."
+        keywords="blommor kontoret, blomsterabonnemang företag, blommor arbetsplats stockholm, kontorsblommor, blomsterleverans företag"
+      />
       <Header />
       
       <main>

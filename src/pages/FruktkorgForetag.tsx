@@ -13,8 +13,8 @@ const FruktkorgForetag = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Fruktkorg företag – Fruktkorgar för kontor och arbetsplatser | Vitaminkorgen"
-        description="Fruktkorg företag ✓ Beställ fruktkorgar till ert företag med fri leverans. Öka välmåendet på arbetsplatsen med färsk frukt. 150+ nöjda företagskunder i Stockholm."
+        title="Fruktkorg företag – Frukt till arbetsplatsen från 299 kr | Vitaminkorgen Stockholm"
+        description="Fruktkorg företag ✓ Öka välmåendet med färsk frukt på jobbet. Fri leverans i Stockholm, ingen bindningstid. 150+ företag litar på oss. Boka gratis provkorg!"
         keywords="fruktkorg företag, fruktkorgar företag, frukt till företag, företagsfrukt, fruktbud företag, fruktleverans företag, fruktkorgar arbetsplats, frukt kontor företag"
         type="products"
       />
