@@ -30,12 +30,12 @@ const HeroSection = () => {
           <div className="space-y-4 sm:space-y-6 max-w-md sm:max-w-lg lg:max-w-lg lg:ml-8 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2">
             <div className="space-y-3 sm:space-y-4">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight text-slate-800 shadow-sm">
-                Ert pålitliga fruktbud<br />
-                i Stockholm
+                Fruktkorgar på jobbet<br />
+                som gör skillnad
               </h1>
               
               <p className="text-base sm:text-lg leading-relaxed text-slate-600 max-w-lg">
-                Vi levererar noggrant utvalda fruktkorgar av högsta kvalitet direkt till ert kontor i Stockholm. Med personlig service och smidiga leveranser hjälper vi företag att främja energi, fokus och välmående på arbetsplatsen – varje vecka, sedan 2021.
+                Vi levererar noggrant utvalda fruktkorgar av högsta kvalitet direkt till ert kontor i Stockholm. Med färska fruktkorgar till jobbet och personlig service hjälper vi företag att främja energi, fokus och välmående på arbetsplatsen. Våra nöjda kunder uppskattar vår pålitlighet och smidiga leveranser av frukt på jobbet Stockholm – varje vecka.
               </p>
               
               <Button 
