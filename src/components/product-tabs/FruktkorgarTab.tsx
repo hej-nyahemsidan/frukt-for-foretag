@@ -91,7 +91,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
               onClick={() => setSelectedProduct(product)}
             >
               {/* Discount badge */}
-              <div className="absolute top-2 left-2 z-10 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+              <div className="absolute top-2 left-2 z-30 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
                 -8%
               </div>
               <div className="relative aspect-square bg-white overflow-hidden rounded-lg">
