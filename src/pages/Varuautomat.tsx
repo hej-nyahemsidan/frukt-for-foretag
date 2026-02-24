@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -26,6 +27,11 @@ import fruitPlatter2 from '@/assets/fruitplatter-2.jpg';
 const Varuautomat = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Varuautomat för kontoret Stockholm – Snacks & dryck på jobbet | Vitaminkorgen"
+        description="Varuautomat till kontoret ✓ Moderna varuautomater med snacks, dryck och fika. Kontantlös betalning, fri installation i Stockholm. Vi fyller på regelbundet."
+        keywords="varuautomat kontor, varuautomat företag stockholm, snackautomat arbetsplats, dryckautomat kontor, varuautomat hyra"
+      />
       <Header />
       
       <main>
