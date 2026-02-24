@@ -65,7 +65,7 @@ const Products = () => {
           </p>
           <div className="bg-white border border-gray-200 rounded-lg p-6 max-w-4xl mx-auto shadow-sm">
             <p className="text-sm sm:text-base text-gray-700 mb-6 text-center">
-              <strong>Ny kund?</strong> Välj dina leveransdagar, lägg till produkter i varukorgen och gå vidare till offertförfrågan för att få din första leverans. Vi återkommer med en offert och sätter upp leveransen!
+              <strong>Ny kund?</strong> Välj dina leveransdagar, lägg till produkter i varukorgen och skicka din beställning. Vi återkommer och sätter upp leveransen!
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <div className="flex items-center gap-3">
@@ -331,8 +331,8 @@ const Products = () => {
                   size="lg"
                   className="w-full text-lg"
                 >
-                  <FileText className="h-5 w-5 mr-2" />
-                  Gå till offertförfrågan
+                 <FileText className="h-5 w-5 mr-2" />
+                   Skicka din beställning
                 </Button>
               </div>
             </div>
