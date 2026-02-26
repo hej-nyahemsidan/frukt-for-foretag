@@ -8,8 +8,10 @@ import { CartProvider } from "@/contexts/CartContext";
 import { PublicCartProvider } from "@/contexts/PublicCartContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { AdminAuthProvider } from "@/admin/contexts/AdminAuthContext";
+import { ResellerAuthProvider } from "@/reseller/contexts/ResellerAuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import AdminProtectedRoute from "@/admin/components/AdminProtectedRoute";
+import ResellerProtectedRoute from "@/reseller/components/ResellerProtectedRoute";
 import CookieConsent from "@/components/CookieConsent";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
 import AccessibilityEnhancer from "@/components/AccessibilityEnhancer";
@@ -38,6 +40,8 @@ import FruktkorgStockholm from "./pages/FruktkorgStockholm";
 import FruktkorgForetag from "./pages/FruktkorgForetag";
 import FruktkorgPaJobbet from "./pages/FruktkorgPaJobbet";
 import AreaLanding from "./pages/AreaLanding";
+import ResellerLogin from "./reseller/pages/ResellerLogin";
+import ResellerDashboard from "./reseller/pages/ResellerDashboard";
 import ScrollToTop from "./components/ScrollToTop";
 import ExitIntentPopup from "./components/ExitIntentPopup";
 
@@ -48,6 +52,7 @@ const App = () => (
     <ErrorBoundary>
     <AuthProvider>
       <AdminAuthProvider>
+        <ResellerAuthProvider>
         <PublicCartProvider>
           <CartProvider>
             <TooltipProvider>
@@ -89,6 +94,19 @@ const App = () => (
                 <Route path="/fruktkorg-pa-jobbet" element={<FruktkorgPaJobbet />} />
                 <Route path="/fruktkorg/:area" element={<AreaLanding />} />
                 
+                {/* Reseller Routes */}
+                <Route path="/af/login" element={<ResellerLogin />} />
+                <Route path="/af" element={
+                  <ResellerProtectedRoute>
+                    <ResellerDashboard />
+                  </ResellerProtectedRoute>
+                } />
+                <Route path="/af/dashboard" element={
+                  <ResellerProtectedRoute>
+                    <ResellerDashboard />
+                  </ResellerProtectedRoute>
+                } />
+                
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />
                 <Route path="/admin" element={
@@ -111,6 +129,7 @@ const App = () => (
           </TooltipProvider>
         </CartProvider>
       </PublicCartProvider>
+      </ResellerAuthProvider>
       </AdminAuthProvider>
     </AuthProvider>
     </ErrorBoundary>
