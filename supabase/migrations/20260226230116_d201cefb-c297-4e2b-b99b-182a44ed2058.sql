@@ -1,0 +1,1 @@
+ALTER TABLE public.addition_requests ENABLE ROW LEVEL SECURITY;
