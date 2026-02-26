@@ -17,3 +17,6 @@ verify_jwt = true
 
 [functions.update-user-email]
 verify_jwt = true
+
+[functions.create-reseller-customer]
+verify_jwt = false
