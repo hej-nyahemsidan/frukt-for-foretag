@@ -7,7 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 
 // Import images
-import officeWellnessImage from '@/assets/office-wellness.jpg';
+import officeWellnessImage from '@/assets/fruktkorg-halsa-kontor-stockholm.jpg';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({

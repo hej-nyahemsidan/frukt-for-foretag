@@ -1,10 +1,10 @@
 
-import qualityGuaranteeFeature from '@/assets/quality-guarantee-feature.jpg';
-import officeWorkersFruit from '@/assets/office-workers-fruit.jpg';
-import freeDeliveryFeature from '@/assets/free-delivery-feature.jpg';
-import seasonalFruits from '@/assets/seasonal-fruits.jpg';
-import happyEmployees from '@/assets/happy-employees.jpg';
-import fruitTruck from '@/assets/fruit-delivery-truck.jpg';
+import qualityGuaranteeFeature from '@/assets/premium-frukt-kvalitetsgaranti.jpg';
+import officeWorkersFruit from '@/assets/medarbetare-fruktkorgar-kontor.jpg';
+import freeDeliveryFeature from '@/assets/fri-leverans-fruktkorgar-stockholm.jpg';
+import seasonalFruits from '@/assets/sasongs-frukt-fruktkorg.jpg';
+import happyEmployees from '@/assets/glada-anstallda-fruktkorg-foretag.jpg';
+import fruitTruck from '@/assets/fruktleverans-stockholm-hallbar.jpg';
 
 const FeaturesSection = () => {
   const featureImages = [

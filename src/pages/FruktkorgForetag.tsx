@@ -5,9 +5,9 @@ import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Check, Truck, Star, TrendingUp, Heart, Users, Phone, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import happyEmployees from '@/assets/happy-employees.jpg';
+import happyEmployees from '@/assets/glada-anstallda-fruktkorg-foretag.jpg';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.jpg';
-import officeWellness from '@/assets/office-wellness.jpg';
+import officeWellness from '@/assets/fruktkorg-halsa-kontor-stockholm.jpg';
 
 const FruktkorgForetag = () => {
   return (

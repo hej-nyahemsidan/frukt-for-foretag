@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import fruitPlatter2 from '@/assets/hero-fruit-platter.jpg';
+import fruitPlatter2 from '@/assets/fruktkorg-pa-jobbet-stockholm.jpg';
 
 const HeroSection = () => {
   return (
