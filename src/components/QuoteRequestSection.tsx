@@ -13,7 +13,7 @@ import { usePublicCart } from '@/contexts/PublicCartContext';
 import { cn } from '@/lib/utils';
 
 // Import images
-import officeWellnessImage from '@/assets/office-wellness.jpg';
+import officeWellnessImage from '@/assets/fruktkorg-halsa-kontor-stockholm.jpg';
 
 const QuoteRequestSection = () => {
   const [formData, setFormData] = useState({

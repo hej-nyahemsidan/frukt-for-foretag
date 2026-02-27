@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.jpg';
 import fruktkorgStandard from '@/assets/fruktkorg-standard-new.jpg';
 import fruktkorgEko from '@/assets/fruktkorg-eko-new.jpg';
-import officeWorkers from '@/assets/office-workers-fruit.jpg';
+import officeWorkers from '@/assets/medarbetare-fruktkorgar-kontor.jpg';
 
 const FruktkorgStockholm = () => {
   return (

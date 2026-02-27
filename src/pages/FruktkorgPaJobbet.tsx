@@ -6,9 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Check, Truck, Star, Apple, Coffee, Zap, Heart, Phone, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
-import premiumCoffee from '@/assets/premium-coffee.jpg';
-import professionalFruit from '@/assets/professional-fruit-display.jpg';
-import officeWorkers from '@/assets/office-workers-fruit.jpg';
+import premiumCoffee from '@/assets/kaffe-te-kontor-leverans.jpg';
+import professionalFruit from '@/assets/fruktkorg-premium-display.jpg';
+import officeWorkers from '@/assets/medarbetare-fruktkorgar-kontor.jpg';
 
 const FruktkorgPaJobbet = () => {
   return (

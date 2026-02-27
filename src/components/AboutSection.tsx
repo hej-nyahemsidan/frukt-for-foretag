@@ -7,7 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 
 // Import images
-import fruityImage from '@/assets/fruity.jpg';
+import fruityImage from '@/assets/fruktkorg-leverans-foretag.jpg';
 
 const AboutSection = () => {
   const [expandedFAQ, setExpandedFAQ] = useState<number[]>([]);
