@@ -29,9 +29,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
       "latitude": "59.2472",
       "longitude": "17.9918"
     },
-    "openingHours": [
-      "Mo-Fr 08:00-17:00"
-    ],
+    "openingHours": ["Mo-Fr 08:00-17:00"],
     "areaServed": {
       "@type": "City",
       "name": "Stockholm"
@@ -64,76 +62,190 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
     "review": [
       {
         "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Anna Svensson"
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
+        "author": { "@type": "Person", "name": "Anna Svensson" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "reviewBody": "Fantastisk service! Fruktkorgar levereras alltid i tid och frukterna är så färska. Våra medarbetare älskar dem!"
       },
       {
         "@type": "Review",
-        "author": {
-          "@type": "Person", 
-          "name": "Lars Andersson"
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
+        "author": { "@type": "Person", "name": "Lars Andersson" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "reviewBody": "Har använt Vitaminkorgen i över ett år. Otroligt bra kvalitet och professionell leverans varje vecka."
       },
       {
         "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Maria Johansson"
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5", 
-          "bestRating": "5"
-        },
+        "author": { "@type": "Person", "name": "Maria Johansson" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "reviewBody": "Bästa fruktleveransen i Stockholm! Handplockat urval och alltid perfekt mogna frukter. Rekommenderar starkt!"
       }
     ]
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Hur fungerar fruktkorgar på jobbet från Vitaminkorgen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vi levererar färska fruktkorgar direkt till ert kontor i Stockholm varje vecka. Ni väljer storlek och leveransdag, sedan sköter vi resten. Flexibla avtal som kan pausas vid semester."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Vilka områden levererar ni fruktkorgar till?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vi levererar fruktkorgar på jobbet till hela Stockholm, Södertälje och Uppsala – fri leverans överallt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan vi få en provleverans av fruktkorg på kontoret?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolut! Testa våra fruktkorgar i två veckor helt gratis. Ingen bindningstid, inget krångel."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hur mycket kostar fruktkorgar från Vitaminkorgen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Priserna för våra fruktkorgar på jobbet börjar från 230 kr per vecka. Se alla priser på vår hemsida eller kontakta oss för en skräddarsydd offert baserad på antal medarbetare."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan man anpassa fruktkorgar efter allergier?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Självklart! Vi skapar skräddarsydda fruktkorgar där vi tar bort specifika frukter och ersätter dem med andra. Bara meddela oss vid beställning eller i kundportalen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan man lägga till andra varor som mjölk eller kaffe till leveranserna?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, det går utmärkt! Du kan enkelt lägga till andra varor via din inloggning till kundportalen eller kontakta vår kundservice så hjälper vi dig."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Vad är minsta beställning för fruktkorgar på jobbet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vår minsta leverans är en fruktkorg från 4kg per vecka."
+        }
+      }
+    ]
+  };
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Fruktkorgar till kontor",
+    "name": "Fruktabonnemang för företag",
+    "description": "Veckovis leverans av färska, handplockade fruktkorgar direkt till ert kontor i Stockholm. Flexibla abonnemang utan bindningstid.",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Vitaminkorgen AB",
+      "url": "https://vitaminkorgen.se"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Stockholm" },
+      { "@type": "City", "name": "Södertälje" },
+      { "@type": "City", "name": "Uppsala" }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Fruktkorgar",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Fruktkorg Standard",
+            "description": "Fruktkorg med blandade säsongsfrukter, ca 4 kg. Perfekt för mindre kontor.",
+            "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
+            "category": "Fruktkorgar"
+          },
+          "price": "230",
+          "priceCurrency": "SEK",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "230",
+            "priceCurrency": "SEK",
+            "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitCode": "WEE" }
+          },
+          "availability": "https://schema.org/InStock",
+          "deliveryLeadTime": { "@type": "QuantitativeValue", "value": "1", "unitCode": "DAY" }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Fruktkorg Premium",
+            "description": "Premium fruktkorg med handplockade exotiska och lokala frukter, ca 6 kg.",
+            "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
+            "category": "Fruktkorgar"
+          },
+          "price": "340",
+          "priceCurrency": "SEK",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "price": "340",
+            "priceCurrency": "SEK",
+            "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitCode": "WEE" }
+          },
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Fruktkorg Eko",
+            "description": "100% ekologisk fruktkorg med certifierade KRAV-frukter, ca 5 kg.",
+            "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
+            "category": "Fruktkorgar"
+          },
+          "price": "295",
+          "priceCurrency": "SEK",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Fruktkorg Banan",
+            "description": "Fruktkorg med enbart bananer, ca 5 kg. Populärt val för aktiva kontor.",
+            "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
+            "category": "Fruktkorgar"
+          },
+          "price": "199",
+          "priceCurrency": "SEK",
+          "availability": "https://schema.org/InStock"
+        }
+      ]
+    },
+    "termsOfService": "https://vitaminkorgen.se/villkor",
+    "offers": {
+      "@type": "Offer",
+      "description": "Testa gratis i 2 veckor – ingen bindningstid",
+      "price": "0",
+      "priceCurrency": "SEK",
+      "eligibleDuration": { "@type": "QuantitativeValue", "value": "2", "unitCode": "WEE" }
+    }
+  };
+
   const getStructuredData = () => {
     switch (type) {
       case 'products':
-        return [
-          baseOrganization,
-          {
-            "@context": "https://schema.org",
-            "@type": "ItemList",
-            "name": "Fruktkorgar och kontorsprodukter",
-            "description": "Vårt sortiment av färska fruktkorgar, drycker och snacks för kontoret",
-            "numberOfItems": "50+",
-            "itemListElement": [
-              {
-                "@type": "Product",
-                "name": "Fruktkorg Premium",
-                "description": "Premium fruktkorg med handplockade säsongsfrukter",
-                "category": "Fruktkorgar",
-                "brand": "Vitaminkorgen"
-              },
-              {
-                "@type": "Product",
-                "name": "Fruktkorg Original",
-                "description": "Original fruktkorg med färska frukter för kontoret",
-                "category": "Fruktkorgar",
-                "brand": "Vitaminkorgen"
-              }
-            ]
-          }
-        ];
-      
+        return [baseOrganization, serviceSchema, faqSchema];
+
       case 'contact':
         return [
           baseOrganization,
@@ -144,7 +256,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
             "description": "Kontakta oss för offert på fruktkorgar till ert kontor i Stockholm"
           }
         ];
-      
+
       case 'about':
         return [
           baseOrganization,
@@ -155,10 +267,12 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
             "description": "Sedan 2021 har vi hjälpt över 150 företag att öka välmående och produktivitet genom färska fruktkorgar."
           }
         ];
-      
+
       default:
         return [
           baseOrganization,
+          faqSchema,
+          serviceSchema,
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
@@ -176,7 +290,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
   };
 
   const structuredDataArray = getStructuredData();
-  
+
   return (
     <>
       {structuredDataArray.map((data, index) => (
