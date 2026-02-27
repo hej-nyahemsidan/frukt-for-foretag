@@ -24,9 +24,9 @@ const AreaLanding = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title={`Fruktkorg ${name} – Fruktkorgar till kontor i ${name} | Vitaminkorgen`}
-        description={`Fruktkorg ${name} ✓ ${description} Fri leverans, ingen bindningstid. Beställ idag!`}
-        keywords={`fruktkorg ${name.toLowerCase()}, fruktkorgar ${name.toLowerCase()}, frukt kontor ${name.toLowerCase()}, fruktleverans ${name.toLowerCase()}, fruktbud ${name.toLowerCase()}, fruktkorg på jobbet ${name.toLowerCase()}`}
+        title={`Fruktkorg ${name} – Frukt till kontor | Vitaminkorgen`}
+        description={`Fruktkorg ${name} ✓ ${description} Fruktbudet med fri leverans. Beställ idag!`}
+        keywords={`fruktkorg ${name.toLowerCase()}, fruktkorgar ${name.toLowerCase()}, fruktleverans ${name.toLowerCase()}, fruktbud ${name.toLowerCase()}, fruktbudet ${name.toLowerCase()}, fruktkorg på jobbet ${name.toLowerCase()}`}
         type="products"
       />
       <Header />

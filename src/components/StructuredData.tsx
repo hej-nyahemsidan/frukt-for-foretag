@@ -14,7 +14,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
     "alternateName": "Fruktexperten",
     "description": "Vi levererar färska fruktkorgar på jobbet i Stockholm. Handplockade fruktkorgar direkt till kontoret varje vecka.",
     "url": "https://vitaminkorgen.se",
-    "telephone": "+46-8-123-45-67",
+    "telephone": "+46-10-183-98-36",
     "email": "info@vitaminkorgen.se",
     "address": {
       "@type": "PostalAddress",
