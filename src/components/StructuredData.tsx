@@ -316,6 +316,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
           baseOrganization,
           faqSchema,
           serviceSchema,
+          ...productSchemas,
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
