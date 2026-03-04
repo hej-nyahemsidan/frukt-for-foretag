@@ -188,7 +188,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
     {
       "@context": "https://schema.org",
       "@type": "Product",
-      "name": "Fruktkorg Standard",
+      "name": "Fruktkorg Original",
       "description": "Fruktkorg med blandade säsongsfrukter, ca 4 kg. Perfekt för mindre kontor.",
       "image": "https://vitaminkorgen.se/assets/fruktkorg-standard-new.jpg",
       "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
@@ -254,8 +254,8 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
     {
       "@context": "https://schema.org",
       "@type": "Product",
-      "name": "Fruktkorg Eko",
-      "description": "100% ekologisk fruktkorg med certifierade KRAV-frukter, ca 5 kg.",
+      "name": "Fruktkorg Supreme",
+      "description": "Premium ekologisk fruktkorg med certifierade KRAV-frukter, ca 5 kg.",
       "image": "https://vitaminkorgen.se/assets/fruktkorg-eko-new.jpg",
       "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
       "category": "Fruktkorgar",
