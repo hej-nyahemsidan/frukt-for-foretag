@@ -153,7 +153,18 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
     "provider": {
       "@type": "LocalBusiness",
       "name": "Vitaminkorgen AB",
-      "url": "https://vitaminkorgen.se"
+      "url": "https://vitaminkorgen.se",
+      "telephone": "+46-10-183-98-36",
+      "priceRange": "$$",
+      "image": "https://vitaminkorgen.se/fruktexperten-logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Varuvägen 9",
+        "addressLocality": "Älvsjö",
+        "postalCode": "125 30",
+        "addressRegion": "Stockholm",
+        "addressCountry": "SE"
+      }
     },
     "areaServed": [
       { "@type": "City", "name": "Stockholm" },
