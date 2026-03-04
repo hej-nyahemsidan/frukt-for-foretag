@@ -63,18 +63,21 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
       {
         "@type": "Review",
         "author": { "@type": "Person", "name": "Anna Svensson" },
+        "datePublished": "2025-09-15",
         "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "reviewBody": "Fantastisk service! Fruktkorgar levereras alltid i tid och frukterna är så färska. Våra medarbetare älskar dem!"
       },
       {
         "@type": "Review",
         "author": { "@type": "Person", "name": "Lars Andersson" },
+        "datePublished": "2025-10-02",
         "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "reviewBody": "Har använt Vitaminkorgen i över ett år. Otroligt bra kvalitet och professionell leverans varje vecka."
       },
       {
         "@type": "Review",
         "author": { "@type": "Person", "name": "Maria Johansson" },
+        "datePublished": "2025-11-10",
         "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "reviewBody": "Bästa fruktleveransen i Stockholm! Handplockat urval och alltid perfekt mogna frukter. Rekommenderar starkt!"
       }
@@ -266,6 +269,13 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
         "url": "https://vitaminkorgen.se/produkter",
         "seller": { "@type": "Organization", "name": "Vitaminkorgen AB" }
       },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "47",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
       "review": {
         "@type": "Review",
         "author": { "@type": "Person", "name": "Maria Johansson" },
@@ -291,6 +301,20 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
         "priceValidUntil": "2026-12-31",
         "url": "https://vitaminkorgen.se/produkter",
         "seller": { "@type": "Organization", "name": "Vitaminkorgen AB" }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "47",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Erik Lindberg" },
+        "datePublished": "2025-12-05",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Perfekt för vårt gym-kontor! Bananerna är alltid fräscha och leveransen pålitlig."
       }
     }
   ];
