@@ -160,77 +160,6 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
       { "@type": "City", "name": "Södertälje" },
       { "@type": "City", "name": "Uppsala" }
     ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Fruktkorgar",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Product",
-            "name": "Fruktkorg Standard",
-            "description": "Fruktkorg med blandade säsongsfrukter, ca 4 kg. Perfekt för mindre kontor.",
-            "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
-            "category": "Fruktkorgar"
-          },
-          "price": "230",
-          "priceCurrency": "SEK",
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "230",
-            "priceCurrency": "SEK",
-            "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitCode": "WEE" }
-          },
-          "availability": "https://schema.org/InStock",
-          "deliveryLeadTime": { "@type": "QuantitativeValue", "value": "1", "unitCode": "DAY" }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Product",
-            "name": "Fruktkorg Premium",
-            "description": "Premium fruktkorg med handplockade exotiska och lokala frukter, ca 6 kg.",
-            "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
-            "category": "Fruktkorgar"
-          },
-          "price": "340",
-          "priceCurrency": "SEK",
-          "priceSpecification": {
-            "@type": "UnitPriceSpecification",
-            "price": "340",
-            "priceCurrency": "SEK",
-            "referenceQuantity": { "@type": "QuantitativeValue", "value": "1", "unitCode": "WEE" }
-          },
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Product",
-            "name": "Fruktkorg Eko",
-            "description": "100% ekologisk fruktkorg med certifierade KRAV-frukter, ca 5 kg.",
-            "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
-            "category": "Fruktkorgar"
-          },
-          "price": "295",
-          "priceCurrency": "SEK",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Product",
-            "name": "Fruktkorg Banan",
-            "description": "Fruktkorg med enbart bananer, ca 5 kg. Populärt val för aktiva kontor.",
-            "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
-            "category": "Fruktkorgar"
-          },
-          "price": "199",
-          "priceCurrency": "SEK",
-          "availability": "https://schema.org/InStock"
-        }
-      ]
-    },
     "termsOfService": "https://vitaminkorgen.se/villkor",
     "offers": {
       "@type": "Offer",
@@ -241,10 +170,124 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
     }
   };
 
+  const productSchemas = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Fruktkorg Standard",
+      "description": "Fruktkorg med blandade säsongsfrukter, ca 4 kg. Perfekt för mindre kontor.",
+      "image": "https://vitaminkorgen.se/assets/fruktkorg-standard-new.jpg",
+      "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
+      "category": "Fruktkorgar",
+      "url": "https://vitaminkorgen.se/produkter",
+      "offers": {
+        "@type": "Offer",
+        "price": "230",
+        "priceCurrency": "SEK",
+        "availability": "https://schema.org/InStock",
+        "priceValidUntil": "2026-12-31",
+        "url": "https://vitaminkorgen.se/produkter",
+        "seller": { "@type": "Organization", "name": "Vitaminkorgen AB" }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "47",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Anna Svensson" },
+        "datePublished": "2025-09-15",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Fantastisk service! Fruktkorgar levereras alltid i tid och frukterna är så färska."
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Fruktkorg Premium",
+      "description": "Premium fruktkorg med handplockade exotiska och lokala frukter, ca 6 kg.",
+      "image": "https://vitaminkorgen.se/assets/fruktkorg-premium-new.jpg",
+      "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
+      "category": "Fruktkorgar",
+      "url": "https://vitaminkorgen.se/produkter",
+      "offers": {
+        "@type": "Offer",
+        "price": "340",
+        "priceCurrency": "SEK",
+        "availability": "https://schema.org/InStock",
+        "priceValidUntil": "2026-12-31",
+        "url": "https://vitaminkorgen.se/produkter",
+        "seller": { "@type": "Organization", "name": "Vitaminkorgen AB" }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "47",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Lars Andersson" },
+        "datePublished": "2025-10-02",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Har använt Vitaminkorgen i över ett år. Otroligt bra kvalitet och professionell leverans varje vecka."
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Fruktkorg Eko",
+      "description": "100% ekologisk fruktkorg med certifierade KRAV-frukter, ca 5 kg.",
+      "image": "https://vitaminkorgen.se/assets/fruktkorg-eko-new.jpg",
+      "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
+      "category": "Fruktkorgar",
+      "url": "https://vitaminkorgen.se/produkter",
+      "offers": {
+        "@type": "Offer",
+        "price": "295",
+        "priceCurrency": "SEK",
+        "availability": "https://schema.org/InStock",
+        "priceValidUntil": "2026-12-31",
+        "url": "https://vitaminkorgen.se/produkter",
+        "seller": { "@type": "Organization", "name": "Vitaminkorgen AB" }
+      },
+      "review": {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Maria Johansson" },
+        "datePublished": "2025-11-10",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "reviewBody": "Bästa fruktleveransen i Stockholm! Handplockat urval och alltid perfekt mogna frukter."
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Fruktkorg Banan",
+      "description": "Fruktkorg med enbart bananer, ca 5 kg. Populärt val för aktiva kontor.",
+      "image": "https://vitaminkorgen.se/assets/fruktkorg-banan-new.jpg",
+      "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
+      "category": "Fruktkorgar",
+      "url": "https://vitaminkorgen.se/produkter",
+      "offers": {
+        "@type": "Offer",
+        "price": "199",
+        "priceCurrency": "SEK",
+        "availability": "https://schema.org/InStock",
+        "priceValidUntil": "2026-12-31",
+        "url": "https://vitaminkorgen.se/produkter",
+        "seller": { "@type": "Organization", "name": "Vitaminkorgen AB" }
+      }
+    }
+  ];
+
   const getStructuredData = () => {
     switch (type) {
       case 'products':
-        return [baseOrganization, serviceSchema, faqSchema];
+        return [baseOrganization, serviceSchema, faqSchema, ...productSchemas];
 
       case 'contact':
         return [
