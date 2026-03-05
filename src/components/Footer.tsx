@@ -6,6 +6,7 @@ import {
   ShieldCheck,
   ShoppingCart
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { areas } from '@/data/areas';
 
 const Footer = () => {
@@ -85,9 +86,9 @@ const Footer = () => {
           <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-300">
             {areas.map((area, i) => (
               <span key={area.slug}>
-                <a href={`/fruktkorg/${area.slug}`} className="hover:text-yellow-400 transition-colors">
+                <Link to={`/fruktkorg/${area.slug}`} className="hover:text-yellow-400 transition-colors">
                   {area.name}
-                </a>
+                </Link>
                 {i < areas.length - 1 && <span className="ml-3 text-green-600">·</span>}
               </span>
             ))}
