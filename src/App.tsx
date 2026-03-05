@@ -1,4 +1,5 @@
 
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,39 +14,48 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 import AdminProtectedRoute from "@/admin/components/AdminProtectedRoute";
 import ResellerProtectedRoute from "@/reseller/components/ResellerProtectedRoute";
 import CookieConsent from "@/components/CookieConsent";
-import PerformanceMonitor from "@/components/PerformanceMonitor";
-import AccessibilityEnhancer from "@/components/AccessibilityEnhancer";
 import ErrorBoundary from "@/components/ErrorBoundary";
-import Index from "./pages/Index";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Products from "./pages/Products";
-import CustomerPortal from "./pages/CustomerPortal";
-import QuoteRequest from "./pages/QuoteRequest";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import CookiePolicy from "./pages/CookiePolicy";
-import Terms from "./pages/Terms";
-import Checkout from "./pages/Checkout";
-import NotFound from "./pages/NotFound";
-import CustomerDashboard from "./pages/CustomerDashboard";
-import AdminLogin from "./admin/pages/AdminLogin";
-import AdminDashboard from "./admin/pages/AdminDashboard";
-import BlogHome from "./pages/BlogHome";
-import BlogList from "./pages/BlogList";
-import BlogPost from "./pages/BlogPost";
-import LegacyBlogRedirect from "./pages/LegacyBlogRedirect";
-import Blommor from "./pages/Blommor";
-import Varuautomat from "./pages/Varuautomat";
-import FruktkorgStockholm from "./pages/FruktkorgStockholm";
-import FruktkorgForetag from "./pages/FruktkorgForetag";
-import FruktkorgPaJobbet from "./pages/FruktkorgPaJobbet";
-import AreaLanding from "./pages/AreaLanding";
-import ResellerLogin from "./reseller/pages/ResellerLogin";
-import ResellerDashboard from "./reseller/pages/ResellerDashboard";
 import ScrollToTop from "./components/ScrollToTop";
-import ExitIntentPopup from "./components/ExitIntentPopup";
+
+// Eagerly load the homepage for fastest initial render
+import Index from "./pages/Index";
+
+// Lazy load all other pages - only loaded when navigated to
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Products = lazy(() => import("./pages/Products"));
+const CustomerPortal = lazy(() => import("./pages/CustomerPortal"));
+const QuoteRequest = lazy(() => import("./pages/QuoteRequest"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const Checkout = lazy(() => import("./pages/Checkout"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const CustomerDashboard = lazy(() => import("./pages/CustomerDashboard"));
+const AdminLogin = lazy(() => import("./admin/pages/AdminLogin"));
+const AdminDashboard = lazy(() => import("./admin/pages/AdminDashboard"));
+const BlogHome = lazy(() => import("./pages/BlogHome"));
+const BlogList = lazy(() => import("./pages/BlogList"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+const LegacyBlogRedirect = lazy(() => import("./pages/LegacyBlogRedirect"));
+const Blommor = lazy(() => import("./pages/Blommor"));
+const Varuautomat = lazy(() => import("./pages/Varuautomat"));
+const FruktkorgStockholm = lazy(() => import("./pages/FruktkorgStockholm"));
+const FruktkorgForetag = lazy(() => import("./pages/FruktkorgForetag"));
+const FruktkorgPaJobbet = lazy(() => import("./pages/FruktkorgPaJobbet"));
+const AreaLanding = lazy(() => import("./pages/AreaLanding"));
+const ResellerLogin = lazy(() => import("./reseller/pages/ResellerLogin"));
+const ResellerDashboard = lazy(() => import("./reseller/pages/ResellerDashboard"));
+const ExitIntentPopup = lazy(() => import("./components/ExitIntentPopup"));
 
 const queryClient = new QueryClient();
+
+// Minimal loading fallback
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -58,9 +68,9 @@ const App = () => (
             <TooltipProvider>
               <Toaster />
               <Sonner />
-              <PerformanceMonitor />
               <BrowserRouter>
               <ScrollToTop />
+              <Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/produkter" element={<Products />} />
@@ -123,8 +133,11 @@ const App = () => (
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
+              </Suspense>
               <CookieConsent />
-              <ExitIntentPopup />
+              <Suspense fallback={null}>
+                <ExitIntentPopup />
+              </Suspense>
             </BrowserRouter>
           </TooltipProvider>
         </CartProvider>
