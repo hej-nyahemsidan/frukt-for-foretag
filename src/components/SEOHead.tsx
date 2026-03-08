@@ -21,6 +21,7 @@ const SEOHead = ({
 }: SEOHeadProps) => {
   const location = useLocation();
   const baseUrl = 'https://vitaminkorgen.se';
+  // Use only pathname for canonical (strip query params to avoid duplicate indexing)
   const fullUrl = `${baseUrl}${location.pathname}`;
   
   // Default SEO values based on page type

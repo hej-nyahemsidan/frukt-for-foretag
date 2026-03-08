@@ -1,5 +1,6 @@
 
 import { lazy, Suspense } from "react";
+import { Navigate } from "react-router-dom";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -50,6 +51,9 @@ const ExitIntentPopup = lazy(() => import("./components/ExitIntentPopup"));
 
 const queryClient = new QueryClient();
 
+// Redirect component for old URLs
+const VaruautomatRedirect = () => <Navigate to="/varuautomat" replace />;
+
 // Minimal loading fallback
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
@@ -99,6 +103,8 @@ const App = () => (
                 <Route path="/blog/:slug" element={<LegacyBlogRedirect />} />
                 <Route path="/blommor" element={<Blommor />} />
                 <Route path="/varuautomat" element={<Varuautomat />} />
+                {/* Redirect old URLs to prevent duplicate indexing */}
+                <Route path="/varuautomater-kaffemaskin" element={<VaruautomatRedirect />} />
                 <Route path="/fruktkorg-stockholm" element={<FruktkorgStockholm />} />
                 <Route path="/fruktkorg-foretag" element={<FruktkorgForetag />} />
                 <Route path="/fruktkorg-pa-jobbet" element={<FruktkorgPaJobbet />} />
