@@ -99,6 +99,8 @@ const App = () => (
                 <Route path="/blog/:slug" element={<LegacyBlogRedirect />} />
                 <Route path="/blommor" element={<Blommor />} />
                 <Route path="/varuautomat" element={<Varuautomat />} />
+                {/* Redirect old URLs to prevent duplicate indexing */}
+                <Route path="/varuautomater-kaffemaskin" element={<VaruautomatRedirect />} />
                 <Route path="/fruktkorg-stockholm" element={<FruktkorgStockholm />} />
                 <Route path="/fruktkorg-foretag" element={<FruktkorgForetag />} />
                 <Route path="/fruktkorg-pa-jobbet" element={<FruktkorgPaJobbet />} />
