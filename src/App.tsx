@@ -51,6 +51,9 @@ const ExitIntentPopup = lazy(() => import("./components/ExitIntentPopup"));
 
 const queryClient = new QueryClient();
 
+// Redirect component for old URLs
+const VaruautomatRedirect = () => <Navigate to="/varuautomat" replace />;
+
 // Minimal loading fallback
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
