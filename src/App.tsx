@@ -48,6 +48,8 @@ const FruktkorgPaJobbet = lazy(() => import("./pages/FruktkorgPaJobbet"));
 const AreaLanding = lazy(() => import("./pages/AreaLanding"));
 const ResellerLogin = lazy(() => import("./reseller/pages/ResellerLogin"));
 const ResellerDashboard = lazy(() => import("./reseller/pages/ResellerDashboard"));
+const ResellerCustomerLogin = lazy(() => import("./reseller/pages/ResellerCustomerLogin"));
+const ResellerCustomerShop = lazy(() => import("./reseller/pages/ResellerCustomerShop"));
 const ExitIntentPopup = lazy(() => import("./components/ExitIntentPopup"));
 
 const queryClient = new QueryClient();
