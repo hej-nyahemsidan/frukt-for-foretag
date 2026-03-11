@@ -10,9 +10,11 @@ import { PublicCartProvider } from "@/contexts/PublicCartContext";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { AdminAuthProvider } from "@/admin/contexts/AdminAuthContext";
 import { ResellerAuthProvider } from "@/reseller/contexts/ResellerAuthContext";
+import { ResellerCustomerAuthProvider } from "@/reseller/contexts/ResellerCustomerAuthContext";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import AdminProtectedRoute from "@/admin/components/AdminProtectedRoute";
 import ResellerProtectedRoute from "@/reseller/components/ResellerProtectedRoute";
+import ResellerCustomerProtectedRoute from "@/reseller/components/ResellerCustomerProtectedRoute";
 import CookieConsent from "@/components/CookieConsent";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import ScrollToTop from "./components/ScrollToTop";
@@ -46,6 +48,8 @@ const FruktkorgPaJobbet = lazy(() => import("./pages/FruktkorgPaJobbet"));
 const AreaLanding = lazy(() => import("./pages/AreaLanding"));
 const ResellerLogin = lazy(() => import("./reseller/pages/ResellerLogin"));
 const ResellerDashboard = lazy(() => import("./reseller/pages/ResellerDashboard"));
+const ResellerCustomerLogin = lazy(() => import("./reseller/pages/ResellerCustomerLogin"));
+const ResellerCustomerShop = lazy(() => import("./reseller/pages/ResellerCustomerShop"));
 const ExitIntentPopup = lazy(() => import("./components/ExitIntentPopup"));
 
 const queryClient = new QueryClient();
@@ -66,6 +70,7 @@ const App = () => (
     <AuthProvider>
       <AdminAuthProvider>
         <ResellerAuthProvider>
+        <ResellerCustomerAuthProvider>
         <PublicCartProvider>
           <CartProvider>
             <TooltipProvider>
@@ -121,6 +126,14 @@ const App = () => (
                     <ResellerDashboard />
                   </ResellerProtectedRoute>
                 } />
+
+                {/* Reseller Customer Routes */}
+                <Route path="/af/kund/login" element={<ResellerCustomerLogin />} />
+                <Route path="/af/kund/dashboard" element={
+                  <ResellerCustomerProtectedRoute>
+                    <ResellerCustomerShop />
+                  </ResellerCustomerProtectedRoute>
+                } />
                 
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />
@@ -147,6 +160,7 @@ const App = () => (
           </TooltipProvider>
         </CartProvider>
       </PublicCartProvider>
+      </ResellerCustomerAuthProvider>
       </ResellerAuthProvider>
       </AdminAuthProvider>
     </AuthProvider>
