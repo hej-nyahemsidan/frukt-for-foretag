@@ -626,7 +626,7 @@ const ResellerCustomerShop = () => {
                     mode="single"
                     selected={deliveryDate}
                     onSelect={setDeliveryDate}
-                    disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
+                    disabled={(date) => date < new Date()}
                     initialFocus
                     className={cn("p-3 pointer-events-auto")}
                   />
