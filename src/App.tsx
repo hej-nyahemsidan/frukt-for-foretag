@@ -71,6 +71,7 @@ const App = () => (
       <AdminAuthProvider>
         <ResellerAuthProvider>
         <ResellerCustomerAuthProvider>
+        <PublicCartProvider>
           <CartProvider>
             <TooltipProvider>
               <Toaster />
@@ -125,6 +126,14 @@ const App = () => (
                     <ResellerDashboard />
                   </ResellerProtectedRoute>
                 } />
+
+                {/* Reseller Customer Routes */}
+                <Route path="/af/kund/login" element={<ResellerCustomerLogin />} />
+                <Route path="/af/kund/dashboard" element={
+                  <ResellerCustomerProtectedRoute>
+                    <ResellerCustomerShop />
+                  </ResellerCustomerProtectedRoute>
+                } />
                 
                 {/* Admin Routes */}
                 <Route path="/admin/login" element={<AdminLogin />} />
@@ -151,6 +160,7 @@ const App = () => (
           </TooltipProvider>
         </CartProvider>
       </PublicCartProvider>
+      </ResellerCustomerAuthProvider>
       </ResellerAuthProvider>
       </AdminAuthProvider>
     </AuthProvider>
