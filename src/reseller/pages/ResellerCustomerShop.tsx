@@ -257,7 +257,10 @@ const ResellerCustomerShop = () => {
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             {reseller?.logo_url ? (
-              <img src={reseller.logo_url} alt={reseller?.name} className="h-8 object-contain" />
+              <>
+                <img src={reseller.logo_url} alt={reseller?.name} className="h-8 object-contain" />
+                <span className="font-bold text-lg hidden sm:inline">{reseller?.name}</span>
+              </>
             ) : (
               <span className="font-bold text-lg">{reseller?.name}</span>
             )}
