@@ -70,7 +70,7 @@ const App = () => (
     <AuthProvider>
       <AdminAuthProvider>
         <ResellerAuthProvider>
-        <PublicCartProvider>
+        <ResellerCustomerAuthProvider>
           <CartProvider>
             <TooltipProvider>
               <Toaster />
