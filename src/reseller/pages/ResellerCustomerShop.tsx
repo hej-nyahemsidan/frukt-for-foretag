@@ -264,6 +264,20 @@ const ResellerCustomerShop = () => {
             ) : (
               <span className="font-bold text-lg">{reseller?.name}</span>
             )}
+            {(reseller?.contact_phone || reseller?.contact_email) && (
+              <div className="hidden md:flex items-center gap-3 ml-4 text-xs text-muted-foreground border-l pl-4">
+                {reseller?.contact_phone && (
+                  <a href={`tel:${reseller.contact_phone}`} className="hover:text-primary transition-colors">
+                    {reseller.contact_phone}
+                  </a>
+                )}
+                {reseller?.contact_email && (
+                  <a href={`mailto:${reseller.contact_email}`} className="hover:text-primary transition-colors">
+                    {reseller.contact_email}
+                  </a>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="flex items-center gap-3">
