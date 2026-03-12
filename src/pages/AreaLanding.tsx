@@ -94,9 +94,9 @@ const AreaLanding = () => {
             </p>
             <div className="grid md:grid-cols-3 gap-8">
               {[
-                { img: fruktkorgStandard, name: 'Fruktkorg Standard', desc: 'Perfekt för det mindre kontoret med ett varierat urval av säsongens bästa frukter.', features: ['8-10 frukter', 'Säsongsanpassad', 'Fri leverans'] },
+                { img: fruktkorgStandard, name: 'Fruktkorg Original', desc: 'Perfekt för det mindre kontoret med ett varierat urval av säsongens bästa frukter.', features: ['8-10 frukter', 'Säsongsanpassad', 'Fri leverans'] },
                 { img: fruktkorgPremium, name: 'Fruktkorg Premium', desc: 'Vår mest populära fruktkorg med handplockade premiumfrukter.', features: ['12-15 frukter', 'Premiumkvalitet', 'Exotiska frukter'] },
-                { img: fruktkorgEko, name: 'Fruktkorg Ekologisk', desc: 'Certifierad ekologisk frukt för miljömedvetna företag.', features: ['100% ekologisk', 'KRAV-certifierad', 'Hållbart val'] },
+                { img: fruktkorgBanan, name: 'Fruktkorg Banan', desc: 'En fruktkorg med extra fokus på bananer – perfekt som snabb energikick.', features: ['Bananer i fokus', 'Energiboost', 'Populärt val'] },
               ].map((product, i) => (
                 <div key={i} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                   <img src={product.img} alt={`${product.name} levererad till ${name}`} className="w-full h-56 object-cover" />
