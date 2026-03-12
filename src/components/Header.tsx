@@ -573,6 +573,44 @@ const Header = () => {
                 const isMinaSidor = item.label === 'Mina Sidor';
                 const shouldHighlight = isMinaSidor && user;
                 
+                if (item.hasDropdown) {
+                  return (
+                    <div key={item.label}>
+                      <button
+                        className="flex items-center justify-between w-full px-4 py-3 rounded-lg transition-colors font-medium text-charcoal hover:text-secondary hover:bg-lightgreen"
+                        onClick={() => setIsMobileProductsOpen(!isMobileProductsOpen)}
+                      >
+                        <span className="flex items-center gap-2">
+                          <ShoppingBasket className="w-4 h-4" />
+                          {item.label}
+                        </span>
+                        <ChevronDown className={`w-4 h-4 transition-transform ${isMobileProductsOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      {isMobileProductsOpen && (
+                        <div className="pl-6 space-y-1 mt-1">
+                          <Link
+                            to="/produkter"
+                            className="block px-4 py-2 rounded-lg text-sm font-semibold text-charcoal hover:text-secondary hover:bg-lightgreen"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            Alla produkter
+                          </Link>
+                          {productCategories.map((cat) => (
+                            <Link
+                              key={cat.tab}
+                              to={`/produkter?tab=${cat.tab}`}
+                              className="block px-4 py-2 rounded-lg text-sm text-charcoal hover:text-secondary hover:bg-lightgreen"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              {cat.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+                
                 return item.isExternal ? (
                   <a
                     key={item.label}
