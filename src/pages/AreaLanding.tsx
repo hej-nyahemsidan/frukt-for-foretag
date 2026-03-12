@@ -207,7 +207,7 @@ const AreaLanding = () => {
               Beställ fruktkorg till {name} idag
             </h2>
             <p className="text-gray-200 mb-8 max-w-xl mx-auto">
-              Testa gratis – vi bjuder på den första fruktkorgen. Ingen bindningstid, fri leverans.
+              Testa gratis – vi bjuder på den första fruktkorgen. Fri leverans.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/offertforfragan">
