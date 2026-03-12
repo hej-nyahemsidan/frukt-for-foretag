@@ -7,7 +7,7 @@ import { Check, Truck, Star, Leaf, Clock, ShieldCheck, MapPin, Phone } from 'luc
 import { Link } from 'react-router-dom';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.jpg';
 import fruktkorgStandard from '@/assets/fruktkorg-standard-new.jpg';
-import fruktkorgEko from '@/assets/fruktkorg-eko-new.jpg';
+import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
 import officeWorkers from '@/assets/medarbetare-fruktkorgar-kontor.jpg';
 
 const FruktkorgStockholm = () => {
