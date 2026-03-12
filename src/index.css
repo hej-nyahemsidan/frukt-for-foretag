@@ -8,62 +8,62 @@
 
 @layer base {
   :root {
-    /* Solmogen Persika & Plommon – somrigt, lyxigt, modernt */
+    /* Fresh & Light Color Palette – airy, modern, nature-fresh */
     --background: 0 0% 100%; /* Pure white */
-    --foreground: 280 20% 18%; /* Deep plum-dark */
+    --foreground: 150 10% 20%; /* Cool dark green-gray */
     
     /* VitaminKorgen Brand Colors */
     --frukt-green: 82 196 52;
     --frukt-orange: 255 112 67;
     --frukt-purple: 107 70 193;
     
-    /* Primary – Warm Peach */
-    --primary: 18 85% 62%; /* Solmogen persika */
+    /* Primary – Fresh Leaf Green */
+    --primary: 152 50% 38%; /* Bright fresh green */
     --primary-foreground: 0 0% 100%; /* White */
-    --primary-light: 22 80% 72%; /* Ljus persika */
-    --primary-dark: 14 75% 48%; /* Djupare persika */
+    --primary-light: 148 42% 58%; /* Light spring green */
+    --primary-dark: 152 50% 28%; /* Deeper green */
     
-    /* Secondary – Rich Plum */
-    --secondary: 280 45% 35%; /* Djup plommon */
+    /* Secondary – Soft Mint */
+    --secondary: 155 40% 52%; /* Fresh mint green */
     --secondary-foreground: 0 0% 100%; /* White */
     
-    /* Accent Colors – Fruity & Vibrant */
-    --accent-orange: 32 90% 55%; /* Mango gold */
-    --accent-red: 345 65% 55%; /* Hallon-rosa */
-    --accent-blue: 280 30% 65%; /* Lavendel lila */
-    --accent-light-green: 18 60% 96%; /* Barely-there peach */
+    /* Accent Colors – Bright & Fresh */
+    --accent-orange: 32 90% 55%; /* Bright citrus orange */
+    --accent-red: 4 70% 58%; /* Fresh coral */
+    --accent-blue: 205 70% 55%; /* Clear sky blue */
+    --accent-light-green: 148 50% 96%; /* Barely-there mint */
     
-    /* Neutral Warm Palette */
-    --muted: 20 15% 96%; /* Warm off-white */
-    --muted-foreground: 280 10% 45%; /* Plum-gray */
-    --border: 20 12% 90%; /* Soft warm border */
-    --input: 20 10% 97%; /* Almost white input */
-    --ring: 18 85% 62%; /* Peach focus ring */
+    /* Neutral Fresh Palette */
+    --muted: 150 10% 96%; /* Cool off-white */
+    --muted-foreground: 150 8% 46%; /* Medium gray-green */
+    --border: 150 12% 90%; /* Light cool border */
+    --input: 150 10% 97%; /* Almost white input */
+    --ring: 152 50% 38%; /* Green focus ring */
     
     /* Cards & Surfaces – Clean whites */
     --card: 0 0% 100%; /* Pure white */
-    --card-foreground: 280 20% 18%; /* Dark plum text */
+    --card-foreground: 150 10% 20%; /* Dark text */
     --popover: 0 0% 100%;
-    --popover-foreground: 280 20% 18%;
+    --popover-foreground: 150 10% 20%;
     
     /* Interactive States */
-    --destructive: 0 70% 55%;
+    --destructive: 4 70% 58%;
     --destructive-foreground: 0 0% 100%;
     
-    /* Fruity Gradients – Warm & Lush */
-    --gradient-hero: linear-gradient(135deg, hsl(18 85% 62%), hsl(280 45% 35%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(18 50% 98%));
-    --gradient-button: linear-gradient(135deg, hsl(18 85% 62%), hsl(14 75% 52%));
-    --gradient-forest: linear-gradient(135deg, hsl(280 45% 35%), hsl(280 50% 25%));
-    --gradient-warm: linear-gradient(135deg, hsl(0 0% 99%), hsl(18 40% 97%));
-    --gradient-organic: linear-gradient(160deg, hsl(0 0% 100%) 0%, hsl(18 35% 98%) 50%, hsl(280 20% 97%) 100%);
+    /* Fresh Gradients – Light & Airy */
+    --gradient-hero: linear-gradient(135deg, hsl(152 50% 38%), hsl(148 42% 52%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(148 40% 98%));
+    --gradient-button: linear-gradient(135deg, hsl(148 42% 52%), hsl(152 50% 42%));
+    --gradient-forest: linear-gradient(135deg, hsl(152 50% 38%), hsl(152 50% 28%));
+    --gradient-warm: linear-gradient(135deg, hsl(0 0% 99%), hsl(148 40% 97%));
+    --gradient-organic: linear-gradient(160deg, hsl(0 0% 100%) 0%, hsl(148 35% 98%) 50%, hsl(32 40% 98%) 100%);
     
-    /* Warm Shadows – Soft & Inviting */
-    --shadow-soft: 0 4px 24px -6px hsl(18 30% 40% / 0.08);
-    --shadow-card: 0 2px 16px -4px hsl(280 20% 30% / 0.08), 0 1px 4px -1px hsl(18 20% 50% / 0.04);
-    --shadow-button: 0 4px 16px -4px hsl(18 60% 50% / 0.3);
-    --shadow-header: 0 1px 8px -2px hsl(280 20% 30% / 0.06);
-    --shadow-glow: 0 0 30px -8px hsl(18 85% 62% / 0.25);
+    /* Light Shadows – Crisp & Clean */
+    --shadow-soft: 0 4px 24px -6px hsl(152 20% 30% / 0.06);
+    --shadow-card: 0 2px 16px -4px hsl(152 20% 30% / 0.08), 0 1px 4px -1px hsl(150 10% 50% / 0.04);
+    --shadow-button: 0 4px 16px -4px hsl(152 40% 40% / 0.25);
+    --shadow-header: 0 1px 8px -2px hsl(152 20% 30% / 0.06);
+    --shadow-glow: 0 0 30px -8px hsl(148 42% 52% / 0.2);
     
     /* Smooth Animations */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
