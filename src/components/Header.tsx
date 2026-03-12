@@ -309,7 +309,30 @@ const Header = () => {
                   
                   return (
                     <Fragment key={item.label}>
-                      {item.isExternal ? (
+                      {item.hasDropdown ? (
+                        <DropdownMenu>
+                          <DropdownMenuTrigger className="transition-all duration-200 font-medium text-sm tracking-wide relative group px-3 py-2 text-charcoal hover:text-secondary flex items-center space-x-1 whitespace-nowrap">
+                            <ShoppingBasket className="w-3 h-3" />
+                            <span>{item.label}</span>
+                            <ChevronDown className="w-2 h-2" />
+                            <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="center" className="w-56 bg-white/90 backdrop-blur-md border border-gray-200/50 shadow-xl rounded-lg z-50">
+                            <DropdownMenuItem asChild className="p-0">
+                              <Link to="/produkter" className="block p-3 hover:bg-lightgreen/50 transition-colors font-semibold text-sm">
+                                Alla produkter
+                              </Link>
+                            </DropdownMenuItem>
+                            {productCategories.map((cat) => (
+                              <DropdownMenuItem key={cat.tab} asChild className="p-0">
+                                <Link to={`/produkter?tab=${cat.tab}`} className="block p-2.5 pl-5 hover:bg-lightgreen/50 transition-colors text-sm text-charcoal">
+                                  {cat.label}
+                                </Link>
+                              </DropdownMenuItem>
+                            ))}
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      ) : item.isExternal ? (
                         <a
                           href={item.href}
                           className={`transition-all duration-200 font-medium text-sm tracking-wide relative group px-3 py-2 whitespace-nowrap ${
