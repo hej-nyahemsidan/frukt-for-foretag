@@ -11,6 +11,7 @@ import { supabase } from '@/integrations/supabase/client';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
   const [blogPosts, setBlogPosts] = useState<Array<{ title: string; slug: string; category: string }>>([]);
   const { user, logout } = useAuth();
   const { isAdmin } = useAdminAuth();
