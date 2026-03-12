@@ -87,7 +87,7 @@ const FruktkorgStockholm = () => {
               {[
                 { 
                   img: fruktkorgStandard, 
-                  name: 'Fruktkorg Standard', 
+                  name: 'Fruktkorg Original', 
                   desc: 'Perfekt för det mindre kontoret. Innehåller ett varierat urval av säsongens bästa frukter.',
                   features: ['8-10 frukter', 'Säsongsanpassad', 'Fri leverans']
                 },
@@ -98,10 +98,10 @@ const FruktkorgStockholm = () => {
                   features: ['12-15 frukter', 'Premiumkvalitet', 'Exotiska frukter']
                 },
                 { 
-                  img: fruktkorgEko, 
-                  name: 'Fruktkorg Ekologisk', 
-                  desc: 'Certifierad ekologisk frukt för företag som värnar om miljön och kvalitet.',
-                  features: ['100% ekologisk', 'KRAV-certifierad', 'Hållbart val']
+                  img: fruktkorgBanan, 
+                  name: 'Fruktkorg Banan', 
+                  desc: 'En fruktkorg med extra fokus på bananer – perfekt som snabb energikick.',
+                  features: ['Bananer i fokus', 'Energiboost', 'Populärt val']
                 },
               ].map((product, i) => (
                 <div key={i} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">

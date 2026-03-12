@@ -20,7 +20,7 @@ const FAQSection = () => {
     },
     {
       question: "Kan vi få en provleverans av fruktkorg på kontoret?",
-      answer: "Absolut! Testa våra fruktkorgar i två veckor helt gratis. Ingen bindningstid, inget krångel."
+      answer: "Absolut! Testa våra fruktkorgar i två veckor helt gratis. Inget krångel."
     },
     {
       question: "Hur mycket kostar fruktkorgar från Vitaminkorgen?",

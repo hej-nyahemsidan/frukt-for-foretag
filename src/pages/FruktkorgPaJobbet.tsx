@@ -203,7 +203,7 @@ const FruktkorgPaJobbet = () => {
               Börja med fruktkorg på jobbet idag
             </h2>
             <p className="text-gray-200 mb-8 max-w-xl mx-auto">
-              Testa gratis – vi bjuder på den första fruktkorg på jobbet. Ingen bindningstid.
+              Testa gratis – vi bjuder på den första fruktkorg på jobbet. Fri leverans.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/offertforfragan">

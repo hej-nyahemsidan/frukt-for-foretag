@@ -131,7 +131,7 @@ const PromoPopup: React.FC<PromoPopupProps> = ({ isOpen, onClose }) => {
             <p className="text-muted-foreground leading-relaxed mb-6 text-center">
               Upplev skillnaden med våra premiumprodukter utan någon förpliktelse! 
               Vi erbjuder dig möjligheten att prova vårt kompletta sortiment med en gratis provkorg. 
-              Inga dolda avgifter, inga bindningstider—bara en fantastisk upplevelse.
+              Inga dolda avgifter—bara en fantastisk upplevelse.
             </p>
 
             {/* CTA Button */}

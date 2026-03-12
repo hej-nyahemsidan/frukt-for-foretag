@@ -148,7 +148,7 @@ const FruktkorgForetag = () => {
               Ge ert företag en fruktkorg idag
             </h2>
             <p className="text-gray-200 mb-8 max-w-xl mx-auto">
-              Kostnadsfri provleverans. Ingen bindningstid. Fri leverans.
+              Kostnadsfri provleverans. Fri leverans.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/offertforfragan">
