@@ -99,9 +99,8 @@ const FruktkorgForetag = () => {
                   {[
                     'Anpassat efter antal medarbetare och kontorstorlek',
                     'Flexibla leveransdagar – varje vecka eller varannan vecka',
-                    'Möjlighet till ekologisk och KRAV-certifierad frukt',
+                    'Handplockad, färsk säsongsfrukt av högsta kvalitet',
                     'Fakturering – smidigt för företag',
-                    'Ingen bindningstid – avsluta när som helst',
                     'Kostnadsfri provleverans för nya kunder',
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
