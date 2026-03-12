@@ -77,24 +77,36 @@ const Header = () => {
     }
   };
 
+  const productCategories = [
+    { label: 'Fruktkorgar', tab: 'fruktkorgar' },
+    { label: 'Fruktpåsar', tab: 'fruktpasar' },
+    { label: 'Mejeri', tab: 'mejeri' },
+    { label: 'Kaffe & Te', tab: 'kaffete' },
+    { label: 'Läsk & Dryck', tab: 'lask' },
+    { label: 'Frukost & Mellanmål', tab: 'frukost' },
+    { label: 'Snacks', tab: 'snacks' },
+    { label: 'Grönsaker', tab: 'gronsaker' },
+    { label: 'Städ', tab: 'stad' },
+  ];
+
   const publicNavigationItems = [
-    { label: 'Hem', href: '/', isExternal: false },           // Home
-    { label: 'Produkter', href: '/produkter', isExternal: false }, // Products
-    { label: 'Blommor', href: '/blommor', isExternal: false }, // Flowers
-    { label: 'Varuautomat', href: '/varuautomat', isExternal: false }, // Vending Machine
-    { label: 'Om Oss', href: '/om-oss', isExternal: false },   // About Us
-    { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
-    { label: 'Offertförfrågan', href: '/offertforfragan', isExternal: false },     // Quote Request
+    { label: 'Hem', href: '/', isExternal: false },
+    { label: 'Produkter', href: '/produkter', isExternal: false, hasDropdown: true },
+    { label: 'Blommor', href: '/blommor', isExternal: false },
+    { label: 'Varuautomat', href: '/varuautomat', isExternal: false },
+    { label: 'Om Oss', href: '/om-oss', isExternal: false },
+    { label: 'Kontakt', href: '/kontakt', isExternal: false },
+    { label: 'Offertförfrågan', href: '/offertforfragan', isExternal: false },
   ];
 
   const customerNavigationItems = [
-    { label: 'Hem', href: '/', isExternal: false },           // Home
-    { label: 'Produkter', href: '/produkter', isExternal: false }, // Products
-    { label: 'Blommor', href: '/blommor', isExternal: false }, // Flowers
-    { label: 'Varuautomat', href: '/varuautomat', isExternal: false }, // Vending Machine
-    { label: 'Om Oss', href: '/om-oss', isExternal: false },   // About Us
-    { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
-    { label: 'Mina Sidor', href: '/dashboard', isExternal: false }, // Customer Dashboard - moved to end
+    { label: 'Hem', href: '/', isExternal: false },
+    { label: 'Produkter', href: '/produkter', isExternal: false, hasDropdown: true },
+    { label: 'Blommor', href: '/blommor', isExternal: false },
+    { label: 'Varuautomat', href: '/varuautomat', isExternal: false },
+    { label: 'Om Oss', href: '/om-oss', isExternal: false },
+    { label: 'Kontakt', href: '/kontakt', isExternal: false },
+    { label: 'Mina Sidor', href: '/dashboard', isExternal: false },
   ];
 
   useEffect(() => {
