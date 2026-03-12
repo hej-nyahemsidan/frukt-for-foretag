@@ -58,16 +58,16 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Vitaminkorgen Brand Colors
-        forest: "hsl(215 75% 22%)", // Deep navy dark
-        fresh: "hsl(28 92% 56%)", // Vibrant orange
-        lightgreen: "hsl(38 50% 94%)", // Light warm peach
-        orange: "hsl(28 92% 56%)", // Primary orange
-        warmred: "hsl(0 66% 51%)", // Warm Red
-        deepblue: "hsl(215 75% 30%)", // Deep Navy Blue
-        charcoal: "hsl(220 20% 18%)", // Charcoal
-        mediumgray: "hsl(220 10% 42%)", // Medium Gray
-        lightgray: "hsl(30 10% 96%)", // Warm Light Gray
+        // Professional Fruktexperten Colors
+        forest: "hsl(124 53% 24%)", // Forest Green #1B5E20
+        fresh: "hsl(122 39% 49%)", // Fresh Green #4CAF50
+        lightgreen: "hsl(120 33% 93%)", // Light Green #E8F5E8
+        orange: "hsl(34 100% 50%)", // Orange Accent #FF8F00
+        warmred: "hsl(0 66% 51%)", // Warm Red #D32F2F
+        deepblue: "hsl(207 79% 42%)", // Deep Blue #1565C0
+        charcoal: "hsl(0 0% 18%)", // Charcoal #2E2E2E
+        mediumgray: "hsl(0 0% 42%)", // Medium Gray #6B6B6B
+        lightgray: "hsl(0 0% 96%)", // Light Gray #F5F5F5
       },
       borderRadius: {
         lg: "var(--radius)",
