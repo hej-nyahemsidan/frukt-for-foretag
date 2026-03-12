@@ -186,7 +186,7 @@ const Blommor = () => {
             <div className="mt-8 flex flex-col sm:flex-row gap-6 justify-center items-center text-sm opacity-90">
               <div className="flex items-center">
                 <Phone className="w-4 h-4 mr-2" />
-                <span>08-21 85 85</span>
+                <span>010-183 98 36</span>
               </div>
               <div className="flex items-center">
                 <Mail className="w-4 h-4 mr-2" />

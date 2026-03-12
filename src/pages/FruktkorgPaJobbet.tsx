@@ -14,7 +14,7 @@ const FruktkorgPaJobbet = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Fruktkorg på jobbet – Fruktleverans till kontoret varje vecka | Vitaminkorgen"
+        title="Fruktkorg på jobbet – Frukt till kontoret | Vitaminkorgen"
         description="Fruktkorg på jobbet ✓ Färsk frukt levererad till arbetsplatsen i Stockholm. Minska sjukfrånvaron, öka trivseln. Fri leverans, gratis provkorg. Beställ idag!"
         keywords="fruktkorg på jobbet, frukt på jobbet, fruktkorg arbetsplats, frukt till jobbet, fruktbud, fruktleverans, fruktkorg kontor, fruktkorgar på jobbet, fruktkorg på arbetsplatsen"
         type="products"

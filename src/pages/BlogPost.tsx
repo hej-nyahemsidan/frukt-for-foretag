@@ -4,6 +4,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 import { Loader2, ArrowLeft } from 'lucide-react';
 import { format } from 'date-fns';
 import { sv } from 'date-fns/locale';
@@ -55,17 +56,14 @@ const BlogPost = () => {
     }
   };
 
-  const categoryTitle = category === 'tips' ? 'Tips' : 'Recept';
   const displayDate = post?.published_at || post?.created_at || null;
 
   // Function to render text with bold markdown and links
   const renderContent = (text: string) => {
-    // First split by links, then handle bold within each part
     const linkRegex = /(\[.*?\]\(.*?\))/g;
     const parts = text.split(linkRegex);
     
     return parts.map((part, index) => {
-      // Check if this part is a link
       const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/);
       if (linkMatch) {
         const [, linkText, url] = linkMatch;
@@ -82,7 +80,6 @@ const BlogPost = () => {
         );
       }
       
-      // Handle bold text
       const boldParts = part.split(/(\*\*.*?\*\*)/g);
       return boldParts.map((boldPart, boldIndex) => {
         if (boldPart.startsWith('**') && boldPart.endsWith('**')) {
@@ -95,6 +92,19 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      {post && (
+        <SEOHead
+          title={`${post.title} | Vitaminkorgen Blogg`}
+          description={post.excerpt || `Läs ${post.title} på Vitaminkorgens blogg.`}
+          keywords={`fruktkorgar, frukt på jobbet, ${post.category === 'tips' ? 'hälsotips kontor' : 'fruktrecept'}`}
+        />
+      )}
+      {!post && (
+        <SEOHead
+          title="Blogg | Vitaminkorgen"
+          description="Läs tips och recept om frukt på jobbet."
+        />
+      )}
       <Header />
       
       <main className="flex-1 container mx-auto px-4 py-12">
@@ -109,18 +119,18 @@ const BlogPost = () => {
               Tyvärr kunde vi inte hitta det blogginlägg du letade efter.
             </p>
             <Button asChild>
-              <Link to="/">
+              <Link to="/blogg">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Tillbaka till startsidan
+                Tillbaka till bloggen
               </Link>
             </Button>
           </div>
         ) : (
           <article className="max-w-4xl mx-auto">
             <Button variant="ghost" asChild className="mb-6">
-              <Link to="/">
+              <Link to="/blogg">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Tillbaka till startsidan
+                Tillbaka till bloggen
               </Link>
             </Button>
 
@@ -145,13 +155,29 @@ const BlogPost = () => {
               ))}
             </div>
 
-            <footer className="mt-12 pt-8 border-t">
-              <Button asChild>
-                <Link to="/">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Tillbaka till startsidan
-                </Link>
-              </Button>
+            {/* Internal links back to main pages */}
+            <footer className="mt-12 pt-8 border-t space-y-6">
+              <div className="bg-green-50 rounded-xl p-6">
+                <h2 className="text-lg font-bold text-green-900 mb-3">Vill du testa fruktkorgar på jobbet?</h2>
+                <p className="text-gray-600 mb-4">Vi levererar färska fruktkorgar till kontor i hela Stockholm. Prova gratis!</p>
+                <div className="flex flex-wrap gap-3">
+                  <Button asChild className="bg-green-700 hover:bg-green-800">
+                    <Link to="/offertforfragan">Beställ gratis provkorg</Link>
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <Link to="/produkter">Se alla fruktkorgar</Link>
+                  </Button>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-3 text-sm">
+                <Link to="/blogg" className="text-green-700 hover:underline">← Tillbaka till bloggen</Link>
+                <span className="text-gray-300">|</span>
+                <Link to="/fruktkorg-pa-jobbet" className="text-green-700 hover:underline">Frukt på jobbet</Link>
+                <span className="text-gray-300">|</span>
+                <Link to="/fruktkorg-stockholm" className="text-green-700 hover:underline">Fruktkorg Stockholm</Link>
+                <span className="text-gray-300">|</span>
+                <Link to="/fruktkorg-foretag" className="text-green-700 hover:underline">Fruktkorg företag</Link>
+              </div>
             </footer>
           </article>
         )}
