@@ -1,5 +1,5 @@
 import { useState, Fragment, useRef, useEffect } from 'react';
-import { Menu, X, User, ChevronDown, LogOut, BookOpen, Shield, Phone } from 'lucide-react';
+import { Menu, X, User, ChevronDown, LogOut, BookOpen, Shield, Phone, ShoppingBasket } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
