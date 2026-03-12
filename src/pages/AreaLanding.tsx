@@ -8,7 +8,7 @@ import { Check, Truck, Star, Leaf, ShieldCheck, Phone, ArrowRight, MapPin } from
 import { getAreaBySlug, areas } from '@/data/areas';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.jpg';
 import fruktkorgStandard from '@/assets/fruktkorg-standard-new.jpg';
-import fruktkorgEko from '@/assets/fruktkorg-eko-new.jpg';
+import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
 import officeWorkers from '@/assets/medarbetare-fruktkorgar-kontor.jpg';
 
 const AreaLanding = () => {
