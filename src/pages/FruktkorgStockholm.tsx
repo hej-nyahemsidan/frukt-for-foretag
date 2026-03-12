@@ -15,7 +15,7 @@ const FruktkorgStockholm = () => {
     <div className="min-h-screen bg-background">
       <SEOHead 
         title="Fruktkorg Stockholm – Fruktleverans till kontoret från 299 kr/vecka | Vitaminkorgen"
-        description="Beställ fruktkorg Stockholm ✓ Färska fruktkorgar levererade till kontoret varje vecka. Fri leverans, ingen bindningstid. 150+ nöjda företag. Prova gratis!"
+        description="Beställ fruktkorg Stockholm ✓ Färska fruktkorgar levererade till kontoret varje vecka. Fri leverans. 150+ nöjda företag. Prova gratis!"
         keywords="fruktkorg stockholm, fruktkorgar stockholm, fruktleverans stockholm, fruktbud stockholm, färsk frukt stockholm, fruktkorg leverans stockholm, beställa fruktkorg stockholm"
         type="products"
       />
