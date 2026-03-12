@@ -69,7 +69,7 @@ const AreaLanding = () => {
               {[
                 { icon: Truck, text: `Fri leverans i ${name}` },
                 { icon: Star, text: '150+ nöjda företag' },
-                { icon: Leaf, text: 'Ekologiska alternativ' },
+                { icon: Leaf, text: 'Färsk säsongsfrukt' },
                 { icon: ShieldCheck, text: '100% nöjdhetsgaranti' },
               ].map(({ icon: Icon, text }, i) => (
                 <div key={i} className="flex flex-col items-center gap-2">
