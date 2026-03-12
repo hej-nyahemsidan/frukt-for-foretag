@@ -148,7 +148,7 @@
   }
   
   .section-light-green {
-    @apply bg-[hsl(148_40%_96%)];
+    @apply bg-[hsl(18_40%_96%)];
   }
   
   .section-muted {
