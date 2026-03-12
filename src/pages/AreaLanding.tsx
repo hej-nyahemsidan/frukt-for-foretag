@@ -162,7 +162,6 @@ const AreaLanding = () => {
                 { q: `Levererar ni fruktkorgar till ${name}?`, a: `Ja! Vi levererar fruktkorgar till alla adresser i ${name} med gratis frakt. Leverans sker den dag ni väljer.` },
                 { q: 'Hur mycket kostar en fruktkorg?', a: 'Våra fruktkorgar börjar från ca 200 kr/vecka. Kontakta oss för en skräddarsydd offert baserat på antal medarbetare.' },
                 { q: 'Kan vi testa innan vi bestämmer oss?', a: 'Absolut! Vi erbjuder en kostnadsfri provkorg så ni kan uppleva kvaliteten själva innan ni bestämmer er.' },
-                { q: 'Har ni ekologiska alternativ?', a: 'Ja, vi erbjuder KRAV-certifierade ekologiska fruktkorgar för företag som vill göra ett hållbart val.' },
               ].map((faq, i) => (
                 <div key={i} className="bg-white p-6 rounded-xl shadow-sm">
                   <h3 className="font-bold text-green-900 mb-2">{faq.q}</h3>
