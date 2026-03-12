@@ -177,7 +177,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
     "termsOfService": "https://vitaminkorgen.se/villkor",
     "offers": {
       "@type": "Offer",
-      "description": "Testa gratis i 2 veckor – ingen bindningstid",
+      "description": "Testa gratis i 2 veckor",
       "price": "0",
       "priceCurrency": "SEK",
       "eligibleDuration": { "@type": "QuantitativeValue", "value": "2", "unitCode": "WEE" }
