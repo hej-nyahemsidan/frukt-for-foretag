@@ -109,7 +109,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
         "name": "Kan vi få en provleverans av fruktkorg på kontoret?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Absolut! Testa våra fruktkorgar i två veckor helt gratis. Ingen bindningstid, inget krångel."
+          "text": "Absolut! Testa våra fruktkorgar i två veckor helt gratis. Inget krångel."
         }
       },
       {

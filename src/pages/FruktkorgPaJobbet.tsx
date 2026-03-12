@@ -185,7 +185,7 @@ const FruktkorgPaJobbet = () => {
                 { q: 'Hur mycket kostar en fruktkorg på jobbet?', a: 'Priset beror på storlek och antal medarbetare. Våra fruktkorgar börjar från ca 200 kr/vecka. Kontakta oss för en skräddarsydd offert.' },
                 { q: 'Hur ofta levereras fruktkorg på jobbet?', a: 'Vi levererar vanligtvis en gång i veckan, men ni kan välja varannan vecka eller flera gånger per vecka beroende på behov.' },
                 { q: 'Kan vi byta leveransdag?', a: 'Absolut! Ni kan enkelt ändra leveransdag via vår kundportal eller genom att kontakta oss.' },
-                { q: 'Erbjuder ni ekologisk frukt på jobbet?', a: 'Ja, vi erbjuder KRAV-certifierade ekologiska fruktkorgar för företag som vill göra ett hållbart val.' },
+                { q: 'Vilken frukt ingår i korgen?', a: 'Vi väljer säsongens bästa frukter – alltid färska och av hög kvalitet. Kontakta oss om ni har önskemål.' },
               ].map((faq, i) => (
                 <div key={i} className="bg-white p-6 rounded-xl shadow-sm">
                   <h3 className="font-bold text-green-900 mb-2">{faq.q}</h3>
@@ -203,7 +203,7 @@ const FruktkorgPaJobbet = () => {
               Börja med fruktkorg på jobbet idag
             </h2>
             <p className="text-gray-200 mb-8 max-w-xl mx-auto">
-              Testa gratis – vi bjuder på den första fruktkorg på jobbet. Ingen bindningstid.
+              Testa gratis – vi bjuder på den första fruktkorg på jobbet. Fri leverans.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/offertforfragan">

@@ -8,7 +8,7 @@ import { Check, Truck, Star, Leaf, ShieldCheck, Phone, ArrowRight, MapPin } from
 import { getAreaBySlug, areas } from '@/data/areas';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.jpg';
 import fruktkorgStandard from '@/assets/fruktkorg-standard-new.jpg';
-import fruktkorgEko from '@/assets/fruktkorg-eko-new.jpg';
+import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
 import officeWorkers from '@/assets/medarbetare-fruktkorgar-kontor.jpg';
 
 const AreaLanding = () => {
@@ -69,7 +69,7 @@ const AreaLanding = () => {
               {[
                 { icon: Truck, text: `Fri leverans i ${name}` },
                 { icon: Star, text: '150+ nöjda företag' },
-                { icon: Leaf, text: 'Ekologiska alternativ' },
+                { icon: Leaf, text: 'Färsk säsongsfrukt' },
                 { icon: ShieldCheck, text: '100% nöjdhetsgaranti' },
               ].map(({ icon: Icon, text }, i) => (
                 <div key={i} className="flex flex-col items-center gap-2">
@@ -94,9 +94,9 @@ const AreaLanding = () => {
             </p>
             <div className="grid md:grid-cols-3 gap-8">
               {[
-                { img: fruktkorgStandard, name: 'Fruktkorg Standard', desc: 'Perfekt för det mindre kontoret med ett varierat urval av säsongens bästa frukter.', features: ['8-10 frukter', 'Säsongsanpassad', 'Fri leverans'] },
+                { img: fruktkorgStandard, name: 'Fruktkorg Original', desc: 'Perfekt för det mindre kontoret med ett varierat urval av säsongens bästa frukter.', features: ['8-10 frukter', 'Säsongsanpassad', 'Fri leverans'] },
                 { img: fruktkorgPremium, name: 'Fruktkorg Premium', desc: 'Vår mest populära fruktkorg med handplockade premiumfrukter.', features: ['12-15 frukter', 'Premiumkvalitet', 'Exotiska frukter'] },
-                { img: fruktkorgEko, name: 'Fruktkorg Ekologisk', desc: 'Certifierad ekologisk frukt för miljömedvetna företag.', features: ['100% ekologisk', 'KRAV-certifierad', 'Hållbart val'] },
+                { img: fruktkorgBanan, name: 'Fruktkorg Banan', desc: 'En fruktkorg med extra fokus på bananer – perfekt som snabb energikick.', features: ['Bananer i fokus', 'Energiboost', 'Populärt val'] },
               ].map((product, i) => (
                 <div key={i} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                   <img src={product.img} alt={`${product.name} levererad till ${name}`} className="w-full h-56 object-cover" />
@@ -134,7 +134,6 @@ const AreaLanding = () => {
                     `Gratis leverans till alla adresser i ${name}`,
                     'Handplockad, färsk säsongsfrukt av högsta kvalitet',
                     'Flexibla leveransdagar – välj vad som passar er',
-                    'Ingen bindningstid – avsluta när som helst',
                     'Kostnadsfri provleverans för nya kunder',
                     'Fakturering – smidigt för företag',
                   ].map((item, i) => (
@@ -163,7 +162,6 @@ const AreaLanding = () => {
                 { q: `Levererar ni fruktkorgar till ${name}?`, a: `Ja! Vi levererar fruktkorgar till alla adresser i ${name} med gratis frakt. Leverans sker den dag ni väljer.` },
                 { q: 'Hur mycket kostar en fruktkorg?', a: 'Våra fruktkorgar börjar från ca 200 kr/vecka. Kontakta oss för en skräddarsydd offert baserat på antal medarbetare.' },
                 { q: 'Kan vi testa innan vi bestämmer oss?', a: 'Absolut! Vi erbjuder en kostnadsfri provkorg så ni kan uppleva kvaliteten själva innan ni bestämmer er.' },
-                { q: 'Har ni ekologiska alternativ?', a: 'Ja, vi erbjuder KRAV-certifierade ekologiska fruktkorgar för företag som vill göra ett hållbart val.' },
               ].map((faq, i) => (
                 <div key={i} className="bg-white p-6 rounded-xl shadow-sm">
                   <h3 className="font-bold text-green-900 mb-2">{faq.q}</h3>
@@ -209,7 +207,7 @@ const AreaLanding = () => {
               Beställ fruktkorg till {name} idag
             </h2>
             <p className="text-gray-200 mb-8 max-w-xl mx-auto">
-              Testa gratis – vi bjuder på den första fruktkorgen. Ingen bindningstid, fri leverans.
+              Testa gratis – vi bjuder på den första fruktkorgen. Fri leverans.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/offertforfragan">

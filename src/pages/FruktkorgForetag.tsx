@@ -14,7 +14,7 @@ const FruktkorgForetag = () => {
     <div className="min-h-screen bg-background">
       <SEOHead 
         title="Fruktkorg företag – Frukt till arbetsplatsen från 299 kr | Vitaminkorgen Stockholm"
-        description="Fruktkorg företag ✓ Öka välmåendet med färsk frukt på jobbet. Fri leverans i Stockholm, ingen bindningstid. 150+ företag litar på oss. Boka gratis provkorg!"
+        description="Fruktkorg företag ✓ Öka välmåendet med färsk frukt på jobbet. Fri leverans i Stockholm. 150+ företag litar på oss. Boka gratis provkorg!"
         keywords="fruktkorg företag, fruktkorgar företag, frukt till företag, företagsfrukt, fruktbud företag, fruktleverans företag, fruktkorgar arbetsplats, frukt kontor företag"
         type="products"
       />
@@ -99,9 +99,8 @@ const FruktkorgForetag = () => {
                   {[
                     'Anpassat efter antal medarbetare och kontorstorlek',
                     'Flexibla leveransdagar – varje vecka eller varannan vecka',
-                    'Möjlighet till ekologisk och KRAV-certifierad frukt',
+                    'Handplockad, färsk säsongsfrukt av högsta kvalitet',
                     'Fakturering – smidigt för företag',
-                    'Ingen bindningstid – avsluta när som helst',
                     'Kostnadsfri provleverans för nya kunder',
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
@@ -149,7 +148,7 @@ const FruktkorgForetag = () => {
               Ge ert företag en fruktkorg idag
             </h2>
             <p className="text-gray-200 mb-8 max-w-xl mx-auto">
-              Kostnadsfri provleverans. Ingen bindningstid. Fri leverans.
+              Kostnadsfri provleverans. Fri leverans.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/offertforfragan">

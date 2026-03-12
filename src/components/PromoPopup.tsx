@@ -73,7 +73,7 @@ const PromoPopup: React.FC<PromoPopupProps> = ({ isOpen, onClose }) => {
               Upplev skillnaden med våra premiumprodukter utan någon som helst förpliktelse! 
               Vi erbjuder dig möjligheten att prova vårt kompletta sortiment med en gratis provkorg. 
               Vi är så övertygade om att du kommer att älska vår kvalitet och service att vi ger dig 
-              denna riskfria chans att upptäcka det själv. Inga dolda avgifter, inga bindningstider—bara 
+              denna riskfria chans att upptäcka det själv. Inga dolda avgifter—bara 
               en fantastisk upplevelse. Ta chansen idag och låt oss överträffa dina förväntningar!
             </p>
 
@@ -131,7 +131,7 @@ const PromoPopup: React.FC<PromoPopupProps> = ({ isOpen, onClose }) => {
             <p className="text-muted-foreground leading-relaxed mb-6 text-center">
               Upplev skillnaden med våra premiumprodukter utan någon förpliktelse! 
               Vi erbjuder dig möjligheten att prova vårt kompletta sortiment med en gratis provkorg. 
-              Inga dolda avgifter, inga bindningstider—bara en fantastisk upplevelse.
+              Inga dolda avgifter—bara en fantastisk upplevelse.
             </p>
 
             {/* CTA Button */}

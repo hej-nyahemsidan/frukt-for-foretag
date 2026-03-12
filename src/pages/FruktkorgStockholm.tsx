@@ -7,7 +7,7 @@ import { Check, Truck, Star, Leaf, Clock, ShieldCheck, MapPin, Phone } from 'luc
 import { Link } from 'react-router-dom';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.jpg';
 import fruktkorgStandard from '@/assets/fruktkorg-standard-new.jpg';
-import fruktkorgEko from '@/assets/fruktkorg-eko-new.jpg';
+import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
 import officeWorkers from '@/assets/medarbetare-fruktkorgar-kontor.jpg';
 
 const FruktkorgStockholm = () => {
@@ -15,7 +15,7 @@ const FruktkorgStockholm = () => {
     <div className="min-h-screen bg-background">
       <SEOHead 
         title="Fruktkorg Stockholm – Fruktleverans till kontoret från 299 kr/vecka | Vitaminkorgen"
-        description="Beställ fruktkorg Stockholm ✓ Färska fruktkorgar levererade till kontoret varje vecka. Fri leverans, ingen bindningstid. 150+ nöjda företag. Prova gratis!"
+        description="Beställ fruktkorg Stockholm ✓ Färska fruktkorgar levererade till kontoret varje vecka. Fri leverans. 150+ nöjda företag. Prova gratis!"
         keywords="fruktkorg stockholm, fruktkorgar stockholm, fruktleverans stockholm, fruktbud stockholm, färsk frukt stockholm, fruktkorg leverans stockholm, beställa fruktkorg stockholm"
         type="products"
       />
@@ -60,7 +60,7 @@ const FruktkorgStockholm = () => {
               {[
                 { icon: Truck, text: 'Fri leverans i Stockholm' },
                 { icon: Star, text: '150+ nöjda företag' },
-                { icon: Leaf, text: 'Ekologiska alternativ' },
+                { icon: Leaf, text: 'Färsk säsongsfrukt' },
                 { icon: ShieldCheck, text: '100% nöjdhetsgaranti' },
               ].map(({ icon: Icon, text }, i) => (
                 <div key={i} className="flex flex-col items-center gap-2">
@@ -87,7 +87,7 @@ const FruktkorgStockholm = () => {
               {[
                 { 
                   img: fruktkorgStandard, 
-                  name: 'Fruktkorg Standard', 
+                  name: 'Fruktkorg Original', 
                   desc: 'Perfekt för det mindre kontoret. Innehåller ett varierat urval av säsongens bästa frukter.',
                   features: ['8-10 frukter', 'Säsongsanpassad', 'Fri leverans']
                 },
@@ -98,10 +98,10 @@ const FruktkorgStockholm = () => {
                   features: ['12-15 frukter', 'Premiumkvalitet', 'Exotiska frukter']
                 },
                 { 
-                  img: fruktkorgEko, 
-                  name: 'Fruktkorg Ekologisk', 
-                  desc: 'Certifierad ekologisk frukt för företag som värnar om miljön och kvalitet.',
-                  features: ['100% ekologisk', 'KRAV-certifierad', 'Hållbart val']
+                  img: fruktkorgBanan, 
+                  name: 'Fruktkorg Banan', 
+                  desc: 'En fruktkorg med extra fokus på bananer – perfekt som snabb energikick.',
+                  features: ['Bananer i fokus', 'Energiboost', 'Populärt val']
                 },
               ].map((product, i) => (
                 <div key={i} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
