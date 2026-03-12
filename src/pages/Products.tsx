@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Phone, Mail, LogIn, FileText, ShoppingCart, X, Plus, Minus, Calendar } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { usePublicCart } from '@/contexts/PublicCartContext';
 import FruktkorgarTab from '@/components/product-tabs/FruktkorgarTab';
 import FruktpaserTab from '@/components/product-tabs/FruktpaserTab';
@@ -21,11 +21,19 @@ import StadTab from '@/components/product-tabs/StadTab';
 const WEEKDAYS = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
 
 const Products = () => {
-  const [activeTab, setActiveTab] = useState('fruktkorgar');
+  const [searchParams] = useSearchParams();
+  const tabParam = searchParams.get('tab');
+  const [activeTab, setActiveTab] = useState(tabParam || 'fruktkorgar');
   const [selectedDays, setSelectedDays] = useState<string[]>([]);
   const [currentDay, setCurrentDay] = useState<string>('');
   const navigate = useNavigate();
   const { items, getTotalItems, getTotalPrice, updateQuantity, removeItem, clearCart } = usePublicCart();
+
+  useEffect(() => {
+    if (tabParam) {
+      setActiveTab(tabParam);
+    }
+  }, [tabParam]);
 
   const handleDayToggle = (day: string, checked: boolean) => {
     if (checked) {
