@@ -124,10 +124,10 @@
   }
   
   /* Soft Organic Card Styles */
-  .card-product {
-    @apply bg-gradient-to-br from-card to-[hsl(148_40%_98%)] p-6 rounded-3xl border border-border/50;
+   .card-product {
+    @apply bg-gradient-to-br from-card to-[hsl(18_50%_98%)] p-6 rounded-3xl border border-border/50;
     @apply shadow-[var(--shadow-card)] transition-all duration-400;
-    @apply hover:shadow-[0_8px_32px_-8px_hsl(152_30%_30%/0.12)] hover:scale-[1.01] hover:-translate-y-0.5;
+    @apply hover:shadow-[0_8px_32px_-8px_hsl(280_30%_30%/0.12)] hover:scale-[1.01] hover:-translate-y-0.5;
   }
   
   /* Organic Glass Card */
