@@ -1,5 +1,5 @@
 import { useState, Fragment, useRef, useEffect } from 'react';
-import { Menu, X, User, ChevronDown, LogOut, BookOpen, Shield, Phone } from 'lucide-react';
+import { Menu, X, User, ChevronDown, LogOut, BookOpen, Shield, Phone, ShoppingBasket } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -11,6 +11,7 @@ import { supabase } from '@/integrations/supabase/client';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
   const [blogPosts, setBlogPosts] = useState<Array<{ title: string; slug: string; category: string }>>([]);
   const { user, logout } = useAuth();
   const { isAdmin } = useAdminAuth();
@@ -77,24 +78,36 @@ const Header = () => {
     }
   };
 
+  const productCategories = [
+    { label: 'Fruktkorgar', tab: 'fruktkorgar' },
+    { label: 'Fruktpåsar', tab: 'fruktpasar' },
+    { label: 'Mejeri', tab: 'mejeri' },
+    { label: 'Kaffe & Te', tab: 'kaffete' },
+    { label: 'Läsk & Dryck', tab: 'lask' },
+    { label: 'Frukost & Mellanmål', tab: 'frukost' },
+    { label: 'Snacks', tab: 'snacks' },
+    { label: 'Grönsaker', tab: 'gronsaker' },
+    { label: 'Städ', tab: 'stad' },
+  ];
+
   const publicNavigationItems = [
-    { label: 'Hem', href: '/', isExternal: false },           // Home
-    { label: 'Produkter', href: '/produkter', isExternal: false }, // Products
-    { label: 'Blommor', href: '/blommor', isExternal: false }, // Flowers
-    { label: 'Varuautomat', href: '/varuautomat', isExternal: false }, // Vending Machine
-    { label: 'Om Oss', href: '/om-oss', isExternal: false },   // About Us
-    { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
-    { label: 'Offertförfrågan', href: '/offertforfragan', isExternal: false },     // Quote Request
+    { label: 'Hem', href: '/', isExternal: false },
+    { label: 'Produkter', href: '/produkter', isExternal: false, hasDropdown: true },
+    { label: 'Blommor', href: '/blommor', isExternal: false },
+    { label: 'Varuautomat', href: '/varuautomat', isExternal: false },
+    { label: 'Om Oss', href: '/om-oss', isExternal: false },
+    { label: 'Kontakt', href: '/kontakt', isExternal: false },
+    { label: 'Offertförfrågan', href: '/offertforfragan', isExternal: false },
   ];
 
   const customerNavigationItems = [
-    { label: 'Hem', href: '/', isExternal: false },           // Home
-    { label: 'Produkter', href: '/produkter', isExternal: false }, // Products
-    { label: 'Blommor', href: '/blommor', isExternal: false }, // Flowers
-    { label: 'Varuautomat', href: '/varuautomat', isExternal: false }, // Vending Machine
-    { label: 'Om Oss', href: '/om-oss', isExternal: false },   // About Us
-    { label: 'Kontakt', href: '/kontakt', isExternal: false }, // Contact
-    { label: 'Mina Sidor', href: '/dashboard', isExternal: false }, // Customer Dashboard - moved to end
+    { label: 'Hem', href: '/', isExternal: false },
+    { label: 'Produkter', href: '/produkter', isExternal: false, hasDropdown: true },
+    { label: 'Blommor', href: '/blommor', isExternal: false },
+    { label: 'Varuautomat', href: '/varuautomat', isExternal: false },
+    { label: 'Om Oss', href: '/om-oss', isExternal: false },
+    { label: 'Kontakt', href: '/kontakt', isExternal: false },
+    { label: 'Mina Sidor', href: '/dashboard', isExternal: false },
   ];
 
   useEffect(() => {
@@ -151,7 +164,36 @@ const Header = () => {
                 
                 return (
                   <Fragment key={item.label}>
-                    {item.isExternal ? (
+                    {item.hasDropdown ? (
+                      <DropdownMenu>
+                        <DropdownMenuTrigger className={`transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 text-charcoal hover:text-secondary flex items-center space-x-1`}>
+                          <ShoppingBasket className="w-4 h-4" />
+                          <span>{item.label}</span>
+                          <ChevronDown className="w-3 h-3" />
+                          <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="center" className="w-64 bg-white/90 backdrop-blur-md border border-gray-200/50 shadow-xl rounded-lg z-50">
+                          <DropdownMenuItem asChild className="p-0">
+                            <Link 
+                              to="/produkter"
+                              className="block p-4 hover:bg-lightgreen/50 transition-colors font-semibold"
+                            >
+                              Alla produkter
+                            </Link>
+                          </DropdownMenuItem>
+                          {productCategories.map((cat) => (
+                            <DropdownMenuItem key={cat.tab} asChild className="p-0">
+                              <Link 
+                                to={`/produkter?tab=${cat.tab}`}
+                                className="block p-3 pl-6 hover:bg-lightgreen/50 transition-colors"
+                              >
+                                <span className="font-medium text-charcoal text-sm">{cat.label}</span>
+                              </Link>
+                            </DropdownMenuItem>
+                          ))}
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    ) : item.isExternal ? (
                       <a
                         href={item.href}
                         className={`transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 ${
@@ -268,7 +310,30 @@ const Header = () => {
                   
                   return (
                     <Fragment key={item.label}>
-                      {item.isExternal ? (
+                      {item.hasDropdown ? (
+                        <DropdownMenu>
+                          <DropdownMenuTrigger className="transition-all duration-200 font-medium text-sm tracking-wide relative group px-3 py-2 text-charcoal hover:text-secondary flex items-center space-x-1 whitespace-nowrap">
+                            <ShoppingBasket className="w-3 h-3" />
+                            <span>{item.label}</span>
+                            <ChevronDown className="w-2 h-2" />
+                            <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="center" className="w-56 bg-white/90 backdrop-blur-md border border-gray-200/50 shadow-xl rounded-lg z-50">
+                            <DropdownMenuItem asChild className="p-0">
+                              <Link to="/produkter" className="block p-3 hover:bg-lightgreen/50 transition-colors font-semibold text-sm">
+                                Alla produkter
+                              </Link>
+                            </DropdownMenuItem>
+                            {productCategories.map((cat) => (
+                              <DropdownMenuItem key={cat.tab} asChild className="p-0">
+                                <Link to={`/produkter?tab=${cat.tab}`} className="block p-2.5 pl-5 hover:bg-lightgreen/50 transition-colors text-sm text-charcoal">
+                                  {cat.label}
+                                </Link>
+                              </DropdownMenuItem>
+                            ))}
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      ) : item.isExternal ? (
                         <a
                           href={item.href}
                           className={`transition-all duration-200 font-medium text-sm tracking-wide relative group px-3 py-2 whitespace-nowrap ${
@@ -507,6 +572,44 @@ const Header = () => {
               {navigationItems.map((item) => {
                 const isMinaSidor = item.label === 'Mina Sidor';
                 const shouldHighlight = isMinaSidor && user;
+                
+                if (item.hasDropdown) {
+                  return (
+                    <div key={item.label}>
+                      <button
+                        className="flex items-center justify-between w-full px-4 py-3 rounded-lg transition-colors font-medium text-charcoal hover:text-secondary hover:bg-lightgreen"
+                        onClick={() => setIsMobileProductsOpen(!isMobileProductsOpen)}
+                      >
+                        <span className="flex items-center gap-2">
+                          <ShoppingBasket className="w-4 h-4" />
+                          {item.label}
+                        </span>
+                        <ChevronDown className={`w-4 h-4 transition-transform ${isMobileProductsOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      {isMobileProductsOpen && (
+                        <div className="pl-6 space-y-1 mt-1">
+                          <Link
+                            to="/produkter"
+                            className="block px-4 py-2 rounded-lg text-sm font-semibold text-charcoal hover:text-secondary hover:bg-lightgreen"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            Alla produkter
+                          </Link>
+                          {productCategories.map((cat) => (
+                            <Link
+                              key={cat.tab}
+                              to={`/produkter?tab=${cat.tab}`}
+                              className="block px-4 py-2 rounded-lg text-sm text-charcoal hover:text-secondary hover:bg-lightgreen"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              {cat.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
                 
                 return item.isExternal ? (
                   <a
