@@ -134,7 +134,6 @@ const AreaLanding = () => {
                     `Gratis leverans till alla adresser i ${name}`,
                     'Handplockad, färsk säsongsfrukt av högsta kvalitet',
                     'Flexibla leveransdagar – välj vad som passar er',
-                    'Ingen bindningstid – avsluta när som helst',
                     'Kostnadsfri provleverans för nya kunder',
                     'Fakturering – smidigt för företag',
                   ].map((item, i) => (
