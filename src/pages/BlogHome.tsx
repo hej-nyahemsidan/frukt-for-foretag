@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 import { Loader2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { sv } from 'date-fns/locale';
@@ -72,6 +73,11 @@ const BlogHome = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <SEOHead
+        title="Blogg – Tips om frukt på jobbet & hälsa | Vitaminkorgen"
+        description="Läs våra tips om fruktkorgar på jobbet, hälsa på arbetsplatsen och recept med färsk frukt. Inspiration för ett hälsosammare kontorsliv."
+        keywords="frukt på jobbet tips, fruktkorg blogg, hälsa arbetsplats, kontorsfrukt tips, fruktrecept"
+      />
       <Header />
       
       <main className="flex-1 container mx-auto px-4 py-12">
@@ -106,7 +112,7 @@ const BlogHome = () => {
               )}
 
               {receptPosts.length > 0 && (
-                <section>
+                <section className="mb-12">
                   <div className="flex justify-between items-center mb-6">
                     <h2 className="text-3xl font-bold">Recept</h2>
                     <Button variant="link" asChild>
@@ -130,6 +136,29 @@ const BlogHome = () => {
               )}
             </>
           )}
+
+          {/* Internal links back to main pages */}
+          <section className="mt-16 pt-12 border-t">
+            <h2 className="text-2xl font-bold text-center mb-6">Utforska våra tjänster</h2>
+            <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <Link to="/produkter" className="p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
+                <p className="font-semibold text-green-900">Fruktkorgar</p>
+                <p className="text-sm text-gray-600">Se hela sortimentet</p>
+              </Link>
+              <Link to="/fruktkorg-pa-jobbet" className="p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
+                <p className="font-semibold text-green-900">Frukt på jobbet</p>
+                <p className="text-sm text-gray-600">Så fungerar det</p>
+              </Link>
+              <Link to="/fruktkorg-stockholm" className="p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
+                <p className="font-semibold text-green-900">Fruktkorg Stockholm</p>
+                <p className="text-sm text-gray-600">Leverans i hela Stockholm</p>
+              </Link>
+              <Link to="/offertforfragan" className="p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
+                <p className="font-semibold text-green-900">Beställ provkorg</p>
+                <p className="text-sm text-gray-600">Gratis provleverans</p>
+              </Link>
+            </div>
+          </section>
         </div>
       </main>
 

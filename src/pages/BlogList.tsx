@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 import { Loader2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { sv } from 'date-fns/locale';
@@ -55,6 +56,11 @@ const BlogList = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
+      <SEOHead
+        title={`${categoryTitle} – Blogg | Vitaminkorgen`}
+        description={categoryDescription}
+        keywords={`frukt ${category}, fruktkorgar tips, hälsa arbetsplats, ${category} frukt`}
+      />
       <Header />
       
       <main className="flex-1 container mx-auto px-4 py-12">
@@ -99,6 +105,15 @@ const BlogList = () => {
               ))}
             </div>
           )}
+
+          {/* Internal links */}
+          <div className="mt-12 pt-8 border-t flex flex-wrap gap-3">
+            <Link to="/blogg" className="text-sm text-green-700 hover:underline">← Tillbaka till bloggen</Link>
+            <span className="text-gray-300">|</span>
+            <Link to="/produkter" className="text-sm text-green-700 hover:underline">Se våra fruktkorgar</Link>
+            <span className="text-gray-300">|</span>
+            <Link to="/offertforfragan" className="text-sm text-green-700 hover:underline">Beställ gratis provkorg</Link>
+          </div>
         </div>
       </main>
 

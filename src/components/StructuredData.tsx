@@ -152,7 +152,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
     "@type": "Service",
     "serviceType": "Fruktkorgar till kontor",
     "name": "Fruktabonnemang för företag",
-    "description": "Veckovis leverans av färska, handplockade fruktkorgar direkt till ert kontor i Stockholm. Flexibla abonnemang utan bindningstid.",
+    "description": "Veckovis leverans av färska, handplockade fruktkorgar direkt till ert kontor i Stockholm. Flexibla abonnemang som kan pausas när ni vill.",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Vitaminkorgen AB",
@@ -177,7 +177,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
     "termsOfService": "https://vitaminkorgen.se/villkor",
     "offers": {
       "@type": "Offer",
-      "description": "Testa gratis i 2 veckor – ingen bindningstid",
+      "description": "Testa gratis i 2 veckor",
       "price": "0",
       "priceCurrency": "SEK",
       "eligibleDuration": { "@type": "QuantitativeValue", "value": "2", "unitCode": "WEE" }
@@ -257,9 +257,9 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
       "@context": "https://schema.org",
       "@type": "Product",
       "name": "Fruktkorg Supreme",
-      "description": "Premium ekologisk fruktkorg med certifierade KRAV-frukter, ca 5 kg.",
-      "image": "https://vitaminkorgen.se/assets/fruktkorg-eko-new.jpg",
-      "sku": "VK-SUPREME-5KG",
+      "description": "Vår största fruktkorg med extra stort urval av säsongens bästa frukter, ca 8 kg.",
+      "image": "https://vitaminkorgen.se/assets/fruktkorg-supreme-new.jpg",
+      "sku": "VK-SUPREME-8KG",
       "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
       "category": "Fruktkorgar",
       "url": "https://vitaminkorgen.se/produkter",
