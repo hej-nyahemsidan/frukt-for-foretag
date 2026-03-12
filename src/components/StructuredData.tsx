@@ -152,7 +152,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
     "@type": "Service",
     "serviceType": "Fruktkorgar till kontor",
     "name": "Fruktabonnemang för företag",
-    "description": "Veckovis leverans av färska, handplockade fruktkorgar direkt till ert kontor i Stockholm. Flexibla abonnemang utan bindningstid.",
+    "description": "Veckovis leverans av färska, handplockade fruktkorgar direkt till ert kontor i Stockholm. Flexibla abonnemang som kan pausas när ni vill.",
     "provider": {
       "@type": "LocalBusiness",
       "name": "Vitaminkorgen AB",
