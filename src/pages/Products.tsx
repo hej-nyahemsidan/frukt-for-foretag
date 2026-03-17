@@ -5,6 +5,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 import { Phone, Mail, LogIn, FileText, ShoppingCart, X, Plus, Minus, Calendar } from 'lucide-react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { usePublicCart } from '@/contexts/PublicCartContext';
@@ -61,6 +62,7 @@ const Products = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <SEOHead type="products" />
       <Header />
       
       <main className="container mx-auto px-4 py-8 sm:py-16">
