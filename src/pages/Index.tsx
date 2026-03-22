@@ -1,5 +1,6 @@
 
 import Header from '@/components/Header';
+import AreaLinksSection from '@/components/AreaLinksSection';
 import HeroSection from '@/components/HeroSection';
 import CustomerReviewsSection from '@/components/CustomerReviewsSection';
 import FeaturesSection from '@/components/FeaturesSection';
