@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -53,6 +54,7 @@ const Checkout: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead title="Checkout | Vitaminkorgen" description="Slutför din beställning." noindex={true} />
       <Header />
       
       <main className="container mx-auto px-4 py-8">

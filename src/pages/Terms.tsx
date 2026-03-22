@@ -1,10 +1,16 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 
 const Terms = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Villkor – Leverans & beställning | Vitaminkorgen"
+        description="Läs om Vitaminkorgens villkor för leverans, beställning och abonnemang av fruktkorgar till företag i Stockholm."
+        keywords="villkor vitaminkorgen, leveransvillkor, beställningsvillkor fruktkorgar"
+      />
       <Header />
       <main className="pt-24 md:pt-32">
         <div className="container mx-auto px-6 py-16">

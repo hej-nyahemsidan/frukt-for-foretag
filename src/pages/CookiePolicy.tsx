@@ -1,10 +1,16 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import SEOHead from '@/components/SEOHead';
 
 const CookiePolicy = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Cookiepolicy | Vitaminkorgen"
+        description="Information om hur Vitaminkorgen använder cookies på webbplatsen för att förbättra din upplevelse."
+        keywords="cookiepolicy vitaminkorgen, cookies"
+      />
       <Header />
       <main className="pt-24 md:pt-32">
         <div className="container mx-auto px-6 py-16">

@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
+import SEOHead from '@/components/SEOHead';
 import citrusBackground from '@/assets/citrus-background.jpg';
 
 const CustomerPortal = () => {
@@ -77,6 +78,7 @@ const CustomerPortal = () => {
 
   return (
     <div className="min-h-screen flex">
+      <SEOHead title="Kundportal – Logga in | Vitaminkorgen" description="Logga in på Vitaminkorgens kundportal." noindex={true} />
       {/* Left Side - Background Image */}
       <div 
         className="hidden lg:flex lg:w-1/2 relative"
