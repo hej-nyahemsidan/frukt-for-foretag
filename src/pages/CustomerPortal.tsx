@@ -78,6 +78,7 @@ const CustomerPortal = () => {
 
   return (
     <div className="min-h-screen flex">
+      <SEOHead title="Kundportal – Logga in | Vitaminkorgen" description="Logga in på Vitaminkorgens kundportal." noindex={true} />
       {/* Left Side - Background Image */}
       <div 
         className="hidden lg:flex lg:w-1/2 relative"
