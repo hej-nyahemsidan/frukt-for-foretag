@@ -26,6 +26,7 @@ const Index = () => {
         <ProductShowcase />
         <CustomerPortalSection />
         <FAQSection />
+        <AreaLinksSection />
       </main>
       <Footer />
       <PromoPopup isOpen={isOpen} onClose={closePopup} />
