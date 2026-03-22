@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
+import SEOHead from '@/components/SEOHead';
 import citrusBackground from '@/assets/citrus-background.jpg';
 
 const CustomerPortal = () => {
