@@ -46,6 +46,8 @@ const FruktkorgStockholm = lazy(() => import("./pages/FruktkorgStockholm"));
 const FruktkorgForetag = lazy(() => import("./pages/FruktkorgForetag"));
 const FruktkorgPaJobbet = lazy(() => import("./pages/FruktkorgPaJobbet"));
 const AreaLanding = lazy(() => import("./pages/AreaLanding"));
+const FruktkorgProduct = lazy(() => import("./pages/FruktkorgProduct"));
+const Provkorg = lazy(() => import("./pages/Provkorg"));
 const ResellerLogin = lazy(() => import("./reseller/pages/ResellerLogin"));
 const ResellerDashboard = lazy(() => import("./reseller/pages/ResellerDashboard"));
 const ResellerCustomerLogin = lazy(() => import("./reseller/pages/ResellerCustomerLogin"));
