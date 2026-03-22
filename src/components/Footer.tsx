@@ -80,18 +80,35 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Area Links for SEO - ALL 36 areas */}
+        {/* Area Links for SEO - ALL areas with keyword-rich anchor text */}
         <div className="border-t border-green-700 pt-6 mb-6">
-          <h4 className="text-sm font-semibold text-gray-200 mb-3">Vi levererar fruktkorgar till</h4>
+          <h4 className="text-sm font-semibold text-gray-200 mb-3">Fruktkorgar till kontor – vi levererar till</h4>
           <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-300">
             {areas.map((area, i) => (
               <span key={area.slug}>
                 <Link to={`/fruktkorg/${area.slug}`} className="hover:text-yellow-400 transition-colors">
-                  {area.name}
+                  Fruktkorg {area.name}
                 </Link>
                 {i < areas.length - 1 && <span className="ml-3 text-green-600">·</span>}
               </span>
             ))}
+          </div>
+        </div>
+
+        {/* Quick links for SEO */}
+        <div className="border-t border-green-700 pt-4 mb-6">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-gray-300 justify-center">
+            <Link to="/fruktkorg-stockholm" className="hover:text-yellow-400 transition-colors">Fruktkorg Stockholm</Link>
+            <span className="text-green-600">·</span>
+            <Link to="/fruktkorg-foretag" className="hover:text-yellow-400 transition-colors">Fruktkorg företag</Link>
+            <span className="text-green-600">·</span>
+            <Link to="/fruktkorg-pa-jobbet" className="hover:text-yellow-400 transition-colors">Fruktkorg på jobbet</Link>
+            <span className="text-green-600">·</span>
+            <Link to="/produkter" className="hover:text-yellow-400 transition-colors">Alla produkter</Link>
+            <span className="text-green-600">·</span>
+            <Link to="/blogg" className="hover:text-yellow-400 transition-colors">Blogg</Link>
+            <span className="text-green-600">·</span>
+            <Link to="/offertforfragan" className="hover:text-yellow-400 transition-colors">Offertförfrågan</Link>
           </div>
         </div>
 
