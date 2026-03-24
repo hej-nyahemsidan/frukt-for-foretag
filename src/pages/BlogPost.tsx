@@ -67,16 +67,28 @@ const BlogPost = () => {
       const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/);
       if (linkMatch) {
         const [, linkText, url] = linkMatch;
+        const isExternal = url.startsWith('http');
+        if (isExternal) {
+          return (
+            <a 
+              key={index} 
+              href={url} 
+              className="text-primary hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {linkText}
+            </a>
+          );
+        }
         return (
-          <a 
+          <Link 
             key={index} 
-            href={url} 
+            to={url} 
             className="text-primary hover:underline"
-            target={url.startsWith('http') ? '_blank' : undefined}
-            rel={url.startsWith('http') ? 'noopener noreferrer' : undefined}
           >
             {linkText}
-          </a>
+          </Link>
         );
       }
       
