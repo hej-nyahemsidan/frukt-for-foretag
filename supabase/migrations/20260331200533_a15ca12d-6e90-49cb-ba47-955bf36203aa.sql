@@ -1,0 +1,1 @@
+UPDATE resellers SET domain = 'fika.houseofservice.se' WHERE id = '71abdefc-9c69-47ee-aab0-f9c6ab0cd6f8';
