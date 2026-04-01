@@ -55,6 +55,8 @@ const PublicAddToCartButton = ({
       size: size,
     });
 
+    trackAddToCart(productName, price, quantity, selectedDay);
+
     toast({
       title: "Tillagt i varukorgen",
       description: `${quantity}x ${productName} har lagts till för ${selectedDay}.`,

@@ -77,6 +77,8 @@ const QuoteRequestSection = () => {
 
       if (error) throw error;
 
+      trackQuoteSubmitted(getTotalPrice(), items.length);
+
       toast({
         title: "Beställning skickad!",
         description: "Vi återkommer så snart som möjligt.",
