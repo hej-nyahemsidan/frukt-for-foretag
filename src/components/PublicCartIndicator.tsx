@@ -7,6 +7,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useNavigate } from 'react-router-dom';
+import { trackBeginCheckout } from '@/lib/gtm';
 
 const PublicCartIndicator = () => {
   const { items, getTotalItems, updateQuantity, removeItem, getTotalPrice, clearCart } = usePublicCart();
@@ -14,6 +15,7 @@ const PublicCartIndicator = () => {
   const totalItems = getTotalItems();
 
   const handleGoToCheckout = () => {
+    trackBeginCheckout(getTotalPrice(), totalItems);
     navigate('/offertforfragan');
   };
 

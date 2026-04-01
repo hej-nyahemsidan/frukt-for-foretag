@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { trackExitIntentLead } from '@/lib/gtm';
 
 const STORAGE_KEY = 'exitIntentDismissed';
 const DISMISS_DAYS = 14;
@@ -70,6 +71,8 @@ const ExitIntentPopup: React.FC = () => {
       });
 
       if (error) throw error;
+
+      trackExitIntentLead();
 
       setSent(true);
       toast({

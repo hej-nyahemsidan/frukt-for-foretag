@@ -5,6 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { MapPin, Phone, Clock, MessageCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { trackContactSubmitted } from '@/lib/gtm';
 
 // Import images
 import officeWellnessImage from '@/assets/fruktkorg-halsa-kontor-stockholm.jpg';
@@ -45,6 +46,8 @@ const ContactSection = () => {
       });
 
       if (error) throw error;
+
+      trackContactSubmitted();
 
       toast({
         title: "Meddelande skickat!",

@@ -11,6 +11,7 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { usePublicCart } from '@/contexts/PublicCartContext';
 import { cn } from '@/lib/utils';
+import { trackQuoteSubmitted } from '@/lib/gtm';
 
 // Import images
 import officeWellnessImage from '@/assets/fruktkorg-halsa-kontor-stockholm.jpg';
@@ -75,6 +76,8 @@ const QuoteRequestSection = () => {
       });
 
       if (error) throw error;
+
+      trackQuoteSubmitted(getTotalPrice(), items.length);
 
       toast({
         title: "Beställning skickad!",

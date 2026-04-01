@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { usePublicCart } from '@/contexts/PublicCartContext';
 import { useToast } from '@/hooks/use-toast';
 import { useState } from 'react';
+import { trackAddToCart } from '@/lib/gtm';
 
 interface PublicAddToCartButtonProps {
   productId: string;
@@ -53,6 +54,8 @@ const PublicAddToCartButton = ({
       quantity: quantity,
       size: size,
     });
+
+    trackAddToCart(productName, price, quantity, selectedDay);
 
     toast({
       title: "Tillagt i varukorgen",
