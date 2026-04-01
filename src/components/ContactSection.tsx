@@ -47,6 +47,8 @@ const ContactSection = () => {
 
       if (error) throw error;
 
+      trackContactSubmitted();
+
       toast({
         title: "Meddelande skickat!",
         description: "Vi återkommer så snart som möjligt.",

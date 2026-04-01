@@ -72,6 +72,8 @@ const ExitIntentPopup: React.FC = () => {
 
       if (error) throw error;
 
+      trackExitIntentLead();
+
       setSent(true);
       toast({
         title: 'Tack!',
