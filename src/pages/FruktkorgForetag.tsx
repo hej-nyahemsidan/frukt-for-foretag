@@ -37,7 +37,7 @@ const FruktkorgForetag = () => {
                 Som ert fruktbud sköter vi allt – en enkel åtgärd som minskar sjukfrånvaro och ökar trivseln på arbetsplatsen.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/offertforfragan">
+                <Link to="/kontakt">
                   <Button size="lg" className="bg-yellow-400 hover:bg-yellow-500 text-green-900 font-bold text-lg px-8">
                     Beställ företagsfrukt
                   </Button>
@@ -151,7 +151,7 @@ const FruktkorgForetag = () => {
               Kostnadsfri provleverans. Fri leverans.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/offertforfragan">
+              <Link to="/kontakt">
                 <Button size="lg" className="bg-yellow-400 hover:bg-yellow-500 text-green-900 font-bold text-lg px-8">
                   Beställ provleverans
                 </Button>

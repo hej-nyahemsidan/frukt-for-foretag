@@ -103,7 +103,7 @@ const FruktkorgStockholm = () => {
                 Färsk, säsongsanpassad frukt direkt till ditt kontor – med gratis leverans varje vecka.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/offertforfragan">
+                <Link to="/kontakt">
                   <Button size="lg" className="bg-yellow-400 hover:bg-yellow-500 text-green-900 font-bold text-lg px-8">
                     Beställ gratis provkorg
                   </Button>
@@ -248,7 +248,7 @@ const FruktkorgStockholm = () => {
               ))}
             </div>
             <div className="text-center mt-10">
-              <Link to="/offertforfragan">
+              <Link to="/kontakt">
                 <Button size="lg" className="bg-green-700 hover:bg-green-800 text-white font-bold text-lg px-8">
                   Kom igång – beställ provkorg
                 </Button>
@@ -421,7 +421,7 @@ const FruktkorgStockholm = () => {
               Prova gratis och utan förpliktelser.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/offertforfragan">
+              <Link to="/kontakt">
                 <Button size="lg" className="bg-yellow-400 hover:bg-yellow-500 text-green-900 font-bold text-lg px-8">
                   Beställ gratis provkorg
                 </Button>

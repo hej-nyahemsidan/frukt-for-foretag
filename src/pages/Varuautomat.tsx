@@ -251,7 +251,7 @@ const Varuautomat = () => {
                 </Button>
               </Link>
               
-              <Link to="/offertforfragan">
+              <Link to="/kontakt">
                 <Button size="lg" variant="outline" className="border-2 border-white/80 text-white bg-white/10 backdrop-blur-sm hover:bg-white hover:text-blue-600 shadow-lg">
                   Begär offert
                 </Button>
