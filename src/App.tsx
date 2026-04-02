@@ -97,7 +97,7 @@ const App = () => (
                     <CustomerDashboard />
                   </ProtectedRoute>
                 } />
-                <Route path="/offertforfragan" element={<QuoteRequest />} />
+                <Route path="/offertforfragan" element={<Navigate to="/kontakt" replace />} />
                 <Route path="/integritetspolicy" element={<PrivacyPolicy />} />
                 <Route path="/cookiepolicy" element={<CookiePolicy />} />
                 <Route path="/villkor" element={<Terms />} />
