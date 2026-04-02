@@ -153,7 +153,7 @@ const BlogHome = () => {
                 <p className="font-semibold text-green-900">Fruktkorg Stockholm</p>
                 <p className="text-sm text-gray-600">Leverans i hela Stockholm</p>
               </Link>
-              <Link to="/offertforfragan" className="p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
+              <Link to="/kontakt" className="p-4 bg-green-50 rounded-xl hover:bg-green-100 transition-colors">
                 <p className="font-semibold text-green-900">Beställ provkorg</p>
                 <p className="text-sm text-gray-600">Gratis provleverans</p>
               </Link>

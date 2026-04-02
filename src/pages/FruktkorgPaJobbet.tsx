@@ -38,7 +38,7 @@ const FruktkorgPaJobbet = () => {
                 Ert fruktbud levererar handplockad, färsk frukt direkt till arbetsplatsen – varje vecka.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/offertforfragan">
+                <Link to="/kontakt">
                   <Button size="lg" className="bg-yellow-400 hover:bg-yellow-500 text-green-900 font-bold text-lg px-8">
                     Beställ gratis provkorg
                   </Button>
@@ -130,7 +130,7 @@ const FruktkorgPaJobbet = () => {
                     </div>
                   ))}
                 </div>
-                <Link to="/offertforfragan" className="inline-block mt-8">
+                <Link to="/kontakt" className="inline-block mt-8">
                   <Button className="bg-green-700 hover:bg-green-800 text-white font-bold px-8">
                     Kom igång <ArrowRight className="h-4 w-4 ml-2" />
                   </Button>
@@ -206,7 +206,7 @@ const FruktkorgPaJobbet = () => {
               Testa gratis – vi bjuder på den första fruktkorg på jobbet. Fri leverans.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/offertforfragan">
+              <Link to="/kontakt">
                 <Button size="lg" className="bg-yellow-400 hover:bg-yellow-500 text-green-900 font-bold text-lg px-8">
                   Beställ gratis provkorg
                 </Button>

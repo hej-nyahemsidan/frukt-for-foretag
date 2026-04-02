@@ -112,7 +112,7 @@ const BlogList = () => {
             <span className="text-gray-300">|</span>
             <Link to="/produkter" className="text-sm text-green-700 hover:underline">Se våra fruktkorgar</Link>
             <span className="text-gray-300">|</span>
-            <Link to="/offertforfragan" className="text-sm text-green-700 hover:underline">Beställ gratis provkorg</Link>
+            <Link to="/kontakt" className="text-sm text-green-700 hover:underline">Beställ gratis provkorg</Link>
           </div>
         </div>
       </main>

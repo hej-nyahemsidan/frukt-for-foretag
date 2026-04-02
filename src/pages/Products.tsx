@@ -337,7 +337,7 @@ const Products = () => {
                 </div>
                 
                 <Button 
-                  onClick={() => navigate('/offertforfragan')}
+                  onClick={() => navigate('/kontakt')}
                   size="lg"
                   className="w-full text-lg"
                 >
@@ -360,7 +360,7 @@ const Products = () => {
                 <span className="font-bold text-primary hidden sm:inline">{getTotalPrice()} kr</span>
               </div>
               <Button 
-                onClick={() => navigate('/offertforfragan')}
+                onClick={() => navigate('/kontakt')}
                 size="lg"
                 className="text-sm sm:text-base"
               >

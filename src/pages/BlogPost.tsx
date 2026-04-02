@@ -174,7 +174,7 @@ const BlogPost = () => {
                 <p className="text-gray-600 mb-4">Vi levererar färska fruktkorgar till kontor i hela Stockholm. Prova gratis!</p>
                 <div className="flex flex-wrap gap-3">
                   <Button asChild className="bg-green-700 hover:bg-green-800">
-                    <Link to="/offertforfragan">Beställ gratis provkorg</Link>
+                    <Link to="/kontakt">Beställ gratis provkorg</Link>
                   </Button>
                   <Button variant="outline" asChild>
                     <Link to="/produkter">Se alla fruktkorgar</Link>
