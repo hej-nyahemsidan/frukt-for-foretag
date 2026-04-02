@@ -16,7 +16,7 @@ const PublicCartIndicator = () => {
 
   const handleGoToCheckout = () => {
     trackBeginCheckout(getTotalPrice(), totalItems);
-    navigate('/offertforfragan');
+    navigate('/kontakt');
   };
 
   // Group items by day

@@ -97,7 +97,7 @@ const Header = () => {
     { label: 'Varuautomat', href: '/varuautomat', isExternal: false },
     { label: 'Om Oss', href: '/om-oss', isExternal: false },
     { label: 'Kontakt', href: '/kontakt', isExternal: false },
-    { label: 'Offertförfrågan', href: '/offertforfragan', isExternal: false },
+    { label: 'Offertförfrågan', href: '/kontakt', isExternal: false },
   ];
 
   const customerNavigationItems = [
