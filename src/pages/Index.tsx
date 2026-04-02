@@ -21,9 +21,9 @@ const Index = () => {
       <Header />
       <main className="space-y-0">
         <HeroSection />
+        <ProductShowcase />
         <CustomerReviewsSection />
         <FeaturesSection />
-        <ProductShowcase />
         <CustomerPortalSection />
         <FAQSection />
         <AreaLinksSection />
