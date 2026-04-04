@@ -250,6 +250,10 @@ const Products = () => {
             <SnacksTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
           </TabsContent>
 
+          <TabsContent value="annat" className="mt-6">
+            <AnnatTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
+          </TabsContent>
+
           <TabsContent value="gronsaker" className="mt-6">
             <GronsakerTab selectedDays={selectedDays} currentDay={currentDay} orderType="onetime" isPublicPage={true} />
           </TabsContent>
