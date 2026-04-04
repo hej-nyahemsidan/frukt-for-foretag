@@ -203,6 +203,12 @@ const Products = () => {
               Snacks
             </TabsTrigger>
             <TabsTrigger 
+              value="annat" 
+              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+            >
+              Skafferi
+            </TabsTrigger>
+            <TabsTrigger 
               value="gronsaker" 
               className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
             >
