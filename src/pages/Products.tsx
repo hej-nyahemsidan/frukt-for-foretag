@@ -18,6 +18,7 @@ import FrukostTab from '@/components/product-tabs/FrukostTab';
 import SnacksTab from '@/components/product-tabs/SnacksTab';
 import GronsakerTab from '@/components/product-tabs/GronsakerTab';
 import StadTab from '@/components/product-tabs/StadTab';
+import AnnatTab from '@/components/product-tabs/AnnatTab';
 
 const WEEKDAYS = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
 
