@@ -160,11 +160,75 @@ const BlogPost = () => {
             </header>
 
             <div className="prose prose-lg max-w-none">
-              {post.content.split('\n').map((paragraph, index) => (
-                <p key={index} className="mb-4 leading-relaxed">
-                  {renderContent(paragraph)}
-                </p>
-              ))}
+              {post.content.split('\n').map((line, index) => {
+                const trimmed = line.trim();
+                
+                // Skip empty lines
+                if (!trimmed) return null;
+                
+                // Skip H1 that duplicates the title
+                if (trimmed.startsWith('# ') && index < 3) return null;
+                
+                // H2
+                if (trimmed.startsWith('## ')) {
+                  return <h2 key={index} className="text-2xl font-bold mt-8 mb-4">{renderContent(trimmed.slice(3))}</h2>;
+                }
+                // H3
+                if (trimmed.startsWith('### ')) {
+                  return <h3 key={index} className="text-xl font-semibold mt-6 mb-3">{renderContent(trimmed.slice(4))}</h3>;
+                }
+                // Unordered list item
+                if (trimmed.startsWith('- ')) {
+                  return (
+                    <div key={index} className="flex gap-2 ml-4 mb-1">
+                      <span className="text-primary mt-1">•</span>
+                      <span className="leading-relaxed">{renderContent(trimmed.slice(2))}</span>
+                    </div>
+                  );
+                }
+                // Ordered list item
+                const orderedMatch = trimmed.match(/^(\d+)\.\s+(.*)$/);
+                if (orderedMatch) {
+                  return (
+                    <div key={index} className="flex gap-2 ml-4 mb-1">
+                      <span className="font-semibold text-primary min-w-[1.5rem]">{orderedMatch[1]}.</span>
+                      <span className="leading-relaxed">{renderContent(orderedMatch[2])}</span>
+                    </div>
+                  );
+                }
+                // Table header row
+                if (trimmed.startsWith('|') && trimmed.endsWith('|')) {
+                  // Skip separator rows like |---|---|---|
+                  if (/^\|[\s-|]+\|$/.test(trimmed)) return null;
+                  const cells = trimmed.split('|').filter(c => c.trim());
+                  // Check if next line is separator (header row)
+                  const nextLine = post.content.split('\n')[index + 1]?.trim();
+                  const isHeader = nextLine && /^\|[\s-|]+\|$/.test(nextLine);
+                  return (
+                    <div key={index} className={`grid gap-2 mb-1 ${cells.length === 3 ? 'grid-cols-3' : cells.length === 2 ? 'grid-cols-2' : 'grid-cols-4'}`}>
+                      {cells.map((cell, i) => (
+                        <span key={i} className={`px-2 py-1 text-sm ${isHeader ? 'font-bold bg-muted rounded' : ''}`}>
+                          {renderContent(cell.trim())}
+                        </span>
+                      ))}
+                    </div>
+                  );
+                }
+                // Horizontal rule
+                if (trimmed === '---') {
+                  return <hr key={index} className="my-8 border-border" />;
+                }
+                // Italic block (wrapped in single *)
+                if (trimmed.startsWith('*') && trimmed.endsWith('*') && !trimmed.startsWith('**')) {
+                  return <p key={index} className="mb-4 leading-relaxed italic text-muted-foreground">{renderContent(trimmed.slice(1, -1))}</p>;
+                }
+                // Regular paragraph
+                return (
+                  <p key={index} className="mb-4 leading-relaxed">
+                    {renderContent(trimmed)}
+                  </p>
+                );
+              })}
             </div>
 
             {/* Internal links back to main pages */}
