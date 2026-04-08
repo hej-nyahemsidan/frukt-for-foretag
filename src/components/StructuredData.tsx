@@ -325,8 +325,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
 
   const getStructuredData = () => {
     switch (type) {
-      case 'products':
-        return [baseOrganization, serviceSchema, faqSchema, ...productSchemas];
+        return [baseOrganization, serviceSchema, ...productSchemas];
 
       case 'contact':
         return [
