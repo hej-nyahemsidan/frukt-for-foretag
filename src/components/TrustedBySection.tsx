@@ -4,6 +4,7 @@ import isalesLogo from '@/assets/logos/isales.png';
 import riserankLogo from '@/assets/logos/riserank.png';
 import alfaluxLogo from '@/assets/logos/alfalux.png';
 import mecaLogo from '@/assets/logos/meca.png';
+import coffeumLogo from '@/assets/logos/coffeum.png';
 
 const clients = [
   { name: 'Mentimeter', logo: mentimeterLogo, url: 'https://www.mentimeter.com' },
@@ -12,6 +13,7 @@ const clients = [
   { name: 'RiseRank', logo: riserankLogo, url: 'https://www.riserank.com' },
   { name: 'Alfalux', logo: alfaluxLogo, url: 'https://alfalux.se' },
   { name: 'MECA', logo: mecaLogo, url: 'https://www.meca.se' },
+  { name: 'Coffeum', logo: coffeumLogo, url: 'https://www.coffeum.se' },
 ];
 
 const TrustedBySection = () => {
