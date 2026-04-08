@@ -81,7 +81,7 @@ const FruktkorgStockholm = () => {
         keywords="fruktkorg stockholm, fruktkorgar stockholm, fruktleverans stockholm, fruktbud stockholm, färsk frukt stockholm, fruktkorg leverans stockholm, beställa fruktkorg stockholm, frukt på jobbet stockholm, fruktbudet stockholm"
         type="products"
       />
-      {/* FAQ Structured Data */}
+      {/* FAQ Structured Data - using page-specific FAQ instead of generic one from StructuredData */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       
       <Header />
