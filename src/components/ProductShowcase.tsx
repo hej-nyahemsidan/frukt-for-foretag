@@ -100,7 +100,7 @@ const ProductShowcase = () => {
                 <div className="mb-5 relative overflow-hidden rounded-2xl">
                   <img
                     src={product.image_url}
-                    alt={`${product.name} - premium fruit basket from Fruktexperten`}
+                    alt={`${product.name} – fruktleverans till kontoret i Stockholm`}
                     className="w-full aspect-square object-cover bg-gradient-to-br from-[hsl(40_30%_96%)] to-[hsl(140_30%_95%)] transition-transform duration-500 group-hover:scale-105"
                     onError={(e) => {
                       e.currentTarget.src = '/assets/product-placeholder.jpg';
