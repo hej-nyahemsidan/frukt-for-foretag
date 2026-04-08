@@ -28,7 +28,7 @@ const TrustedBySection = () => {
               href={client.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              className="opacity-50 hover:opacity-100 transition-opacity duration-300"
             >
               <img
                 src={client.logo}
@@ -36,7 +36,7 @@ const TrustedBySection = () => {
                 loading="lazy"
                 width={512}
                 height={512}
-                className="h-10 md:h-12 w-auto object-contain"
+                className="h-12 md:h-16 w-auto object-contain"
               />
             </a>
           ))}
