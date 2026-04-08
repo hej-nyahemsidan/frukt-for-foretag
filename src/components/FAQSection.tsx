@@ -82,11 +82,23 @@ const FAQSection = () => {
                 Vi har svaret. Utforska våra vanliga frågor eller kontakta oss direkt.
               </p>
             </div>
-            <Link to="/kontakt">
-              <Button className="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                Kontakta Oss
-              </Button>
-            </Link>
+            <div className="flex flex-wrap gap-4">
+              <Link to="/kontakt">
+                <Button className="bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                  Kontakta Oss
+                </Button>
+              </Link>
+              <Link to="/produkter">
+                <Button variant="outline" className="px-10 py-4 rounded-full text-lg font-semibold border-2 border-green-600 text-green-700 hover:bg-green-50 transition-all duration-300">
+                  Se produkter
+                </Button>
+              </Link>
+            </div>
+            <div className="pt-4 flex flex-wrap gap-6 text-sm text-gray-500">
+              <span className="flex items-center gap-2">✅ 150+ nöjda företag</span>
+              <span className="flex items-center gap-2">✅ Sedan 2021</span>
+              <span className="flex items-center gap-2">✅ 5/5 på Google</span>
+            </div>
           </div>
 
           {/* Right Column - FAQ Items */}

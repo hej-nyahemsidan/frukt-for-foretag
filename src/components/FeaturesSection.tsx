@@ -10,32 +10,32 @@ const FeaturesSection = () => {
   const featureImages = [
     {
       src: qualityGuaranteeFeature,
-      alt: 'Högkvalitativa premium frukter med kvalitetsgaranti',
+      alt: 'Premium frukt med kvalitetsgaranti – fruktkorg till kontoret Stockholm',
       badge: '🏆 100% Kvalitetsgaranti'
     },
     {
       src: officeWorkersFruit,
-      alt: 'Kontorsanställda njuter av färska frukter',
+      alt: 'Medarbetare njuter av fruktkorg på jobbet i Stockholm',
       badge: '📅 Flexibla leveransalternativ'
     },
     {
       src: freeDeliveryFeature,
-      alt: 'Färsk frukt levererad till ditt kontor i Stockholm',
+      alt: 'Fri fruktleverans till kontor i Stockholm – fruktbud varje vecka',
       badge: '🚚 Fri leverans i Stockholm'
     },
     {
       src: seasonalFruits,
-      alt: 'Färska säsongsfrukter',
+      alt: 'Färska säsongsfrukter i fruktkorg för företag',
       badge: '🍎 Färska frukter dagligen'
     },
     {
       src: happyEmployees,
-      alt: 'Glada medarbetare på kontoret',
+      alt: 'Glada medarbetare med fruktkorgar på kontoret – frukt på jobbet',
       badge: '💪 Ökar produktiviteten'
     },
     {
       src: fruitTruck,
-      alt: 'Miljövänlig fruktleverans med lastbil',
+      alt: 'Hållbar fruktleverans Stockholm – fruktbud med miljövänlig transport',
       badge: '🌱 Hållbart & miljövänligt'
     }
   ];

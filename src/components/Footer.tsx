@@ -108,7 +108,13 @@ const Footer = () => {
             <span className="text-green-600">·</span>
             <Link to="/blogg" className="hover:text-yellow-400 transition-colors">Blogg</Link>
             <span className="text-green-600">·</span>
+            <Link to="/blogg/tips/fruktbud-stockholm-fruktkorg-till-foretag" className="hover:text-yellow-400 transition-colors">Fruktbud Stockholm</Link>
+            <span className="text-green-600">·</span>
             <Link to="/kontakt" className="hover:text-yellow-400 transition-colors">Offertförfrågan</Link>
+            <span className="text-green-600">·</span>
+            <Link to="/provkorg" className="hover:text-yellow-400 transition-colors">Gratis provkorg</Link>
+            <span className="text-green-600">·</span>
+            <Link to="/om-oss" className="hover:text-yellow-400 transition-colors">Om oss</Link>
           </div>
         </div>
 

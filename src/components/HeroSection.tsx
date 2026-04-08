@@ -6,6 +6,7 @@ const HeroSection = () => {
     <section 
       id="home" 
       className="hero-background relative overflow-hidden min-h-[60vh] sm:min-h-[70vh] flex items-center py-16 sm:py-20 pt-24 sm:pt-28 md:pt-32"
+      aria-label="Fruktkorg på jobbet Stockholm – Vitaminkorgen"
     >
       {/* Background Image Container with Proper Clipping */}
       <div 
