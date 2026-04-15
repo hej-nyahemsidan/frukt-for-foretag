@@ -20,6 +20,9 @@ interface PriceGuideLead {
   delivery_frequency: string;
   email: string;
   phone: string;
+  leftover_fruit: string | null;
+  delivery_time: string | null;
+  current_basket_name: string | null;
   created_at: string;
 }
 
@@ -124,7 +127,12 @@ const AdminLeadManagement = () => {
                       <span className="flex items-center gap-1"><Phone className="w-3 h-3" />{lead.phone}</span>
                       <span>{lead.employee_count} anst.</span>
                       <span>{lead.delivery_frequency}/vecka</span>
+                      {lead.delivery_time && <span>Lev: {lead.delivery_time}</span>}
+                      {lead.current_basket_name && <span>Korg: {lead.current_basket_name}</span>}
                     </div>
+                    {lead.leftover_fruit && (
+                      <p className="text-xs text-muted-foreground">Blir över: {lead.leftover_fruit}</p>
+                    )}
                     <p className="text-xs text-gray-400 flex items-center gap-1"><Clock className="w-3 h-3" />{formatDate(lead.created_at)}</p>
                   </div>
                   <Button variant="ghost" size="icon" onClick={() => deletePriceGuideLead(lead.id)} className="text-red-400 hover:text-red-600 flex-shrink-0">
