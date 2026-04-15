@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import PricelistPopup from '@/components/PricelistPopup';
 import fruitPlatter2 from '@/assets/fruktkorg-pa-jobbet-stockholm.jpg';
 
 const HeroSection = () => {
+  const [pricelistOpen, setPricelistOpen] = useState(false);
+
   return (
     <section 
       id="home" 
@@ -49,6 +53,14 @@ const HeroSection = () => {
                   <span>Beställ en gratis provkorg</span>
                 </a>
               </Button>
+              <Button 
+                variant="outline"
+                size="lg"
+                onClick={() => setPricelistOpen(true)}
+                className="px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg border-2 border-primary/30 text-primary hover:bg-primary/5"
+              >
+                📋 Hämta prislista
+              </Button>
               
             </div>
           </div>
@@ -60,6 +72,8 @@ const HeroSection = () => {
         <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-green-200/30 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl"></div>
       </div>
+
+      <PricelistPopup isOpen={pricelistOpen} onClose={() => setPricelistOpen(false)} />
     </section>
   );
 };
