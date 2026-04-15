@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, Users, ShoppingCart, BarChart3, Home, FileText, Store } from 'lucide-react';
+import { LogOut, Users, ShoppingCart, BarChart3, Home, FileText, Store, Inbox } from 'lucide-react';
 import { useAdminAuth } from '../contexts/AdminAuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
@@ -9,6 +9,7 @@ import AdminUserManagement from '../components/AdminUserManagement';
 import AdminProductManagement from '../components/AdminProductManagement';
 import AdminBlogManagement from '../components/AdminBlogManagement';
 import AdminResellerManagement from '../components/AdminResellerManagement';
+import AdminLeadManagement from '../components/AdminLeadManagement';
 import VitaminKorgenLogo from '../../components/VitaminKorgenLogo';
 
 const AdminDashboard = () => {
