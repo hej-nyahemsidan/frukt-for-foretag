@@ -206,28 +206,37 @@ export type Database = {
         Row: {
           company_name: string
           created_at: string
+          current_basket_name: string | null
           delivery_frequency: string
+          delivery_time: string | null
           email: string
           employee_count: string
           id: string
+          leftover_fruit: string | null
           phone: string
         }
         Insert: {
           company_name: string
           created_at?: string
+          current_basket_name?: string | null
           delivery_frequency: string
+          delivery_time?: string | null
           email: string
           employee_count: string
           id?: string
+          leftover_fruit?: string | null
           phone: string
         }
         Update: {
           company_name?: string
           created_at?: string
+          current_basket_name?: string | null
           delivery_frequency?: string
+          delivery_time?: string | null
           email?: string
           employee_count?: string
           id?: string
+          leftover_fruit?: string | null
           phone?: string
         }
         Relationships: []
