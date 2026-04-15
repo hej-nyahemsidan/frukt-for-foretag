@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, Users, ShoppingCart, BarChart3, Home, FileText, Store } from 'lucide-react';
+import { LogOut, Users, ShoppingCart, BarChart3, Home, FileText, Store, Inbox } from 'lucide-react';
 import { useAdminAuth } from '../contexts/AdminAuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
@@ -9,6 +9,7 @@ import AdminUserManagement from '../components/AdminUserManagement';
 import AdminProductManagement from '../components/AdminProductManagement';
 import AdminBlogManagement from '../components/AdminBlogManagement';
 import AdminResellerManagement from '../components/AdminResellerManagement';
+import AdminLeadManagement from '../components/AdminLeadManagement';
 import VitaminKorgenLogo from '../../components/VitaminKorgenLogo';
 
 const AdminDashboard = () => {
@@ -86,7 +87,7 @@ const AdminDashboard = () => {
       <main className="admin-main max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="admin-main-content px-4 py-6 sm:px-0">
           <Tabs defaultValue="users" className="w-full">
-            <TabsList className="grid w-full grid-cols-4 mb-4 sm:mb-6">
+            <TabsList className="grid w-full grid-cols-5 mb-4 sm:mb-6">
               <TabsTrigger value="users" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4 py-2 sm:py-3">
                 <Users className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span className="hidden xs:inline">Användare</span>
@@ -107,6 +108,11 @@ const AdminDashboard = () => {
                 <span className="hidden xs:inline">Blogg</span>
                 <span className="xs:hidden">Blog</span>
               </TabsTrigger>
+              <TabsTrigger value="leads" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4 py-2 sm:py-3">
+                <Inbox className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="hidden xs:inline">Leads</span>
+                <span className="xs:hidden">Lead</span>
+              </TabsTrigger>
             </TabsList>
             
             <TabsContent value="users" className="space-y-4">
@@ -123,6 +129,10 @@ const AdminDashboard = () => {
 
             <TabsContent value="blog" className="space-y-4">
               <AdminBlogManagement />
+            </TabsContent>
+
+            <TabsContent value="leads" className="space-y-4">
+              <AdminLeadManagement />
             </TabsContent>
           </Tabs>
         </div>
