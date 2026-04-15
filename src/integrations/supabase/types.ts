@@ -202,6 +202,36 @@ export type Database = {
           },
         ]
       }
+      price_guide_leads: {
+        Row: {
+          company_name: string
+          created_at: string
+          delivery_frequency: string
+          email: string
+          employee_count: string
+          id: string
+          phone: string
+        }
+        Insert: {
+          company_name: string
+          created_at?: string
+          delivery_frequency: string
+          email: string
+          employee_count: string
+          id?: string
+          phone: string
+        }
+        Update: {
+          company_name?: string
+          created_at?: string
+          delivery_frequency?: string
+          email?: string
+          employee_count?: string
+          id?: string
+          phone?: string
+        }
+        Relationships: []
+      }
       products: {
         Row: {
           category: string
