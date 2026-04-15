@@ -197,6 +197,8 @@ const LeadCaptureSection = () => {
                         <SelectContent>
                           <SelectItem value="1 gång">1 gång</SelectItem>
                           <SelectItem value="2 gånger">2 gånger</SelectItem>
+                          <SelectItem value="3 gånger">3 gånger</SelectItem>
+                          <SelectItem value="Mer än 3 gånger">Mer än 3 gånger</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
