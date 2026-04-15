@@ -1,29 +1,50 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { trackContactSubmitted } from '@/lib/gtm';
 import fruktKontorImg from '@/assets/frukt-pa-kontoret-tips.jpg';
 
+const LEFTOVER_OPTIONS = [
+  'Äpplen',
+  'Päron',
+  'Bananer',
+  'Apelsiner / Clementiner',
+  'Vindruvor',
+  'Kiwi',
+  'Annan frukt',
+  'Ingen frukt blir över',
+];
+
 const LeadCaptureSection = () => {
   const { toast } = useToast();
   const [showForm, setShowForm] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedLeftovers, setSelectedLeftovers] = useState<string[]>([]);
   const [formData, setFormData] = useState({
     companyName: '',
     employeeCount: '',
     deliveryFrequency: '',
+    deliveryTime: '',
+    currentBasketName: '',
     email: '',
     phone: '',
   });
 
+  const toggleLeftover = (item: string) => {
+    setSelectedLeftovers(prev =>
+      prev.includes(item) ? prev.filter(i => i !== item) : [...prev, item]
+    );
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.companyName || !formData.employeeCount || !formData.deliveryFrequency || !formData.email || !formData.phone) {
-      toast({ title: 'Fyll i alla fält', variant: 'destructive' });
+      toast({ title: 'Fyll i alla fält markerade med *', variant: 'destructive' });
       return;
     }
 
@@ -35,6 +56,9 @@ const LeadCaptureSection = () => {
         delivery_frequency: formData.deliveryFrequency,
         email: formData.email,
         phone: formData.phone,
+        leftover_fruit: selectedLeftovers.length > 0 ? selectedLeftovers.join(', ') : null,
+        delivery_time: formData.deliveryTime || null,
+        current_basket_name: formData.currentBasketName || null,
       });
 
       if (dbError) throw dbError;
@@ -45,7 +69,16 @@ const LeadCaptureSection = () => {
           name: formData.companyName,
           email: formData.email,
           phone: formData.phone,
-          message: `Företag: ${formData.companyName}\nAntal anställda: ${formData.employeeCount}\nLeverans/vecka: ${formData.deliveryFrequency}\nE-post: ${formData.email}\nTelefon: ${formData.phone}`,
+          message: [
+            `Företag: ${formData.companyName}`,
+            `Antal anställda: ${formData.employeeCount}`,
+            `Leverans/vecka: ${formData.deliveryFrequency}`,
+            `Leveranstid: ${formData.deliveryTime || 'Ej angett'}`,
+            `Nuvarande korg: ${formData.currentBasketName || 'Ej angett'}`,
+            `Frukt som blir över: ${selectedLeftovers.length > 0 ? selectedLeftovers.join(', ') : 'Ingen'}`,
+            `E-post: ${formData.email}`,
+            `Telefon: ${formData.phone}`,
+          ].join('\n'),
         },
       });
 
@@ -131,8 +164,9 @@ const LeadCaptureSection = () => {
                 <h3 className="text-xl font-bold text-foreground">Fyll i nedan så skickar vi tipsen</h3>
 
                 <div className="space-y-4">
+                  {/* Företagsnamn */}
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1 block">Företagsnamn</label>
+                    <label className="text-sm font-medium text-foreground mb-1 block">Företagsnamn *</label>
                     <Input
                       placeholder="Ert företag"
                       value={formData.companyName}
@@ -142,62 +176,103 @@ const LeadCaptureSection = () => {
                     />
                   </div>
 
-                  <div>
-                    <label className="text-sm font-medium text-foreground mb-1 block">Antal anställda</label>
-                    <Select
-                      value={formData.employeeCount}
-                      onValueChange={v => setFormData(p => ({ ...p, employeeCount: v }))}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Välj..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1-10">1–10</SelectItem>
-                        <SelectItem value="10-20">10–20</SelectItem>
-                        <SelectItem value="20-50">20–50</SelectItem>
-                        <SelectItem value="50+">50+</SelectItem>
-                      </SelectContent>
-                    </Select>
+                  {/* Antal anställda + Leverans per vecka — row */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-sm font-medium text-foreground mb-1 block">Antal anställda *</label>
+                      <Select value={formData.employeeCount} onValueChange={v => setFormData(p => ({ ...p, employeeCount: v }))}>
+                        <SelectTrigger><SelectValue placeholder="Välj..." /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1-10">1–10</SelectItem>
+                          <SelectItem value="10-20">10–20</SelectItem>
+                          <SelectItem value="20-50">20–50</SelectItem>
+                          <SelectItem value="50+">50+</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-foreground mb-1 block">Leverans/vecka *</label>
+                      <Select value={formData.deliveryFrequency} onValueChange={v => setFormData(p => ({ ...p, deliveryFrequency: v }))}>
+                        <SelectTrigger><SelectValue placeholder="Välj..." /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="1 gång">1 gång</SelectItem>
+                          <SelectItem value="2 gånger">2 gånger</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
 
+                  {/* Checkbox: Frukt som blir över */}
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1 block">Leverans per vecka</label>
-                    <Select
-                      value={formData.deliveryFrequency}
-                      onValueChange={v => setFormData(p => ({ ...p, deliveryFrequency: v }))}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Välj..." />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1 gång">1 gång</SelectItem>
-                        <SelectItem value="2 gånger">2 gånger</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <label className="text-sm font-medium text-foreground mb-2 block">
+                      Är det någon frukt som alltid blir över?
+                    </label>
+                    <div className="grid grid-cols-2 gap-2">
+                      {LEFTOVER_OPTIONS.map(item => (
+                        <label
+                          key={item}
+                          className="flex items-center gap-2 cursor-pointer text-sm text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                          <Checkbox
+                            checked={selectedLeftovers.includes(item)}
+                            onCheckedChange={() => toggleLeftover(item)}
+                          />
+                          {item}
+                        </label>
+                      ))}
+                    </div>
                   </div>
 
-                  <div>
-                    <label className="text-sm font-medium text-foreground mb-1 block">E-post</label>
-                    <Input
-                      type="email"
-                      placeholder="namn@foretag.se"
-                      value={formData.email}
-                      onChange={e => setFormData(p => ({ ...p, email: e.target.value }))}
-                      required
-                      maxLength={255}
-                    />
+                  {/* Leveranstid + Korgnamn — row */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-sm font-medium text-foreground mb-1 block">Leveranstid ungefär?</label>
+                      <Select value={formData.deliveryTime} onValueChange={v => setFormData(p => ({ ...p, deliveryTime: v }))}>
+                        <SelectTrigger><SelectValue placeholder="Välj..." /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="Före 08:00">Före 08:00</SelectItem>
+                          <SelectItem value="08:00-10:00">08:00–10:00</SelectItem>
+                          <SelectItem value="10:00-12:00">10:00–12:00</SelectItem>
+                          <SelectItem value="12:00-15:00">12:00–15:00</SelectItem>
+                          <SelectItem value="Vet ej">Vet ej</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-foreground mb-1 block">Vad heter er korg?</label>
+                      <Input
+                        placeholder="T.ex. Mellankorg"
+                        value={formData.currentBasketName}
+                        onChange={e => setFormData(p => ({ ...p, currentBasketName: e.target.value }))}
+                        maxLength={100}
+                      />
+                    </div>
                   </div>
 
-                  <div>
-                    <label className="text-sm font-medium text-foreground mb-1 block">Telefonnummer</label>
-                    <Input
-                      type="tel"
-                      placeholder="070-123 45 67"
-                      value={formData.phone}
-                      onChange={e => setFormData(p => ({ ...p, phone: e.target.value }))}
-                      required
-                      maxLength={20}
-                    />
+                  {/* E-post + Telefon — row */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-sm font-medium text-foreground mb-1 block">E-post *</label>
+                      <Input
+                        type="email"
+                        placeholder="namn@foretag.se"
+                        value={formData.email}
+                        onChange={e => setFormData(p => ({ ...p, email: e.target.value }))}
+                        required
+                        maxLength={255}
+                      />
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-foreground mb-1 block">Telefon *</label>
+                      <Input
+                        type="tel"
+                        placeholder="070-123 45 67"
+                        value={formData.phone}
+                        onChange={e => setFormData(p => ({ ...p, phone: e.target.value }))}
+                        required
+                        maxLength={20}
+                      />
+                    </div>
                   </div>
                 </div>
 
