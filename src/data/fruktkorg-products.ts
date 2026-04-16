@@ -101,8 +101,8 @@ export const fruktkorgProducts: FruktkorgProduct[] = [
     sizes: [
       { kg: '4kg', price: 282 },
       { kg: '6kg', price: 392 },
-      { kg: '8kg', price: 496 },
-      { kg: '10kg', price: 580 },
+      { kg: '9kg', price: 496 },
+      { kg: '11kg', price: 580 },
     ],
     image: 'fruktkorg-sicilien',
     seoTitle: 'Fruktkorg Sicilien – Medelhavsfrukt till kontoret | Vitaminkorgen',
