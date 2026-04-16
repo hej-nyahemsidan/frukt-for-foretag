@@ -51,8 +51,6 @@ const AdminBlogManagement = () => {
   }, []);
 
   const fetchPosts = async () => {
-    console.log('Fetching blog posts...');
-    console.log('Current user email:', user?.email);
     
     setLoading(true);
     try {
@@ -69,7 +67,6 @@ const AdminBlogManagement = () => {
           variant: 'destructive',
         });
       } else {
-        console.log('Fetched blog posts:', data);
         setPosts((data || []) as BlogPost[]);
       }
     } catch (error) {
