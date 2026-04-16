@@ -102,7 +102,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
                 <img
                   src={resolvedImage}
                   alt={product.name}
-                  className="w-full h-full object-contain"
+                  className={`w-full h-full object-contain ${product.name === 'Fruktkorg Sicilien' ? 'scale-75' : ''}`}
                   onError={(e) => {
                     e.currentTarget.src = '/assets/product-placeholder.jpg';
                   }}
