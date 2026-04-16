@@ -4,7 +4,7 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import AddToCartButton from '@/components/AddToCartButton';
 import PublicAddToCartButton from '@/components/PublicAddToCartButton';
-import { Info, Banana } from 'lucide-react';
+import { Info, Banana, Grape } from 'lucide-react';
 import fruktkorgSicilien from '@/assets/fruktkorg-sicilien.jpg';
 
 interface FruktkorgarTabProps {
