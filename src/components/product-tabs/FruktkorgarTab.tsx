@@ -4,7 +4,7 @@ import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import AddToCartButton from '@/components/AddToCartButton';
 import PublicAddToCartButton from '@/components/PublicAddToCartButton';
-import { Info, Banana, Grape } from 'lucide-react';
+import { Info, Banana, Grape, Crown } from 'lucide-react';
 import fruktkorgSicilien from '@/assets/fruktkorg-sicilien.jpg';
 
 interface FruktkorgarTabProps {
@@ -108,6 +108,12 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
                 <div className="absolute top-2 right-2 z-30 bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md flex items-center gap-1">
                   <Grape className="w-3 h-3" />
                   <span>Fina druvor!</span>
+                </div>
+              )}
+              {product.name.toLowerCase().includes('premium') && (
+                <div className="absolute top-2 right-2 z-30 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md flex items-center gap-1">
+                  <Crown className="w-3 h-3" />
+                  <span>Deluxe!</span>
                 </div>
               )}
               <div className="relative aspect-square bg-white overflow-hidden rounded-lg">
