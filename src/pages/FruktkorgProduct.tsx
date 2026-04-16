@@ -8,7 +8,7 @@ import { getFruktkorgBySlug, fruktkorgProducts } from '@/data/fruktkorg-products
 import fruktkorgOriginal from '@/assets/fruktkorg-standard-new.jpg';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.jpg';
 import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
-import fruktkorgSicilien from '@/assets/fruktkorg-sicilien.png';
+import fruktkorgSicilien from '@/assets/fruktkorg-sicilien.jpg';
 
 const imageMap: Record<string, string> = {
   'fruktkorg-standard-new': fruktkorgOriginal,
