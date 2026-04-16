@@ -85,6 +85,30 @@ export const fruktkorgProducts: FruktkorgProduct[] = [
     seoDescription: 'Fruktkorg Banan ✓ Bananer och kompletterande frukter levererade till kontoret. Från 199 kr/vecka. Fri leverans. Beställ gratis provkorg!',
     seoKeywords: 'fruktkorg banan, banankorgar kontor, fruktkorgar bananer, fruktkorg billig, fruktleverans banan',
   },
+  {
+    slug: 'fruktkorg-sicilien',
+    name: 'Fruktkorg Sicilien',
+    tagline: 'Medelhavsinspirerad fruktkorg med exotiska smaker',
+    description: 'Fruktkorg Sicilien är inspirerad av Medelhavets soliga smaker. Korgen innehåller handplockade citrusfrukter, passionsfrukt, vindruvor och andra exotiska favoriter som tar kontoret på en smakresa. Perfekt för arbetsplatser som vill erbjuda något utöver det vanliga.',
+    features: [
+      'Medelhavsinspirerat urval med citrus och exotiskt',
+      'Passionsfrukt, clementiner och vindruvor',
+      'Extra noga utvald kvalitet',
+      'Fri leverans varje vecka',
+      'Flexibla leveransdagar',
+      'Kostnadsfri provkorg för nya kunder',
+    ],
+    sizes: [
+      { kg: '4kg', price: 282 },
+      { kg: '6kg', price: 392 },
+      { kg: '8kg', price: 496 },
+      { kg: '10kg', price: 580 },
+    ],
+    image: 'fruktkorg-sicilien',
+    seoTitle: 'Fruktkorg Sicilien – Medelhavsfrukt till kontoret | Vitaminkorgen',
+    seoDescription: 'Fruktkorg Sicilien ✓ Medelhavsinspirerade frukter levererade till kontoret. Från 282 kr/vecka. Fri leverans. Beställ gratis provkorg!',
+    seoKeywords: 'fruktkorg sicilien, medelhavsfruktkorg, exotisk fruktkorg kontor, fruktkorg företag, fruktleverans kontor',
+  },
 ];
 
 export const getFruktkorgBySlug = (slug: string): FruktkorgProduct | undefined => {
