@@ -83,7 +83,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {fruktkorgar.map((product) => {
-          const sizes = ['4kg', '6kg', '9kg', '11kg'];
+          const sizes = Object.keys(product.prices).filter(k => product.prices[k] > 0);
           const currentSize = selectedSizes[product.id] || '4kg';
           const originalPrice = product.prices[currentSize] || 0;
           const discountedPrice = Math.round(originalPrice * 0.92);
@@ -222,7 +222,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
                 <div className="pt-2 border-t">
                   <h4 className="font-semibold text-foreground mb-2">Alla storlekar:</h4>
                   <div className="grid grid-cols-2 gap-2">
-                    {['4kg', '6kg', '9kg', '11kg'].map(size => {
+                    {Object.keys(selectedProduct?.prices || {}).filter(k => (selectedProduct?.prices[k] || 0) > 0).map(size => {
                       const orig = selectedProduct?.prices[size] || 0;
                       const disc = Math.round(orig * 0.92);
                       return (
