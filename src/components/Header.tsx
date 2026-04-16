@@ -82,7 +82,7 @@ const Header = () => {
     { label: 'Fruktkorgar', tab: 'fruktkorgar' },
     { label: 'Fruktpåsar', tab: 'fruktpasar' },
     { label: 'Mejeri', tab: 'mejeri' },
-    { label: 'Kaffe & Te', tab: 'kaffete' },
+    { label: 'Kaffe & Te', tab: 'kaffe' },
     { label: 'Läsk & Dryck', tab: 'lask' },
     { label: 'Frukost & Mellanmål', tab: 'frukost' },
     { label: 'Snacks', tab: 'snacks' },
