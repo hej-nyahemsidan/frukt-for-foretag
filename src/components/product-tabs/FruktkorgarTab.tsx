@@ -122,7 +122,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
                   <span>Bäst för alla!</span>
                 </div>
               )}
-              {product.name.toLowerCase().includes('bas') && (
+              {product.name === 'Fruktkorg Bas' && (
                 <div className="absolute top-2 right-2 z-30 bg-emerald-400 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md flex items-center gap-1">
                   <Leaf className="w-3 h-3" />
                   <span>Enkel & fresh!</span>
