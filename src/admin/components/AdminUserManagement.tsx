@@ -73,9 +73,6 @@ const AdminUserManagement = () => {
         company_name: customerMap.get(profile.id) || null
       })) || [];
       
-      console.log('Fetched profiles:', transformedProfiles?.length || 0);
-      console.log('Profiles:', transformedProfiles?.map(p => p.email) || []);
-
       setProfiles(transformedProfiles);
       setFilteredProfiles(transformedProfiles);
       
