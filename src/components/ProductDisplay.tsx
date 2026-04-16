@@ -65,7 +65,7 @@ const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays, curre
               Mejeri
             </TabsTrigger>
             <TabsTrigger 
-              value="kaffe-te" 
+              value="kaffe" 
               className="rounded-none border-b-2 border-transparent data-[state=active]:bg-[#4CAF50] data-[state=active]:text-white hover:bg-gray-100 px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm whitespace-nowrap"
             >
               Kaffe/Te
