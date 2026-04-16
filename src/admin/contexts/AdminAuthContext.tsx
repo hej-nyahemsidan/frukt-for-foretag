@@ -37,7 +37,7 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         .eq('role', 'admin')
         .maybeSingle();
       if (error) {
-        console.warn('Admin role check error:', error);
+        // Admin role check failed silently
       }
       setIsAdmin(!!data && data.role === 'admin');
     } catch (e) {
