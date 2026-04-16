@@ -1,0 +1,1 @@
+UPDATE products SET image_url = '/assets/fruktkorg-sicilien.jpg' WHERE name = 'Fruktkorg Sicilien';
