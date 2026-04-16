@@ -120,7 +120,7 @@ const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays, curre
             <MejeriTab selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} />
           </TabsContent>
           
-          <TabsContent value="kaffe-te" className="mt-0">
+          <TabsContent value="kaffe" className="mt-0">
             <KaffeTeTab selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} />
           </TabsContent>
           
