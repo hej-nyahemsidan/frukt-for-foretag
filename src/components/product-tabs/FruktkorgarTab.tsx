@@ -98,6 +98,12 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
               <div className="absolute top-2 left-2 z-30 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
                 -8%
               </div>
+              {product.name === 'Fruktkorg Banan' && (
+                <div className="absolute top-2 right-2 z-30 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full shadow-md flex items-center gap-1">
+                  <Banana className="w-3 h-3" />
+                  <span>Extra banan!</span>
+                </div>
+              )}
               <div className="relative aspect-square bg-white overflow-hidden rounded-lg">
                 <img
                   src={resolvedImage}
