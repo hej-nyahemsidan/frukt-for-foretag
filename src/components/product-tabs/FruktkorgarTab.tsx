@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import AddToCartButton from '@/components/AddToCartButton';
 import PublicAddToCartButton from '@/components/PublicAddToCartButton';
-import { ShoppingCart, Info } from 'lucide-react';
+import { Info } from 'lucide-react';
+import fruktkorgSicilien from '@/assets/fruktkorg-sicilien.jpg';
 
 interface FruktkorgarTabProps {
   selectedDays: string[];
@@ -21,6 +22,12 @@ interface Product {
   prices: Record<string, number>;
   description?: string;
 }
+
+const getProductImage = (product: Product | null | undefined) => {
+  if (!product) return '/assets/product-placeholder.jpg';
+  if (product.name === 'Fruktkorg Sicilien') return fruktkorgSicilien;
+  return product.image_url;
+};
 
 const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDay, orderType, isPublicPage = false }) => {
   const [fruktkorgar, setFruktkorgar] = useState<Product[]>([]);
@@ -42,15 +49,13 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
 
       if (error) throw error;
 
-      // Type assertion to handle Json type from Supabase
       const typedProducts: Product[] = (data || []).map(product => ({
         ...product,
         prices: product.prices as Record<string, number>
       }));
 
       setFruktkorgar(typedProducts);
-      
-      // Initialize selected sizes for all products
+
       const initialSizes: Record<string, string> = {};
       typedProducts.forEach(product => {
         initialSizes[product.id] = '4kg';
@@ -73,7 +78,6 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
 
   return (
     <>
-      {/* April campaign banner */}
       <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-center">
         <span className="text-red-600 font-semibold text-sm">🎉 Aprilerbjudande – 8% rabatt på alla fruktkorgar!</span>
       </div>
@@ -83,20 +87,20 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
           const currentSize = selectedSizes[product.id] || '4kg';
           const originalPrice = product.prices[currentSize] || 0;
           const discountedPrice = Math.round(originalPrice * 0.92);
-          
+          const resolvedImage = getProductImage(product);
+
           return (
-            <div 
-              key={product.id} 
+            <div
+              key={product.id}
               className="group relative bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedProduct(product)}
             >
-              {/* Discount badge */}
               <div className="absolute top-2 left-2 z-30 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
                 -8%
               </div>
               <div className="relative aspect-square bg-white overflow-hidden rounded-lg">
-                <img 
-                  src={product.image_url}
+                <img
+                  src={resolvedImage}
                   alt={product.name}
                   className="w-full h-full object-contain"
                   onError={(e) => {
@@ -111,11 +115,11 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
                 <h3 className="font-bold text-charcoal text-sm text-center line-clamp-2">
                   {product.name}
                 </h3>
-                
+
                 <div className="space-y-3 p-3 bg-white rounded border border-gray-200" onClick={(e) => e.stopPropagation()}>
                   <div className="flex items-center justify-between gap-2">
-                    <Select 
-                      value={currentSize} 
+                    <Select
+                      value={currentSize}
                       onValueChange={(value) => setSelectedSizes(prev => ({ ...prev, [product.id]: value }))}
                     >
                       <SelectTrigger className="w-24">
@@ -134,40 +138,40 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
                       <span className="text-lg font-bold text-red-600">{discountedPrice} kr</span>
                     </div>
                   </div>
-                  
+
                   {isPublicPage ? (
                     <PublicAddToCartButton
                       productId={product.id}
                       productName={`${product.name} (${currentSize})`}
                       price={discountedPrice}
                       category={product.category}
-                      image={product.image_url}
+                      image={resolvedImage}
                       selectedDay={currentDay}
                       size={currentSize}
                       className="w-full"
                     />
                   ) : (
-                  <AddToCartButton
-                    product={{
-                      id: product.id,
-                      name: `${product.name} (${currentSize})`,
-                      price: discountedPrice,
-                      category: product.category,
-                      image: product.image_url
-                    }}
-                    size={currentSize}
-                    selectedDays={selectedDays}
-                    currentDay={currentDay}
-                    orderType={orderType}
-                    className="w-full"
-                  />
+                    <AddToCartButton
+                      product={{
+                        id: product.id,
+                        name: `${product.name} (${currentSize})`,
+                        price: discountedPrice,
+                        category: product.category,
+                        image: resolvedImage
+                      }}
+                      size={currentSize}
+                      selectedDays={selectedDays}
+                      currentDay={currentDay}
+                      orderType={orderType}
+                      className="w-full"
+                    />
                   )}
                 </div>
               </div>
             </div>
           );
         })}
-        
+
         {fruktkorgar.length === 0 && !loading && (
           <div className="col-span-3 text-center py-8">
             <p className="text-gray-500">Inga fruktkorgar hittades.</p>
@@ -178,12 +182,15 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
       <Dialog open={!!selectedProduct} onOpenChange={() => setSelectedProduct(null)}>
         <DialogContent className="sm:max-w-3xl">
           <div className="flex flex-col sm:flex-row gap-6">
-            {selectedProduct?.image_url && (
+            {selectedProduct && (
               <div className="flex-shrink-0 w-full sm:w-2/5 bg-lightgray rounded-lg p-4">
-                <img 
-                  src={selectedProduct.image_url} 
+                <img
+                  src={getProductImage(selectedProduct)}
                   alt={selectedProduct.name}
                   className="w-full h-full object-contain rounded-lg"
+                  onError={(e) => {
+                    e.currentTarget.src = '/assets/product-placeholder.jpg';
+                  }}
                 />
               </div>
             )}
@@ -194,13 +201,13 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
                   {selectedProduct?.name}
                 </h2>
               </div>
-              
+
               {selectedProduct?.description && (
                 <p className="text-base text-muted-foreground leading-relaxed">
                   {selectedProduct.description}
                 </p>
               )}
-              
+
               <div className="space-y-3 pt-2">
                 <div className="flex items-baseline gap-3">
                   <span className="text-lg text-gray-400 line-through">
@@ -211,7 +218,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
                   </span>
                   <span className="text-xs bg-red-100 text-red-600 font-semibold px-2 py-0.5 rounded-full">-8%</span>
                 </div>
-                
+
                 <div className="pt-2 border-t">
                   <h4 className="font-semibold text-foreground mb-2">Alla storlekar:</h4>
                   <div className="grid grid-cols-2 gap-2">
