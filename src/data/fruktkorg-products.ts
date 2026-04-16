@@ -88,12 +88,12 @@ export const fruktkorgProducts: FruktkorgProduct[] = [
   {
     slug: 'fruktkorg-sicilien',
     name: 'Fruktkorg Sicilien',
-    tagline: 'Medelhavsinspirerad fruktkorg med exotiska smaker',
-    description: 'Fruktkorg Sicilien är inspirerad av Medelhavets soliga smaker. Korgen innehåller handplockade citrusfrukter, passionsfrukt, vindruvor och andra exotiska favoriter som tar kontoret på en smakresa. Perfekt för arbetsplatser som vill erbjuda något utöver det vanliga.',
+    tagline: 'Medelhavsinspirerad fruktkorg med säsongens exotiska frukter',
+    description: 'Fruktkorg Sicilien är det perfekta valet för kontor som vill ha mer variation och mindre av de vanliga äpplena. Korgen innehåller handplockade premiumfrukter med extra fokus på säsongens bästa – citrusfrukter, passionsfrukt, vindruvor och andra exotiska favoriter. Inspirerad av Medelhavets soliga smaker och perfekt för arbetsplatser som vill erbjuda något utöver det vanliga.',
     features: [
-      'Medelhavsinspirerat urval med citrus och exotiskt',
-      'Passionsfrukt, clementiner och vindruvor',
-      'Extra noga utvald kvalitet',
+      'Exotiska och lokala premiumfrukter',
+      'Extra fokus på säsongsfrukter och variation',
+      'Mindre äpplen – mer exotiskt och spännande',
       'Fri leverans varje vecka',
       'Flexibla leveransdagar',
       'Kostnadsfri provkorg för nya kunder',
@@ -106,7 +106,7 @@ export const fruktkorgProducts: FruktkorgProduct[] = [
     ],
     image: 'fruktkorg-sicilien',
     seoTitle: 'Fruktkorg Sicilien – Medelhavsfrukt till kontoret | Vitaminkorgen',
-    seoDescription: 'Fruktkorg Sicilien ✓ Medelhavsinspirerade frukter levererade till kontoret. Från 282 kr/vecka. Fri leverans. Beställ gratis provkorg!',
+    seoDescription: 'Fruktkorg Sicilien ✓ Medelhavsinspirerade premiumfrukter med extra säsongsvariation. Från 282 kr/vecka. Fri leverans. Beställ gratis provkorg!',
     seoKeywords: 'fruktkorg sicilien, medelhavsfruktkorg, exotisk fruktkorg kontor, fruktkorg företag, fruktleverans kontor',
   },
 ];
