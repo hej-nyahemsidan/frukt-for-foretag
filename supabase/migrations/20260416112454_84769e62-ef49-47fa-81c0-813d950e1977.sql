@@ -1,0 +1,1 @@
+UPDATE products SET prices = '{"4kg": 282, "6kg": 392, "9kg": 496, "11kg": 580}'::jsonb WHERE id = '8a44f9a7-17e9-4120-9168-0c49a76cbbb3';
