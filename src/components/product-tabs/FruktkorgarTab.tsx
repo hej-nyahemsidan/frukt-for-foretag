@@ -104,6 +104,12 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
                   <span>Extra banan!</span>
                 </div>
               )}
+              {product.name.toLowerCase().includes('supreme') && (
+                <div className="absolute top-2 right-2 z-30 bg-purple-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md flex items-center gap-1">
+                  <Grape className="w-3 h-3" />
+                  <span>Fina druvor!</span>
+                </div>
+              )}
               <div className="relative aspect-square bg-white overflow-hidden rounded-lg">
                 <img
                   src={resolvedImage}
