@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { Loader2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { sv } from 'date-fns/locale';
@@ -65,6 +66,12 @@ const BlogList = () => {
       
       <main className="flex-1 container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
+          <Breadcrumbs
+            items={[
+              { label: 'Blogg', href: '/blogg' },
+              { label: categoryTitle },
+            ]}
+          />
           <div className="mb-12">
             <h1 className="text-4xl font-bold mb-4">{categoryTitle}</h1>
             <p className="text-xl text-muted-foreground">{categoryDescription}</p>
