@@ -300,6 +300,43 @@ const BlogPost = () => {
 
             {/* Internal links back to main pages */}
             <footer className="mt-12 pt-8 border-t space-y-6">
+              {related.length > 0 && (
+                <section aria-labelledby="related-heading">
+                  <h2 id="related-heading" className="text-2xl font-bold mb-4">
+                    Relaterade artiklar
+                  </h2>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    {related.map((rp) => (
+                      <Link
+                        key={rp.id}
+                        to={`/blogg/${rp.category}/${rp.slug}`}
+                        className="block"
+                      >
+                        <Card className="h-full hover:shadow-lg transition-shadow">
+                          <CardHeader>
+                            <CardTitle className="text-base line-clamp-2">
+                              {rp.title}
+                            </CardTitle>
+                            <CardDescription className="text-xs">
+                              {rp.author}
+                              {rp.published_at &&
+                                ` • ${format(new Date(rp.published_at), "dd MMM yyyy", { locale: sv })}`}
+                            </CardDescription>
+                          </CardHeader>
+                          {rp.excerpt && (
+                            <CardContent>
+                              <p className="text-sm text-muted-foreground line-clamp-3">
+                                {rp.excerpt}
+                              </p>
+                            </CardContent>
+                          )}
+                        </Card>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
+
               <div className="bg-green-50 rounded-xl p-6">
                 <h2 className="text-lg font-bold text-green-900 mb-3">Vill du testa fruktkorgar på jobbet?</h2>
                 <p className="text-gray-600 mb-4">Vi levererar färska fruktkorgar till kontor i hela Stockholm. Prova gratis!</p>
