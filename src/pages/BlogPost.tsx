@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { Loader2, ArrowLeft } from 'lucide-react';
 import { format } from 'date-fns';
 import { sv } from 'date-fns/locale';
@@ -22,9 +24,20 @@ interface BlogPostType {
   created_at?: string | null;
 }
 
+interface RelatedPost {
+  id: string;
+  title: string;
+  slug: string;
+  category: string;
+  excerpt: string | null;
+  author: string;
+  published_at: string | null;
+}
+
 const BlogPost = () => {
   const { category, slug } = useParams<{ category: string; slug: string }>();
   const [post, setPost] = useState<BlogPostType | null>(null);
+  const [related, setRelated] = useState<RelatedPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
@@ -48,6 +61,17 @@ const BlogPost = () => {
       }
 
       setPost(data);
+
+      // Fetch related posts in same category (exclude current)
+      const { data: relatedData } = await supabase
+        .from('blog_posts')
+        .select('id, title, slug, category, excerpt, author, published_at')
+        .eq('category', category)
+        .eq('published', true)
+        .neq('slug', slug)
+        .order('published_at', { ascending: false })
+        .limit(3);
+      setRelated(relatedData || []);
     } catch (error) {
       console.error('Error fetching post:', error);
       setNotFound(true);
@@ -57,6 +81,39 @@ const BlogPost = () => {
   };
 
   const displayDate = post?.published_at || post?.created_at || null;
+
+  // Article (BlogPosting) JSON-LD schema for SEO + E-E-A-T
+  const articleSchema = post
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: post.title,
+        description: post.excerpt || post.title,
+        image: post.image_url
+          ? [post.image_url]
+          : ["https://vitaminkorgen.se/opengraph-image.png"],
+        datePublished: displayDate,
+        dateModified: displayDate,
+        author: {
+          "@type": "Person",
+          name: post.author,
+          url: "https://vitaminkorgen.se/om-oss",
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "Vitaminkorgen AB",
+          logo: {
+            "@type": "ImageObject",
+            url: "https://vitaminkorgen.se/fruktexperten-logo.png",
+          },
+        },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": `https://vitaminkorgen.se/blogg/${post.category}/${post.slug}`,
+        },
+        articleSection: post.category === "tips" ? "Tips" : "Recept",
+      }
+    : null;
 
   // Function to render text with bold markdown and links
   const renderContent = (text: string) => {
@@ -117,6 +174,12 @@ const BlogPost = () => {
           description="Läs tips och recept om frukt på jobbet."
         />
       )}
+      {articleSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
+      )}
       <Header />
       
       <main className="flex-1 container mx-auto px-4 py-12">
@@ -139,12 +202,16 @@ const BlogPost = () => {
           </div>
         ) : (
           <article className="max-w-4xl mx-auto">
-            <Button variant="ghost" asChild className="mb-6">
-              <Link to="/blogg">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Tillbaka till bloggen
-              </Link>
-            </Button>
+            <Breadcrumbs
+              items={[
+                { label: "Blogg", href: "/blogg" },
+                {
+                  label: post.category === "tips" ? "Tips" : "Recept",
+                  href: `/blogg/${post.category}`,
+                },
+                { label: post.title },
+              ]}
+            />
 
             <header className="mb-8">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">{post.title}</h1>
@@ -233,6 +300,43 @@ const BlogPost = () => {
 
             {/* Internal links back to main pages */}
             <footer className="mt-12 pt-8 border-t space-y-6">
+              {related.length > 0 && (
+                <section aria-labelledby="related-heading">
+                  <h2 id="related-heading" className="text-2xl font-bold mb-4">
+                    Relaterade artiklar
+                  </h2>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    {related.map((rp) => (
+                      <Link
+                        key={rp.id}
+                        to={`/blogg/${rp.category}/${rp.slug}`}
+                        className="block"
+                      >
+                        <Card className="h-full hover:shadow-lg transition-shadow">
+                          <CardHeader>
+                            <CardTitle className="text-base line-clamp-2">
+                              {rp.title}
+                            </CardTitle>
+                            <CardDescription className="text-xs">
+                              {rp.author}
+                              {rp.published_at &&
+                                ` • ${format(new Date(rp.published_at), "dd MMM yyyy", { locale: sv })}`}
+                            </CardDescription>
+                          </CardHeader>
+                          {rp.excerpt && (
+                            <CardContent>
+                              <p className="text-sm text-muted-foreground line-clamp-3">
+                                {rp.excerpt}
+                              </p>
+                            </CardContent>
+                          )}
+                        </Card>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
+
               <div className="bg-green-50 rounded-xl p-6">
                 <h2 className="text-lg font-bold text-green-900 mb-3">Vill du testa fruktkorgar på jobbet?</h2>
                 <p className="text-gray-600 mb-4">Vi levererar färska fruktkorgar till kontor i hela Stockholm. Prova gratis!</p>
