@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import { Loader2, ArrowLeft } from 'lucide-react';
 import { format } from 'date-fns';
 import { sv } from 'date-fns/locale';
@@ -22,9 +24,20 @@ interface BlogPostType {
   created_at?: string | null;
 }
 
+interface RelatedPost {
+  id: string;
+  title: string;
+  slug: string;
+  category: string;
+  excerpt: string | null;
+  author: string;
+  published_at: string | null;
+}
+
 const BlogPost = () => {
   const { category, slug } = useParams<{ category: string; slug: string }>();
   const [post, setPost] = useState<BlogPostType | null>(null);
+  const [related, setRelated] = useState<RelatedPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
@@ -48,6 +61,17 @@ const BlogPost = () => {
       }
 
       setPost(data);
+
+      // Fetch related posts in same category (exclude current)
+      const { data: relatedData } = await supabase
+        .from('blog_posts')
+        .select('id, title, slug, category, excerpt, author, published_at')
+        .eq('category', category)
+        .eq('published', true)
+        .neq('slug', slug)
+        .order('published_at', { ascending: false })
+        .limit(3);
+      setRelated(relatedData || []);
     } catch (error) {
       console.error('Error fetching post:', error);
       setNotFound(true);
