@@ -174,6 +174,12 @@ const BlogPost = () => {
           description="Läs tips och recept om frukt på jobbet."
         />
       )}
+      {articleSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
+      )}
       <Header />
       
       <main className="flex-1 container mx-auto px-4 py-12">
@@ -196,12 +202,16 @@ const BlogPost = () => {
           </div>
         ) : (
           <article className="max-w-4xl mx-auto">
-            <Button variant="ghost" asChild className="mb-6">
-              <Link to="/blogg">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Tillbaka till bloggen
-              </Link>
-            </Button>
+            <Breadcrumbs
+              items={[
+                { label: "Blogg", href: "/blogg" },
+                {
+                  label: post.category === "tips" ? "Tips" : "Recept",
+                  href: `/blogg/${post.category}`,
+                },
+                { label: post.title },
+              ]}
+            />
 
             <header className="mb-8">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">{post.title}</h1>
