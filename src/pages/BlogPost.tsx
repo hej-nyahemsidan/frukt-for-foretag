@@ -82,6 +82,39 @@ const BlogPost = () => {
 
   const displayDate = post?.published_at || post?.created_at || null;
 
+  // Article (BlogPosting) JSON-LD schema for SEO + E-E-A-T
+  const articleSchema = post
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: post.title,
+        description: post.excerpt || post.title,
+        image: post.image_url
+          ? [post.image_url]
+          : ["https://vitaminkorgen.se/opengraph-image.png"],
+        datePublished: displayDate,
+        dateModified: displayDate,
+        author: {
+          "@type": "Person",
+          name: post.author,
+          url: "https://vitaminkorgen.se/om-oss",
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "Vitaminkorgen AB",
+          logo: {
+            "@type": "ImageObject",
+            url: "https://vitaminkorgen.se/fruktexperten-logo.png",
+          },
+        },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": `https://vitaminkorgen.se/blogg/${post.category}/${post.slug}`,
+        },
+        articleSection: post.category === "tips" ? "Tips" : "Recept",
+      }
+    : null;
+
   // Function to render text with bold markdown and links
   const renderContent = (text: string) => {
     const linkRegex = /(\[.*?\]\(.*?\))/g;
