@@ -48,7 +48,7 @@ const AreaLanding = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/kontakt">
-                  <Button size="lg" className="bg-yellow-400 hover:bg-yellow-500 text-green-900 font-bold text-lg px-8">
+                  <Button size="lg" className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold shadow-lg border-2 border-black/10 text-lg px-8">
                     Beställ gratis provkorg
                   </Button>
                 </Link>
@@ -211,7 +211,7 @@ const AreaLanding = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/kontakt">
-                <Button size="lg" className="bg-yellow-400 hover:bg-yellow-500 text-green-900 font-bold text-lg px-8">
+                <Button size="lg" className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold shadow-lg border-2 border-black/10 text-lg px-8">
                   Beställ gratis provkorg
                 </Button>
               </Link>
