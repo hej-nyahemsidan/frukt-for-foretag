@@ -293,7 +293,7 @@ const Bestall = () => {
                       </div>
                       <div className="p-4 flex-1 flex flex-col">
                         <h3 className="font-bold text-foreground">{p.name}</h3>
-                        {p.description && <p className="text-sm text-muted-foreground mb-3 flex-1 line-clamp-2">{p.description}</p>}
+                        {p.description && <p className="text-sm text-muted-foreground mb-3 flex-1">{p.description}</p>}
                         <div className="space-y-2 mb-3">
                           <Label className="text-xs">Vikt</Label>
                           <Select value={sel.size || ''} onValueChange={(v) => setPending(prev => ({ ...prev, [p.id]: { ...sel, size: v } }))}>
