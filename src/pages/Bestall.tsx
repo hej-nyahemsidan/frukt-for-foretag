@@ -457,7 +457,7 @@ const Bestall = () => {
                   <ChevronLeft className="w-4 h-4 mr-1" /> Tillbaka
                 </Button>
               )}
-              {step < 4 ? (
+              {step < 3 ? (
                 <Button onClick={() => setStep(step + 1)} disabled={!canNext()} size="lg" className="bg-primary hover:bg-primary-dark">
                   Nästa <ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
