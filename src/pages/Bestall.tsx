@@ -69,8 +69,8 @@ const Bestall = () => {
   const [cart, setCart] = useState<CartLine[]>([]);
 
   // per-card pending selection state for baskets
-  const [pending, setPending] = useState<Record<string, { size?: string; qty: number }>>({});
-  const [pendingAddon, setPendingAddon] = useState<Record<string, number>>({});
+  const [pending, setPending] = useState<Record<string, { size?: string; qty: number; day?: string }>>({});
+  const [pendingAddon, setPendingAddon] = useState<Record<string, { qty: number; day?: string }>>({});
 
   // Step 4 fields
   const [startDate, setStartDate] = useState<Date | undefined>();
@@ -102,6 +102,10 @@ const Bestall = () => {
       toast({ title: 'Välj storlek', variant: 'destructive' });
       return;
     }
+    if (!sel.day) {
+      toast({ title: 'Välj leveransdag', variant: 'destructive' });
+      return;
+    }
     const sizeObj = p.sizes.find(s => s.kg === sel.size)!;
     setCart(prev => [...prev, {
       uid: `${slug}-${sel.size}-${Date.now()}`,
@@ -112,9 +116,10 @@ const Bestall = () => {
       price: sizeObj.price,
       qty: sel.qty || 1,
       image: imageMap[p.image],
+      day: sel.day,
     }]);
     setPending(prev => ({ ...prev, [slug]: { qty: 1 } }));
-    toast({ title: `${p.name} ${sel.size} tillagd` });
+    toast({ title: `${p.name} ${sel.size} tillagd – ${sel.day}` });
   };
 
   // STEP 2: assign day
@@ -127,26 +132,30 @@ const Bestall = () => {
     setCart(prev => prev.map(c => c.uid === uid ? { ...c, qty } : c));
   };
 
-  // STEP 3: add addon
+  // STEP 2: add addon (with day)
   const addAddon = (a: Addon) => {
-    const qty = pendingAddon[a.id] || 1;
+    const sel = pendingAddon[a.id] || { qty: 1 };
+    if (!sel.day) {
+      toast({ title: 'Välj leveransdag', variant: 'destructive' });
+      return;
+    }
     setCart(prev => [...prev, {
       uid: `${a.id}-${Date.now()}`,
       type: 'addon',
       productId: a.id,
       name: `${a.name} (${a.unit})`,
       price: a.price,
-      qty,
+      qty: sel.qty || 1,
       image: a.image,
+      day: sel.day,
     }]);
-    setPendingAddon(prev => ({ ...prev, [a.id]: 1 }));
-    toast({ title: `${a.name} tillagd` });
+    setPendingAddon(prev => ({ ...prev, [a.id]: { qty: 1 } }));
+    toast({ title: `${a.name} tillagd – ${sel.day}` });
   };
 
   const canNext = () => {
     if (step === 1) return baskets.length > 0;
-    if (step === 2) return baskets.every(b => !!b.day) && addonLines.every(a => !!a.day || true);
-    if (step === 3) return true;
+    if (step === 2) return true;
     return true;
   };
 
@@ -202,7 +211,7 @@ const Bestall = () => {
     }
   };
 
-  const stepLabels = ['Välj Frukt', 'Välj Dagar', 'Välj Tillbehör', 'Skicka beställning'];
+  const stepLabels = ['Välj Frukt', 'Välj Tillbehör', 'Skicka beställning'];
 
   return (
     <div className="min-h-screen bg-background">
