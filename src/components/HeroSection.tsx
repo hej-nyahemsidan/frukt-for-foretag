@@ -48,7 +48,7 @@ const HeroSection = () => {
                 size="lg"
                 className="bg-primary hover:bg-primary-dark text-primary-foreground px-8 sm:px-10 py-4 sm:py-5 rounded-full shadow-[0_8px_30px_-4px_hsl(152_50%_30%/0.5)] animate-float hover:shadow-[0_12px_40px_-4px_hsl(152_50%_30%/0.6)] transition-all border-2 border-white/30 font-bold text-base sm:text-lg tracking-wide"
               >
-                <a href="/produkter" className="flex items-center justify-center gap-2">
+                <a href="/bestall" className="flex items-center justify-center gap-2">
                   <span>🎉</span>
                   <span>Beställ en gratis provkorg</span>
                 </a>
