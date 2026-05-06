@@ -49,6 +49,7 @@ const AreaLanding = lazy(() => import("./pages/AreaLanding"));
 const FruktkorgProduct = lazy(() => import("./pages/FruktkorgProduct"));
 const Provkorg = lazy(() => import("./pages/Provkorg"));
 const Erbjudande = lazy(() => import("./pages/Erbjudande"));
+const Bestall = lazy(() => import("./pages/Bestall"));
 const ResellerLogin = lazy(() => import("./reseller/pages/ResellerLogin"));
 const ResellerDashboard = lazy(() => import("./reseller/pages/ResellerDashboard"));
 const ResellerCustomerLogin = lazy(() => import("./reseller/pages/ResellerCustomerLogin"));
@@ -119,6 +120,7 @@ const App = () => (
                 <Route path="/produkt/:slug" element={<FruktkorgProduct />} />
                 <Route path="/provkorg" element={<Provkorg />} />
                 <Route path="/erbjudande" element={<Erbjudande />} />
+                <Route path="/bestall" element={<Bestall />} />
                 
                 {/* Reseller Routes */}
                 <Route path="/af/login" element={<ResellerLogin />} />
