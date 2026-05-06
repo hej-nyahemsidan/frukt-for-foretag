@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { sv } from 'date-fns/locale';
@@ -17,13 +17,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { fruktkorgProducts } from '@/data/fruktkorg-products';
 import { trackQuoteSubmitted } from '@/lib/gtm';
 
 import imgOriginal from '@/assets/fruktkorg-standard-new.jpg';
 import imgPremium from '@/assets/fruktkorg-premium-new.jpg';
 import imgBanan from '@/assets/fruktkorg-banan-new.jpg';
 import imgSicilien from '@/assets/fruktkorg-sicilien.jpg';
+import imgEko from '@/assets/fruktkorg-eko-new.jpg';
+import imgBas from '@/assets/fruktlada-new.jpg';
 import imgMellanmjolk from '@/assets/mellanmjolk-laktosfri.png';
 import imgEkoMjolk from '@/assets/mellanmjolk-eko-laktosfri.png';
 import imgKaffeMjolk from '@/assets/kaffemjolk-laktosfri.png';
@@ -31,11 +32,21 @@ import imgKaffe from '@/assets/gevalia-mellanrost-new.png';
 import imgKaffe2 from '@/assets/arvid-nordquist-mellanrost-new.png';
 
 const imageMap: Record<string, string> = {
-  'fruktkorg-standard-new': imgOriginal,
-  'fruktkorg-premium-new': imgPremium,
-  'fruktkorg-banan-new': imgBanan,
-  'fruktkorg-sicilien': imgSicilien,
+  '/assets/fruktkorg-standard-new.jpg': imgOriginal,
+  '/assets/fruktkorg-premium-new.jpg': imgPremium,
+  '/assets/fruktkorg-banan-new.jpg': imgBanan,
+  '/assets/fruktkorg-sicilien.jpg': imgSicilien,
+  '/assets/fruktkorg-eko-new.jpg': imgEko,
+  '/assets/fruktlada-new.jpg': imgBas,
 };
+
+interface DBFruktkorg {
+  id: string;
+  name: string;
+  image_url: string;
+  prices: Record<string, number>;
+  description?: string;
+}
 
 const weekdays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
 
@@ -67,6 +78,20 @@ const Bestall = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const [cart, setCart] = useState<CartLine[]>([]);
+  const [fruktkorgar, setFruktkorgar] = useState<DBFruktkorg[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await supabase
+        .from('products')
+        .select('id,name,image_url,prices,description')
+        .eq('category', 'fruktkorgar')
+        .order('display_order', { ascending: true });
+      if (data) {
+        setFruktkorgar(data.map(d => ({ ...d, prices: d.prices as Record<string, number> })));
+      }
+    })();
+  }, []);
 
   // per-card pending selection state for baskets
   const [pending, setPending] = useState<Record<string, { size?: string; qty: number; day?: string }>>({});
@@ -95,9 +120,10 @@ const Bestall = () => {
   const total = useMemo(() => cart.reduce((s, c) => s + c.price * c.qty, 0), [cart]);
 
   // STEP 1: add basket
-  const addBasket = (slug: string) => {
-    const p = fruktkorgProducts.find(x => x.slug === slug)!;
-    const sel = pending[slug] || { qty: 1 };
+  const addBasket = (id: string) => {
+    const p = fruktkorgar.find(x => x.id === id);
+    if (!p) return;
+    const sel = pending[id] || { qty: 1 };
     if (!sel.size) {
       toast({ title: 'Välj storlek', variant: 'destructive' });
       return;
@@ -106,19 +132,20 @@ const Bestall = () => {
       toast({ title: 'Välj leveransdag', variant: 'destructive' });
       return;
     }
-    const sizeObj = p.sizes.find(s => s.kg === sel.size)!;
+    const orig = p.prices[sel.size] || 0;
+    const price = Math.round(orig * 0.92);
     setCart(prev => [...prev, {
-      uid: `${slug}-${sel.size}-${Date.now()}`,
+      uid: `${id}-${sel.size}-${Date.now()}`,
       type: 'basket',
-      productId: slug,
+      productId: id,
       name: p.name,
       size: sel.size,
-      price: sizeObj.price,
+      price,
       qty: sel.qty || 1,
-      image: imageMap[p.image],
+      image: imageMap[p.image_url] || p.image_url,
       day: sel.day,
     }]);
-    setPending(prev => ({ ...prev, [slug]: { qty: 1 } }));
+    setPending(prev => ({ ...prev, [id]: { qty: 1 } }));
     toast({ title: `${p.name} ${sel.size} tillagd – ${sel.day}` });
   };
 
@@ -250,27 +277,37 @@ const Bestall = () => {
               <h2 className="text-3xl sm:text-4xl font-bold text-center text-foreground mb-2">Välj din fruktkorg</h2>
               <p className="text-center text-muted-foreground mb-8">Lägg till en eller flera korgar i din beställning</p>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {fruktkorgProducts.map(p => {
-                  const sel = pending[p.slug] || { qty: 1 };
+              <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-center max-w-3xl mx-auto">
+                <span className="text-red-600 font-semibold text-sm">🎉 Aprilerbjudande – 8% rabatt på alla fruktkorgar!</span>
+              </div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {fruktkorgar.map(p => {
+                  const sel = pending[p.id] || { qty: 1 };
+                  const sizes = Object.keys(p.prices).sort((a, b) => parseInt(a) - parseInt(b));
+                  const img = imageMap[p.image_url] || p.image_url;
                   return (
-                    <Card key={p.slug} className="overflow-hidden flex flex-col">
-                      <div className="bg-primary/5 aspect-square flex items-center justify-center p-4">
-                        <img src={imageMap[p.image]} alt={p.name} className="max-h-full object-contain" />
+                    <Card key={p.id} className="overflow-hidden flex flex-col">
+                      <div className="bg-primary/5 aspect-square flex items-center justify-center p-4 relative">
+                        <div className="absolute top-2 left-2 z-10 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">-8%</div>
+                        <img src={img} alt={p.name} className="max-h-full object-contain" />
                       </div>
                       <div className="p-4 flex-1 flex flex-col">
                         <h3 className="font-bold text-foreground">{p.name}</h3>
-                        <p className="text-sm text-muted-foreground mb-3 flex-1">{p.tagline}</p>
+                        {p.description && <p className="text-sm text-muted-foreground mb-3 flex-1 line-clamp-2">{p.description}</p>}
                         <div className="space-y-2 mb-3">
                           <Label className="text-xs">Vikt</Label>
-                          <Select value={sel.size || ''} onValueChange={(v) => setPending(prev => ({ ...prev, [p.slug]: { ...sel, size: v } }))}>
+                          <Select value={sel.size || ''} onValueChange={(v) => setPending(prev => ({ ...prev, [p.id]: { ...sel, size: v } }))}>
                             <SelectTrigger><SelectValue placeholder="Välj vikt" /></SelectTrigger>
                             <SelectContent>
-                              {p.sizes.map(s => <SelectItem key={s.kg} value={s.kg}>{s.kg} – {s.price} kr</SelectItem>)}
+                              {sizes.map(sz => {
+                                const orig = p.prices[sz];
+                                const disc = Math.round(orig * 0.92);
+                                return <SelectItem key={sz} value={sz}>{sz} – {disc} kr</SelectItem>;
+                              })}
                             </SelectContent>
                           </Select>
                           <Label className="text-xs">Leveransdag</Label>
-                          <Select value={sel.day || ''} onValueChange={(v) => setPending(prev => ({ ...prev, [p.slug]: { ...sel, day: v } }))}>
+                          <Select value={sel.day || ''} onValueChange={(v) => setPending(prev => ({ ...prev, [p.id]: { ...sel, day: v } }))}>
                             <SelectTrigger><SelectValue placeholder="Välj dag" /></SelectTrigger>
                             <SelectContent>
                               {weekdays.map(d => <SelectItem key={d} value={d}>{d}</SelectItem>)}
@@ -278,12 +315,12 @@ const Bestall = () => {
                           </Select>
                           <div className="flex items-center gap-2 pt-1">
                             <Label className="text-xs flex-1">Antal</Label>
-                            <Button size="icon" variant="outline" className="h-8 w-8" onClick={() => setPending(prev => ({ ...prev, [p.slug]: { ...sel, qty: Math.max(1, (sel.qty || 1) - 1) } }))}><Minus className="w-3 h-3" /></Button>
+                            <Button size="icon" variant="outline" className="h-8 w-8" onClick={() => setPending(prev => ({ ...prev, [p.id]: { ...sel, qty: Math.max(1, (sel.qty || 1) - 1) } }))}><Minus className="w-3 h-3" /></Button>
                             <span className="w-8 text-center font-semibold">{sel.qty || 1}</span>
-                            <Button size="icon" variant="outline" className="h-8 w-8" onClick={() => setPending(prev => ({ ...prev, [p.slug]: { ...sel, qty: (sel.qty || 1) + 1 } }))}><Plus className="w-3 h-3" /></Button>
+                            <Button size="icon" variant="outline" className="h-8 w-8" onClick={() => setPending(prev => ({ ...prev, [p.id]: { ...sel, qty: (sel.qty || 1) + 1 } }))}><Plus className="w-3 h-3" /></Button>
                           </div>
                         </div>
-                        <Button onClick={() => addBasket(p.slug)} className="w-full bg-primary hover:bg-primary-dark">Lägg till</Button>
+                        <Button onClick={() => addBasket(p.id)} className="w-full bg-primary hover:bg-primary-dark">Lägg till</Button>
                       </div>
                     </Card>
                   );
