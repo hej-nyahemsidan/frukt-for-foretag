@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { sv } from 'date-fns/locale';
@@ -17,13 +17,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import { fruktkorgProducts } from '@/data/fruktkorg-products';
 import { trackQuoteSubmitted } from '@/lib/gtm';
 
 import imgOriginal from '@/assets/fruktkorg-standard-new.jpg';
 import imgPremium from '@/assets/fruktkorg-premium-new.jpg';
 import imgBanan from '@/assets/fruktkorg-banan-new.jpg';
 import imgSicilien from '@/assets/fruktkorg-sicilien.jpg';
+import imgEko from '@/assets/fruktkorg-eko-new.jpg';
+import imgBas from '@/assets/fruktlada-new.jpg';
 import imgMellanmjolk from '@/assets/mellanmjolk-laktosfri.png';
 import imgEkoMjolk from '@/assets/mellanmjolk-eko-laktosfri.png';
 import imgKaffeMjolk from '@/assets/kaffemjolk-laktosfri.png';
@@ -31,11 +32,21 @@ import imgKaffe from '@/assets/gevalia-mellanrost-new.png';
 import imgKaffe2 from '@/assets/arvid-nordquist-mellanrost-new.png';
 
 const imageMap: Record<string, string> = {
-  'fruktkorg-standard-new': imgOriginal,
-  'fruktkorg-premium-new': imgPremium,
-  'fruktkorg-banan-new': imgBanan,
-  'fruktkorg-sicilien': imgSicilien,
+  '/assets/fruktkorg-standard-new.jpg': imgOriginal,
+  '/assets/fruktkorg-premium-new.jpg': imgPremium,
+  '/assets/fruktkorg-banan-new.jpg': imgBanan,
+  '/assets/fruktkorg-sicilien.jpg': imgSicilien,
+  '/assets/fruktkorg-eko-new.jpg': imgEko,
+  '/assets/fruktlada-new.jpg': imgBas,
 };
+
+interface DBFruktkorg {
+  id: string;
+  name: string;
+  image_url: string;
+  prices: Record<string, number>;
+  description?: string;
+}
 
 const weekdays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
 
@@ -67,6 +78,20 @@ const Bestall = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const [cart, setCart] = useState<CartLine[]>([]);
+  const [fruktkorgar, setFruktkorgar] = useState<DBFruktkorg[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await supabase
+        .from('products')
+        .select('id,name,image_url,prices,description')
+        .eq('category', 'fruktkorgar')
+        .order('display_order', { ascending: true });
+      if (data) {
+        setFruktkorgar(data.map(d => ({ ...d, prices: d.prices as Record<string, number> })));
+      }
+    })();
+  }, []);
 
   // per-card pending selection state for baskets
   const [pending, setPending] = useState<Record<string, { size?: string; qty: number; day?: string }>>({});
@@ -95,9 +120,10 @@ const Bestall = () => {
   const total = useMemo(() => cart.reduce((s, c) => s + c.price * c.qty, 0), [cart]);
 
   // STEP 1: add basket
-  const addBasket = (slug: string) => {
-    const p = fruktkorgProducts.find(x => x.slug === slug)!;
-    const sel = pending[slug] || { qty: 1 };
+  const addBasket = (id: string) => {
+    const p = fruktkorgar.find(x => x.id === id);
+    if (!p) return;
+    const sel = pending[id] || { qty: 1 };
     if (!sel.size) {
       toast({ title: 'Välj storlek', variant: 'destructive' });
       return;
@@ -106,19 +132,20 @@ const Bestall = () => {
       toast({ title: 'Välj leveransdag', variant: 'destructive' });
       return;
     }
-    const sizeObj = p.sizes.find(s => s.kg === sel.size)!;
+    const orig = p.prices[sel.size] || 0;
+    const price = Math.round(orig * 0.92);
     setCart(prev => [...prev, {
-      uid: `${slug}-${sel.size}-${Date.now()}`,
+      uid: `${id}-${sel.size}-${Date.now()}`,
       type: 'basket',
-      productId: slug,
+      productId: id,
       name: p.name,
       size: sel.size,
-      price: sizeObj.price,
+      price,
       qty: sel.qty || 1,
-      image: imageMap[p.image],
+      image: imageMap[p.image_url] || p.image_url,
       day: sel.day,
     }]);
-    setPending(prev => ({ ...prev, [slug]: { qty: 1 } }));
+    setPending(prev => ({ ...prev, [id]: { qty: 1 } }));
     toast({ title: `${p.name} ${sel.size} tillagd – ${sel.day}` });
   };
 
