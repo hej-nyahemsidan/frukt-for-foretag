@@ -69,8 +69,8 @@ const Bestall = () => {
   const [cart, setCart] = useState<CartLine[]>([]);
 
   // per-card pending selection state for baskets
-  const [pending, setPending] = useState<Record<string, { size?: string; qty: number }>>({});
-  const [pendingAddon, setPendingAddon] = useState<Record<string, number>>({});
+  const [pending, setPending] = useState<Record<string, { size?: string; qty: number; day?: string }>>({});
+  const [pendingAddon, setPendingAddon] = useState<Record<string, { qty: number; day?: string }>>({});
 
   // Step 4 fields
   const [startDate, setStartDate] = useState<Date | undefined>();
@@ -102,6 +102,10 @@ const Bestall = () => {
       toast({ title: 'Välj storlek', variant: 'destructive' });
       return;
     }
+    if (!sel.day) {
+      toast({ title: 'Välj leveransdag', variant: 'destructive' });
+      return;
+    }
     const sizeObj = p.sizes.find(s => s.kg === sel.size)!;
     setCart(prev => [...prev, {
       uid: `${slug}-${sel.size}-${Date.now()}`,
@@ -112,9 +116,10 @@ const Bestall = () => {
       price: sizeObj.price,
       qty: sel.qty || 1,
       image: imageMap[p.image],
+      day: sel.day,
     }]);
     setPending(prev => ({ ...prev, [slug]: { qty: 1 } }));
-    toast({ title: `${p.name} ${sel.size} tillagd` });
+    toast({ title: `${p.name} ${sel.size} tillagd – ${sel.day}` });
   };
 
   // STEP 2: assign day
@@ -127,26 +132,30 @@ const Bestall = () => {
     setCart(prev => prev.map(c => c.uid === uid ? { ...c, qty } : c));
   };
 
-  // STEP 3: add addon
+  // STEP 2: add addon (with day)
   const addAddon = (a: Addon) => {
-    const qty = pendingAddon[a.id] || 1;
+    const sel = pendingAddon[a.id] || { qty: 1 };
+    if (!sel.day) {
+      toast({ title: 'Välj leveransdag', variant: 'destructive' });
+      return;
+    }
     setCart(prev => [...prev, {
       uid: `${a.id}-${Date.now()}`,
       type: 'addon',
       productId: a.id,
       name: `${a.name} (${a.unit})`,
       price: a.price,
-      qty,
+      qty: sel.qty || 1,
       image: a.image,
+      day: sel.day,
     }]);
-    setPendingAddon(prev => ({ ...prev, [a.id]: 1 }));
-    toast({ title: `${a.name} tillagd` });
+    setPendingAddon(prev => ({ ...prev, [a.id]: { qty: 1 } }));
+    toast({ title: `${a.name} tillagd – ${sel.day}` });
   };
 
   const canNext = () => {
     if (step === 1) return baskets.length > 0;
-    if (step === 2) return baskets.every(b => !!b.day) && addonLines.every(a => !!a.day || true);
-    if (step === 3) return true;
+    if (step === 2) return true;
     return true;
   };
 
@@ -202,7 +211,7 @@ const Bestall = () => {
     }
   };
 
-  const stepLabels = ['Välj Frukt', 'Välj Dagar', 'Välj Tillbehör', 'Skicka beställning'];
+  const stepLabels = ['Välj Frukt', 'Välj Tillbehör', 'Skicka beställning'];
 
   return (
     <div className="min-h-screen bg-background">
@@ -260,7 +269,14 @@ const Bestall = () => {
                               {p.sizes.map(s => <SelectItem key={s.kg} value={s.kg}>{s.kg} – {s.price} kr</SelectItem>)}
                             </SelectContent>
                           </Select>
-                          <div className="flex items-center gap-2">
+                          <Label className="text-xs">Leveransdag</Label>
+                          <Select value={sel.day || ''} onValueChange={(v) => setPending(prev => ({ ...prev, [p.slug]: { ...sel, day: v } }))}>
+                            <SelectTrigger><SelectValue placeholder="Välj dag" /></SelectTrigger>
+                            <SelectContent>
+                              {weekdays.map(d => <SelectItem key={d} value={d}>{d}</SelectItem>)}
+                            </SelectContent>
+                          </Select>
+                          <div className="flex items-center gap-2 pt-1">
                             <Label className="text-xs flex-1">Antal</Label>
                             <Button size="icon" variant="outline" className="h-8 w-8" onClick={() => setPending(prev => ({ ...prev, [p.slug]: { ...sel, qty: Math.max(1, (sel.qty || 1) - 1) } }))}><Minus className="w-3 h-3" /></Button>
                             <span className="w-8 text-center font-semibold">{sel.qty || 1}</span>
@@ -280,7 +296,7 @@ const Bestall = () => {
                   <ul className="text-sm space-y-1">
                     {baskets.map(b => (
                       <li key={b.uid} className="flex justify-between items-center">
-                        <span>{b.name} {b.size} × {b.qty}</span>
+                        <span>{b.name} {b.size} × {b.qty} – {b.day}</span>
                         <button onClick={() => removeLine(b.uid)} className="text-destructive"><Trash2 className="w-4 h-4" /></button>
                       </li>
                     ))}
@@ -290,49 +306,16 @@ const Bestall = () => {
             </div>
           )}
 
-          {/* STEP 2 - assign day */}
+          {/* STEP 2 - addons */}
           {step === 2 && (
-            <div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-center text-foreground mb-2">Välj dina leveransdagar</h2>
-              <p className="text-center text-muted-foreground mb-8">Välj vilken dag varje korg ska levereras</p>
-
-              <div className="space-y-3 max-w-2xl mx-auto">
-                {cart.map(line => (
-                  <Card key={line.uid} className="p-4 flex items-center gap-4">
-                    <img src={line.image} alt={line.name} className="w-16 h-16 object-contain rounded bg-primary/5" />
-                    <div className="flex-1">
-                      <div className="font-semibold text-foreground">{line.name}{line.size ? ` ${line.size}` : ''}</div>
-                      <div className="flex items-center gap-2 mt-1">
-                        <Button size="icon" variant="outline" className="h-7 w-7" onClick={() => updateLineQty(line.uid, line.qty - 1)}><Minus className="w-3 h-3" /></Button>
-                        <span className="text-sm font-medium w-6 text-center">{line.qty}</span>
-                        <Button size="icon" variant="outline" className="h-7 w-7" onClick={() => updateLineQty(line.uid, line.qty + 1)}><Plus className="w-3 h-3" /></Button>
-                        <span className="text-sm text-muted-foreground ml-2">{line.price * line.qty} kr</span>
-                      </div>
-                    </div>
-                    <div className="w-40">
-                      <Select value={line.day || ''} onValueChange={(v) => setLineDay(line.uid, v)}>
-                        <SelectTrigger><SelectValue placeholder="Leveransdag" /></SelectTrigger>
-                        <SelectContent>
-                          {weekdays.map(d => <SelectItem key={d} value={d}>{d}</SelectItem>)}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <button onClick={() => removeLine(line.uid)} className="text-destructive"><Trash2 className="w-4 h-4" /></button>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* STEP 3 - addons */}
-          {step === 3 && (
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-center text-foreground mb-2">Välj tillbehör</h2>
               <p className="text-center text-muted-foreground mb-8">Mjölk, kaffe och annat – valfritt</p>
 
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {addons.map(a => {
-                  const qty = pendingAddon[a.id] || 1;
+                  const sel = pendingAddon[a.id] || { qty: 1 };
+                  const qty = sel.qty || 1;
                   return (
                     <Card key={a.id} className="overflow-hidden flex flex-col">
                       <div className="bg-primary/5 aspect-square flex items-center justify-center p-4">
@@ -342,11 +325,20 @@ const Bestall = () => {
                         <p className="text-xs text-muted-foreground">{a.unit}</p>
                         <h3 className="font-bold text-foreground">{a.name}</h3>
                         <p className="text-sm text-primary font-semibold mb-3">{a.price} kr</p>
-                        <div className="flex items-center gap-2 mb-3">
+                        <div className="space-y-2 mb-3">
+                          <Label className="text-xs">Leveransdag</Label>
+                          <Select value={sel.day || ''} onValueChange={(v) => setPendingAddon(prev => ({ ...prev, [a.id]: { ...sel, day: v } }))}>
+                            <SelectTrigger><SelectValue placeholder="Välj dag" /></SelectTrigger>
+                            <SelectContent>
+                              {weekdays.map(d => <SelectItem key={d} value={d}>{d}</SelectItem>)}
+                            </SelectContent>
+                          </Select>
+                          <div className="flex items-center gap-2 pt-1">
                           <Label className="text-xs flex-1">Antal</Label>
-                          <Button size="icon" variant="outline" className="h-8 w-8" onClick={() => setPendingAddon(prev => ({ ...prev, [a.id]: Math.max(1, qty - 1) }))}><Minus className="w-3 h-3" /></Button>
+                          <Button size="icon" variant="outline" className="h-8 w-8" onClick={() => setPendingAddon(prev => ({ ...prev, [a.id]: { ...sel, qty: Math.max(1, qty - 1) } }))}><Minus className="w-3 h-3" /></Button>
                           <span className="w-8 text-center font-semibold">{qty}</span>
-                          <Button size="icon" variant="outline" className="h-8 w-8" onClick={() => setPendingAddon(prev => ({ ...prev, [a.id]: qty + 1 }))}><Plus className="w-3 h-3" /></Button>
+                          <Button size="icon" variant="outline" className="h-8 w-8" onClick={() => setPendingAddon(prev => ({ ...prev, [a.id]: { ...sel, qty: qty + 1 } }))}><Plus className="w-3 h-3" /></Button>
+                          </div>
                         </div>
                         <Button onClick={() => addAddon(a)} className="w-full bg-primary hover:bg-primary-dark mt-auto">Lägg till</Button>
                       </div>
@@ -361,11 +353,7 @@ const Bestall = () => {
                   <div className="space-y-2">
                     {addonLines.map(a => (
                       <div key={a.uid} className="flex items-center gap-3 text-sm">
-                        <span className="flex-1">{a.name} × {a.qty}</span>
-                        <Select value={a.day || ''} onValueChange={(v) => setLineDay(a.uid, v)}>
-                          <SelectTrigger className="w-36 h-8"><SelectValue placeholder="Leveransdag" /></SelectTrigger>
-                          <SelectContent>{weekdays.map(d => <SelectItem key={d} value={d}>{d}</SelectItem>)}</SelectContent>
-                        </Select>
+                        <span className="flex-1">{a.name} × {a.qty} – {a.day}</span>
                         <button onClick={() => removeLine(a.uid)} className="text-destructive"><Trash2 className="w-4 h-4" /></button>
                       </div>
                     ))}
@@ -375,8 +363,8 @@ const Bestall = () => {
             </div>
           )}
 
-          {/* STEP 4 - submit */}
-          {step === 4 && (
+          {/* STEP 3 - submit */}
+          {step === 3 && (
             <div>
               <h2 className="text-3xl sm:text-4xl font-bold text-center text-foreground mb-8">Skicka din beställning</h2>
 
@@ -469,7 +457,7 @@ const Bestall = () => {
                   <ChevronLeft className="w-4 h-4 mr-1" /> Tillbaka
                 </Button>
               )}
-              {step < 4 ? (
+              {step < 3 ? (
                 <Button onClick={() => setStep(step + 1)} disabled={!canNext()} size="lg" className="bg-primary hover:bg-primary-dark">
                   Nästa <ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
