@@ -79,7 +79,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
   return (
     <>
       <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-center">
-        <span className="text-red-600 font-semibold text-sm">🎉 Aprilerbjudande – 8% rabatt på alla fruktkorgar!</span>
+        <span className="text-red-600 font-semibold text-sm">🎉 {new Date().toLocaleDateString('sv-SE', { month: 'long' }).replace(/^./, c => c.toUpperCase())}erbjudande – 8% rabatt på alla fruktkorgar!</span>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {fruktkorgar.map((product) => {
