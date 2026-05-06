@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
-import { Phone, Mail, LogIn, FileText, ShoppingCart, X, Plus, Minus, Calendar } from 'lucide-react';
+import { FileText, ShoppingCart, X, Plus, Minus } from 'lucide-react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { usePublicCart } from '@/contexts/PublicCartContext';
 import FruktkorgarTab from '@/components/product-tabs/FruktkorgarTab';
@@ -20,14 +18,12 @@ import GronsakerTab from '@/components/product-tabs/GronsakerTab';
 import StadTab from '@/components/product-tabs/StadTab';
 import AnnatTab from '@/components/product-tabs/AnnatTab';
 
-const WEEKDAYS = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
-
 const Products = () => {
   const [searchParams] = useSearchParams();
   const tabParam = searchParams.get('tab');
   const [activeTab, setActiveTab] = useState(tabParam || 'fruktkorgar');
-  const [selectedDays, setSelectedDays] = useState<string[]>([]);
-  const [currentDay, setCurrentDay] = useState<string>('');
+  const selectedDays: string[] = ['Beställning'];
+  const currentDay = 'Beställning';
   const navigate = useNavigate();
   const { items, getTotalItems, getTotalPrice, updateQuantity, removeItem, clearCart } = usePublicCart();
 
@@ -37,25 +33,9 @@ const Products = () => {
     }
   }, [tabParam]);
 
-  const handleDayToggle = (day: string, checked: boolean) => {
-    if (checked) {
-      const newDays = [...selectedDays, day];
-      setSelectedDays(newDays);
-      if (!currentDay) {
-        setCurrentDay(day);
-      }
-    } else {
-      const newDays = selectedDays.filter(d => d !== day);
-      setSelectedDays(newDays);
-      if (currentDay === day) {
-        setCurrentDay(newDays[0] || '');
-      }
-    }
-  };
-
   // Group items by day
   const itemsByDay = items.reduce((acc, item) => {
-    const day = item.day || 'Ingen dag';
+    const day = item.day || 'Beställning';
     if (!acc[day]) acc[day] = [];
     acc[day].push(item);
     return acc;
@@ -76,84 +56,31 @@ const Products = () => {
           </p>
           <div className="bg-white border border-gray-200 rounded-lg p-6 max-w-4xl mx-auto shadow-sm">
             <p className="text-sm sm:text-base text-gray-700 mb-6 text-center">
-              <strong>Ny kund?</strong> Välj dina leveransdagar, lägg till produkter i varukorgen och skicka din beställning. Vi återkommer och sätter upp leveransen!
+              <strong>Ny kund?</strong> Lägg till produkter i varukorgen och skicka din beställning. Vi återkommer och sätter upp leveransen!
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <div className="flex items-center gap-3">
                 <div className="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg">
                   1
                 </div>
-                <span className="text-base font-semibold text-gray-900">Välj Dagar</span>
+                <span className="text-base font-semibold text-gray-900">Välj Frukt</span>
               </div>
               
               <div className="flex items-center gap-3">
                 <div className="flex-shrink-0 w-10 h-10 bg-primary/30 text-gray-700 rounded-full flex items-center justify-center font-bold text-lg">
                   2
                 </div>
-                <span className="text-base font-semibold text-gray-900">Välj Frukt</span>
+                <span className="text-base font-semibold text-gray-900">Välj Tillbehör</span>
               </div>
               
               <div className="flex items-center gap-3">
                 <div className="flex-shrink-0 w-10 h-10 bg-primary/30 text-gray-700 rounded-full flex items-center justify-center font-bold text-lg">
                   3
                 </div>
-                <span className="text-base font-semibold text-gray-900">Välj Tillbehör</span>
-              </div>
-              
-              <div className="flex items-center gap-3">
-                <div className="flex-shrink-0 w-10 h-10 bg-primary/30 text-gray-700 rounded-full flex items-center justify-center font-bold text-lg">
-                  4
-                </div>
                 <span className="text-base font-semibold text-gray-900">Skicka beställning</span>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Day Selector */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-          <div className="flex items-center gap-2 mb-4">
-            <Calendar className="h-5 w-5 text-primary" />
-            <h2 className="text-lg font-semibold">Välj leveransdagar:</h2>
-          </div>
-          <div className="flex flex-wrap gap-4 mb-4">
-            {WEEKDAYS.map((day) => (
-              <div key={day} className="flex items-center space-x-2">
-                <Checkbox
-                  id={day}
-                  checked={selectedDays.includes(day)}
-                  onCheckedChange={(checked) => handleDayToggle(day, checked as boolean)}
-                />
-                <Label htmlFor={day} className="cursor-pointer">{day}</Label>
-              </div>
-            ))}
-          </div>
-          
-          {selectedDays.length === 0 && (
-            <p className="text-sm text-muted-foreground">
-              Välj minst en dag för att börja lägga till produkter
-            </p>
-          )}
-          
-          {selectedDays.length > 0 && (
-            <div className="mt-4 pt-4 border-t">
-              <p className="text-sm font-medium mb-2">
-                Du lägger till produkter för:
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {selectedDays.map((day) => (
-                  <Button
-                    key={day}
-                    variant={currentDay === day ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => setCurrentDay(day)}
-                  >
-                    {day}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -286,13 +213,6 @@ const Products = () => {
               <div className="space-y-6 mb-6 max-h-[400px] overflow-y-auto">
                 {Object.entries(itemsByDay).map(([day, dayItems]) => (
                   <div key={day} className="mb-4 last:mb-0">
-                    <div className="flex items-center gap-2 mb-4 pb-2 border-b-2 border-primary/20">
-                      <Calendar className="h-5 w-5 text-primary" />
-                      <h3 className="text-lg font-bold text-primary">{day}</h3>
-                      <span className="text-sm text-muted-foreground">
-                        ({dayItems.reduce((sum, item) => sum + item.quantity, 0)} produkter)
-                      </span>
-                    </div>
                     {dayItems.map((item) => (
                       <div key={`${item.id}-${item.day}-${item.size || ''}`} className="flex gap-4 pb-4 border-b last:border-b-0 mb-4 last:mb-0">
                         {item.image && (
