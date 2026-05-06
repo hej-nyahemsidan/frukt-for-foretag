@@ -278,7 +278,7 @@ const Bestall = () => {
               <p className="text-center text-muted-foreground mb-8">Lägg till en eller flera korgar i din beställning</p>
 
               <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-center max-w-3xl mx-auto">
-                <span className="text-red-600 font-semibold text-sm">🎉 Aprilerbjudande – 8% rabatt på alla fruktkorgar!</span>
+                <span className="text-red-600 font-semibold text-sm">🎉 {new Date().toLocaleDateString('sv-SE', { month: 'long' }).replace(/^./, c => c.toUpperCase())}erbjudande – 8% rabatt på alla fruktkorgar!</span>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {fruktkorgar.map(p => {
