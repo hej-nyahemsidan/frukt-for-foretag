@@ -282,9 +282,12 @@ const Bestall = () => {
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {fruktkorgar.map(p => {
-                  const sel = pending[p.id] || { qty: 1 };
+                  const sel = pending[p.id] || { qty: 1, size: '4kg' };
                   const sizes = Object.keys(p.prices).sort((a, b) => parseInt(a) - parseInt(b));
                   const img = imageMap[p.image_url] || p.image_url;
+                  const currentSize = sel.size || '4kg';
+                  const currentOrig = p.prices[currentSize] || 0;
+                  const currentDisc = Math.round(currentOrig * 0.92);
                   return (
                     <Card key={p.id} className="overflow-hidden flex flex-col">
                       <div className="bg-primary/5 aspect-square flex items-center justify-center p-4 relative">
@@ -295,9 +298,17 @@ const Bestall = () => {
                         <h3 className="font-bold text-foreground">{p.name}</h3>
                         {p.description && <p className="text-sm text-muted-foreground mb-3 flex-1">{p.description}</p>}
                         <div className="space-y-2 mb-3">
-                          <Label className="text-xs">Vikt</Label>
-                          <Select value={sel.size || ''} onValueChange={(v) => setPending(prev => ({ ...prev, [p.id]: { ...sel, size: v } }))}>
-                            <SelectTrigger><SelectValue placeholder="Välj vikt" /></SelectTrigger>
+                          <Label className="text-xs">Vikt & pris (klicka för att byta vikt)</Label>
+                          <Select value={currentSize} onValueChange={(v) => setPending(prev => ({ ...prev, [p.id]: { ...sel, size: v } }))}>
+                            <SelectTrigger>
+                              <div className="flex items-center justify-between w-full pr-2">
+                                <span className="font-semibold">{currentSize}</span>
+                                <span>
+                                  <span className="text-xs text-muted-foreground line-through mr-1">{currentOrig} kr</span>
+                                  <span className="font-bold text-red-600">{currentDisc} kr</span>
+                                </span>
+                              </div>
+                            </SelectTrigger>
                             <SelectContent>
                               {sizes.map(sz => {
                                 const orig = p.prices[sz];
