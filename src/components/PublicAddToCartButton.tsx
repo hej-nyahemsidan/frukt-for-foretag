@@ -34,32 +34,25 @@ const PublicAddToCartButton = ({
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.stopPropagation();
-    
-    if (!selectedDay) {
-      toast({
-        title: "Välj leveransdag",
-        description: "Du måste välja minst en leveransdag innan du kan lägga till produkter.",
-        variant: "destructive",
-      });
-      return;
-    }
-    
+
+    const day = selectedDay || 'Beställning';
+
     addItem({
       id: productId,
       name: productName,
       price,
       category,
       image,
-      day: selectedDay,
+      day,
       quantity: quantity,
       size: size,
     });
 
-    trackAddToCart(productName, price, quantity, selectedDay);
+    trackAddToCart(productName, price, quantity, day);
 
     toast({
       title: "Tillagt i varukorgen",
-      description: `${quantity}x ${productName} har lagts till för ${selectedDay}.`,
+      description: `${quantity}x ${productName} har lagts till.`,
     });
     
     setQuantity(1);
