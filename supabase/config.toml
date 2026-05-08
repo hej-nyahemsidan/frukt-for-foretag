@@ -20,3 +20,6 @@ verify_jwt = true
 
 [functions.create-reseller-customer]
 verify_jwt = false
+
+[functions.sitemap]
+verify_jwt = false
