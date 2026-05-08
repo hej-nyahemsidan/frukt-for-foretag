@@ -34,6 +34,8 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedSizes, setSelectedSizes] = useState<Record<string, string>>({});
+  const [selectedDayPerProduct, setSelectedDayPerProduct] = useState<Record<string, string>>({});
+  const weekdays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
 
   useEffect(() => {
     fetchFruktkorgar();
@@ -175,6 +177,20 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
                     </div>
                   </div>
 
+                  {isPublicPage && (
+                    <Select
+                      value={selectedDayPerProduct[product.id] || ''}
+                      onValueChange={(v) => setSelectedDayPerProduct(prev => ({ ...prev, [product.id]: v }))}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Välj leveransdag" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {weekdays.map(d => <SelectItem key={d} value={d}>{d}</SelectItem>)}
+                      </SelectContent>
+                    </Select>
+                  )}
+
                   {isPublicPage ? (
                     <PublicAddToCartButton
                       productId={product.id}
@@ -182,7 +198,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
                       price={discountedPrice}
                       category={product.category}
                       image={resolvedImage}
-                      selectedDay={currentDay}
+                      selectedDay={selectedDayPerProduct[product.id] || currentDay}
                       size={currentSize}
                       className="w-full"
                     />
