@@ -7,6 +7,7 @@ import SEOHead from '@/components/SEOHead';
 import { FileText, ShoppingCart, X, Plus, Minus } from 'lucide-react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { usePublicCart } from '@/contexts/PublicCartContext';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import FruktkorgarTab from '@/components/product-tabs/FruktkorgarTab';
 import FruktpaserTab from '@/components/product-tabs/FruktpaserTab';
 import LaskTab from '@/components/product-tabs/LaskTab';
@@ -25,7 +26,8 @@ const Products = () => {
   const selectedDays: string[] = ['Beställning'];
   const currentDay = 'Beställning';
   const navigate = useNavigate();
-  const { items, getTotalItems, getTotalPrice, updateQuantity, removeItem, clearCart } = usePublicCart();
+  const { items, getTotalItems, getTotalPrice, updateQuantity, removeItem, clearCart, updateDay } = usePublicCart();
+  const weekdays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
 
   useEffect(() => {
     if (tabParam) {
@@ -225,6 +227,19 @@ const Products = () => {
                         <div className="flex-1 min-w-0">
                           <h4 className="font-semibold text-sm sm:text-base truncate">{item.name}</h4>
                           <p className="text-primary font-bold text-lg">{item.price} kr</p>
+                          <div className="mt-2 max-w-[180px]">
+                            <Select
+                              value={weekdays.includes(item.day || '') ? item.day! : ''}
+                              onValueChange={(v) => updateDay(item.id, item.day, item.size, v)}
+                            >
+                              <SelectTrigger className="h-8 text-xs">
+                                <SelectValue placeholder="Välj leveransdag" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {weekdays.map(d => <SelectItem key={d} value={d}>{d}</SelectItem>)}
+                              </SelectContent>
+                            </Select>
+                          </div>
                           <div className="flex items-center gap-3 mt-2">
                             <Button
                               variant="outline"
