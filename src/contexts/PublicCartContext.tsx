@@ -16,6 +16,7 @@ interface PublicCartContextType {
   addItem: (item: Omit<PublicCartItem, 'quantity'> & { quantity?: number }) => void;
   removeItem: (itemId: string, day?: string, size?: string) => void;
   updateQuantity: (itemId: string, quantity: number, day?: string, size?: string) => void;
+  updateDay: (itemId: string, oldDay: string | undefined, size: string | undefined, newDay: string) => void;
   clearCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
@@ -113,6 +114,26 @@ export const PublicCartProvider: React.FC<PublicCartProviderProps> = ({ children
     );
   };
 
+  const updateDay = (itemId: string, oldDay: string | undefined, size: string | undefined, newDay: string) => {
+    setItems(prev => {
+      // Find the line being moved
+      const moving = prev.find(i => i.id === itemId && i.day === oldDay && i.size === size);
+      if (!moving) return prev;
+      // Remove the old line
+      const without = prev.filter(i => !(i.id === itemId && i.day === oldDay && i.size === size));
+      // Merge with existing line on newDay if same id+size
+      const existing = without.find(i => i.id === itemId && i.day === newDay && i.size === size);
+      if (existing) {
+        return without.map(i =>
+          (i.id === itemId && i.day === newDay && i.size === size)
+            ? { ...i, quantity: i.quantity + moving.quantity }
+            : i
+        );
+      }
+      return [...without, { ...moving, day: newDay }];
+    });
+  };
+
   const clearCart = () => {
     setItems([]);
   };
@@ -132,6 +153,7 @@ export const PublicCartProvider: React.FC<PublicCartProviderProps> = ({ children
         addItem,
         removeItem,
         updateQuantity,
+        updateDay,
         clearCart,
         getTotalItems,
         getTotalPrice,
