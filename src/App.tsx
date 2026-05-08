@@ -85,7 +85,7 @@ const App = () => (
               <Suspense fallback={<PageLoader />}>
               <Routes>
                 <Route path="/" element={<Index />} />
-                <Route path="/produkter" element={<Navigate to="/bestall" replace />} />
+                <Route path="/produkter" element={<Products />} />
                 <Route path="/om-oss" element={<About />} />
                 <Route path="/kontakt" element={<Contact />} />
                 <Route path="/kundportal" element={<CustomerPortal />} />
