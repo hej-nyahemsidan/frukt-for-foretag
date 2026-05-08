@@ -1,0 +1,1 @@
+INSERT INTO public.blog_posts (title, slug, content, excerpt, category, author, published, published_at) VALUES ('placeholder-marker','__placeholder__','x','x','tips','x',false,now()); DELETE FROM public.blog_posts WHERE slug='__placeholder__';
