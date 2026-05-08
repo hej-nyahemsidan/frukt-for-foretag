@@ -115,6 +115,42 @@ const BlogPost = () => {
       }
     : null;
 
+  // Auto-generate FAQPage JSON-LD from "## Vanliga frågor" section.
+  // Pattern: H3 lines = questions, following non-empty paragraph lines = answer.
+  const faqSchema = (() => {
+    if (!post) return null;
+    const lines = post.content.split('\n');
+    const faqStart = lines.findIndex(l => /^##\s+Vanliga\s+fr[åa]gor/i.test(l.trim()));
+    if (faqStart === -1) return null;
+    const faqLines: string[] = [];
+    for (let i = faqStart + 1; i < lines.length; i++) {
+      if (/^##\s/.test(lines[i].trim())) break;
+      faqLines.push(lines[i]);
+    }
+    const items: { q: string; a: string }[] = [];
+    let current: { q: string; a: string } | null = null;
+    for (const raw of faqLines) {
+      const t = raw.trim();
+      if (t.startsWith('### ')) {
+        if (current && current.q && current.a) items.push(current);
+        current = { q: t.slice(4).replace(/\*\*/g, '').trim(), a: '' };
+      } else if (current && t) {
+        current.a = current.a ? current.a + ' ' + t : t;
+      }
+    }
+    if (current && current.q && current.a) items.push(current);
+    if (items.length === 0) return null;
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: items.map(i => ({
+        '@type': 'Question',
+        name: i.q,
+        acceptedAnswer: { '@type': 'Answer', text: i.a.replace(/\[(.*?)\]\(.*?\)/g, '$1').replace(/\*\*/g, '') },
+      })),
+    };
+  })();
+
   // Function to render text with bold markdown and links
   const renderContent = (text: string) => {
     const linkRegex = /(\[.*?\]\(.*?\))/g;
@@ -178,6 +214,12 @@ const BlogPost = () => {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        />
+      )}
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       )}
       <Header />
