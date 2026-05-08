@@ -50,6 +50,10 @@ const FruktkorgProduct = lazy(() => import("./pages/FruktkorgProduct"));
 const Provkorg = lazy(() => import("./pages/Provkorg"));
 const Erbjudande = lazy(() => import("./pages/Erbjudande"));
 const Bestall = lazy(() => import("./pages/Bestall"));
+const ProvaFruktkorg = lazy(() => import("./pages/ProvaFruktkorg"));
+const FruktkorgStockholmPris = lazy(() => import("./pages/FruktkorgStockholmPris"));
+const FruktkorgKontor = lazy(() => import("./pages/FruktkorgKontor"));
+const FruktleveransForetag = lazy(() => import("./pages/FruktleveransForetag"));
 const ResellerLogin = lazy(() => import("./reseller/pages/ResellerLogin"));
 const ResellerDashboard = lazy(() => import("./reseller/pages/ResellerDashboard"));
 const ResellerCustomerLogin = lazy(() => import("./reseller/pages/ResellerCustomerLogin"));
@@ -121,6 +125,11 @@ const App = () => (
                 <Route path="/provkorg" element={<Provkorg />} />
                 <Route path="/erbjudande" element={<Erbjudande />} />
                 <Route path="/bestall" element={<Bestall />} />
+                {/* Dedicated Ads landing pages */}
+                <Route path="/prova-fruktkorg" element={<ProvaFruktkorg />} />
+                <Route path="/fruktkorg-stockholm-pris" element={<FruktkorgStockholmPris />} />
+                <Route path="/fruktkorg-kontor" element={<FruktkorgKontor />} />
+                <Route path="/fruktleverans-foretag" element={<FruktleveransForetag />} />
                 
                 {/* Reseller Routes */}
                 <Route path="/af/login" element={<ResellerLogin />} />
