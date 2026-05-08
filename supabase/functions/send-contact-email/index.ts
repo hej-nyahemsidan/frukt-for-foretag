@@ -86,6 +86,7 @@ interface ContactEmailRequest {
     day?: string;
   }>;
   totalPrice?: number;
+  startDate?: string;
 }
 
 // --- Email styles ---
@@ -192,6 +193,10 @@ function buildQuoteEmail(data: ContactEmailRequest): { subject: string; html: st
             <div class="info-row"><span class="info-label">Adress:</span><span class="info-value">${sanitize(data.address, 300) || 'Ej angivet'}</span></div>
             <div class="info-row"><span class="info-label">Postnummer:</span><span class="info-value">${sanitize(data.postalCode, 10) || 'Ej angivet'}</span></div>
             <div class="info-row"><span class="info-label">Ort:</span><span class="info-value">${sanitize(data.location, 100) || 'Ej angivet'}</span></div>
+          </div>
+          <div class="section">
+            <div class="section-title">📅 Önskat startdatum</div>
+            <div class="info-row"><span class="info-value" style="font-size: 16px; font-weight: bold; color: #4CAF50;">${sanitize(data.startDate, 30) || 'Ej angivet'}</span></div>
           </div>
           ${cartHtml}
           ${data.message ? `<div class="section"><div class="section-title">💬 Meddelande</div><div class="message-box">${sanitize(data.message, 2000).replace(/\n/g, '<br>')}</div></div>` : ''}
