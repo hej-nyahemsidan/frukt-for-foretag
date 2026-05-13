@@ -28,6 +28,22 @@ const FruktkorgProduct = () => {
   const otherProducts = fruktkorgProducts.filter(p => p.slug !== product.slug);
   const img = imageMap[product.image] || fruktkorgOriginal;
 
+  const faqs = [
+    { q: `Vad kostar ${product.name}?`, a: `${product.name} finns i storlekar från ${product.sizes[0].kg} (${product.sizes[0].price} kr/vecka) upp till ${product.sizes[product.sizes.length-1].kg} (${product.sizes[product.sizes.length-1].price} kr/vecka). Leveransen är alltid kostnadsfri.` },
+    { q: 'Kan vi testa innan vi bestämmer oss?', a: 'Absolut! Vi erbjuder en kostnadsfri provkorg så att ni kan uppleva kvaliteten själva. Ingen förpliktelse.' },
+    { q: 'Hur ofta levereras fruktkorgen?', a: 'Ni väljer leveransdag själva. De flesta kunder får leverans en gång per vecka, men vi anpassar efter era behov.' },
+  ];
+
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
@@ -36,6 +52,7 @@ const FruktkorgProduct = () => {
         keywords={product.seoKeywords}
         type="products"
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Header />
       <main>
         {/* Hero */}
@@ -124,11 +141,7 @@ const FruktkorgProduct = () => {
               Vanliga frågor om {product.name}
             </h2>
             <div className="space-y-6">
-              {[
-                { q: `Vad kostar ${product.name}?`, a: `${product.name} finns i storlekar från ${product.sizes[0].kg} (${product.sizes[0].price} kr/vecka) upp till ${product.sizes[product.sizes.length-1].kg} (${product.sizes[product.sizes.length-1].price} kr/vecka). Leveransen är alltid kostnadsfri.` },
-                { q: 'Kan vi testa innan vi bestämmer oss?', a: 'Absolut! Vi erbjuder en kostnadsfri provkorg så att ni kan uppleva kvaliteten själva. Ingen förpliktelse.' },
-                { q: 'Hur ofta levereras fruktkorgen?', a: 'Ni väljer leveransdag själva. De flesta kunder får leverans en gång per vecka, men vi anpassar efter era behov.' },
-              ].map((faq, i) => (
+              {faqs.map((faq, i) => (
                 <div key={i} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                   <h3 className="font-bold text-green-900 mb-2">{faq.q}</h3>
                   <p className="text-gray-600 text-sm">{faq.a}</p>
