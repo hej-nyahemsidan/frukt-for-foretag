@@ -22,6 +22,7 @@ const STATIC_URLS: Array<{ loc: string; changefreq: string; priority: string }> 
   { loc: "/fruktkorg-kontor", changefreq: "weekly", priority: "0.9" },
   { loc: "/fruktleverans-foretag", changefreq: "weekly", priority: "0.9" },
   { loc: "/prova-fruktkorg", changefreq: "weekly", priority: "0.9" },
+  { loc: "/fruktlada", changefreq: "weekly", priority: "0.9" },
   { loc: "/blommor", changefreq: "weekly", priority: "0.6" },
   { loc: "/varuautomat", changefreq: "weekly", priority: "0.6" },
   // Produktsidor
