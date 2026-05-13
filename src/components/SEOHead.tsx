@@ -8,6 +8,7 @@ interface SEOHeadProps {
   keywords?: string;
   image?: string;
   type?: 'homepage' | 'products' | 'contact' | 'about';
+  ogType?: 'website' | 'article';
   noindex?: boolean;
 }
 
@@ -17,6 +18,7 @@ const SEOHead = ({
   keywords,
   image = '/opengraph-image.png',
   type = 'homepage',
+  ogType = 'website',
   noindex = false 
 }: SEOHeadProps) => {
   const location = useLocation();
@@ -88,7 +90,7 @@ const SEOHead = ({
       { property: 'og:description', content: finalDescription },
       { property: 'og:url', content: fullUrl },
       { property: 'og:image', content: `${baseUrl}${image}` },
-      { property: 'og:type', content: 'website' },
+      { property: 'og:type', content: ogType },
       { property: 'og:site_name', content: 'Vitaminkorgen' },
       { property: 'og:locale', content: 'sv_SE' }
     ];

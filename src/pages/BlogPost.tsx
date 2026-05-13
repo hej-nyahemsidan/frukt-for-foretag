@@ -202,6 +202,7 @@ const BlogPost = () => {
           title={`${post.title} | Vitaminkorgen Blogg`}
           description={post.excerpt || `Läs ${post.title} på Vitaminkorgens blogg.`}
           keywords={`fruktkorgar, frukt på jobbet, ${post.category === 'tips' ? 'hälsotips kontor' : 'fruktrecept'}`}
+          ogType="article"
         />
       )}
       {!post && (
