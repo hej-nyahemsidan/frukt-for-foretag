@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import PricelistPopup from '@/components/PricelistPopup';
 import fruitPlatter2 from '@/assets/fruktkorg-pa-jobbet-stockholm.jpg';
@@ -61,7 +62,9 @@ const HeroSection = () => {
               >
                 📋 Hämta prislista
               </Button>
-              
+              <p className="text-sm text-slate-600 pt-1">
+                Letar ni efter en <Link to="/fruktlada" className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark">fruktlåda till företag</Link>? Vi levererar fritt i Stockholm.
+              </p>
             </div>
           </div>
         </div>
