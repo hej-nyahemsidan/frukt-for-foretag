@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import PricelistPopup from '@/components/PricelistPopup';
 import fruitPlatter2 from '@/assets/fruktkorg-pa-jobbet-stockholm.jpg';
