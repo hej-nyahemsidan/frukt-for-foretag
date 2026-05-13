@@ -21,6 +21,22 @@ const AreaLanding = () => {
 
   const { name, description, nearbyAreas } = areaInfo;
 
+  const faqs = [
+    { q: `Levererar ni fruktkorgar till ${name}?`, a: `Ja! Vi levererar fruktkorgar till alla adresser i ${name} med gratis frakt. Leverans sker den dag ni väljer.` },
+    { q: 'Hur mycket kostar en fruktkorg?', a: 'Våra fruktkorgar börjar från ca 200 kr/vecka. Kontakta oss för en skräddarsydd offert baserat på antal medarbetare.' },
+    { q: 'Kan vi testa innan vi bestämmer oss?', a: 'Absolut! Vi erbjuder en kostnadsfri provkorg så ni kan uppleva kvaliteten själva innan ni bestämmer er.' },
+  ];
+
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
@@ -29,6 +45,7 @@ const AreaLanding = () => {
         keywords={`fruktkorg ${name.toLowerCase()}, fruktkorgar ${name.toLowerCase()}, fruktleverans ${name.toLowerCase()}, fruktbud ${name.toLowerCase()}, fruktbudet ${name.toLowerCase()}, fruktkorg på jobbet ${name.toLowerCase()}`}
         type="products"
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Header />
       <main>
         {/* Hero */}
@@ -158,11 +175,7 @@ const AreaLanding = () => {
               Vanliga frågor om fruktkorgar i {name}
             </h2>
             <div className="space-y-6">
-              {[
-                { q: `Levererar ni fruktkorgar till ${name}?`, a: `Ja! Vi levererar fruktkorgar till alla adresser i ${name} med gratis frakt. Leverans sker den dag ni väljer.` },
-                { q: 'Hur mycket kostar en fruktkorg?', a: 'Våra fruktkorgar börjar från ca 200 kr/vecka. Kontakta oss för en skräddarsydd offert baserat på antal medarbetare.' },
-                { q: 'Kan vi testa innan vi bestämmer oss?', a: 'Absolut! Vi erbjuder en kostnadsfri provkorg så ni kan uppleva kvaliteten själva innan ni bestämmer er.' },
-              ].map((faq, i) => (
+              {faqs.map((faq, i) => (
                 <div key={i} className="bg-white p-6 rounded-xl shadow-sm">
                   <h3 className="font-bold text-green-900 mb-2">{faq.q}</h3>
                   <p className="text-gray-600 text-sm">{faq.a}</p>
