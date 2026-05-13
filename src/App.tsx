@@ -54,6 +54,7 @@ const ProvaFruktkorg = lazy(() => import("./pages/ProvaFruktkorg"));
 const FruktkorgStockholmPris = lazy(() => import("./pages/FruktkorgStockholmPris"));
 const FruktkorgKontor = lazy(() => import("./pages/FruktkorgKontor"));
 const FruktleveransForetag = lazy(() => import("./pages/FruktleveransForetag"));
+const Fruktlada = lazy(() => import("./pages/Fruktlada"));
 const ResellerLogin = lazy(() => import("./reseller/pages/ResellerLogin"));
 const ResellerDashboard = lazy(() => import("./reseller/pages/ResellerDashboard"));
 const ResellerCustomerLogin = lazy(() => import("./reseller/pages/ResellerCustomerLogin"));
@@ -130,6 +131,7 @@ const App = () => (
                 <Route path="/fruktkorg-stockholm-pris" element={<FruktkorgStockholmPris />} />
                 <Route path="/fruktkorg-kontor" element={<FruktkorgKontor />} />
                 <Route path="/fruktleverans-foretag" element={<FruktleveransForetag />} />
+                <Route path="/fruktlada" element={<Fruktlada />} />
                 
                 {/* Reseller Routes */}
                 <Route path="/af/login" element={<ResellerLogin />} />
