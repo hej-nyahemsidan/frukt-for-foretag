@@ -181,6 +181,14 @@ const Header = () => {
                               Alla produkter
                             </Link>
                           </DropdownMenuItem>
+                          <DropdownMenuItem asChild className="p-0">
+                            <Link
+                              to="/fruktlada"
+                              className="block p-3 pl-6 hover:bg-lightgreen/50 transition-colors"
+                            >
+                              <span className="font-medium text-charcoal text-sm">Fruktlåda till företag</span>
+                            </Link>
+                          </DropdownMenuItem>
                           {productCategories.map((cat) => (
                             <DropdownMenuItem key={cat.tab} asChild className="p-0">
                               <Link 

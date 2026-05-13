@@ -60,12 +60,43 @@ const Fruktlada = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Fruktlåda till företag – Färsk frukt levererad till kontoret | Vitaminkorgen"
-        description="Fruktlåda till företag ✓ Handplockad säsongsfrukt levererad till kontoret i Stockholm. Från 199 kr. Fri leverans. Boka provleverans idag!"
-        keywords="fruktlåda, fruktlåda företag, fruktlåda kontor, fruktlåda stockholm, fruktlåda jobbet, fruktlåda leverans, frukt till kontoret"
+        title="Fruktlåda till företag i Stockholm | Vitaminkorgen"
+        description="Fruktlåda till företag ✓ Färsk säsongsfrukt levererad till kontoret i Stockholm. Från 199 kr. Fri leverans. Boka provleverans idag."
+        keywords="fruktlåda, fruktlåda företag, fruktlåda kontor, fruktlåda stockholm, fruktlåda hemleverans, fruktlåda prenumeration, fruktlåda pris, frukt till kontoret"
         type="products"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: 'Fruktlådor till företag',
+            itemListElement: [
+              { name: 'Fruktlåda Banan', url: 'https://vitaminkorgen.se/produkt/fruktkorg-banan', price: '199' },
+              { name: 'Fruktlåda Original', url: 'https://vitaminkorgen.se/produkt/fruktkorg-original', price: '379' },
+              { name: 'Fruktlåda Premium', url: 'https://vitaminkorgen.se/produkt/fruktkorg-premium', price: '549' },
+            ].map((p, i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              item: {
+                '@type': 'Product',
+                name: p.name,
+                url: p.url,
+                brand: { '@type': 'Brand', name: 'Vitaminkorgen' },
+                offers: {
+                  '@type': 'Offer',
+                  priceCurrency: 'SEK',
+                  price: p.price,
+                  availability: 'https://schema.org/InStock',
+                  url: p.url,
+                },
+              },
+            })),
+          }),
+        }}
+      />
       <Header />
       <main>
         {/* Hero */}
@@ -217,6 +248,36 @@ const Fruktlada = () => {
                   <p className="text-gray-600 text-sm">{s.desc}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Semantic content sections — broaden ranking surface for fruktlåda variations */}
+        <section className="py-16 md:py-20 bg-white">
+          <div className="container mx-auto px-6 max-w-4xl space-y-10">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-green-900 mb-3">Fruktlåda till företag – uppskattad förmån som syns</h2>
+              <p className="text-gray-700 leading-relaxed">
+                En fruktlåda till företaget är en av de mest synliga friskvårdsförmånerna ni kan ge era medarbetare. Till skillnad från friskvårdsbidrag som hamnar på lönespecen syns en fruktlåda i lunchrummet varje dag – och alla får ta del av den. Vi har levererat fruktlådor till över 150 företag i Stockholm sedan 2021, från startups på 5 personer till kontor med 200+ anställda. Beställningen sköter ni på under två minuter och vi levererar redan nästa vecka.
+              </p>
+            </div>
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-green-900 mb-3">Fruktlåda Stockholm – fri hemleverans till kontoret</h2>
+              <p className="text-gray-700 leading-relaxed">
+                Vi kör ut fruktlåda i hela Stockholm med fri leverans – från Östermalm, Kungsholmen och Södermalm till Solna, Sundbyberg, Bromma, Nacka, Täby och Huddinge. Även Södertälje och Uppsala ingår. Lådan står på plats innan medarbetarna kommer in till jobbet, så ni slipper själva tänka på frukthämtning. Vi använder återanvändbara lådor och tar tillbaka tomemballaget vid nästa leverans.
+              </p>
+            </div>
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-green-900 mb-3">Fruktlåda prenumeration – pausa när ni vill</h2>
+              <p className="text-gray-700 leading-relaxed">
+                Vår fruktlåda är en löpande prenumeration utan bindningstid. Pausa över semestrar, ändra storlek eller frekvens, eller säg upp – allt sker direkt i kundportalen eller med ett mejl till oss. Ni faktureras månadsvis i efterhand med 15 dagars betalningsvillkor, så ni betalar bara för det som faktiskt levererats.
+              </p>
+            </div>
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-green-900 mb-3">Fruktlåda pris – från 199 kr per leverans</h2>
+              <p className="text-gray-700 leading-relaxed">
+                Priset på en fruktlåda börjar på 199 kr för Banan-lådan, 379 kr för vår populäraste Original-låda och 549 kr för Premium-lådan med exotisk frukt och bär. Allt är inklusive fri leverans i Stockholm. För ett kontor på 20 personer som vill ha frukt två gånger i veckan landar månadskostnaden runt 3 000 kr – under 4 kr per medarbetare och dag.
+              </p>
             </div>
           </div>
         </section>
