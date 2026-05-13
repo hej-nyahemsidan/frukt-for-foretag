@@ -1,0 +1,57 @@
+# Vitaminkorgen
+
+> Vitaminkorgen levererar färska fruktkorgar och fruktlådor till företag och kontor i Stockholm, Södertälje och Uppsala. Sedan 2021 har vi hjälpt 150+ företag med veckovis fruktleverans som friskvårdsförmån.
+
+Vi erbjuder tre fruktkorgar: Original, Premium och Banan. Leverans måndag–fredag, fakturering månadsvis med 15 dagars betalningsvillkor. Direktbeställning via webshop, ingen offertprocess. Telefon: 010-183 98 36.
+
+## Huvudsidor
+
+- [Startsida](/): Fruktkorgar till företag i Stockholm – översikt, erbjudanden och beställning.
+- [Produkter](/produkter): Webshop med fruktkorgar, frukostprodukter, kaffe, te, dryck, snacks och skafferi.
+- [Beställ](/bestall): Direkt beställning av fruktkorg med val av leveransdagar.
+- [Provkorg](/provkorg): Boka kostnadsfri provleverans innan löpande beställning.
+- [Kontakt](/kontakt): Kontaktformulär och offertförfrågan.
+- [Om oss](/om-oss): Om Vitaminkorgen och vår historia sedan 2021.
+
+## Landningssidor
+
+- [Fruktlåda](/fruktlada): Fruktlåda till företag – färsk frukt levererad till kontoret.
+- [Fruktkorg Stockholm](/fruktkorg-stockholm): Pillar-sida för fruktkorg i Stockholm med priser och FAQ.
+- [Fruktkorg företag](/fruktkorg-foretag): Fruktkorg som friskvård och företagsförmån.
+- [Fruktkorg på jobbet](/fruktkorg-pa-jobbet): Fruktleverans till arbetsplatsen.
+- [Fruktkorg kontor](/fruktkorg-kontor): Fruktkorg för kontorsmiljö.
+- [Fruktleverans företag](/fruktleverans-foretag): Veckovis fruktleverans till företag.
+- [Fruktkorg Stockholm pris](/fruktkorg-stockholm-pris): Prisinformation för fruktkorgar i Stockholm.
+- [Prova fruktkorg](/prova-fruktkorg): Provleverans-erbjudande.
+- [Erbjudande](/erbjudande): Aktuella kampanjer och rabatter.
+
+## Produktsidor
+
+- [Fruktkorg Original](/produkt/fruktkorg-original): Vår populäraste fruktkorg – blandning av äpplen, päron, bananer, citrus och säsongsfrukt.
+- [Fruktkorg Premium](/produkt/fruktkorg-premium): Lyxig fruktkorg med exotisk frukt, bär och premium-sorter.
+- [Fruktkorg Banan](/produkt/fruktkorg-banan): Klassisk bananlåda – bästa pris per frukt.
+
+## Övrigt sortiment
+
+- [Blommor](/blommor): Blomsterleverans till kontor.
+- [Varuautomat](/varuautomat): Varuautomater och kaffemaskiner till företag.
+
+## Blogg
+
+- [Blogg](/blogg): Tips, recept och artiklar om frukt på jobbet.
+- [Tips](/blogg/tips): Tips om fruktkorgar, kontorshälsa och företagsfrukt.
+- [Recept](/blogg/recept): Recept med säsongsfrukt.
+
+## Lokala sidor
+
+- [Fruktkorg Östermalm](/fruktkorg/ostermalm): Lokal leverans Östermalm.
+- [Fruktkorg Södermalm](/fruktkorg/sodermalm): Lokal leverans Södermalm.
+- [Fruktkorg Kungsholmen](/fruktkorg/kungsholmen): Lokal leverans Kungsholmen.
+- [Fruktkorg Solna](/fruktkorg/solna): Lokal leverans Solna.
+- Fler områden via /fruktkorg/{omrade} – 36 områden i Stockholmsregionen.
+
+## Optional
+
+- [Integritetspolicy](/integritetspolicy): GDPR och hantering av personuppgifter.
+- [Cookiepolicy](/cookiepolicy): Cookies på vitaminkorgen.se.
+- [Villkor](/villkor): Allmänna villkor, leverans och betalning.
