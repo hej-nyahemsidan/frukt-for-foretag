@@ -180,7 +180,7 @@ const Fruktlada = () => {
                   slug: 'fruktkorg-banan',
                   img: fruktkorgBanan,
                   price: 'Från 199 kr',
-                  desc: 'Klassisk bananlåda – bästa pris per frukt. Perfekt för kontor som vill hålla det enkelt.',
+                  desc: 'Fruktlåda Banan är det perfekta valet för kontor där bananer är favoriten. Lådan fokuserar på bananer med kompletterande frukter för variation – en utmärkt energikälla som mellanmål under arbetsdagen.',
                   badge: 'Billigast',
                 },
                 {
