@@ -11,7 +11,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import fruktladaImg from '@/assets/fruktlada-new.jpg';
-import fruktkorgOriginal from '@/assets/fruktkorg-original-new.jpg';
+import fruktkorgOriginal from '@/assets/fruktkorg-standard-new.jpg';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.jpg';
 import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
 
