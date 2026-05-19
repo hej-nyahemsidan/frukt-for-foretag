@@ -4,14 +4,71 @@ export interface AreaInfo {
   name: string;
   description: string;
   nearbyAreas: string[];
+  /** Optional rich SEO content: multi-paragraph local intro (markdown-safe plain text). */
+  longContent?: string[];
+  /** Optional area-specific FAQ overrides for richer local pages. */
+  localFaqs?: { q: string; a: string }[];
+  /** Optional local highlights (specific districts, streets, landmarks). */
+  highlights?: string[];
 }
 
 export const areas: AreaInfo[] = [
-  { slug: 'ostermalm', name: 'Östermalm', description: 'Vi levererar färska fruktkorgar till kontor och företag på Östermalm. Snabb leverans i centrala Stockholm med handplockad kvalitetsfrukt.', nearbyAreas: ['Gärdet', 'Gamla stan', 'Södermalm'] },
-  { slug: 'kungsholmen', name: 'Kungsholmen', description: 'Fruktkorgar till arbetsplatser på Kungsholmen. Vi levererar direkt till ert kontor med fri frakt – varje vecka.', nearbyAreas: ['Stadshagen', 'Fridhemsplan', 'Bromma'] },
+  {
+    slug: 'ostermalm',
+    name: 'Östermalm',
+    description: 'Vi levererar färska fruktkorgar till kontor och företag på Östermalm. Snabb leverans i centrala Stockholm med handplockad kvalitetsfrukt.',
+    nearbyAreas: ['Gärdet', 'Gamla stan', 'Södermalm'],
+    highlights: ['Stureplan', 'Karlaplan', 'Strandvägen', 'Östermalmstorg', 'Birger Jarlsgatan', 'Humlegården'],
+    longContent: [
+      'Östermalm är hjärtat av Stockholms affärsliv – och just därför ett område där fruktkorgar på kontoret gör störst skillnad. Här samlas advokatbyråer, konsultbolag, finansbolag och kreativa byråer runt Stureplan, Karlaplan och Strandvägen. Vitaminkorgen levererar färska fruktkorgar till hundratals kontor i området varje vecka, från små startup-team på Birger Jarlsgatan till stora huvudkontor runt Östermalmstorg.',
+      'Vår leveransbil rör sig genom Östermalm tidigt på morgonen, ofta före kl. 08:00, så att frukten står redo när medarbetarna kommer in. Vi känner de smala gränderna kring Humlegården, lastportarna på Sturegatan och receptionerna runt Karlavägen – det innebär att leveransen alltid kommer fram i tid, även de dagar då stadens trafik står still.',
+      'För kontor på Östermalm rekommenderar vi ofta vår Fruktkorg Premium, eftersom området präglas av höga krav på kvalitet och presentation. Korgen innehåller 12–15 sorters handplockad säsongsfrukt och passar lika bra i ett klientmöte hos en advokatbyrå som i ett dagligt fikarum hos en kommunikationsbyrå.'
+    ],
+    localFaqs: [
+      { q: 'Levererar ni fruktkorgar till kontor runt Stureplan och Östermalmstorg?', a: 'Ja, Stureplan, Östermalmstorg, Birger Jarlsgatan, Karlaplan och Strandvägen är några av våra mest trafikerade leveransadresser. Vi har specifika rutiner för portar och receptioner i området så att leveransen sker smidigt även i större fastigheter.' },
+      { q: 'Hur tidigt på morgonen levererar ni på Östermalm?', a: 'Vi börjar vår Östermalmsslinga runt 07:00 och de flesta kontor i området har sin fruktkorg på plats innan kl. 09:00. Vill ni ha en specifik leveranstid är det bara att meddela oss vid beställning.' },
+      { q: 'Vilken fruktkorg passar bäst för advokatbyråer och konsultbolag på Östermalm?', a: 'För kontor med mycket klientmöten rekommenderar vi Fruktkorg Premium. Den har 12–15 sorters handplockad frukt med en exklusivare profil – perfekt både för medarbetare och som blickfång i mötesrum och receptioner.' },
+      { q: 'Kan ni leverera till större kontorshus med flera företag på Östermalm?', a: 'Absolut. Vi levererar regelbundet till multitenant-fastigheter på t.ex. Karlavägen, Sturegatan och Strandvägen. Varje kontor får sin egen korg märkt med företagsnamn så det aldrig blir några förväxlingar.' }
+    ]
+  },
+  {
+    slug: 'kungsholmen',
+    name: 'Kungsholmen',
+    description: 'Fruktkorgar till arbetsplatser på Kungsholmen. Vi levererar direkt till ert kontor med fri frakt – varje vecka.',
+    nearbyAreas: ['Stadshagen', 'Fridhemsplan', 'Bromma'],
+    highlights: ['Fridhemsplan', 'Stadshagen', 'Lindhagensgatan', 'Hornsbergs strand', 'S:t Eriksgatan', 'Rådhuset'],
+    longContent: [
+      'Kungsholmen har på bara några år vuxit till ett av Stockholms tätaste kontorsområden. Runt Lindhagensgatan, Hornsbergs strand och Stadshagen har stora bolag som Klarna, ICA och Microsoft sina huvudkontor – och tillsammans med myndigheter och advokatbyråer kring Rådhuset gör det Kungsholmen till en perfekt match för en veckovis fruktkorgsleverans.',
+      'Vitaminkorgen kör Kungsholmen-rutten varje vardagsmorgon och kombinerar leveranser till både moderna kontorslandskap vid Hornsbergs strand och äldre kontor kring S:t Eriksgatan och Fridhemsplan. Vi har god kännedom om lastintag, garageinfarter och receptioner i området – något som spar tid både för oss och er reception.',
+      'För kontor på Kungsholmen är Fruktkorg Original ofta det mest populära valet. Den passar bra för team om 10–25 medarbetare och innehåller ett brett urval av säsongens frukt. För större kontor i Hornsbergs strand kombinerar många kunder två eller tre korgar per vecka.'
+    ],
+    localFaqs: [
+      { q: 'Levererar ni fruktkorgar till Hornsbergs strand och Lindhagensgatan?', a: 'Ja, Hornsbergs strand, Lindhagensgatan, Stadshagen och hela Lindhagenområdet är en av våra största leveranszoner. Vi har dagliga leveranser till flera av de stora kontorshusen där.' },
+      { q: 'Kan ni leverera till kontor vid Fridhemsplan och S:t Eriksgatan?', a: 'Absolut. Vi levererar varje vecka till företag både runt Fridhemsplan, S:t Eriksgatan och hela Kungsholms Strand. Fri leverans, oavsett adress i området.' },
+      { q: 'Vilken fruktkorg passar bäst för techbolag och startups på Kungsholmen?', a: 'För techbolag och startups rekommenderar vi ofta Fruktkorg Original kompletterad med en Fruktkorg Banan. Bananerna är populära som snabb energikick under långa kodsessioner, medan Original ger den dagliga variationen.' },
+      { q: 'Hur snabbt kan vi komma igång med leveranser på Kungsholmen?', a: 'Vi kan oftast starta leveranser inom 3–5 vardagar från beställning. Vill ni testa först erbjuder vi en kostnadsfri provkorg som levereras till valfri adress på Kungsholmen.' }
+    ]
+  },
   { slug: 'stadshagen', name: 'Stadshagen', description: 'Beställ fruktkorgar till kontoret i Stadshagen. Färsk, säsongsanpassad frukt levererad till er dörr.', nearbyAreas: ['Kungsholmen', 'Fridhemsplan', 'Solna'] },
   { slug: 'fridhemsplan', name: 'Fridhemsplan', description: 'Fruktkorgar med fri leverans till Fridhemsplan. Vi förser kontor i området med färsk frukt varje vecka.', nearbyAreas: ['Kungsholmen', 'Stadshagen', 'Gamla stan'] },
-  { slug: 'sodermalm', name: 'Södermalm', description: 'Fruktkorgar till företag på Södermalm. Handplockad frukt levererad direkt till ert kontor – smidigt och enkelt.', nearbyAreas: ['Gamla stan', 'Hammarby sjöstad', 'Östermalm'] },
+  {
+    slug: 'sodermalm',
+    name: 'Södermalm',
+    description: 'Fruktkorgar till företag på Södermalm. Handplockad frukt levererad direkt till ert kontor – smidigt och enkelt.',
+    nearbyAreas: ['Gamla stan', 'Hammarby sjöstad', 'Östermalm'],
+    highlights: ['SoFo', 'Medborgarplatsen', 'Götgatan', 'Hornstull', 'Skanstull', 'Slussen'],
+    longContent: [
+      'Södermalm är Stockholms kreativa motor – ett område där designbyråer, mediabolag, techstartups och konsultfirmor samsas på samma kvarter. Från SoFo och Nytorget i öster till Hornstull i väster bygger företag en kultur där hälsa, hållbarhet och välmående på arbetsplatsen står högt på agendan. En veckovis fruktkorg är därför en självklarhet för många kontor på Söder.',
+      'Vi på Vitaminkorgen levererar fruktkorgar till hundratals företag på Södermalm – allt från små studios runt Skånegatan till större kontor vid Medborgarplatsen, Götgatan och Skanstull. Vår förarpersonal känner till smala gränder och inlastningsregler i området, vilket gör att leveranserna kommer fram även i de mer svårtillgängliga delarna av Söder.',
+      'På Södermalm ser vi att många kontor väljer Fruktkorg Original för det dagliga utbudet och kompletterar med Fruktkorg Banan inför veckor med mycket möten eller events. För kontor som värdesätter den lilla extra exklusiviteten – ofta byråer som tar emot kund – passar Fruktkorg Premium bäst.'
+    ],
+    localFaqs: [
+      { q: 'Levererar ni fruktkorgar till kontor på Götgatan och vid Medborgarplatsen?', a: 'Ja, hela stråket från Slussen via Medborgarplatsen, Götgatan och ner till Skanstull är en av våra mest frekvent trafikerade leveransrutter. Vi har kontor som kund i nästan varje kvarter.' },
+      { q: 'Kan ni leverera till företag i SoFo och kring Nytorget?', a: 'Absolut. SoFo, Nytorget, Skånegatan och Bondegatan är ett område med många designbyråer och mediabolag som vi levererar till varje vecka. Fri leverans gäller hela Södermalm.' },
+      { q: 'Vilken fruktkorg passar bäst för kreativa byråer på Södermalm?', a: 'För kreativa byråer rekommenderar vi Fruktkorg Original som veckobas – brett urval och hög kvalitet – kompletterad med Fruktkorg Banan när ni har långa workshop-dagar eller events.' },
+      { q: 'Levererar ni även till Hornstull och Hornstulls strand?', a: 'Ja, hela västra Södermalm inklusive Hornstull, Hornstulls strand, Långholmsgatan och Reimersholme ingår i vår ordinarie Söder-rutt med fri leverans.' }
+    ]
+  },
   { slug: 'nacka', name: 'Nacka', description: 'Vi levererar fruktkorgar till kontor och företag i Nacka. Färsk frukt varje vecka med gratis leverans.', nearbyAreas: ['Hammarby sjöstad', 'Tyresö', 'Södermalm'] },
   { slug: 'hammarby-sjostad', name: 'Hammarby sjöstad', description: 'Fruktkorgar till moderna kontor i Hammarby sjöstad. Färsk, handplockad frukt levererad till er arbetsplats.', nearbyAreas: ['Södermalm', 'Nacka', 'Farsta'] },
   { slug: 'solna', name: 'Solna', description: 'Beställ fruktkorgar till ert företag i Solna. Vi levererar färsk frukt till kontor i hela Solna med fri frakt.', nearbyAreas: ['Sundbyberg', 'Hagalund', 'Bromma'] },
