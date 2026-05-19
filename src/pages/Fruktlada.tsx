@@ -117,7 +117,7 @@ const Fruktlada = () => {
                   Vi sköter allt – ni får en uppskattad fruktlåda på bordet varje vecka.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link to="/produkter">
+                  <Link to="/bestall">
                     <Button size="lg" className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold shadow-lg border-2 border-black/10 text-lg px-8">
                       Beställ fruktlåda
                     </Button>
@@ -340,7 +340,7 @@ const Fruktlada = () => {
               Kostnadsfri provleverans. Fri leverans i Stockholm. 150+ företag litar på oss.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/produkter">
+              <Link to="/bestall">
                 <Button size="lg" className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold shadow-lg border-2 border-black/10 text-lg px-8">
                   Beställ fruktlåda
                 </Button>
