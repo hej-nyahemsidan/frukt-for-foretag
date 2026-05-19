@@ -69,7 +69,24 @@ export const areas: AreaInfo[] = [
       { q: 'Levererar ni även till Hornstull och Hornstulls strand?', a: 'Ja, hela västra Södermalm inklusive Hornstull, Hornstulls strand, Långholmsgatan och Reimersholme ingår i vår ordinarie Söder-rutt med fri leverans.' }
     ]
   },
-  { slug: 'nacka', name: 'Nacka', description: 'Vi levererar fruktkorgar till kontor och företag i Nacka. Färsk frukt varje vecka med gratis leverans.', nearbyAreas: ['Hammarby sjöstad', 'Tyresö', 'Södermalm'] },
+  {
+    slug: 'nacka',
+    name: 'Nacka',
+    description: 'Vi levererar fruktkorgar till kontor och företag i Nacka. Färsk frukt varje vecka med gratis leverans.',
+    nearbyAreas: ['Hammarby sjöstad', 'Tyresö', 'Södermalm'],
+    highlights: ['Sickla', 'Nacka strand', 'Nacka Forum', 'Saltsjö-Boo', 'Järla', 'Nacka centrum'],
+    longContent: [
+      'Nacka är en av Stockholmsregionens snabbast växande kommuner och hem för en stark mix av techbolag, konsultfirmor och industriföretag. Från Sickla och Nacka strand i väster till Nacka Forum och Saltsjö-Boo i öster har kommunen en mängd kontorshus där fruktkorg på jobbet blivit en självklarhet.',
+      'Vi på Vitaminkorgen kör Nacka-rutten flera dagar i veckan och har god lokalkännedom om både de moderna kontoren vid Nacka strand och de större fastigheterna i Sickla. Vår erfarenhet av området innebär att leveransen alltid kommer fram smidigt – även till de mer svårtillgängliga adresserna i Saltsjö-Boo och Älta.',
+      'För kontor i Nacka är Fruktkorg Original det vanligaste valet, ofta kombinerat med Fruktkorg Banan för produktions- och utvecklingsteam. Större kontor i Nacka strand och Sickla har ofta flera korgar per vecka.'
+    ],
+    localFaqs: [
+      { q: 'Levererar ni fruktkorgar till Sickla och Nacka strand?', a: 'Ja, Sickla och Nacka strand är en del av vår ordinarie Nacka-rutt med fri leverans. Vi har många kunder i bägge områden.' },
+      { q: 'Kan ni leverera till kontor i Nacka Forum och Saltsjö-Boo?', a: 'Absolut. Nacka Forum, Saltsjö-Boo och hela Nacka kommun ingår i vår leveranszon med fri frakt.' },
+      { q: 'Hur ofta kör ni Nacka-rutten?', a: 'Vi kör Nacka flera dagar per vecka och kan oftast erbjuda valfri leveransdag mån–fre.' },
+      { q: 'Vilken fruktkorg passar för techbolag i Nacka?', a: 'För techbolag rekommenderar vi Fruktkorg Original kompletterad med Fruktkorg Banan – populärt under långa kodsessioner.' }
+    ]
+  },
   {
     slug: 'hammarby-sjostad',
     name: 'Hammarby sjöstad',
@@ -106,7 +123,24 @@ export const areas: AreaInfo[] = [
       { q: 'Kan ni leverera tidigt på morgonen i Solna?', a: 'Ja, vi börjar Solna-rutten tidigt och de flesta kontor har fruktkorgen på plats innan kl. 09:00. Önskemål om specifik leveranstid noterar vi vid beställning.' }
     ]
   },
-  { slug: 'sundbyberg', name: 'Sundbyberg', description: 'Fruktkorgar till arbetsplatser i Sundbyberg. Vi levererar handplockad frukt direkt till kontoret varje vecka.', nearbyAreas: ['Solna', 'Hagalund', 'Bromma'] },
+  {
+    slug: 'sundbyberg',
+    name: 'Sundbyberg',
+    description: 'Fruktkorgar till arbetsplatser i Sundbyberg. Vi levererar handplockad frukt direkt till kontoret varje vecka.',
+    nearbyAreas: ['Solna', 'Hagalund', 'Bromma'],
+    highlights: ['Sundbybergs centrum', 'Stora Ursvik', 'Hallonbergen', 'Rissne', 'Solna Business Park', 'Esplanaden'],
+    longContent: [
+      'Sundbyberg är Sveriges minsta men tätaste kommun – och just därför ett område med ovanligt hög koncentration av kontor och företag. Från Sundbybergs centrum via Esplanaden och Rissne till Stora Ursvik och Hallonbergen har kommunen blivit ett naturligt val för både etablerade bolag och växande startups.',
+      'Vi levererar fruktkorgar till företag i hela Sundbyberg varje vardag. Vår rutt täcker både de större kontorshusen i centrum och de moderna nybyggena i Stora Ursvik. Vi har god kännedom om receptioner och lastintag i området, vilket innebär smidig leverans utan onödig väntan.',
+      'För kontor i Sundbyberg är Fruktkorg Original det mest populära valet. Många bolag kompletterar med Fruktkorg Banan, särskilt produktions- och utvecklingsteam med högre energibehov.'
+    ],
+    localFaqs: [
+      { q: 'Levererar ni fruktkorgar till Sundbybergs centrum och Esplanaden?', a: 'Ja, Sundbybergs centrum och Esplanaden är en del av vår dagliga leveransrutt med fri frakt.' },
+      { q: 'Kan ni leverera till Stora Ursvik och Rissne?', a: 'Absolut. Stora Ursvik, Rissne och Hallonbergen ingår alla i vår Sundbyberg-leveranszon med fri frakt.' },
+      { q: 'Hur snabbt kan vi komma igång i Sundbyberg?', a: 'Vi kan oftast starta leveranser inom 3–5 vardagar. Vill ni testa först erbjuder vi en kostnadsfri provkorg.' },
+      { q: 'Vilken fruktkorg passar mindre kontor i Sundbyberg?', a: 'För mindre kontor med 5–15 medarbetare är Fruktkorg Original i mindre storlek ett perfekt veckoval.' }
+    ]
+  },
   { slug: 'hagalund', name: 'Hagalund', description: 'Färska fruktkorgar till kontor i Hagalund. Enkel beställning, fri leverans och alltid hög kvalitet.', nearbyAreas: ['Solna', 'Sundbyberg', 'Bromma'] },
   {
     slug: 'bromma',
@@ -159,12 +193,46 @@ export const areas: AreaInfo[] = [
     ]
   },
   { slug: 'ropsten', name: 'Ropsten', description: 'Vi levererar fruktkorgar till kontor vid Ropsten. Färsk frukt med fri leverans varje vecka.', nearbyAreas: ['Gärdet', 'Östermalm', 'Nacka'] },
-  { slug: 'taby', name: 'Täby', description: 'Fruktkorgar till företag i Täby. Säsongens bästa frukt levererad med gratis frakt till ert kontor.', nearbyAreas: ['Arninge', 'Solna', 'Järfälla'] },
+  {
+    slug: 'taby',
+    name: 'Täby',
+    description: 'Fruktkorgar till företag i Täby. Säsongens bästa frukt levererad med gratis frakt till ert kontor.',
+    nearbyAreas: ['Arninge', 'Solna', 'Järfälla'],
+    highlights: ['Täby centrum', 'Arninge', 'Roslags-Näsby', 'Näsbypark', 'Viggbyholm', 'Galoppfältet'],
+    longContent: [
+      'Täby är en av norra Stockholms största kontorskommuner. Runt Täby centrum, Arninge och Roslags-Näsby har många bolag inom handel, bygg och konsult sina huvudkontor – ofta med stora medarbetargrupper som uppskattar veckovis fruktkorg på jobbet.',
+      'Vi på Vitaminkorgen kör Täby-rutten flera dagar i veckan och täcker både centrumnära kontor och industri-/handelsfastigheter i Arninge. Vår förarpersonal känner till områdets infarter och lastportar, vilket gör att leveransen sker snabbt och utan strul.',
+      'Större kontor i Täby väljer ofta Fruktkorg Original i större storlek, medan handelsföretag i Arninge gärna kompletterar med Fruktkorg Banan för lager- och butikspersonal.'
+    ],
+    localFaqs: [
+      { q: 'Levererar ni fruktkorgar till Täby centrum och Arninge?', a: 'Ja, Täby centrum och Arninge är en del av vår ordinarie Täby-rutt med fri leverans.' },
+      { q: 'Kan ni leverera till kontor i Roslags-Näsby och Näsbypark?', a: 'Absolut. Hela Täby kommun ingår i vår leveranszon med fri frakt.' },
+      { q: 'Hur ofta kör ni Täby-rutten?', a: 'Vi kör Täby flera dagar per vecka och kan oftast erbjuda valfri leveransdag mån–fre.' },
+      { q: 'Vilken fruktkorg passar handelsbolag i Arninge?', a: 'För handelsbolag med lager- och butikspersonal rekommenderar vi Fruktkorg Original och en Fruktkorg Banan som komplement.' }
+    ]
+  },
   { slug: 'arninge', name: 'Arninge', description: 'Beställ fruktkorgar till arbetsplatsen i Arninge. Vi levererar handplockad frukt med fri frakt.', nearbyAreas: ['Täby', 'Solna', 'Järfälla'] },
   { slug: 'jarfalla', name: 'Järfälla', description: 'Fruktkorgar till kontor i Järfälla. Färsk frukt levererad varje vecka med gratis leverans.', nearbyAreas: ['Sundbyberg', 'Solna', 'Bromma'] },
   { slug: 'fruangen', name: 'Fruängen', description: 'Vi levererar fruktkorgar till företag i Fruängen. Enkel beställning och alltid hög kvalitet.', nearbyAreas: ['Hägersten', 'Älvsjö', 'Västberga'] },
   { slug: 'gamla-stan', name: 'Gamla stan', description: 'Fruktkorgar till kontor i Gamla stan. Handplockad frukt levererad till hjärtat av Stockholm.', nearbyAreas: ['Södermalm', 'Östermalm', 'Kungsholmen'] },
-  { slug: 'stockholm', name: 'Stockholm City', description: 'Fruktkorgar till kontor i centrala Stockholm. Vi levererar färsk frukt till företag i hela city med fri frakt.', nearbyAreas: ['Östermalm', 'Södermalm', 'Kungsholmen'] },
+  {
+    slug: 'stockholm',
+    name: 'Stockholm City',
+    description: 'Fruktkorgar till kontor i centrala Stockholm. Vi levererar färsk frukt till företag i hela city med fri frakt.',
+    nearbyAreas: ['Östermalm', 'Södermalm', 'Kungsholmen'],
+    highlights: ['Norrmalmstorg', 'Sergels torg', 'Hötorget', 'Vasagatan', 'Drottninggatan', 'Kungsgatan'],
+    longContent: [
+      'Stockholm City är navet i landets affärsliv – från Norrmalmstorg och Sergels torg via Vasagatan och Kungsgatan till Hötorget och Drottninggatan. Här samlas storbanker, advokatbyråer, konsultfirmor och huvudkontor som varje vardag tar emot tusentals medarbetare och besökare.',
+      'Vi på Vitaminkorgen levererar fruktkorgar till hundratals kontor i city varje vecka. Vår morgonrutt är optimerad så att korgarna står på plats innan medarbetarna kommer in – något som spelar extra roll i stora kontorsfastigheter med flera hyresgäster.',
+      'För kontor i city är Fruktkorg Premium ett populärt val eftersom området präglas av höga krav på kvalitet och presentation. Många större kontor kombinerar Premium i receptionen med Original i fikarummen.'
+    ],
+    localFaqs: [
+      { q: 'Levererar ni fruktkorgar till kontor vid Norrmalmstorg och Sergels torg?', a: 'Ja, Norrmalmstorg, Sergels torg, Vasagatan och Kungsgatan ingår i vår dagliga city-rutt. Vi har många kunder i området.' },
+      { q: 'Hur tidigt levererar ni i Stockholm City?', a: 'Vi börjar city-rutten runt 07:00 och de flesta kontor har fruktkorgen på plats innan kl. 09:00.' },
+      { q: 'Kan ni leverera till större kontorshus med flera hyresgäster?', a: 'Absolut. Vi har lång erfarenhet av multitenant-fastigheter i city. Varje korg märks med företagsnamn så det aldrig blir förväxlingar.' },
+      { q: 'Vilken fruktkorg passar bäst för storbanker och advokatbyråer i city?', a: 'För kontor med mycket klientmöten rekommenderar vi Fruktkorg Premium – exklusiv profil med 12–15 sorters handplockad frukt.' }
+    ]
+  },
   { slug: 'huddinge', name: 'Huddinge', description: 'Beställ fruktkorgar till ert företag i Huddinge. Färsk säsongsfrukt med gratis leverans varje vecka.', nearbyAreas: ['Älvsjö', 'Tumba', 'Botkyrka'] },
   { slug: 'jordbro', name: 'Jordbro', description: 'Fruktkorgar till arbetsplatser i Jordbro. Vi levererar handplockad frukt med fri frakt.', nearbyAreas: ['Haninge', 'Handen', 'Skogås'] },
   { slug: 'lanna', name: 'Länna', description: 'Vi levererar fruktkorgar till kontor i Länna. Färsk frukt med fri leverans och hög kvalitet.', nearbyAreas: ['Haninge', 'Handen', 'Tyresö'] },
