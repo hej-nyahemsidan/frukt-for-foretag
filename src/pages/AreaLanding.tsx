@@ -19,13 +19,14 @@ const AreaLanding = () => {
     return <Navigate to="/fruktkorg-stockholm" replace />;
   }
 
-  const { name, description, nearbyAreas } = areaInfo;
+  const { name, description, nearbyAreas, longContent, localFaqs, highlights } = areaInfo;
 
-  const faqs = [
+  const defaultFaqs = [
     { q: `Levererar ni fruktkorgar till ${name}?`, a: `Ja! Vi levererar fruktkorgar till alla adresser i ${name} med gratis frakt. Leverans sker den dag ni väljer.` },
     { q: 'Hur mycket kostar en fruktkorg?', a: 'Våra fruktkorgar börjar från ca 200 kr/vecka. Kontakta oss för en skräddarsydd offert baserat på antal medarbetare.' },
     { q: 'Kan vi testa innan vi bestämmer oss?', a: 'Absolut! Vi erbjuder en kostnadsfri provkorg så ni kan uppleva kvaliteten själva innan ni bestämmer er.' },
   ];
+  const faqs = localFaqs && localFaqs.length > 0 ? localFaqs : defaultFaqs;
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
@@ -99,6 +100,34 @@ const AreaLanding = () => {
             </div>
           </div>
         </section>
+
+        {/* Local rich content (prio-områden) */}
+        {longContent && longContent.length > 0 && (
+          <section className="py-16 md:py-20 bg-white">
+            <div className="container mx-auto px-6 max-w-3xl">
+              <h2 className="text-3xl md:text-4xl font-bold text-green-900 mb-8">
+                Fruktkorgar till företag i {name}
+              </h2>
+              <div className="space-y-5 text-gray-700 leading-relaxed text-lg">
+                {longContent.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
+              {highlights && highlights.length > 0 && (
+                <div className="mt-10 p-6 bg-green-50 rounded-2xl">
+                  <h3 className="font-bold text-green-900 mb-3">Vi levererar bland annat till kontor vid:</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {highlights.map((h, i) => (
+                      <span key={i} className="inline-flex items-center gap-1 bg-white px-3 py-1.5 rounded-full text-sm text-green-800 shadow-sm">
+                        <MapPin className="h-3 w-3" /> {h}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
 
         {/* Products */}
         <section className="py-16 md:py-24">

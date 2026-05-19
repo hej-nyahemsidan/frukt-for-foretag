@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom';
+import { areas } from '@/data/areas';
 
 interface StructuredDataProps {
   type?: 'homepage' | 'products' | 'contact' | 'about';
@@ -30,10 +31,16 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
       "longitude": "17.9918"
     },
     "openingHours": ["Mo-Fr 08:00-17:00"],
-    "areaServed": {
-      "@type": "City",
-      "name": "Stockholm"
-    },
+    "areaServed": [
+      { "@type": "City", "name": "Stockholm" },
+      { "@type": "City", "name": "Södertälje" },
+      { "@type": "City", "name": "Uppsala" },
+      ...areas.map(a => ({
+        "@type": "AdministrativeArea" as const,
+        "name": a.name,
+        "containedInPlace": { "@type": "City", "name": "Stockholm" }
+      }))
+    ],
     "serviceArea": {
       "@type": "GeoCircle",
       "geoMidpoint": {
