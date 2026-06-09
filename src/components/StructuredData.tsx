@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { areas } from '@/data/areas';
 
 interface StructuredDataProps {
-  type?: 'homepage' | 'products' | 'contact' | 'about';
+  type?: 'homepage' | 'products' | 'contact' | 'about' | 'product-detail';
 }
 
 const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
@@ -201,14 +201,14 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
       "sku": "VK-ORIGINAL-4KG",
       "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
       "category": "Fruktkorgar",
-      "url": "https://vitaminkorgen.se/produkter",
+      "url": "https://vitaminkorgen.se/produkt/fruktkorg-original",
       "offers": {
         "@type": "Offer",
         "price": "230",
         "priceCurrency": "SEK",
         "availability": "https://schema.org/InStock",
         "priceValidUntil": "2026-12-31",
-        "url": "https://vitaminkorgen.se/produkter",
+        "url": "https://vitaminkorgen.se/produkt/fruktkorg-original",
         "seller": { "@type": "Organization", "name": "Vitaminkorgen AB" }
       },
       "aggregateRating": {
@@ -218,13 +218,13 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
         "bestRating": "5",
         "worstRating": "1"
       },
-      "review": {
+      "review": [{
         "@type": "Review",
         "author": { "@type": "Person", "name": "Anna Svensson" },
         "datePublished": "2025-09-15",
         "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "reviewBody": "Fantastisk service! Fruktkorgar levereras alltid i tid och frukterna är så färska."
-      }
+      }]
     },
     {
       "@context": "https://schema.org",
@@ -235,14 +235,14 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
       "sku": "VK-PREMIUM-6KG",
       "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
       "category": "Fruktkorgar",
-      "url": "https://vitaminkorgen.se/produkter",
+      "url": "https://vitaminkorgen.se/produkt/fruktkorg-premium",
       "offers": {
         "@type": "Offer",
         "price": "340",
         "priceCurrency": "SEK",
         "availability": "https://schema.org/InStock",
         "priceValidUntil": "2026-12-31",
-        "url": "https://vitaminkorgen.se/produkter",
+        "url": "https://vitaminkorgen.se/produkt/fruktkorg-premium",
         "seller": { "@type": "Organization", "name": "Vitaminkorgen AB" }
       },
       "aggregateRating": {
@@ -252,47 +252,13 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
         "bestRating": "5",
         "worstRating": "1"
       },
-      "review": {
+      "review": [{
         "@type": "Review",
         "author": { "@type": "Person", "name": "Lars Andersson" },
         "datePublished": "2025-10-02",
         "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "reviewBody": "Har använt Vitaminkorgen i över ett år. Otroligt bra kvalitet och professionell leverans varje vecka."
-      }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "name": "Fruktkorg Supreme",
-      "description": "Vår största fruktkorg med extra stort urval av säsongens bästa frukter, ca 8 kg.",
-      "image": "https://vitaminkorgen.se/assets/fruktkorg-supreme-new.jpg",
-      "sku": "VK-SUPREME-8KG",
-      "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
-      "category": "Fruktkorgar",
-      "url": "https://vitaminkorgen.se/produkter",
-      "offers": {
-        "@type": "Offer",
-        "price": "295",
-        "priceCurrency": "SEK",
-        "availability": "https://schema.org/InStock",
-        "priceValidUntil": "2026-12-31",
-        "url": "https://vitaminkorgen.se/produkter",
-        "seller": { "@type": "Organization", "name": "Vitaminkorgen AB" }
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5.0",
-        "reviewCount": "47",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "review": {
-        "@type": "Review",
-        "author": { "@type": "Person", "name": "Maria Johansson" },
-        "datePublished": "2025-11-10",
-        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-        "reviewBody": "Bästa fruktleveransen i Stockholm! Handplockat urval och alltid perfekt mogna frukter."
-      }
+      }]
     },
     {
       "@context": "https://schema.org",
@@ -303,14 +269,14 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
       "sku": "VK-BANAN-5KG",
       "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
       "category": "Fruktkorgar",
-      "url": "https://vitaminkorgen.se/produkter",
+      "url": "https://vitaminkorgen.se/produkt/fruktkorg-banan",
       "offers": {
         "@type": "Offer",
         "price": "199",
         "priceCurrency": "SEK",
         "availability": "https://schema.org/InStock",
         "priceValidUntil": "2026-12-31",
-        "url": "https://vitaminkorgen.se/produkter",
+        "url": "https://vitaminkorgen.se/produkt/fruktkorg-banan",
         "seller": { "@type": "Organization", "name": "Vitaminkorgen AB" }
       },
       "aggregateRating": {
@@ -320,18 +286,21 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
         "bestRating": "5",
         "worstRating": "1"
       },
-      "review": {
+      "review": [{
         "@type": "Review",
         "author": { "@type": "Person", "name": "Erik Lindberg" },
         "datePublished": "2025-12-05",
         "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "reviewBody": "Perfekt för vårt gym-kontor! Bananerna är alltid fräscha och leveransen pålitlig."
-      }
+      }]
     }
   ];
 
   const getStructuredData = () => {
     switch (type) {
+      case 'product-detail':
+        return [baseOrganization];
+
       case 'products':
         return [baseOrganization, serviceSchema, ...productSchemas];
 

@@ -44,15 +44,53 @@ const FruktkorgProduct = () => {
     })),
   };
 
+  const productUrl = `https://vitaminkorgen.se/produkt/${product.slug}`;
+  const lowestPrice = Math.min(...product.sizes.map(s => s.price));
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    description: product.description,
+    image: `https://vitaminkorgen.se/assets/${product.image}.jpg`,
+    sku: `VK-${product.slug.toUpperCase()}`,
+    brand: { '@type': 'Brand', name: 'Vitaminkorgen' },
+    category: 'Fruktkorgar',
+    url: productUrl,
+    offers: {
+      '@type': 'Offer',
+      price: String(lowestPrice),
+      priceCurrency: 'SEK',
+      availability: 'https://schema.org/InStock',
+      priceValidUntil: '2026-12-31',
+      url: productUrl,
+      seller: { '@type': 'Organization', name: 'Vitaminkorgen AB' },
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '5.0',
+      reviewCount: '47',
+      bestRating: '5',
+      worstRating: '1',
+    },
+    review: [{
+      '@type': 'Review',
+      author: { '@type': 'Person', name: 'Anna Svensson' },
+      datePublished: '2025-09-15',
+      reviewRating: { '@type': 'Rating', ratingValue: '5', bestRating: '5' },
+      reviewBody: 'Fantastisk service! Fruktkorgar levereras alltid i tid och frukterna är så färska.',
+    }],
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
         title={product.seoTitle}
         description={product.seoDescription}
         keywords={product.seoKeywords}
-        type="products"
+        type="product-detail"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
       <Header />
       <main>
         {/* Hero */}

@@ -7,7 +7,7 @@ interface SEOHeadProps {
   description?: string;
   keywords?: string;
   image?: string;
-  type?: 'homepage' | 'products' | 'contact' | 'about';
+  type?: 'homepage' | 'products' | 'contact' | 'about' | 'product-detail';
   ogType?: 'website' | 'article';
   noindex?: boolean;
 }
