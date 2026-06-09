@@ -49,8 +49,40 @@ export const areas: AreaInfo[] = [
       { q: 'Hur snabbt kan vi komma igång med leveranser på Kungsholmen?', a: 'Vi kan oftast starta leveranser inom 3–5 vardagar från beställning. Vill ni testa först erbjuder vi en kostnadsfri provkorg som levereras till valfri adress på Kungsholmen.' }
     ]
   },
-  { slug: 'stadshagen', name: 'Stadshagen', description: 'Beställ fruktkorgar till kontoret i Stadshagen. Färsk, säsongsanpassad frukt levererad till er dörr.', nearbyAreas: ['Kungsholmen', 'Fridhemsplan', 'Solna'] },
-  { slug: 'fridhemsplan', name: 'Fridhemsplan', description: 'Fruktkorgar med fri leverans till Fridhemsplan. Vi förser kontor i området med färsk frukt varje vecka.', nearbyAreas: ['Kungsholmen', 'Stadshagen', 'Gamla stan'] },
+  {
+    slug: 'stadshagen',
+    name: 'Stadshagen',
+    description: 'Beställ fruktkorgar till kontoret i Stadshagen. Färsk, säsongsanpassad frukt levererad till er dörr.',
+    nearbyAreas: ['Kungsholmen', 'Fridhemsplan', 'Solna'],
+    highlights: ['Stadshagens IP', 'Hornsbergs strand', 'Lindhagensgatan', 'Kellgrensgatan', 'S:t Eriksgatan'],
+    longContent: [
+      'Stadshagen ligger på norra Kungsholmen och har på senare år förvandlats till ett tätt kontorskvarter med både moderna nybyggen vid Hornsbergs strand och äldre fastigheter längs Lindhagensgatan och S:t Eriksgatan. Många mediabolag, tech-företag och konsultfirmor har valt området för dess närhet till både innerstad och Essingeleden.',
+      'Vi på Vitaminkorgen kör Stadshagen som en del av vår Kungsholmsrutt flera dagar per vecka. Det innebär stabila leveranstider och god kännedom om både portar och receptioner i de större kontorshusen vid Hornsbergs strand.',
+      'För Stadshagen-kontor är Fruktkorg Original den vanligaste basen, ofta kompletterad med Fruktkorg Premium för bolag med mycket klientmöten.'
+    ],
+    localFaqs: [
+      { q: 'Levererar ni fruktkorgar till Hornsbergs strand?', a: 'Ja, Hornsbergs strand är en central leveransadress i vår Kungsholmsrutt med fri frakt.' },
+      { q: 'Kan ni leverera till kontorshus vid Lindhagensgatan?', a: 'Absolut. Hela Lindhagensgatan och S:t Eriksgatan ingår i vår leveranszon med fri leverans.' },
+      { q: 'Hur tidigt levererar ni i Stadshagen?', a: 'De flesta kontor i Stadshagen har korgen på plats innan kl. 09:00.' }
+    ]
+  },
+  {
+    slug: 'fridhemsplan',
+    name: 'Fridhemsplan',
+    description: 'Fruktkorgar med fri leverans till Fridhemsplan. Vi förser kontor i området med färsk frukt varje vecka.',
+    nearbyAreas: ['Kungsholmen', 'Stadshagen', 'Gamla stan'],
+    highlights: ['Fridhemsplan T-bana', 'S:t Eriksgatan', 'Drottningholmsvägen', 'Kronobergsparken', 'Hantverkargatan'],
+    longContent: [
+      'Fridhemsplan är en av Kungsholmens viktigaste knutpunkter och en plats där tunnelbana, tvärbana och busslinjer möts. Området runt S:t Eriksgatan, Drottningholmsvägen och Hantverkargatan rymmer en stor mängd kontor – från advokatbyråer och konsultfirmor till mediabolag och kreativa byråer.',
+      'Vi på Vitaminkorgen levererar fruktkorgar till företag vid Fridhemsplan flera dagar per vecka. Vi har god kännedom om receptionsrutiner i området och vet vilka leveranstider som fungerar bäst för att slippa morgonrusningen runt T-banan.',
+      'För Fridhemsplan-kontor är Fruktkorg Original i mellanstor storlek det vanligaste veckovalet. Bolag med klientmottagning kompletterar gärna med Fruktkorg Premium.'
+    ],
+    localFaqs: [
+      { q: 'Levererar ni fruktkorgar till kontor runt Fridhemsplan T-bana?', a: 'Ja, hela området runt Fridhemsplan ingår i vår Kungsholmsrutt med fri leverans.' },
+      { q: 'Kan ni leverera till advokatbyråer på Hantverkargatan?', a: 'Absolut. Vi har många kunder bland advokatbyråer och konsultfirmor i området och kan anpassa korgen efter er profil.' },
+      { q: 'Hur tidigt levererar ni vid Fridhemsplan?', a: 'Vi börjar Kungsholmsrutten tidigt och de flesta kontor har fruktkorgen på plats innan kl. 09:00.' }
+    ]
+  },
   {
     slug: 'sodermalm',
     name: 'Södermalm',
