@@ -337,12 +337,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
             "@type": "WebSite",
             "name": "Vitaminkorgen - Fruktkorgar Stockholm",
             "url": "https://vitaminkorgen.se",
-            "description": "Vi levererar färska fruktkorgar på jobbet i Stockholm. Handplockade fruktkorgar direkt till kontoret varje vecka.",
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": "https://vitaminkorgen.se/produkter?search={search_term_string}",
-              "query-input": "required name=search_term_string"
-            }
+            "description": "Vi levererar färska fruktkorgar på jobbet i Stockholm. Handplockade fruktkorgar direkt till kontoret varje vecka."
           }
         ];
     }
