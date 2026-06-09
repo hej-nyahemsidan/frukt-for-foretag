@@ -13,6 +13,11 @@ import officeWorkers from '@/assets/medarbetare-fruktkorgar-kontor.jpg';
 
 const AreaLanding = () => {
   const { area } = useParams<{ area: string }>();
+  // /fruktkorg/stockholm är en dubblett av pillar-sidan /fruktkorg-stockholm.
+  // Permanent redirect (SPA) så Google ser en enda kanonisk Stockholm-sida.
+  if (area === 'stockholm') {
+    return <Navigate to="/fruktkorg-stockholm" replace />;
+  }
   const areaInfo = area ? getAreaBySlug(area) : undefined;
 
   if (!areaInfo) {
