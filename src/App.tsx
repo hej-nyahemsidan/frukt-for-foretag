@@ -49,6 +49,7 @@ const FruktkorgPaJobbet = lazy(() => import("./pages/FruktkorgPaJobbet"));
 const AreaLanding = lazy(() => import("./pages/AreaLanding"));
 const FruktkorgProduct = lazy(() => import("./pages/FruktkorgProduct"));
 const Provkorg = lazy(() => import("./pages/Provkorg"));
+const Avregistrera = lazy(() => import("./pages/Avregistrera"));
 const Erbjudande = lazy(() => import("./pages/Erbjudande"));
 const Bestall = lazy(() => import("./pages/Bestall"));
 const ProvaFruktkorg = lazy(() => import("./pages/ProvaFruktkorg"));
@@ -130,6 +131,7 @@ const App = () => (
                 <Route path="/fruktkorg/:area" element={<AreaLanding />} />
                 <Route path="/produkt/:slug" element={<FruktkorgProduct />} />
                 <Route path="/provkorg" element={<Provkorg />} />
+                <Route path="/avregistrera" element={<Avregistrera />} />
                 <Route path="/erbjudande" element={<Erbjudande />} />
                 <Route path="/bestall" element={<Bestall />} />
                 {/* Dedicated Ads landing pages */}
