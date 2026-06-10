@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
-import { Package, Calendar, ChevronDown, ChevronUp } from 'lucide-react';
+import { Package, Calendar, ChevronDown, ChevronUp, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useCart } from '@/contexts/CartContext';
+import { toast } from '@/hooks/use-toast';
 
 interface OrderItem {
   id?: string;
@@ -37,6 +39,7 @@ const statusLabel = (s: string) => {
 
 const CustomerOrderHistory = () => {
   const { customer } = useAuth();
+  const { addItem } = useCart();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -58,6 +61,31 @@ const CustomerOrderHistory = () => {
     })();
     return () => { cancel = true; };
   }, [customer?.id]);
+
+  const reorder = (o: Order) => {
+    const list = Array.isArray(o.items) ? o.items : [];
+    if (list.length === 0) {
+      toast({ title: 'Inga produkter att lägga till' });
+      return;
+    }
+    list.forEach((it) => {
+      addItem({
+        id: it.id || `${it.name}-${it.size || ''}`,
+        name: it.name,
+        price: Number(it.price) || 0,
+        category: 'fruktkorgar',
+        size: it.size,
+        assignedDay: it.assignedDay,
+        orderType: it.orderType || (o.package_plan === 'weekly' ? 'subscription' : 'onetime'),
+        quantity: it.quantity || 1,
+      });
+    });
+    toast({
+      title: 'Produkter tillagda',
+      description: `${list.reduce((s, i) => s + (i.quantity || 1), 0)} produkter lades till i din beställning.`,
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   if (loading) {
     return (
@@ -117,6 +145,18 @@ const CustomerOrderHistory = () => {
                 </div>
                 {isOpen ? <ChevronUp className="w-5 h-5 text-muted-foreground" /> : <ChevronDown className="w-5 h-5 text-muted-foreground" />}
               </button>
+
+              <div className="mt-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={(e) => { e.stopPropagation(); reorder(o); }}
+                  className="gap-2"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  Beställ samma igen
+                </Button>
+              </div>
 
               {isOpen && (
                 <div className="mt-3 pl-1 sm:pl-2 border-l-2 border-secondary/30">
