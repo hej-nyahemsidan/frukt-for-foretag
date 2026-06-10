@@ -327,6 +327,16 @@ const ResellerCustomerShop = () => {
             <Button
               variant="outline"
               size="sm"
+              className="gap-1.5"
+              onClick={() => setMainTab('history')}
+            >
+              <History className="w-4 h-4" />
+              <span className="hidden sm:inline">Mina ordrar</span>
+            </Button>
+
+            <Button
+              variant="outline"
+              size="sm"
               className="relative"
               onClick={() => setShowCart(!showCart)}
             >
@@ -355,7 +365,7 @@ const ResellerCustomerShop = () => {
             </TabsTrigger>
             <TabsTrigger value="history" className="gap-1.5">
               <History className="w-4 h-4" />
-              <span className="hidden sm:inline">Historik</span>
+              <span className="hidden sm:inline">Mina ordrar</span>
             </TabsTrigger>
             <TabsTrigger value="profile" className="gap-1.5">
               <User className="w-4 h-4" />
@@ -365,72 +375,14 @@ const ResellerCustomerShop = () => {
 
           {/* === SHOP TAB === */}
           <TabsContent value="shop" className="space-y-4">
-            <div className="space-y-3">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <h2 className="text-xl font-semibold flex items-center gap-2">
-                  <History className="w-5 h-5" /> Mina tidigare leveranser
-                </h2>
-                {orders.length > 0 && (
-                  <span className="text-sm text-muted-foreground">{orders.length} st</span>
-                )}
-              </div>
-
-              {ordersLoading ? (
-                <Card>
-                  <CardContent className="py-8 text-center text-muted-foreground">
-                    Laddar tidigare leveranser...
-                  </CardContent>
-                </Card>
-              ) : orders.length === 0 ? (
-                <Card>
-                  <CardContent className="py-8 text-center text-muted-foreground">
-                    <History className="w-10 h-10 mx-auto mb-3 opacity-50" />
-                    <p>Inga tidigare leveranser ännu.</p>
-                  </CardContent>
-                </Card>
-              ) : (
-                <div className="grid gap-3 lg:grid-cols-2">
-                  {orders.slice(0, 4).map(order => {
-                    const items = Array.isArray(order.items) ? order.items : [];
-                    const deliveryDateStr = order.selected_days?.[0];
-                    return (
-                      <Card key={order.id}>
-                        <CardContent className="p-4 space-y-3">
-                          <div className="flex items-start justify-between gap-3">
-                            <div>
-                              <div className="font-medium text-sm">
-                                {deliveryDateStr ? `Leverans ${deliveryDateStr}` : format(new Date(order.created_at), 'PPP', { locale: sv })}
-                              </div>
-                              <div className="text-xs text-muted-foreground">
-                                {items.reduce((sum: number, item: any) => sum + (Number(item.quantity) || 1), 0)} artiklar · {order.total_price} kr
-                              </div>
-                            </div>
-                            <span className={cn(
-                              "text-xs font-medium px-2 py-1 rounded-full whitespace-nowrap",
-                              order.status === 'pending' && "bg-yellow-100 text-yellow-800",
-                              order.status === 'confirmed' && "bg-blue-100 text-blue-800",
-                              order.status === 'delivered' && "bg-green-100 text-green-800",
-                              order.status === 'cancelled' && "bg-red-100 text-red-800",
-                            )}>
-                              {statusLabels[order.status] || order.status}
-                            </span>
-                          </div>
-                          <div className="text-sm text-muted-foreground space-y-0.5 line-clamp-3">
-                            {items.map((item: any, idx: number) => (
-                              <div key={idx}>
-                                {item.quantity}x {item.product_name} {item.size ? `(${item.size})` : ''}
-                              </div>
-                            ))}
-                          </div>
-                          <Button size="sm" variant="outline" className="gap-2" onClick={() => addOrderToCart(order)}>
-                            <RotateCcw className="w-3.5 h-3.5" /> Beställ samma igen
-                          </Button>
-                        </CardContent>
-                      </Card>
-                    );
-                  })}
-                </div>
-              )}
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-xl font-semibold flex items-center gap-2">
+                <Store className="w-5 h-5" /> Beställ produkter
+              </h2>
+              <Button variant="outline" className="gap-2" onClick={() => setMainTab('history')}>
+                <History className="w-4 h-4" /> Mina ordrar
+                {orders.length > 0 && <span className="text-xs text-muted-foreground">({orders.length})</span>}
+              </Button>
             </div>
 
             {/* Cart */}
@@ -559,7 +511,12 @@ const ResellerCustomerShop = () => {
 
           {/* === HISTORY TAB === */}
           <TabsContent value="history" className="space-y-4">
-            <h2 className="text-xl font-semibold">Orderhistorik</h2>
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-xl font-semibold">Mina ordrar</h2>
+              <Button variant="outline" onClick={() => setMainTab('shop')}>
+                Till beställning
+              </Button>
+            </div>
             {ordersLoading ? (
               <div className="flex justify-center py-12">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
