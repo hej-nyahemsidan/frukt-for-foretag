@@ -6,6 +6,7 @@ import { LogOut, ArrowLeft } from 'lucide-react';
 import OrderSidebar from '@/components/OrderSidebar';
 import ProductDisplay from '@/components/ProductDisplay';
 import SimplifiedCheckout from '@/components/SimplifiedCheckout';
+import CustomerOrderHistory from '@/components/CustomerOrderHistory';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const CustomerDashboard = () => {
@@ -149,6 +150,11 @@ const CustomerDashboard = () => {
             orderType={orderType}
             onCheckout={handleCheckout}
           />
+          </div>
+
+          {/* Previous orders */}
+          <div className="w-full">
+            <CustomerOrderHistory />
           </div>
         </div>
       </main>
