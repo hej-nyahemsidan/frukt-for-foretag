@@ -155,6 +155,69 @@ export type Database = {
         }
         Relationships: []
       }
+      email_campaigns: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          failed_count: number
+          id: string
+          message: string
+          segment: string
+          sent_by: string | null
+          sent_count: number
+          status: string
+          subject: string
+          total_recipients: number
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          failed_count?: number
+          id?: string
+          message: string
+          segment?: string
+          sent_by?: string | null
+          sent_count?: number
+          status?: string
+          subject: string
+          total_recipients?: number
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          failed_count?: number
+          id?: string
+          message?: string
+          segment?: string
+          sent_by?: string | null
+          sent_count?: number
+          status?: string
+          subject?: string
+          total_recipients?: number
+        }
+        Relationships: []
+      }
+      email_unsubscribes: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          reason: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          reason?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          reason?: string | null
+        }
+        Relationships: []
+      }
       orders: {
         Row: {
           created_at: string
