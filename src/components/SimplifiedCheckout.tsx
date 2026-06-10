@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useCart } from '@/contexts/CartContext';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -25,7 +24,6 @@ const SimplifiedCheckout = ({
   currentDay,
   onBack
 }) => {
-  const navigate = useNavigate();
   const { items, clearCart, getItemsByOrderType } = useCart();
   const { customer } = useAuth();
   const { toast } = useToast();
@@ -151,7 +149,7 @@ const SimplifiedCheckout = ({
             Du kommer att få en bekräftelse via e-post inom kort.
           </p>
           <Button 
-            onClick={() => navigate('/kundportal')}
+            onClick={onBack}
             className="bg-secondary text-secondary-foreground hover:bg-[hsl(122_39%_44%)]"
           >
             Tillbaka till Mina Sidor
