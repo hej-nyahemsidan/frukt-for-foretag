@@ -29,6 +29,9 @@ interface Profile {
   created_at: string;
   updated_at: string;
   company_name?: string;
+  last_sign_in_at?: string | null;
+  email_confirmed_at?: string | null;
+  order_count?: number;
 }
 
 const AdminUserManagement = () => {
@@ -62,6 +65,23 @@ const AdminUserManagement = () => {
       const customerMap = new Map(
         customersData?.map(customer => [customer.user_id, customer.company_name]) || []
       );
+
+      // Fetch auth metadata (last sign in, order count) from edge function
+      const authMap = new Map<string, { last_sign_in_at: string | null; email_confirmed_at: string | null; order_count: number }>();
+      try {
+        const { data: authData, error: authErr } = await supabase.functions.invoke('admin-list-users');
+        if (!authErr && authData?.users) {
+          authData.users.forEach((u: any) => {
+            authMap.set(u.id, {
+              last_sign_in_at: u.last_sign_in_at,
+              email_confirmed_at: u.email_confirmed_at,
+              order_count: u.order_count || 0,
+            });
+          });
+        }
+      } catch (e) {
+        console.warn('Could not fetch auth metadata', e);
+      }
       
       // Transform the data to include company_name at the top level
       const transformedProfiles = profilesData?.map(profile => ({
@@ -70,7 +90,10 @@ const AdminUserManagement = () => {
         full_name: profile.full_name,
         created_at: profile.created_at,
         updated_at: profile.updated_at,
-        company_name: customerMap.get(profile.id) || null
+        company_name: customerMap.get(profile.id) || null,
+        last_sign_in_at: authMap.get(profile.id)?.last_sign_in_at ?? null,
+        email_confirmed_at: authMap.get(profile.id)?.email_confirmed_at ?? null,
+        order_count: authMap.get(profile.id)?.order_count ?? 0,
       })) || [];
       
       setProfiles(transformedProfiles);
@@ -125,6 +148,25 @@ const AdminUserManagement = () => {
       hour: '2-digit',
       minute: '2-digit'
     });
+  };
+
+  const formatRelative = (dateString: string | null | undefined) => {
+    if (!dateString) return 'Aldrig';
+    const d = new Date(dateString);
+    const diffMs = Date.now() - d.getTime();
+    const min = Math.floor(diffMs / 60000);
+    if (min < 1) return 'Nu';
+    if (min < 60) return `${min} min sedan`;
+    const h = Math.floor(min / 60);
+    if (h < 24) return `${h} tim sedan`;
+    const days = Math.floor(h / 24);
+    if (days < 30) return `${days} dag${days === 1 ? '' : 'ar'} sedan`;
+    return d.toLocaleDateString('sv-SE', { year: 'numeric', month: 'short', day: 'numeric' });
+  };
+
+  const isOnline = (lastSignIn: string | null | undefined) => {
+    if (!lastSignIn) return false;
+    return Date.now() - new Date(lastSignIn).getTime() < 15 * 60 * 1000;
   };
 
   const handleAddUser = async (email: string, password: string, fullName?: string, companyName?: string) => {
@@ -257,6 +299,7 @@ const AdminUserManagement = () => {
         <div className="admin-user-stats flex items-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 w-full sm:w-auto justify-between sm:justify-end">
           <span>Totalt: {profiles.length}</span>
           <span>Visas: {filteredProfiles.length}</span>
+          <span className="hidden sm:inline">Aktiva nu: {profiles.filter(p => isOnline(p.last_sign_in_at)).length}</span>
         </div>
       </div>
 
@@ -269,6 +312,8 @@ const AdminUserManagement = () => {
               <TableHead className="admin-th-name text-xs sm:text-sm hidden sm:table-cell">Namn</TableHead>
               <TableHead className="admin-th-company text-xs sm:text-sm hidden md:table-cell">Företag</TableHead>
               <TableHead className="admin-th-created text-xs sm:text-sm hidden lg:table-cell">Skapad</TableHead>
+              <TableHead className="admin-th-lastlogin text-xs sm:text-sm hidden lg:table-cell">Senast online</TableHead>
+              <TableHead className="admin-th-orders text-xs sm:text-sm hidden md:table-cell text-center">Beställningar</TableHead>
               <TableHead className="admin-th-status text-xs sm:text-sm">Status</TableHead>
               <TableHead className="admin-th-actions text-right text-xs sm:text-sm">Åtgärder</TableHead>
             </TableRow>
@@ -276,7 +321,7 @@ const AdminUserManagement = () => {
           <TableBody>
             {filteredProfiles.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={6} className="admin-empty-state text-center py-8 text-gray-500">
+                <TableCell colSpan={8} className="admin-empty-state text-center py-8 text-gray-500">
                   {searchQuery ? 'Inga användare matchar sökningen' : 'Inga användare hittades'}
                 </TableCell>
               </TableRow>
@@ -285,9 +330,17 @@ const AdminUserManagement = () => {
                 <TableRow key={profile.id} className="admin-user-row">
                   <TableCell className="admin-cell-email font-medium text-xs sm:text-sm">
                     <div className="min-w-0">
-                      <div className="truncate">{profile.email}</div>
+                      <div className="truncate flex items-center gap-2">
+                        {isOnline(profile.last_sign_in_at) && (
+                          <span className="inline-block w-2 h-2 rounded-full bg-green-500" title="Aktiv nu" />
+                        )}
+                        {profile.email}
+                      </div>
                       <div className="sm:hidden text-xs text-gray-500 mt-1">
                         {profile.full_name || 'Ej angivet'}
+                      </div>
+                      <div className="lg:hidden text-xs text-gray-500 mt-1">
+                        Senast: {formatRelative(profile.last_sign_in_at)}
                       </div>
                     </div>
                   </TableCell>
@@ -299,6 +352,17 @@ const AdminUserManagement = () => {
                   </TableCell>
                   <TableCell className="admin-cell-created hidden lg:table-cell text-xs sm:text-sm">
                     {formatDate(profile.created_at)}
+                  </TableCell>
+                  <TableCell className="admin-cell-lastlogin hidden lg:table-cell text-xs sm:text-sm">
+                    <div className="flex flex-col">
+                      <span>{formatRelative(profile.last_sign_in_at)}</span>
+                      {profile.last_sign_in_at && (
+                        <span className="text-[10px] text-gray-400">{formatDate(profile.last_sign_in_at)}</span>
+                      )}
+                    </div>
+                  </TableCell>
+                  <TableCell className="admin-cell-orders hidden md:table-cell text-xs sm:text-sm text-center font-medium">
+                    {profile.order_count ?? 0}
                   </TableCell>
                   <TableCell className="admin-cell-status text-xs sm:text-sm">
                     {getStatusBadge(profile)}
