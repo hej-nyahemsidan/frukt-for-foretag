@@ -11,7 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { LogOut, ShoppingCart, Plus, Minus, Trash2, Send, Package, User, History, CalendarIcon, Store } from 'lucide-react';
+import { LogOut, ShoppingCart, Plus, Minus, Trash2, Send, Package, User, History, CalendarIcon, Store, RotateCcw } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { sv } from 'date-fns/locale';
@@ -91,6 +91,7 @@ const ResellerCustomerShop = () => {
   useEffect(() => {
     if (customerProfile && reseller) {
       fetchData();
+      fetchOrders();
     }
   }, [customerProfile, reseller]);
 
@@ -179,6 +180,43 @@ const ResellerCustomerShop = () => {
     setCart(prev => prev.filter(i => !(i.product.id === productId && i.size === size)));
   };
 
+  const addOrderToCart = (order: ResellerOrder) => {
+    const previousItems = Array.isArray(order.items) ? order.items : [];
+    if (previousItems.length === 0) {
+      toast({ title: 'Inga artiklar att lägga till' });
+      return;
+    }
+
+    setCart(prev => {
+      const next = [...prev];
+      previousItems.forEach((item: any) => {
+        const product = products.find(p => p.id === item.product_id) || {
+          id: item.product_id || `${item.product_name}-${item.size || ''}`,
+          name: item.product_name,
+          category: 'annat',
+          image_url: '',
+          prices: {},
+          description: null,
+        };
+        const size = item.size ?? null;
+        const price = Number(item.unit_price ?? item.price ?? 0);
+        const quantity = Number(item.quantity) || 1;
+        const existingIndex = next.findIndex(i => i.product.id === product.id && i.size === size);
+
+        if (existingIndex >= 0) {
+          next[existingIndex] = { ...next[existingIndex], quantity: next[existingIndex].quantity + quantity };
+        } else {
+          next.push({ product, size, quantity, price });
+        }
+      });
+      return next;
+    });
+
+    setMainTab('shop');
+    setShowCart(true);
+    toast({ title: 'Artiklar tillagda', description: 'Tidigare artiklar lades i varukorgen.' });
+  };
+
   const totalItems = cart.reduce((sum, i) => sum + i.quantity, 0);
   const totalPrice = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
@@ -221,6 +259,7 @@ const ResellerCustomerShop = () => {
         setDeliveryDate(undefined);
         setShowOrderDialog(false);
         setShowCart(false);
+        fetchOrders();
       }
     } catch {
       toast({ title: 'Fel', description: 'Något gick fel.', variant: 'destructive' });
