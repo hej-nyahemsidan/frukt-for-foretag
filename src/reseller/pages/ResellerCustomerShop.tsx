@@ -365,6 +365,74 @@ const ResellerCustomerShop = () => {
 
           {/* === SHOP TAB === */}
           <TabsContent value="shop" className="space-y-4">
+            <div className="space-y-3">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h2 className="text-xl font-semibold flex items-center gap-2">
+                  <History className="w-5 h-5" /> Mina tidigare leveranser
+                </h2>
+                {orders.length > 0 && (
+                  <span className="text-sm text-muted-foreground">{orders.length} st</span>
+                )}
+              </div>
+
+              {ordersLoading ? (
+                <Card>
+                  <CardContent className="py-8 text-center text-muted-foreground">
+                    Laddar tidigare leveranser...
+                  </CardContent>
+                </Card>
+              ) : orders.length === 0 ? (
+                <Card>
+                  <CardContent className="py-8 text-center text-muted-foreground">
+                    <History className="w-10 h-10 mx-auto mb-3 opacity-50" />
+                    <p>Inga tidigare leveranser ännu.</p>
+                  </CardContent>
+                </Card>
+              ) : (
+                <div className="grid gap-3 lg:grid-cols-2">
+                  {orders.slice(0, 4).map(order => {
+                    const items = Array.isArray(order.items) ? order.items : [];
+                    const deliveryDateStr = order.selected_days?.[0];
+                    return (
+                      <Card key={order.id}>
+                        <CardContent className="p-4 space-y-3">
+                          <div className="flex items-start justify-between gap-3">
+                            <div>
+                              <div className="font-medium text-sm">
+                                {deliveryDateStr ? `Leverans ${deliveryDateStr}` : format(new Date(order.created_at), 'PPP', { locale: sv })}
+                              </div>
+                              <div className="text-xs text-muted-foreground">
+                                {items.reduce((sum: number, item: any) => sum + (Number(item.quantity) || 1), 0)} artiklar · {order.total_price} kr
+                              </div>
+                            </div>
+                            <span className={cn(
+                              "text-xs font-medium px-2 py-1 rounded-full whitespace-nowrap",
+                              order.status === 'pending' && "bg-yellow-100 text-yellow-800",
+                              order.status === 'confirmed' && "bg-blue-100 text-blue-800",
+                              order.status === 'delivered' && "bg-green-100 text-green-800",
+                              order.status === 'cancelled' && "bg-red-100 text-red-800",
+                            )}>
+                              {statusLabels[order.status] || order.status}
+                            </span>
+                          </div>
+                          <div className="text-sm text-muted-foreground space-y-0.5 line-clamp-3">
+                            {items.map((item: any, idx: number) => (
+                              <div key={idx}>
+                                {item.quantity}x {item.product_name} {item.size ? `(${item.size})` : ''}
+                              </div>
+                            ))}
+                          </div>
+                          <Button size="sm" variant="outline" className="gap-2" onClick={() => addOrderToCart(order)}>
+                            <RotateCcw className="w-3.5 h-3.5" /> Beställ samma igen
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
             {/* Cart */}
             {showCart && cart.length > 0 && (
               <div className="bg-white rounded-xl border border-border p-4 space-y-3">
@@ -541,10 +609,13 @@ const ResellerCustomerShop = () => {
                         </div>
                         <div className="flex items-center justify-between pt-1 border-t">
                           <span className="font-semibold text-sm">Totalt: {order.total_price} kr</span>
-                          {order.notes && (
-                            <span className="text-xs text-muted-foreground italic">"{order.notes}"</span>
-                          )}
+                          <Button size="sm" variant="outline" className="gap-2" onClick={() => addOrderToCart(order)}>
+                            <RotateCcw className="w-3.5 h-3.5" /> Beställ samma igen
+                          </Button>
                         </div>
+                        {order.notes && (
+                          <div className="text-xs text-muted-foreground italic">"{order.notes}"</div>
+                        )}
                       </CardContent>
                     </Card>
                   );
