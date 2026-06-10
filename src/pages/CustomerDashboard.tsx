@@ -2,7 +2,12 @@ import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { LogOut, ArrowLeft, Package } from 'lucide-react';
+import { LogOut, ArrowLeft, Package, KeyRound } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogTrigger } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 import OrderSidebar from '@/components/OrderSidebar';
 import ProductDisplay from '@/components/ProductDisplay';
 import SimplifiedCheckout from '@/components/SimplifiedCheckout';
@@ -18,6 +23,26 @@ const CustomerDashboard = () => {
   const [currentDay, setCurrentDay] = useState<string>(''); // Active day for adding products
   const [activeCategory, setActiveCategory] = useState('fruktkorgar');
   const [showCheckout, setShowCheckout] = useState(false);
+  const [pwOpen, setPwOpen] = useState(false);
+  const [newPw, setNewPw] = useState('');
+  const [pwLoading, setPwLoading] = useState(false);
+
+  const handleChangePassword = async () => {
+    if (newPw.length < 6) {
+      toast.error('Lösenordet måste vara minst 6 tecken');
+      return;
+    }
+    setPwLoading(true);
+    const { error } = await supabase.auth.updateUser({ password: newPw });
+    setPwLoading(false);
+    if (error) {
+      toast.error('Kunde inte byta lösenord: ' + error.message);
+    } else {
+      toast.success('Lösenordet är uppdaterat');
+      setNewPw('');
+      setPwOpen(false);
+    }
+  };
 
   const handleLogout = async () => {
     await logout();
@@ -125,7 +150,37 @@ const CustomerDashboard = () => {
         
         <div className="flex flex-col gap-6 sm:gap-8">
           {/* Link to previous orders */}
-          <div className="w-full flex justify-end">
+          <div className="w-full flex justify-end gap-2">
+            <Dialog open={pwOpen} onOpenChange={setPwOpen}>
+              <DialogTrigger asChild>
+                <Button variant="outline" className="gap-2">
+                  <KeyRound className="w-4 h-4" />
+                  Byt lösenord
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Byt lösenord</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-2 py-2">
+                  <Label htmlFor="new-password">Nytt lösenord</Label>
+                  <Input
+                    id="new-password"
+                    type="password"
+                    value={newPw}
+                    onChange={(e) => setNewPw(e.target.value)}
+                    placeholder="Minst 6 tecken"
+                    autoComplete="new-password"
+                  />
+                </div>
+                <DialogFooter>
+                  <Button variant="outline" onClick={() => setPwOpen(false)}>Avbryt</Button>
+                  <Button onClick={handleChangePassword} disabled={pwLoading}>
+                    {pwLoading ? 'Sparar…' : 'Spara'}
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
             <Link to="/mina-sidor/ordrar">
               <Button variant="outline" className="gap-2">
                 <Package className="w-4 h-4" />
