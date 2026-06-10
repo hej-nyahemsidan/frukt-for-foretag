@@ -34,6 +34,7 @@ const Terms = lazy(() => import("./pages/Terms"));
 const Checkout = lazy(() => import("./pages/Checkout"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const CustomerDashboard = lazy(() => import("./pages/CustomerDashboard"));
+const CustomerOrders = lazy(() => import("./pages/CustomerOrders"));
 const AdminLogin = lazy(() => import("./admin/pages/AdminLogin"));
 const AdminDashboard = lazy(() => import("./admin/pages/AdminDashboard"));
 const BlogHome = lazy(() => import("./pages/BlogHome"));
@@ -102,6 +103,11 @@ const App = () => (
                 <Route path="/mina-sidor" element={
                   <ProtectedRoute>
                     <CustomerDashboard />
+                  </ProtectedRoute>
+                } />
+                <Route path="/mina-sidor/ordrar" element={
+                  <ProtectedRoute>
+                    <CustomerOrders />
                   </ProtectedRoute>
                 } />
                 <Route path="/offertforfragan" element={<Navigate to="/kontakt" replace />} />
