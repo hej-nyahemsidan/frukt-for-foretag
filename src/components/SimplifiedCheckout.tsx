@@ -48,6 +48,46 @@ const SimplifiedCheckout = ({
     setIsConfirming(true);
     
     try {
+      if (!customer?.id) {
+        toast({
+          title: "Ett fel uppstod",
+          description: "Kunde inte hitta kundkontot. Logga in igen och försök på nytt.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const totalPrice = calculateTotal();
+      const orderItems = relevantItems.map(item => ({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        size: item.size,
+        assignedDay: item.assignedDay,
+        orderType: item.orderType,
+      }));
+
+      const { error: orderError } = await supabase.from('orders').insert({
+        customer_id: customer.id,
+        package_plan: orderType === 'subscription' ? packagePlan : 'onetime',
+        selected_days: selectedDays,
+        items: orderItems,
+        status: 'pending',
+        total_price: totalPrice,
+        next_delivery_date: null,
+      });
+
+      if (orderError) {
+        console.error('Error saving order:', orderError);
+        toast({
+          title: "Ett fel uppstod",
+          description: "Kunde inte spara beställningen. Vänligen försök igen.",
+          variant: "destructive",
+        });
+        return;
+      }
+
       // Send order confirmation email
       const { error } = await supabase.functions.invoke('send-contact-email', {
         body: {
@@ -61,13 +101,8 @@ const SimplifiedCheckout = ({
           },
           orderType: getOrderTypeText(orderType),
           selectedDays: selectedDays,
-          items: relevantItems.map(item => ({
-            name: item.name,
-            quantity: item.quantity,
-            price: item.price,
-            assignedDay: item.assignedDay,
-          })),
-          totalPrice: calculateTotal(),
+          items: orderItems,
+          totalPrice,
           message: message.trim() || undefined,
         }
       });
