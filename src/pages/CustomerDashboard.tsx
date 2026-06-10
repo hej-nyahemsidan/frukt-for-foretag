@@ -2,11 +2,10 @@ import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { LogOut, ArrowLeft } from 'lucide-react';
+import { LogOut, ArrowLeft, Package } from 'lucide-react';
 import OrderSidebar from '@/components/OrderSidebar';
 import ProductDisplay from '@/components/ProductDisplay';
 import SimplifiedCheckout from '@/components/SimplifiedCheckout';
-import CustomerOrderHistory from '@/components/CustomerOrderHistory';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const CustomerDashboard = () => {
@@ -125,9 +124,14 @@ const CustomerDashboard = () => {
         </h1>
         
         <div className="flex flex-col gap-6 sm:gap-8">
-          {/* Previous orders - shown at top */}
-          <div className="w-full">
-            <CustomerOrderHistory />
+          {/* Link to previous orders */}
+          <div className="w-full flex justify-end">
+            <Link to="/mina-sidor/ordrar">
+              <Button variant="outline" className="gap-2">
+                <Package className="w-4 h-4" />
+                Mina ordrar
+              </Button>
+            </Link>
           </div>
 
           {/* Order Selection Section - Now on top */}
