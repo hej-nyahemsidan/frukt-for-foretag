@@ -125,6 +125,11 @@ const CustomerDashboard = () => {
         </h1>
         
         <div className="flex flex-col gap-6 sm:gap-8">
+          {/* Previous orders - shown at top */}
+          <div className="w-full">
+            <CustomerOrderHistory />
+          </div>
+
           {/* Order Selection Section - Now on top */}
           <div className="w-full">
             <OrderSidebar 
@@ -150,11 +155,6 @@ const CustomerDashboard = () => {
             orderType={orderType}
             onCheckout={handleCheckout}
           />
-          </div>
-
-          {/* Previous orders */}
-          <div className="w-full">
-            <CustomerOrderHistory />
           </div>
         </div>
       </main>
