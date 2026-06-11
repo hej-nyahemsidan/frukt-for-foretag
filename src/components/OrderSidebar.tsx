@@ -171,6 +171,11 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, se
                 />
                 <Label htmlFor={day} className="text-charcoal cursor-pointer">
                   {day}
+                  {day === 'Måndag' && (
+                    <span className="text-xs text-muted-foreground ml-1">
+                      (stora beställningar kan levereras på tisdag istället)
+                    </span>
+                  )}
                 </Label>
               </div>
             ))
@@ -186,11 +191,19 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, se
                 />
                 <Label htmlFor={day} className="text-charcoal cursor-pointer">
                   {day}
+                  {day === 'Måndag' && (
+                    <span className="text-xs text-muted-foreground ml-1">
+                      (stora beställningar kan levereras på tisdag istället)
+                    </span>
+                  )}
                 </Label>
               </div>
             ))
           )}
         </div>
+        <p className="text-xs text-muted-foreground mt-3">
+          Fri leverans vid beställning över 500 kr. Under 500 kr tillkommer en leveransavgift.
+        </p>
       </div>
 
       {/* Current Day Switcher - For any order type with multiple days */}
