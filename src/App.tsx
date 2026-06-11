@@ -47,6 +47,7 @@ const FruktkorgStockholm = lazy(() => import("./pages/FruktkorgStockholm"));
 const FruktkorgForetag = lazy(() => import("./pages/FruktkorgForetag"));
 const FruktkorgPaJobbet = lazy(() => import("./pages/FruktkorgPaJobbet"));
 const AreaLanding = lazy(() => import("./pages/AreaLanding"));
+const AreaIndustryLanding = lazy(() => import("./pages/AreaIndustryLanding"));
 const FruktkorgProduct = lazy(() => import("./pages/FruktkorgProduct"));
 const Provkorg = lazy(() => import("./pages/Provkorg"));
 const Avregistrera = lazy(() => import("./pages/Avregistrera"));
@@ -129,6 +130,7 @@ const App = () => (
                 <Route path="/fruktkorg-foretag" element={<FruktkorgForetag />} />
                 <Route path="/fruktkorg-pa-jobbet" element={<FruktkorgPaJobbet />} />
                 <Route path="/fruktkorg/:area" element={<AreaLanding />} />
+                <Route path="/fruktkorg/:area/:industry" element={<AreaIndustryLanding />} />
                 <Route path="/produkt/:slug" element={<FruktkorgProduct />} />
                 <Route path="/provkorg" element={<Provkorg />} />
                 <Route path="/avregistrera" element={<Avregistrera />} />
