@@ -6,7 +6,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Send, Loader2, Mail } from 'lucide-react';
+import { Send, Loader2, Mail, Search } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -26,6 +27,7 @@ const SEGMENTS = [
   { value: 'all', label: 'Alla kunder' },
   { value: 'with_orders', label: 'Endast kunder med beställningar' },
   { value: 'no_orders', label: 'Endast kunder utan beställningar' },
+  { value: 'custom', label: 'Välj kunder själv' },
 ];
 
 const AdminEmailCampaigns = () => {
@@ -36,6 +38,9 @@ const AdminEmailCampaigns = () => {
   const [sending, setSending] = useState(false);
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [recipientCount, setRecipientCount] = useState<number | null>(null);
+  const [customers, setCustomers] = useState<Array<{ email: string; company_name: string; contact_person: string }>>([]);
+  const [selectedEmails, setSelectedEmails] = useState<Set<string>>(new Set());
+  const [customerSearch, setCustomerSearch] = useState('');
 
   const fetchCampaigns = async () => {
     const { data } = await supabase
@@ -53,9 +58,18 @@ const AdminEmailCampaigns = () => {
     setRecipientCount(count ?? 0);
   };
 
+  const fetchCustomers = async () => {
+    const { data } = await supabase
+      .from('customers')
+      .select('email, company_name, contact_person')
+      .order('company_name', { ascending: true });
+    setCustomers((data || []).filter((c: any) => c.email) as any);
+  };
+
   useEffect(() => {
     fetchCampaigns();
     fetchRecipientCount();
+    fetchCustomers();
   }, []);
 
   const handleSend = async () => {
@@ -70,8 +84,17 @@ const AdminEmailCampaigns = () => {
 
     setSending(true);
     try {
+      const body: any = { subject: subject.trim(), message: message.trim(), segment };
+      if (segment === 'custom') {
+        if (selectedEmails.size === 0) {
+          toast({ title: 'Välj minst en mottagare', variant: 'destructive' });
+          setSending(false);
+          return;
+        }
+        body.emails = Array.from(selectedEmails);
+      }
       const { data, error } = await supabase.functions.invoke('send-campaign', {
-        body: { subject: subject.trim(), message: message.trim(), segment },
+        body,
       });
       if (error) throw error;
       if (data?.error) throw new Error(data.error);
@@ -81,6 +104,7 @@ const AdminEmailCampaigns = () => {
       });
       setSubject('');
       setMessage('');
+      setSelectedEmails(new Set());
       fetchCampaigns();
     } catch (e: any) {
       toast({ title: 'Fel vid utskick', description: e.message, variant: 'destructive' });
@@ -92,6 +116,36 @@ const AdminEmailCampaigns = () => {
   const formatDate = (d: string) => new Date(d).toLocaleString('sv-SE', {
     year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
   });
+
+  const filteredCustomers = customers.filter(c => {
+    if (!customerSearch.trim()) return true;
+    const q = customerSearch.toLowerCase();
+    return (
+      c.email?.toLowerCase().includes(q) ||
+      c.company_name?.toLowerCase().includes(q) ||
+      c.contact_person?.toLowerCase().includes(q)
+    );
+  });
+
+  const toggleEmail = (email: string) => {
+    setSelectedEmails(prev => {
+      const next = new Set(prev);
+      if (next.has(email)) next.delete(email);
+      else next.add(email);
+      return next;
+    });
+  };
+
+  const toggleAllFiltered = () => {
+    const allEmails = filteredCustomers.map(c => c.email.toLowerCase());
+    const allSelected = allEmails.every(e => selectedEmails.has(e));
+    setSelectedEmails(prev => {
+      const next = new Set(prev);
+      if (allSelected) allEmails.forEach(e => next.delete(e));
+      else allEmails.forEach(e => next.add(e));
+      return next;
+    });
+  };
 
   return (
     <div className="space-y-6">
@@ -119,6 +173,44 @@ const AdminEmailCampaigns = () => {
               </SelectContent>
             </Select>
           </div>
+          {segment === 'custom' && (
+            <div className="border rounded-lg p-3 space-y-3 bg-slate-50">
+              <div className="flex items-center justify-between gap-2">
+                <div className="relative flex-1">
+                  <Search className="w-4 h-4 absolute left-2 top-1/2 -translate-y-1/2 text-gray-400" />
+                  <Input
+                    value={customerSearch}
+                    onChange={(e) => setCustomerSearch(e.target.value)}
+                    placeholder="Sök företag, namn eller e-post..."
+                    className="pl-8"
+                  />
+                </div>
+                <Button type="button" variant="outline" size="sm" onClick={toggleAllFiltered}>
+                  Markera/avmarkera alla
+                </Button>
+              </div>
+              <div className="text-xs text-gray-600">
+                {selectedEmails.size} valda av {customers.length} kunder
+              </div>
+              <div className="max-h-72 overflow-y-auto border rounded bg-white divide-y">
+                {filteredCustomers.length === 0 ? (
+                  <div className="p-3 text-sm text-gray-500">Inga kunder matchar.</div>
+                ) : filteredCustomers.map(c => {
+                  const email = c.email.toLowerCase();
+                  const checked = selectedEmails.has(email);
+                  return (
+                    <label key={email} className="flex items-center gap-3 p-2 hover:bg-slate-50 cursor-pointer text-sm">
+                      <Checkbox checked={checked} onCheckedChange={() => toggleEmail(email)} />
+                      <div className="flex-1 min-w-0">
+                        <div className="font-medium truncate">{c.company_name || c.contact_person || c.email}</div>
+                        <div className="text-xs text-gray-500 truncate">{c.email}{c.contact_person ? ` · ${c.contact_person}` : ''}</div>
+                      </div>
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
+          )}
           <div>
             <Label htmlFor="subject">Ämne</Label>
             <Input

@@ -74,7 +74,7 @@ serve(async (req) => {
       });
     }
 
-    const { subject, message, segment = "all" } = await req.json();
+    const { subject, message, segment = "all", emails: customEmails } = await req.json();
     if (!subject || !message || typeof subject !== "string" || typeof message !== "string") {
       return new Response(JSON.stringify({ error: "subject and message required" }), {
         status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" }
@@ -100,7 +100,19 @@ serve(async (req) => {
       .filter((r: any) => r.email && /.+@.+\..+/.test(r.email) && !blocked.has(r.email));
 
     // Optional segment: only with orders
-    if (segment === "with_orders") {
+    if (segment === "custom") {
+      const allowed = new Set(
+        (Array.isArray(customEmails) ? customEmails : [])
+          .map((e: any) => String(e || "").toLowerCase().trim())
+          .filter(Boolean)
+      );
+      if (allowed.size === 0) {
+        return new Response(JSON.stringify({ error: "No recipients selected" }), {
+          status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" }
+        });
+      }
+      recipients = recipients.filter(r => allowed.has(r.email));
+    } else if (segment === "with_orders") {
       const { data: orderRows } = await admin.from("orders").select("user_id");
       const userIds = new Set((orderRows || []).map((o: any) => o.user_id).filter(Boolean));
       const { data: custUsers } = await admin.from("customers").select("email, user_id");
