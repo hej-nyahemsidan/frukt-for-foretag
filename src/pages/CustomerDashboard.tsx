@@ -18,7 +18,7 @@ const CustomerDashboard = () => {
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   const [packagePlan, setPackagePlan] = useState('weekly');
-  const [orderType, setOrderType] = useState('subscription');
+  const [orderType, setOrderType] = useState('onetime');
   const [selectedDays, setSelectedDays] = useState<string[]>([]);
   const [currentDay, setCurrentDay] = useState<string>(''); // Active day for adding products
   const [activeCategory, setActiveCategory] = useState('fruktkorgar');
