@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, Users, ShoppingCart, BarChart3, Home, FileText, Store, Inbox, Mail } from 'lucide-react';
+import { LogOut, Users, ShoppingCart, BarChart3, Home, FileText, Store, Inbox, Mail, LayoutDashboard } from 'lucide-react';
 import { useAdminAuth } from '../contexts/AdminAuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
@@ -11,6 +11,7 @@ import AdminBlogManagement from '../components/AdminBlogManagement';
 import AdminResellerManagement from '../components/AdminResellerManagement';
 import AdminLeadManagement from '../components/AdminLeadManagement';
 import AdminEmailCampaigns from '../components/AdminEmailCampaigns';
+import AdminDashboardOverview from '../components/AdminDashboardOverview';
 import VitaminKorgenLogo from '../../components/VitaminKorgenLogo';
 
 const AdminDashboard = () => {
@@ -87,8 +88,13 @@ const AdminDashboard = () => {
       {/* Main Content */}
       <main className="admin-main max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="admin-main-content px-4 py-6 sm:px-0">
-          <Tabs defaultValue="users" className="w-full">
-            <TabsList className="grid w-full grid-cols-6 mb-4 sm:mb-6">
+          <Tabs defaultValue="overview" className="w-full">
+            <TabsList className="grid w-full grid-cols-7 mb-4 sm:mb-6">
+              <TabsTrigger value="overview" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4 py-2 sm:py-3">
+                <LayoutDashboard className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="hidden xs:inline">Översikt</span>
+                <span className="xs:hidden">Hem</span>
+              </TabsTrigger>
               <TabsTrigger value="users" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-2 sm:px-4 py-2 sm:py-3">
                 <Users className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span className="hidden xs:inline">Användare</span>
@@ -120,7 +126,11 @@ const AdminDashboard = () => {
                 <span className="xs:hidden">Mail</span>
               </TabsTrigger>
             </TabsList>
-            
+
+            <TabsContent value="overview" className="space-y-4">
+              <AdminDashboardOverview />
+            </TabsContent>
+
             <TabsContent value="users" className="space-y-4">
               <AdminUserManagement />
             </TabsContent>

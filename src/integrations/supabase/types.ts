@@ -338,6 +338,7 @@ export type Database = {
           image_url: string
           name: string
           prices: Json
+          purchase_prices: Json
           updated_at: string
         }
         Insert: {
@@ -349,6 +350,7 @@ export type Database = {
           image_url: string
           name: string
           prices?: Json
+          purchase_prices?: Json
           updated_at?: string
         }
         Update: {
@@ -360,6 +362,7 @@ export type Database = {
           image_url?: string
           name?: string
           prices?: Json
+          purchase_prices?: Json
           updated_at?: string
         }
         Relationships: []
