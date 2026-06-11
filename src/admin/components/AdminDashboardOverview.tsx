@@ -57,20 +57,25 @@ const AdminDashboardOverview = () => {
 
   const fetchAll = async () => {
     setLoading(true);
-    const [{ data: prodData, error: prodErr }, { data: ordData, error: ordErr }] = await Promise.all([
-      supabase.from('products').select('id, name, category, prices, purchase_prices').order('category').order('name'),
+    const [{ data: prodData, error: prodErr }, { data: ordData, error: ordErr }, { data: ppData, error: ppErr }] = await Promise.all([
+      supabase.from('products').select('id, name, category, prices').order('category').order('name'),
       supabase.from('orders').select('id, total_price, items, created_at').order('created_at', { ascending: false }),
+      supabase.from('product_purchase_prices').select('product_id, prices'),
     ]);
-    if (prodErr || ordErr) {
+    if (prodErr || ordErr || ppErr) {
       toast({ title: 'Fel', description: 'Kunde inte hämta data.', variant: 'destructive' });
     }
+    const ppMap = new Map<string, Record<string, number>>();
+    ((ppData ?? []) as any[]).forEach((row) => {
+      ppMap.set(row.product_id, (row.prices ?? {}) as Record<string, number>);
+    });
     setProducts(
       ((prodData ?? []) as any[]).map((p) => ({
         id: p.id,
         name: p.name,
         category: p.category,
         prices: (p.prices ?? {}) as Record<string, number>,
-        purchase_prices: (p.purchase_prices ?? {}) as Record<string, number>,
+        purchase_prices: ppMap.get(p.id) ?? {},
       })),
     );
     setOrders(
@@ -129,9 +134,11 @@ const AdminDashboardOverview = () => {
       else if (val === '') delete updated[size];
     });
     const { error } = await supabase
-      .from('products')
-      .update({ purchase_prices: updated as unknown as Json })
-      .eq('id', product.id);
+      .from('product_purchase_prices')
+      .upsert(
+        { product_id: product.id, prices: updated as unknown as Json, updated_at: new Date().toISOString() },
+        { onConflict: 'product_id' },
+      );
     if (error) {
       toast({ title: 'Fel', description: 'Kunde inte spara inköpspris.', variant: 'destructive' });
       return;
