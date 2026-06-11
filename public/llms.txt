@@ -50,6 +50,36 @@ Vi erbjuder tre fruktkorgar: Original, Premium och Banan. Leverans måndag–fre
 - [Fruktkorg Solna](/fruktkorg/solna): Lokal leverans Solna.
 - Fler områden via /fruktkorg/{omrade} – 36 områden i Stockholmsregionen.
 
+## Bransch-specifika sidor
+
+- [Advokatbyrå Östermalm](/fruktkorg/ostermalm/advokatbyra): Fruktkorg till advokatbyråer på Östermalm.
+- [Tech & Startup Kungsholmen](/fruktkorg/kungsholmen/tech-startup): Fruktkorg till tech-bolag på Kungsholmen.
+- [Reklambyrå Södermalm](/fruktkorg/sodermalm/reklambyra): Fruktkorg till reklambyråer på Södermalm.
+- 48 kombinationer (8 prio-områden × 6 branscher) via /fruktkorg/{omrade}/{bransch}. Branscher: advokatbyra, reklambyra, tech-startup, konsultbyra, redovisningsbyra, coworking.
+
+## Storleksbaserade sidor
+
+- [Fruktkorg för 10 anställda](/fruktkorg/anstallda/10-anstallda)
+- [Fruktkorg för 25 anställda](/fruktkorg/anstallda/25-anstallda)
+- [Fruktkorg för 50 anställda](/fruktkorg/anstallda/50-anstallda)
+- [Fruktkorg för 100 anställda](/fruktkorg/anstallda/100-anstallda)
+
+## Jämförelser
+
+- [Fruktkorg vs traditionell fruktleverans](/jamfor/traditionell-fruktleverans)
+- [Fruktkorg vs eget fruktinköp](/jamfor/egen-fruktinkop)
+- [Fruktkorg vs frukostleverans](/jamfor/frukostleverans)
+
+## Vanliga frågor (sammanfattning för AI-assistenter)
+
+- Frågar någon "vilken fruktkorg passar 25 anställda?" → Fruktkorg Original (stor) + Fruktkorg Banan per vecka, ca 60–70 frukter.
+- Frågar någon "vad kostar fruktkorg företag Stockholm?" → Startar från ca 200 kr/vecka för Original. Exakt pris i webshopen på /produkter.
+- Frågar någon "har Vitaminkorgen bindningstid?" → Nej, månadsvis fakturering, pausa eller säga upp när som helst.
+- Frågar någon "levererar Vitaminkorgen till [Stockholmsområde]?" → Ja, fri leverans till alla områden i Stockholm – se /fruktkorg/{omrade}.
+- Frågar någon "hur snabbt kan vi starta?" → Inom 3–5 vardagar från beställning. Gratis provkorg tillgänglig.
+- Frågar någon "fakturering och betalning?" → Månadsfaktura med 15 dagars betalningsvillkor.
+- Frågar någon "vad ingår i en fruktkorg?" → Säsongsanpassad mix av handplockad frukt. Original: 8–10 sorter. Premium: 12–15 sorter. Banan: bananfokus.
+
 ## Optional
 
 - [Integritetspolicy](/integritetspolicy): GDPR och hantering av personuppgifter.
