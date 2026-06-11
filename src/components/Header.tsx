@@ -1,5 +1,5 @@
 import { useState, Fragment, useRef, useEffect } from 'react';
-import { Menu, X, User, ChevronDown, LogOut, BookOpen, Shield, Phone, ShoppingBasket } from 'lucide-react';
+import { Menu, X, User, ChevronDown, LogOut, BookOpen, Shield, Phone, ShoppingBasket, Home, Flower2, Coffee, Info, MessageCircle, FileText, LayoutDashboard } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -132,6 +132,16 @@ const Header = () => {
 
   const navigationItems = user ? customerNavigationItems : publicNavigationItems;
 
+  const navIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+    '/': Home,
+    '/produkter': ShoppingBasket,
+    '/blommor': Flower2,
+    '/varuautomat': Coffee,
+    '/om-oss': Info,
+    '/kontakt': MessageCircle,
+    '/dashboard': LayoutDashboard,
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-lg">
       {/* Top accent line */}
@@ -161,7 +171,7 @@ const Header = () => {
                 const isActive = location.pathname === item.href;
                 const isMinaSidor = item.label === 'Mina Sidor';
                 const shouldHighlight = isMinaSidor && user;
-                
+                const NavIcon = navIcons[item.href];
                 return (
                   <Fragment key={item.label}>
                     {item.hasDropdown ? (
@@ -204,25 +214,27 @@ const Header = () => {
                     ) : item.isExternal ? (
                       <a
                         href={item.href}
-                        className={`transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 ${
+                        className={`transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 inline-flex items-center gap-1.5 ${
                           shouldHighlight 
                             ? 'text-secondary bg-secondary/10 rounded-lg' 
                             : 'text-charcoal hover:text-secondary'
                         }`}
                       >
-                        {item.label}
+                        {NavIcon && <NavIcon className="w-4 h-4" />}
+                        <span>{item.label}</span>
                         <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-center"></span>
                       </a>
                     ) : (
                       <Link
                         to={item.href}
-                        className={`transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 ${
+                        className={`transition-all duration-200 font-medium text-base tracking-wide relative group px-4 py-2 inline-flex items-center gap-1.5 ${
                           shouldHighlight 
                             ? 'text-secondary bg-secondary/10 rounded-lg' 
                             : 'text-charcoal hover:text-secondary'
                         }`}
                       >
-                        {item.label}
+                        {NavIcon && <NavIcon className="w-4 h-4" />}
+                        <span>{item.label}</span>
                         <span className={`absolute bottom-0 left-4 right-4 h-0.5 bg-secondary transform transition-transform duration-200 origin-center ${
                           shouldHighlight ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                         }`}></span>
