@@ -4,6 +4,12 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
+const supabaseAdmin = createClient(
+  Deno.env.get("SUPABASE_URL") ?? "",
+  Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+  { auth: { autoRefreshToken: false, persistSession: false } }
+);
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
@@ -31,20 +37,25 @@ const safeNumber = (val: unknown): number => {
   return Number.isFinite(n) ? n : 0;
 };
 
-// Simple in-memory rate limiter (per isolate — light protection)
-const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT = 5; // max requests
-const RATE_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+// Shared persistent rate limiter (DB-backed, works across all isolates)
+const RATE_LIMIT = 5; // max requests per window
+const RATE_WINDOW_SEC = 60 * 60; // 1 hour
 
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const entry = rateLimitMap.get(ip);
-  if (!entry || now > entry.resetAt) {
-    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS });
+async function isRateLimited(ip: string): Promise<boolean> {
+  try {
+    const { data, error } = await supabaseAdmin.rpc("increment_rate_limit", {
+      _key: `send-contact-email:${ip}`,
+      _window_seconds: RATE_WINDOW_SEC,
+    });
+    if (error) {
+      console.error("Rate limit RPC error:", error);
+      return false; // fail open to avoid blocking legitimate users on DB error
+    }
+    return typeof data === "number" && data > RATE_LIMIT;
+  } catch (e) {
+    console.error("Rate limit exception:", e);
     return false;
   }
-  entry.count++;
-  return entry.count > RATE_LIMIT;
 }
 
 // --- Types ---
@@ -235,7 +246,7 @@ const handler = async (req: Request): Promise<Response> => {
 
   // Rate limiting by IP
   const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  if (isRateLimited(clientIp)) {
+  if (await isRateLimited(clientIp)) {
     return new Response(
       JSON.stringify({ error: "För många förfrågningar. Försök igen senare." }),
       { status: 429, headers: { "Content-Type": "application/json", ...corsHeaders } }
