@@ -130,6 +130,7 @@ const App = () => (
                 <Route path="/fruktkorg-foretag" element={<FruktkorgForetag />} />
                 <Route path="/fruktkorg-pa-jobbet" element={<FruktkorgPaJobbet />} />
                 <Route path="/fruktkorg/:area" element={<AreaLanding />} />
+                <Route path="/fruktkorg/:area/:industry" element={<AreaIndustryLanding />} />
                 <Route path="/produkt/:slug" element={<FruktkorgProduct />} />
                 <Route path="/provkorg" element={<Provkorg />} />
                 <Route path="/avregistrera" element={<Avregistrera />} />
