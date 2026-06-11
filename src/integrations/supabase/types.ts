@@ -417,6 +417,24 @@ export type Database = {
         }
         Relationships: []
       }
+      rate_limits: {
+        Row: {
+          count: number
+          key: string
+          window_start: string
+        }
+        Insert: {
+          count?: number
+          key: string
+          window_start?: string
+        }
+        Update: {
+          count?: number
+          key?: string
+          window_start?: string
+        }
+        Relationships: []
+      }
       reseller_customer_prices: {
         Row: {
           created_at: string
@@ -756,6 +774,10 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      increment_rate_limit: {
+        Args: { _key: string; _window_seconds?: number }
+        Returns: number
       }
       is_admin_user: { Args: never; Returns: boolean }
     }
