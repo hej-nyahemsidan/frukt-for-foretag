@@ -42,6 +42,12 @@ const SimplifiedCheckout = ({
     return relevantItems.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
+  const DELIVERY_FEE = 99;
+  const FREE_DELIVERY_THRESHOLD = 500;
+  const subtotal = calculateTotal();
+  const deliveryFee = subtotal > 0 && subtotal < FREE_DELIVERY_THRESHOLD ? DELIVERY_FEE : 0;
+  const grandTotal = subtotal + deliveryFee;
+
   const handleConfirmOrder = async () => {
     setIsConfirming(true);
     
@@ -55,7 +61,7 @@ const SimplifiedCheckout = ({
         return;
       }
 
-      const totalPrice = calculateTotal();
+      const totalPrice = grandTotal;
       const orderItems = relevantItems.map(item => ({
         id: item.id,
         name: item.name,
@@ -101,6 +107,7 @@ const SimplifiedCheckout = ({
           selectedDays: selectedDays,
           items: orderItems,
           totalPrice,
+          deliveryFee,
           message: message.trim() || undefined,
         }
       });
@@ -233,12 +240,29 @@ const SimplifiedCheckout = ({
                   );
                 })}
                 
-                {/* Total Price */}
-                <div className="flex justify-between items-center p-4 bg-green-50 rounded-lg border-2 border-green-200 mt-4">
-                  <span className="text-lg font-bold text-charcoal">Totalpris:</span>
-                  <span className="text-2xl font-bold text-green-600">
-                    {calculateTotal()} kr
-                  </span>
+                {/* Subtotal + delivery fee */}
+                <div className="mt-4 space-y-2">
+                  <div className="flex justify-between items-center px-4">
+                    <span className="text-sm text-muted-foreground">Delsumma:</span>
+                    <span className="text-sm font-medium text-charcoal">{subtotal} kr</span>
+                  </div>
+                  <div className="flex justify-between items-center px-4">
+                    <span className="text-sm text-muted-foreground">
+                      Leveransavgift {deliveryFee === 0 && subtotal >= FREE_DELIVERY_THRESHOLD && '(fri leverans över 500 kr)'}
+                    </span>
+                    <span className={`text-sm font-medium ${deliveryFee === 0 ? 'text-green-600' : 'text-charcoal'}`}>
+                      {deliveryFee === 0 ? 'Gratis' : `${deliveryFee} kr`}
+                    </span>
+                  </div>
+                  {deliveryFee > 0 && (
+                    <p className="text-xs text-muted-foreground px-4">
+                      Handla för {FREE_DELIVERY_THRESHOLD - subtotal} kr till för fri leverans.
+                    </p>
+                  )}
+                  <div className="flex justify-between items-center p-4 bg-green-50 rounded-lg border-2 border-green-200">
+                    <span className="text-lg font-bold text-charcoal">Totalpris:</span>
+                    <span className="text-2xl font-bold text-green-600">{grandTotal} kr</span>
+                  </div>
                 </div>
               </div>
             )}
