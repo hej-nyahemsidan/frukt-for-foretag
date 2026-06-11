@@ -328,6 +328,35 @@ export type Database = {
         }
         Relationships: []
       }
+      product_purchase_prices: {
+        Row: {
+          prices: Json
+          product_id: string
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          prices?: Json
+          product_id: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          prices?: Json
+          product_id?: string
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_purchase_prices_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: true
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       products: {
         Row: {
           category: string
@@ -338,7 +367,6 @@ export type Database = {
           image_url: string
           name: string
           prices: Json
-          purchase_prices: Json
           updated_at: string
         }
         Insert: {
@@ -350,7 +378,6 @@ export type Database = {
           image_url: string
           name: string
           prices?: Json
-          purchase_prices?: Json
           updated_at?: string
         }
         Update: {
@@ -362,7 +389,6 @@ export type Database = {
           image_url?: string
           name?: string
           prices?: Json
-          purchase_prices?: Json
           updated_at?: string
         }
         Relationships: []
