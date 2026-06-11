@@ -30,7 +30,12 @@ const PublicCartIndicator = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm" className="relative">
+        <Button
+          variant="ghost"
+          size="sm"
+          className="relative"
+          aria-label={totalItems > 0 ? `Varukorg, ${totalItems} produkter` : 'Varukorg, tom'}
+        >
           <ShoppingCart className="h-5 w-5" />
           {totalItems > 0 && (
             <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
@@ -83,6 +88,7 @@ const PublicCartIndicator = () => {
                               size="sm"
                               className="h-7 w-7 p-0"
                               onClick={() => updateQuantity(item.id, item.quantity - 1, item.day, item.size)}
+                              aria-label={`Minska antal av ${item.name}`}
                             >
                               <Minus className="h-3 w-3" />
                             </Button>
@@ -92,6 +98,7 @@ const PublicCartIndicator = () => {
                               size="sm"
                               className="h-7 w-7 p-0"
                               onClick={() => updateQuantity(item.id, item.quantity + 1, item.day, item.size)}
+                              aria-label={`Öka antal av ${item.name}`}
                             >
                               <Plus className="h-3 w-3" />
                             </Button>
@@ -100,6 +107,7 @@ const PublicCartIndicator = () => {
                               size="sm"
                               className="h-7 w-7 p-0 ml-auto text-destructive hover:text-destructive"
                               onClick={() => removeItem(item.id, item.day, item.size)}
+                              aria-label={`Ta bort ${item.name} från varukorgen`}
                             >
                               <X className="h-4 w-4" />
                             </Button>
