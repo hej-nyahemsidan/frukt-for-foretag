@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { areas } from '@/data/areas';
 
 interface StructuredDataProps {
-  type?: 'homepage' | 'products' | 'contact' | 'about' | 'product-detail';
+  type?: 'homepage' | 'products' | 'contact' | 'about' | 'product-detail' | 'minimal';
 }
 
 const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
@@ -298,6 +298,9 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
 
   const getStructuredData = () => {
     switch (type) {
+      case 'minimal':
+        return [baseOrganization];
+
       case 'product-detail':
         return [baseOrganization];
 

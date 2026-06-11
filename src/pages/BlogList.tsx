@@ -61,6 +61,7 @@ const BlogList = () => {
         title={`${categoryTitle} – Blogg | Vitaminkorgen`}
         description={categoryDescription}
         keywords={`frukt ${category}, fruktkorgar tips, hälsa arbetsplats, ${category} frukt`}
+        type="minimal"
       />
       <Header />
       

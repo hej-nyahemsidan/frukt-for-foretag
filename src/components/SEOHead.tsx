@@ -7,7 +7,7 @@ interface SEOHeadProps {
   description?: string;
   keywords?: string;
   image?: string;
-  type?: 'homepage' | 'products' | 'contact' | 'about' | 'product-detail';
+  type?: 'homepage' | 'products' | 'contact' | 'about' | 'product-detail' | 'minimal';
   ogType?: 'website' | 'article';
   noindex?: boolean;
 }
@@ -31,12 +31,12 @@ const SEOHead = ({
     const defaults = {
       homepage: {
         title: 'Fruktkorg på jobbet Stockholm | Vitaminkorgen',
-        description: 'Fruktkorg på jobbet Stockholm ✓ Vi levererar färska fruktkorgar direkt till ert kontor. Fruktbudet Stockholm med gratis fruktleverans. Sedan 2021 har vi hjälpt 150+ företag.',
+        description: 'Färska fruktkorgar levererade till kontoret i Stockholm. Gratis leverans, flexibla abonnemang. 150+ företag litar på oss sedan 2021.',
         keywords: 'fruktkorg på jobbet stockholm, fruktkorgar stockholm, fruktkorg stockholm, frukt på jobbet, fruktbudet, fruktbud stockholm, fruktleverans stockholm, fruktkorgar till jobbet, fruktkorgar på kontoret, kontorsfrukt stockholm, företagsfrukt'
       },
       products: {
         title: 'Fruktkorgar & kontorsprodukter | Vitaminkorgen',
-        description: 'Upptäck vårt sortiment av färska fruktkorgar på jobbet, drycker och snacks för kontoret. Fruktbudet Stockholm – premium fruktkorgar levererade direkt till ert företag.',
+        description: 'Färska fruktkorgar, drycker och snacks till kontoret i Stockholm. Premium kvalitet och fri leverans. Beställ direkt online.',
         keywords: 'fruktkorgar, frukt på jobbet, fruktbudet, fruktbud, fruktkorgar till jobbet, fruktkorgar sortiment, kontorsprodukter, premium fruktkorgar, företagsfrukt stockholm'
       },
       contact: {

@@ -203,12 +203,14 @@ const BlogPost = () => {
           description={post.excerpt || `Läs ${post.title} på Vitaminkorgens blogg.`}
           keywords={`fruktkorgar, frukt på jobbet, ${post.category === 'tips' ? 'hälsotips kontor' : 'fruktrecept'}`}
           ogType="article"
+          type="minimal"
         />
       )}
       {!post && (
         <SEOHead
           title="Blogg | Vitaminkorgen"
           description="Läs tips och recept om frukt på jobbet."
+          type="minimal"
         />
       )}
       {articleSchema && (
