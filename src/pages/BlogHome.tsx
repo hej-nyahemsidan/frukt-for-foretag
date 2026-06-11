@@ -78,6 +78,7 @@ const BlogHome = () => {
         title="Blogg – Tips om frukt på jobbet & hälsa | Vitaminkorgen"
         description="Läs våra tips om fruktkorgar på jobbet, hälsa på arbetsplatsen och recept med färsk frukt. Inspiration för ett hälsosammare kontorsliv."
         keywords="frukt på jobbet tips, fruktkorg blogg, hälsa arbetsplats, kontorsfrukt tips, fruktrecept"
+        type="minimal"
       />
       <Header />
       

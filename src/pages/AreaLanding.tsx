@@ -47,9 +47,9 @@ const AreaLanding = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title={`Fruktkorg ${name} – Frukt till kontor | Vitaminkorgen`}
-        description={`Fruktkorg ${name} ✓ ${description} Fruktbudet med fri leverans. Beställ idag!`}
+        description={`Fruktkorg ${name}: ${description}`.slice(0, 155)}
         keywords={`fruktkorg ${name.toLowerCase()}, fruktkorgar ${name.toLowerCase()}, fruktleverans ${name.toLowerCase()}, fruktbud ${name.toLowerCase()}, fruktbudet ${name.toLowerCase()}, fruktkorg på jobbet ${name.toLowerCase()}`}
-        type="products"
+        type="minimal"
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Header />
