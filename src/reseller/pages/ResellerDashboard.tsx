@@ -1,17 +1,20 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogOut, Package, Users, ShoppingCart, Home } from 'lucide-react';
+import { LogOut, Package, Users, ShoppingCart, LayoutDashboard } from 'lucide-react';
 import { useResellerAuth } from '../contexts/ResellerAuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import ResellerProductPricing from '../components/ResellerProductPricing';
 import ResellerCustomerManagement from '../components/ResellerCustomerManagement';
 import ResellerOrders from '../components/ResellerOrders';
+import ResellerOverview from '../components/ResellerOverview';
 
 const ResellerDashboard = () => {
   const { logout, reseller, user } = useResellerAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const [tab, setTab] = useState('overview');
 
   const handleLogout = async () => {
     await logout();
@@ -44,8 +47,19 @@ const ResellerDashboard = () => {
       </header>
 
       <main className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <Tabs defaultValue="products" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-6">
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-foreground">
+            Hej{user?.email ? `, ${user.email.split('@')[0]}` : ''} 👋
+          </h1>
+          <p className="text-sm text-muted-foreground">Översikt över din återförsäljarverksamhet.</p>
+        </div>
+        <Tabs value={tab} onValueChange={setTab} className="w-full">
+          <TabsList className="grid w-full grid-cols-4 mb-6">
+            <TabsTrigger value="overview" className="flex items-center gap-2 text-sm">
+              <LayoutDashboard className="w-4 h-4" />
+              <span className="hidden sm:inline">Översikt</span>
+              <span className="sm:hidden">Hem</span>
+            </TabsTrigger>
             <TabsTrigger value="products" className="flex items-center gap-2 text-sm">
               <Package className="w-4 h-4" />
               <span className="hidden sm:inline">Produkter & Priser</span>
@@ -63,6 +77,9 @@ const ResellerDashboard = () => {
             </TabsTrigger>
           </TabsList>
 
+          <TabsContent value="overview">
+            <ResellerOverview onJumpTo={setTab} />
+          </TabsContent>
           <TabsContent value="products">
             <ResellerProductPricing />
           </TabsContent>
