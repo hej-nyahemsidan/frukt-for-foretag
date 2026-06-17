@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 interface Product {
   id: string;
@@ -124,22 +125,31 @@ const ResellerProductPricing = () => {
         Här ser du ert inköpspris och kan sätta det standardpris era kunder ser.
       </p>
 
-      {Object.entries(groupedProducts).map(([category, prods]) => {
-        // Only show categories where we have purchase prices
-        const hasPrices = prods.some(p => {
-          const sizes = Object.keys(p.prices);
-          if (sizes.length > 1) return sizes.some(s => getPurchasePrice(p.id, s) !== null);
-          return getPurchasePrice(p.id, null) !== null;
-        });
-        if (!hasPrices) return null;
+      <Accordion type="multiple" className="space-y-2">
+        {Object.entries(groupedProducts).map(([category, prods]) => {
+          const hasPrices = prods.some(p => {
+            const sizes = Object.keys(p.prices);
+            if (sizes.length > 1) return sizes.some(s => getPurchasePrice(p.id, s) !== null);
+            return getPurchasePrice(p.id, null) !== null;
+          });
+          if (!hasPrices) return null;
 
-        return (
-          <Card key={category}>
-            <CardHeader className="py-3">
-              <CardTitle className="text-base">{categoryLabels[category] || category}</CardTitle>
-            </CardHeader>
-            <CardContent className="p-0">
-              <Table>
+          const rowCount = prods.reduce((n, p) => {
+            const sizes = Object.keys(p.prices);
+            if (sizes.length > 1) return n + sizes.filter(s => getPurchasePrice(p.id, s) !== null).length;
+            return n + (getPurchasePrice(p.id, null) !== null ? 1 : 0);
+          }, 0);
+
+          return (
+            <AccordionItem key={category} value={category} className="border rounded-lg bg-card">
+              <AccordionTrigger className="px-4 py-3 hover:no-underline">
+                <div className="flex items-center gap-2 text-base font-medium">
+                  {categoryLabels[category] || category}
+                  <Badge variant="secondary" className="ml-2">{rowCount}</Badge>
+                </div>
+              </AccordionTrigger>
+              <AccordionContent className="p-0">
+                <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-12">Bild</TableHead>
@@ -203,11 +213,12 @@ const ResellerProductPricing = () => {
                     );
                   })}
                 </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
-        );
-      })}
+                </Table>
+              </AccordionContent>
+            </AccordionItem>
+          );
+        })}
+      </Accordion>
     </div>
   );
 };
