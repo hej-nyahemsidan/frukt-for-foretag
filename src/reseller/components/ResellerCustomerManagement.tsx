@@ -9,7 +9,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Pencil, Users, ChevronLeft } from 'lucide-react';
+import { Plus, Pencil, Users, ChevronLeft, ShoppingCart } from 'lucide-react';
+import ResellerPlaceOrderDialog from './ResellerPlaceOrderDialog';
 
 interface ResellerCustomer {
   id: string;
@@ -53,6 +54,7 @@ const ResellerCustomerManagement = () => {
   const [customerPrices, setCustomerPrices] = useState<CustomerPrice[]>([]);
   const [standardPrices, setStandardPrices] = useState<StandardPrice[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
+  const [orderForCustomer, setOrderForCustomer] = useState<ResellerCustomer | null>(null);
 
   // Form state
   const [formCompany, setFormCompany] = useState('');
@@ -381,10 +383,22 @@ const ResellerCustomerManagement = () => {
                 <Button variant="outline" size="sm" onClick={() => handleSelectCustomer(customer)}>
                   <Pencil className="w-4 h-4 mr-1" /> Priser
                 </Button>
+                <Button size="sm" className="ml-2" onClick={() => setOrderForCustomer(customer)}>
+                  <ShoppingCart className="w-4 h-4 mr-1" /> Lägg order
+                </Button>
               </CardContent>
             </Card>
           ))}
         </div>
+      )}
+
+      {orderForCustomer && (
+        <ResellerPlaceOrderDialog
+          customerId={orderForCustomer.id}
+          customerName={orderForCustomer.company_name}
+          open={!!orderForCustomer}
+          onOpenChange={(o) => { if (!o) setOrderForCustomer(null); }}
+        />
       )}
     </div>
   );
