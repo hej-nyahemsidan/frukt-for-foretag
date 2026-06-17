@@ -71,6 +71,29 @@ const queryClient = new QueryClient();
 // Redirect component for old URLs
 const VaruautomatRedirect = () => <Navigate to="/varuautomat" replace />;
 
+// Main Vitaminkorgen hosts. Any other hostname is treated as a reseller
+// custom domain and the root path is sent to the white-label customer login.
+const MAIN_HOSTS = [
+  "vitaminkorgen.se",
+  "www.vitaminkorgen.se",
+  "frukt-for-foretag.lovable.app",
+  "localhost",
+];
+
+const RootRoute = () => {
+  if (typeof window !== "undefined") {
+    const host = window.location.hostname;
+    const isMain =
+      MAIN_HOSTS.includes(host) ||
+      host.endsWith(".lovable.app") ||
+      host.endsWith(".lovableproject.com");
+    if (!isMain) {
+      return <Navigate to="/af/kund/login" replace />;
+    }
+  }
+  return <Index />;
+};
+
 // Minimal loading fallback
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
@@ -94,7 +117,7 @@ const App = () => (
               <ScrollToTop />
               <Suspense fallback={<PageLoader />}>
               <Routes>
-                <Route path="/" element={<Index />} />
+                <Route path="/" element={<RootRoute />} />
                 <Route path="/produkter" element={<Products />} />
                 <Route path="/om-oss" element={<About />} />
                 <Route path="/kontakt" element={<Contact />} />
