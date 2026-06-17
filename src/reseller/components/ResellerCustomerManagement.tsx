@@ -380,12 +380,14 @@ const ResellerCustomerManagement = () => {
                     {customer.email}
                   </div>
                 </div>
-                <Button variant="outline" size="sm" onClick={() => handleSelectCustomer(customer)}>
-                  <Pencil className="w-4 h-4 mr-1" /> Priser
-                </Button>
-                <Button size="sm" className="ml-2" onClick={() => setOrderForCustomer(customer)}>
-                  <ShoppingCart className="w-4 h-4 mr-1" /> Lägg order
-                </Button>
+                <div className="flex items-center gap-2">
+                  <Button variant="outline" size="sm" onClick={() => handleSelectCustomer(customer)}>
+                    <Pencil className="w-4 h-4 mr-1" /> Priser
+                  </Button>
+                  <Button size="sm" onClick={() => setOrderForCustomer(customer)}>
+                    <ShoppingCart className="w-4 h-4 mr-1" /> Lägg order
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           ))}
