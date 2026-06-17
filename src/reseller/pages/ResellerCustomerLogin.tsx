@@ -136,6 +136,14 @@ const ResellerCustomerLogin = () => {
             </Button>
           </form>
 
+          {/* Reseller login link */}
+          <p className="text-center text-xs text-muted-foreground">
+            Är du återförsäljare?{' '}
+            <Link to="/af/login" className="underline hover:text-primary">
+              Logga in här
+            </Link>
+          </p>
+
           {/* Reseller contact */}
           {reseller?.contact_email && (
             <p className="text-center text-xs text-muted-foreground">
