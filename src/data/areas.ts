@@ -321,14 +321,18 @@ export const areas: AreaInfo[] = [
     nearbyAreas: ['Tumba', 'Botkyrka', 'Huddinge'],
     highlights: ['Rönninge', 'Salemstaden', 'Säbytorgsvägen', 'Salems centrum', 'Söderby'],
     longContent: [
-      'Salem är en av Stockholms läns mindre kommuner men har samtidigt en aktiv företagarprofil med många små och medelstora bolag runt Rönninge och Salemstaden. Närheten till Tumba och Södertälje gör att området har en bra blandning av tjänsteföretag och hantverksverksamheter.',
-      'Vi levererar fruktkorgar till företag i Salem som en del av vår södra rutt via Tumba. Det innebär stabila leveransdagar och rimliga leveranstider även för adresser som ligger en bit utanför Stockholms tätort.',
-      'För kontor i Salem rekommenderar vi oftast en Fruktkorg Original i veckan. Mindre kontor klarar sig bra med 4 kg-storleken medan företag med fler än 15 medarbetare brukar välja 6 kg eller större.'
+      'Salem är en av Stockholms läns till ytan mindre kommuner men rymmer trots det ett förvånansvärt aktivt lokalt näringsliv. Runt Salems centrum, Säbytorgsvägen och pendeltågsstationen i Rönninge sitter tjänsteföretag, mäklarkontor, tandläkarpraktiker, redovisningsbyråer och en växande grupp små techbolag som valt en lugnare arbetsplats utanför innerstan.',
+      'Söderby industri- och företagsområde vid gränsen mot Södertälje är kommunens tyngsta företagsnav med byggbolag, VVS-installatörer, hantverkare och lager- och logistikverksamheter. Här finns också flera större arbetsplatser inom transport och entreprenad där en fruktkorg på fikarummet gör verklig skillnad för medarbetare som är ute på jobb hela dagarna.',
+      'Vitaminkorgen levererar fruktkorgar till företag i Salem som en fast del av vår södra rutt via Tumba. Det ger stabila leveransdagar även för adresser en bit utanför Stockholms tätort – oavsett om ni sitter i Salemstaden, vid Rönninge station eller ute i Söderby. Vi känner till lokala trafiksituationer runt Salemsvägen och riksväg 225 och planerar rutten så att korgen är på plats i god tid.',
+      'För kontor i Salem är Fruktkorg Original vårt vanligaste veckoval. Mindre kontor med 5–10 medarbetare landar oftast i 4 kg-storleken, medan tjänsteföretag med 15+ personal brukar välja 6 kg eller större. Verksamheter i Söderby med mycket hantverks- och lagerpersonal väljer ofta att komplettera med Fruktkorg Banan för snabb energi under arbetsdagen.',
+      'Ligger ert huvudkontor i Salem men har filialer i Tumba, Botkyrka eller Huddinge kan vi samordna leveransen så att alla adresser får sin korg samma dag och på en gemensam faktura. Det är en av de vanligaste anledningarna att företag i södra Storstockholm väljer oss framför lokala mataffärer.'
     ],
     localFaqs: [
-      { q: 'Är fri leverans giltig i Salem?', a: 'Ja, vi har fri leverans till alla adresser i Salems kommun. Salem ingår i vår södra rutt via Tumba.' },
-      { q: 'Hur ofta kan ni leverera till Salem?', a: 'Vi erbjuder leverans en eller flera gånger per vecka beroende på vad ni föredrar. Ni väljer själva leveransdag.' },
-      { q: 'Kan vi prova en fruktkorg innan vi bestämmer oss?', a: 'Absolut. Beställ en kostnadsfri provkorg så får ni testa kvalitet och leveransrutin innan ni bestämmer er.' }
+      { q: 'Är fri leverans giltig i hela Salems kommun?', a: 'Ja, vi har fri leverans till alla adresser i Salems kommun – Salemstaden, Rönninge, Söderby och området runt Salems centrum. Salem ingår i vår södra rutt via Tumba.' },
+      { q: 'Levererar ni till Söderby företagsområde?', a: 'Ja, Söderby är en av våra vanligaste leveranspunkter i Salem eftersom området rymmer många bygg-, hantverks- och logistikbolag. Vi är vana vid lastintag och verkstadsmiljöer.' },
+      { q: 'Hur ofta kan ni leverera till Salem?', a: 'Vi erbjuder leverans en eller flera gånger per vecka. Ni väljer själva vilken vardag som passar bäst och kan enkelt lägga till en extradag om behovet växer.' },
+      { q: 'Kan ni samordna leverans till Salem, Tumba och Huddinge?', a: 'Absolut. Många av våra kunder har verksamhet på flera adresser i södra Storstockholm och vi kör alla samma dag på en gemensam faktura.' },
+      { q: 'Kan vi prova en fruktkorg innan vi tecknar abonnemang?', a: 'Ja, vi erbjuder en kostnadsfri provkorg så ni får testa både kvaliteten och leveransrutinen i Salem innan ni bestämmer er.' }
     ]
   },
   {
