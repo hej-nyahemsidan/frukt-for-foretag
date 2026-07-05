@@ -215,14 +215,18 @@ export const areas: AreaInfo[] = [
     nearbyAreas: ['Bromma', 'Kungsholmen', 'Sundbyberg'],
     highlights: ['Alviks strand', 'Alviks torg', 'Tvärbanan Alvik', 'Gustavslundsvägen', 'Drottningholmsvägen'],
     longContent: [
-      'Alvik är en av Brommas tätaste kontorsknutpunkter. Runt Alviks torg och Alviks strand finns ett stort antal techbolag, konsultfirmor och mediabyråer som alla pendlar via tvärbanan och tunnelbanan – en miljö där fruktkorg på jobbet snabbt blir en uppskattad rutin.',
-      'Vitaminkorgen levererar fruktkorgar till företag i Alvik flera dagar i veckan. Vi känner till lastintagen runt Gustavslundsvägen och de större kontorshusen vid Alviks strand, vilket innebär att leveransen alltid kommer fram i tid – även de dagar då tvärbanan står still.',
-      'För techbolag i Alvik rekommenderar vi ofta Fruktkorg Original kombinerat med en Fruktkorg Banan. Det ger både variation under veckan och snabb energi till långa möten och kodsessioner.'
+      'Alvik är en av Brommas tätaste kontorsknutpunkter, med Alviks strand som ett av västra Stockholms mest expansiva företagsområden det senaste decenniet. Fastigheter som Alviks Strand 1–13 rymmer allt från SEB och Handelsbankens back office-funktioner till större advokatbyråer och techbolag, och kring Gustavslundsvägen ligger både äldre kontorshus från 90-talet och nyrenoverade lokaler med öppna kontorslandskap.',
+      'Kombinationen av tvärbanan, tunnelbanans gröna linje och bussterminalen vid Alviks torg gör att området har bland Stockholms högsta kontorstätheter per kvadratmeter. Många av våra Alvik-kunder är konsultfirmor och digitalbyråer där medarbetarna sitter långa dagar framför skärmen – då blir en veckoleverans av frukt en av de mest kostnadseffektiva personalförmånerna man kan lägga till.',
+      'Vitaminkorgen kör Alvik som en fast del av vår Bromma-rutt varje leveransdag. Vi känner till lastintagen bakom Alviks strand-fastigheterna, portkoderna på Gustavslundsvägen och vet vilka kontor som föredrar leverans direkt in i fikarummet kontra reception. Det innebär att korgen är på plats innan lunch även de dagar då tvärbanan står still eller Drottningholmsvägen har köer in mot stan.',
+      'För techbolag och konsulter i Alvik rekommenderar vi oftast Fruktkorg Original som veckans grundleverans, gärna kompletterad med en Fruktkorg Banan för snabb energi mellan möten. Kontor med kundmottagning vid Alviks torg väljer ofta att också lägga till en Fruktkorg Premium för representation.',
+      'Alvik ligger strategiskt så att vi enkelt kan utöka leveransen till närliggande områden som Bromma, Traneberg, Kristineberg och Sundbyberg. Många av våra kunder har flera kontor i västra Stockholm och kan samordna beställningen till en enda faktura med samma leveransdag.'
     ],
     localFaqs: [
-      { q: 'Levererar ni fruktkorgar till Alviks strand och Alviks torg?', a: 'Ja, både Alviks strand och Alviks torg är centrala leveransadresser i vår Bromma-rutt. Fri leverans gäller hela området.' },
-      { q: 'Hur tidigt levererar ni i Alvik?', a: 'Vi börjar Alvik-rundan tidigt och de flesta kontor har korgen på plats innan kl. 09:30. Vill ni ha en specifik leveranstid noterar vi det vid beställning.' },
-      { q: 'Kan ni leverera till kontorshus vid Gustavslundsvägen?', a: 'Absolut. Vi har flera kunder i fastigheterna längs Gustavslundsvägen och kan ta oss in via både huvudentré och lastintag.' }
+      { q: 'Levererar ni fruktkorgar till Alviks strand och Alviks torg?', a: 'Ja, båda områdena ingår i vår ordinarie Bromma-rutt med fri leverans. Vi har kunder i majoriteten av kontorshusen vid Alviks strand 1–13 och i fastigheterna runt Alviks torg.' },
+      { q: 'Hur tidigt levererar ni i Alvik?', a: 'Alvik ligger tidigt på vår Bromma-rutt och de flesta kontor har korgen på plats innan kl. 09:30. Önskar ni en specifik leveranstid eller att korgen ska stå i fikarummet innan medarbetarna kommer, noterar vi det vid beställning.' },
+      { q: 'Kan ni leverera till kontorshus vid Gustavslundsvägen?', a: 'Absolut. Vi har flera kunder längs hela Gustavslundsvägen och kan ta oss in via både huvudentré och lastintag beroende på hur er fastighet är organiserad. Portkoder och receptionsrutiner sparar vi i vårt leveranssystem.' },
+      { q: 'Passar fruktkorg för techbolag och konsulter i Alvik?', a: 'Väldigt bra. Techbolag och konsultfirmor är vår vanligaste kundtyp i Alvik. En veckoleverans av Fruktkorg Original täcker de flesta behov och kompletteras ofta med Fruktkorg Banan för mötesintensiva team.' },
+      { q: 'Kan ni samordna leverans till flera Bromma-kontor?', a: 'Ja, vi hanterar många kunder som har kontor både i Alvik och i närliggande områden som Bromma centrum, Traneberg och Sundbyberg. Samma leveransdag och en gemensam faktura är standard.' }
     ]
   },
   {
@@ -317,14 +321,18 @@ export const areas: AreaInfo[] = [
     nearbyAreas: ['Tumba', 'Botkyrka', 'Huddinge'],
     highlights: ['Rönninge', 'Salemstaden', 'Säbytorgsvägen', 'Salems centrum', 'Söderby'],
     longContent: [
-      'Salem är en av Stockholms läns mindre kommuner men har samtidigt en aktiv företagarprofil med många små och medelstora bolag runt Rönninge och Salemstaden. Närheten till Tumba och Södertälje gör att området har en bra blandning av tjänsteföretag och hantverksverksamheter.',
-      'Vi levererar fruktkorgar till företag i Salem som en del av vår södra rutt via Tumba. Det innebär stabila leveransdagar och rimliga leveranstider även för adresser som ligger en bit utanför Stockholms tätort.',
-      'För kontor i Salem rekommenderar vi oftast en Fruktkorg Original i veckan. Mindre kontor klarar sig bra med 4 kg-storleken medan företag med fler än 15 medarbetare brukar välja 6 kg eller större.'
+      'Salem är en av Stockholms läns till ytan mindre kommuner men rymmer trots det ett förvånansvärt aktivt lokalt näringsliv. Runt Salems centrum, Säbytorgsvägen och pendeltågsstationen i Rönninge sitter tjänsteföretag, mäklarkontor, tandläkarpraktiker, redovisningsbyråer och en växande grupp små techbolag som valt en lugnare arbetsplats utanför innerstan.',
+      'Söderby industri- och företagsområde vid gränsen mot Södertälje är kommunens tyngsta företagsnav med byggbolag, VVS-installatörer, hantverkare och lager- och logistikverksamheter. Här finns också flera större arbetsplatser inom transport och entreprenad där en fruktkorg på fikarummet gör verklig skillnad för medarbetare som är ute på jobb hela dagarna.',
+      'Vitaminkorgen levererar fruktkorgar till företag i Salem som en fast del av vår södra rutt via Tumba. Det ger stabila leveransdagar även för adresser en bit utanför Stockholms tätort – oavsett om ni sitter i Salemstaden, vid Rönninge station eller ute i Söderby. Vi känner till lokala trafiksituationer runt Salemsvägen och riksväg 225 och planerar rutten så att korgen är på plats i god tid.',
+      'För kontor i Salem är Fruktkorg Original vårt vanligaste veckoval. Mindre kontor med 5–10 medarbetare landar oftast i 4 kg-storleken, medan tjänsteföretag med 15+ personal brukar välja 6 kg eller större. Verksamheter i Söderby med mycket hantverks- och lagerpersonal väljer ofta att komplettera med Fruktkorg Banan för snabb energi under arbetsdagen.',
+      'Ligger ert huvudkontor i Salem men har filialer i Tumba, Botkyrka eller Huddinge kan vi samordna leveransen så att alla adresser får sin korg samma dag och på en gemensam faktura. Det är en av de vanligaste anledningarna att företag i södra Storstockholm väljer oss framför lokala mataffärer.'
     ],
     localFaqs: [
-      { q: 'Är fri leverans giltig i Salem?', a: 'Ja, vi har fri leverans till alla adresser i Salems kommun. Salem ingår i vår södra rutt via Tumba.' },
-      { q: 'Hur ofta kan ni leverera till Salem?', a: 'Vi erbjuder leverans en eller flera gånger per vecka beroende på vad ni föredrar. Ni väljer själva leveransdag.' },
-      { q: 'Kan vi prova en fruktkorg innan vi bestämmer oss?', a: 'Absolut. Beställ en kostnadsfri provkorg så får ni testa kvalitet och leveransrutin innan ni bestämmer er.' }
+      { q: 'Är fri leverans giltig i hela Salems kommun?', a: 'Ja, vi har fri leverans till alla adresser i Salems kommun – Salemstaden, Rönninge, Söderby och området runt Salems centrum. Salem ingår i vår södra rutt via Tumba.' },
+      { q: 'Levererar ni till Söderby företagsområde?', a: 'Ja, Söderby är en av våra vanligaste leveranspunkter i Salem eftersom området rymmer många bygg-, hantverks- och logistikbolag. Vi är vana vid lastintag och verkstadsmiljöer.' },
+      { q: 'Hur ofta kan ni leverera till Salem?', a: 'Vi erbjuder leverans en eller flera gånger per vecka. Ni väljer själva vilken vardag som passar bäst och kan enkelt lägga till en extradag om behovet växer.' },
+      { q: 'Kan ni samordna leverans till Salem, Tumba och Huddinge?', a: 'Absolut. Många av våra kunder har verksamhet på flera adresser i södra Storstockholm och vi kör alla samma dag på en gemensam faktura.' },
+      { q: 'Kan vi prova en fruktkorg innan vi tecknar abonnemang?', a: 'Ja, vi erbjuder en kostnadsfri provkorg så ni får testa både kvaliteten och leveransrutinen i Salem innan ni bestämmer er.' }
     ]
   },
   {
