@@ -215,14 +215,18 @@ export const areas: AreaInfo[] = [
     nearbyAreas: ['Bromma', 'Kungsholmen', 'Sundbyberg'],
     highlights: ['Alviks strand', 'Alviks torg', 'Tvärbanan Alvik', 'Gustavslundsvägen', 'Drottningholmsvägen'],
     longContent: [
-      'Alvik är en av Brommas tätaste kontorsknutpunkter. Runt Alviks torg och Alviks strand finns ett stort antal techbolag, konsultfirmor och mediabyråer som alla pendlar via tvärbanan och tunnelbanan – en miljö där fruktkorg på jobbet snabbt blir en uppskattad rutin.',
-      'Vitaminkorgen levererar fruktkorgar till företag i Alvik flera dagar i veckan. Vi känner till lastintagen runt Gustavslundsvägen och de större kontorshusen vid Alviks strand, vilket innebär att leveransen alltid kommer fram i tid – även de dagar då tvärbanan står still.',
-      'För techbolag i Alvik rekommenderar vi ofta Fruktkorg Original kombinerat med en Fruktkorg Banan. Det ger både variation under veckan och snabb energi till långa möten och kodsessioner.'
+      'Alvik är en av Brommas tätaste kontorsknutpunkter, med Alviks strand som ett av västra Stockholms mest expansiva företagsområden det senaste decenniet. Fastigheter som Alviks Strand 1–13 rymmer allt från SEB och Handelsbankens back office-funktioner till större advokatbyråer och techbolag, och kring Gustavslundsvägen ligger både äldre kontorshus från 90-talet och nyrenoverade lokaler med öppna kontorslandskap.',
+      'Kombinationen av tvärbanan, tunnelbanans gröna linje och bussterminalen vid Alviks torg gör att området har bland Stockholms högsta kontorstätheter per kvadratmeter. Många av våra Alvik-kunder är konsultfirmor och digitalbyråer där medarbetarna sitter långa dagar framför skärmen – då blir en veckoleverans av frukt en av de mest kostnadseffektiva personalförmånerna man kan lägga till.',
+      'Vitaminkorgen kör Alvik som en fast del av vår Bromma-rutt varje leveransdag. Vi känner till lastintagen bakom Alviks strand-fastigheterna, portkoderna på Gustavslundsvägen och vet vilka kontor som föredrar leverans direkt in i fikarummet kontra reception. Det innebär att korgen är på plats innan lunch även de dagar då tvärbanan står still eller Drottningholmsvägen har köer in mot stan.',
+      'För techbolag och konsulter i Alvik rekommenderar vi oftast Fruktkorg Original som veckans grundleverans, gärna kompletterad med en Fruktkorg Banan för snabb energi mellan möten. Kontor med kundmottagning vid Alviks torg väljer ofta att också lägga till en Fruktkorg Premium för representation.',
+      'Alvik ligger strategiskt så att vi enkelt kan utöka leveransen till närliggande områden som Bromma, Traneberg, Kristineberg och Sundbyberg. Många av våra kunder har flera kontor i västra Stockholm och kan samordna beställningen till en enda faktura med samma leveransdag.'
     ],
     localFaqs: [
-      { q: 'Levererar ni fruktkorgar till Alviks strand och Alviks torg?', a: 'Ja, både Alviks strand och Alviks torg är centrala leveransadresser i vår Bromma-rutt. Fri leverans gäller hela området.' },
-      { q: 'Hur tidigt levererar ni i Alvik?', a: 'Vi börjar Alvik-rundan tidigt och de flesta kontor har korgen på plats innan kl. 09:30. Vill ni ha en specifik leveranstid noterar vi det vid beställning.' },
-      { q: 'Kan ni leverera till kontorshus vid Gustavslundsvägen?', a: 'Absolut. Vi har flera kunder i fastigheterna längs Gustavslundsvägen och kan ta oss in via både huvudentré och lastintag.' }
+      { q: 'Levererar ni fruktkorgar till Alviks strand och Alviks torg?', a: 'Ja, båda områdena ingår i vår ordinarie Bromma-rutt med fri leverans. Vi har kunder i majoriteten av kontorshusen vid Alviks strand 1–13 och i fastigheterna runt Alviks torg.' },
+      { q: 'Hur tidigt levererar ni i Alvik?', a: 'Alvik ligger tidigt på vår Bromma-rutt och de flesta kontor har korgen på plats innan kl. 09:30. Önskar ni en specifik leveranstid eller att korgen ska stå i fikarummet innan medarbetarna kommer, noterar vi det vid beställning.' },
+      { q: 'Kan ni leverera till kontorshus vid Gustavslundsvägen?', a: 'Absolut. Vi har flera kunder längs hela Gustavslundsvägen och kan ta oss in via både huvudentré och lastintag beroende på hur er fastighet är organiserad. Portkoder och receptionsrutiner sparar vi i vårt leveranssystem.' },
+      { q: 'Passar fruktkorg för techbolag och konsulter i Alvik?', a: 'Väldigt bra. Techbolag och konsultfirmor är vår vanligaste kundtyp i Alvik. En veckoleverans av Fruktkorg Original täcker de flesta behov och kompletteras ofta med Fruktkorg Banan för mötesintensiva team.' },
+      { q: 'Kan ni samordna leverans till flera Bromma-kontor?', a: 'Ja, vi hanterar många kunder som har kontor både i Alvik och i närliggande områden som Bromma centrum, Traneberg och Sundbyberg. Samma leveransdag och en gemensam faktura är standard.' }
     ]
   },
   {
