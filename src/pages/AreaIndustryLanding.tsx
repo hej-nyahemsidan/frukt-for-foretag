@@ -53,7 +53,7 @@ const AreaIndustryLanding = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title={`Fruktkorg ${industryName} ${areaName} – ${areaName} | Vitaminkorgen`}
+        title={`Fruktkorg ${industryName} ${areaName} | Vitaminkorgen`}
         description={description.slice(0, 155)}
         keywords={`fruktkorg ${industryInfo.slug} ${areaName.toLowerCase()}, fruktkorg ${areaName.toLowerCase()}, ${shortLabel} fruktkorg, fruktleverans ${areaName.toLowerCase()}, frukt till ${shortLabel}`}
         type="minimal"
