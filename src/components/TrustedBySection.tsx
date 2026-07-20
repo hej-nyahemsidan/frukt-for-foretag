@@ -34,7 +34,7 @@ const TrustedBySection = () => {
             >
               <img
                 src={client.logo}
-                alt={`${client.name} logotyp`}
+                alt={`Kund som använder Vitaminkorgen: ${client.name}`}
                 loading="lazy"
                 width={512}
                 height={512}

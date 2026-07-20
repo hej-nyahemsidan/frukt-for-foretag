@@ -244,8 +244,9 @@ const AboutSection = () => {
                 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-2">
-                    <label className="text-sm text-gray-600 font-medium">Namn*</label>
+                    <label htmlFor="about-contact-name" className="text-sm text-gray-600 font-medium">Namn*</label>
                     <Input 
+                      id="about-contact-name"
                       value={formData.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
                       placeholder="Ditt namn" 
@@ -254,8 +255,9 @@ const AboutSection = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm text-gray-600 font-medium">E-post*</label>
+                    <label htmlFor="about-contact-email" className="text-sm text-gray-600 font-medium">E-post*</label>
                     <Input 
+                      id="about-contact-email"
                       type="email" 
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
@@ -265,8 +267,9 @@ const AboutSection = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm text-gray-600 font-medium">Företag</label>
+                    <label htmlFor="about-contact-company" className="text-sm text-gray-600 font-medium">Företag</label>
                     <Input 
+                      id="about-contact-company"
                       value={formData.company}
                       onChange={(e) => handleInputChange('company', e.target.value)}
                       placeholder="Företag" 
@@ -274,8 +277,9 @@ const AboutSection = () => {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm text-gray-600 font-medium">Meddelande</label>
+                    <label htmlFor="about-contact-message" className="text-sm text-gray-600 font-medium">Meddelande</label>
                     <Textarea 
+                      id="about-contact-message"
                       value={formData.message}
                       onChange={(e) => handleInputChange('message', e.target.value)}
                       placeholder="Meddelande" 
