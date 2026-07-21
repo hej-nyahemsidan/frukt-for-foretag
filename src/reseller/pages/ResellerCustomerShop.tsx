@@ -473,11 +473,10 @@ const ResellerCustomerShop = () => {
                                         <span className="text-xs text-muted-foreground">{size}</span>
                                         <Button
                                           size="sm"
-                                          variant="outline"
-                                          className="h-7 text-xs"
+                                          className="h-7 text-xs gap-1"
                                           onClick={(e) => { e.stopPropagation(); addToCart(product, size, price); }}
                                         >
-                                          {price} kr
+                                          + {price} kr
                                         </Button>
                                       </div>
                                     );
