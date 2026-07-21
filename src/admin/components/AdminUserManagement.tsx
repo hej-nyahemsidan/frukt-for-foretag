@@ -15,7 +15,8 @@ import {
   Edit,
   RefreshCw,
   UserPlus,
-  Trash2
+  Trash2,
+  Mail
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
@@ -41,6 +42,11 @@ const AdminUserManagement = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [editingUser, setEditingUser] = useState<Profile | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showInviteModal, setShowInviteModal] = useState(false);
+  const [inviteEmail, setInviteEmail] = useState('');
+  const [inviteName, setInviteName] = useState('');
+  const [inviteCompany, setInviteCompany] = useState('');
+  const [isInviting, setIsInviting] = useState(false);
   const { toast } = useToast();
 
   const fetchUsers = async () => {
