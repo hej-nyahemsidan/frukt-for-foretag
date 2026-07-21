@@ -15,7 +15,8 @@ import {
   Edit,
   RefreshCw,
   UserPlus,
-  Trash2
+  Trash2,
+  Mail
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
@@ -41,6 +42,11 @@ const AdminUserManagement = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [editingUser, setEditingUser] = useState<Profile | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showInviteModal, setShowInviteModal] = useState(false);
+  const [inviteEmail, setInviteEmail] = useState('');
+  const [inviteName, setInviteName] = useState('');
+  const [inviteCompany, setInviteCompany] = useState('');
+  const [isInviting, setIsInviting] = useState(false);
   const { toast } = useToast();
 
   const fetchUsers = async () => {
@@ -256,6 +262,42 @@ const AdminUserManagement = () => {
     }
   };
 
+  const handleInviteUser = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!inviteEmail.trim()) return;
+    setIsInviting(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('invite-user', {
+        body: {
+          email: inviteEmail.trim(),
+          fullName: inviteName,
+          companyName: inviteCompany,
+          redirectTo: `${window.location.origin}/reset-password`,
+        },
+      });
+      if (error) throw error;
+      if (data?.error) throw new Error(data.error);
+
+      toast({
+        title: 'Inbjudan skickad',
+        description: `Ett inbjudningsmail har skickats till ${inviteEmail}.`,
+      });
+      setShowInviteModal(false);
+      setInviteEmail('');
+      setInviteName('');
+      setInviteCompany('');
+      await fetchUsers();
+    } catch (err: any) {
+      toast({
+        title: 'Kunde inte skicka inbjudan',
+        description: err.message || 'Något gick fel',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsInviting(false);
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="admin-loading-container flex items-center justify-center p-8">
@@ -275,14 +317,24 @@ const AdminUserManagement = () => {
           <h2 className="admin-user-title text-xl sm:text-2xl font-bold text-gray-900">Användarhantering</h2>
           <p className="admin-user-subtitle text-sm sm:text-base text-gray-600">Hantera användare i systemet</p>
         </div>
-        <Button
-          onClick={() => setShowAddModal(true)}
-          className="admin-btn-add-user bg-blue-600 hover:bg-blue-700 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2 w-full sm:w-auto"
-        >
-          <UserPlus className="w-3 h-3 sm:w-4 sm:h-4" />
-          <span className="hidden sm:inline">Lägg till användare</span>
-          <span className="sm:hidden">Lägg till</span>
-        </Button>
+        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+          <Button
+            onClick={() => setShowInviteModal(true)}
+            variant="outline"
+            className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 py-2 w-full sm:w-auto"
+          >
+            <Mail className="w-3 h-3 sm:w-4 sm:h-4" />
+            <span>Bjud in via mail</span>
+          </Button>
+          <Button
+            onClick={() => setShowAddModal(true)}
+            className="admin-btn-add-user bg-blue-600 hover:bg-blue-700 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 py-2 w-full sm:w-auto"
+          >
+            <UserPlus className="w-3 h-3 sm:w-4 sm:h-4" />
+            <span className="hidden sm:inline">Lägg till användare</span>
+            <span className="sm:hidden">Lägg till</span>
+          </Button>
+        </div>
       </div>
 
       {/* Search and Stats */}
@@ -404,6 +456,66 @@ const AdminUserManagement = () => {
         onClose={() => setShowAddModal(false)}
         onAddUser={handleAddUser}
       />
+
+      {/* Invite User Dialog */}
+      {showInviteModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          onClick={() => !isInviting && setShowInviteModal(false)}
+        >
+          <div
+            className="bg-white rounded-lg shadow-xl w-full max-w-md p-6"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 className="text-lg font-bold mb-1">Bjud in användare</h3>
+            <p className="text-sm text-gray-600 mb-4">
+              Ett mail skickas där användaren själv sätter sitt lösenord.
+            </p>
+            <form onSubmit={handleInviteUser} className="space-y-3">
+              <div>
+                <label className="block text-sm font-medium mb-1">E-post *</label>
+                <Input
+                  type="email"
+                  value={inviteEmail}
+                  onChange={(e) => setInviteEmail(e.target.value)}
+                  placeholder="kund@foretag.se"
+                  required
+                  disabled={isInviting}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Namn (valfritt)</label>
+                <Input
+                  value={inviteName}
+                  onChange={(e) => setInviteName(e.target.value)}
+                  disabled={isInviting}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Företag (valfritt)</label>
+                <Input
+                  value={inviteCompany}
+                  onChange={(e) => setInviteCompany(e.target.value)}
+                  disabled={isInviting}
+                />
+              </div>
+              <div className="flex gap-2 justify-end pt-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setShowInviteModal(false)}
+                  disabled={isInviting}
+                >
+                  Avbryt
+                </Button>
+                <Button type="submit" disabled={isInviting}>
+                  {isInviting ? 'Skickar...' : 'Skicka inbjudan'}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Edit Modal */}
       <AdminEditUserModal
