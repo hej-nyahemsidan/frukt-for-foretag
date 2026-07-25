@@ -72,7 +72,7 @@ const SimplifiedCheckout = ({
         orderType: item.orderType,
       }));
 
-      const { error: orderError } = await supabase.from('orders').insert({
+      const { data: insertedOrder, error: orderError } = await supabase.from('orders').insert({
         customer_id: customer.id,
         package_plan: orderType === 'subscription' ? packagePlan : 'onetime',
         selected_days: selectedDays,
@@ -80,7 +80,7 @@ const SimplifiedCheckout = ({
         status: 'pending',
         total_price: totalPrice,
         next_delivery_date: null,
-      });
+      }).select('id').single();
 
       if (orderError) {
         console.error('Error saving order:', orderError);
@@ -91,6 +91,28 @@ const SimplifiedCheckout = ({
         });
         return;
       }
+
+      // Forward order to external webshop/admin system (fire-and-forget)
+      supabase.functions.invoke('forward-order-to-webshop', {
+        body: {
+          source: 'vitaminkorgen',
+          order_reference: insertedOrder?.id,
+          order_type: orderType,
+          customer: {
+            company: customer?.company_name,
+            contact: customer?.contact_person,
+            email: customer?.email,
+            phone: customer?.phone,
+            address: customer?.address,
+          },
+          selected_days: selectedDays,
+          items: orderItems,
+          subtotal,
+          delivery_fee: deliveryFee,
+          total_price: totalPrice,
+          notes: message.trim() || null,
+        },
+      }).catch((err) => console.error('Webshop forward failed:', err));
 
       // Send order confirmation email
       const { error } = await supabase.functions.invoke('send-contact-email', {
