@@ -1,0 +1,2 @@
+ALTER TABLE public.orders DROP CONSTRAINT IF EXISTS orders_package_plan_check;
+ALTER TABLE public.orders ADD CONSTRAINT orders_package_plan_check CHECK (package_plan IN ('weekly','monthly','yearly','onetime'));
