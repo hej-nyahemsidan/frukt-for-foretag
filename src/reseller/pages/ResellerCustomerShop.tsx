@@ -240,7 +240,7 @@ const ResellerCustomerShop = () => {
         total: i.price * i.quantity,
       }));
 
-      const { error } = await supabase.from('reseller_orders').insert({
+      const { data: newOrder, error } = await supabase.from('reseller_orders').insert({
         reseller_id: reseller.id,
         reseller_customer_id: customerProfile.id,
         items,
@@ -248,11 +248,30 @@ const ResellerCustomerShop = () => {
         notes: orderNotes || null,
         selected_days: [format(deliveryDate, 'yyyy-MM-dd')],
         status: 'pending',
-      });
+      }).select('id').single();
 
       if (error) {
         toast({ title: 'Fel', description: 'Kunde inte skicka beställningen.', variant: 'destructive' });
       } else {
+        supabase.functions.invoke('forward-order-to-webshop', {
+          body: {
+            source: `reseller:${reseller.slug ?? reseller.id}`,
+            order_reference: newOrder?.id,
+            order_type: 'reseller',
+            customer: {
+              company: customerProfile.company_name,
+              contact: customerProfile.contact_person,
+              email: customerProfile.email,
+              phone: customerProfile.phone,
+              address: customerProfile.address,
+            },
+            delivery_date: format(deliveryDate, 'yyyy-MM-dd'),
+            items,
+            total_price: totalPrice,
+            notes: orderNotes || null,
+          },
+        }).catch((err) => console.error('Webshop forward failed:', err));
+
         toast({ title: 'Beställning skickad!', description: `Leveransdatum: ${format(deliveryDate, 'PPP', { locale: sv })}` });
         setCart([]);
         setOrderNotes('');
