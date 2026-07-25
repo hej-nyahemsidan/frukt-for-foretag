@@ -125,7 +125,7 @@ const ResellerPlaceOrderDialog = ({ customerId, customerName, open, onOpenChange
     if (!reseller || cart.length === 0) return;
     setSubmitting(true);
     try {
-      const { error } = await supabase.from('reseller_orders').insert({
+      const { data: newOrder, error } = await supabase.from('reseller_orders').insert({
         reseller_id: reseller.id,
         reseller_customer_id: customerId,
         items: cart.map(i => ({
@@ -138,10 +138,28 @@ const ResellerPlaceOrderDialog = ({ customerId, customerName, open, onOpenChange
         total_price: total,
         notes: notes || null,
         status: 'pending',
-      });
+      }).select('id').single();
       if (error) {
         toast({ title: 'Fel', description: error.message, variant: 'destructive' });
       } else {
+        supabase.functions.invoke('forward-order-to-webshop', {
+          body: {
+            source: `reseller:${reseller.id}`,
+            order_reference: newOrder?.id,
+            order_type: 'reseller',
+            customer: { company: customerName },
+            items: cart.map(i => ({
+              product_id: i.product.id,
+              name: i.product.name,
+              size: i.size,
+              quantity: i.quantity,
+              unit_price: i.price,
+              total: i.price * i.quantity,
+            })),
+            total_price: total,
+            notes: notes || null,
+          },
+        }).catch((err) => console.error('Webshop forward failed:', err));
         toast({ title: 'Order skapad', description: `Order åt ${customerName} har skickats.` });
         onPlaced?.();
         onOpenChange(false);
