@@ -255,7 +255,7 @@ const ResellerCustomerShop = () => {
       } else {
         supabase.functions.invoke('forward-order-to-webshop', {
           body: {
-            source: `reseller:${reseller.slug ?? reseller.id}`,
+            source: `reseller:${reseller.id}`,
             order_reference: newOrder?.id,
             order_type: 'reseller',
             customer: {
