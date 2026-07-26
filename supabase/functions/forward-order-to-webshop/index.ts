@@ -25,9 +25,13 @@ function makeArtikelnr(item: any): string {
 }
 
 function normalizeCustomer(customer: any) {
+  const companyName = customer?.company_name ?? customer?.company ?? null;
+  const contactName = customer?.contact_person ?? customer?.contact ?? null;
+
   return {
-    foretag: customer?.company_name ?? customer?.company ?? null,
-    kontaktperson: customer?.contact_person ?? customer?.contact ?? null,
+    namn: companyName ?? contactName,
+    foretag: companyName,
+    kontaktperson: contactName,
     epost: customer?.email ?? null,
     telefon: customer?.phone ?? null,
     adress: customer?.address ?? null,
@@ -65,7 +69,7 @@ Deno.serve(async (req) => {
     const body = await req.json();
     const items = Array.isArray(body.items) ? body.items : [];
 
-    const orderDate = body.created_at ?? new Date().toISOString();
+    const orderDate = new Date(body.created_at ?? Date.now()).toISOString().slice(0, 10);
     const payload = {
       order_id: String(body.order_id ?? body.order_reference ?? crypto.randomUUID()),
       order_datum: orderDate,
