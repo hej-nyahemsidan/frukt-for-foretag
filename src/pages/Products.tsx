@@ -85,7 +85,9 @@ const Products = () => {
           </div>
         </div>
 
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+
           <TabsList className="grid w-full grid-cols-4 sm:grid-cols-10 gap-1 sm:gap-2 mb-6 sm:mb-8 bg-gray-100 p-1 rounded-lg h-auto">
             <TabsTrigger 
               value="fruktkorgar" 
