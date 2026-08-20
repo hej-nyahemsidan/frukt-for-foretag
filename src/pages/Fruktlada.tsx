@@ -71,7 +71,7 @@ const Fruktlada = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Fruktlåda till företag i Stockholm | Vitaminkorgen"
-        description={`Fruktlåda till företag ✓ Färsk säsongsfrukt levererad till kontoret i Stockholm. Från ${priceBanan} kr. Fri leverans. Boka provleverans idag.`
+        description={`Fruktlåda till företag ✓ Färsk säsongsfrukt levererad till kontoret i Stockholm. Från ${priceBanan} kr. Fri leverans. Boka provleverans idag.`}
         keywords="fruktlåda, fruktlåda företag, fruktlåda kontor, fruktlåda stockholm, fruktlåda hemleverans, fruktlåda prenumeration, fruktlåda pris, frukt till kontoret"
         type="products"
       />
