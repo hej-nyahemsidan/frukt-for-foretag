@@ -14,6 +14,16 @@ import fruktladaImg from '@/assets/fruktlada-new.jpg';
 import fruktkorgOriginal from '@/assets/fruktkorg-standard-new.jpg';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.jpg';
 import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
+import { getFruktkorgBySlug } from '@/data/fruktkorg-products';
+
+// Priser hämtas från samma källa som produktsidorna (/produkt/:slug)
+const fromPrice = (slug: string) => {
+  const p = getFruktkorgBySlug(slug);
+  return p ? Math.min(...p.sizes.map((s) => s.price)) : 0;
+};
+const priceBanan = fromPrice('fruktkorg-banan');
+const priceOriginal = fromPrice('fruktkorg-original');
+const pricePremium = fromPrice('fruktkorg-premium');
 
 const faqs = [
   {
