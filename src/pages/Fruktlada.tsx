@@ -14,15 +14,25 @@ import fruktladaImg from '@/assets/fruktlada-new.jpg';
 import fruktkorgOriginal from '@/assets/fruktkorg-standard-new.jpg';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.jpg';
 import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
+import { getFruktkorgBySlug } from '@/data/fruktkorg-products';
 
-const faqs = [
+// Priser hämtas från samma källa som produktsidorna (/produkt/:slug)
+const fromPrice = (slug: string) => {
+  const p = getFruktkorgBySlug(slug);
+  return p ? Math.min(...p.sizes.map((s) => s.price)) : 0;
+};
+const priceBanan = fromPrice('fruktkorg-banan');
+const priceOriginal = fromPrice('fruktkorg-original');
+const pricePremium = fromPrice('fruktkorg-premium');
+
+const faqs: { q: string; a: string }[] = [
   {
     q: 'Vad är en fruktlåda för företag?',
     a: 'En fruktlåda är en låda eller korg fylld med handplockad, färsk säsongsfrukt som levereras direkt till ert kontor. Den är en enkel friskvårdsförmån som ger medarbetarna fri tillgång till frukt under arbetsdagen.',
   },
   {
     q: 'Vad kostar en fruktlåda till företaget?',
-    a: 'Priset beror på storlek och antal leveranser per vecka. Vår mest populära fruktlåda Original börjar från 379 kr per leverans. Banan-lådan från 199 kr. Fri leverans i Stockholm med omnejd.',
+    a: `Priset beror på storlek och antal leveranser per vecka. Vår mest populära fruktlåda Original börjar från ${priceOriginal} kr per leverans. Banan-lådan från ${priceBanan} kr. Fri leverans i Stockholm med omnejd.`,
   },
   {
     q: 'Hur ofta levereras fruktlådan?',
@@ -61,7 +71,7 @@ const Fruktlada = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Fruktlåda till företag i Stockholm | Vitaminkorgen"
-        description="Fruktlåda till företag ✓ Färsk säsongsfrukt levererad till kontoret i Stockholm. Från 199 kr. Fri leverans. Boka provleverans idag."
+        description={`Fruktlåda till företag ✓ Färsk säsongsfrukt levererad till kontoret i Stockholm. Från ${priceBanan} kr. Fri leverans. Boka provleverans idag.`}
         keywords="fruktlåda, fruktlåda företag, fruktlåda kontor, fruktlåda stockholm, fruktlåda hemleverans, fruktlåda prenumeration, fruktlåda pris, frukt till kontoret"
         type="products"
       />
@@ -74,9 +84,9 @@ const Fruktlada = () => {
             '@type': 'ItemList',
             name: 'Fruktlådor till företag',
             itemListElement: [
-              { name: 'Fruktlåda Banan', url: 'https://vitaminkorgen.se/produkt/fruktkorg-banan', price: '199' },
-              { name: 'Fruktlåda Original', url: 'https://vitaminkorgen.se/produkt/fruktkorg-original', price: '379' },
-              { name: 'Fruktlåda Premium', url: 'https://vitaminkorgen.se/produkt/fruktkorg-premium', price: '549' },
+              { name: 'Fruktlåda Banan', url: 'https://vitaminkorgen.se/produkt/fruktkorg-banan', price: String(priceBanan) },
+              { name: 'Fruktlåda Original', url: 'https://vitaminkorgen.se/produkt/fruktkorg-original', price: String(priceOriginal) },
+              { name: 'Fruktlåda Premium', url: 'https://vitaminkorgen.se/produkt/fruktkorg-premium', price: String(pricePremium) },
             ].map((p, i) => ({
               '@type': 'ListItem',
               position: i + 1,
@@ -179,7 +189,7 @@ const Fruktlada = () => {
                   name: 'Fruktlåda Banan',
                   slug: 'fruktkorg-banan',
                   img: fruktkorgBanan,
-                  price: 'Från 199 kr',
+                  price: `Från ${priceBanan} kr`,
                   desc: 'Fruktlåda Banan är det perfekta valet för kontor där bananer är favoriten. Lådan fokuserar på bananer med kompletterande frukter för variation – en utmärkt energikälla som mellanmål under arbetsdagen.',
                   badge: 'Billigast',
                 },
@@ -187,7 +197,7 @@ const Fruktlada = () => {
                   name: 'Fruktlåda Original',
                   slug: 'fruktkorg-original',
                   img: fruktkorgOriginal,
-                  price: 'Från 379 kr',
+                  price: `Från ${priceOriginal} kr`,
                   desc: 'Vår populäraste fruktlåda – blandning av äpplen, päron, bananer, citrus och säsongsfrukt.',
                   badge: 'Mest populär',
                 },
@@ -195,7 +205,7 @@ const Fruktlada = () => {
                   name: 'Fruktlåda Premium',
                   slug: 'fruktkorg-premium',
                   img: fruktkorgPremium,
-                  price: 'Från 549 kr',
+                  price: `Från ${pricePremium} kr`,
                   desc: 'Lyxig blandning med exotisk frukt, bär och premium-sorter. För kontor som vill bjuda lite extra.',
                   badge: 'Lyx',
                 },
@@ -274,9 +284,9 @@ const Fruktlada = () => {
               </p>
             </div>
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-green-900 mb-3">Fruktlåda pris – från 199 kr per leverans</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-green-900 mb-3">Fruktlåda pris – från {priceBanan} kr per leverans</h2>
               <p className="text-gray-700 leading-relaxed">
-                Priset på en fruktlåda börjar på 199 kr för Banan-lådan, 379 kr för vår populäraste Original-låda och 549 kr för Premium-lådan med exotisk frukt och bär. Allt är inklusive fri leverans i Stockholm. För ett kontor på 20 personer som vill ha frukt två gånger i veckan landar månadskostnaden runt 3 000 kr – under 4 kr per medarbetare och dag.
+                Priset på en fruktlåda börjar på {priceBanan} kr för Banan-lådan, {priceOriginal} kr för vår populäraste Original-låda och {pricePremium} kr för Premium-lådan med exotisk frukt och bär. Allt är inklusive fri leverans i Stockholm. För ett kontor på 20 personer som vill ha frukt två gånger i veckan landar månadskostnaden runt 3 000 kr – under 4 kr per medarbetare och dag.
               </p>
             </div>
           </div>
