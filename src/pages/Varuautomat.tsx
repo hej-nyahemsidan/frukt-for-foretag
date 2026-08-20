@@ -28,7 +28,7 @@ const Varuautomat = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Varuautomat för kontoret Stockholm – Snacks & dryck på jobbet | Vitaminkorgen"
+        title="Varuautomat till kontoret Stockholm | Vitaminkorgen"
         description="Varuautomat till kontoret ✓ Moderna varuautomater med snacks, dryck och fika. Kontantlös betalning, fri installation i Stockholm. Vi fyller på regelbundet."
         keywords="varuautomat kontor, varuautomat företag stockholm, snackautomat arbetsplats, dryckautomat kontor, varuautomat hyra"
       />
