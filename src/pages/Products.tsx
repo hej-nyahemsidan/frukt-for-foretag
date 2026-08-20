@@ -18,7 +18,7 @@ import SnacksTab from '@/components/product-tabs/SnacksTab';
 import GronsakerTab from '@/components/product-tabs/GronsakerTab';
 import StadTab from '@/components/product-tabs/StadTab';
 import AnnatTab from '@/components/product-tabs/AnnatTab';
-import OrderSidebar from '@/components/OrderSidebar';
+import PublicOrderSidebar from '@/components/PublicOrderSidebar';
 
 
 const Products = () => {
@@ -202,7 +202,7 @@ const Products = () => {
         </Tabs>
 
           <div className="hidden lg:block">
-            <OrderSidebar className="sticky top-24" />
+            <PublicOrderSidebar className="sticky top-24" />
           </div>
         </div>
 
