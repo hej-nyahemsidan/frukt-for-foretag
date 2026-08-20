@@ -194,8 +194,15 @@ const Products = () => {
           </TabsContent>
         </Tabs>
 
-        {/* Cart Summary Section */}
+          <div className="hidden lg:block">
+            <OrderSidebar className="sticky top-24" />
+          </div>
+        </div>
+
+        {/* Cart Summary Section (mobil/tablet) */}
         {items.length > 0 && (
+          <div className="mt-12 sm:mt-16 bg-white rounded-xl p-6 sm:p-8 border-2 border-primary shadow-lg lg:hidden">
+
           <div className="mt-12 sm:mt-16 bg-white rounded-xl p-6 sm:p-8 border-2 border-primary shadow-lg">
             <div className="max-w-3xl mx-auto">
               <div className="flex items-center justify-between mb-6">
