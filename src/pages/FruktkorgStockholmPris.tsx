@@ -37,7 +37,7 @@ const FruktkorgStockholmPris = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Fruktkorg Stockholm pris – Transparenta priser från 299 kr | Vitaminkorgen"
+        title="Fruktkorg Stockholm pris – från 299 kr | Vitaminkorgen"
         description="Fruktkorg Stockholm pris ✓ Från 299 kr/korg med fri leverans. Inga dolda avgifter. Jämför Original, Premium och Banan – beställ direkt online."
         keywords="fruktkorg stockholm pris, fruktkorg pris, vad kostar fruktkorg, pris fruktkorg företag, fruktkorg företag pris"
         type="products"

@@ -14,7 +14,7 @@ const Blommor = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Blommor till kontoret Stockholm – Blomsterabonnemang för företag | Vitaminkorgen"
+        title="Blommor till kontoret Stockholm | Vitaminkorgen"
         description="Blommor till kontoret ✓ Fräscha blomsterarrangemang levererade till ert företag i Stockholm. Skapa en trivsam arbetsplats. Fri leverans & flexibelt abonnemang."
         keywords="blommor kontoret, blomsterabonnemang företag, blommor arbetsplats stockholm, kontorsblommor, blomsterleverans företag"
       />
