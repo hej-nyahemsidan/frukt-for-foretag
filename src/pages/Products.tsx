@@ -18,6 +18,8 @@ import SnacksTab from '@/components/product-tabs/SnacksTab';
 import GronsakerTab from '@/components/product-tabs/GronsakerTab';
 import StadTab from '@/components/product-tabs/StadTab';
 import AnnatTab from '@/components/product-tabs/AnnatTab';
+import OrderSidebar from '@/components/OrderSidebar';
+
 
 const Products = () => {
   const [searchParams] = useSearchParams();
