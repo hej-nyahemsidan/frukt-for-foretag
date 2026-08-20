@@ -240,7 +240,7 @@ const Products = () => {
                           />
                         )}
                         <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-sm sm:text-base truncate">{item.name}</h4>
+                          <h3 className="font-semibold text-sm sm:text-base truncate">{item.name}</h3>
                           <p className="text-primary font-bold text-lg">{item.price} kr</p>
                           <div className="mt-2 max-w-[180px]">
                             <Select
@@ -259,6 +259,7 @@ const Products = () => {
                             <Button
                               variant="outline"
                               size="sm"
+                              aria-label={`Minska antal ${item.name}`}
                               onClick={() => updateQuantity(item.id, item.quantity - 1, item.day, item.size)}
                             >
                               <Minus className="h-4 w-4" />
@@ -267,6 +268,7 @@ const Products = () => {
                             <Button
                               variant="outline"
                               size="sm"
+                              aria-label={`Öka antal ${item.name}`}
                               onClick={() => updateQuantity(item.id, item.quantity + 1, item.day, item.size)}
                             >
                               <Plus className="h-4 w-4" />

@@ -154,7 +154,14 @@ const Header = () => {
         <div className="flex items-center justify-between h-20 md:h-24">
           {/* Company Logo */}
           <div className="flex-shrink-0 z-10 max-w-[280px] md:max-w-[360px] lg:max-w-[450px] flex items-center">
-            <div onClick={handleLogoClick} className="cursor-pointer">
+            <div
+              onClick={handleLogoClick}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleLogoClick(e as unknown as React.MouseEvent); } }}
+              role="link"
+              tabIndex={0}
+              aria-label="Vitaminkorgen – till startsidan"
+              className="cursor-pointer"
+            >
               <VitaminKorgenLogo 
                 size="medium" 
                 variant="horizontal"

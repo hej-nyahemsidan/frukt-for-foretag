@@ -76,8 +76,8 @@ const FruktkorgStockholm = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Fruktkorg Stockholm – Fruktleverans till kontoret | Vitaminkorgen"
-        description="Beställ fruktkorg Stockholm ✓ Färska fruktkorgar levererade till kontoret varje vecka. Fri leverans. 150+ nöjda företag. Prova gratis!"
+        title="Fruktkorg Stockholm – nattleverans till kontoret | Vitaminkorgen"
+        description="Fruktkorg i Stockholm med nattleverans söndag: frukten står framme när kontoret öppnar måndag. Egen kontaktperson, mjölk och skafferi i samma leverans."
         keywords="fruktkorg stockholm, fruktkorgar stockholm, fruktleverans stockholm, fruktbud stockholm, färsk frukt stockholm, fruktkorg leverans stockholm, beställa fruktkorg stockholm, frukt på jobbet stockholm, fruktbudet stockholm"
         type="products"
       />
