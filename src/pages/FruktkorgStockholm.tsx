@@ -335,7 +335,106 @@ const FruktkorgStockholm = () => {
           </div>
         </section>
 
+        {/* Fruktkorgar till företag – segment */}
+        <section className="py-16 md:py-24 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-green-900 mb-4">
+                Fruktkorgar till företag i Stockholm – oavsett storlek
+              </h2>
+              <p className="text-gray-600">
+                Vi anpassar mängd, sortiment och leveransdagar efter hur ni jobbar. Nedan är utgångspunkter som de flesta
+                Stockholmskontor startar med – sedan justerar vi tillsammans med er kontaktperson.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {[
+                {
+                  title: 'Mindre kontor (5–15 personer)',
+                  desc: 'En fruktkorg i veckan räcker oftast långt. Många kombinerar med mjölk och kaffe på samma leverans.',
+                  points: ['1 leverans/vecka', 'Fruktkorg Original eller Banan', 'Enkel fakturering'],
+                },
+                {
+                  title: 'Växande bolag (15–50 personer)',
+                  desc: 'Två leveranser i veckan håller frukten fräsch hela veckan och minskar svinn på fredagar.',
+                  points: ['2 leveranser/vecka', 'Fruktkorg Premium', 'Skafferi & fika som tillval'],
+                },
+                {
+                  title: 'Större arbetsplatser (50+)',
+                  desc: 'Flera korgar per våningsplan, egna önskemål på frukt och fasta leveransfönster – inklusive nattleverans.',
+                  points: ['Flera korgar per plan', 'Nattleverans söndag', 'Dedikerad kontaktperson'],
+                },
+              ].map((seg, i) => (
+                <div key={i} className="bg-green-50 rounded-2xl p-8 border border-green-100">
+                  <h3 className="text-xl font-bold text-green-900 mb-3">{seg.title}</h3>
+                  <p className="text-gray-600 text-sm mb-4">{seg.desc}</p>
+                  <ul className="space-y-2">
+                    {seg.points.map((p, j) => (
+                      <li key={j} className="flex items-center gap-2 text-sm text-gray-700">
+                        <Check className="h-4 w-4 text-green-600 flex-shrink-0" /> {p}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div className="max-w-4xl mx-auto mt-12 bg-green-900 text-white rounded-2xl p-8 md:p-10">
+              <div className="flex items-start gap-4">
+                <Clock className="h-8 w-8 text-yellow-300 flex-shrink-0" />
+                <div>
+                  <h3 className="text-2xl font-bold mb-3">Nattleverans på söndag – unikt i Stockholm</h3>
+                  <p className="text-gray-100 leading-relaxed mb-3">
+                    Vi är den första fruktkorgsleverantören i Sverige som kör nattleverans på söndagar. Med behöriga
+                    nycklar, försäkring och full spårbarhet ställer vi in frukt, mjölk och skafferivaror exakt där ni vill
+                    ha dem. När personalen kommer till kontoret på måndag morgon är allt redan på plats – ingen behöver
+                    vänta, och inget möte börjar med tom kaffebricka.
+                  </p>
+                  <p className="text-gray-200 text-sm">
+                    Vill ni ha leverans en annan dag? Välj fritt måndag–fredag i{' '}
+                    <Link to="/produkter" className="text-yellow-300 underline hover:text-yellow-200">beställningsflödet</Link>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Interna länkar – kategorier */}
+        <section className="py-16 md:py-20 bg-green-50">
+          <div className="container mx-auto px-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-center text-green-900 mb-4">
+              Utforska våra kategorier
+            </h2>
+            <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+              Fruktkorgar är bara början – här hittar ni allt vi levererar till kontor i Stockholm.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+              {[
+                { to: '/produkter', title: 'Fruktkorgar & sortiment', desc: 'Bygg din beställning med frukt, mjölk, kaffe, fika och skafferi.' },
+                { to: '/fruktkorg-stockholm-pris', title: 'Priser i Stockholm', desc: 'Vad kostar en fruktkorg? Se prisexempel per kontorsstorlek.' },
+                { to: '/fruktkorg-foretag', title: 'Fruktkorg till företag', desc: 'Så fungerar avtal, fakturering och löpande leveranser.' },
+                { to: '/fruktkorg-kontor', title: 'Fruktkorg till kontoret', desc: 'Placering, påfyllning och tips för mindre svinn.' },
+                { to: '/fruktlada', title: 'Fruktlåda', desc: 'Fruktlåda i flera storlekar – Banan, Original och Premium.' },
+                { to: '/varuautomat', title: 'Varuautomat', desc: 'Självbetjäning med frukt och snacks på arbetsplatsen.' },
+                { to: '/blommor', title: 'Blommor till kontoret', desc: 'Färska buketter levererade tillsammans med frukten.' },
+                { to: '/provkorg', title: 'Prova en korg', desc: 'Testa kvaliteten innan ni bestämmer er.' },
+                { to: '/blogg', title: 'Blogg & guider', desc: 'Tips, recept och guider om frukt på jobbet i Stockholm.' },
+              ].map((cat) => (
+                <Link
+                  key={cat.to}
+                  to={cat.to}
+                  className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <h3 className="text-lg font-bold text-green-900 mb-1">{cat.title}</h3>
+                  <p className="text-sm text-gray-600">{cat.desc}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* FAQ Section */}
+
         <section className="py-16 md:py-24 bg-green-50">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
