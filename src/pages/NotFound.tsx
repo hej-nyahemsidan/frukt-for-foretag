@@ -8,7 +8,8 @@ const NotFound = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Sidan hittades inte | Vitaminkorgen"
-        description="Sidan du letar efter kunde inte hittas."
+        description="Sidan du letar efter kunde inte hittas. Gå tillbaka till startsidan eller se våra fruktkorgar."
+        type="minimal"
         noindex={true}
       />
       <Header />
