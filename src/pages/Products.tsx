@@ -89,9 +89,8 @@ const Products = () => {
               </div>
             </div>
           </div>
-
-          </div>
         </div>
+
 
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
