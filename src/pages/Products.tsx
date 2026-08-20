@@ -18,6 +18,8 @@ import SnacksTab from '@/components/product-tabs/SnacksTab';
 import GronsakerTab from '@/components/product-tabs/GronsakerTab';
 import StadTab from '@/components/product-tabs/StadTab';
 import AnnatTab from '@/components/product-tabs/AnnatTab';
+import PublicOrderSidebar from '@/components/PublicOrderSidebar';
+
 
 const Products = () => {
   const [searchParams] = useSearchParams();
@@ -51,33 +53,37 @@ const Products = () => {
       <main className="container mx-auto px-4 py-8 sm:py-16">
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
-            Våra Produkter
+            Bygg din beställning
           </h1>
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4 mb-4">
-            Upptäck vårt sortiment av färska frukter, mejerivaror, drycker och kaffe
+            Välj fruktkorg och tillbehör – allt du lägger till samlas i rutan till höger. När du är klar skickar du beställningen, så bekräftar vi upplägget.
           </p>
           <div className="bg-white border border-gray-200 rounded-lg p-6 max-w-4xl mx-auto shadow-sm">
-            <p className="text-sm sm:text-base text-gray-700 mb-6 text-center">
-              <strong>Ny kund?</strong> Lägg till produkter i varukorgen och skicka din beställning. Vi återkommer och sätter upp leveransen!
-            </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <div className="flex items-center gap-3">
                 <div className="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg">
                   1
                 </div>
-                <span className="text-base font-semibold text-gray-900">Välj Frukt</span>
+                <span className="text-base font-semibold text-gray-900">Välj fruktkorg</span>
               </div>
               
               <div className="flex items-center gap-3">
                 <div className="flex-shrink-0 w-10 h-10 bg-primary/30 text-gray-700 rounded-full flex items-center justify-center font-bold text-lg">
                   2
                 </div>
-                <span className="text-base font-semibold text-gray-900">Välj Tillbehör</span>
+                <span className="text-base font-semibold text-gray-900">Lägg till tillbehör</span>
               </div>
-              
+
               <div className="flex items-center gap-3">
                 <div className="flex-shrink-0 w-10 h-10 bg-primary/30 text-gray-700 rounded-full flex items-center justify-center font-bold text-lg">
                   3
+                </div>
+                <span className="text-base font-semibold text-gray-900">Välj leveransdag</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="flex-shrink-0 w-10 h-10 bg-primary/30 text-gray-700 rounded-full flex items-center justify-center font-bold text-lg">
+                  4
                 </div>
                 <span className="text-base font-semibold text-gray-900">Skicka beställning</span>
               </div>
@@ -85,7 +91,10 @@ const Products = () => {
           </div>
         </div>
 
+
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+
           <TabsList className="grid w-full grid-cols-4 sm:grid-cols-10 gap-1 sm:gap-2 mb-6 sm:mb-8 bg-gray-100 p-1 rounded-lg h-auto">
             <TabsTrigger 
               value="fruktkorgar" 
@@ -192,9 +201,15 @@ const Products = () => {
           </TabsContent>
         </Tabs>
 
-        {/* Cart Summary Section */}
+          <div className="hidden lg:block">
+            <PublicOrderSidebar className="sticky top-24" />
+          </div>
+        </div>
+
+        {/* Cart Summary Section (mobil/tablet) */}
         {items.length > 0 && (
-          <div className="mt-12 sm:mt-16 bg-white rounded-xl p-6 sm:p-8 border-2 border-primary shadow-lg">
+          <div className="mt-12 sm:mt-16 bg-white rounded-xl p-6 sm:p-8 border-2 border-primary shadow-lg lg:hidden">
+
             <div className="max-w-3xl mx-auto">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-2">
@@ -297,7 +312,7 @@ const Products = () => {
 
         {/* Sticky bottom bar */}
         {items.length > 0 && (
-          <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-t shadow-lg p-3 sm:p-4">
+          <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-t shadow-lg p-3 sm:p-4 lg:hidden">
             <div className="container mx-auto flex items-center justify-between gap-4 max-w-4xl">
               <div className="flex items-center gap-2 text-sm sm:text-base">
                 <ShoppingCart className="h-5 w-5 text-primary" />
