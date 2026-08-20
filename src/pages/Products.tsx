@@ -203,7 +203,6 @@ const Products = () => {
         {items.length > 0 && (
           <div className="mt-12 sm:mt-16 bg-white rounded-xl p-6 sm:p-8 border-2 border-primary shadow-lg lg:hidden">
 
-          <div className="mt-12 sm:mt-16 bg-white rounded-xl p-6 sm:p-8 border-2 border-primary shadow-lg">
             <div className="max-w-3xl mx-auto">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 flex items-center gap-2">
