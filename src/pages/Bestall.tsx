@@ -243,13 +243,14 @@ const Bestall = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Beställ fruktkorg – Vitaminkorgen"
-        description="Guidad beställning i 4 enkla steg. Fri leverans i Stockholm."
+        title="Beställ fruktkorg till kontoret | Vitaminkorgen"
+        description="Beställ fruktkorg till jobbet i Stockholm – guidad beställning i 4 enkla steg. Välj korg, tillbehör och leveransdagar. Fri leverans, inga dolda avgifter."
         type="contact"
       />
       <Header />
       <main className="pt-24 pb-16 px-4">
         <div className="max-w-6xl mx-auto">
+          <h1 className="sr-only">Beställ fruktkorg till kontoret i Stockholm</h1>
           {step < 5 && (
             <div className="flex items-center justify-center flex-wrap gap-3 sm:gap-6 mb-10">
               {stepLabels.map((label, i) => {
