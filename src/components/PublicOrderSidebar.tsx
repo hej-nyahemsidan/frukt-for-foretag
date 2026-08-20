@@ -141,9 +141,6 @@ const PublicOrderSidebar = ({ className = '' }: PublicOrderSidebarProps) => {
           Skicka din beställning
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
-        <p className="mt-2 text-center text-xs text-muted-foreground">
-          Inget köp binds här – vi bekräftar upplägget innan första leveransen.
-        </p>
       </div>
     </aside>
   );
