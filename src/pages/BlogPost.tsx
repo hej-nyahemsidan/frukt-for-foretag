@@ -402,7 +402,12 @@ const BlogPost = () => {
                 <Link to="/fruktkorg-stockholm" className="text-green-700 hover:underline">Fruktkorg Stockholm</Link>
                 <span className="text-gray-300">|</span>
                 <Link to="/fruktkorg-foretag" className="text-green-700 hover:underline">Fruktkorg företag</Link>
+                <span className="text-gray-300">|</span>
+                <Link to="/fruktlada" className="text-green-700 hover:underline">Fruktlåda till företag</Link>
+                <span className="text-gray-300">|</span>
+                <Link to="/produkter" className="text-green-700 hover:underline">Priser & sortiment</Link>
               </div>
+
             </footer>
           </article>
         )}
