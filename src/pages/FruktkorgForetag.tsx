@@ -14,7 +14,7 @@ import happyEmployees from '@/assets/glada-anstallda-fruktkorg-foretag.jpg';
 const faqItems = [
   {
     question: 'Vad kostar en fruktkorg till företag?',
-    answer: 'Våra fruktkorgar till företag börjar från 295 kr per leverans för en Fruktkorg Original (cirka 4 kg, räcker till 8–10 medarbetare). Premium-korgen ligger från 395 kr och Banan-korgen från 195 kr. Priset beror på storlek, leveransfrekvens och antal korgar. Vi fakturerar månadsvis med 15 dagars kredit.'
+    answer: 'Våra fruktkorgar till företag börjar från 220 kr per leverans för en Fruktkorg Original (cirka 4 kg, räcker till 8–10 medarbetare). Premium-korgen ligger från 250 kr och Banan-korgen från 230 kr. Priset beror på storlek, leveransfrekvens och antal korgar. Vi fakturerar månadsvis med 15 dagars kredit.'
   },
   {
     question: 'Hur många fruktkorgar behöver vårt företag?',
@@ -73,8 +73,8 @@ const FruktkorgForetag = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Fruktkorg till företag i Stockholm – från 295 kr | Vitaminkorgen"
-        description="Fruktkorg till företag i Stockholm. Färska fruktkorgar levererade till kontoret från 295 kr. 150+ företag, 5/5 på Google. Beställ direkt – inga uppstartsavgifter."
+        title="Fruktkorg till företag i Stockholm – från 220 kr | Vitaminkorgen"
+        description="Fruktkorg till företag i Stockholm. Färska fruktkorgar levererade till kontoret från 220 kr. 150+ företag, 5/5 på Google. Beställ direkt – inga uppstartsavgifter."
         keywords="fruktkorg företag, fruktkorg till företag, fruktkorgar företag, fruktbud företag, fruktleverans företag, fruktkorg kontor, företagsfrukt, frukt till företag stockholm"
         type="products"
       />
@@ -97,7 +97,7 @@ const FruktkorgForetag = () => {
               </h1>
               <p className="text-lg md:text-xl text-gray-100 mb-8 leading-relaxed">
                 Färska fruktkorgar levererade direkt till kontoret – varje vecka eller varannan.
-                Från 295 kr per leverans. 150+ företag i Stockholm har valt Vitaminkorgen som sitt fruktbud.
+                Från 220 kr per leverans. 150+ företag i Stockholm har valt Vitaminkorgen som sitt fruktbud.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/produkter">
@@ -168,9 +168,9 @@ const FruktkorgForetag = () => {
             </p>
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { name: 'Banan', size: '~3 kg', people: '5–8 medarbetare', price: 'från 195 kr' },
-                { name: 'Original', size: '~4 kg', people: '8–12 medarbetare', price: 'från 295 kr', highlight: true },
-                { name: 'Premium', size: '~6 kg', people: '15–20 medarbetare', price: 'från 395 kr' },
+                { name: 'Banan', size: '~3 kg', people: '5–8 medarbetare', price: 'från 230 kr' },
+                { name: 'Original', size: '~4 kg', people: '8–12 medarbetare', price: 'från 220 kr', highlight: true },
+                { name: 'Premium', size: '~6 kg', people: '15–20 medarbetare', price: 'från 250 kr' },
               ].map((p, i) => (
                 <div key={i} className={`p-6 rounded-2xl ${p.highlight ? 'bg-green-700 text-white shadow-xl' : 'bg-white shadow-md'}`}>
                   <h3 className={`text-2xl font-bold mb-2 ${p.highlight ? 'text-white' : 'text-green-900'}`}>
