@@ -182,7 +182,7 @@ const FruktkorgPaJobbet = () => {
             </h2>
             <div className="space-y-6">
               {[
-                { q: 'Hur mycket kostar en fruktkorg på jobbet?', a: 'Priset beror på storlek och antal medarbetare. Våra fruktkorgar börjar från ca 200 kr/vecka. Kontakta oss för en skräddarsydd offert.' },
+                { q: 'Hur mycket kostar en fruktkorg på jobbet?', a: 'Våra fruktkorgar börjar från 220 kr per vecka för en Fruktkorg Original (4 kg). Premium från 250 kr och Banan från 230 kr. Se alla priser under Fruktkorgar.' },
                 { q: 'Hur ofta levereras fruktkorg på jobbet?', a: 'Vi levererar vanligtvis en gång i veckan, men ni kan välja varannan vecka eller flera gånger per vecka beroende på behov.' },
                 { q: 'Kan vi byta leveransdag?', a: 'Absolut! Ni kan enkelt ändra leveransdag via vår kundportal eller genom att kontakta oss.' },
                 { q: 'Vilken frukt ingår i korgen?', a: 'Vi väljer säsongens bästa frukter – alltid färska och av hög kvalitet. Kontakta oss om ni har önskemål.' },
