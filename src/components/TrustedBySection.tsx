@@ -20,7 +20,7 @@ const TrustedBySection = () => {
   return (
     <section className="py-12 bg-muted/30">
       <div className="container mx-auto px-4">
-        <p className="text-center text-sm font-medium text-muted-foreground uppercase tracking-widest mb-8">
+        <p className="text-center text-sm font-medium text-foreground/75 uppercase tracking-widest mb-8">
           Företag som valt Vitaminkorgen
         </p>
         <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 lg:gap-16">
