@@ -49,14 +49,8 @@
     <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
     <title>Fruktkorg på jobbet Stockholm | Vitaminkorgen</title>
     
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZJV317Q2E"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-JZJV317Q2E');
-    </script>
+    <!-- Preload hero image (LCP) -->
+    <link rel="preload" as="image" href="/images/hero-fruktkorg-stockholm.webp" fetchpriority="high" />
     <meta name="description" content="Färska fruktkorgar levererade till kontoret i Stockholm. Gratis leverans, flexibla abonnemang. 150+ företag litar på oss sedan 2021.">
     <meta name="author" content="Vitaminkorgen AB" />
     <meta name="keywords" content="fruktkorg på jobbet stockholm, fruktkorgar stockholm, fruktkorg stockholm, frukt på jobbet, fruktkorgar till jobbet, fruktkorgar på kontoret, kontorsfrukt stockholm, företagsfrukt">
@@ -85,6 +79,6 @@
     <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script src="//code.tidio.co/ffjk1fjdgbfkvm0p9chrzcceqng2n1zk.js" async></script>
+    <!-- Tidio chat loads via the deferred third-party loader in <head> -->
   </body>
 </html>
