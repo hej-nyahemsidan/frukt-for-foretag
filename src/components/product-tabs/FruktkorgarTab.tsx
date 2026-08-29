@@ -5,7 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import AddToCartButton from '@/components/AddToCartButton';
 import PublicAddToCartButton from '@/components/PublicAddToCartButton';
 import { Info, Banana, Grape, Crown, Heart, Leaf, Sun } from 'lucide-react';
-import fruktkorgSicilien from '@/assets/fruktkorg-sicilien.jpg';
+import fruktkorgSicilien from '@/assets/fruktkorg-sicilien.webp';
 
 interface FruktkorgarTabProps {
   selectedDays: string[];

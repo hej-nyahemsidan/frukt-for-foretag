@@ -5,7 +5,7 @@ import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Check, Truck, Star, ShieldCheck, Phone, Users, Package } from 'lucide-react';
 import { getCompanySizeBySlug, companySizes } from '@/data/companySizes';
-import fruktkorgPremium from '@/assets/fruktkorg-premium-new.jpg';
+import fruktkorgPremium from '@/assets/fruktkorg-premium-new.webp';
 import fruktkorgStandard from '@/assets/fruktkorg-standard-new.jpg';
 import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
 

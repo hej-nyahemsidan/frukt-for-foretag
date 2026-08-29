@@ -6,8 +6,8 @@ import TrustedBySection from '@/components/TrustedBySection';
 import { Button } from '@/components/ui/button';
 import { Check, Star, Phone, ChevronDown, Truck, MapPin, Calendar, Leaf } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import leveransImg from '@/assets/fri-leverans-fruktkorgar-stockholm.jpg';
-import hallbarImg from '@/assets/fruktleverans-stockholm-hallbar.jpg';
+import leveransImg from '@/assets/fri-leverans-fruktkorgar-stockholm.webp';
+import hallbarImg from '@/assets/fruktleverans-stockholm-hallbar.webp';
 
 const faqItems = [
   { question: 'Vilka områden levererar ni till?', answer: 'Vi levererar fritt i hela Stockholm – innerstan, Solna, Sundbyberg, Bromma, Kista, Täby, Nacka, Lidingö, Huddinge, Haninge med flera. Se hela listan över områden vi servar.' },

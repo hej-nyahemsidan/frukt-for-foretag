@@ -10,9 +10,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import fruktladaImg from '@/assets/fruktlada-new.jpg';
+import fruktladaImg from '@/assets/fruktlada-new.webp';
 import fruktkorgOriginal from '@/assets/fruktkorg-standard-new.jpg';
-import fruktkorgPremium from '@/assets/fruktkorg-premium-new.jpg';
+import fruktkorgPremium from '@/assets/fruktkorg-premium-new.webp';
 import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
 import { getFruktkorgBySlug } from '@/data/fruktkorg-products';
 
