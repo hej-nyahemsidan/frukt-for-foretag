@@ -448,6 +448,14 @@
       animation: none !important;
     }
   }
+
+  /* Disable hero strip animation on mobile: the ongoing animation delays
+     LCP render significantly on throttled mobile CPUs (Core Web Vitals) */
+  @media (max-width: 767px) {
+    .animate-moveBasketHorizontal {
+      animation: none;
+    }
+  }
   
 
   /* Features Carousel Animation */
