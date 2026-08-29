@@ -425,18 +425,20 @@
     background-color: hsl(0 0% 96%); /* Light Gray fallback */
   }
 
-  /* Horizontal Basket Animation - Continuous Right to Left Scroll */
+  /* Horizontal Basket Animation - Continuous Right to Left Scroll.
+     Uses composited transform (not background-position) so the animated
+     layer does not block LCP or trigger repaints on the main thread. */
   .animate-moveBasketHorizontal {
     animation: moveBasketBg 40s linear infinite;
-    will-change: background-position;
+    will-change: transform;
   }
 
   @keyframes moveBasketBg {
     0% {
-      background-position: 100% center;
+      transform: translateX(0);
     }
     100% {
-      background-position: 0% center;
+      transform: translateX(-50%);
     }
   }
 
