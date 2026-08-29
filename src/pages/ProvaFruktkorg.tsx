@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Check, Star, Phone, ChevronDown, Gift, Truck, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import provkorgImg from '@/assets/fruktkorg-original-new.jpg';
-import leveransImg from '@/assets/fri-leverans-fruktkorgar-stockholm.jpg';
+import leveransImg from '@/assets/fri-leverans-fruktkorgar-stockholm.webp';
 
 const faqItems = [
   { question: 'Vad ingår i en provkorg?', answer: 'Vår provkorg innehåller ett urval av handplockad säsongsfrukt – typiskt 4 kg blandad frukt med äpple, päron, banan, citrus och säsongsbär. Perfekt för 5–10 medarbetare.' },

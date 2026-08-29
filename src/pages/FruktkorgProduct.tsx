@@ -6,9 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Check, Truck, Star, ShieldCheck, Phone, ArrowRight } from 'lucide-react';
 import { getFruktkorgBySlug, fruktkorgProducts } from '@/data/fruktkorg-products';
 import fruktkorgOriginal from '@/assets/fruktkorg-standard-new.jpg';
-import fruktkorgPremium from '@/assets/fruktkorg-premium-new.jpg';
+import fruktkorgPremium from '@/assets/fruktkorg-premium-new.webp';
 import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
-import fruktkorgSicilien from '@/assets/fruktkorg-sicilien.jpg';
+import fruktkorgSicilien from '@/assets/fruktkorg-sicilien.webp';
 
 const imageMap: Record<string, string> = {
   'fruktkorg-standard-new': fruktkorgOriginal,

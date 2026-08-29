@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Check, Truck, Star, Leaf, ShieldCheck, Phone, MapPin, Briefcase } from 'lucide-react';
 import { getAreaBySlug, areas } from '@/data/areas';
 import { getIndustryBySlug, industries, priorityAreaSlugs } from '@/data/industries';
-import fruktkorgPremium from '@/assets/fruktkorg-premium-new.jpg';
+import fruktkorgPremium from '@/assets/fruktkorg-premium-new.webp';
 import fruktkorgStandard from '@/assets/fruktkorg-standard-new.jpg';
 import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
 import officeWorkers from '@/assets/medarbetare-fruktkorgar-kontor.jpg';

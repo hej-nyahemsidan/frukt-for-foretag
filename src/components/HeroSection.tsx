@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import PricelistPopup from '@/components/PricelistPopup';
-import fruitPlatter2 from '@/assets/fruktkorg-pa-jobbet-stockholm.jpg';
+
+// Hero image lives in /public so it can be preloaded with a stable URL in index.html (LCP optimization)
+const HERO_IMAGE_URL = '/images/hero-fruktkorg-stockholm.webp';
 
 const HeroSection = () => {
   const [pricelistOpen, setPricelistOpen] = useState(false);
@@ -13,18 +15,18 @@ const HeroSection = () => {
       className="hero-background relative overflow-hidden min-h-[60vh] sm:min-h-[70vh] flex items-center py-16 sm:py-20 pt-24 sm:pt-28 md:pt-32"
       aria-label="Fruktkorg på jobbet Stockholm – Vitaminkorgen"
     >
-      {/* Background Image Container with Proper Clipping */}
-      <div 
-        className="absolute inset-0 w-full h-full animate-moveBasketHorizontal"
-        style={{
-          backgroundImage: `url(${fruitPlatter2})`,
-          backgroundSize: '200% auto',
-          backgroundRepeat: 'repeat-x',
-          backgroundPosition: '0% center',
-          backgroundColor: '#f0f9ff',
-        }}
-      >
-        {/* Gradient Fade Overlay */}
+      {/* Background: static wrapper keeps LCP stable; inner 200%-wide strip scrolls via composited transform */}
+      <div className="absolute inset-0 w-full h-full" style={{ backgroundColor: '#f0f9ff' }}>
+        <div 
+          className="absolute top-0 left-0 h-full w-[200%] animate-moveBasketHorizontal"
+          style={{
+            backgroundImage: `url(${HERO_IMAGE_URL})`,
+            backgroundSize: '50% auto',
+            backgroundRepeat: 'repeat-x',
+            backgroundPosition: '0% center',
+          }}
+        />
+        {/* Gradient Fade Overlay (static, does not move with the strip) */}
         <div className="absolute inset-0 bg-gradient-to-r from-green-50/95 via-green-50/70 to-green-50/20" style={{
           background: 'linear-gradient(to right, rgba(240,253,244,0.95) 0%, rgba(240,253,244,0.7) 40%, rgba(240,253,244,0.2) 70%, transparent 100%)'
         }}></div>

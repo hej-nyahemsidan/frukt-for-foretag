@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Check, Star, Phone, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import originalImg from '@/assets/fruktkorg-original-new.jpg';
-import premiumImg from '@/assets/fruktkorg-premium-new.jpg';
+import premiumImg from '@/assets/fruktkorg-premium-new.webp';
 import bananImg from '@/assets/fruktkorg-banan-new.jpg';
 
 const faqItems = [

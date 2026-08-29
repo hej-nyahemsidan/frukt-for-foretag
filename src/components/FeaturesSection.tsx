@@ -1,10 +1,10 @@
 
 import qualityGuaranteeFeature from '@/assets/premium-frukt-kvalitetsgaranti.jpg';
 import officeWorkersFruit from '@/assets/medarbetare-fruktkorgar-kontor.jpg';
-import freeDeliveryFeature from '@/assets/fri-leverans-fruktkorgar-stockholm.jpg';
-import seasonalFruits from '@/assets/sasongs-frukt-fruktkorg.jpg';
+import freeDeliveryFeature from '@/assets/fri-leverans-fruktkorgar-stockholm.webp';
+import seasonalFruits from '@/assets/sasongs-frukt-fruktkorg.webp';
 import happyEmployees from '@/assets/glada-anstallda-fruktkorg-foretag.jpg';
-import fruitTruck from '@/assets/fruktleverans-stockholm-hallbar.jpg';
+import fruitTruck from '@/assets/fruktleverans-stockholm-hallbar.webp';
 
 const FeaturesSection = () => {
   const featureImages = [
@@ -101,6 +101,8 @@ const FeaturesSection = () => {
                     <img 
                       src={image.src} 
                       alt={image.alt}
+                      loading="lazy"
+                      decoding="async"
                       className="w-80 h-60 object-cover rounded-2xl shadow-lg transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-2xl"></div>
@@ -118,6 +120,8 @@ const FeaturesSection = () => {
                     <img 
                       src={image.src} 
                       alt={image.alt}
+                      loading="lazy"
+                      decoding="async"
                       className="w-80 h-60 object-cover rounded-2xl shadow-lg transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-2xl"></div>

@@ -7,7 +7,7 @@ import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Check, Truck, Star, Leaf, Clock, ShieldCheck, MapPin, Phone, Plus, Minus, Users, Heart, Zap } from 'lucide-react';
 import { areas } from '@/data/areas';
-import fruktkorgPremium from '@/assets/fruktkorg-premium-new.jpg';
+import fruktkorgPremium from '@/assets/fruktkorg-premium-new.webp';
 import fruktkorgStandard from '@/assets/fruktkorg-standard-new.jpg';
 import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
 import officeWorkers from '@/assets/medarbetare-fruktkorgar-kontor.jpg';

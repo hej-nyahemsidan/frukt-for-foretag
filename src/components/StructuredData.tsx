@@ -231,7 +231,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
       "@type": "Product",
       "name": "Fruktkorg Premium",
       "description": "Premium fruktkorg med handplockade exotiska och lokala frukter, ca 6 kg.",
-      "image": "https://vitaminkorgen.se/assets/fruktkorg-premium-new.jpg",
+      "image": "https://vitaminkorgen.se/assets/fruktkorg-premium-new.webp",
       "sku": "VK-PREMIUM-6KG",
       "brand": { "@type": "Brand", "name": "Vitaminkorgen" },
       "category": "Fruktkorgar",
