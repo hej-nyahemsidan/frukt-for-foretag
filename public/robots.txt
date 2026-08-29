@@ -38,4 +38,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://frukt-for-foretag.lovable.app/sitemap.xml
+Sitemap: https://vitaminkorgen.se/sitemap.xml
