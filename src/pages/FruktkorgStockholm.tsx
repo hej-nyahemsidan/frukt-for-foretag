@@ -198,7 +198,7 @@ const FruktkorgStockholm = () => {
                   img: fruktkorgBanan, 
                   name: 'Fruktkorg Banan', 
                   desc: 'En fruktkorg med extra fokus på bananer – Sveriges mest populära frukt. Perfekt som snabb energikick mellan möten eller som frukost på jobbet.',
-                  features: ['Bananer i fokus', 'Energiboost', 'Populärt val', 'Från 220 kr/vecka'],
+                  features: ['Bananer i fokus', 'Energiboost', 'Populärt val', 'Från 230 kr/vecka'],
                   link: '/produkter'
                 },
               ].map((product, i) => (
