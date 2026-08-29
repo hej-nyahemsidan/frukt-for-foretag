@@ -15,17 +15,26 @@
           s.async = true;
           document.head.appendChild(s);
         }
+        var tidioLoaded = false;
+        function loadTidio() {
+          if (tidioLoaded) return;
+          tidioLoaded = true;
+          inject('https://code.tidio.co/ffjk1fjdgbfkvm0p9chrzcceqng2n1zk.js');
+        }
         function loadThirdParty() {
           if (loaded) return;
           loaded = true;
           window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
           inject('https://www.googletagmanager.com/gtm.js?id=GTM-56Z5QZHQ');
           inject('https://www.googletagmanager.com/gtag/js?id=G-JZJV317Q2E');
-          inject('https://code.tidio.co/ffjk1fjdgbfkvm0p9chrzcceqng2n1zk.js');
         }
-        window.addEventListener('load', function () { setTimeout(loadThirdParty, 2000); });
+        window.addEventListener('load', function () {
+          setTimeout(loadThirdParty, 2000);
+          // Chat widget is heavy (~500 KiB, ~1 s main thread): wait for real intent
+          setTimeout(loadTidio, 6000);
+        });
         ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (evt) {
-          window.addEventListener(evt, loadThirdParty, { once: true, passive: true });
+          window.addEventListener(evt, function () { loadThirdParty(); loadTidio(); }, { once: true, passive: true });
         });
       })();
     </script>
