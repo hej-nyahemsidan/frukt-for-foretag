@@ -11,7 +11,7 @@ import premiumImg from '@/assets/fruktkorg-premium-new.webp';
 import bananImg from '@/assets/fruktkorg-banan-new.jpg';
 
 const faqItems = [
-  { question: 'Vad kostar en fruktkorg i Stockholm?', answer: 'Våra fruktkorgar börjar från 349 kr för en 4 kg Original-korg. Premium-korgen kostar från 449 kr och Banan-korgen från 299 kr. Alla priser är exklusive moms och inkluderar fri leverans i Stockholm.' },
+  { question: 'Vad kostar en fruktkorg i Stockholm?', answer: 'Våra fruktkorgar börjar från 220 kr för en 4 kg Original-korg. Premium-korgen kostar från 250 kr och Banan-korgen från 230 kr. Alla priser är exklusive moms och inkluderar fri leverans i Stockholm.' },
   { question: 'Tillkommer det leveransavgift?', answer: 'Nej. Leverans är alltid kostnadsfri i Stockholm med kranskommuner. Inga dolda avgifter och ingen miniorder utöver en korg per leverans.' },
   { question: 'Får jag rabatt om jag beställer flera korgar?', answer: 'Ja. Företag som beställer flera korgar per vecka får automatisk volymrabatt. Kontakta oss på 010-183 98 36 för en skräddarsydd offert.' },
   { question: 'Hur fakturerar ni?', answer: 'Vi fakturerar månadsvis med 15 dagars betalvillkor. Smidigt och enkelt för företag.' },
@@ -37,8 +37,8 @@ const FruktkorgStockholmPris = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Fruktkorg Stockholm pris – från 299 kr | Vitaminkorgen"
-        description="Fruktkorg Stockholm pris ✓ Från 299 kr/korg med fri leverans. Inga dolda avgifter. Jämför Original, Premium och Banan – beställ direkt online."
+        title="Fruktkorg Stockholm pris – från 220 kr | Vitaminkorgen"
+        description="Fruktkorg Stockholm pris ✓ Från 220 kr/korg med fri leverans. Inga dolda avgifter. Jämför Original, Premium och Banan – beställ direkt online."
         keywords="fruktkorg stockholm pris, fruktkorg pris, vad kostar fruktkorg, pris fruktkorg företag, fruktkorg företag pris"
         type="products"
       />
@@ -50,7 +50,7 @@ const FruktkorgStockholmPris = () => {
           <div className="absolute inset-0 bg-black/20" />
           <div className="container mx-auto px-6 relative z-10 text-center">
             <span className="inline-block bg-yellow-400 text-green-900 font-semibold px-4 py-1 rounded-full text-sm mb-6">💰 Transparenta priser</span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">Fruktkorg Stockholm – pris från 299 kr</h1>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">Fruktkorg Stockholm – pris från 220 kr</h1>
             <p className="text-lg md:text-xl text-gray-100 mb-8 max-w-2xl mx-auto leading-relaxed">Tydliga priser utan dolda avgifter. Fri leverans i hela Stockholm – varje vecka eller varannan vecka.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/produkter"><Button size="lg" className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold shadow-lg border-2 border-black/10 text-lg px-8">Se alla korgar</Button></Link>

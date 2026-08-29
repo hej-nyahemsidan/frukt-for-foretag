@@ -27,7 +27,7 @@ const faqItems = [
   },
   {
     question: "Hur mycket kostar en fruktkorg i Stockholm?",
-    answer: "Våra fruktkorgar börjar från cirka 230 kr per vecka för en Fruktkorg Original (8-10 frukter). Premium-korgen med 12-15 frukter kostar från 299 kr/vecka. Vi skräddarsyr gärna en offert baserat på antal medarbetare och era önskemål."
+    answer: "Våra fruktkorgar börjar från 220 kr per vecka för en Fruktkorg Original (8-10 frukter). Premium-korgen med 12-15 frukter kostar från 250 kr/vecka. Vi skräddarsyr gärna en offert baserat på antal medarbetare och era önskemål."
   },
   {
     question: "Kan vi anpassa fruktkorgen efter allergier eller önskemål?",
@@ -184,21 +184,21 @@ const FruktkorgStockholm = () => {
                   img: fruktkorgStandard, 
                   name: 'Fruktkorg Original', 
                   desc: 'Perfekt för det mindre kontoret med 5-10 medarbetare. Innehåller ett varierat urval av säsongens bästa frukter – äpplen, bananer, päron, clementiner och mer.',
-                  features: ['8-10 frukter', 'Säsongsanpassad', 'Fri leverans', 'Från 230 kr/vecka'],
+                  features: ['8-10 frukter', 'Säsongsanpassad', 'Fri leverans', 'Från 220 kr/vecka'],
                   link: '/produkter'
                 },
                 { 
                   img: fruktkorgPremium, 
                   name: 'Fruktkorg Premium', 
                   desc: 'Vår mest populära fruktkorg med handplockade premiumfrukter. Perfekt för kontor som vill ha det lilla extra – mango, vindruvor, kiwi och exotiska frukter.',
-                  features: ['12-15 frukter', 'Premiumkvalitet', 'Exotiska frukter', 'Från 299 kr/vecka'],
+                  features: ['12-15 frukter', 'Premiumkvalitet', 'Exotiska frukter', 'Från 250 kr/vecka'],
                   link: '/produkter'
                 },
                 { 
                   img: fruktkorgBanan, 
                   name: 'Fruktkorg Banan', 
                   desc: 'En fruktkorg med extra fokus på bananer – Sveriges mest populära frukt. Perfekt som snabb energikick mellan möten eller som frukost på jobbet.',
-                  features: ['Bananer i fokus', 'Energiboost', 'Populärt val', 'Från 230 kr/vecka'],
+                  features: ['Bananer i fokus', 'Energiboost', 'Populärt val', 'Från 220 kr/vecka'],
                   link: '/produkter'
                 },
               ].map((product, i) => (

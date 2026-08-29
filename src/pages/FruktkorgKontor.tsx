@@ -45,7 +45,7 @@ const FruktkorgKontor = () => {
             <div className="max-w-3xl">
               <span className="inline-block bg-yellow-400 text-green-900 font-semibold px-4 py-1 rounded-full text-sm mb-6">🏢 Frukt på arbetsplatsen</span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">Fruktkorg till kontoret</h1>
-              <p className="text-lg md:text-xl text-gray-100 mb-8 leading-relaxed">Färsk säsongsfrukt direkt till er arbetsplats varje vecka. En skattefri personalförmån som syns och uppskattas – från 299 kr/korg.</p>
+              <p className="text-lg md:text-xl text-gray-100 mb-8 leading-relaxed">Färsk säsongsfrukt direkt till er arbetsplats varje vecka. En skattefri personalförmån som syns och uppskattas – från 220 kr/korg.</p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/produkter"><Button size="lg" className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold shadow-lg border-2 border-black/10 text-lg px-8">Beställ till kontoret</Button></Link>
                 <a href="tel:0101839836"><Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8"><Phone className="h-5 w-5 mr-2" /> 010-183 98 36</Button></a>

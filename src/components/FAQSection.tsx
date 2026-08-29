@@ -24,7 +24,7 @@ const FAQSection = () => {
     },
     {
       question: "Hur mycket kostar fruktkorgar från Vitaminkorgen?",
-      answer: "Priserna för våra fruktkorgar på jobbet börjar från 230 kr per vecka. Se alla priser på vår hemsida eller kontakta oss för en skräddarsydd offert baserad på antal medarbetare."
+      answer: "Priserna för våra fruktkorgar på jobbet börjar från 220 kr per vecka. Se alla priser på vår hemsida eller kontakta oss för en skräddarsydd offert baserad på antal medarbetare."
     },
     {
       question: "Kan man anpassa fruktkorgar efter allergier?",

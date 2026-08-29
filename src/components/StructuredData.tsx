@@ -124,7 +124,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
         "name": "Hur mycket kostar fruktkorgar från Vitaminkorgen?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Priserna för våra fruktkorgar på jobbet börjar från 230 kr per vecka. Se alla priser på vår hemsida eller kontakta oss för en skräddarsydd offert baserad på antal medarbetare."
+          "text": "Priserna för våra fruktkorgar på jobbet börjar från 220 kr per vecka. Se alla priser på vår hemsida eller kontakta oss för en skräddarsydd offert baserad på antal medarbetare."
         }
       },
       {
@@ -204,7 +204,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
       "url": "https://vitaminkorgen.se/produkt/fruktkorg-original",
       "offers": {
         "@type": "Offer",
-        "price": "230",
+        "price": "220",
         "priceCurrency": "SEK",
         "availability": "https://schema.org/InStock",
         "priceValidUntil": "2026-12-31",
