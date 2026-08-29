@@ -147,6 +147,8 @@ const CustomerReviewsSection = () => {
                     : 'w-3 h-3 bg-primary/25 hover:bg-primary/40'
                 }`}
                 onClick={() => api?.scrollTo(index)}
+                aria-label={`Visa recension ${index + 1} av ${reviews.length}`}
+                aria-current={index === current}
               />
             ))}
           </div>

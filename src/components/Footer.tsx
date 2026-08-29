@@ -39,7 +39,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
+            <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
               <span className="mr-2">📍</span> Kontakt
             </h4>
             <div className="space-y-3 text-sm">
@@ -56,7 +56,7 @@ const Footer = () => {
 
           {/* Features */}
           <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-white mb-4">Våra Fördelar</h4>
+            <h3 className="text-lg font-semibold text-white mb-4">Våra Fördelar</h3>
             <div className="space-y-3 text-sm">
               <div className="flex items-center space-x-3 text-gray-100">
                 <div className="p-2 bg-yellow-500/20 rounded-lg">
@@ -82,7 +82,7 @@ const Footer = () => {
 
         {/* Area Links for SEO - ALL areas with keyword-rich anchor text */}
         <div className="border-t border-green-700 pt-6 mb-6">
-          <h4 className="text-sm font-semibold text-gray-200 mb-3">Fruktkorgar till kontor – vi levererar till</h4>
+          <h3 className="text-sm font-semibold text-gray-200 mb-3">Fruktkorgar till kontor – vi levererar till</h3>
           <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-300">
             {areas.map((area, i) => (
               <span key={area.slug}>
