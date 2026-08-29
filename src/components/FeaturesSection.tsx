@@ -101,6 +101,8 @@ const FeaturesSection = () => {
                     <img 
                       src={image.src} 
                       alt={image.alt}
+                      loading="lazy"
+                      decoding="async"
                       className="w-80 h-60 object-cover rounded-2xl shadow-lg transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-2xl"></div>
@@ -118,6 +120,8 @@ const FeaturesSection = () => {
                     <img 
                       src={image.src} 
                       alt={image.alt}
+                      loading="lazy"
+                      decoding="async"
                       className="w-80 h-60 object-cover rounded-2xl shadow-lg transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-2xl"></div>
