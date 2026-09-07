@@ -39,9 +39,10 @@ const ContactSection = () => {
     try {
       const { error } = await supabase.functions.invoke('send-contact-email', {
         body: {
-          formType: 'Kontaktformulär',
+          formType: 'Offertförfrågan',
           name: formData.name,
           email: formData.email,
+          phone: formData.phone,
           message: formData.message,
         }
       });
