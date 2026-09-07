@@ -52,12 +52,12 @@ const ContactSection = () => {
       trackContactSubmitted();
 
       toast({
-        title: "Meddelande skickat!",
-        description: "Vi återkommer så snart som möjligt.",
+        title: "Tack! Din offertförfrågan är skickad",
+        description: "Vi återkommer med förslag och pris inom 24 timmar.",
       });
 
       // Clear form
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (error) {
       console.error('Error sending email:', error);
       toast({
