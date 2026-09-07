@@ -1,13 +1,11 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import PricelistPopup from '@/components/PricelistPopup';
 
 // Hero image lives in /public so it can be preloaded with a stable URL in index.html (LCP optimization)
 const HERO_IMAGE_URL = '/images/hero-fruktkorg-stockholm.webp';
 
 const HeroSection = () => {
-  const [pricelistOpen, setPricelistOpen] = useState(false);
+
 
   return (
     <section 
@@ -84,7 +82,6 @@ const HeroSection = () => {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl"></div>
       </div>
 
-      <PricelistPopup isOpen={pricelistOpen} onClose={() => setPricelistOpen(false)} />
     </section>
   );
 };
