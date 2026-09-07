@@ -14,6 +14,7 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,9 +39,10 @@ const ContactSection = () => {
     try {
       const { error } = await supabase.functions.invoke('send-contact-email', {
         body: {
-          formType: 'Kontaktformulär',
+          formType: 'Offertförfrågan',
           name: formData.name,
           email: formData.email,
+          phone: formData.phone,
           message: formData.message,
         }
       });
@@ -50,12 +52,12 @@ const ContactSection = () => {
       trackContactSubmitted();
 
       toast({
-        title: "Meddelande skickat!",
-        description: "Vi återkommer så snart som möjligt.",
+        title: "Tack! Din offertförfrågan är skickad",
+        description: "Vi återkommer med förslag och pris inom 24 timmar.",
       });
 
       // Clear form
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (error) {
       console.error('Error sending email:', error);
       toast({
@@ -126,10 +128,14 @@ const ContactSection = () => {
             {/* Right Column - Contact Form (60%) */}
             <div className="lg:col-span-3">
               <div className="bg-white p-8 rounded-xl shadow-lg border">
+                <h2 className="text-2xl font-bold text-gray-900 mb-1">Begär gratis offert</h2>
+                <p className="text-gray-600 mb-6">Fyll i två fält – vi hör av oss med förslag och pris.</p>
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
-                    <label className="text-sm text-gray-600 font-medium">Namn</label>
+                    <label className="text-sm text-gray-600 font-medium" htmlFor="contact-name">Namn*</label>
                     <Input
+                      id="contact-name"
                       value={formData.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
                       placeholder="Julia Andersson"
@@ -139,8 +145,9 @@ const ContactSection = () => {
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="text-sm text-gray-600 font-medium">E-post*</label>
+                    <label className="text-sm text-gray-600 font-medium" htmlFor="contact-email">E-post*</label>
                     <Input
+                      id="contact-email"
                       type="email"
                       value={formData.email}
                       onChange={(e) => handleInputChange('email', e.target.value)}
@@ -149,14 +156,27 @@ const ContactSection = () => {
                       required
                     />
                   </div>
+
+                  <div className="space-y-2">
+                    <label className="text-sm text-gray-600 font-medium" htmlFor="contact-phone">Telefon (valfritt)</label>
+                    <Input
+                      id="contact-phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                      placeholder="070-123 45 67"
+                      className="w-full text-lg py-3"
+                    />
+                  </div>
                   
                   <div className="space-y-2">
-                    <label className="text-sm text-gray-600 font-medium">Meddelande</label>
+                    <label className="text-sm text-gray-600 font-medium" htmlFor="contact-message">Meddelande (valfritt)</label>
                     <Textarea
+                      id="contact-message"
                       value={formData.message}
                       onChange={(e) => handleInputChange('message', e.target.value)}
-                      placeholder="Ert meddelande"
-                      rows={5}
+                      placeholder="T.ex. antal personer på kontoret och önskad leveransdag"
+                      rows={4}
                       className="w-full text-lg"
                     />
                   </div>
@@ -164,10 +184,20 @@ const ContactSection = () => {
                   <Button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg rounded-lg disabled:opacity-50"
+                    className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg font-bold rounded-lg w-full disabled:opacity-50"
                   >
-                    {isSubmitting ? 'Skickar...' : 'Skicka'}
+                    {isSubmitting ? 'Skickar...' : 'Begär gratis offert'}
                   </Button>
+
+                  <p className="text-sm text-gray-600 text-center">
+                    ✓ Kostnadsfri offert &nbsp; ✓ Du binder dig inte &nbsp; ✓ Svar inom 24 timmar
+                  </p>
+                  <p className="text-sm text-gray-600 text-center">
+                    Hellre prata direkt?{' '}
+                    <a href="tel:+46101839836" className="text-primary font-semibold underline underline-offset-2">
+                      010-183 98 36
+                    </a>
+                  </p>
                 </form>
               </div>
             </div>

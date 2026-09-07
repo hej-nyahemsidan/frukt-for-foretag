@@ -12,6 +12,7 @@ import CustomerPortalSection from '@/components/CustomerPortalSection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 import PromoPopup from '@/components/PromoPopup';
+import MobileCtaBar from '@/components/MobileCtaBar';
 import SEOHead from '@/components/SEOHead';
 import { usePromoPopup } from '@/hooks/usePromoPopup';
 
@@ -35,6 +36,7 @@ const Index = () => {
         <AreaLinksSection />
       </main>
       <Footer />
+      <MobileCtaBar />
       <PromoPopup isOpen={isOpen} onClose={closePopup} />
     </div>
   );
