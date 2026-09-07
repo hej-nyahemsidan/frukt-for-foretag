@@ -30,9 +30,9 @@ const SEOHead = ({
   const getDefaultSEO = () => {
     const defaults = {
       homepage: {
-        title: 'Fruktkorg på jobbet Stockholm | Vitaminkorgen',
-        description: 'Färska fruktkorgar levererade till kontoret i Stockholm. Gratis leverans, flexibla abonnemang. 150+ företag litar på oss sedan 2021.',
-        keywords: 'fruktkorg på jobbet stockholm, fruktkorgar stockholm, fruktkorg stockholm, frukt på jobbet, fruktbudet, fruktbud stockholm, fruktleverans stockholm, fruktkorgar till jobbet, fruktkorgar på kontoret, kontorsfrukt stockholm, företagsfrukt'
+        title: 'Fruktkorg & fruktlåda till företag i Stockholm | Vitaminkorgen',
+        description: 'Fruktkorgar och fruktlådor levererade till kontoret i Stockholm. Begär en gratis offert – helt utan bindning. 150+ företag litar på oss.',
+        keywords: 'fruktkorg, fruktlåda, fruktkorg stockholm, fruktlåda stockholm, fruktkorg företag, fruktlåda företag, fruktkorg på jobbet, frukt på jobbet, fruktbud stockholm, fruktleverans stockholm, fruktkorgar till jobbet, kontorsfrukt stockholm, företagsfrukt, gratis offert fruktkorg'
       },
       products: {
         title: 'Fruktkorgar & kontorsprodukter | Vitaminkorgen',

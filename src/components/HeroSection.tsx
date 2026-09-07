@@ -1,13 +1,11 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import PricelistPopup from '@/components/PricelistPopup';
 
 // Hero image lives in /public so it can be preloaded with a stable URL in index.html (LCP optimization)
 const HERO_IMAGE_URL = '/images/hero-fruktkorg-stockholm.webp';
 
 const HeroSection = () => {
-  const [pricelistOpen, setPricelistOpen] = useState(false);
+
 
   return (
     <section 
@@ -38,32 +36,38 @@ const HeroSection = () => {
           <div className="space-y-4 sm:space-y-6 max-w-md sm:max-w-lg lg:max-w-lg lg:ml-8 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2">
             <div className="space-y-3 sm:space-y-4">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight text-slate-800 shadow-sm">
-                Fruktkorgar på jobbet<br />
-                som gör skillnad
+                Fruktkorg &amp; fruktlåda<br />
+                till företag i Stockholm
               </h1>
               
               <p className="text-base sm:text-lg leading-relaxed text-slate-600 max-w-lg">
-                Vi levererar noggrant utvalda fruktkorgar av högsta kvalitet direkt till ert kontor i Stockholm. Som ert pålitliga fruktbud hjälper vi företag att främja energi, fokus och välmående på arbetsplatsen. Våra nöjda kunder uppskattar vår pålitlighet och smidiga leveranser av frukt på jobbet Stockholm – varje vecka.
+                Vi levererar noggrant utvalda fruktkorgar och fruktlådor av högsta kvalitet direkt till ert kontor i Stockholm. Som ert pålitliga fruktbud hjälper vi företag att främja energi, fokus och välmående på arbetsplatsen – med färsk frukt på jobbet, varje vecka.
               </p>
               
-              <Button 
-                asChild
-                size="lg"
-                className="bg-primary hover:bg-primary-dark text-primary-foreground px-8 sm:px-10 py-4 sm:py-5 rounded-full shadow-[0_8px_30px_-4px_hsl(152_50%_30%/0.5)] animate-float hover:shadow-[0_12px_40px_-4px_hsl(152_50%_30%/0.6)] transition-all border-2 border-white/30 font-bold text-base sm:text-lg tracking-wide"
-              >
-                <a href="/bestall" className="flex items-center justify-center gap-2">
-                  <span>🎉</span>
-                  <span>Beställ en gratis provkorg</span>
-                </a>
-              </Button>
-              <Button 
-                variant="outline"
-                size="lg"
-                onClick={() => setPricelistOpen(true)}
-                className="px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg border-2 border-primary/30 text-primary hover:bg-primary/5"
-              >
-                📋 Hämta prislista
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button 
+                  asChild
+                  size="lg"
+                  className="bg-primary hover:bg-primary-dark text-primary-foreground px-8 sm:px-10 py-4 sm:py-5 rounded-full shadow-[0_8px_30px_-4px_hsl(152_50%_30%/0.5)] animate-float hover:shadow-[0_12px_40px_-4px_hsl(152_50%_30%/0.6)] transition-all border-2 border-white/30 font-bold text-base sm:text-lg tracking-wide"
+                >
+                  <Link to="/kontakt" className="flex items-center justify-center gap-2">
+                    <span>Begär gratis offert</span>
+                  </Link>
+                </Button>
+                <Button 
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold text-base sm:text-lg border-2 border-primary/30 text-primary hover:bg-primary/5"
+                >
+                  <Link to="/produkter" className="flex items-center justify-center gap-2">
+                    <span>Beställ direkt</span>
+                  </Link>
+                </Button>
+              </div>
+              <p className="text-sm text-slate-600 pt-1">
+                ✓ Kostnadsfri offert &nbsp; ✓ Du binder dig inte &nbsp; ✓ Svar inom 24 timmar
+              </p>
               <p className="text-sm text-slate-600 pt-1">
                 Letar ni efter en <Link to="/fruktlada" className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark">fruktlåda till företag</Link>? Vi levererar fritt i Stockholm.
               </p>
@@ -78,7 +82,6 @@ const HeroSection = () => {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl"></div>
       </div>
 
-      <PricelistPopup isOpen={pricelistOpen} onClose={() => setPricelistOpen(false)} />
     </section>
   );
 };
