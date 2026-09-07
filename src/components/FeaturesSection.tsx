@@ -1,4 +1,5 @@
-
+ 
+import { Link } from 'react-router-dom';
 import qualityGuaranteeFeature from '@/assets/premium-frukt-kvalitetsgaranti.jpg';
 import officeWorkersFruit from '@/assets/medarbetare-fruktkorgar-kontor.jpg';
 import freeDeliveryFeature from '@/assets/fri-leverans-fruktkorgar-stockholm.webp';
@@ -56,6 +57,10 @@ const FeaturesSection = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
               Våra fördelar med frukt på jobbet Stockholm
             </h2>
+            <p className="text-white/80 mt-4 max-w-2xl mx-auto text-sm sm:text-base">
+              Upptäck hur enkelt det är att få färsk frukt levererad till arbetsplatsen – läs vår guide om{' '}
+              <Link to="/fruktkorg-pa-jobbet" className="text-yellow-300 underline hover:text-yellow-200 font-semibold">fruktkorg på jobbet i Stockholm</Link>.
+            </p>
           </div>
 
           {/* USP Boxes */}
