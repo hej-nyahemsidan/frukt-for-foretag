@@ -17,7 +17,7 @@ const MobileCtaBar = () => {
           Begär gratis offert
         </Link>
         <a
-          href="tel:+4610183 98 36"
+          href="tel:+46101839836"
           aria-label="Ring oss på 010-183 98 36"
           className="flex items-center justify-center gap-2 rounded-full border-2 border-primary/40 px-4 py-3 text-base font-bold text-primary"
         >
