@@ -36,6 +36,7 @@ const Index = () => {
         <AreaLinksSection />
       </main>
       <Footer />
+      <MobileCtaBar />
       <PromoPopup isOpen={isOpen} onClose={closePopup} />
     </div>
   );
