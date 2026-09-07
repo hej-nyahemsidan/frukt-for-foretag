@@ -130,9 +130,12 @@ const FruktkorgStockholmPris = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Få en skräddarsydd offert</h2>
             <p className="text-gray-200 mb-8 max-w-xl mx-auto">Berätta om ert kontor så räknar vi ut bästa upplägget och priset för er.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/kontakt"><Button size="lg" className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold shadow-lg border-2 border-black/10 text-lg px-8">Kontakta oss</Button></Link>
-              <a href="tel:0101839836"><Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8"><Phone className="h-5 w-5 mr-2" /> 010-183 98 36</Button></a>
-            </div>
+               <Link to="/kontakt"><Button size="lg" className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold shadow-lg border-2 border-black/10 text-lg px-8">Kontakta oss</Button></Link>
+               <a href="tel:0101839836"><Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8"><Phone className="h-5 w-5 mr-2" /> 010-183 98 36</Button></a>
+             </div>
+             <p className="text-gray-200 mt-6 text-sm">
+               Läs även: <Link to="/fruktkorg-pa-jobbet" className="text-yellow-300 underline hover:text-yellow-200">Fruktkorg på jobbet i Stockholm</Link> – komplett guide för arbetsplatser.
+             </p>
           </div>
         </section>
       </main>
