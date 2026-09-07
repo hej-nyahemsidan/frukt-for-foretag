@@ -100,9 +100,14 @@ const FruktkorgForetag = () => {
                 Från 220 kr per leverans. 150+ företag i Stockholm har valt Vitaminkorgen som sitt fruktbud.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/produkter">
+                <Link to="/kontakt">
                   <Button size="lg" className="bg-yellow-400 hover:bg-yellow-300 text-black font-bold shadow-lg border-2 border-black/10 text-lg px-8">
-                    Skicka din beställning
+                    Begär gratis offert
+                  </Button>
+                </Link>
+                <Link to="/produkter">
+                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8">
+                    Beställ direkt
                   </Button>
                 </Link>
                 <a href="tel:0101839836">
@@ -111,6 +116,10 @@ const FruktkorgForetag = () => {
                   </Button>
                 </a>
               </div>
+              <p className="text-sm text-gray-200 mt-5">
+                Kostnadsfri offert ✓ Du binder dig inte ✓ Svar inom 24 timmar
+              </p>
+
             </div>
           </div>
         </section>
