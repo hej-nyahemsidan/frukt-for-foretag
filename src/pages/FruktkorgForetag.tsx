@@ -199,6 +199,81 @@ const FruktkorgForetag = () => {
           </div>
         </section>
 
+        <section className="py-16 md:py-20 bg-white">
+          <div className="container mx-auto px-6 max-w-5xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-green-900 mb-4 text-center">
+              Storleksguide – hur mycket frukt behöver ert kontor?
+            </h2>
+            <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto">
+              Räkna med cirka 1–1,5 frukter per medarbetare och leveransdag. Så här brukar våra
+              företagskunder i Stockholm lägga upp sina leveranser.
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <caption className="sr-only">Rekommenderad fruktkorg och leveransfrekvens efter antal medarbetare</caption>
+                <thead>
+                  <tr className="bg-green-700 text-white">
+                    <th scope="col" className="px-4 py-3 rounded-tl-lg">Antal medarbetare</th>
+                    <th scope="col" className="px-4 py-3">Rekommenderad korg</th>
+                    <th scope="col" className="px-4 py-3">Leveranser/vecka</th>
+                    <th scope="col" className="px-4 py-3 rounded-tr-lg">Ungefärlig kostnad/vecka</th>
+                  </tr>
+                </thead>
+                <tbody className="text-gray-700">
+                  {[
+                    ['1–10', 'Fruktkorg Original (4 kg)', '1', 'från 220 kr'],
+                    ['10–20', 'Fruktkorg Premium (6 kg)', '1', 'från 250 kr'],
+                    ['20–40', 'Original + Premium', '2', 'från 470 kr'],
+                    ['40–75', 'Premium (9 kg)', '2', 'från 700 kr'],
+                    ['75+', 'Flera korgar eller fruktlåda', '2–5', 'offert'],
+                  ].map((row, i) => (
+                    <tr key={i} className={i % 2 ? 'bg-green-50' : 'bg-white'}>
+                      {row.map((cell, j) => (
+                        <td key={j} className="px-4 py-3 border-b border-gray-100">{cell}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-gray-600 text-sm mt-4 text-center">
+              Osäker på vilken storlek som passar? <Link to="/kontakt" className="text-green-700 underline font-medium">Begär en gratis offert</Link> så räknar vi fram ett förslag – helt utan bindning.
+            </p>
+          </div>
+        </section>
+
+        <section className="py-16 md:py-20 bg-green-50">
+          <div className="container mx-auto px-6 max-w-5xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-green-900 mb-4 text-center">
+              Fruktkorg eller fruktlåda till företaget?
+            </h2>
+            <p className="text-gray-600 text-center mb-10 max-w-2xl mx-auto">
+              Båda innehåller samma handplockade frukt – skillnaden ligger i hur den presenteras och
+              hur stora volymer ni tar emot.
+            </p>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-white p-6 rounded-2xl shadow-md">
+                <h3 className="text-xl font-bold text-green-900 mb-3">Fruktkorg</h3>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex gap-2"><Check className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />Snyggt uppdukad korg i pentry eller reception</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />Passar kontor upp till cirka 40 medarbetare</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />Vi byter korgen vid varje leverans</li>
+                </ul>
+                <Link to="/produkter" className="inline-block mt-5 text-green-700 underline font-medium">Se våra fruktkorgar</Link>
+              </div>
+              <div className="bg-white p-6 rounded-2xl shadow-md">
+                <h3 className="text-xl font-bold text-green-900 mb-3">Fruktlåda</h3>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li className="flex gap-2"><Check className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />Större volym per leverans – bra för många medarbetare</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />Enkel att ställa direkt i köket eller lunchrummet</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />Samma färska frukt, samma leveransdagar</li>
+                </ul>
+                <Link to="/fruktlada" className="inline-block mt-5 text-green-700 underline font-medium">Läs mer om fruktlåda till företag</Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="py-16 md:py-20 bg-green-50">
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-2 gap-12 items-center">
