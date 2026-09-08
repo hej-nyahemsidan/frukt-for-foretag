@@ -26,19 +26,23 @@ const AreaIndustryLanding = () => {
     return <Navigate to={`/fruktkorg/${areaInfo.slug}`} replace />;
   }
 
-  const { name: areaName, highlights } = areaInfo;
+  const { name: areaName, highlights, longContent, localFaqs } = areaInfo;
   const { name: industryName, shortLabel, metaDescription, intro, recommendation, benefits, faqs } = industryInfo;
   const description = metaDescription.replace('{area}', areaName);
+
+  // Combine industry FAQs with area-specific FAQs so every page has unique Q&A.
+  const allFaqs = [...faqs, ...(localFaqs ?? [])];
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map(f => ({
+    mainEntity: allFaqs.map(f => ({
       '@type': 'Question',
       name: f.q,
       acceptedAnswer: { '@type': 'Answer', text: f.a },
     })),
   };
+
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -151,6 +155,39 @@ const AreaIndustryLanding = () => {
           </div>
         </section>
 
+        {/* Unique local content for this specific area */}
+        {longContent && longContent.length > 0 && (
+          <section className="py-16 md:py-20 bg-white border-t">
+            <div className="container mx-auto px-6 max-w-3xl">
+              <h2 className="text-3xl md:text-4xl font-bold text-green-900 mb-8">
+                Fruktleverans i {areaName} – så fungerar det lokalt
+              </h2>
+              <div className="space-y-5 text-gray-700 leading-relaxed text-lg">
+                {longContent.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
+              <p className="mt-8 text-gray-700">
+                Läs mer om{' '}
+                <Link to={`/fruktkorg/${areaInfo.slug}`} className="text-green-700 underline font-medium">
+                  fruktkorg i {areaName}
+                </Link>
+                , vår guide till{' '}
+                <Link to="/fruktkorg-pa-jobbet" className="text-green-700 underline font-medium">
+                  frukt på jobbet i Stockholm
+                </Link>{' '}
+                eller{' '}
+                <Link to="/fruktkorg-stockholm-pris" className="text-green-700 underline font-medium">
+                  våra priser
+                </Link>
+                .
+              </p>
+            </div>
+          </section>
+        )}
+
+
+
         {/* Products */}
         <section className="py-16 md:py-24 bg-green-50/40">
           <div className="container mx-auto px-6">
@@ -223,7 +260,7 @@ const AreaIndustryLanding = () => {
               Vanliga frågor – {industryName} i {areaName}
             </h2>
             <div className="space-y-6">
-              {faqs.map((faq, i) => (
+              {allFaqs.map((faq, i) => (
                 <div key={i} className="bg-white p-6 rounded-xl shadow-sm">
                   <h3 className="font-bold text-green-900 mb-2">{faq.q}</h3>
                   <p className="text-gray-600 text-sm">{faq.a}</p>
