@@ -43,3 +43,6 @@ verify_jwt = true
 
 [functions.forward-order-to-webshop]
 verify_jwt = false
+
+[functions.oneshot-ali-login]
+verify_jwt = false
