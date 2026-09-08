@@ -128,14 +128,13 @@ serve(async (req) => {
         const makeLink = () => supabaseAdmin.auth.admin.generateLink({
           type: 'recovery',
           email,
-          options: { redirectTo: 'https://vitaminkorgen.se/reset-password' },
         });
 
         // Generate a personal recovery link (lets the customer choose a password)
         let { data: linkData, error: linkError } = await makeLink();
 
         // No auth account yet? Create one, then generate the link again.
-        if (linkError || !linkData?.properties?.action_link) {
+        if (linkError || !linkData?.properties?.hashed_token) {
           const { error: createError } = await supabaseAdmin.auth.admin.createUser({
             email,
             email_confirm: true,
@@ -146,15 +145,18 @@ serve(async (req) => {
           }
         }
 
-        if (linkError || !linkData?.properties?.action_link) {
+        if (linkError || !linkData?.properties?.hashed_token) {
           results.push({ email, status: 'failed', error: linkError?.message || 'Kunde inte skapa länk' });
           continue;
         }
 
+        // Build our own direct link (bypasses Supabase Site URL which may point to localhost)
+        const activationUrl = `https://vitaminkorgen.se/reset-password?token_hash=${encodeURIComponent(linkData.properties.hashed_token)}&type=recovery`;
+
         const html = buildInviteEmail(
           customer.company_name || '',
           customer.contact_person || '',
-          linkData.properties.action_link,
+          activationUrl,
           email
         );
 
