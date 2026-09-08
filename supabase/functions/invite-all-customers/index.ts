@@ -21,7 +21,7 @@ function buildInviteEmail(companyName: string, contactPerson: string, actionLink
 <body style="font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f5f5f5;margin:0;padding:20px;">
   <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;">
     <div style="background:linear-gradient(135deg,#4CAF50,#66BB6A);padding:30px 20px;text-align:center;">
-      <h1 style="color:#ffffff;margin:0;font-size:24px;">🍎 Välkommen till din nya webshop!</h1>
+      <h1 style="color:#ffffff;margin:0;font-size:24px;">🍎 Du är inbjuden till vår webshop!</h1>
     </div>
     <div style="padding:30px 25px;color:#333;">
       <p style="font-size:16px;">Hej${name ? ' ' + escapeHtml(name) : ''}!</p>
@@ -36,17 +36,16 @@ function buildInviteEmail(companyName: string, contactPerson: string, actionLink
       </ul>
       <p style="font-size:15px;line-height:1.6;">
         Ditt användarnamn är din e-postadress: <strong>${escapeHtml(email)}</strong>.
-        Klicka på knappen nedan för att välja ditt eget lösenord och logga in för första gången:
+        Klicka på knappen nedan för att tacka ja till inbjudan och aktivera ert konto:
       </p>
       <div style="text-align:center;margin:30px 0;">
         <a href="${actionLink}" style="background:#4CAF50;color:#ffffff;padding:14px 32px;border-radius:6px;text-decoration:none;font-size:16px;font-weight:bold;display:inline-block;">
-          Välj lösenord &amp; logga in
+          Aktivera ditt konto
         </a>
       </div>
       <p style="font-size:13px;color:#777;line-height:1.5;">
-        Länken är personlig och giltig i 24 timmar. Har den gått ut? Klicka på "Glömt ditt lösenord?" på
-        <a href="https://vitaminkorgen.se/kundportal" style="color:#4CAF50;">vitaminkorgen.se/kundportal</a> så får du en ny direkt.
-        Du kan när som helst byta lösenord på samma sätt.
+        Inbjudan är personlig och giltig i 24 timmar. Har den gått ut? Klicka på "Glömt ditt lösenord?" på
+        <a href="https://vitaminkorgen.se/kundportal" style="color:#4CAF50;">vitaminkorgen.se/kundportal</a> så får du en ny inbjudan direkt.
       </p>
       <p style="font-size:15px;margin-top:25px;">
         Har du frågor? Svara på detta mejl eller ring oss på
@@ -163,7 +162,7 @@ serve(async (req) => {
         const { error: sendError } = await resend.emails.send({
           from: 'Vitaminkorgen <kontakt@vitaminkorgen.se>',
           to: [email],
-          subject: 'Välkommen till Vitaminkorgens webshop – aktivera ditt konto',
+          subject: 'Inbjudan till Vitaminkorgens webshop',
           html,
         });
 
