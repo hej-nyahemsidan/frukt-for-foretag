@@ -49,7 +49,7 @@ function buildInviteEmail(companyName: string, contactPerson: string, actionLink
         </a>
       </div>
       <p style="font-size:13px;color:#777;line-height:1.5;">
-        Inbjudan är personlig och giltig i 24 timmar. Har den gått ut? Klicka på "Glömt ditt lösenord?" på
+        Inbjudan är personlig och giltig i 7 dagar. Har den gått ut? Klicka på "Glömt ditt lösenord?" på
         <a href="https://vitaminkorgen.se/kundportal" style="color:#4CAF50;">vitaminkorgen.se/kundportal</a> så får du en ny inbjudan direkt.
       </p>
       <p style="font-size:15px;margin-top:25px;">
@@ -129,33 +129,21 @@ serve(async (req) => {
       seen.add(email);
 
       try {
-        const makeLink = () => supabaseAdmin.auth.admin.generateLink({
-          type: 'recovery',
-          email,
-        });
+        // Create a long-lived invite token (7 days). The reset page exchanges it
+        // for a fresh Supabase recovery link when the customer clicks the email.
+        const inviteToken = crypto.randomUUID();
+        const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
 
-        // Generate a personal recovery link (lets the customer choose a password)
-        let { data: linkData, error: linkError } = await makeLink();
+        const { error: tokenError } = await supabaseAdmin
+          .from('customer_invite_tokens')
+          .insert({ email, token: inviteToken, expires_at: expiresAt });
 
-        // No auth account yet? Create one, then generate the link again.
-        if (linkError || !linkData?.properties?.hashed_token) {
-          const { error: createError } = await supabaseAdmin.auth.admin.createUser({
-            email,
-            email_confirm: true,
-            password: crypto.randomUUID(),
-          });
-          if (!createError) {
-            ({ data: linkData, error: linkError } = await makeLink());
-          }
-        }
-
-        if (linkError || !linkData?.properties?.hashed_token) {
-          results.push({ email, status: 'failed', error: linkError?.message || 'Kunde inte skapa länk' });
+        if (tokenError) {
+          results.push({ email, status: 'failed', error: tokenError.message });
           continue;
         }
 
-        // Build our own direct link (bypasses Supabase Site URL which may point to localhost)
-        const activationUrl = `https://vitaminkorgen.se/reset-password?token_hash=${encodeURIComponent(linkData.properties.hashed_token)}&type=recovery`;
+        const activationUrl = `https://vitaminkorgen.se/reset-password?invite_token=${encodeURIComponent(inviteToken)}`;
 
         const html = buildInviteEmail(
           customer.company_name || '',
