@@ -34,6 +34,11 @@ function buildInviteEmail(companyName: string, contactPerson: string, actionLink
         <li>Se era leveranser och tidigare beställningar</li>
         <li>Ändra leveransdagar och lägga till extra varor</li>
       </ul>
+      <div style="background:#e8f5e9;border-left:4px solid #4CAF50;padding:15px 18px;margin:0 0 25px;border-radius:4px;">
+        <p style="font-size:15px;line-height:1.6;margin:0;">
+          <strong>Extra beställningar utöver ert abonnemang:</strong> Här beställer ni kompletteringar utöver den fruktkorg ni redan får levererad. Passa på att lägga till frukost, mejeri, snacks, läsk eller extra frukt inför möten och event.
+        </p>
+      </div>
       <p style="font-size:15px;line-height:1.6;">
         Ditt användarnamn är din e-postadress: <strong>${escapeHtml(email)}</strong>.
         Klicka på knappen nedan för att tacka ja till inbjudan och aktivera ert konto:
