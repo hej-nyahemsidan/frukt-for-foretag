@@ -15,7 +15,7 @@ const escapeHtml = (s: string): string =>
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-function buildInviteEmail(companyName: string, contactPerson: string, actionLink: string): string {
+function buildInviteEmail(companyName: string, contactPerson: string, actionLink: string, email: string): string {
   const name = contactPerson && contactPerson !== 'Kontaktperson' ? contactPerson : '';
   return `<!DOCTYPE html><html><head><meta charset="utf-8"></head>
 <body style="font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f5f5f5;margin:0;padding:20px;">
