@@ -84,7 +84,7 @@ const CustomerReviewsSection = () => {
   }, [api]);
 
   return (
-    <section className="py-20 sm:py-24 bg-gradient-to-br from-[hsl(45_30%_98%)] via-[hsl(140_25%_97%)] to-[hsl(28_40%_96%)] relative overflow-hidden min-h-screen flex items-center">
+    <section className="py-20 sm:py-24 bg-gradient-to-br from-sky-50 via-white to-blue-50/60 relative overflow-hidden min-h-screen flex items-center">
       {/* Soft organic gradient backgrounds */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 -right-32 w-[500px] h-[500px] bg-gradient-to-br from-primary/15 via-secondary/10 to-transparent rounded-full blur-3xl"></div>

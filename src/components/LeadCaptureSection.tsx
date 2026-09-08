@@ -94,7 +94,7 @@ const LeadCaptureSection = () => {
 
   if (submitted) {
     return (
-      <section className="py-16 sm:py-24 bg-accent-light-green">
+      <section className="py-16 sm:py-24 bg-sky-50">
         <div className="max-w-2xl mx-auto px-4 text-center space-y-4">
           <div className="text-5xl">✅</div>
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
@@ -107,7 +107,7 @@ const LeadCaptureSection = () => {
   }
 
   return (
-    <section className="py-16 sm:py-24 bg-gradient-to-b from-white to-accent-light-green relative overflow-hidden">
+    <section className="py-16 sm:py-24 bg-gradient-to-b from-white to-sky-50 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left — Copy */}

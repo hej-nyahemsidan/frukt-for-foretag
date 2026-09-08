@@ -19,7 +19,7 @@ const CustomerPortalSection = () => {
   }));
 
   return (
-    <section className="py-20 sm:py-24 px-4 sm:px-8 bg-gray-200">
+    <section className="py-20 sm:py-24 px-4 sm:px-8 bg-sky-100/60">
       <div className="max-w-7xl mx-auto">
         
         {/* Text Content */}

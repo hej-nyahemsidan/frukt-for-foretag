@@ -47,7 +47,7 @@ const ProductShowcase = () => {
   };
 
   return (
-    <section id="products" className="py-20 sm:py-24 px-4 sm:px-8 bg-gradient-to-br from-[hsl(40_30%_97%)] via-[hsl(140_25%_96%)] to-[hsl(45_40%_96%)]">
+    <section id="products" className="py-20 sm:py-24 px-4 sm:px-8 bg-gradient-to-br from-white via-sky-50/70 to-sky-50">
       <div className="container mx-auto">
         {/* Header */}
         <div className="mb-12 text-center">
