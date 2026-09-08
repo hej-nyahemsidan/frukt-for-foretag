@@ -155,6 +155,39 @@ const AreaIndustryLanding = () => {
           </div>
         </section>
 
+        {/* Unique local content for this specific area */}
+        {longContent && longContent.length > 0 && (
+          <section className="py-16 md:py-20 bg-white border-t">
+            <div className="container mx-auto px-6 max-w-3xl">
+              <h2 className="text-3xl md:text-4xl font-bold text-green-900 mb-8">
+                Fruktleverans i {areaName} – så fungerar det lokalt
+              </h2>
+              <div className="space-y-5 text-gray-700 leading-relaxed text-lg">
+                {longContent.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
+              <p className="mt-8 text-gray-700">
+                Läs mer om{' '}
+                <Link to={`/fruktkorg/${areaInfo.slug}`} className="text-green-700 underline font-medium">
+                  fruktkorg i {areaName}
+                </Link>
+                , vår guide till{' '}
+                <Link to="/fruktkorg-pa-jobbet" className="text-green-700 underline font-medium">
+                  frukt på jobbet i Stockholm
+                </Link>{' '}
+                eller{' '}
+                <Link to="/fruktkorg-stockholm-pris" className="text-green-700 underline font-medium">
+                  våra priser
+                </Link>
+                .
+              </p>
+            </div>
+          </section>
+        )}
+
+
+
         {/* Products */}
         <section className="py-16 md:py-24 bg-green-50/40">
           <div className="container mx-auto px-6">
