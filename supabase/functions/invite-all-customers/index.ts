@@ -134,7 +134,8 @@ serve(async (req) => {
         const html = buildInviteEmail(
           customer.company_name || '',
           customer.contact_person || '',
-          linkData.properties.action_link
+          linkData.properties.action_link,
+          customer.email
         );
 
         const { error: sendError } = await resend.emails.send({
