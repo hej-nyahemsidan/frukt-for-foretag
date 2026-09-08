@@ -26,19 +26,23 @@ const AreaIndustryLanding = () => {
     return <Navigate to={`/fruktkorg/${areaInfo.slug}`} replace />;
   }
 
-  const { name: areaName, highlights } = areaInfo;
+  const { name: areaName, highlights, longContent, localFaqs } = areaInfo;
   const { name: industryName, shortLabel, metaDescription, intro, recommendation, benefits, faqs } = industryInfo;
   const description = metaDescription.replace('{area}', areaName);
+
+  // Combine industry FAQs with area-specific FAQs so every page has unique Q&A.
+  const allFaqs = [...faqs, ...(localFaqs ?? [])];
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map(f => ({
+    mainEntity: allFaqs.map(f => ({
       '@type': 'Question',
       name: f.q,
       acceptedAnswer: { '@type': 'Answer', text: f.a },
     })),
   };
+
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
