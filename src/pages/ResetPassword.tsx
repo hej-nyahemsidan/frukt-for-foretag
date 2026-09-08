@@ -88,7 +88,7 @@ const ResetPassword = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <SEOHead title="Välj nytt lösenord | Vitaminkorgen" description="Välj ett nytt lösenord till kundportalen." noindex={true} />
+      <SEOHead title="Aktivera ditt konto | Vitaminkorgen" description="Aktivera ditt konto i Vitaminkorgens kundportal." noindex={true} />
 
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
@@ -110,7 +110,7 @@ const ResetPassword = () => {
             <div className="text-center space-y-4">
               <h1 className="text-xl font-bold">Länken har gått ut</h1>
               <p className="text-sm text-muted-foreground">
-                Aktiveringslänken är personlig och giltig en begränsad tid. Begär en ny via "Glömt ditt lösenord" på inloggningssidan.
+                Inbjudan är personlig och giltig en begränsad tid. Begär en ny via "Glömt ditt lösenord" på inloggningssidan.
               </p>
               <Button asChild className="w-full bg-green-600 hover:bg-green-700 text-white">
                 <Link to="/kundportal">Till inloggningen</Link>
@@ -119,7 +119,7 @@ const ResetPassword = () => {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="text-center space-y-1">
-                <h1 className="text-2xl font-bold">Välj ditt lösenord</h1>
+                <h1 className="text-2xl font-bold">Aktivera ditt konto</h1>
                 <p className="text-sm text-muted-foreground">Minst 8 tecken. Sedan är du inloggad direkt.</p>
               </div>
 
@@ -167,7 +167,7 @@ const ResetPassword = () => {
                 className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold"
                 disabled={isLoading}
               >
-                {isLoading ? 'Sparar...' : 'Spara lösenord'}
+                {isLoading ? 'Sparar...' : 'Aktivera konto'}
               </Button>
             </form>
           )}
