@@ -155,23 +155,23 @@ serve(async (req) => {
           customer.company_name || '',
           customer.contact_person || '',
           linkData.properties.action_link,
-          customer.email
+          email
         );
 
         const { error: sendError } = await resend.emails.send({
           from: 'Vitaminkorgen <kontakt@vitaminkorgen.se>',
-          to: [customer.email],
-          subject: 'Din webshop hos Vitaminkorgen är redo – aktivera ditt konto',
+          to: [email],
+          subject: 'Välkommen till Vitaminkorgens webshop – aktivera ditt konto',
           html,
         });
 
         if (sendError) {
-          results.push({ email: customer.email, status: 'failed', error: sendError.message });
+          results.push({ email, status: 'failed', error: sendError.message });
         } else {
-          results.push({ email: customer.email, status: 'sent' });
+          results.push({ email, status: 'sent' });
         }
       } catch (e) {
-        results.push({ email: customer.email, status: 'failed', error: e instanceof Error ? e.message : 'Okänt fel' });
+        results.push({ email, status: 'failed', error: e instanceof Error ? e.message : 'Okänt fel' });
       }
 
       // Be kind to the email API rate limits
