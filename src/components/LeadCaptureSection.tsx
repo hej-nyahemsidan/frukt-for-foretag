@@ -94,7 +94,7 @@ const LeadCaptureSection = () => {
 
   if (submitted) {
     return (
-      <section className="py-16 sm:py-24 bg-accent-light-green">
+      <section className="py-16 sm:py-24 bg-sky-50">
         <div className="max-w-2xl mx-auto px-4 text-center space-y-4">
           <div className="text-5xl">✅</div>
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
