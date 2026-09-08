@@ -133,6 +133,10 @@ const AdminDashboard = () => {
               <AdminUserManagement />
             </TabsContent>
             
+            <TabsContent value="logins" className="space-y-4">
+              <AdminLoginActivity />
+            </TabsContent>
+
             <TabsContent value="products" className="space-y-4">
               <AdminProductManagement />
             </TabsContent>
