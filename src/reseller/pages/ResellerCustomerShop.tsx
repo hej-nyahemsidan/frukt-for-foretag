@@ -404,6 +404,11 @@ const ResellerCustomerShop = () => {
               </Button>
             </div>
 
+            <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 text-sm text-blue-900">
+              <p className="font-medium mb-1">Extra beställningar utöver ditt abonnemang</p>
+              <p>Här beställer du tillval och kompletteringar utöver den fruktkorg du redan får levererad. Lägg till exempelvis frukost, mejeri, snacks, läsk eller extra frukt inför möten och event.</p>
+            </div>
+
             {/* Cart */}
             {showCart && cart.length > 0 && (
               <div className="bg-white rounded-xl border border-border p-4 space-y-3">
