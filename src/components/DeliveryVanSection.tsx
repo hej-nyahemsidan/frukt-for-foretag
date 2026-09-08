@@ -3,7 +3,7 @@ import vanAsset from '@/assets/leveransbil-vitaminkorgen.png.asset.json';
 
 const DeliveryVanSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-lightgreen/30">
+    <section className="py-16 md:py-24 bg-gradient-to-b from-white to-sky-50">
       <div className="max-w-screen-xl mx-auto px-6 lg:px-8">
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div className="order-2 md:order-1">

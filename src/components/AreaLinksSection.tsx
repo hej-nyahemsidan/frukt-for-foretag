@@ -14,7 +14,7 @@ const AreaLinksSection = () => {
   const remaining = areas.filter(a => !featuredAreas.includes(a.slug));
 
   return (
-    <section className="py-16 bg-green-50">
+    <section className="py-16 bg-sky-50">
       <div className="container mx-auto px-6">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-green-900 mb-3">
           Fruktkorgar till kontor i hela Stockholm

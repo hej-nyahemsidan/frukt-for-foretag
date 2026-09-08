@@ -25,8 +25,8 @@ const HeroSection = () => {
           }}
         />
         {/* Gradient Fade Overlay (static, does not move with the strip) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-green-50/95 via-green-50/70 to-green-50/20" style={{
-          background: 'linear-gradient(to right, rgba(240,253,244,0.95) 0%, rgba(240,253,244,0.7) 40%, rgba(240,253,244,0.2) 70%, transparent 100%)'
+        <div className="absolute inset-0" style={{
+          background: 'linear-gradient(to right, rgba(240,249,255,0.95) 0%, rgba(240,249,255,0.7) 40%, rgba(240,249,255,0.2) 70%, transparent 100%)'
         }}></div>
       </div>
       
@@ -78,8 +78,8 @@ const HeroSection = () => {
       
       {/* Background Pattern */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-green-200/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-sky-200/30 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl"></div>
       </div>
 
     </section>
