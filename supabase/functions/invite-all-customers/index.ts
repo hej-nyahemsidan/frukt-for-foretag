@@ -24,7 +24,7 @@ function buildInviteEmail(companyName: string, contactPerson: string, actionLink
       <h1 style="color:#ffffff;margin:0;font-size:24px;">🍎 Din webshop är redo!</h1>
     </div>
     <div style="padding:30px 25px;color:#333;">
-      <p style="font-size:16px;">Hej${name ? ' ' + escapeHtml(name) : ''}!</h></p>
+      <p style="font-size:16px;">Hej${name ? ' ' + escapeHtml(name) : ''}!</p>
       <p style="font-size:15px;line-height:1.6;">
         Vi har nu öppnat vår nya webshop för <strong>${escapeHtml(companyName)}</strong>.
         Där kan du enkelt beställa er fruktkorg, se era leveranser och hantera era beställningar – direkt online, dygnet runt.

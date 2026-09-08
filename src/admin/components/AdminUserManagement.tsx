@@ -298,6 +298,31 @@ const AdminUserManagement = () => {
     }
   };
 
+  const handleInviteAll = async () => {
+    const confirmed = window.confirm(
+      'Skicka ett mejl med inloggningslänk till ALLA kunder i registret? Varje kund får en personlig länk där de väljer sitt lösenord.'
+    );
+    if (!confirmed) return;
+    setIsInvitingAll(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('invite-all-customers', { body: {} });
+      if (error) throw error;
+      if (data?.error) throw new Error(data.error);
+      toast({
+        title: 'Utskick klart',
+        description: `${data.sent} av ${data.total} mejl skickades${data.failed > 0 ? ` (${data.failed} misslyckades)` : ''}.`,
+      });
+    } catch (err: any) {
+      toast({
+        title: 'Kunde inte skicka',
+        description: err.message || 'Något gick fel',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsInvitingAll(false);
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="admin-loading-container flex items-center justify-center p-8">
