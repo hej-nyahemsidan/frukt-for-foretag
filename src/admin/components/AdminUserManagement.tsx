@@ -47,6 +47,7 @@ const AdminUserManagement = () => {
   const [inviteName, setInviteName] = useState('');
   const [inviteCompany, setInviteCompany] = useState('');
   const [isInviting, setIsInviting] = useState(false);
+  const [isInvitingAll, setIsInvitingAll] = useState(false);
   const { toast } = useToast();
 
   const fetchUsers = async () => {
@@ -343,6 +344,15 @@ const AdminUserManagement = () => {
           <p className="admin-user-subtitle text-sm sm:text-base text-gray-600">Hantera användare i systemet</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+          <Button
+            onClick={handleInviteAll}
+            variant="outline"
+            disabled={isInvitingAll}
+            className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 py-2 w-full sm:w-auto border-green-600 text-green-700 hover:bg-green-50"
+          >
+            {isInvitingAll ? <RefreshCw className="w-3 h-3 sm:w-4 sm:h-4 animate-spin" /> : <Mail className="w-3 h-3 sm:w-4 sm:h-4" />}
+            <span>{isInvitingAll ? 'Skickar...' : 'Skicka inlogg till alla'}</span>
+          </Button>
           <Button
             onClick={() => setShowInviteModal(true)}
             variant="outline"
