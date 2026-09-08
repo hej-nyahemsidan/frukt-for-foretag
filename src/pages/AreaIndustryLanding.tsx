@@ -260,7 +260,7 @@ const AreaIndustryLanding = () => {
               Vanliga frågor – {industryName} i {areaName}
             </h2>
             <div className="space-y-6">
-              {faqs.map((faq, i) => (
+              {allFaqs.map((faq, i) => (
                 <div key={i} className="bg-white p-6 rounded-xl shadow-sm">
                   <h3 className="font-bold text-green-900 mb-2">{faq.q}</h3>
                   <p className="text-gray-600 text-sm">{faq.a}</p>
