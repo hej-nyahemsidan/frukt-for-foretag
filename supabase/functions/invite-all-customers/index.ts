@@ -116,18 +116,38 @@ serve(async (req) => {
     }
 
     const results: { email: string; status: string; error?: string }[] = [];
+    const seen = new Set<string>();
+    const isEmail = (v: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
 
     for (const customer of customers) {
+      const email = (customer.email ?? '').trim().toLowerCase();
+      if (!isEmail(email) || seen.has(email)) continue;
+      seen.add(email);
+
       try {
-        // Generate a personal recovery link (lets the customer choose a password)
-        const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
+        const makeLink = () => supabaseAdmin.auth.admin.generateLink({
           type: 'recovery',
-          email: customer.email,
+          email,
           options: { redirectTo: 'https://vitaminkorgen.se/reset-password' },
         });
 
+        // Generate a personal recovery link (lets the customer choose a password)
+        let { data: linkData, error: linkError } = await makeLink();
+
+        // No auth account yet? Create one, then generate the link again.
         if (linkError || !linkData?.properties?.action_link) {
-          results.push({ email: customer.email, status: 'failed', error: linkError?.message || 'Kunde inte skapa länk' });
+          const { error: createError } = await supabaseAdmin.auth.admin.createUser({
+            email,
+            email_confirm: true,
+            password: crypto.randomUUID(),
+          });
+          if (!createError) {
+            ({ data: linkData, error: linkError } = await makeLink());
+          }
+        }
+
+        if (linkError || !linkData?.properties?.action_link) {
+          results.push({ email, status: 'failed', error: linkError?.message || 'Kunde inte skapa länk' });
           continue;
         }
 
