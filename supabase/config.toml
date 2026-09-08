@@ -36,5 +36,10 @@ verify_jwt = true
 [functions.invite-all-customers]
 verify_jwt = true
 
+[functions.send-login-credentials]
+verify_jwt = true
+
+
+
 [functions.forward-order-to-webshop]
 verify_jwt = false
