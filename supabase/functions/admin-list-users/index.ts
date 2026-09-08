@@ -61,14 +61,39 @@ serve(async (req) => {
       if (o.user_id) orderCounts.set(o.user_id, (orderCounts.get(o.user_id) || 0) + 1);
     });
 
-    const users = allUsers.map(u => ({
-      id: u.id,
-      email: u.email,
-      created_at: u.created_at,
-      last_sign_in_at: u.last_sign_in_at,
-      email_confirmed_at: u.email_confirmed_at,
-      order_count: orderCounts.get(u.id) || 0,
-    }));
+    // Fetch latest invite token per email (7-day activation links)
+    const { data: tokenRows } = await supabaseAdmin
+      .from('customer_invite_tokens')
+      .select('email, expires_at, used_at, created_at')
+      .order('created_at', { ascending: false });
+    const tokenMap = new Map<string, any>();
+    (tokenRows || []).forEach((t: any) => {
+      const key = (t.email || '').toLowerCase();
+      if (!tokenMap.has(key)) tokenMap.set(key, t);
+    });
+
+    // Company names
+    const { data: customerRows } = await supabaseAdmin
+      .from('customers')
+      .select('user_id, company_name');
+    const companyMap = new Map<string, string>();
+    (customerRows || []).forEach((c: any) => companyMap.set(c.user_id, c.company_name));
+
+    const users = allUsers.map(u => {
+      const t = tokenMap.get((u.email || '').toLowerCase());
+      return {
+        id: u.id,
+        email: u.email,
+        company_name: companyMap.get(u.id) || null,
+        created_at: u.created_at,
+        last_sign_in_at: u.last_sign_in_at,
+        email_confirmed_at: u.email_confirmed_at,
+        order_count: orderCounts.get(u.id) || 0,
+        invite_created_at: t?.created_at ?? null,
+        invite_expires_at: t?.expires_at ?? null,
+        invite_used_at: t?.used_at ?? null,
+      };
+    });
 
     return new Response(JSON.stringify({ users }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
