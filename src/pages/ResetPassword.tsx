@@ -28,9 +28,21 @@ const ResetPassword = () => {
         const url = new URL(window.location.href);
         const hash = new URLSearchParams(url.hash.replace(/^#/, ''));
         const code = url.searchParams.get('code');
-        const tokenHash = url.searchParams.get('token_hash') || hash.get('token_hash');
+        const inviteToken = url.searchParams.get('invite_token');
+        let tokenHash = url.searchParams.get('token_hash') || hash.get('token_hash');
         const accessToken = hash.get('access_token');
         const refreshToken = hash.get('refresh_token');
+
+        if (inviteToken) {
+          // Long-lived invitation token: exchange it for a fresh recovery link.
+          const { data, error } = await supabase.functions.invoke('consume-invite-token', {
+            body: { invite_token: inviteToken },
+          });
+          if (error || !data?.token_hash) {
+            throw new Error(data?.error || error?.message || 'Ogiltig eller utgången inbjudningskod');
+          }
+          tokenHash = data.token_hash;
+        }
 
         if (accessToken && refreshToken) {
           await supabase.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
@@ -45,6 +57,15 @@ const ResetPassword = () => {
           setHasSession(!!data.session);
           // Clean the URL so tokens are not left in the address bar
           window.history.replaceState({}, '', '/reset-password');
+        }
+      } catch (e) {
+        if (!cancelled) {
+          setHasSession(false);
+          toast({
+            title: 'Inbjudan kunde inte aktiveras',
+            description: e instanceof Error ? e.message : 'Länken är ogiltig eller har gått ut.',
+            variant: 'destructive',
+          });
         }
       } finally {
         if (!cancelled) setChecking(false);
@@ -110,7 +131,7 @@ const ResetPassword = () => {
             <div className="text-center space-y-4">
               <h1 className="text-xl font-bold">Länken har gått ut</h1>
               <p className="text-sm text-muted-foreground">
-                Inbjudan är personlig och giltig en begränsad tid. Begär en ny via "Glömt ditt lösenord" på inloggningssidan.
+                Inbjudan är personlig och giltig i 7 dagar. Begär en ny via "Glömt ditt lösenord" på inloggningssidan.
               </p>
               <Button asChild className="w-full bg-green-600 hover:bg-green-700 text-white">
                 <Link to="/kundportal">Till inloggningen</Link>
