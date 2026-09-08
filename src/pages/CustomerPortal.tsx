@@ -46,8 +46,10 @@ const CustomerPortal = () => {
       return;
     }
     setIsLoading(true);
-    const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
-      redirectTo: `${window.location.origin}/reset-password`,
+    // Use our own edge function so the link always points to vitaminkorgen.se
+    // (Supabase's Site URL setting would otherwise send users to localhost).
+    const { error } = await supabase.functions.invoke('request-password-reset', {
+      body: { email: email.trim() },
     });
     setIsLoading(false);
     toast({
