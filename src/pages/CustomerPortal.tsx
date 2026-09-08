@@ -5,6 +5,7 @@ import { Label } from '@/components/ui/label';
 import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
@@ -34,6 +35,29 @@ const CustomerPortal = () => {
       </div>
     );
   }
+
+  const handleForgotPassword = async () => {
+    if (!email) {
+      toast({
+        title: 'Fyll i din e-postadress',
+        description: 'Skriv in din e-post ovan så skickar vi en återställningslänk.',
+        variant: 'destructive',
+      });
+      return;
+    }
+    setIsLoading(true);
+    const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
+      redirectTo: `${window.location.origin}/reset-password`,
+    });
+    setIsLoading(false);
+    toast({
+      title: error ? 'Kunde inte skicka länken' : 'Kolla din e-post',
+      description: error
+        ? 'Försök igen om en stund eller ring oss på 010-183 98 36.'
+        : 'Vi har skickat en länk där du kan välja ett nytt lösenord.',
+      variant: error ? 'destructive' : undefined,
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -191,12 +215,14 @@ const CustomerPortal = () => {
 
               {/* Forgot Password Link */}
               <div className="text-right">
-                <a 
-                  href="#" 
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                <button
+                  type="button"
+                  onClick={handleForgotPassword}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors underline-offset-2 hover:underline"
+                  disabled={isLoading}
                 >
                   Glömt ditt lösenord?
-                </a>
+                </button>
               </div>
 
               {/* Login Button */}

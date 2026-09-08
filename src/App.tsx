@@ -27,6 +27,7 @@ const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Products = lazy(() => import("./pages/Products"));
 const CustomerPortal = lazy(() => import("./pages/CustomerPortal"));
+const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const QuoteRequest = lazy(() => import("./pages/QuoteRequest"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 const CookiePolicy = lazy(() => import("./pages/CookiePolicy"));
@@ -122,6 +123,7 @@ const App = () => (
                 <Route path="/om-oss" element={<About />} />
                 <Route path="/kontakt" element={<Contact />} />
                 <Route path="/kundportal" element={<CustomerPortal />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="/dashboard" element={
                   <ProtectedRoute>
                     <CustomerDashboard />

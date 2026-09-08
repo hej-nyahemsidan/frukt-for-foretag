@@ -15,31 +15,38 @@ const escapeHtml = (s: string): string =>
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-function buildInviteEmail(companyName: string, contactPerson: string, actionLink: string): string {
+function buildInviteEmail(companyName: string, contactPerson: string, actionLink: string, email: string): string {
   const name = contactPerson && contactPerson !== 'Kontaktperson' ? contactPerson : '';
   return `<!DOCTYPE html><html><head><meta charset="utf-8"></head>
 <body style="font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f5f5f5;margin:0;padding:20px;">
   <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:8px;overflow:hidden;">
     <div style="background:linear-gradient(135deg,#4CAF50,#66BB6A);padding:30px 20px;text-align:center;">
-      <h1 style="color:#ffffff;margin:0;font-size:24px;">🍎 Din webshop är redo!</h1>
+      <h1 style="color:#ffffff;margin:0;font-size:24px;">🍎 Välkommen till din nya webshop!</h1>
     </div>
     <div style="padding:30px 25px;color:#333;">
       <p style="font-size:16px;">Hej${name ? ' ' + escapeHtml(name) : ''}!</p>
       <p style="font-size:15px;line-height:1.6;">
-        Vi har nu öppnat vår nya webshop för <strong>${escapeHtml(companyName)}</strong>.
-        Där kan du enkelt beställa er fruktkorg, se era leveranser och hantera era beställningar – direkt online, dygnet runt.
+        Vi är glada att ha <strong>${escapeHtml(companyName)}</strong> som kund hos Vitaminkorgen – och nu öppnar vi vår nya webshop för er.
       </p>
+      <p style="font-size:15px;line-height:1.6;">I webshopen kan ni:</p>
+      <ul style="font-size:15px;line-height:1.8;padding-left:20px;margin:0 0 20px;">
+        <li>Beställa fruktkorgar, fruktlådor och tillbehör dygnet runt</li>
+        <li>Se era leveranser och tidigare beställningar</li>
+        <li>Ändra leveransdagar och lägga till extra varor</li>
+      </ul>
       <p style="font-size:15px;line-height:1.6;">
-        Klicka på knappen nedan för att välja ditt lösenord och logga in för första gången:
+        Ditt användarnamn är din e-postadress: <strong>${escapeHtml(email)}</strong>.
+        Klicka på knappen nedan för att välja ditt eget lösenord och logga in för första gången:
       </p>
       <div style="text-align:center;margin:30px 0;">
         <a href="${actionLink}" style="background:#4CAF50;color:#ffffff;padding:14px 32px;border-radius:6px;text-decoration:none;font-size:16px;font-weight:bold;display:inline-block;">
-          Aktivera ditt konto
+          Välj lösenord &amp; logga in
         </a>
       </div>
       <p style="font-size:13px;color:#777;line-height:1.5;">
-        Länken är personlig och giltig i 24 timmar. Om den har gått ut kan du begära en ny via
-        "Glömt lösenord" på <a href="https://vitaminkorgen.se/kundportal" style="color:#4CAF50;">vitaminkorgen.se/kundportal</a>.
+        Länken är personlig och giltig i 24 timmar. Har den gått ut? Klicka på "Glömt ditt lösenord?" på
+        <a href="https://vitaminkorgen.se/kundportal" style="color:#4CAF50;">vitaminkorgen.se/kundportal</a> så får du en ny direkt.
+        Du kan när som helst byta lösenord på samma sätt.
       </p>
       <p style="font-size:15px;margin-top:25px;">
         Har du frågor? Svara på detta mejl eller ring oss på
@@ -109,41 +116,62 @@ serve(async (req) => {
     }
 
     const results: { email: string; status: string; error?: string }[] = [];
+    const seen = new Set<string>();
+    const isEmail = (v: string) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
 
     for (const customer of customers) {
+      const email = (customer.email ?? '').trim().toLowerCase();
+      if (!isEmail(email) || seen.has(email)) continue;
+      seen.add(email);
+
       try {
-        // Generate a personal recovery link (lets the customer choose a password)
-        const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
+        const makeLink = () => supabaseAdmin.auth.admin.generateLink({
           type: 'recovery',
-          email: customer.email,
+          email,
           options: { redirectTo: 'https://vitaminkorgen.se/reset-password' },
         });
 
+        // Generate a personal recovery link (lets the customer choose a password)
+        let { data: linkData, error: linkError } = await makeLink();
+
+        // No auth account yet? Create one, then generate the link again.
         if (linkError || !linkData?.properties?.action_link) {
-          results.push({ email: customer.email, status: 'failed', error: linkError?.message || 'Kunde inte skapa länk' });
+          const { error: createError } = await supabaseAdmin.auth.admin.createUser({
+            email,
+            email_confirm: true,
+            password: crypto.randomUUID(),
+          });
+          if (!createError) {
+            ({ data: linkData, error: linkError } = await makeLink());
+          }
+        }
+
+        if (linkError || !linkData?.properties?.action_link) {
+          results.push({ email, status: 'failed', error: linkError?.message || 'Kunde inte skapa länk' });
           continue;
         }
 
         const html = buildInviteEmail(
           customer.company_name || '',
           customer.contact_person || '',
-          linkData.properties.action_link
+          linkData.properties.action_link,
+          email
         );
 
         const { error: sendError } = await resend.emails.send({
           from: 'Vitaminkorgen <kontakt@vitaminkorgen.se>',
-          to: [customer.email],
-          subject: 'Din webshop hos Vitaminkorgen är redo – aktivera ditt konto',
+          to: [email],
+          subject: 'Välkommen till Vitaminkorgens webshop – aktivera ditt konto',
           html,
         });
 
         if (sendError) {
-          results.push({ email: customer.email, status: 'failed', error: sendError.message });
+          results.push({ email, status: 'failed', error: sendError.message });
         } else {
-          results.push({ email: customer.email, status: 'sent' });
+          results.push({ email, status: 'sent' });
         }
       } catch (e) {
-        results.push({ email: customer.email, status: 'failed', error: e instanceof Error ? e.message : 'Okänt fel' });
+        results.push({ email, status: 'failed', error: e instanceof Error ? e.message : 'Okänt fel' });
       }
 
       // Be kind to the email API rate limits
