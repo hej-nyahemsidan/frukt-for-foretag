@@ -90,7 +90,7 @@ const AdminDashboard = () => {
       <main className="admin-main max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="admin-main-content px-4 py-6 sm:px-0">
           <Tabs defaultValue="overview" className="w-full">
-            <TabsList className="flex w-full overflow-x-auto mb-4 sm:mb-6 lg:grid lg:grid-cols-7">
+            <TabsList className="flex w-full overflow-x-auto mb-4 sm:mb-6 lg:grid lg:grid-cols-8">
               <TabsTrigger value="overview" className="flex-shrink-0 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-3">
                 <LayoutDashboard className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>Översikt</span>
@@ -98,6 +98,10 @@ const AdminDashboard = () => {
               <TabsTrigger value="users" className="flex-shrink-0 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-3">
                 <Users className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>Användare</span>
+              </TabsTrigger>
+              <TabsTrigger value="logins" className="flex-shrink-0 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-3">
+                <KeyRound className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span>Inloggningar</span>
               </TabsTrigger>
               <TabsTrigger value="products" className="flex-shrink-0 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-3">
                 <ShoppingCart className="w-3 h-3 sm:w-4 sm:h-4" />
