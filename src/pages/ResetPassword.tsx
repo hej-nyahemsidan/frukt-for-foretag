@@ -131,7 +131,7 @@ const ResetPassword = () => {
             <div className="text-center space-y-4">
               <h1 className="text-xl font-bold">Länken har gått ut</h1>
               <p className="text-sm text-muted-foreground">
-                Inbjudan är personlig och giltig en begränsad tid. Begär en ny via "Glömt ditt lösenord" på inloggningssidan.
+                Inbjudan är personlig och giltig i 7 dagar. Begär en ny via "Glömt ditt lösenord" på inloggningssidan.
               </p>
               <Button asChild className="w-full bg-green-600 hover:bg-green-700 text-white">
                 <Link to="/kundportal">Till inloggningen</Link>
