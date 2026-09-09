@@ -156,7 +156,7 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, se
 
 
       {/* Select Days Section */}
-      <div className="mb-6 sm:mb-8">
+      <div id="valj-leveransdag" className="mb-6 sm:mb-8 p-2 transition-all">
         <h3 className="text-base sm:text-lg font-semibold text-charcoal mb-3 sm:mb-4">Välj vilka dagar</h3>
         <div className="space-y-3">
           {isWeeklySubscription ? (
