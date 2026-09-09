@@ -3,6 +3,7 @@ import { Check, Plus } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { Button } from '@/components/ui/button';
 import DaySelectionDialog from '@/components/DaySelectionDialog';
+import { toast } from 'sonner';
 
 interface AddToCartButtonProps {
   product: {
