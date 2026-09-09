@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useCart } from '@/contexts/CartContext';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, ShoppingCart, Plus, Minus, X } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 interface OrderSidebarProps {
@@ -23,7 +23,7 @@ interface OrderSidebarProps {
 
 const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, selectedDays, setSelectedDays, currentDay, setCurrentDay, onCheckout }: OrderSidebarProps) => {
   const navigate = useNavigate();
-  const { getItemsByOrderType } = useCart();
+  const { getItemsByOrderType, updateQuantity, removeItem } = useCart();
   const isMobile = useIsMobile();
   const days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
   
