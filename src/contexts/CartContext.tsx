@@ -37,54 +37,66 @@ interface CartProviderProps {
   children: ReactNode;
 }
 
+const CART_STORAGE_PREFIX = 'shopping-cart:';
+const storageKeyFor = (userId: string | null) => `${CART_STORAGE_PREFIX}${userId ?? 'guest'}`;
+
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
-  
-  const CART_COOKIE_NAME = 'shopping-cart';
-  
-  // Simple cookie utilities for cart storage (necessary cookies)
-  const setCookie = (name: string, value: string, days: number = 30) => {
-    const expires = new Date();
-    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
-  };
-  
-  const getCookie = (name: string): string | null => {
-    if (typeof document === 'undefined') return null;
-    const nameEQ = name + '=';
-    const ca = document.cookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-      if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-    }
-    return null;
-  };
+  const [userId, setUserId] = useState<string | null>(null);
+  const [ready, setReady] = useState(false);
 
-  // Load cart from cookie on mount
+  // Remove any legacy shared cart cookie (was visible across accounts on the same device)
   useEffect(() => {
-    const savedCart = getCookie(CART_COOKIE_NAME);
-    if (savedCart) {
-      try {
-        const parsedCart = JSON.parse(savedCart);
-        if (Array.isArray(parsedCart)) {
-          setItems(parsedCart);
-        }
-      } catch (error) {
-        console.error('Failed to parse cart from cookie:', error);
-      }
+    if (typeof document !== 'undefined') {
+      document.cookie = 'shopping-cart=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;SameSite=Lax';
     }
   }, []);
 
-  // Save cart to cookie whenever items change
+  // Track which user the cart belongs to
   useEffect(() => {
+    let active = true;
+
+    const load = (uid: string | null) => {
+      setUserId(uid);
+      try {
+        const saved = localStorage.getItem(storageKeyFor(uid));
+        const parsed = saved ? JSON.parse(saved) : [];
+        setItems(Array.isArray(parsed) ? parsed : []);
+      } catch {
+        setItems([]);
+      }
+      setReady(true);
+    };
+
+    supabase.auth.getSession().then(({ data }) => {
+      if (active) load(data.session?.user?.id ?? null);
+    });
+
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+      const uid = session?.user?.id ?? null;
+      setUserId((prev) => {
+        if (prev === uid) return prev;
+        load(uid);
+        return uid;
+      });
+    });
+
+    return () => {
+      active = false;
+      sub.subscription.unsubscribe();
+    };
+  }, []);
+
+  // Persist the cart under the current user's own key
+  useEffect(() => {
+    if (!ready) return;
+    const key = storageKeyFor(userId);
     if (items.length > 0) {
-      setCookie(CART_COOKIE_NAME, JSON.stringify(items), 30); // 30 days expiry
+      localStorage.setItem(key, JSON.stringify(items));
     } else {
-      // Clear cookie when cart is empty
-      setCookie(CART_COOKIE_NAME, '', -1);
+      localStorage.removeItem(key);
     }
-  }, [items]);
+  }, [items, userId, ready]);
 
   const addItem = (newItem: Omit<CartItem, 'quantity'> & { quantity?: number }) => {
     setItems(prev => {
