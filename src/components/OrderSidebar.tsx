@@ -229,6 +229,67 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, se
         </div>
       )}
 
+      {/* Cart contents */}
+      <div className="mb-6 rounded-lg border bg-white p-3">
+        <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold text-charcoal">
+          <ShoppingCart className="h-4 w-4 text-[#4CAF50]" />
+          Din varukorg {hasItems && <span className="text-muted-foreground">({totalItems} st)</span>}
+        </h3>
+        {!hasItems ? (
+          <p className="text-xs text-muted-foreground">Varukorgen är tom. Välj dag och lägg till varor.</p>
+        ) : (
+          <div className="max-h-64 space-y-2 overflow-y-auto">
+            {relevantItems.map((item) => {
+              const itemKey = [item.id, item.size || '', item.assignedDay || '', item.orderType || ''].join('-');
+              return (
+                <div key={itemKey} className="flex items-start justify-between gap-2 rounded border p-2">
+                  <div className="min-w-0">
+                    <p className="truncate text-xs font-medium text-charcoal">{item.name}</p>
+                    <p className="text-[11px] text-muted-foreground">
+                      {[item.size, item.assignedDay].filter(Boolean).join(' · ')}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-6 w-6"
+                      onClick={() => updateQuantity(itemKey, item.quantity - 1)}
+                      aria-label={`Minska antal ${item.name}`}
+                    >
+                      <Minus className="h-3 w-3" />
+                    </Button>
+                    <span className="w-5 text-center text-xs font-semibold">{item.quantity}</span>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="h-6 w-6"
+                      onClick={() => updateQuantity(itemKey, item.quantity + 1)}
+                      aria-label={`Öka antal ${item.name}`}
+                    >
+                      <Plus className="h-3 w-3" />
+                    </Button>
+                    <button
+                      onClick={() => removeItem(itemKey)}
+                      className="ml-1 text-muted-foreground hover:text-destructive"
+                      aria-label={`Ta bort ${item.name}`}
+                    >
+                      <X className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+            <div className="flex items-center justify-between border-t pt-2 text-sm font-semibold">
+              <span>Totalt</span>
+              <span className="text-[#4CAF50]">
+                {relevantItems.reduce((sum, i) => sum + i.price * i.quantity, 0)} kr
+              </span>
+            </div>
+          </div>
+        )}
+      </div>
+
       {/* Validation Messages */}
       {!canProceed && (
         <div className="mb-6">
