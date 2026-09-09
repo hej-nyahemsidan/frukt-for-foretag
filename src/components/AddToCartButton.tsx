@@ -88,9 +88,21 @@ const AddToCartButton = ({
       return;
     }
 
-    // If only one day or no days selected, add directly
-    const assignedDays = selectedDays.length === 1 ? [selectedDays[0]] : [];
-    addProductToCart(assignedDays);
+    // No day chosen yet — tell the customer and take them to the day picker
+    if (selectedDays.length === 0) {
+      toast.error('Välj leveransdag först', {
+        description: 'Kryssa i vilken dag du vill ha leverans, sedan kan du lägga till varor.',
+      });
+      const daySection = document.getElementById('valj-leveransdag');
+      if (daySection) {
+        daySection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        daySection.classList.add('ring-2', 'ring-destructive', 'rounded-lg');
+        setTimeout(() => daySection.classList.remove('ring-2', 'ring-destructive', 'rounded-lg'), 2500);
+      }
+      return;
+    }
+
+    addProductToCart([selectedDays[0]]);
   };
 
   const addProductToCart = (assignedDays: string[]) => {
