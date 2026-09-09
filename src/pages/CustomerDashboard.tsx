@@ -189,31 +189,33 @@ const CustomerDashboard = () => {
             </Link>
           </div>
 
-          {/* Order Selection Section - Now on top */}
-          <div className="w-full">
-            <OrderSidebar 
-              packagePlan={packagePlan}
-              setPackagePlan={setPackagePlan}
-              orderType={orderType}
-              setOrderType={setOrderType}
-              selectedDays={selectedDays}
-              setSelectedDays={setSelectedDays}
-              currentDay={currentDay}
-              setCurrentDay={setCurrentDay}
-              onCheckout={handleCheckout}
-            />
-          </div>
-          
-          {/* Products Section - Now below */}
-          <div className="w-full">
-          <ProductDisplay 
-            activeCategory={activeCategory}
-            setActiveCategory={setActiveCategory}
-            selectedDays={selectedDays}
-            currentDay={currentDay}
-            orderType={orderType}
-            onCheckout={handleCheckout}
-          />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-start">
+            {/* Products Section - left */}
+            <div className="lg:col-span-2 order-2 lg:order-1">
+              <ProductDisplay 
+                activeCategory={activeCategory}
+                setActiveCategory={setActiveCategory}
+                selectedDays={selectedDays}
+                currentDay={currentDay}
+                orderType={orderType}
+                onCheckout={handleCheckout}
+              />
+            </div>
+
+            {/* Order & cart - right side, sticky on desktop */}
+            <div className="lg:col-span-1 order-1 lg:order-2 lg:sticky lg:top-24">
+              <OrderSidebar 
+                packagePlan={packagePlan}
+                setPackagePlan={setPackagePlan}
+                orderType={orderType}
+                setOrderType={setOrderType}
+                selectedDays={selectedDays}
+                setSelectedDays={setSelectedDays}
+                currentDay={currentDay}
+                setCurrentDay={setCurrentDay}
+                onCheckout={handleCheckout}
+              />
+            </div>
           </div>
         </div>
       </main>
