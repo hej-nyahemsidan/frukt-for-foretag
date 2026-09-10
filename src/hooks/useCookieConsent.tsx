@@ -95,6 +95,7 @@ export const useCookieConsent = () => {
     setHasConsented(true);
     setCookieSettings(newSettings);
     setShowBanner(false);
+    window.dispatchEvent(new CustomEvent('cookie-consent-updated', { detail: newSettings }));
   };
 
   // Accept only necessary cookies
@@ -107,6 +108,7 @@ export const useCookieConsent = () => {
     setHasConsented(true);
     setCookieSettings(newSettings);
     setShowBanner(false);
+    window.dispatchEvent(new CustomEvent('cookie-consent-updated', { detail: newSettings }));
 
     // Remove any non-necessary cookies that might have been set
     cleanupNonNecessaryCookies();
@@ -118,6 +120,7 @@ export const useCookieConsent = () => {
     
     setCookieUtil(SETTINGS_COOKIE_NAME, JSON.stringify(updatedSettings));
     setCookieSettings(updatedSettings);
+    window.dispatchEvent(new CustomEvent('cookie-consent-updated', { detail: updatedSettings }));
     
     // If disabling categories, clean up those cookies
     if (newSettings.analytics === false || newSettings.marketing === false) {

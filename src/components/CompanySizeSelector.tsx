@@ -61,6 +61,12 @@ const CompanySizeSelector = () => {
 
   useEffect(() => {
     void trackConversionEvent('basket_selector_viewed');
+    const handleConsent = (event: Event) => {
+      const settings = (event as CustomEvent<{ analytics?: boolean }>).detail;
+      if (settings?.analytics) void trackConversionEvent('basket_selector_viewed');
+    };
+    window.addEventListener('cookie-consent-updated', handleConsent);
+    return () => window.removeEventListener('cookie-consent-updated', handleConsent);
   }, []);
 
   const calculation = useMemo(() => {
