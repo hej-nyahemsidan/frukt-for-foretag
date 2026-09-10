@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import AreaLinksSection from '@/components/AreaLinksSection';
 import HeroSection from '@/components/HeroSection';
 import TrustedBySection from '@/components/TrustedBySection';
+import CompanySizeSelector from '@/components/CompanySizeSelector';
 import CustomerReviewsSection from '@/components/CustomerReviewsSection';
 import FeaturesSection from '@/components/FeaturesSection';
 import ProductShowcase from '@/components/ProductShowcase';
@@ -26,6 +27,7 @@ const Index = () => {
       <main className="space-y-0">
         <HeroSection />
         <TrustedBySection />
+        <CompanySizeSelector />
         <ProductShowcase />
         <CustomerReviewsSection />
         <FeaturesSection />

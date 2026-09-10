@@ -1,22 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Star, Info } from 'lucide-react';
+import { ShoppingCart, Info } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 
 interface Product {
   id: string;
   name: string;
   image_url: string;
-  popular?: boolean;
+  prices: Record<string, number>;
 }
 
 const ProductShowcase = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-
-  // Define which products should have the popular badge
-  const popularProductNames = ['Fruktkorg Premium', 'Fruktkorg Banan Plus'];
 
   useEffect(() => {
     fetchProducts();
@@ -26,19 +23,18 @@ const ProductShowcase = () => {
     try {
       const { data, error } = await supabase
         .from('products')
-        .select('id, name, image_url')
+        .select('id, name, image_url, prices')
         .eq('category', 'fruktkorgar')
         .order('display_order', { ascending: true });
 
       if (error) throw error;
 
-      // Mark popular products
-      const productsWithPopular = (data || []).map(product => ({
+      const normalizedProducts = (data || []).map(product => ({
         ...product,
-        popular: popularProductNames.includes(product.name)
+        prices: product.prices as Record<string, number>,
       }));
 
-      setProducts(productsWithPopular);
+      setProducts(normalizedProducts);
     } catch (error) {
       console.error('Error fetching products:', error);
     } finally {
@@ -88,14 +84,6 @@ const ProductShowcase = () => {
                 {/* Decorative organic shape */}
                 <div className="absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br from-primary/5 to-secondary/10 rounded-full blur-2xl"></div>
                 
-                {/* Popular Badge */}
-                {product.popular && (
-                  <div className="absolute top-4 right-4 bg-gradient-to-br from-[hsl(28_85%_58%)] to-[hsl(28_85%_48%)] text-white px-3 py-1.5 rounded-full flex items-center gap-1.5 text-xs font-semibold z-10 shadow-md">
-                    <Star className="w-3.5 h-3.5 fill-current" />
-                    Bästsäljare
-                  </div>
-                )}
-
                 {/* Product Image */}
                 <div className="mb-5 relative overflow-hidden rounded-2xl">
                   <img
@@ -114,10 +102,10 @@ const ProductShowcase = () => {
 
                 {/* Product Content */}
                 <div className="flex-1 flex flex-col relative z-10">
-                  {/* Weight */}
-                  <p className="text-muted-foreground text-sm mb-2 font-medium">
-                    Från 4kg och uppåt
-                  </p>
+                  <div className="flex items-center justify-between gap-2 mb-2 text-sm font-medium">
+                    <span className="text-muted-foreground">Från 4 kg</span>
+                    <span className="text-primary font-bold">Från {product.prices['4kg']} kr</span>
+                  </div>
 
                   {/* Product Name */}
                   <h3 className="font-bold text-foreground mb-5 text-base group-hover:text-primary transition-colors min-h-[3rem]">
@@ -130,7 +118,7 @@ const ProductShowcase = () => {
                     size="sm"
                   >
                     <ShoppingCart className="w-4 h-4 mr-2" />
-                    Läs mer
+                    Se och beställ
                   </Button>
                 </div>
               </div>

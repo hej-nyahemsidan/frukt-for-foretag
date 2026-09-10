@@ -44,7 +44,7 @@ const PricelistPopup = ({ isOpen, onClose }: PricelistPopupProps) => {
         },
       });
 
-      trackContactSubmitted();
+      trackContactSubmitted('pricelist_popup');
       setSubmitted(true);
     } catch (err) {
       console.error('Pricelist lead error:', err);

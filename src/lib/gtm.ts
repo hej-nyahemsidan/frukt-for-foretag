@@ -17,8 +17,16 @@ export function trackQuoteSubmitted(totalPrice: number, itemCount: number) {
 }
 
 // Contact form submitted
-export function trackContactSubmitted() {
-  push('contact_submitted');
+export function trackContactSubmitted(source: string) {
+  push('contact_submitted', { source });
+}
+
+export function trackCompanySizeSelected(employeeCount: number) {
+  push('company_size_selected', { employeeCount });
+}
+
+export function trackRecommendationClick(employeeCount: number, destination: 'quote' | 'products') {
+  push('recommendation_click', { employeeCount, destination });
 }
 
 // Exit intent lead captured

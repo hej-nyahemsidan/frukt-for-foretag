@@ -132,8 +132,7 @@ const Bestall = () => {
       toast({ title: 'Välj leveransdag', variant: 'destructive' });
       return;
     }
-    const orig = p.prices[sel.size] || 0;
-    const price = Math.round(orig * 0.92);
+    const price = p.prices[sel.size] || 0;
     setCart(prev => [...prev, {
       uid: `${id}-${sel.size}-${Date.now()}`,
       type: 'basket',
@@ -278,9 +277,6 @@ const Bestall = () => {
               <h2 className="text-3xl sm:text-4xl font-bold text-center text-foreground mb-2">Välj din fruktkorg</h2>
               <p className="text-center text-muted-foreground mb-8">Lägg till en eller flera korgar i din beställning</p>
 
-              <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-center max-w-3xl mx-auto">
-                <span className="text-red-600 font-semibold text-sm">🎉 Erbjudande i {new Date().toLocaleDateString("sv-SE", { month: "long" })} – 8% rabatt på alla fruktkorgar!</span>
-              </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {fruktkorgar.map(p => {
                   const sel = pending[p.id] || { qty: 1, size: '4kg' };
@@ -288,11 +284,9 @@ const Bestall = () => {
                   const img = imageMap[p.image_url] || p.image_url;
                   const currentSize = sel.size || '4kg';
                   const currentOrig = p.prices[currentSize] || 0;
-                  const currentDisc = Math.round(currentOrig * 0.92);
                   return (
                     <Card key={p.id} className="overflow-hidden flex flex-col">
                       <div className="bg-primary/5 aspect-square flex items-center justify-center p-4 relative">
-                        <div className="absolute top-2 left-2 z-10 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">-8%</div>
                         <img src={img} alt={p.name} className="max-h-full object-contain" />
                       </div>
                       <div className="p-4 flex-1 flex flex-col">
@@ -305,16 +299,14 @@ const Bestall = () => {
                               <div className="flex items-center justify-between w-full pr-2">
                                 <span className="font-semibold">{currentSize}</span>
                                 <span>
-                                  <span className="text-xs text-muted-foreground line-through mr-1">{currentOrig} kr</span>
-                                  <span className="font-bold text-red-600">{currentDisc} kr</span>
+                                  <span className="font-bold text-primary">{currentOrig} kr</span>
                                 </span>
                               </div>
                             </SelectTrigger>
                             <SelectContent>
                               {sizes.map(sz => {
-                                const orig = p.prices[sz];
-                                const disc = Math.round(orig * 0.92);
-                                return <SelectItem key={sz} value={sz}>{sz} – {disc} kr</SelectItem>;
+                                const price = p.prices[sz];
+                                return <SelectItem key={sz} value={sz}>{sz} – {price} kr</SelectItem>;
                               })}
                             </SelectContent>
                           </Select>
