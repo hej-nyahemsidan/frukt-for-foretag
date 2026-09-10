@@ -4,9 +4,20 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
-import { TrendingUp, DollarSign, ShoppingBag, Percent, Save } from 'lucide-react';
+import { TrendingUp, DollarSign, ShoppingBag, Percent, Save, UserPlus, PauseCircle, UserMinus, Users } from 'lucide-react';
 import type { Json } from '@/integrations/supabase/types';
+
+interface Customer {
+  id: string;
+  company_name: string;
+  contact_person: string | null;
+  email: string;
+  created_at: string;
+}
+
+type SegmentKey = 'new' | 'active' | 'paused' | 'lost';
 
 interface Product {
   id: string;
@@ -49,6 +60,9 @@ const AdminDashboardOverview = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [drafts, setDrafts] = useState<Record<string, Record<string, string>>>({});
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [orderDates, setOrderDates] = useState<{ customer_id: string; created_at: string }[]>([]);
+  const [openSegment, setOpenSegment] = useState<SegmentKey | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -57,11 +71,15 @@ const AdminDashboardOverview = () => {
 
   const fetchAll = async () => {
     setLoading(true);
-    const [{ data: prodData, error: prodErr }, { data: ordData, error: ordErr }, { data: ppData, error: ppErr }] = await Promise.all([
+    const [{ data: prodData, error: prodErr }, { data: ordData, error: ordErr }, { data: ppData, error: ppErr }, { data: custData }, { data: ordDates }] = await Promise.all([
       supabase.from('products').select('id, name, category, prices').order('category').order('name'),
       supabase.from('orders').select('id, total_price, items, created_at').order('created_at', { ascending: false }),
       supabase.from('product_purchase_prices').select('product_id, prices'),
+      supabase.from('customers').select('id, company_name, contact_person, email, created_at').order('created_at', { ascending: false }),
+      supabase.from('orders').select('customer_id, created_at'),
     ]);
+    setCustomers(((custData ?? []) as any[]) as Customer[]);
+    setOrderDates(((ordDates ?? []) as any[]) as { customer_id: string; created_at: string }[]);
     if (prodErr || ordErr || ppErr) {
       toast({ title: 'Fel', description: 'Kunde inte hämta data.', variant: 'destructive' });
     }
@@ -116,6 +134,51 @@ const AdminDashboardOverview = () => {
     const margin = revenue > 0 ? (profit / revenue) * 100 : 0;
     return { revenue, cost, profit, margin, orderCount: orders.length, itemCount };
   }, [orders, purchaseLookup]);
+
+  const segments = useMemo(() => {
+    const now = new Date();
+    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+    const prevMonthStart = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+    const day = 24 * 60 * 60 * 1000;
+
+    const lastOrder = new Map<string, number>();
+    orderDates.forEach((o) => {
+      if (!o.customer_id) return;
+      const t = new Date(o.created_at).getTime();
+      if (!lastOrder.has(o.customer_id) || t > (lastOrder.get(o.customer_id) as number)) {
+        lastOrder.set(o.customer_id, t);
+      }
+    });
+
+    const newThisMonth: Customer[] = [];
+    const newPrevMonth: Customer[] = [];
+    const active: Customer[] = [];
+    const paused: Customer[] = [];
+    const lost: Customer[] = [];
+
+    customers.forEach((c) => {
+      const created = new Date(c.created_at);
+      if (created >= monthStart) newThisMonth.push(c);
+      else if (created >= prevMonthStart && created < monthStart) newPrevMonth.push(c);
+
+      const last = lastOrder.get(c.id);
+      if (!last) return;
+      const daysSince = (now.getTime() - last) / day;
+      if (daysSince <= 30) active.push(c);
+      else if (daysSince <= 60) paused.push(c);
+      else lost.push(c);
+    });
+
+    return { newThisMonth, newPrevMonth, active, paused, lost };
+  }, [customers, orderDates]);
+
+  const segmentMeta: Record<SegmentKey, { title: string; list: Customer[]; hint: string }> = {
+    new: { title: 'Nya kunder denna månad', list: segments.newThisMonth, hint: 'Kunder som registrerats sedan månadens början.' },
+    active: { title: 'Aktiva kunder', list: segments.active, hint: 'Har beställt de senaste 30 dagarna.' },
+    paused: { title: 'Pausande kunder', list: segments.paused, hint: 'Ingen beställning på 30–60 dagar.' },
+    lost: { title: 'Tappade kunder', list: segments.lost, hint: 'Ingen beställning på över 60 dagar.' },
+  };
+
 
   const setDraft = (productId: string, size: string, value: string) => {
     setDrafts((prev) => ({
@@ -208,6 +271,68 @@ const AdminDashboardOverview = () => {
           </CardContent>
         </Card>
       </div>
+
+      {/* Customer segment cards (clickable) */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        {([
+          { key: 'new' as SegmentKey, label: 'Nya kunder denna månad', icon: <UserPlus className="w-4 h-4 text-blue-500" />, color: 'text-blue-600' },
+          { key: 'active' as SegmentKey, label: 'Aktiva kunder', icon: <Users className="w-4 h-4 text-green-500" />, color: 'text-green-600' },
+          { key: 'paused' as SegmentKey, label: 'Pausande kunder', icon: <PauseCircle className="w-4 h-4 text-amber-500" />, color: 'text-amber-600' },
+          { key: 'lost' as SegmentKey, label: 'Tappade kunder', icon: <UserMinus className="w-4 h-4 text-red-500" />, color: 'text-red-600' },
+        ]).map((seg) => (
+          <button key={seg.key} type="button" onClick={() => setOpenSegment(seg.key)} className="text-left">
+            <Card className="hover:shadow-md transition-shadow cursor-pointer h-full">
+              <CardHeader className="pb-2 flex flex-row items-center justify-between space-y-0">
+                <CardTitle className="text-xs font-medium text-gray-500">{seg.label}</CardTitle>
+                {seg.icon}
+              </CardHeader>
+              <CardContent>
+                <div className={`text-2xl font-bold ${seg.color}`}>{segmentMeta[seg.key].list.length}</div>
+                <p className="text-xs text-gray-500 mt-1">
+                  {seg.key === 'new' ? `Förra månaden: ${segments.newPrevMonth.length}` : 'Klicka för att se listan'}
+                </p>
+              </CardContent>
+            </Card>
+          </button>
+        ))}
+      </div>
+
+      <Dialog open={openSegment !== null} onOpenChange={(o) => !o && setOpenSegment(null)}>
+        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>{openSegment ? segmentMeta[openSegment].title : ''}</DialogTitle>
+          </DialogHeader>
+          {openSegment && (
+            <>
+              <p className="text-xs text-gray-500">{segmentMeta[openSegment].hint}</p>
+              {segmentMeta[openSegment].list.length === 0 ? (
+                <p className="py-6 text-center text-sm text-gray-500">Inga kunder i den här gruppen just nu.</p>
+              ) : (
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Företag</TableHead>
+                      <TableHead>Kontakt</TableHead>
+                      <TableHead>E-post</TableHead>
+                      <TableHead>Registrerad</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {segmentMeta[openSegment].list.map((c) => (
+                      <TableRow key={c.id}>
+                        <TableCell className="font-medium">{c.company_name}</TableCell>
+                        <TableCell className="text-sm">{c.contact_person || '—'}</TableCell>
+                        <TableCell className="text-sm">{c.email}</TableCell>
+                        <TableCell className="text-sm">{new Date(c.created_at).toLocaleDateString('sv-SE')}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              )}
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
 
       {/* Purchase prices table */}
       <Card>
