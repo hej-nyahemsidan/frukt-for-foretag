@@ -60,6 +60,9 @@ const AdminDashboardOverview = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [drafts, setDrafts] = useState<Record<string, Record<string, string>>>({});
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [orderDates, setOrderDates] = useState<{ customer_id: string; created_at: string }[]>([]);
+  const [openSegment, setOpenSegment] = useState<SegmentKey | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
