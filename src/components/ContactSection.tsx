@@ -1,4 +1,5 @@
 import { useState, FormEvent } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -6,11 +7,13 @@ import { MapPin, Phone, Clock, MessageCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { trackContactSubmitted } from '@/lib/gtm';
+import { trackConversionEvent } from '@/lib/conversionAnalytics';
 
 // Import images
 import officeWellnessImage from '@/assets/fruktkorg-halsa-kontor-stockholm.jpg';
 
 const ContactSection = () => {
+  const [searchParams] = useSearchParams();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -50,6 +53,10 @@ const ContactSection = () => {
       if (error) throw error;
 
       trackContactSubmitted('quote_contact_form');
+      const basketParam = searchParams.get('korg');
+      const basketType = basketParam ? `${basketParam.charAt(0).toUpperCase()}${basketParam.slice(1)}` : null;
+      const employeeCount = Number(searchParams.get('anstallda')) || null;
+      void trackConversionEvent('quote_submitted', { basketType, employeeCount });
 
       toast({
         title: "Tack! Din offertförfrågan är skickad",

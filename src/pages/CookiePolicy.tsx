@@ -47,10 +47,11 @@ const CookiePolicy = () => {
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-lg font-medium text-gray-800 mb-2">Prestanda cookies</h3>
+                    <h3 className="text-lg font-medium text-gray-800 mb-2">Analyscookies</h3>
                     <p className="text-gray-600 leading-relaxed">
-                      Dessa cookies hjälper oss att förstå hur besökare använder vår webbplats 
-                      så att vi kan förbättra prestanda och användarvänlighet.
+                      Om du godkänner analyscookies registrerar vi anonymt vilka sidor och steg i korgväljaren som används,
+                      exempelvis vald korg, antal personer, visat pris och om en offert skickas. Uppgifterna används för att
+                      förbättra webbplatsen och innehåller inte namn, e-postadress eller telefonnummer.
                     </p>
                   </div>
                 </div>

@@ -12,6 +12,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { usePublicCart } from '@/contexts/PublicCartContext';
 import { cn } from '@/lib/utils';
 import { trackQuoteSubmitted } from '@/lib/gtm';
+import { trackConversionEvent } from '@/lib/conversionAnalytics';
 
 // Import images
 import officeWellnessImage from '@/assets/fruktkorg-halsa-kontor-stockholm.jpg';
@@ -78,6 +79,10 @@ const QuoteRequestSection = () => {
       if (error) throw error;
 
       trackQuoteSubmitted(getTotalPrice(), items.length);
+      void trackConversionEvent('quote_submitted', {
+        price: getTotalPrice(),
+        metadata: { itemCount: items.length, source: 'cart' },
+      });
 
       toast({
         title: "Beställning skickad!",
