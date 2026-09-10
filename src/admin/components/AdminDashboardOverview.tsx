@@ -71,11 +71,15 @@ const AdminDashboardOverview = () => {
 
   const fetchAll = async () => {
     setLoading(true);
-    const [{ data: prodData, error: prodErr }, { data: ordData, error: ordErr }, { data: ppData, error: ppErr }] = await Promise.all([
+    const [{ data: prodData, error: prodErr }, { data: ordData, error: ordErr }, { data: ppData, error: ppErr }, { data: custData }, { data: ordDates }] = await Promise.all([
       supabase.from('products').select('id, name, category, prices').order('category').order('name'),
       supabase.from('orders').select('id, total_price, items, created_at').order('created_at', { ascending: false }),
       supabase.from('product_purchase_prices').select('product_id, prices'),
+      supabase.from('customers').select('id, company_name, contact_person, email, created_at').order('created_at', { ascending: false }),
+      supabase.from('orders').select('customer_id, created_at'),
     ]);
+    setCustomers(((custData ?? []) as any[]) as Customer[]);
+    setOrderDates(((ordDates ?? []) as any[]) as { customer_id: string; created_at: string }[]);
     if (prodErr || ordErr || ppErr) {
       toast({ title: 'Fel', description: 'Kunde inte hämta data.', variant: 'destructive' });
     }
