@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { supabase } from '@/integrations/supabase/client';
 import { trackCompanySizeSelected, trackRecommendationClick } from '@/lib/gtm';
+import { trackConversionEvent } from '@/lib/conversionAnalytics';
 
 type PriceMap = Record<string, Record<string, number>>;
 
@@ -58,6 +59,16 @@ const CompanySizeSelector = () => {
     void loadPrices();
   }, []);
 
+  useEffect(() => {
+    void trackConversionEvent('basket_selector_viewed');
+    const handleConsent = (event: Event) => {
+      const settings = (event as CustomEvent<{ analytics?: boolean }>).detail;
+      if (settings?.analytics) void trackConversionEvent('basket_selector_viewed');
+    };
+    window.addEventListener('cookie-consent-updated', handleConsent);
+    return () => window.removeEventListener('cookie-consent-updated', handleConsent);
+  }, []);
+
   const calculation = useMemo(() => {
     const employees = Math.max(1, selectedEmployees);
     let size = '4kg';
@@ -83,6 +94,34 @@ const CompanySizeSelector = () => {
   const selectSize = (employees: number) => {
     setSelectedEmployees(employees);
     trackCompanySizeSelected(employees);
+    void trackConversionEvent('employee_count_selected', { basketType: selectedBasket, employeeCount: employees });
+  };
+
+  useEffect(() => {
+    if (calculation.weeklyPrice === null) return;
+    const timeout = window.setTimeout(() => {
+      void trackConversionEvent('price_viewed', {
+        basketType: selectedBasket,
+        employeeCount: selectedEmployees,
+        price: calculation.weeklyPrice,
+        metadata: { size: calculation.size, quantity: calculation.quantity },
+      });
+    }, 800);
+    return () => window.clearTimeout(timeout);
+  }, [calculation.quantity, calculation.size, calculation.weeklyPrice, selectedBasket, selectedEmployees]);
+
+  const selectBasket = (basketKey: BasketKey) => {
+    setSelectedBasket(basketKey);
+    void trackConversionEvent('basket_selected', { basketType: basketKey, employeeCount: selectedEmployees });
+  };
+
+  const startQuote = () => {
+    trackRecommendationClick(selectedEmployees, 'quote');
+    void trackConversionEvent('quote_started', {
+      basketType: selectedBasket,
+      employeeCount: selectedEmployees,
+      price: calculation.weeklyPrice,
+    });
   };
 
   return (
@@ -107,7 +146,7 @@ const CompanySizeSelector = () => {
               variant="outline"
               className={`h-auto p-0 overflow-hidden flex flex-col items-stretch text-left ${isSelected ? 'border-primary ring-2 ring-primary' : ''}`}
               aria-pressed={isSelected}
-              onClick={() => setSelectedBasket(basketKey)}
+              onClick={() => selectBasket(basketKey)}
             >
               <img src={basket.image} alt={`Fruktkorg ${basket.name}`} className="w-full h-44 object-cover" loading="lazy" />
               <span className="p-4 whitespace-normal">
@@ -166,7 +205,7 @@ const CompanySizeSelector = () => {
 
             <div className="flex flex-col sm:flex-row md:flex-col gap-3 md:min-w-52">
               <Button asChild size="lg">
-                <Link to={`/kontakt?anstallda=${selectedEmployees}&korg=${selectedBasket.toLowerCase()}`} onClick={() => trackRecommendationClick(selectedEmployees, 'quote')}>
+                <Link to={`/kontakt?anstallda=${selectedEmployees}&korg=${selectedBasket.toLowerCase()}`} onClick={startQuote}>
                   Fortsätt med valet <ArrowRight className="h-4 w-4 ml-2" />
                 </Link>
               </Button>

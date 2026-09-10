@@ -13,6 +13,7 @@ import AdminLeadManagement from '../components/AdminLeadManagement';
 import AdminEmailCampaigns from '../components/AdminEmailCampaigns';
 import AdminDashboardOverview from '../components/AdminDashboardOverview';
 import AdminLoginActivity from '../components/AdminLoginActivity';
+import AdminConversionAnalytics from '../components/AdminConversionAnalytics';
 import VitaminKorgenLogo from '../../components/VitaminKorgenLogo';
 
 const AdminDashboard = () => {
@@ -90,7 +91,7 @@ const AdminDashboard = () => {
       <main className="admin-main max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="admin-main-content px-4 py-6 sm:px-0">
           <Tabs defaultValue="overview" className="w-full">
-            <TabsList className="flex w-full overflow-x-auto mb-4 sm:mb-6 lg:grid lg:grid-cols-8">
+            <TabsList className="flex w-full overflow-x-auto mb-4 sm:mb-6 lg:grid lg:grid-cols-9">
               <TabsTrigger value="overview" className="flex-shrink-0 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-3">
                 <LayoutDashboard className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>Översikt</span>
@@ -122,6 +123,10 @@ const AdminDashboard = () => {
               <TabsTrigger value="campaigns" className="flex-shrink-0 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-3">
                 <Mail className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>Utskick</span>
+              </TabsTrigger>
+              <TabsTrigger value="analytics" className="flex-shrink-0 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-3">
+                <BarChart3 className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span>Besöksanalys</span>
               </TabsTrigger>
             </TabsList>
 
@@ -155,6 +160,10 @@ const AdminDashboard = () => {
 
             <TabsContent value="campaigns" className="space-y-4">
               <AdminEmailCampaigns />
+            </TabsContent>
+
+            <TabsContent value="analytics" className="space-y-4">
+              <AdminConversionAnalytics />
             </TabsContent>
           </Tabs>
         </div>
