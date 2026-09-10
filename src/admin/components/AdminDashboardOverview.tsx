@@ -4,9 +4,20 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
-import { TrendingUp, DollarSign, ShoppingBag, Percent, Save } from 'lucide-react';
+import { TrendingUp, DollarSign, ShoppingBag, Percent, Save, UserPlus, PauseCircle, UserMinus, Users } from 'lucide-react';
 import type { Json } from '@/integrations/supabase/types';
+
+interface Customer {
+  id: string;
+  company_name: string;
+  contact_person: string | null;
+  email: string;
+  created_at: string;
+}
+
+type SegmentKey = 'new' | 'active' | 'paused' | 'lost';
 
 interface Product {
   id: string;
