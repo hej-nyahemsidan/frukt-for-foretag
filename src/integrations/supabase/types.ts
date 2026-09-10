@@ -119,6 +119,42 @@ export type Database = {
         }
         Relationships: []
       }
+      conversion_events: {
+        Row: {
+          basket_type: string | null
+          created_at: string
+          employee_count: number | null
+          event_name: string
+          id: string
+          metadata: Json
+          page_path: string
+          price: number | null
+          session_id: string
+        }
+        Insert: {
+          basket_type?: string | null
+          created_at?: string
+          employee_count?: number | null
+          event_name: string
+          id?: string
+          metadata?: Json
+          page_path?: string
+          price?: number | null
+          session_id: string
+        }
+        Update: {
+          basket_type?: string | null
+          created_at?: string
+          employee_count?: number | null
+          event_name?: string
+          id?: string
+          metadata?: Json
+          page_path?: string
+          price?: number | null
+          session_id?: string
+        }
+        Relationships: []
+      }
       customer_invite_tokens: {
         Row: {
           created_at: string | null
