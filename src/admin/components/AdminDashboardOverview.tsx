@@ -135,6 +135,51 @@ const AdminDashboardOverview = () => {
     return { revenue, cost, profit, margin, orderCount: orders.length, itemCount };
   }, [orders, purchaseLookup]);
 
+  const segments = useMemo(() => {
+    const now = new Date();
+    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+    const prevMonthStart = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+    const day = 24 * 60 * 60 * 1000;
+
+    const lastOrder = new Map<string, number>();
+    orderDates.forEach((o) => {
+      if (!o.customer_id) return;
+      const t = new Date(o.created_at).getTime();
+      if (!lastOrder.has(o.customer_id) || t > (lastOrder.get(o.customer_id) as number)) {
+        lastOrder.set(o.customer_id, t);
+      }
+    });
+
+    const newThisMonth: Customer[] = [];
+    const newPrevMonth: Customer[] = [];
+    const active: Customer[] = [];
+    const paused: Customer[] = [];
+    const lost: Customer[] = [];
+
+    customers.forEach((c) => {
+      const created = new Date(c.created_at);
+      if (created >= monthStart) newThisMonth.push(c);
+      else if (created >= prevMonthStart && created < monthStart) newPrevMonth.push(c);
+
+      const last = lastOrder.get(c.id);
+      if (!last) return;
+      const daysSince = (now.getTime() - last) / day;
+      if (daysSince <= 30) active.push(c);
+      else if (daysSince <= 60) paused.push(c);
+      else lost.push(c);
+    });
+
+    return { newThisMonth, newPrevMonth, active, paused, lost };
+  }, [customers, orderDates]);
+
+  const segmentMeta: Record<SegmentKey, { title: string; list: Customer[]; hint: string }> = {
+    new: { title: 'Nya kunder denna månad', list: segments.newThisMonth, hint: 'Kunder som registrerats sedan månadens början.' },
+    active: { title: 'Aktiva kunder', list: segments.active, hint: 'Har beställt de senaste 30 dagarna.' },
+    paused: { title: 'Pausande kunder', list: segments.paused, hint: 'Ingen beställning på 30–60 dagar.' },
+    lost: { title: 'Tappade kunder', list: segments.lost, hint: 'Ingen beställning på över 60 dagar.' },
+  };
+
+
   const setDraft = (productId: string, size: string, value: string) => {
     setDrafts((prev) => ({
       ...prev,
