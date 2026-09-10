@@ -35,7 +35,7 @@ const faqItems = [
   },
   {
     question: "Hur färsk är frukten ni levererar?",
-    answer: "All frukt handplockas och packas samma morgon som leveransen sker. Vi arbetar med noggrant utvalda leverantörer för att garantera att ni alltid får säsongens bästa och fräschaste frukt till ert kontor i Stockholm."
+    answer: "Frukten köps in färsk, kvalitetskontrolleras och packas nära inpå leveransen. Vi arbetar med noggrant utvalda leverantörer för att ni alltid ska få säsongens bästa frukt till ert kontor i Stockholm."
   },
   {
     question: "Kan vi lägga till andra varor som kaffe, mjölk eller snacks?",
@@ -76,8 +76,8 @@ const FruktkorgStockholm = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Fruktkorg Stockholm – nattleverans till kontoret | Vitaminkorgen"
-        description="Fruktkorg i Stockholm med nattleverans söndag: frukten står framme när kontoret öppnar måndag. Egen kontaktperson, mjölk och skafferi i samma leverans."
+        title="Fruktkorg Stockholm till företag | Vitaminkorgen"
+        description="Beställ fruktkorg i Stockholm med fri leverans till kontoret. Välj leveransdag måndag–fredag, korgstorlek och tillval. Begär kostnadsfri offert."
         keywords="fruktkorg stockholm, fruktkorgar stockholm, fruktleverans stockholm, fruktbud stockholm, färsk frukt stockholm, fruktkorg leverans stockholm, beställa fruktkorg stockholm, frukt på jobbet stockholm, fruktbudet stockholm"
         type="products"
       />
@@ -361,8 +361,8 @@ const FruktkorgStockholm = () => {
                 },
                 {
                   title: 'Större arbetsplatser (50+)',
-                  desc: 'Flera korgar per våningsplan, egna önskemål på frukt och fasta leveransfönster – inklusive nattleverans.',
-                  points: ['Flera korgar per plan', 'Nattleverans söndag', 'Dedikerad kontaktperson'],
+                  desc: 'Flera korgar per våningsplan, egna önskemål på frukt och fasta leveransfönster som anpassas efter verksamheten.',
+                  points: ['Flera korgar per plan', 'Anpassade leveransfönster', 'Dedikerad kontaktperson'],
                 },
               ].map((seg, i) => (
                 <div key={i} className="bg-green-50 rounded-2xl p-8 border border-green-100">
@@ -382,15 +382,14 @@ const FruktkorgStockholm = () => {
               <div className="flex items-start gap-4">
                 <Clock className="h-8 w-8 text-yellow-300 flex-shrink-0" />
                 <div>
-                  <h3 className="text-2xl font-bold mb-3">Nattleverans på söndag – unikt i Stockholm</h3>
+                  <h3 className="text-2xl font-bold mb-3">Leverans när det passar verksamheten</h3>
                   <p className="text-gray-100 leading-relaxed mb-3">
-                    Vi är den första fruktkorgsleverantören i Sverige som kör nattleverans på söndagar. Med behöriga
-                    nycklar, försäkring och full spårbarhet ställer vi in frukt, mjölk och skafferivaror exakt där ni vill
-                    ha dem. När personalen kommer till kontoret på måndag morgon är allt redan på plats – ingen behöver
-                    vänta, och inget möte börjar med tom kaffebricka.
+                    Våra ordinarie leveranser sker på den vardag ni väljer. För verksamheter med särskilda behov kan vi
+                    efter separat överenskommelse även erbjuda leverans utanför ordinarie kontorstid, till exempel under
+                    söndagsnatten inför måndagen. Då krävs överenskommen åtkomst till lokalen och upplägget bekräftas alltid i förväg.
                   </p>
                   <p className="text-gray-200 text-sm">
-                    Vill ni ha leverans en annan dag? Välj fritt måndag–fredag i{' '}
+                    Välj ordinarie leveransdag måndag–fredag i{' '}
                     <Link to="/produkter" className="text-yellow-300 underline hover:text-yellow-200">beställningsflödet</Link>.
                   </p>
                 </div>
