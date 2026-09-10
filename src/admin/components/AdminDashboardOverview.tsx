@@ -272,6 +272,68 @@ const AdminDashboardOverview = () => {
         </Card>
       </div>
 
+      {/* Customer segment cards (clickable) */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        {([
+          { key: 'new' as SegmentKey, label: 'Nya kunder denna månad', icon: <UserPlus className="w-4 h-4 text-blue-500" />, color: 'text-blue-600' },
+          { key: 'active' as SegmentKey, label: 'Aktiva kunder', icon: <Users className="w-4 h-4 text-green-500" />, color: 'text-green-600' },
+          { key: 'paused' as SegmentKey, label: 'Pausande kunder', icon: <PauseCircle className="w-4 h-4 text-amber-500" />, color: 'text-amber-600' },
+          { key: 'lost' as SegmentKey, label: 'Tappade kunder', icon: <UserMinus className="w-4 h-4 text-red-500" />, color: 'text-red-600' },
+        ]).map((seg) => (
+          <button key={seg.key} type="button" onClick={() => setOpenSegment(seg.key)} className="text-left">
+            <Card className="hover:shadow-md transition-shadow cursor-pointer h-full">
+              <CardHeader className="pb-2 flex flex-row items-center justify-between space-y-0">
+                <CardTitle className="text-xs font-medium text-gray-500">{seg.label}</CardTitle>
+                {seg.icon}
+              </CardHeader>
+              <CardContent>
+                <div className={`text-2xl font-bold ${seg.color}`}>{segmentMeta[seg.key].list.length}</div>
+                <p className="text-xs text-gray-500 mt-1">
+                  {seg.key === 'new' ? `Förra månaden: ${segments.newPrevMonth.length}` : 'Klicka för att se listan'}
+                </p>
+              </CardContent>
+            </Card>
+          </button>
+        ))}
+      </div>
+
+      <Dialog open={openSegment !== null} onOpenChange={(o) => !o && setOpenSegment(null)}>
+        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>{openSegment ? segmentMeta[openSegment].title : ''}</DialogTitle>
+          </DialogHeader>
+          {openSegment && (
+            <>
+              <p className="text-xs text-gray-500">{segmentMeta[openSegment].hint}</p>
+              {segmentMeta[openSegment].list.length === 0 ? (
+                <p className="py-6 text-center text-sm text-gray-500">Inga kunder i den här gruppen just nu.</p>
+              ) : (
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Företag</TableHead>
+                      <TableHead>Kontakt</TableHead>
+                      <TableHead>E-post</TableHead>
+                      <TableHead>Registrerad</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {segmentMeta[openSegment].list.map((c) => (
+                      <TableRow key={c.id}>
+                        <TableCell className="font-medium">{c.company_name}</TableCell>
+                        <TableCell className="text-sm">{c.contact_person || '—'}</TableCell>
+                        <TableCell className="text-sm">{c.email}</TableCell>
+                        <TableCell className="text-sm">{new Date(c.created_at).toLocaleDateString('sv-SE')}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              )}
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+
       {/* Purchase prices table */}
       <Card>
         <CardHeader>
