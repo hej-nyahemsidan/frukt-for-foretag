@@ -61,7 +61,7 @@ const Erbjudande = () => {
         },
       });
 
-      trackContactSubmitted();
+      trackContactSubmitted('campaign_offer_form');
       setSubmitted(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err) {

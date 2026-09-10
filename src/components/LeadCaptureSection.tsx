@@ -82,7 +82,7 @@ const LeadCaptureSection = () => {
         },
       });
 
-      trackContactSubmitted();
+      trackContactSubmitted('homepage_free_guide');
       setSubmitted(true);
     } catch (err) {
       console.error('Lead submit error:', err);

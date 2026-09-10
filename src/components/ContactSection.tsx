@@ -49,7 +49,7 @@ const ContactSection = () => {
 
       if (error) throw error;
 
-      trackContactSubmitted();
+      trackContactSubmitted('quote_contact_form');
 
       toast({
         title: "Tack! Din offertförfrågan är skickad",
