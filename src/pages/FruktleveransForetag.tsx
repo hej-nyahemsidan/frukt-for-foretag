@@ -88,7 +88,7 @@ const FruktleveransForetag = () => {
                 <h2 className="text-3xl md:text-4xl font-bold text-green-900 mb-6">Så fungerar leveransen</h2>
                 <p className="text-gray-600 mb-6 leading-relaxed">Smidig och pålitlig från första kontakt till varje veckas påfyllning.</p>
                 <div className="space-y-4">
-                  {['Vi hämtar färsk frukt på grossist samma morgon','Föraren kommer in och placerar korgen där ni vill','Återanvändbara korgar – vi tar med tomma tillbaka','SMS eller mejl-notis innan leverans','Reklamation hanteras inom 24 h'].map((t, i) => (
+                  {['Vi köper in färsk frukt och kvalitetskontrollerar den nära inpå leveransen','Föraren kommer in och placerar korgen där ni vill','Återanvändbara korgar – vi tar med tomma tillbaka','SMS eller mejl-notis innan leverans','Reklamation hanteras inom 24 h'].map((t, i) => (
                     <div key={i} className="flex items-start gap-3"><Check className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" /><span className="text-gray-700">{t}</span></div>
                   ))}
                 </div>

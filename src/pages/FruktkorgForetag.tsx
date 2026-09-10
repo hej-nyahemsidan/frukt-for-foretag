@@ -129,7 +129,7 @@ const FruktkorgForetag = () => {
             <p className="text-lg text-gray-700 leading-relaxed mb-4">
               En <strong>fruktkorg till företag</strong> är en av de enklaste och mest uppskattade
               förmånerna ni kan ge era medarbetare. Vitaminkorgen är Stockholms specialiserade
-              <strong> fruktleverantör för företag</strong> – vi handplockar färsk frukt samma morgon
+              <strong> fruktleverantör för företag</strong> – vi handplockar och kvalitetskontrollerar färsk frukt
               och levererar direkt till ert kontor.
             </p>
             <p className="text-lg text-gray-700 leading-relaxed">
@@ -290,7 +290,7 @@ const FruktkorgForetag = () => {
                     { icon: Calendar, t: 'Startdatum nästa vecka', d: 'Beställer ni innan torsdag startar leveransen redan veckan efter.' },
                     { icon: MapPin, t: 'Direkt till receptionen', d: 'Vi ställer korgen där ni vill – pentry, reception eller mötesrum.' },
                     { icon: ShieldCheck, t: '15 dagars kredit', d: 'Vi fakturerar månadsvis. Inga uppstartsavgifter.' },
-                    { icon: Leaf, t: 'Säsongens bästa frukt', d: 'Handplockad samma morgon. Anpassa bort allergener i kundportalen.' },
+                    { icon: Leaf, t: 'Säsongens bästa frukt', d: 'Handplockad och kvalitetskontrollerad nära inpå leveransen. Anpassa bort allergener i kundportalen.' },
                   ].map(({ icon: Icon, t, d }, i) => (
                     <div key={i} className="flex items-start gap-3">
                       <Icon className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />

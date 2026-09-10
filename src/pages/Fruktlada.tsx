@@ -157,7 +157,7 @@ const Fruktlada = () => {
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { icon: Apple, title: 'Färsk säsongsfrukt', desc: 'Handplockad varje morgon från grossist – ingen frukt äldre än 24 timmar.' },
+                { icon: Apple, title: 'Färsk säsongsfrukt', desc: 'Noggrant utvald, handplockad och kvalitetskontrollerad nära inpå leveransen.' },
                 { icon: Truck, title: 'Fri leverans', desc: 'Vi kör ut fruktlådan i hela Stockholm, Södertälje och Uppsala utan extra kostnad.' },
                 { icon: Clock, title: 'Flexibla dagar', desc: 'Välj 1–5 dagar i veckan. Pausa eller ändra när ni vill.' },
                 { icon: ShieldCheck, title: 'Kvalitetsgaranti', desc: 'Är ni inte nöjda med en frukt – kontakta oss så ersätter vi den.' },
