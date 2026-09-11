@@ -144,6 +144,10 @@ const FruktkorgKontor = () => {
              <p className="text-gray-200 mt-6 text-sm">
                Läs även: <Link to="/fruktkorg-pa-jobbet" className="text-yellow-300 underline hover:text-yellow-200">Fruktkorg på jobbet i Stockholm</Link> – så fungerar fruktleverans till arbetsplatsen.
              </p>
+             <p className="text-gray-200 mt-2 text-sm">
+               Guide: <Link to="/blogg/tips/fruktkorg-kontor-arbetsmiljo-valj-leverantor" className="text-yellow-300 underline hover:text-yellow-200">Fruktkorg på kontoret – arbetsmiljö och hur du väljer leverantör</Link>.
+             </p>
+
           </div>
         </section>
       </main>
