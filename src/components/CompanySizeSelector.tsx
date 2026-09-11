@@ -87,6 +87,7 @@ const CompanySizeSelector = () => {
       basket,
       size,
       quantity,
+      unitPrice: typeof unitPrice === 'number' ? unitPrice : null,
       weeklyPrice: typeof unitPrice === 'number' ? unitPrice * quantity : null,
     };
   }, [prices, selectedBasket, selectedEmployees]);
@@ -199,7 +200,13 @@ const CompanySizeSelector = () => {
               <p className="text-muted-foreground mb-4">Ett enkelt förslag för en leverans per vecka.</p>
               <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-foreground">
                 <span className="inline-flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Vald korg: {calculation.basket.name}</span>
-                <span className="font-semibold">{calculation.weeklyPrice === null ? 'Vi räknar fram rätt pris' : `Cirka ${calculation.weeklyPrice} kr per vecka`}</span>
+                {calculation.weeklyPrice === null ? (
+                  <span className="font-semibold">Vi räknar fram rätt pris</span>
+                ) : (
+                  <span className="font-semibold">
+                    {calculation.unitPrice} kr per korg × {calculation.quantity} = {calculation.weeklyPrice} kr per vecka
+                  </span>
+                )}
               </div>
             </div>
 
@@ -219,7 +226,7 @@ const CompanySizeSelector = () => {
 
         </div>
         <p className="text-sm text-muted-foreground text-center mt-4 max-w-3xl mx-auto">
-          Beräkningen är ett förslag. Ni kan ändra korg, storlek och leveransdag innan ni skickar förfrågan och senare i kundportalen.
+          Priset är det ordinarie priset från vår prislista. Antalet korgar är ett förslag – ni kan ändra korg, storlek och leveransdag innan ni skickar förfrågan och senare i kundportalen.
         </p>
       </div>
     </section>
