@@ -27,6 +27,20 @@ serve(async (req) => {
       { auth: { autoRefreshToken: false, persistSession: false } }
     );
 
+    // Brute-force protection: max 20 attempts per IP per hour.
+    const clientIp = (req.headers.get('x-forwarded-for') ?? '').split(',')[0].trim() || 'unknown';
+    try {
+      const { data: attempts } = await supabaseAdmin.rpc('increment_rate_limit', {
+        _key: `invite-token:${clientIp}`,
+        _window_seconds: 3600,
+      });
+      if (typeof attempts === 'number' && attempts > 20) {
+        return new Response(JSON.stringify({ error: 'För många försök. Försök igen senare.' }), {
+          status: 429, headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+    } catch (_) { /* rate limiting unavailable — continue */ }
+
     const { data: tokenRow, error: findError } = await supabaseAdmin
       .from('customer_invite_tokens')
       .select('id, email, used_at, expires_at')
