@@ -1,4 +1,5 @@
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors'
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 // Forwards a completed order to the external admin/webshop system.
 // Uses WEBSHOP_ORDER_URL + WEBSHOP_ORDER_SECRET (x-webhook-secret header).
