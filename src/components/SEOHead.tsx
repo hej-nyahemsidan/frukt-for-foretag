@@ -46,8 +46,8 @@ const SEOHead = ({
       },
       about: {
         title: 'Om oss – fruktkorgar i Stockholm | Vitaminkorgen',
-        description: 'Sedan 2021 är Vitaminkorgen Stockholms pålitliga fruktbud för frukt på jobbet. Över 150 nöjda företagskunder och tusentals levererade fruktkorgar.',
-        keywords: 'om vitaminkorgen, fruktkorgar stockholm, fruktbudet, fruktbud stockholm, frukt på jobbet, fruktkorgar till jobbet, kontorsfrukt leverantör, företagsfrukt stockholm'
+        description: 'Vitaminkorgen hjälper företag i Stockholm att skapa en bättre arbetsmiljö med fruktkorgar, fruktlådor och flexibla kontorsleveranser. Vi sparar tid för office managers och fruktansvariga genom pålitlig service och extra omtanke.',
+        keywords: 'om vitaminkorgen, fruktkorgar stockholm, fruktbudet, fruktbud stockholm, frukt på jobbet, fruktkorgar till jobbet, kontorsfrukt leverantör, företagsfrukt stockholm, office manager frukt, fruktansvarig kontor'
       }
     };
     return defaults[type] || defaults.homepage;
