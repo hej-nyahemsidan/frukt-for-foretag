@@ -226,7 +226,7 @@ const CompanySizeSelector = () => {
 
         </div>
         <p className="text-sm text-muted-foreground text-center mt-4 max-w-3xl mx-auto">
-          Beräkningen är ett förslag. Ni kan ändra korg, storlek och leveransdag innan ni skickar förfrågan och senare i kundportalen.
+          Priset är det ordinarie priset från vår prislista. Antalet korgar är ett förslag – ni kan ändra korg, storlek och leveransdag innan ni skickar förfrågan och senare i kundportalen.
         </p>
       </div>
     </section>
