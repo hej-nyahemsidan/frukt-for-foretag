@@ -9,6 +9,15 @@ import { trackConversionEvent } from '@/lib/conversionAnalytics';
 
 type PriceMap = Record<string, Record<string, number>>;
 
+const basketSizes = {
+  '4kg': 12,
+  '6kg': 18,
+  '9kg': 25,
+  '11kg': 35,
+} as const;
+
+type BasketSize = keyof typeof basketSizes;
+
 const basketDetails = {
   Original: {
     name: 'Original',
@@ -34,6 +43,7 @@ type BasketKey = keyof typeof basketDetails;
 
 const CompanySizeSelector = () => {
   const [selectedBasket, setSelectedBasket] = useState<BasketKey>('Original');
+  const [selectedSize, setSelectedSize] = useState<BasketSize>('4kg');
   const [selectedEmployees, setSelectedEmployees] = useState(24);
   const [prices, setPrices] = useState<PriceMap>({});
 
@@ -71,26 +81,17 @@ const CompanySizeSelector = () => {
 
   const calculation = useMemo(() => {
     const employees = Math.max(1, selectedEmployees);
-    let size = '4kg';
-    let quantity = 1;
-
-    if (employees > 12 && employees <= 25) size = '9kg';
-    if (employees > 25 && employees <= 35) size = '11kg';
-    if (employees > 35) {
-      size = '9kg';
-      quantity = Math.ceil(employees / 25);
-    }
-
     const basket = basketDetails[selectedBasket];
-    const unitPrice = prices[basket.product]?.[size];
+    const quantity = Math.max(1, Math.ceil(employees / basketSizes[selectedSize]));
+    const unitPrice = prices[basket.product]?.[selectedSize];
     return {
       basket,
-      size,
+      size: selectedSize,
       quantity,
       unitPrice: typeof unitPrice === 'number' ? unitPrice : null,
       weeklyPrice: typeof unitPrice === 'number' ? unitPrice * quantity : null,
     };
-  }, [prices, selectedBasket, selectedEmployees]);
+  }, [prices, selectedBasket, selectedEmployees, selectedSize]);
 
   const selectSize = (employees: number) => {
     setSelectedEmployees(employees);
@@ -114,6 +115,15 @@ const CompanySizeSelector = () => {
   const selectBasket = (basketKey: BasketKey) => {
     setSelectedBasket(basketKey);
     void trackConversionEvent('basket_selected', { basketType: basketKey, employeeCount: selectedEmployees });
+  };
+
+  const selectBasketSize = (size: BasketSize) => {
+    setSelectedSize(size);
+    void trackConversionEvent('basket_size_selected', {
+      basketType: selectedBasket,
+      employeeCount: selectedEmployees,
+      metadata: { size },
+    });
   };
 
   const startQuote = () => {
@@ -155,6 +165,9 @@ const CompanySizeSelector = () => {
                   <ShoppingBasket className="h-4 w-4 text-primary" aria-hidden="true" /> {basket.name}
                 </span>
                 <span className="block text-sm font-normal leading-relaxed text-muted-foreground">{basket.contents}</span>
+                <span className="block text-sm font-bold text-foreground mt-3">
+                  4 kg {typeof prices[basket.product]?.['4kg'] === 'number' ? `– ${prices[basket.product]['4kg']} kr` : '– pris hämtas'}
+                </span>
                 <span className="flex items-center gap-2 text-sm font-semibold text-primary mt-3">
                   {isSelected && <CheckCircle2 className="h-4 w-4" aria-hidden="true" />}
                   {isSelected ? 'Vald korg' : 'Välj denna korg'}
@@ -166,6 +179,30 @@ const CompanySizeSelector = () => {
         </div>
 
         <div className="border border-border bg-background rounded-lg p-5 sm:p-7">
+          <div className="mb-6">
+            <p className="text-sm font-semibold text-primary mb-3">Välj storlek</p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2" role="group" aria-label="Välj storlek på fruktkorgen">
+              {(Object.keys(basketSizes) as BasketSize[]).map(size => {
+                const price = prices[basketDetails[selectedBasket].product]?.[size];
+                return (
+                  <Button
+                    key={size}
+                    type="button"
+                    variant={selectedSize === size ? 'default' : 'outline'}
+                    className="h-auto min-h-14 flex-col gap-1"
+                    aria-pressed={selectedSize === size}
+                    onClick={() => selectBasketSize(size)}
+                  >
+                    <span className="font-bold">{size.replace('kg', ' kg')}</span>
+                    <span className="text-xs font-normal">
+                      {typeof price === 'number' ? `${price} kr/korg` : 'Pris hämtas'}
+                    </span>
+                  </Button>
+                );
+              })}
+            </div>
+          </div>
+
           <div className="mb-6">
             <p className="text-sm font-semibold text-primary mb-3">Hur många är ni?</p>
             <div className="flex flex-col sm:flex-row gap-3 sm:items-center">
@@ -212,7 +249,7 @@ const CompanySizeSelector = () => {
 
             <div className="flex flex-col sm:flex-row md:flex-col gap-3 md:min-w-52">
               <Button asChild size="lg">
-                <Link to={`/kontakt?anstallda=${selectedEmployees}&korg=${selectedBasket.toLowerCase()}`} onClick={startQuote}>
+                <Link to={`/kontakt?anstallda=${selectedEmployees}&korg=${selectedBasket.toLowerCase()}&storlek=${selectedSize}`} onClick={startQuote}>
                   Fortsätt med valet <ArrowRight className="h-4 w-4 ml-2" />
                 </Link>
               </Button>
@@ -226,7 +263,7 @@ const CompanySizeSelector = () => {
 
         </div>
         <p className="text-sm text-muted-foreground text-center mt-4 max-w-3xl mx-auto">
-          Priset är det ordinarie priset från vår prislista. Antalet korgar är ett förslag – ni kan ändra korg, storlek och leveransdag innan ni skickar förfrågan och senare i kundportalen.
+          Priset är det ordinarie priset från vår prislista. 4 kg är alltid förvalt, men ni kan välja en annan storlek. Antalet korgar är ett förslag – ni kan ändra korg, storlek och leveransdag innan ni skickar förfrågan och senare i kundportalen.
         </p>
       </div>
     </section>
