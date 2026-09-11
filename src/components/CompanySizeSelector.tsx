@@ -87,6 +87,7 @@ const CompanySizeSelector = () => {
       basket,
       size,
       quantity,
+      unitPrice: typeof unitPrice === 'number' ? unitPrice : null,
       weeklyPrice: typeof unitPrice === 'number' ? unitPrice * quantity : null,
     };
   }, [prices, selectedBasket, selectedEmployees]);
