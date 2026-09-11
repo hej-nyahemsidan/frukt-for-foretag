@@ -119,11 +119,6 @@ const CompanySizeSelector = () => {
 
   const selectBasketSize = (size: BasketSize) => {
     setSelectedSize(size);
-    void trackConversionEvent('basket_size_selected', {
-      basketType: selectedBasket,
-      employeeCount: selectedEmployees,
-      metadata: { size },
-    });
   };
 
   const startQuote = () => {
