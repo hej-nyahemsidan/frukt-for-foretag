@@ -1,4 +1,5 @@
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors'
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 // Forwards a completed order to the external admin/webshop system.
 // Uses WEBSHOP_ORDER_URL + WEBSHOP_ORDER_SECRET (x-webhook-secret header).
@@ -67,22 +68,55 @@ Deno.serve(async (req) => {
 
   try {
     const body = await req.json();
-    const items = Array.isArray(body.items) ? body.items : [];
 
-    const orderDate = new Date(body.created_at ?? Date.now()).toISOString().slice(0, 10);
+    // Security: never trust the request body. The order must exist in the
+    // database, and every forwarded value is read from the database row.
+    const orderId = String(body.order_id ?? body.order_reference ?? '').trim();
+    if (!/^[0-9a-fA-F-]{36}$/.test(orderId)) {
+      return new Response(JSON.stringify({ error: 'Invalid order reference' }), {
+        status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    const supabaseAdmin = createClient(
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
+      { auth: { autoRefreshToken: false, persistSession: false } }
+    );
+
+    const { data: order } = await supabaseAdmin
+      .from('orders')
+      .select('id, created_at, items, selected_days, next_delivery_date, package_plan, total_price, customer_id')
+      .eq('id', orderId)
+      .maybeSingle();
+
+    if (!order) {
+      return new Response(JSON.stringify({ error: 'Unknown order' }), {
+        status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    const { data: customer } = await supabaseAdmin
+      .from('customers')
+      .select('company_name, contact_person, email, phone, address')
+      .eq('id', order.customer_id)
+      .maybeSingle();
+
+    const items = Array.isArray(order.items) ? order.items : [];
+    const orderDate = new Date(order.created_at ?? Date.now()).toISOString().slice(0, 10);
     const payload = {
-      order_id: String(body.order_id ?? body.order_reference ?? crypto.randomUUID()),
+      order_id: order.id,
       order_datum: orderDate,
-      kund: normalizeCustomer(body.customer),
+      kund: normalizeCustomer(customer),
       rader: normalizeRows(items),
-      leveransdagar: body.selected_days ?? body.delivery?.days ?? [],
-      leveransdatum: body.delivery_date ?? body.delivery?.date ?? null,
-      ordertyp: body.order_type ?? 'onetime',
-      delsumma: body.subtotal ?? null,
-      leveransavgift: body.delivery_fee ?? 0,
-      totalpris: body.total_price ?? null,
-      kommentar: body.notes ?? null,
-      kalla: body.source ?? 'vitaminkorgen',
+      leveransdagar: order.selected_days ?? [],
+      leveransdatum: order.next_delivery_date ?? null,
+      ordertyp: order.package_plan ?? 'onetime',
+      delsumma: order.total_price ?? null,
+      leveransavgift: 0,
+      totalpris: order.total_price ?? null,
+      kommentar: null,
+      kalla: 'vitaminkorgen',
     };
 
     const res = await fetch(url, {
