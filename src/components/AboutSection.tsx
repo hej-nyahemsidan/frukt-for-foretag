@@ -1,13 +1,16 @@
 import { useState, FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { ChevronDown, ChevronRight } from 'lucide-react';
+import { ChevronDown, ChevronRight, Clock, MapPin, HeartHandshake, Users, Apple } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 
 // Import images
 import fruityImage from '@/assets/fruktkorg-leverans-foretag.jpg';
+import workplaceImage from '@/assets/fruktkorg-pa-jobbet-stockholm.jpg';
+import happyTeamImage from '@/assets/glada-anstallda-fruktkorg-foretag.jpg';
 
 const AboutSection = () => {
   const [expandedFAQ, setExpandedFAQ] = useState<number[]>([]);
@@ -105,78 +108,58 @@ const AboutSection = () => {
         <div className="absolute top-10 right-10 opacity-30 hidden min-[700px]:block">
           <img 
             src={fruityImage} 
-            alt="Fresh colorful fruits" 
+            alt="Färsk fruktkorg levererad till företag i Stockholm" 
             className="w-96 h-96 object-cover rounded-full"
           />
         </div>
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl">
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
-              Fruktkorg på jobbet i Stockholm – enkelt, fräscht och uppskattat
+              Om oss – fruktkorgar som skapar ett bättre arbetsklimat
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 leading-relaxed">
-              Att erbjuda en fruktkorg på jobbet är ett enkelt sätt att främja hälsa, trivsel och energi på arbetsplatsen. Vi på Vitaminkorgen är ert fruktbud i Stockholm – vi levererar fruktkorgar till företag, alltid fyllda med noggrant utvald, säsongsanpassad frukt av hög kvalitet.
+              Vi är Vitaminkorgen, och varje dag arbetar vi för att hjälpa företag i Stockholm att få en bättre arbetsmiljö. Genom våra <Link to="/produkter" className="text-green-600 hover:underline">fruktkorgar</Link>, <Link to="/fruktlada" className="text-green-600 hover:underline">fruktlådor</Link> och <Link to="/fruktkorg-pa-jobbet" className="text-green-600 hover:underline">frukt på jobbet</Link>-lösningar vill vi underlätta vardagen för dig som är fruktansvarig, office manager eller beställare.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Section 1 - Company Story */}
+      {/* Section 1 - More About Us */}
       <section className="py-20 px-8 bg-white">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
-            {/* Text Content Only */}
             <div className="space-y-6">
               <h2 className="text-4xl font-bold text-gray-900">
-                Flexibla lösningar för varje arbetsplats
+                Mer om oss – vi vill att du ska spara tid och slippa stress
               </h2>
               
               <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  Vi levererar fruktkorgar till alla typer av företag, från snabbväxande startups på Östermalm till väletablerade kontor i Kista. Oavsett storlek på arbetsplatsen får ni samma personliga service, smidiga leverans och handplockad frukt.
+                  Att vara den som ansvarar för kontorets frukt, mejeri och fika kan lätt bli en tidskrävande syssla. Därför har vi byggt Vitaminkorgen för att vara mer än en leverantör – vi är din partner i vardagen. När du har en fruktkorg från oss behöver du inte stressa över att frukten ska ta slut, att mejeriet är på väg att gå ut eller att det saknas något gott till mötet.
                 </p>
                 
                 <p>
-                  Varje arbetsplats är unik – därför erbjuder vi flexibla lösningar anpassade efter era behov, oavsett om ni är 5 eller 150 medarbetare. Våra fruktkorgar innehåller alltid färsk frukt som är utvald för att ge maximal smak, näring och energi.
+                  Vi erbjuder en flexibel lösning där du enkelt kan komplettera din ordinarie fruktleverans med extra varor inför möten, events eller särskilda tillfällen. Oavsett om det handlar om frukost, mejeri, snacks, läsk eller extra frukt – löser vi det åt dig så att du kan fokusera på det du egentligen ska göra.
                 </p>
-                
+
                 <p>
-                  Att ha en fruktkorg på kontoret är mer än bara ett hälsosamt alternativ – det är en investering i:
+                  Vår ambition är att samarbetet ska kännas självklart. Du ska kunna lita på att rätt varor kommer i rätt tid, i rätt kvalitet och placeras där du önskar. Det är den extra servicen som skiljer oss åt.
                 </p>
-                
-                <ul className="space-y-2 ml-6">
-                  <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
-                    <span>Ökad energi och produktivitet</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
-                    <span>Färre sjukdagar och bättre immunförsvar</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
-                    <span>Starkare teamkänsla och trivsel</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
-                    <span>En enkel och uppskattad personalförmån</span>
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section 2 - Mission Statement */}
+      {/* Section 2 - Service Promise */}
       <section className="py-20 px-8 bg-gray-50">
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-5 gap-16 items-center">
             {/* Image - 40% */}
             <div className="lg:col-span-2">
               <img 
-                src={fruityImage} 
-                alt="Colorful fresh fruits arrangement" 
+                src={workplaceImage} 
+                alt="Fruktkorg på kontoret i Stockholm" 
                 className="w-full h-96 object-cover rounded-xl shadow-lg"
               />
             </div>
@@ -184,19 +167,122 @@ const AboutSection = () => {
             {/* Text Content - 60% */}
             <div className="lg:col-span-3 space-y-6">
               <h2 className="text-4xl font-bold text-gray-900">
-                En hälsosam livsstil börjar på arbetsplatsen.
+                Extra service – vi placerar frukten där du vill ha den
               </h2>
               
               <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  Vår mission är att förbättra välmåendet på svenska arbetsplatser. När medarbetare har tillgång till näringsrik frukt ökar både produktivitet och arbetstillfredsställelse. Vi tror på att små förändringar kan göra stor skillnad.
+                  En fruktleverans är inte bara en varuleverans för oss. Vi tar med oss frukten in på kontoret och placerar den där det passar er bäst – oavsett om det är i pentryt, konferensrummet eller vid receptionen. Mejeri och andra känsliga varor lägger vi i rätt kylskåp så att inget står och blir dåligt.
+                </p>
+                
+                <p>
+                  Det här är särskilt uppskattat av våra kunder där någon annan än beställaren tar emot leveransen, eller där ni helt enkelt vill slippa tänka på detaljerna. Du beställer, vi ser till att allt hamnar rätt.
+                </p>
+
+                <p>
+                  För oss är det här en självklar del av servicen – inte en tillvalstjänst. Det är så ett riktigt samarbete ska fungera.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 3 - Who We Help */}
+      <section className="py-20 px-8 bg-white">
+        <div className="container mx-auto">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                För dig som vill att kontoret ska fungera smidigt
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Våra kunder är allt från små kontor till större företag i Stockholm. Gemensamt är att de vill erbjuda sina medarbetare något fräscht och gott – utan att det ska kräva mycket arbete internt.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="bg-gray-50 p-8 rounded-xl">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                  <Users className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Office managers</h3>
+                <p className="text-gray-600">
+                  Slipp jaga beställningar och dubbelkolla leveranser. Vi håller koll på det praktiska så att du kan fokusera på det viktiga.
+                </p>
+              </div>
+
+              <div className="bg-gray-50 p-8 rounded-xl">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                  <Apple className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Fruktsansvariga</h3>
+                <p className="text-gray-600">
+                  Oavsett om du har ansvar för en avdelning eller hela företaget får du en pålitlig leverans varje vecka.
+                </p>
+              </div>
+
+              <div className="bg-gray-50 p-8 rounded-xl">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                  <Clock className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Flexibla behov</h3>
+                <p className="text-gray-600">
+                  Behöver ni extra till ett möte, en frukost eller en kickoff? Det ordnar vi enkelt utöver det ordinarie abonnemanget.
+                </p>
+              </div>
+
+              <div className="bg-gray-50 p-8 rounded-xl">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                  <MapPin className="w-6 h-6 text-green-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Stockholmsföretag</h3>
+                <p className="text-gray-600">
+                  Vi levererar fruktkorgar till företag i hela Stockholm – från citykontor till industriområden och växande stadsdelar.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 4 - Mission Statement */}
+      <section className="py-20 px-8 bg-gray-50">
+        <div className="container mx-auto">
+          <div className="grid lg:grid-cols-5 gap-16 items-center">
+            {/* Image - 40% */}
+            <div className="lg:col-span-2 order-2 lg:order-1">
+              <img 
+                src={happyTeamImage} 
+                alt="Glada medarbetare med fruktkorg på kontoret" 
+                className="w-full h-96 object-cover rounded-xl shadow-lg"
+              />
+            </div>
+
+            {/* Text Content - 60% */}
+            <div className="lg:col-span-3 order-1 lg:order-2 space-y-6">
+              <h2 className="text-4xl font-bold text-gray-900">
+                Långsiktigt samarbete – inte bara en fruktleverans
+              </h2>
+              
+              <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
+                <p>
+                  Vitaminkorgen startades med en tydlig idé: att bygga långsiktiga relationer med företag som vill ha mer än en vanlig fruktleverans. För oss handlar det inte bara om att leverera frukt – det handlar om att leverera service, trygghet och en bättre arbetsmiljö.
+                </p>
+                
+                <p>
+                  Vi vill att varje kund ska känna att vi finns där när behoven förändras. Kanske växer ni och behöver fler korgar, kanske vill ni prova en annan storlek, eller så behöver ni plötsligt extra varor till ett event. Då ska det vara enkelt att få hjälp.
+                </p>
+
+                <p>
+                  Det är därför vi lägger lika mycket energi på relationen som på frukten. När du märker att vi håller vad vi lovar, att leveranserna fungerar och att du slipper lägga tid på att jaga leverantörer – då har vi gjort vårt jobb.
                 </p>
               </div>
 
               {/* Signature */}
               <div className="pt-4">
                 <div className="text-2xl font-handwriting text-green-600" style={{ fontFamily: 'cursive' }}>
-                  Med Vänliga hälsningar, Vitamin Korgen
+                  Med vänliga hälsningar, Vitamin Korgen
                 </div>
               </div>
             </div>
@@ -204,12 +290,12 @@ const AboutSection = () => {
         </div>
       </section>
 
-      {/* Section 3 - Values/Impact */}
+      {/* Section 5 - Values/Impact */}
       <section className="relative py-20 px-8 bg-green-800 overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <img 
             src={fruityImage} 
-            alt="Fresh colorful fruits" 
+            alt="Färsk frukt i bakgrunden" 
             className="w-full h-full object-cover"
           />
         </div>
@@ -217,17 +303,20 @@ const AboutSection = () => {
         
         <div className="container mx-auto relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
+            <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <HeartHandshake className="w-8 h-8 text-white" />
+            </div>
             <h2 className="text-4xl font-bold text-white">
-              En plats för engagemang hela vägen i kedjan
+              En partner som tar hand om detaljerna
             </h2>
             <p className="text-xl text-white/90 leading-relaxed">
-              Vi arbetar nära våra leverantörer för att säkerställa hållbara odlingsmetoder och rättvisa arbetsförhållanden. Från jord till bord tar vi ansvar för hela kedjan och stödjer lokala odlare där det är möjligt.
+              Vi tror att små saker gör stor skillnad. En fruktkorg på rätt plats. Mejeri i rätt kylskåp. Extra varor till mötet utan krångel. Det är så vi bygger en bättre arbetsplats – tillsammans med dig.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Section 5 - FAQ */}
+      {/* Section 6 - FAQ */}
       <section className="py-20 px-8 bg-gray-50">
         <div className="container mx-auto">
           <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">
