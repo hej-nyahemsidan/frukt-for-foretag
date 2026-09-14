@@ -58,7 +58,7 @@ const FruktkorgProduct = () => {
     '@type': 'Product',
     name: product.name,
     description: product.description,
-    image: `https://vitaminkorgen.se/assets/${product.image}.jpg`,
+    image: publicImageMap[product.slug] ?? 'https://vitaminkorgen.se/images/fruktkorg-original.jpg',
     sku: `VK-${product.slug.toUpperCase()}`,
     brand: { '@type': 'Brand', name: 'Vitaminkorgen' },
     category: 'Fruktkorgar',
