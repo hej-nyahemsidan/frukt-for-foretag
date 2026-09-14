@@ -84,9 +84,9 @@ const Fruktlada = () => {
             '@type': 'ItemList',
             name: 'Fruktlådor till företag',
             itemListElement: [
-              { name: 'Fruktlåda Banan', url: 'https://vitaminkorgen.se/produkt/fruktkorg-banan', price: String(priceBanan) },
-              { name: 'Fruktlåda Original', url: 'https://vitaminkorgen.se/produkt/fruktkorg-original', price: String(priceOriginal) },
-              { name: 'Fruktlåda Premium', url: 'https://vitaminkorgen.se/produkt/fruktkorg-premium', price: String(pricePremium) },
+              { name: 'Fruktlåda Banan', url: 'https://vitaminkorgen.se/produkt/fruktkorg-banan', price: String(priceBanan), image: 'https://vitaminkorgen.se/images/fruktkorg-banan.jpg' },
+              { name: 'Fruktlåda Original', url: 'https://vitaminkorgen.se/produkt/fruktkorg-original', price: String(priceOriginal), image: 'https://vitaminkorgen.se/images/fruktkorg-original.jpg' },
+              { name: 'Fruktlåda Premium', url: 'https://vitaminkorgen.se/produkt/fruktkorg-premium', price: String(pricePremium), image: 'https://vitaminkorgen.se/images/fruktkorg-premium.jpg' },
             ].map((p, i) => ({
               '@type': 'ListItem',
               position: i + 1,
@@ -94,11 +94,13 @@ const Fruktlada = () => {
                 '@type': 'Product',
                 name: p.name,
                 url: p.url,
+                image: p.image,
                 brand: { '@type': 'Brand', name: 'Vitaminkorgen' },
                 offers: {
                   '@type': 'Offer',
                   priceCurrency: 'SEK',
                   price: p.price,
+                  priceValidUntil: '2026-12-31',
                   availability: 'https://schema.org/InStock',
                   url: p.url,
                 },

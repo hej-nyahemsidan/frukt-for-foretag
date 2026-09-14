@@ -17,6 +17,13 @@ const imageMap: Record<string, string> = {
   'fruktkorg-sicilien': fruktkorgSicilien,
 };
 
+// Publicly reachable image URLs used in structured data (must resolve to a real file)
+const publicImageMap: Record<string, string> = {
+  'fruktkorg-original': 'https://vitaminkorgen.se/images/fruktkorg-original.jpg',
+  'fruktkorg-premium': 'https://vitaminkorgen.se/images/fruktkorg-premium.jpg',
+  'fruktkorg-banan': 'https://vitaminkorgen.se/images/fruktkorg-banan.jpg',
+};
+
 const FruktkorgProduct = () => {
   const { slug } = useParams<{ slug: string }>();
   const product = slug ? getFruktkorgBySlug(slug) : undefined;
@@ -51,7 +58,7 @@ const FruktkorgProduct = () => {
     '@type': 'Product',
     name: product.name,
     description: product.description,
-    image: `https://vitaminkorgen.se/assets/${product.image}.jpg`,
+    image: publicImageMap[product.slug] ?? 'https://vitaminkorgen.se/images/fruktkorg-original.jpg',
     sku: `VK-${product.slug.toUpperCase()}`,
     brand: { '@type': 'Brand', name: 'Vitaminkorgen' },
     category: 'Fruktkorgar',
