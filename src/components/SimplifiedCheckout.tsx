@@ -92,28 +92,6 @@ const SimplifiedCheckout = ({
         return;
       }
 
-      // Forward order to external webshop/admin system (fire-and-forget)
-      supabase.functions.invoke('forward-order-to-webshop', {
-        body: {
-          source: 'vitaminkorgen',
-          order_reference: insertedOrder?.id,
-          order_type: orderType,
-          customer: {
-            company: customer?.company_name,
-            contact: customer?.contact_person,
-            email: customer?.email,
-            phone: customer?.phone,
-            address: customer?.address,
-          },
-          selected_days: selectedDays,
-          items: orderItems,
-          subtotal,
-          delivery_fee: deliveryFee,
-          total_price: totalPrice,
-          notes: message.trim() || null,
-        },
-      }).catch((err) => console.error('Webshop forward failed:', err));
-
       // Send order confirmation email
       const { error } = await supabase.functions.invoke('send-contact-email', {
         body: {

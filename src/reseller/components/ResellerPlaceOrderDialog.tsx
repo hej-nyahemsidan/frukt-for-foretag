@@ -141,25 +141,7 @@ const ResellerPlaceOrderDialog = ({ customerId, customerName, open, onOpenChange
       }).select('id').single();
       if (error) {
         toast({ title: 'Fel', description: error.message, variant: 'destructive' });
-      } else {
-        supabase.functions.invoke('forward-order-to-webshop', {
-          body: {
-            source: `reseller:${reseller.id}`,
-            order_reference: newOrder?.id,
-            order_type: 'reseller',
-            customer: { company: customerName },
-            items: cart.map(i => ({
-              product_id: i.product.id,
-              name: i.product.name,
-              size: i.size,
-              quantity: i.quantity,
-              unit_price: i.price,
-              total: i.price * i.quantity,
-            })),
-            total_price: total,
-            notes: notes || null,
-          },
-        }).catch((err) => console.error('Webshop forward failed:', err));
+      } else if (newOrder) {
         toast({ title: 'Order skapad', description: `Order åt ${customerName} har skickats.` });
         onPlaced?.();
         onOpenChange(false);
