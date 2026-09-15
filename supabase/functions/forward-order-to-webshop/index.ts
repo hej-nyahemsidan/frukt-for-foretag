@@ -90,34 +90,67 @@ Deno.serve(async (req) => {
       .eq('id', orderId)
       .maybeSingle();
 
-    if (!order) {
-      return new Response(JSON.stringify({ error: 'Unknown order' }), {
-        status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      });
+    let payload: Record<string, unknown> | null = null;
+
+    if (order) {
+      const { data: customer } = await supabaseAdmin
+        .from('customers')
+        .select('company_name, contact_person, email, phone, address')
+        .eq('id', order.customer_id)
+        .maybeSingle();
+
+      const items = Array.isArray(order.items) ? order.items : [];
+      payload = {
+        order_id: order.id,
+        order_datum: new Date(order.created_at ?? Date.now()).toISOString().slice(0, 10),
+        kund: normalizeCustomer(customer),
+        rader: normalizeRows(items),
+        leveransdagar: order.selected_days ?? [],
+        leveransdatum: order.next_delivery_date ?? null,
+        ordertyp: order.package_plan ?? 'onetime',
+        delsumma: order.total_price ?? null,
+        leveransavgift: 0,
+        totalpris: order.total_price ?? null,
+        kommentar: null,
+        kalla: 'vitaminkorgen',
+      };
+    } else {
+      // Reseller orders live in their own table.
+      const { data: resellerOrder } = await supabaseAdmin
+        .from('reseller_orders')
+        .select('id, created_at, items, selected_days, total_price, notes, reseller_id, reseller_customer_id')
+        .eq('id', orderId)
+        .maybeSingle();
+
+      if (!resellerOrder) {
+        return new Response(JSON.stringify({ error: 'Unknown order' }), {
+          status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+
+      const { data: resellerCustomer } = await supabaseAdmin
+        .from('reseller_customers')
+        .select('company_name, contact_person, email, phone, address')
+        .eq('id', resellerOrder.reseller_customer_id)
+        .maybeSingle();
+
+      const days = Array.isArray(resellerOrder.selected_days) ? resellerOrder.selected_days : [];
+      const items = Array.isArray(resellerOrder.items) ? resellerOrder.items : [];
+      payload = {
+        order_id: resellerOrder.id,
+        order_datum: new Date(resellerOrder.created_at ?? Date.now()).toISOString().slice(0, 10),
+        kund: normalizeCustomer(resellerCustomer),
+        rader: normalizeRows(items),
+        leveransdagar: days,
+        leveransdatum: days[0] ?? null,
+        ordertyp: 'reseller',
+        delsumma: resellerOrder.total_price ?? null,
+        leveransavgift: 0,
+        totalpris: resellerOrder.total_price ?? null,
+        kommentar: resellerOrder.notes ?? null,
+        kalla: `reseller:${resellerOrder.reseller_id}`,
+      };
     }
-
-    const { data: customer } = await supabaseAdmin
-      .from('customers')
-      .select('company_name, contact_person, email, phone, address')
-      .eq('id', order.customer_id)
-      .maybeSingle();
-
-    const items = Array.isArray(order.items) ? order.items : [];
-    const orderDate = new Date(order.created_at ?? Date.now()).toISOString().slice(0, 10);
-    const payload = {
-      order_id: order.id,
-      order_datum: orderDate,
-      kund: normalizeCustomer(customer),
-      rader: normalizeRows(items),
-      leveransdagar: order.selected_days ?? [],
-      leveransdatum: order.next_delivery_date ?? null,
-      ordertyp: order.package_plan ?? 'onetime',
-      delsumma: order.total_price ?? null,
-      leveransavgift: 0,
-      totalpris: order.total_price ?? null,
-      kommentar: null,
-      kalla: 'vitaminkorgen',
-    };
 
     const res = await fetch(url, {
       method: 'POST',
