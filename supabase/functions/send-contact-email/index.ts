@@ -271,14 +271,28 @@ const handler = async (req: Request): Promise<Response> => {
       emailResult = buildContactEmail(data);
     }
 
+    const customerEmail = typeof data.email === "string" && data.email.includes("@")
+      ? String(data.email).slice(0, 200)
+      : undefined;
+
     const emailResponse = await resend.emails.send({
-      from: "kontakt@vitaminkorgen.se",
+      from: "Vitaminkorgen <kontakt@vitaminkorgen.se>",
       to: ["info@vitaminkorgen.se"],
+      ...(customerEmail ? { reply_to: customerEmail } : {}),
       subject: emailResult.subject,
       html: emailResult.html,
     });
 
+    if (emailResponse.error) {
+      console.error("Resend error:", emailResponse.error);
+      return new Response(
+        JSON.stringify({ error: "E-posten kunde inte skickas.", details: emailResponse.error }),
+        { status: 502, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
     console.log("Email sent successfully:", emailResponse);
+
 
     return new Response(JSON.stringify({ success: true, data: emailResponse }), {
       status: 200,
