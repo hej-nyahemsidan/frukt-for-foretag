@@ -61,6 +61,7 @@ const AreaIndustryLanding = () => {
         description={description.slice(0, 155)}
         keywords={`fruktkorg ${industryInfo.slug} ${areaName.toLowerCase()}, fruktkorg ${areaName.toLowerCase()}, ${shortLabel} fruktkorg, fruktleverans ${areaName.toLowerCase()}, frukt till ${shortLabel}`}
         type="minimal"
+        noindex
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
