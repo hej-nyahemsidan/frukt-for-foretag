@@ -50,6 +50,7 @@ const AreaLanding = () => {
         description={`Fruktkorg ${name}: ${description}`.slice(0, 155)}
         keywords={`fruktkorg ${name.toLowerCase()}, fruktkorgar ${name.toLowerCase()}, fruktleverans ${name.toLowerCase()}, fruktbud ${name.toLowerCase()}, fruktbudet ${name.toLowerCase()}, fruktkorg på jobbet ${name.toLowerCase()}`}
         type="minimal"
+        noindex={!isPriorityArea(area)}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Header />
