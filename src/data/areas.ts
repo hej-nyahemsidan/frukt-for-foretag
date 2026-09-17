@@ -14,6 +14,24 @@ export interface AreaInfo {
 
 export const areas: AreaInfo[] = [
   {
+    slug: 'lidingo',
+    name: 'Lidingö',
+    description: 'Vi levererar färska fruktkorgar till kontor och företag på Lidingö. Fri leverans varje vecka – från Ropsten till Larsberg och Baggeby.',
+    nearbyAreas: ['Östermalm', 'Gärdet', 'Nacka'],
+    highlights: ['Lidingö centrum', 'Larsberg', 'Baggeby', 'Ropsten', 'Torsvik', 'Aga', 'Käppala', 'Gåshaga'],
+    longContent: [
+      'Lidingö är ett av Stockholms mest företagstäta områden utanför innerstaden. Runt Lidingö centrum, Larsberg och Torsvik samlas allt från teknikbolag och byggföretag till vård- och omsorgsverksamheter – och längs kusten mot Baggeby och Gåshaga ligger många mindre kontor som uppskattar en enkel, pålitlig fruktleverans.',
+      'Vitaminkorgen kör Lidingö-rutten varje vardagsmorgon via Ropsten och Lidingöbron. Vi levererar direkt till er reception, ert fikarum eller den plats ni önskar – och vi känner väl till områdets kontorshus, från de större fastigheterna vid Larsberg till de mindre kontorsparkerna mot Aga och Käppala.',
+      'För kontor på Lidingö är Fruktkorg Original det vanligaste valet – en bred mix av säsongsfrukt som passar team om 10–25 medarbetare. Många kunder i området kombinerar fruktkorgen med extra beställningar av frukost, mejeri och snacks till möten och konferenser.'
+    ],
+    localFaqs: [
+      { q: 'Levererar ni fruktkorgar till hela Lidingö?', a: 'Ja, vi levererar till hela Lidingö – från Ropsten och Larsberg till Baggeby, Gåshaga, Torsvik, Aga och Käppala. Leveransen är alltid kostnadsfri oavsett var på ön ert kontor ligger.' },
+      { q: 'Hur ofta kan vi få frukt levererat till vårt kontor på Lidingö?', a: 'De flesta kunder på Lidingö väljer leverans en gång i veckan, men vi kan leverera flera dagar per vecka eller varannan vecka – helt efter era behov. Ni kan enkelt pausa eller ändra leveranserna vid semester eller ändrade behov.' },
+      { q: 'Kan ni leverera fruktkorgar till mindre kontor på Lidingö?', a: 'Absolut. Många av våra kunder på Lidingö är mindre kontor med 5–15 medarbetare. En 4 kg-korg i veckan räcker långt, och ni kan alltid komplettera med extra beställningar av frukost, mejeri eller snacks inför möten.' },
+      { q: 'Hur snabbt kan vi komma igång med fruktleverans på Lidingö?', a: 'Vi kan oftast starta leveranser inom 3–5 vardagar från beställning. Skicka en kostnadsfri offertförfrågan så återkommer vi inom 24 timmar med ett förslag anpassat för ert kontor.' }
+    ]
+  },
+  {
     slug: 'ostermalm',
     name: 'Östermalm',
     description: 'Vi levererar färska fruktkorgar till kontor och företag på Östermalm. Snabb leverans i centrala Stockholm med handplockad kvalitetsfrukt.',
