@@ -60,6 +60,65 @@ const faqSchema = {
   }))
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Hem", "item": "https://vitaminkorgen.se/" },
+    { "@type": "ListItem", "position": 2, "name": "Fruktkorg Stockholm", "item": "https://vitaminkorgen.se/fruktkorg-stockholm" }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Fruktkorg Stockholm – fruktleverans till företag",
+  "serviceType": "Fruktkorgar och fruktleverans till kontor",
+  "url": "https://vitaminkorgen.se/fruktkorg-stockholm",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Vitaminkorgen",
+    "telephone": "+46101839836",
+    "url": "https://vitaminkorgen.se",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Stockholm",
+      "addressCountry": "SE"
+    }
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Stockholm" },
+    { "@type": "City", "name": "Solna" },
+    { "@type": "City", "name": "Sundbyberg" },
+    { "@type": "City", "name": "Nacka" },
+    { "@type": "City", "name": "Lidingö" },
+    { "@type": "City", "name": "Täby" },
+    { "@type": "City", "name": "Huddinge" },
+    { "@type": "City", "name": "Södertälje" },
+    { "@type": "City", "name": "Uppsala" }
+  ],
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "SEK",
+    "price": "220",
+    "availability": "https://schema.org/InStock",
+    "url": "https://vitaminkorgen.se/fruktkorg-stockholm"
+  }
+};
+
+const priceTable = [
+  { name: 'Fruktkorg Original', slug: 'fruktkorg-original', sizes: [220, 270, 370, 430] },
+  { name: 'Fruktkorg Banan', slug: 'fruktkorg-banan', sizes: [230, 275, 390, 455] },
+  { name: 'Fruktkorg Premium', slug: 'fruktkorg-premium', sizes: [250, 352, 500, 600] },
+];
+
+const sizeGuide = [
+  { employees: '5–8 medarbetare', size: '4 kg', note: 'En korg per vecka räcker oftast.' },
+  { employees: '10–15 medarbetare', size: '6 kg', note: 'Vanligast för mindre kontor i innerstaden.' },
+  { employees: '20–30 medarbetare', size: '9 kg', note: 'Eller två mindre korgar på olika våningar.' },
+  { employees: '35–50 medarbetare', size: '11 kg', note: 'Många väljer två leveransdagar i veckan.' },
+];
+
 const FruktkorgStockholm = () => {
   const [expandedFaq, setExpandedFaq] = useState<number[]>([]);
 
