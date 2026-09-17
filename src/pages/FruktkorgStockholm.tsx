@@ -76,13 +76,15 @@ const FruktkorgStockholm = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Fruktkorg Stockholm till företag | Vitaminkorgen"
-        description="Beställ fruktkorg i Stockholm med fri leverans till kontoret. Välj leveransdag måndag–fredag, korgstorlek och tillval. Begär kostnadsfri offert."
-        keywords="fruktkorg stockholm, fruktkorgar stockholm, fruktleverans stockholm, fruktbud stockholm, färsk frukt stockholm, fruktkorg leverans stockholm, beställa fruktkorg stockholm, frukt på jobbet stockholm, fruktbudet stockholm"
+        title="Fruktkorg Stockholm – fruktkorgar till företag & kontor"
+        description="Fruktkorg Stockholm från 220 kr/vecka. Fri leverans till kontoret mån–fre, storlekar 4–11 kg och inga bindande avtal. Se priser och begär kostnadsfri offert."
+        keywords="fruktkorg stockholm, fruktkorgar stockholm, fruktkorg företag stockholm, fruktleverans stockholm, fruktbud stockholm, färsk frukt stockholm, fruktkorg leverans stockholm, beställa fruktkorg stockholm, frukt på jobbet stockholm, kontorsfrukt stockholm"
         type="products"
       />
       {/* FAQ Structured Data - using page-specific FAQ instead of generic one from StructuredData */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       
       <Header />
       <main>
