@@ -157,7 +157,7 @@ const FruktkorgStockholm = () => {
                 📍 Stockholm & Södertälje & Uppsala
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Fruktkorg Stockholm – Färska fruktkorgar levererade till dig
+                Fruktkorg Stockholm – fruktkorgar till företag och kontor
               </h1>
               <p className="text-lg md:text-xl text-gray-100 mb-8 leading-relaxed">
                 Som ert lokala fruktbud levererar vi handplockade fruktkorgar i hela Stockholmsområdet. 
