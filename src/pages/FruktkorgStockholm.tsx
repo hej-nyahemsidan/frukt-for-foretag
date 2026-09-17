@@ -60,6 +60,65 @@ const faqSchema = {
   }))
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Hem", "item": "https://vitaminkorgen.se/" },
+    { "@type": "ListItem", "position": 2, "name": "Fruktkorg Stockholm", "item": "https://vitaminkorgen.se/fruktkorg-stockholm" }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Fruktkorg Stockholm – fruktleverans till företag",
+  "serviceType": "Fruktkorgar och fruktleverans till kontor",
+  "url": "https://vitaminkorgen.se/fruktkorg-stockholm",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Vitaminkorgen",
+    "telephone": "+46101839836",
+    "url": "https://vitaminkorgen.se",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Stockholm",
+      "addressCountry": "SE"
+    }
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Stockholm" },
+    { "@type": "City", "name": "Solna" },
+    { "@type": "City", "name": "Sundbyberg" },
+    { "@type": "City", "name": "Nacka" },
+    { "@type": "City", "name": "Lidingö" },
+    { "@type": "City", "name": "Täby" },
+    { "@type": "City", "name": "Huddinge" },
+    { "@type": "City", "name": "Södertälje" },
+    { "@type": "City", "name": "Uppsala" }
+  ],
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "SEK",
+    "price": "220",
+    "availability": "https://schema.org/InStock",
+    "url": "https://vitaminkorgen.se/fruktkorg-stockholm"
+  }
+};
+
+const priceTable = [
+  { name: 'Fruktkorg Original', slug: 'fruktkorg-original', sizes: [220, 270, 370, 430] },
+  { name: 'Fruktkorg Banan', slug: 'fruktkorg-banan', sizes: [230, 275, 390, 455] },
+  { name: 'Fruktkorg Premium', slug: 'fruktkorg-premium', sizes: [250, 352, 500, 600] },
+];
+
+const sizeGuide = [
+  { employees: '5–8 medarbetare', size: '4 kg', note: 'En korg per vecka räcker oftast.' },
+  { employees: '10–15 medarbetare', size: '6 kg', note: 'Vanligast för mindre kontor i innerstaden.' },
+  { employees: '20–30 medarbetare', size: '9 kg', note: 'Eller två mindre korgar på olika våningar.' },
+  { employees: '35–50 medarbetare', size: '11 kg', note: 'Många väljer två leveransdagar i veckan.' },
+];
+
 const FruktkorgStockholm = () => {
   const [expandedFaq, setExpandedFaq] = useState<number[]>([]);
 
@@ -76,13 +135,15 @@ const FruktkorgStockholm = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Fruktkorg Stockholm till företag | Vitaminkorgen"
-        description="Beställ fruktkorg i Stockholm med fri leverans till kontoret. Välj leveransdag måndag–fredag, korgstorlek och tillval. Begär kostnadsfri offert."
-        keywords="fruktkorg stockholm, fruktkorgar stockholm, fruktleverans stockholm, fruktbud stockholm, färsk frukt stockholm, fruktkorg leverans stockholm, beställa fruktkorg stockholm, frukt på jobbet stockholm, fruktbudet stockholm"
+        title="Fruktkorg Stockholm – fruktkorgar till företag & kontor"
+        description="Fruktkorg Stockholm från 220 kr/vecka. Fri leverans till kontoret mån–fre, storlekar 4–11 kg och inga bindande avtal. Se priser och begär kostnadsfri offert."
+        keywords="fruktkorg stockholm, fruktkorgar stockholm, fruktkorg företag stockholm, fruktleverans stockholm, fruktbud stockholm, färsk frukt stockholm, fruktkorg leverans stockholm, beställa fruktkorg stockholm, frukt på jobbet stockholm, kontorsfrukt stockholm"
         type="products"
       />
       {/* FAQ Structured Data - using page-specific FAQ instead of generic one from StructuredData */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       
       <Header />
       <main>
@@ -96,7 +157,7 @@ const FruktkorgStockholm = () => {
                 📍 Stockholm & Södertälje & Uppsala
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Fruktkorg Stockholm – Färska fruktkorgar levererade till dig
+                Fruktkorg Stockholm – fruktkorgar till företag och kontor
               </h1>
               <p className="text-lg md:text-xl text-gray-100 mb-8 leading-relaxed">
                 Som ert lokala fruktbud levererar vi handplockade fruktkorgar i hela Stockholmsområdet. 
@@ -163,6 +224,91 @@ const FruktkorgStockholm = () => {
                   Forskning visar att tillgång till färsk frukt på arbetsplatsen ökar både välmående och produktivitet. 
                   En <strong>fruktkorg på kontoret</strong> är inte bara en hälsoförmån – det är en investering i era medarbetares trivsel 
                   och en signal om att ni bryr er. Många av våra kunder berättar att fruktkorgen snabbt blir en uppskattad del av vardagen.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Priser – fruktkorg Stockholm */}
+        <section className="py-16 md:py-24">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-green-900 mb-4">
+                Vad kostar en fruktkorg i Stockholm?
+              </h2>
+              <p className="text-gray-600 mb-8">
+                Priserna nedan är vårt ordinarie veckopris per fruktkorg, inklusive leverans till kontoret i Stockholm.
+                Ni väljer storlek efter hur många ni är och kan ändra storlek, leveransdag eller korgtyp när som helst.
+              </p>
+              <div className="overflow-x-auto rounded-xl border border-gray-100 shadow-sm bg-white">
+                <table className="w-full text-left text-sm md:text-base">
+                  <caption className="sr-only">Priser per vecka för fruktkorgar levererade i Stockholm</caption>
+                  <thead className="bg-green-50 text-green-900">
+                    <tr>
+                      <th scope="col" className="px-4 py-3 font-semibold">Fruktkorg</th>
+                      <th scope="col" className="px-4 py-3 font-semibold">4 kg</th>
+                      <th scope="col" className="px-4 py-3 font-semibold">6 kg</th>
+                      <th scope="col" className="px-4 py-3 font-semibold">9 kg</th>
+                      <th scope="col" className="px-4 py-3 font-semibold">11 kg</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {priceTable.map((row) => (
+                      <tr key={row.slug} className="border-t border-gray-100">
+                        <th scope="row" className="px-4 py-3 font-medium text-green-900">
+                          <Link to={`/produkt/${row.slug}`} className="underline hover:text-green-700">{row.name}</Link>
+                        </th>
+                        {row.sizes.map((p, i) => (
+                          <td key={i} className="px-4 py-3 text-gray-700">{p} kr/v</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-sm text-gray-500 mt-3">
+                Se fler prisexempel per kontorsstorlek på sidan{' '}
+                <Link to="/fruktkorg-stockholm-pris" className="text-green-700 underline hover:text-green-900">fruktkorg Stockholm pris</Link>.
+              </p>
+
+              <h2 className="text-3xl md:text-4xl font-bold text-green-900 mt-16 mb-4">
+                Vilken storlek på fruktkorgen passar ert kontor?
+              </h2>
+              <p className="text-gray-600 mb-8">
+                En bra tumregel i Stockholm är cirka 2–3 frukter per medarbetare och leveransdag. Här är vad våra kunder
+                brukar landa i:
+              </p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {sizeGuide.map((row) => (
+                  <div key={row.size} className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
+                    <p className="font-semibold text-green-900">{row.employees}</p>
+                    <p className="text-green-700 font-bold text-lg">{row.size} fruktkorg</p>
+                    <p className="text-sm text-gray-600 mt-1">{row.note}</p>
+                  </div>
+                ))}
+              </div>
+
+              <h2 className="text-3xl md:text-4xl font-bold text-green-900 mt-16 mb-4">
+                Så går leveransen till i Stockholm
+              </h2>
+              <div className="prose prose-lg text-gray-600 space-y-4">
+                <p>
+                  Ni väljer leveransdag måndag till fredag. Vi kör egna rutter i Stockholms innerstad och närförort, vilket
+                  gör att frukten kommer fram samma dag som den packas. Chauffören ställer fruktkorgen på den plats ni önskar
+                  – i köket, receptionen eller konferensrummet – och tar med sig den tomma korgen från förra veckan.
+                  Ni behöver inte vara på plats.
+                </p>
+                <p>
+                  Tillsammans med fruktkorgen kan vi ta med mjölk, kaffe, te, fika och snacks, och ställa mejerivarorna
+                  direkt i rätt kylskåp. Det gör att en office manager slipper springa ärenden och kan lägga extra
+                  beställningar inför möten via{' '}
+                  <Link to="/produkter" className="text-green-700 underline hover:text-green-900">vår webshop</Link>.
+                </p>
+                <p>
+                  Fakturering sker månadsvis med 15 dagars kredit. Vill ni prova först beställer ni en{' '}
+                  <Link to="/provkorg" className="text-green-700 underline hover:text-green-900">kostnadsfri provkorg</Link>{' '}
+                  – ni binder er inte till något.
                 </p>
               </div>
             </div>

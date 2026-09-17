@@ -62,7 +62,9 @@ const FeaturesSection = () => {
               <Link to="/fruktkorg-pa-jobbet" className="text-primary underline hover:text-primary-dark font-semibold">fruktkorg på jobbet i Stockholm</Link>.
             </p>
             <p className="text-slate-600 mt-2 max-w-2xl mx-auto text-sm sm:text-base">
-              Läs också:{' '}
+              Se priser och leveransområden för{' '}
+              <Link to="/fruktkorg-stockholm" className="text-primary underline hover:text-primary-dark font-semibold">fruktkorg Stockholm</Link>{' '}
+              eller läs:{' '}
               <Link to="/blogg/tips/fruktkorg-kontor-arbetsmiljo-valj-leverantor" className="text-primary underline hover:text-primary-dark font-semibold">Fruktkorg på kontoret – arbetsmiljö och rätt val av leverantör</Link>.
             </p>
 
