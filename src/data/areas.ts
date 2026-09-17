@@ -667,3 +667,22 @@ export const areas: AreaInfo[] = [
 export const getAreaBySlug = (slug: string): AreaInfo | undefined => {
   return areas.find(a => a.slug === slug);
 };
+
+/**
+ * Områdessidor som ska indexeras av Google. Övriga områdes- och
+ * bransch-kombinationssidor sätts till noindex för att undvika tunt,
+ * nästan identiskt innehåll som konkurrerar med huvudsidorna.
+ */
+export const PRIORITY_AREA_SLUGS = [
+  'lidingo',
+  'ostermalm',
+  'kungsholmen',
+  'sodermalm',
+  'solna',
+  'nacka',
+  'bromma',
+  'taby',
+];
+
+export const isPriorityArea = (slug?: string): boolean =>
+  !!slug && PRIORITY_AREA_SLUGS.includes(slug);

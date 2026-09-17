@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Check, Truck, Star, Leaf, ShieldCheck, Phone, ArrowRight, MapPin } from 'lucide-react';
-import { getAreaBySlug, areas } from '@/data/areas';
+import { getAreaBySlug, areas, isPriorityArea } from '@/data/areas';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.webp';
 import fruktkorgStandard from '@/assets/fruktkorg-standard-new.jpg';
 import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
@@ -50,6 +50,7 @@ const AreaLanding = () => {
         description={`Fruktkorg ${name}: ${description}`.slice(0, 155)}
         keywords={`fruktkorg ${name.toLowerCase()}, fruktkorgar ${name.toLowerCase()}, fruktleverans ${name.toLowerCase()}, fruktbud ${name.toLowerCase()}, fruktbudet ${name.toLowerCase()}, fruktkorg på jobbet ${name.toLowerCase()}`}
         type="minimal"
+        noindex={!isPriorityArea(area)}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <Header />
