@@ -230,6 +230,91 @@ const FruktkorgStockholm = () => {
           </div>
         </section>
 
+        {/* Priser – fruktkorg Stockholm */}
+        <section className="py-16 md:py-24">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-green-900 mb-4">
+                Vad kostar en fruktkorg i Stockholm?
+              </h2>
+              <p className="text-gray-600 mb-8">
+                Priserna nedan är vårt ordinarie veckopris per fruktkorg, inklusive leverans till kontoret i Stockholm.
+                Ni väljer storlek efter hur många ni är och kan ändra storlek, leveransdag eller korgtyp när som helst.
+              </p>
+              <div className="overflow-x-auto rounded-xl border border-gray-100 shadow-sm bg-white">
+                <table className="w-full text-left text-sm md:text-base">
+                  <caption className="sr-only">Priser per vecka för fruktkorgar levererade i Stockholm</caption>
+                  <thead className="bg-green-50 text-green-900">
+                    <tr>
+                      <th scope="col" className="px-4 py-3 font-semibold">Fruktkorg</th>
+                      <th scope="col" className="px-4 py-3 font-semibold">4 kg</th>
+                      <th scope="col" className="px-4 py-3 font-semibold">6 kg</th>
+                      <th scope="col" className="px-4 py-3 font-semibold">9 kg</th>
+                      <th scope="col" className="px-4 py-3 font-semibold">11 kg</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {priceTable.map((row) => (
+                      <tr key={row.slug} className="border-t border-gray-100">
+                        <th scope="row" className="px-4 py-3 font-medium text-green-900">
+                          <Link to={`/produkt/${row.slug}`} className="underline hover:text-green-700">{row.name}</Link>
+                        </th>
+                        {row.sizes.map((p, i) => (
+                          <td key={i} className="px-4 py-3 text-gray-700">{p} kr/v</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-sm text-gray-500 mt-3">
+                Se fler prisexempel per kontorsstorlek på sidan{' '}
+                <Link to="/fruktkorg-stockholm-pris" className="text-green-700 underline hover:text-green-900">fruktkorg Stockholm pris</Link>.
+              </p>
+
+              <h2 className="text-3xl md:text-4xl font-bold text-green-900 mt-16 mb-4">
+                Vilken storlek på fruktkorgen passar ert kontor?
+              </h2>
+              <p className="text-gray-600 mb-8">
+                En bra tumregel i Stockholm är cirka 2–3 frukter per medarbetare och leveransdag. Här är vad våra kunder
+                brukar landa i:
+              </p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {sizeGuide.map((row) => (
+                  <div key={row.size} className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
+                    <p className="font-semibold text-green-900">{row.employees}</p>
+                    <p className="text-green-700 font-bold text-lg">{row.size} fruktkorg</p>
+                    <p className="text-sm text-gray-600 mt-1">{row.note}</p>
+                  </div>
+                ))}
+              </div>
+
+              <h2 className="text-3xl md:text-4xl font-bold text-green-900 mt-16 mb-4">
+                Så går leveransen till i Stockholm
+              </h2>
+              <div className="prose prose-lg text-gray-600 space-y-4">
+                <p>
+                  Ni väljer leveransdag måndag till fredag. Vi kör egna rutter i Stockholms innerstad och närförort, vilket
+                  gör att frukten kommer fram samma dag som den packas. Chauffören ställer fruktkorgen på den plats ni önskar
+                  – i köket, receptionen eller konferensrummet – och tar med sig den tomma korgen från förra veckan.
+                  Ni behöver inte vara på plats.
+                </p>
+                <p>
+                  Tillsammans med fruktkorgen kan vi ta med mjölk, kaffe, te, fika och snacks, och ställa mejerivarorna
+                  direkt i rätt kylskåp. Det gör att en office manager slipper springa ärenden och kan lägga extra
+                  beställningar inför möten via{' '}
+                  <Link to="/produkter" className="text-green-700 underline hover:text-green-900">vår webshop</Link>.
+                </p>
+                <p>
+                  Fakturering sker månadsvis med 15 dagars kredit. Vill ni prova först beställer ni en{' '}
+                  <Link to="/provkorg" className="text-green-700 underline hover:text-green-900">kostnadsfri provkorg</Link>{' '}
+                  – ni binder er inte till något.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Products */}
         <section className="py-16 md:py-24 bg-green-50">
           <div className="container mx-auto px-6">
