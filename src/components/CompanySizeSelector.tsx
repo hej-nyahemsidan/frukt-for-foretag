@@ -214,7 +214,7 @@ const CompanySizeSelector = () => {
                 />
               </div>
               <div className="flex flex-wrap gap-2" aria-label="Vanliga antal personer">
-                {[10, 24, 50, 100].map(count => (
+                {[10, 25, 50, 100].map(count => (
                   <Button key={count} type="button" size="sm" variant={selectedEmployees === count ? 'default' : 'outline'} onClick={() => selectSize(count)}>
                     {count === 100 ? '100+' : count}
                   </Button>
