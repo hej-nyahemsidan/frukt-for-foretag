@@ -44,7 +44,7 @@ type BasketKey = keyof typeof basketDetails;
 const CompanySizeSelector = () => {
   const [selectedBasket, setSelectedBasket] = useState<BasketKey>('Original');
   const [selectedSize, setSelectedSize] = useState<BasketSize>('4kg');
-  const [selectedEmployees, setSelectedEmployees] = useState(24);
+  const [selectedEmployees, setSelectedEmployees] = useState(10);
   const [prices, setPrices] = useState<PriceMap>({});
 
   useEffect(() => {
@@ -214,7 +214,7 @@ const CompanySizeSelector = () => {
                 />
               </div>
               <div className="flex flex-wrap gap-2" aria-label="Vanliga antal personer">
-                {[10, 24, 50, 100].map(count => (
+                {[10, 25, 50, 100].map(count => (
                   <Button key={count} type="button" size="sm" variant={selectedEmployees === count ? 'default' : 'outline'} onClick={() => selectSize(count)}>
                     {count === 100 ? '100+' : count}
                   </Button>
