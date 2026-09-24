@@ -44,7 +44,7 @@ type BasketKey = keyof typeof basketDetails;
 const CompanySizeSelector = () => {
   const [selectedBasket, setSelectedBasket] = useState<BasketKey>('Original');
   const [selectedSize, setSelectedSize] = useState<BasketSize>('4kg');
-  const [selectedEmployees, setSelectedEmployees] = useState(24);
+  const [selectedEmployees, setSelectedEmployees] = useState(10);
   const [prices, setPrices] = useState<PriceMap>({});
 
   useEffect(() => {
