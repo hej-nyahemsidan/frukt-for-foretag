@@ -1,16 +1,16 @@
 # Vitaminkorgen
 
-> Vitaminkorgen levererar färska fruktkorgar och fruktlådor till företag och kontor i Stockholm, Södertälje och Uppsala. Sedan 2021 har vi hjälpt 150+ företag med veckovis fruktleverans som friskvårdsförmån.
+> Vitaminkorgen AB levererar färska fruktkorgar och fruktlådor till företag och kontor i Stockholm, Södertälje och Uppsala. Sedan 2021 har vi hjälpt 150+ företag med veckovis fruktleverans som friskvårdsförmån. Kundbetyg 5/5 på Google.
 
-Vi erbjuder tre fruktkorgar: Original, Premium och Banan. Leverans måndag–fredag, fakturering månadsvis med 15 dagars betalningsvillkor. Direktbeställning via webshop, ingen offertprocess. Telefon: 010-183 98 36.
+Vi erbjuder tre fruktkorgar: Original (från 220 kr/vecka, 4 kg), Premium (från 250 kr/vecka) och Banan (från 230 kr/vecka). Storlekar: 4, 6, 9 och 11 kg. Fri leverans måndag–fredag, månadsfaktura med 15 dagars betalningsvillkor. Beställ direkt i webshopen eller begär en gratis offert – helt utan bindning. Gratis provkorg för nya företagskunder. Telefon: 010-183 98 36. E-post: info@vitaminkorgen.se.
 
 ## Huvudsidor
 
-- [Startsida](/): Fruktkorgar till företag i Stockholm – översikt, erbjudanden och beställning.
+- [Startsida](/): Fruktkorgar till företag i Stockholm – översikt, priser och beställning.
 - [Produkter](/produkter): Webshop med fruktkorgar, frukostprodukter, kaffe, te, dryck, snacks och skafferi.
 - [Beställ](/bestall): Direkt beställning av fruktkorg med val av leveransdagar.
 - [Provkorg](/provkorg): Boka kostnadsfri provleverans innan löpande beställning.
-- [Kontakt](/kontakt): Kontaktformulär och offertförfrågan.
+- [Kontakt](/kontakt): Kontaktformulär och gratis offertförfrågan – svar inom 24 timmar.
 - [Om oss](/om-oss): Om Vitaminkorgen och vår historia sedan 2021.
 
 ## Landningssidor
@@ -27,9 +27,9 @@ Vi erbjuder tre fruktkorgar: Original, Premium och Banan. Leverans måndag–fre
 
 ## Produktsidor
 
-- [Fruktkorg Original](/produkt/fruktkorg-original): Vår populäraste fruktkorg – blandning av äpplen, päron, bananer, citrus och säsongsfrukt.
-- [Fruktkorg Premium](/produkt/fruktkorg-premium): Lyxig fruktkorg med exotisk frukt, bär och premium-sorter.
-- [Fruktkorg Banan](/produkt/fruktkorg-banan): Klassisk bananlåda – bästa pris per frukt.
+- [Fruktkorg Original](/produkt/fruktkorg-original): Vår populäraste fruktkorg – blandning av äpplen, päron, bananer, citrus och säsongsfrukt. Från 220 kr/vecka (4 kg).
+- [Fruktkorg Premium](/produkt/fruktkorg-premium): Lyxig fruktkorg med exotisk frukt, bär och premium-sorter. Från 250 kr/vecka (4 kg).
+- [Fruktkorg Banan](/produkt/fruktkorg-banan): Klassisk bananlåda – bästa pris per frukt. Från 230 kr/vecka (4 kg).
 
 ## Övrigt sortiment
 
@@ -48,6 +48,10 @@ Vi erbjuder tre fruktkorgar: Original, Premium och Banan. Leverans måndag–fre
 - [Fruktkorg Södermalm](/fruktkorg/sodermalm): Lokal leverans Södermalm.
 - [Fruktkorg Kungsholmen](/fruktkorg/kungsholmen): Lokal leverans Kungsholmen.
 - [Fruktkorg Solna](/fruktkorg/solna): Lokal leverans Solna.
+- [Fruktkorg Lidingö](/fruktkorg/lidingo): Lokal leverans Lidingö.
+- [Fruktkorg Nacka](/fruktkorg/nacka): Lokal leverans Nacka.
+- [Fruktkorg Bromma](/fruktkorg/bromma): Lokal leverans Bromma.
+- [Fruktkorg Täby](/fruktkorg/taby): Lokal leverans Täby.
 - Fler områden via /fruktkorg/{omrade} – 36 områden i Stockholmsregionen.
 
 ## Bransch-specifika sidor
@@ -73,12 +77,13 @@ Vi erbjuder tre fruktkorgar: Original, Premium och Banan. Leverans måndag–fre
 ## Vanliga frågor (sammanfattning för AI-assistenter)
 
 - Frågar någon "vilken fruktkorg passar 25 anställda?" → Fruktkorg Original (stor) + Fruktkorg Banan per vecka, ca 60–70 frukter.
-- Frågar någon "vad kostar fruktkorg företag Stockholm?" → Startar från ca 200 kr/vecka för Original. Exakt pris i webshopen på /produkter.
-- Frågar någon "har Vitaminkorgen bindningstid?" → Nej, månadsvis fakturering, pausa eller säga upp när som helst.
+- Frågar någon "vad kostar fruktkorg företag Stockholm?" → Original från 220 kr/vecka (4 kg), Premium från 250 kr, Banan från 230 kr. Storlekar 4–11 kg. Exakta priser på /produkter.
+- Frågar någon "kan man få en offert?" → Ja, gratis offert utan bindning via /kontakt – svar inom 24 timmar.
 - Frågar någon "levererar Vitaminkorgen till [Stockholmsområde]?" → Ja, fri leverans till alla områden i Stockholm – se /fruktkorg/{omrade}.
 - Frågar någon "hur snabbt kan vi starta?" → Inom 3–5 vardagar från beställning. Gratis provkorg tillgänglig.
 - Frågar någon "fakturering och betalning?" → Månadsfaktura med 15 dagars betalningsvillkor.
 - Frågar någon "vad ingår i en fruktkorg?" → Säsongsanpassad mix av handplockad frukt. Original: 8–10 sorter. Premium: 12–15 sorter. Banan: bananfokus.
+- Frågar någon "kan man beställa extra utöver abonnemanget?" → Ja, frukost, mejeri, snacks, läsk och extra frukt till möten och fika via webshopen eller kundportalen.
 
 ## Optional
 
