@@ -36,7 +36,7 @@ const FruktkorgProduct = () => {
   const img = imageMap[product.image] || fruktkorgOriginal;
 
   const faqs = [
-    { q: `Vad kostar ${product.name}?`, a: `${product.name} finns i storlekar från ${product.sizes[0].kg} (${product.sizes[0].price} kr/vecka) upp till ${product.sizes[product.sizes.length-1].kg} (${product.sizes[product.sizes.length-1].price} kr/vecka). Leveransen är alltid kostnadsfri.` },
+    { q: `Vad kostar ${product.name}?`, a: `${product.name} finns i storlekar från ${product.sizes[0]!.kg} (${product.sizes[0]!.price} kr/vecka) upp till ${product.sizes[product.sizes.length-1]!.kg} (${product.sizes[product.sizes.length-1]!.price} kr/vecka). Leveransen är alltid kostnadsfri.` },
     { q: 'Kan vi testa innan vi bestämmer oss?', a: 'Absolut! Vi erbjuder en kostnadsfri provkorg så att ni kan uppleva kvaliteten själva. Ingen förpliktelse.' },
     { q: 'Hur ofta levereras fruktkorgen?', a: 'Ni väljer leveransdag själva. De flesta kunder får leverans en gång per vecka, men vi anpassar efter era behov.' },
   ];
@@ -208,7 +208,7 @@ const FruktkorgProduct = () => {
                   <img src={imageMap[p.image]} alt={p.name} className="w-20 h-20 object-cover rounded-lg" />
                   <div>
                     <h3 className="font-bold text-green-900">{p.name}</h3>
-                    <p className="text-sm text-gray-500">Från {p.sizes[0].price} kr/vecka</p>
+                    <p className="text-sm text-gray-500">Från {p.sizes[0]!.price} kr/vecka</p>
                     <span className="text-sm text-green-600 flex items-center gap-1 mt-1">
                       Läs mer <ArrowRight className="h-3 w-3" />
                     </span>
