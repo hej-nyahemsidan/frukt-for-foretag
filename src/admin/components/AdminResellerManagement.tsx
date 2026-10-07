@@ -517,8 +517,42 @@ const AdminResellerManagement = () => {
               </Button>
             </div>
           </DialogContent>
-        </Dialog>
-      </div>
+      </Dialog>
+
+      <Dialog open={!!inviteReseller} onOpenChange={(open) => { if (!open) setInviteReseller(null); }}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Skapa inloggning – {inviteReseller?.name}</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              Kontot skapas automatiskt kopplat till ÅF:n och ett mejl med aktiveringslänk (giltig i 7 dagar) skickas till adressen nedan.
+            </p>
+            <div>
+              <Label htmlFor="invite-email">E-post (användarnamn) *</Label>
+              <Input
+                id="invite-email"
+                type="email"
+                value={inviteEmail}
+                onChange={(e) => setInviteEmail(e.target.value)}
+                placeholder="namn@foretag.se"
+              />
+            </div>
+            <div>
+              <Label htmlFor="invite-name">Kontaktperson</Label>
+              <Input
+                id="invite-name"
+                value={inviteName}
+                onChange={(e) => setInviteName(e.target.value)}
+                placeholder="Anna Andersson"
+              />
+            </div>
+            <Button onClick={handleSendInvite} disabled={inviting} className="w-full">
+              {inviting ? 'Skapar och skickar...' : 'Skapa konto och skicka inloggning'}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {loading ? (
         <p className="text-muted-foreground text-sm">Laddar...</p>
