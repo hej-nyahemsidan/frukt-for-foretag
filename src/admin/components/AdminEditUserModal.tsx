@@ -37,7 +37,7 @@ const AdminEditUserModal = ({
   user,
   onClose,
   onUserUpdated,
-}) => {
+}: AdminEditUserModalProps) => {
   const [formData, setFormData] = useState({
     email: '',
     fullName: '',

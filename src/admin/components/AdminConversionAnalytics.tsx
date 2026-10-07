@@ -48,8 +48,8 @@ const AdminConversionAnalytics = () => {
       ...step,
       count: new Set(events.filter(event => event.event_name === step.event).map(event => event.session_id)).size,
     }));
-    const visitors = uniqueByStep[0].count;
-    const submitted = uniqueByStep[5].count;
+    const visitors = uniqueByStep[0]?.count ?? 0;
+    const submitted = uniqueByStep[5]?.count ?? 0;
     const baskets = ['Original', 'Banan', 'Premium'].map(name => ({
       name,
       count: events.filter(event => event.event_name === 'basket_selected' && event.basket_type === name).length,
@@ -83,8 +83,8 @@ const AdminConversionAnalytics = () => {
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <Card><CardHeader className="pb-2 flex flex-row items-center justify-between"><CardTitle className="text-xs text-gray-500">Såg väljaren</CardTitle><Eye className="w-4 h-4 text-gray-400" /></CardHeader><CardContent><div className="text-2xl font-bold">{stats.visitors}</div></CardContent></Card>
-        <Card><CardHeader className="pb-2 flex flex-row items-center justify-between"><CardTitle className="text-xs text-gray-500">Valde korg</CardTitle><ShoppingBasket className="w-4 h-4 text-gray-400" /></CardHeader><CardContent><div className="text-2xl font-bold">{stats.uniqueByStep[1].count}</div></CardContent></Card>
-        <Card><CardHeader className="pb-2 flex flex-row items-center justify-between"><CardTitle className="text-xs text-gray-500">Till offert</CardTitle><MousePointerClick className="w-4 h-4 text-gray-400" /></CardHeader><CardContent><div className="text-2xl font-bold">{stats.uniqueByStep[4].count}</div></CardContent></Card>
+        <Card><CardHeader className="pb-2 flex flex-row items-center justify-between"><CardTitle className="text-xs text-gray-500">Valde korg</CardTitle><ShoppingBasket className="w-4 h-4 text-gray-400" /></CardHeader><CardContent><div className="text-2xl font-bold">{stats.uniqueByStep[1]?.count ?? 0}</div></CardContent></Card>
+        <Card><CardHeader className="pb-2 flex flex-row items-center justify-between"><CardTitle className="text-xs text-gray-500">Till offert</CardTitle><MousePointerClick className="w-4 h-4 text-gray-400" /></CardHeader><CardContent><div className="text-2xl font-bold">{stats.uniqueByStep[4]?.count ?? 0}</div></CardContent></Card>
         <Card><CardHeader className="pb-2 flex flex-row items-center justify-between"><CardTitle className="text-xs text-gray-500">Skickade offert</CardTitle><Send className="w-4 h-4 text-gray-400" /></CardHeader><CardContent><div className="text-2xl font-bold">{stats.submitted}</div><p className="text-xs text-gray-500 mt-1">{stats.visitors ? `${Math.round((stats.submitted / stats.visitors) * 100)}% av besökarna` : 'Ingen data ännu'}</p></CardContent></Card>
       </div>
 
@@ -92,7 +92,7 @@ const AdminConversionAnalytics = () => {
         <CardHeader><CardTitle className="text-lg flex items-center gap-2"><BarChart3 className="w-5 h-5" />Konverteringstratt</CardTitle></CardHeader>
         <CardContent className="space-y-4">
           {stats.uniqueByStep.map((step, index) => {
-            const previous = index === 0 ? step.count : stats.uniqueByStep[index - 1].count;
+            const previous = index === 0 ? step.count : (stats.uniqueByStep[index - 1]?.count ?? 0);
             const rate = previous ? Math.round((step.count / previous) * 100) : 0;
             const width = stats.visitors ? Math.max(4, (step.count / stats.visitors) * 100) : 0;
             return (

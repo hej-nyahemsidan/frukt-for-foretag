@@ -28,7 +28,7 @@ export const handler = async (req: Request): Promise<Response> => {
     );
 
     // Brute-force protection: max 20 attempts per IP per hour.
-    const clientIp = (req.headers.get('x-forwarded-for') ?? '').split(',')[0].trim() || 'unknown';
+    const clientIp = ((req.headers.get('x-forwarded-for') ?? '').split(',')[0] ?? '').trim() || 'unknown';
     try {
       const { data: attempts } = await supabaseAdmin.rpc('increment_rate_limit', {
         _key: `invite-token:${clientIp}`,

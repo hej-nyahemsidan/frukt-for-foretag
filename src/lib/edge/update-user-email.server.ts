@@ -138,7 +138,7 @@ export const handler = async (req: Request): Promise<Response> => {
     console.error('Error in update-user-email function:', error);
     return new Response(
       JSON.stringify({
-        error: error.message,
+        error: error instanceof Error ? error.message : 'Unknown error',
       }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
