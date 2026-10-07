@@ -35,7 +35,7 @@ const ExitIntentPopup: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (isDismissed()) return;
+    if (isResellerRoute || isDismissed()) return;
 
     let triggered = false;
 
@@ -56,7 +56,7 @@ const ExitIntentPopup: React.FC = () => {
       clearTimeout(timer);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [isDismissed]);
+  }, [isDismissed, isResellerRoute]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -95,7 +95,7 @@ const ExitIntentPopup: React.FC = () => {
     }
   };
 
-  if (!isVisible) return null;
+  if (isResellerRoute || !isVisible) return null;
 
   return (
     <div
