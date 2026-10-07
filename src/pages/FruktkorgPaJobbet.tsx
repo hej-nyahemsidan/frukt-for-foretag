@@ -196,6 +196,26 @@ const FruktkorgPaJobbet = () => {
           </div>
         </section>
 
+        {/* Internal linking */}
+        <section className="py-12 bg-white border-t border-green-100">
+          <div className="container mx-auto px-6 max-w-4xl text-center">
+            <h2 className="text-xl font-bold text-green-900 mb-4">
+              Läs mer om frukt till arbetsplatsen
+            </h2>
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm">
+              <Link to="/fruktlada" className="text-green-700 hover:text-green-900 underline">Fruktlåda till företag</Link>
+              <span className="text-green-300">·</span>
+              <Link to="/fruktkorg-foretag" className="text-green-700 hover:text-green-900 underline">Fruktkorg företag</Link>
+              <span className="text-green-300">·</span>
+              <Link to="/fruktkorg-stockholm" className="text-green-700 hover:text-green-900 underline">Fruktkorg Stockholm</Link>
+              <span className="text-green-300">·</span>
+              <Link to="/fruktkorg-kontor" className="text-green-700 hover:text-green-900 underline">Fruktkorg kontor</Link>
+              <span className="text-green-300">·</span>
+              <Link to="/provkorg" className="text-green-700 hover:text-green-900 underline">Gratis provkorg</Link>
+            </div>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="py-16 md:py-20 bg-gradient-to-br from-green-800 to-green-900">
           <div className="container mx-auto px-6 text-center">
