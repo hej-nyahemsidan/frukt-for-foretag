@@ -1,6 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
-import FruktkorgStockholmPris from "@/pages/FruktkorgStockholmPris";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
+// Price page merged into the Stockholm hub (price section #priser).
 export const Route = createFileRoute("/fruktkorg-stockholm-pris")({
-  component: FruktkorgStockholmPris,
+  beforeLoad: () => {
+    throw redirect({ to: "/fruktkorg-stockholm", replace: true, statusCode: 301 });
+  },
 });

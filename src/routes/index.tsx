@@ -3,6 +3,7 @@ import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
 import { createIsomorphicFn } from "@tanstack/react-start";
 import { getRequestHost } from "@tanstack/react-start/server";
 import Index from "@/pages/Index";
+import { staticHead } from "@/lib/seo";
 
 // Main Vitaminkorgen hosts. Any other hostname is treated as a reseller
 // custom domain and the root path is sent to the white-label customer login.
@@ -44,6 +45,7 @@ const RootRoute = () => {
 };
 
 export const Route = createFileRoute("/")({
+  head: () => staticHead("/"),
   beforeLoad: () => {
     if (!isMainHost(getHost())) {
       throw redirect({ to: "/af/kund/login", replace: true });

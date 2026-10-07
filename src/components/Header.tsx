@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@/contexts/AuthContext';
 import { useAdminAuth } from '@/admin/contexts/AdminAuthContext';
+import AutoBreadcrumbs from '@/components/AutoBreadcrumbs';
 import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import PublicCartIndicator from '@/components/PublicCartIndicator';
 import { supabase } from '@/integrations/supabase/client';
@@ -143,6 +144,7 @@ const Header = () => {
   };
 
   return (
+    <>
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/50 shadow-lg">
       {/* Top accent line */}
       <div className="h-2 bg-gradient-to-r from-secondary via-primary to-primary-light"></div>
@@ -739,6 +741,8 @@ const Header = () => {
         )}
       </div>
     </header>
+    <AutoBreadcrumbs />
+    </>
   );
 };
 

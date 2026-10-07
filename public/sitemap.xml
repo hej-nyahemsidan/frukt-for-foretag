@@ -10,15 +10,17 @@
   <url><loc>https://vitaminkorgen.se/blogg/tips</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://vitaminkorgen.se/blogg/recept</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://vitaminkorgen.se/fruktkorg-stockholm</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://vitaminkorgen.se/fruktkorg-stockholm-pris</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url>
+    <loc>https://vitaminkorgen.se/fruktbud-stockholm</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
   <url><loc>https://vitaminkorgen.se/fruktkorg-foretag</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://vitaminkorgen.se/fruktkorg-pa-jobbet</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://vitaminkorgen.se/fruktkorg-kontor</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://vitaminkorgen.se/fruktleverans-foretag</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://vitaminkorgen.se/prova-fruktkorg</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://vitaminkorgen.se/fruktlada</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://vitaminkorgen.se/blommor</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://vitaminkorgen.se/varuautomat</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://vitaminkorgen.se/produkt/fruktkorg-original</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://vitaminkorgen.se/produkt/fruktkorg-premium</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://vitaminkorgen.se/produkt/fruktkorg-banan</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -37,7 +39,6 @@
   <url><loc>https://vitaminkorgen.se/jamfor/traditionell-fruktleverans</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://vitaminkorgen.se/jamfor/egen-fruktinkop</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://vitaminkorgen.se/jamfor/frukostleverans</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://vitaminkorgen.se/blogg/tips/fruktbud-stockholm-leverans-till-kontoret</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://vitaminkorgen.se/blogg/tips/fruktkorg-foretag-guide-2026</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://vitaminkorgen.se/blogg/tips/frukt-pa-jobbet-stockholm-sa-gor-ni</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://vitaminkorgen.se/blogg/tips/fruktkorg-abonnemang-foretag-stockholm</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -50,8 +51,6 @@
   <url><loc>https://vitaminkorgen.se/blogg/tips/hallbarhet-fruktsvinn-kontoret</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://vitaminkorgen.se/blogg/tips/sasongsfrukt-pa-kontoret</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://vitaminkorgen.se/blogg/tips/underlattar-office-manager-frukt-kaffe-fika</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://vitaminkorgen.se/blogg/tips/fruktbud-stockholm-breda-leveranser-nojda-kunder</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://vitaminkorgen.se/blogg/tips/solcell-arbetsbilar-energibesparingsprojekt</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://vitaminkorgen.se/blogg/tips/fruktkorg-kontor-arbetsmiljo-valj-leverantor</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://vitaminkorgen.se/blogg/tips/frukost-fika-till-kontoret-moten</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

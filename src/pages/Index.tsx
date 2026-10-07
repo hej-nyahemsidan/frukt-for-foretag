@@ -10,6 +10,9 @@ import ProductShowcase from '@/components/ProductShowcase';
 import DeliveryVanSection from '@/components/DeliveryVanSection';
 import LeadCaptureSection from '@/components/LeadCaptureSection';
 import CustomerPortalSection from '@/components/CustomerPortalSection';
+import HowItWorksSteps from '@/components/HowItWorksSteps';
+import HomeHubLinks from '@/components/HomeHubLinks';
+import TrustProofSection from '@/components/TrustProofSection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 import PromoPopup from '@/components/PromoPopup';
@@ -29,11 +32,14 @@ const Index = () => {
         <TrustedBySection />
         <CompanySizeSelector />
         <ProductShowcase />
+        <HowItWorksSteps heading="Så får ni fruktkorg till kontoret – 3 steg" />
+        <TrustProofSection />
         <CustomerReviewsSection />
         <FeaturesSection />
         <DeliveryVanSection />
         <LeadCaptureSection />
         <CustomerPortalSection />
+        <HomeHubLinks />
         <FAQSection />
         <AreaLinksSection />
       </main>

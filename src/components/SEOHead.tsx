@@ -59,6 +59,8 @@ const SEOHead = ({
   const finalKeywords = keywords || defaultSEO.keywords;
 
   useEffect(() => {
+    // Pages with a server-rendered route head() own their tags.
+    if (document.querySelector('meta[name="route-seo"]')) return;
     // Update document title
     document.title = finalTitle;
     
@@ -71,17 +73,6 @@ const SEOHead = ({
       metaDescription.setAttribute('name', 'description');
       metaDescription.setAttribute('content', finalDescription);
       document.head.appendChild(metaDescription);
-    }
-    
-    // Update meta keywords
-    let metaKeywords = document.querySelector('meta[name="keywords"]');
-    if (metaKeywords) {
-      metaKeywords.setAttribute('content', finalKeywords);
-    } else {
-      metaKeywords = document.createElement('meta');
-      metaKeywords.setAttribute('name', 'keywords');
-      metaKeywords.setAttribute('content', finalKeywords);
-      document.head.appendChild(metaKeywords);
     }
 
     // Update Open Graph tags

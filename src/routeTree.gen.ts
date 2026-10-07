@@ -17,6 +17,7 @@ import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CookiepolicyRouteImport } from './routes/cookiepolicy'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ErbjudandeRouteImport } from './routes/erbjudande'
+import { Route as FruktbudStockholmRouteImport } from './routes/fruktbud-stockholm'
 import { Route as FruktkorgForetagRouteImport } from './routes/fruktkorg-foretag'
 import { Route as FruktkorgKontorRouteImport } from './routes/fruktkorg-kontor'
 import { Route as FruktkorgPaJobbetRouteImport } from './routes/fruktkorg-pa-jobbet'
@@ -94,6 +95,11 @@ const DashboardRoute = DashboardRouteImport.update({
 const ErbjudandeRoute = ErbjudandeRouteImport.update({
   id: '/erbjudande',
   path: '/erbjudande',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FruktbudStockholmRoute = FruktbudStockholmRouteImport.update({
+  id: '/fruktbud-stockholm',
+  path: '/fruktbud-stockholm',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FruktkorgForetagRoute = FruktkorgForetagRouteImport.update({
@@ -297,6 +303,7 @@ export interface FileRoutesByFullPath {
   '/cookiepolicy': typeof CookiepolicyRoute
   '/dashboard': typeof DashboardRoute
   '/erbjudande': typeof ErbjudandeRoute
+  '/fruktbud-stockholm': typeof FruktbudStockholmRoute
   '/fruktkorg-foretag': typeof FruktkorgForetagRoute
   '/fruktkorg-kontor': typeof FruktkorgKontorRoute
   '/fruktkorg-pa-jobbet': typeof FruktkorgPaJobbetRoute
@@ -345,6 +352,7 @@ export interface FileRoutesByTo {
   '/cookiepolicy': typeof CookiepolicyRoute
   '/dashboard': typeof DashboardRoute
   '/erbjudande': typeof ErbjudandeRoute
+  '/fruktbud-stockholm': typeof FruktbudStockholmRoute
   '/fruktkorg-foretag': typeof FruktkorgForetagRoute
   '/fruktkorg-kontor': typeof FruktkorgKontorRoute
   '/fruktkorg-pa-jobbet': typeof FruktkorgPaJobbetRoute
@@ -394,6 +402,7 @@ export interface FileRoutesById {
   '/cookiepolicy': typeof CookiepolicyRoute
   '/dashboard': typeof DashboardRoute
   '/erbjudande': typeof ErbjudandeRoute
+  '/fruktbud-stockholm': typeof FruktbudStockholmRoute
   '/fruktkorg-foretag': typeof FruktkorgForetagRoute
   '/fruktkorg-kontor': typeof FruktkorgKontorRoute
   '/fruktkorg-pa-jobbet': typeof FruktkorgPaJobbetRoute
@@ -444,6 +453,7 @@ export interface FileRouteTypes {
     | '/cookiepolicy'
     | '/dashboard'
     | '/erbjudande'
+    | '/fruktbud-stockholm'
     | '/fruktkorg-foretag'
     | '/fruktkorg-kontor'
     | '/fruktkorg-pa-jobbet'
@@ -492,6 +502,7 @@ export interface FileRouteTypes {
     | '/cookiepolicy'
     | '/dashboard'
     | '/erbjudande'
+    | '/fruktbud-stockholm'
     | '/fruktkorg-foretag'
     | '/fruktkorg-kontor'
     | '/fruktkorg-pa-jobbet'
@@ -540,6 +551,7 @@ export interface FileRouteTypes {
     | '/cookiepolicy'
     | '/dashboard'
     | '/erbjudande'
+    | '/fruktbud-stockholm'
     | '/fruktkorg-foretag'
     | '/fruktkorg-kontor'
     | '/fruktkorg-pa-jobbet'
@@ -589,6 +601,7 @@ export interface RootRouteChildren {
   CookiepolicyRoute: typeof CookiepolicyRoute
   DashboardRoute: typeof DashboardRoute
   ErbjudandeRoute: typeof ErbjudandeRoute
+  FruktbudStockholmRoute: typeof FruktbudStockholmRoute
   FruktkorgForetagRoute: typeof FruktkorgForetagRoute
   FruktkorgKontorRoute: typeof FruktkorgKontorRoute
   FruktkorgPaJobbetRoute: typeof FruktkorgPaJobbetRoute
@@ -685,6 +698,13 @@ declare module '@tanstack/react-router' {
       path: '/erbjudande'
       fullPath: '/erbjudande'
       preLoaderRoute: typeof ErbjudandeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fruktbud-stockholm': {
+      id: '/fruktbud-stockholm'
+      path: '/fruktbud-stockholm'
+      fullPath: '/fruktbud-stockholm'
+      preLoaderRoute: typeof FruktbudStockholmRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fruktkorg-foretag': {
@@ -965,6 +985,7 @@ const rootRouteChildren: RootRouteChildren = {
   CookiepolicyRoute: CookiepolicyRoute,
   DashboardRoute: DashboardRoute,
   ErbjudandeRoute: ErbjudandeRoute,
+  FruktbudStockholmRoute: FruktbudStockholmRoute,
   FruktkorgForetagRoute: FruktkorgForetagRoute,
   FruktkorgKontorRoute: FruktkorgKontorRoute,
   FruktkorgPaJobbetRoute: FruktkorgPaJobbetRoute,

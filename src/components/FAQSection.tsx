@@ -37,6 +37,10 @@ const FAQSection = () => {
     {
       question: "Vad är minsta beställning för fruktkorgar på jobbet?",
       answer: "Vår minsta leverans är en fruktkorg från 4kg per vecka."
+    },
+    {
+      question: "Hur snabbt kan vi få vår första leverans?",
+      answer: "Nya kunder får normalt sin första leverans inom 3–5 vardagar. Vi faktureras månadsvis, så ni får en samlad faktura per månad."
     }
   ];
 
