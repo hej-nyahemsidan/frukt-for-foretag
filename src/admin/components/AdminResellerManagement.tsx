@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Pencil, Trash2, Package, Upload, X, ChevronLeft } from 'lucide-react';
+import { Plus, Pencil, Trash2, Package, Upload, X, ChevronLeft, UserPlus } from 'lucide-react';
 
 interface Reseller {
   id: string;
