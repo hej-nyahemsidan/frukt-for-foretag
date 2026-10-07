@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Pencil, Trash2, Package, Upload, X, ChevronLeft } from 'lucide-react';
+import { Plus, Pencil, Trash2, Package, Upload, X, ChevronLeft, UserPlus } from 'lucide-react';
 
 interface Reseller {
   id: string;
@@ -46,6 +46,12 @@ const AdminResellerManagement = () => {
   const [resellerPrices, setResellerPrices] = useState<ResellerPrice[]>([]);
   const [editingReseller, setEditingReseller] = useState<Reseller | null>(null);
   const [uploading, setUploading] = useState(false);
+
+  // Reseller login (ÅF-konto) invite state
+  const [inviteReseller, setInviteReseller] = useState<Reseller | null>(null);
+  const [inviteEmail, setInviteEmail] = useState('');
+  const [inviteName, setInviteName] = useState('');
+  const [inviting, setInviting] = useState(false);
 
   // Form state
   const [formName, setFormName] = useState('');
@@ -196,6 +202,47 @@ const AdminResellerManagement = () => {
     setFormPhone(reseller.contact_phone || '');
     setFormLogoUrl(reseller.logo_url || '');
     setShowAddDialog(true);
+  };
+
+  const openInviteDialog = (reseller: Reseller) => {
+    setInviteReseller(reseller);
+    setInviteEmail(reseller.contact_email || '');
+    setInviteName('');
+  };
+
+  const handleSendInvite = async () => {
+    if (!inviteReseller) return;
+    if (!inviteEmail.trim() || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(inviteEmail.trim())) {
+      toast({ title: 'Fel', description: 'Ange en giltig e-postadress.', variant: 'destructive' });
+      return;
+    }
+    setInviting(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('create-reseller-user', {
+        body: {
+          email: inviteEmail.trim(),
+          resellerId: inviteReseller.id,
+          contactName: inviteName.trim(),
+        },
+      });
+      if (error) throw new Error(error.message);
+      if (data?.error) throw new Error(data.error);
+      toast({
+        title: 'Inloggning skickad',
+        description: `${data.email} fick ett mejl med aktiveringslänk (giltig i 7 dagar).`,
+      });
+      setInviteReseller(null);
+      setInviteEmail('');
+      setInviteName('');
+    } catch (e) {
+      toast({
+        title: 'Fel',
+        description: e instanceof Error ? e.message : 'Kunde inte skapa kontot.',
+        variant: 'destructive',
+      });
+    } finally {
+      setInviting(false);
+    }
   };
 
   const handleSelectReseller = async (reseller: Reseller) => {
@@ -470,7 +517,42 @@ const AdminResellerManagement = () => {
               </Button>
             </div>
           </DialogContent>
-        </Dialog>
+      </Dialog>
+
+      <Dialog open={!!inviteReseller} onOpenChange={(open) => { if (!open) setInviteReseller(null); }}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Skapa inloggning – {inviteReseller?.name}</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              Kontot skapas automatiskt kopplat till ÅF:n och ett mejl med aktiveringslänk (giltig i 7 dagar) skickas till adressen nedan.
+            </p>
+            <div>
+              <Label htmlFor="invite-email">E-post (användarnamn) *</Label>
+              <Input
+                id="invite-email"
+                type="email"
+                value={inviteEmail}
+                onChange={(e) => setInviteEmail(e.target.value)}
+                placeholder="namn@foretag.se"
+              />
+            </div>
+            <div>
+              <Label htmlFor="invite-name">Kontaktperson</Label>
+              <Input
+                id="invite-name"
+                value={inviteName}
+                onChange={(e) => setInviteName(e.target.value)}
+                placeholder="Anna Andersson"
+              />
+            </div>
+            <Button onClick={handleSendInvite} disabled={inviting} className="w-full">
+              {inviting ? 'Skapar och skickar...' : 'Skapa konto och skicka inloggning'}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
       </div>
 
       {loading ? (
@@ -512,6 +594,15 @@ const AdminResellerManagement = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => openInviteDialog(reseller)}
+                    className="flex items-center gap-1"
+                  >
+                    <UserPlus className="w-4 h-4" />
+                    <span className="hidden sm:inline">Skapa inloggning</span>
+                  </Button>
                   <Button
                     variant="outline"
                     size="sm"
