@@ -664,11 +664,12 @@ const ResellerCustomerShop = () => {
                     return sizes.map(size => {
                       const price = getPrice(selectedProduct.id, size);
                       if (price === null) return null;
+                      const hasKgPrice = getKgPrice(selectedProduct.id) !== null && /^(\d+(?:[.,]\d+)?)\s*kg$/i.test(size);
                       return (
                         <div key={size} className="flex items-center justify-between">
                           <span>{size}</span>
                           <Button size="sm" onClick={() => { addToCart(selectedProduct, size, price); setSelectedProduct(null); }}>
-                            Lägg till
+                            {hasKgPrice ? 'Lägg till' : `${price} kr – Lägg till`}
                           </Button>
                         </div>
                       );
