@@ -206,11 +206,12 @@ const BlogPost = () => {
           type="minimal"
         />
       )}
-      {!post && (
+      {!post && !loading && (
         <SEOHead
-          title="Blogg | Vitaminkorgen"
-          description="Läs tips och recept om frukt på jobbet."
+          title="Artikeln hittades inte | Vitaminkorgen Blogg"
+          description="Artikeln kunde inte hittas."
           type="minimal"
+          noindex
         />
       )}
       {articleSchema && (
