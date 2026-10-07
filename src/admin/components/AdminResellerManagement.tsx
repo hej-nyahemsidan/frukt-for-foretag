@@ -52,6 +52,7 @@ const AdminResellerManagement = () => {
   const [inviteEmail, setInviteEmail] = useState('');
   const [inviteName, setInviteName] = useState('');
   const [inviting, setInviting] = useState(false);
+  const [inviteLink, setInviteLink] = useState('');
 
   // Form state
   const [formName, setFormName] = useState('');
@@ -208,32 +209,43 @@ const AdminResellerManagement = () => {
     setInviteReseller(reseller);
     setInviteEmail(reseller.contact_email || '');
     setInviteName('');
+    setInviteLink('');
   };
 
-  const handleSendInvite = async () => {
+  const handleSendInvite = async (sendEmail: boolean) => {
     if (!inviteReseller) return;
     if (!inviteEmail.trim() || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(inviteEmail.trim())) {
       toast({ title: 'Fel', description: 'Ange en giltig e-postadress.', variant: 'destructive' });
       return;
     }
     setInviting(true);
+    setInviteLink('');
     try {
       const { data, error } = await supabase.functions.invoke('create-reseller-user', {
         body: {
           email: inviteEmail.trim(),
           resellerId: inviteReseller.id,
           contactName: inviteName.trim(),
+          sendEmail,
         },
       });
       if (error) throw new Error(error.message);
       if (data?.error) throw new Error(data.error);
-      toast({
-        title: 'Inloggning skickad',
-        description: `${data.email} fick ett mejl med aktiveringslänk (giltig i 7 dagar).`,
-      });
-      setInviteReseller(null);
-      setInviteEmail('');
-      setInviteName('');
+      if (sendEmail) {
+        toast({
+          title: 'Inloggning skickad',
+          description: `${data.email} fick ett mejl med aktiveringslänk (giltig i 7 dagar).`,
+        });
+        setInviteReseller(null);
+        setInviteEmail('');
+        setInviteName('');
+      } else {
+        setInviteLink(data.activation_url || '');
+        toast({
+          title: 'Konto skapat',
+          description: 'Inget mejl skickades. Kopiera länken nedan och skicka den själv.',
+        });
+      }
     } catch (e) {
       toast({
         title: 'Fel',
@@ -547,9 +559,31 @@ const AdminResellerManagement = () => {
                 placeholder="Anna Andersson"
               />
             </div>
-            <Button onClick={handleSendInvite} disabled={inviting} className="w-full">
-              {inviting ? 'Skapar och skickar...' : 'Skapa konto och skicka inloggning'}
-            </Button>
+            <div className="flex flex-col gap-2">
+              <Button onClick={() => handleSendInvite(true)} disabled={inviting} className="w-full">
+                {inviting ? 'Skapar...' : 'Skapa konto och skicka inloggning'}
+              </Button>
+              <Button onClick={() => handleSendInvite(false)} disabled={inviting} variant="outline" className="w-full">
+                {inviting ? 'Skapar...' : 'Skapa konto utan att skicka mejl'}
+              </Button>
+            </div>
+            {inviteLink && (
+              <div className="rounded-md border bg-muted/50 p-3 space-y-2">
+                <p className="text-sm font-medium">Aktiveringslänk (giltig i 7 dagar):</p>
+                <p className="text-xs break-all text-muted-foreground">{inviteLink}</p>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="w-full"
+                  onClick={() => {
+                    navigator.clipboard.writeText(inviteLink);
+                    toast({ title: 'Kopierad', description: 'Länken kopierades till urklipp.' });
+                  }}
+                >
+                  Kopiera länk
+                </Button>
+              </div>
+            )}
           </div>
         </DialogContent>
       </Dialog>
