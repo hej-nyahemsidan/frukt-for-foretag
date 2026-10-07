@@ -25,19 +25,7 @@ import {
   sortableKeyboardCoordinates,
   rectSortingStrategy,
 } from '@dnd-kit/sortable';
-import SortableProductCard from './SortableProductCard';
-
-interface Product {
-  id: string;
-  name: string;
-  category: string;
-  image_url: string;
-  prices: Record<string, number>;
-  description?: string | null;
-  display_order?: number | null;
-  created_at?: string;
-  updated_at?: string;
-}
+import SortableProductCard, { type Product } from './SortableProductCard';
 
 interface ProductFormData {
   name: string;

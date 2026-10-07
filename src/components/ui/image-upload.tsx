@@ -115,7 +115,7 @@ export function ImageUpload({
 
       const files = Array.from(e.dataTransfer.files);
       if (files.length > 0) {
-        await uploadFile(files[0]);
+        if (files[0]) await uploadFile(files[0]);
       }
     },
     [disabled, isUploading, onChange]
@@ -126,7 +126,7 @@ export function ImageUpload({
       if (disabled || isUploading) return;
 
       const files = e.target.files;
-      if (files && files.length > 0) {
+      if (files && files.length > 0 && files[0]) {
         await uploadFile(files[0]);
       }
     },

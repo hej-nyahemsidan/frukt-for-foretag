@@ -52,7 +52,7 @@ const VideoEmbed = ({
       },
     },
   };
-  if (duration) jsonLd.duration = duration;
+  if (duration) jsonLd['duration'] = duration;
 
   return (
     <div className="my-8">

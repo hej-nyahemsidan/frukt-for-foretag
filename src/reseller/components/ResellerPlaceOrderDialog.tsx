@@ -93,8 +93,7 @@ const ResellerPlaceOrderDialog = ({ customerId, customerName, open, onOpenChange
         ? sizes.some(s => getPrice(p.id, s) !== null)
         : getPrice(p.id, null) !== null;
       if (hasPrice) {
-        if (!map[p.category]) map[p.category] = [];
-        map[p.category].push(p);
+        (map[p.category] ??= []).push(p);
       }
     });
     return map;

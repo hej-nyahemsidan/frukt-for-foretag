@@ -50,7 +50,7 @@ const SEOHead = ({
         keywords: 'om vitaminkorgen, fruktkorgar stockholm, fruktbudet, fruktbud stockholm, frukt på jobbet, fruktkorgar till jobbet, kontorsfrukt leverantör, företagsfrukt stockholm, office manager frukt, fruktansvarig kontor'
       }
     };
-    return defaults[type] || defaults.homepage;
+    return defaults[type as keyof typeof defaults] || defaults.homepage;
   };
 
   const defaultSEO = getDefaultSEO();

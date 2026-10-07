@@ -25,7 +25,7 @@ const SimplifiedCheckout = ({
   selectedDays,
   currentDay,
   onBack
-}) => {
+}: SimplifiedCheckoutProps) => {
   const { items, clearCart, getItemsByOrderType } = useCart();
   const { customer } = useAuth();
   const { toast } = useToast();
@@ -216,7 +216,7 @@ const SimplifiedCheckout = ({
               <p className="text-muted-foreground">Inga produkter valda</p>
             ) : (
             <div className="space-y-6">
-              {selectedDays.map(day => {
+              {selectedDays.map((day: string) => {
                 const dayItems = relevantItems.filter(item => item.assignedDay === day);
                 if (dayItems.length === 0) return null;
                   

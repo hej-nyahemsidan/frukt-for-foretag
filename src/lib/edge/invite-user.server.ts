@@ -1,5 +1,5 @@
 // Ported from supabase/functions/invite-user/index.ts (Deno edge function).
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "./supabase.server";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',

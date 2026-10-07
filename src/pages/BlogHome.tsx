@@ -19,7 +19,7 @@ interface BlogPost {
   image_url: string | null;
   category: string;
   author: string;
-  published_at: string;
+  published_at: string | null;
 }
 
 const BlogHome = () => {
@@ -60,7 +60,7 @@ const BlogHome = () => {
         <CardHeader>
           <CardTitle className="text-xl">{post.title}</CardTitle>
           <CardDescription>
-            {post.author} • {format(new Date(post.published_at), 'dd MMMM yyyy', { locale: sv })}
+            {post.author} • {format(new Date(post.published_at ?? 0), 'dd MMMM yyyy', { locale: sv })}
           </CardDescription>
         </CardHeader>
         {post.excerpt && (

@@ -33,6 +33,7 @@ const getCookieUtil = (name: string): string | null => {
   const ca = document.cookie.split(';');
   for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
+    if (c === undefined) continue;
     while (c.charAt(0) === ' ') c = c.substring(1, c.length);
     if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
   }
@@ -138,7 +139,7 @@ export const useCookieConsent = () => {
         const prefix = pattern.replace('*', '');
         const cookies = document.cookie.split(';');
         cookies.forEach(cookie => {
-          const cookieName = cookie.split('=')[0].trim();
+          const cookieName = (cookie.split('=')[0] ?? '').trim();
           if (cookieName.startsWith(prefix)) {
             deleteCookieUtil(cookieName);
           }

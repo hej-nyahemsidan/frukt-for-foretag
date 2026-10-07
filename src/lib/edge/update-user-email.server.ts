@@ -1,5 +1,5 @@
 // Ported from supabase/functions/update-user-email/index.ts (Deno edge function).
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "./supabase.server";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -22,7 +22,7 @@ export const handler = async (req: Request): Promise<Response> => {
     // Create a Supabase client with the auth token
     const supabaseClient = createClient(
       process.env['SUPABASE_URL'] ?? '',
-      process.env['SUPABASE_ANON_KEY'] ?? '',
+      process.env['SUPABASE_ANON_KEY'] ?? process.env['SUPABASE_PUBLISHABLE_KEY'] ?? '',
       {
         global: {
           headers: { Authorization: authHeader },

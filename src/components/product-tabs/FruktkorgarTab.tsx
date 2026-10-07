@@ -20,7 +20,7 @@ interface Product {
   category: string;
   image_url: string;
   prices: Record<string, number>;
-  description?: string;
+  description?: string | null;
 }
 
 const getProductImage = (product: Product | null | undefined) => {

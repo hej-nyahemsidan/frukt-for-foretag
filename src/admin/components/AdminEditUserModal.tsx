@@ -17,15 +17,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { invokeServer } from "@/lib/invoke-server";
 import { updateUserEmail } from "@/lib/update-user-email.functions";
 import { updateUserPassword } from "@/lib/update-user-password.functions";
-
-interface Profile {
-  id: string;
-  email: string;
-  full_name: string | null;
-  created_at: string;
-  updated_at: string;
-  company_name?: string;
-}
+import type { Profile } from './AdminUserManagement';
 
 interface AdminEditUserModalProps {
   user: Profile | null;

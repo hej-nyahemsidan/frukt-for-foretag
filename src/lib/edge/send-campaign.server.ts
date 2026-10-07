@@ -1,6 +1,6 @@
 // Ported from supabase/functions/send-campaign/index.ts (Deno edge function).
 import { Resend } from "resend";
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "./supabase.server";
 
 // Env is read per call (Workers inject env per request).
 const getResend = () => new Resend(process.env["RESEND_API_KEY"]);
