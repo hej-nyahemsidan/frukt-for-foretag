@@ -397,7 +397,7 @@ const BlogPost = () => {
               <div className="flex flex-wrap gap-3 text-sm">
                 <Link to="/blogg" className="text-green-700 hover:underline">← Tillbaka till bloggen</Link>
                 <span className="text-gray-300">|</span>
-                <Link to="/fruktkorg-pa-jobbet" className="text-green-700 hover:underline">Frukt på jobbet</Link>
+                <Link to="/fruktkorg-pa-jobbet" className="text-green-700 hover:underline">Frukt till jobbet</Link>
                 <span className="text-gray-300">|</span>
                 <Link to="/fruktkorg-stockholm" className="text-green-700 hover:underline">Fruktkorg Stockholm</Link>
                 <span className="text-gray-300">|</span>

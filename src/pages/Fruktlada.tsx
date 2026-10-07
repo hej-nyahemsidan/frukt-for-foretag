@@ -329,7 +329,7 @@ const Fruktlada = () => {
               <span className="text-green-300">·</span>
               <Link to="/fruktkorg-stockholm" className="text-green-700 hover:text-green-900 underline">Fruktkorg Stockholm</Link>
               <span className="text-green-300">·</span>
-              <Link to="/fruktkorg-pa-jobbet" className="text-green-700 hover:text-green-900 underline">Fruktkorg på jobbet</Link>
+              <Link to="/fruktkorg-pa-jobbet" className="text-green-700 hover:text-green-900 underline">Frukt till jobbet</Link>
               <span className="text-green-300">·</span>
               <Link to="/fruktkorg-kontor" className="text-green-700 hover:text-green-900 underline">Fruktkorg kontor</Link>
               <span className="text-green-300">·</span>
