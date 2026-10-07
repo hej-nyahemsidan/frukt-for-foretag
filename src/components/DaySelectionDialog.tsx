@@ -17,7 +17,7 @@ const DaySelectionDialog = ({
   availableDays,
   onConfirm,
   productName
-}) => {
+}: DaySelectionDialogProps) => {
   const [selectedDays, setSelectedDays] = useState<string[]>([...availableDays]);
 
   const toggleDay = (day: string) => {
@@ -79,7 +79,7 @@ const DaySelectionDialog = ({
 
           {/* Day Selection */}
           <div className="grid grid-cols-2 gap-2">
-            {availableDays.map((day) => (
+            {availableDays.map((day: string) => (
               <button
                 key={day}
                 onClick={() => toggleDay(day)}

@@ -74,8 +74,8 @@ const CustomerOrderHistory = () => {
         name: it.name,
         price: Number(it.price) || 0,
         category: 'fruktkorgar',
-        size: it.size,
-        assignedDay: it.assignedDay,
+        size: it.size ?? undefined,
+        assignedDay: it.assignedDay ?? undefined,
         orderType: it.orderType || (o.package_plan === 'weekly' ? 'subscription' : 'onetime'),
         quantity: it.quantity || 1,
       });

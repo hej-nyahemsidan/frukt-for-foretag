@@ -161,7 +161,7 @@ const CompanySizeSelector = () => {
                 </span>
                 <span className="block text-sm font-normal leading-relaxed text-muted-foreground">{basket.contents}</span>
                 <span className="block text-sm font-bold text-foreground mt-3">
-                  4 kg {typeof prices[basket.product]?.['4kg'] === 'number' ? `– ${prices[basket.product]['4kg']} kr` : '– pris hämtas'}
+                  4 kg {typeof prices[basket.product]?.['4kg'] === 'number' ? `– ${prices[basket.product]?.['4kg']} kr` : '– pris hämtas'}
                 </span>
                 <span className="flex items-center gap-2 text-sm font-semibold text-primary mt-3">
                   {isSelected && <CheckCircle2 className="h-4 w-4" aria-hidden="true" />}
