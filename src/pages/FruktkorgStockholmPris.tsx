@@ -8,7 +8,7 @@ import { Check, Star, Phone, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import originalImg from '@/assets/fruktkorg-original-new.jpg';
 import premiumImg from '@/assets/fruktkorg-premium-new.webp';
-import bananImg from '@/assets/fruktkorg-banan-new.jpg';
+import bananImg from '@/assets/fruktkorg-banan-new.webp';
 
 const faqItems = [
   { question: 'Vad kostar en fruktkorg i Stockholm?', answer: 'Våra fruktkorgar börjar från 220 kr för en 4 kg Original-korg. Premium-korgen kostar från 250 kr och Banan-korgen från 230 kr. Alla priser är exklusive moms och inkluderar fri leverans i Stockholm.' },

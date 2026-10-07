@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import vitaminKorgenLogo from '@/assets/vitamin-korgen-new-logo.jpg';
+import vitaminKorgenLogo from '@/assets/vitamin-korgen-new-logo.webp';
 
 interface VitaminKorgenLogoProps {
   size?: 'small' | 'medium' | 'large' | 'header' | 'xl' | '2xl';
