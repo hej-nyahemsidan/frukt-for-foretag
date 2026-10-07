@@ -11,9 +11,9 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import fruktladaImg from '@/assets/fruktlada-new.webp';
-import fruktkorgOriginal from '@/assets/fruktkorg-standard-new.jpg';
+import fruktkorgOriginal from '@/assets/fruktkorg-standard-new.webp';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.webp';
-import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
+import fruktkorgBanan from '@/assets/fruktkorg-banan-new.webp';
 import { getFruktkorgBySlug } from '@/data/fruktkorg-products';
 
 // Priser hämtas från samma källa som produktsidorna (/produkt/:slug)

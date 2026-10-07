@@ -6,8 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Check, Truck, Star, ShieldCheck, Phone, Users, Package } from 'lucide-react';
 import { getCompanySizeBySlug, companySizes } from '@/data/companySizes';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.webp';
-import fruktkorgStandard from '@/assets/fruktkorg-standard-new.jpg';
-import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
+import fruktkorgStandard from '@/assets/fruktkorg-standard-new.webp';
+import fruktkorgBanan from '@/assets/fruktkorg-banan-new.webp';
 
 const productImages: Record<string, string> = {
   Original: fruktkorgStandard,

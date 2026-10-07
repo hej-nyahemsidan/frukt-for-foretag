@@ -1,9 +1,9 @@
-import mentimeterLogo from '@/assets/logos/mentimeter.png';
-import viasalesLogo from '@/assets/logos/viasales.png';
-import isalesLogo from '@/assets/logos/isales.png';
-import riserankLogo from '@/assets/logos/riserank.png';
-import alfaluxLogo from '@/assets/logos/alfalux.png';
-import mecaLogo from '@/assets/logos/meca.png';
+import mentimeterLogo from '@/assets/logos/mentimeter.webp';
+import viasalesLogo from '@/assets/logos/viasales.webp';
+import isalesLogo from '@/assets/logos/isales.webp';
+import riserankLogo from '@/assets/logos/riserank.webp';
+import alfaluxLogo from '@/assets/logos/alfalux.webp';
+import mecaLogo from '@/assets/logos/meca.webp';
 
 const clients = [
   { name: 'Mentimeter', logo: mentimeterLogo, url: 'https://www.mentimeter.com' },

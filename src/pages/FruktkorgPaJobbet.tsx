@@ -5,7 +5,7 @@ import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Check, Truck, Star, Apple, Coffee, Zap, Heart, Phone, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
+import fruktkorgBanan from '@/assets/fruktkorg-banan-new.webp';
 import premiumCoffee from '@/assets/kaffe-te-kontor-leverans.jpg';
 import professionalFruit from '@/assets/fruktkorg-premium-display.jpg';
 import officeWorkers from '@/assets/medarbetare-fruktkorgar-kontor.jpg';

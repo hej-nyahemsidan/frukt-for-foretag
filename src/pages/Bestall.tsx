@@ -19,11 +19,11 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { trackQuoteSubmitted } from '@/lib/gtm';
 
-import imgOriginal from '@/assets/fruktkorg-standard-new.jpg';
+import imgOriginal from '@/assets/fruktkorg-standard-new.webp';
 import imgPremium from '@/assets/fruktkorg-premium-new.webp';
-import imgBanan from '@/assets/fruktkorg-banan-new.jpg';
+import imgBanan from '@/assets/fruktkorg-banan-new.webp';
 import imgSicilien from '@/assets/fruktkorg-sicilien.webp';
-import imgEko from '@/assets/fruktkorg-eko-new.jpg';
+import imgEko from '@/assets/fruktkorg-eko-new.webp';
 import imgBas from '@/assets/fruktlada-new.webp';
 import imgMellanmjolk from '@/assets/mellanmjolk-laktosfri.png';
 import imgEkoMjolk from '@/assets/mellanmjolk-eko-laktosfri.png';

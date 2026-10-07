@@ -8,8 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Check, Truck, Star, Leaf, Clock, ShieldCheck, MapPin, Phone, Plus, Minus, Users, Heart, Zap } from 'lucide-react';
 import { areas } from '@/data/areas';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.webp';
-import fruktkorgStandard from '@/assets/fruktkorg-standard-new.jpg';
-import fruktkorgBanan from '@/assets/fruktkorg-banan-new.jpg';
+import fruktkorgStandard from '@/assets/fruktkorg-standard-new.webp';
+import fruktkorgBanan from '@/assets/fruktkorg-banan-new.webp';
 import officeWorkers from '@/assets/medarbetare-fruktkorgar-kontor.jpg';
 
 const faqItems = [
