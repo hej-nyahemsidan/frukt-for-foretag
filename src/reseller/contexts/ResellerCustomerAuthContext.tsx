@@ -147,6 +147,13 @@ export const ResellerCustomerAuthProvider: React.FC<{ children: React.ReactNode 
     if (loggedInUser) {
       const result = await checkResellerCustomerRole(loggedInUser.id);
       if (!result) {
+        // Reseller admins use the same login page on their domain — send them to /af
+        const { data: ru } = await supabase
+          .from('reseller_users').select('id').eq('user_id', loggedInUser.id).maybeSingle();
+        if (ru) {
+          window.location.href = '/af';
+          return { error: null };
+        }
         await supabase.auth.signOut();
         return { error: { message: 'Du har inte tillgång till denna portal.' } };
       }
