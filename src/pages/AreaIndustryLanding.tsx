@@ -178,7 +178,7 @@ const AreaIndustryLanding = () => {
                   frukt på jobbet i Stockholm
                 </Link>{' '}
                 eller{' '}
-                <Link to="/fruktkorg-stockholm-pris" className="text-green-700 underline font-medium">
+                <Link to="/fruktkorg-stockholm" className="text-green-700 underline font-medium">
                   våra priser
                 </Link>
                 .

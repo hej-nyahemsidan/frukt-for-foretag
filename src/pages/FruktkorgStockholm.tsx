@@ -269,7 +269,7 @@ const FruktkorgStockholm = () => {
               </div>
               <p className="text-sm text-gray-500 mt-3">
                 Se fler prisexempel per kontorsstorlek på sidan{' '}
-                <Link to="/fruktkorg-stockholm-pris" className="text-green-700 underline hover:text-green-900">fruktkorg Stockholm pris</Link>.
+                <Link to="/fruktkorg-stockholm" className="text-green-700 underline hover:text-green-900">fruktkorg Stockholm pris</Link>.
               </p>
 
               <h2 className="text-3xl md:text-4xl font-bold text-green-900 mt-16 mb-4">
@@ -556,7 +556,7 @@ const FruktkorgStockholm = () => {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
               {[
                 { to: '/produkter', title: 'Fruktkorgar & sortiment', desc: 'Bygg din beställning med frukt, mjölk, kaffe, fika och skafferi.' },
-                { to: '/fruktkorg-stockholm-pris', title: 'Priser i Stockholm', desc: 'Vad kostar en fruktkorg? Se prisexempel per kontorsstorlek.' },
+                { to: '/fruktbud-stockholm', title: 'Fruktbud Stockholm', desc: 'Så fungerar vår veckoleverans av frukt till kontoret.' },
                 { to: '/fruktkorg-foretag', title: 'Fruktkorg till företag', desc: 'Så fungerar avtal, fakturering och löpande leveranser.' },
                 { to: '/fruktkorg-kontor', title: 'Fruktkorg till kontoret', desc: 'Placering, påfyllning och tips för mindre svinn.' },
                 { to: '/fruktlada', title: 'Fruktlåda till företag', desc: 'Fruktlåda i flera storlekar – Banan, Original och Premium.' },
