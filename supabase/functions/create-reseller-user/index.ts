@@ -93,7 +93,8 @@ serve(async (req) => {
       });
     }
 
-    const { email, resellerId, contactName } = await req.json().catch(() => ({}));
+    const { email, resellerId, contactName, sendEmail } = await req.json().catch(() => ({}));
+    const shouldSendEmail = sendEmail !== false;
     const cleanEmail = typeof email === 'string' ? email.trim().toLowerCase() : '';
     if (!cleanEmail || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(cleanEmail)) {
       return new Response(JSON.stringify({ error: 'Giltig e-post krävs' }), {
