@@ -488,6 +488,7 @@ const ResellerCustomerShop = () => {
                                   {sizes.map(size => {
                                     const price = getPrice(product.id, size);
                                     if (price === null) return null;
+                                    const hasKgPrice = getKgPrice(product.id) !== null && /^(\d+(?:[.,]\d+)?)\s*kg$/i.test(size);
                                     return (
                                       <div key={size} className="flex items-center justify-between gap-1">
                                         <span className="text-xs text-muted-foreground">{size}</span>
@@ -496,7 +497,7 @@ const ResellerCustomerShop = () => {
                                           className="h-7 text-xs gap-1"
                                           onClick={(e) => { e.stopPropagation(); addToCart(product, size, price); }}
                                         >
-                                          + {price} kr
+                                          + Lägg till
                                         </Button>
                                       </div>
                                     );
