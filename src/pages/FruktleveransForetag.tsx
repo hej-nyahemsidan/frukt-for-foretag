@@ -12,7 +12,7 @@ import hallbarImg from '@/assets/fruktleverans-stockholm-hallbar.webp';
 const faqItems = [
   { question: 'Vilka områden levererar ni till?', answer: 'Vi levererar fritt i hela Stockholm – innerstan, Solna, Sundbyberg, Bromma, Kista, Täby, Nacka, Lidingö, Huddinge, Haninge med flera. Se hela listan över områden vi servar.' },
   { question: 'Vilka dagar levererar ni?', answer: 'Vi levererar måndag till fredag. Ni väljer den veckodag som passar er bäst, varje vecka eller varannan vecka.' },
-  { question: 'Hur snabbt kan ni starta leverans?', answer: 'För nya företagskunder kan vi oftast starta leverans inom 1–3 vardagar. Beställer ni en provkorg innan kl 12.00 kan den komma redan nästa vardag.' },
+  { question: 'Hur snabbt kan ni starta leverans?', answer: 'Vi levererar direkt när ni vill börja. Beställer ni en provkorg innan kl 12.00 kan den komma redan nästa vardag.' },
   { question: 'Kostar leveransen extra?', answer: 'Nej. Leverans är alltid fri inom Stockholm med kranskommuner. Inga drivmedelstillägg eller dolda fraktavgifter.' },
   { question: 'Hur sker leveransen rent praktiskt?', answer: 'Vår förare kommer in på kontoret och placerar fruktkorgen där ni vill ha den. Vi kan också fylla på en befintlig fruktskål om ni föredrar det.' },
   { question: 'Vad händer vid storhelger och sommar?', answer: 'Vi levererar enligt schema förutom röda dagar. Vid storhelger och semesterperioder skickar vi alternativ leveransdag i god tid.' },

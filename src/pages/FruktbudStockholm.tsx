@@ -14,7 +14,7 @@ export const fruktbudFaq = [
   { q: 'Vilka dagar levererar ert fruktbud i Stockholm?', a: 'Vi levererar måndag–fredag. Ni väljer en eller flera fasta leveransdagar per vecka. Helgleverans kan väljas vid beställning om ni har behov av det.' },
   { q: 'Kostar leveransen något?', a: 'Nej. Leveransen är kostnadsfri i hela Stockholm, Södertälje och Uppsala.' },
   { q: 'Vad kostar det?', a: 'Fruktkorg Original från 220 kr, Banan från 230 kr och Premium från 250 kr per korg och leverans (4 kg). Större storlekar finns i 6, 9 och 11 kg.' },
-  { q: 'Hur snabbt kan vi komma igång?', a: 'Första leveransen sker normalt inom 3–5 vardagar efter beställning eller godkänd offert.' },
+  { q: 'Hur snabbt kan vi komma igång?', a: 'Vi levererar direkt när ni vill börja – ni anger önskat startdatum.' },
   { q: 'Behöver någon vara på plats vid leveransen?', a: 'Nej. Vi ställer frukten på den plats ni önskar – i fikarummet, receptionen eller rätt kök – och mjölk och kylvaror i rätt kyl.' },
   { q: 'Kan vi ändra eller pausa leveranserna?', a: 'Ja. Ni kan ändra storlek, leveransdag eller pausa vid semester. Kontakta oss eller hantera det i kundportalen.' },
   { q: 'Kan vi beställa mer än frukt?', a: 'Ja. Utöver fruktkorgar levererar vi kaffe, te, mejeri, snacks och drycker samt extra beställningar till möten och fika.' },

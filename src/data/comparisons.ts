@@ -41,7 +41,7 @@ export const comparisons: ComparisonInfo[] = [
     faqs: [
       { q: 'Är en färdig fruktkorg dyrare?', a: 'Sett per frukt är det ofta jämförbart. Räknar man in den tid som annars går åt till uppackning och arrangering blir den färdiga korgen ofta billigare totalt.' },
       { q: 'Får vi välja sortiment själva?', a: 'Vi har tre fasta korgar (Original, Premium, Banan) och anpassar säsongsmässigt. Det gör logistiken effektiv och håller priserna stabila.' },
-      { q: 'Hur snabbt kan vi byta från en annan leverantör?', a: 'Vi startar oftast leveranser inom 3–5 vardagar. Vi skickar gärna en kostnadsfri provkorg innan ni bestämmer er.' },
+      { q: 'Hur snabbt kan vi byta från en annan leverantör?', a: 'Vi startar leveranser direkt när ni vill. Vi skickar gärna en kostnadsfri provkorg innan ni bestämmer er.' },
     ]
   },
   {
