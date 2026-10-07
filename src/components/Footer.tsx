@@ -43,6 +43,7 @@ const Footer = () => {
               <span className="mr-2">📍</span> Kontakt
             </h3>
             <div className="space-y-3 text-sm">
+              <address className="not-italic text-gray-100">VitaminKorgen AB<br />Varuvägen 9<br />125 30 Älvsjö</address>
               <a href="tel:010-183 98 36" className="flex items-center space-x-3 text-gray-100 hover:text-yellow-400 transition-colors">
                 <Phone className="h-5 w-5" />
                 <span>010-183 98 36</span>
@@ -110,7 +111,7 @@ const Footer = () => {
             <span className="text-green-600">·</span>
             <Link to="/blogg" className="hover:text-yellow-400 transition-colors">Blogg</Link>
             <span className="text-green-600">·</span>
-            <Link to="/blogg/tips/fruktbud-stockholm-fruktkorg-till-foretag" className="hover:text-yellow-400 transition-colors">Fruktbud Stockholm</Link>
+            <Link to="/fruktbud-stockholm" className="hover:text-yellow-400 transition-colors">Fruktbud Stockholm</Link>
             <span className="text-green-600">·</span>
             <Link to="/kontakt" className="hover:text-yellow-400 transition-colors">Offertförfrågan</Link>
             <span className="text-green-600">·</span>
