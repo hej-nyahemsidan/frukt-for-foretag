@@ -2,7 +2,7 @@
 
 - Framework is TanStack Start (file routes in `src/routes/`, root shell/head in `src/routes/__root.tsx`); never reintroduce react-router-dom, index.html or main.tsx — the deploy pipeline is TanStack-only.
 - Legacy components import routing helpers from `@/lib/router-compat` (react-router-style API over TanStack Router) so existing call sites keep working; new code may use `@tanstack/react-router` directly.
-- Site-wide default SEO tags, analytics/GTM/Tidio loader and Organization JSON-LD live in `__root.tsx` `head()`; per-page tags still come from `SEOHead` (client-side) — keep defaults in sync with SEOHead fallbacks.
+- Per-page title/description/canonical/robots are server-rendered via route `head()` using `src/lib/seo.ts` (`staticHead`/`pageHead`); `SEOHead` only acts as client fallback when a route has no head — keeps tags in the HTML crawlers read.
 - App-internal backend logic runs as server functions in `src/lib/<name>.functions.ts`, with the ported handler bodies in `src/lib/edge/<name>.server.ts`; call them from the client through `invokeServer()` which preserves the `{ data, error }` shape.
 - Server-function auth: `attachSupabaseAuth` (functionMiddleware in `src/start.ts`) attaches the user's Supabase token; each handler verifies the caller itself — keep both.
 - Read `process.env[...]` only inside handlers, never at module scope (Workers inject env per request).
