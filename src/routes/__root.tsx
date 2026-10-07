@@ -121,11 +121,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: SITE_TITLE },
       { name: "description", content: SITE_DESCRIPTION },
       { name: "author", content: "Vitaminkorgen AB" },
-      {
-        name: "keywords",
-        content:
-          "fruktkorg på jobbet stockholm, fruktkorgar stockholm, fruktkorg stockholm, frukt på jobbet, fruktkorgar till jobbet, fruktkorgar på kontoret, kontorsfrukt stockholm, företagsfrukt",
-      },
       { property: "og:title", content: SITE_TITLE },
       { property: "og:description", content: SITE_DESCRIPTION },
       { property: "og:type", content: "website" },
