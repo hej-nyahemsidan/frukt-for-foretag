@@ -5,7 +5,7 @@ import { usePublicCart } from '@/contexts/PublicCartContext';
 import { useNavigate } from 'react-router-dom';
 import { trackBeginCheckout } from '@/lib/gtm';
 
-const WEEKDAYS = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
+const WEEKDAYS = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'];
 
 interface PublicOrderSidebarProps {
   className?: string;

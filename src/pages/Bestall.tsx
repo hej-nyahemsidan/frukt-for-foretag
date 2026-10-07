@@ -48,7 +48,7 @@ interface DBFruktkorg {
   description?: string;
 }
 
-const weekdays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
+const weekdays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'];
 
 type Addon = { id: string; name: string; price: number; image: string; unit: string };
 const addons: Addon[] = [

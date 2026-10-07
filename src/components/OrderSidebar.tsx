@@ -25,7 +25,7 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, se
   const navigate = useNavigate();
   const { getItemsByOrderType, updateQuantity, removeItem } = useCart();
   const isMobile = useIsMobile();
-  const days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
+  const days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'];
   
   // Track previous values to detect actual changes
   const prevOrderTypeRef = useRef(orderType);
