@@ -72,3 +72,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://vitaminkorgen.se/sitemap.xml
+
+# AI-readable site summary
+# LLMS: https://vitaminkorgen.se/llms.txt
