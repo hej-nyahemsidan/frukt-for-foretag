@@ -118,7 +118,7 @@ const AboutSection = () => {
               Om oss – fruktkorgar som skapar ett bättre arbetsklimat
             </h1>
             <p className="text-lg sm:text-xl lg:text-2xl text-gray-600 leading-relaxed">
-              Vi är Vitaminkorgen, och varje dag arbetar vi för att hjälpa företag i Stockholm att få en bättre arbetsmiljö. Genom våra <Link to="/produkter" className="text-green-600 hover:underline">fruktkorgar</Link>, <Link to="/fruktlada" className="text-green-600 hover:underline">fruktlådor</Link> och <Link to="/fruktkorg-pa-jobbet" className="text-green-600 hover:underline">frukt på jobbet</Link>-lösningar vill vi underlätta vardagen för dig som är fruktansvarig, office manager eller beställare.
+              Vi är Vitaminkorgen, och varje dag arbetar vi för att hjälpa företag i Stockholm att få en bättre arbetsmiljö. Genom våra <Link to="/produkter" className="text-green-600 hover:underline">fruktkorgar</Link>, <Link to="/fruktlada" className="text-green-600 hover:underline">fruktlådor</Link> och <Link to="/fruktkorg-pa-jobbet" className="text-green-600 hover:underline">frukt till jobbet</Link>-lösningar vill vi underlätta vardagen för dig som är fruktansvarig, office manager eller beställare.
             </p>
           </div>
         </div>

@@ -14,9 +14,9 @@ const FruktkorgPaJobbet = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Fruktkorg på jobbet – Frukt till kontoret | Vitaminkorgen"
-        description="Fruktkorg på jobbet ✓ Färsk frukt levererad till arbetsplatsen i Stockholm. Minska sjukfrånvaron, öka trivseln. Fri leverans, gratis provkorg. Beställ idag!"
-        keywords="fruktkorg på jobbet, frukt på jobbet, fruktkorg arbetsplats, frukt till jobbet, fruktbud, fruktleverans, fruktkorg kontor, fruktkorgar på jobbet, fruktkorg på arbetsplatsen"
+        title="Frukt till jobbet – fruktkorg levererad till kontoret | Vitaminkorgen"
+        description="Frukt till jobbet ✓ Färsk fruktkorg levererad till arbetsplatsen i Stockholm. Minska sjukfrånvaron, öka trivseln. Fri leverans, gratis provkorg. Beställ idag!"
+        keywords="frukt till jobbet, fruktkorg på jobbet, frukt på jobbet, fruktkorg arbetsplats, fruktbud, fruktleverans, fruktkorg kontor, fruktkorgar på jobbet, fruktkorg på arbetsplatsen"
         type="products"
       />
       <Header />
@@ -31,10 +31,10 @@ const FruktkorgPaJobbet = () => {
                 🍎 Frukt på jobbet
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Fruktkorg på jobbet – Så enkelt
+                Frukt till jobbet – färsk fruktkorg till ert kontor
               </h1>
               <p className="text-lg md:text-xl text-gray-100 mb-8 leading-relaxed">
-                Ge era medarbetare energi och glädje med en fruktkorg på jobbet. 
+                Ge era medarbetare energi och glädje med frukt till jobbet. 
                 Ert fruktbud levererar handplockad, färsk frukt direkt till arbetsplatsen – varje vecka.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -57,10 +57,10 @@ const FruktkorgPaJobbet = () => {
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-center text-green-900 mb-4">
-              Varför fruktkorg på jobbet?
+              Varför frukt till jobbet?
             </h2>
             <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-              Forskning visar att fruktkorg på jobbet är en av de mest kostnadseffektiva hälsoinsatserna ett företag kan göra.
+              Forskning visar att frukt till jobbet är en av de mest kostnadseffektiva hälsoinsatserna ett företag kan göra.
             </p>
             <div className="grid md:grid-cols-3 gap-8">
               {[
