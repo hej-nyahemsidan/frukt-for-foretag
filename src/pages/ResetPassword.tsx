@@ -104,6 +104,21 @@ const ResetPassword = () => {
 
     setDone(true);
     toast({ title: 'Lösenordet är uppdaterat', description: 'Du är nu inloggad.' });
+    // Reseller users belong in their white-label portal, not Vitaminkorgen's
+    const { data: { user } } = await supabase.auth.getUser();
+    const { data: ru } = user
+      ? await supabase.from('reseller_users').select('resellers(domain)').eq('user_id', user.id).maybeSingle()
+      : { data: null };
+    const domain = (ru as any)?.resellers?.domain as string | undefined;
+    if (ru) {
+      if (domain && window.location.hostname !== domain) {
+        await supabase.auth.signOut();
+        setTimeout(() => { window.location.href = `https://${domain}/af/login`; }, 1200);
+      } else {
+        setTimeout(() => navigate('/af'), 1200);
+      }
+      return;
+    }
     setTimeout(() => navigate('/dashboard'), 1200);
   };
 
