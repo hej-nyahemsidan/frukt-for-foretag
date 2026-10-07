@@ -174,6 +174,20 @@ serve(async (req) => {
     }
 
     const activationUrl = `https://vitaminkorgen.se/reset-password?invite_token=${encodeURIComponent(inviteToken)}`;
+
+    if (!shouldSendEmail) {
+      return new Response(JSON.stringify({
+        success: true,
+        email: cleanEmail,
+        user_id: userId,
+        account_created: newlyCreated,
+        email_sent: false,
+        activation_url: activationUrl,
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
     const { error: sendError } = await resend.emails.send({
       from: 'Vitaminkorgen <kontakt@vitaminkorgen.se>',
       to: [cleanEmail],
