@@ -19,7 +19,7 @@ interface BlogPost {
   image_url: string | null;
   category: string;
   author: string;
-  published_at: string;
+  published_at: string | null;
 }
 
 const BlogHome = () => {
