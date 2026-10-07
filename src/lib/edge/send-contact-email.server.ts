@@ -2,9 +2,10 @@
 import { Resend } from "resend";
 import { createClient } from "@supabase/supabase-js";
 
-const resend = new Resend(process.env["RESEND_API_KEY"]);
+// Env is read per call (Workers inject env per request).
+const getResend = () => new Resend(process.env["RESEND_API_KEY"]);
 
-const supabaseAdmin = createClient(
+const getSupabaseAdmin = () => createClient(
   process.env["SUPABASE_URL"] ?? "",
   process.env["SUPABASE_SERVICE_ROLE_KEY"] ?? "",
   { auth: { autoRefreshToken: false, persistSession: false } }
@@ -43,7 +44,7 @@ const RATE_WINDOW_SEC = 60 * 60; // 1 hour
 
 async function isRateLimited(ip: string): Promise<boolean> {
   try {
-    const { data, error } = await supabaseAdmin.rpc("increment_rate_limit", {
+    const { data, error } = await getSupabaseAdmin().rpc("increment_rate_limit", {
       _key: `send-contact-email:${ip}`,
       _window_seconds: RATE_WINDOW_SEC,
     });
@@ -275,7 +276,7 @@ export const handler = async (req: Request): Promise<Response> => {
       ? String(data.email).slice(0, 200)
       : undefined;
 
-    const emailResponse = await resend.emails.send({
+    const emailResponse = await getResend().emails.send({
       from: "Vitaminkorgen <kontakt@vitaminkorgen.se>",
       to: ["info@vitaminkorgen.se"],
       ...(customerEmail ? { reply_to: customerEmail } : {}),

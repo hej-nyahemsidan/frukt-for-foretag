@@ -2,7 +2,8 @@
 import { Resend } from "resend";
 import { createClient } from "@supabase/supabase-js";
 
-const resend = new Resend(process.env["RESEND_API_KEY"]);
+// Env is read per call (Workers inject env per request).
+const getResend = () => new Resend(process.env["RESEND_API_KEY"]);
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -145,7 +146,7 @@ export const handler = async (req: Request): Promise<Response> => {
         try {
           const unsubscribeUrl = `${SITE_URL}/avregistrera?email=${encodeURIComponent(r.email)}`;
           const html = buildHtml(subject, message, unsubscribeUrl);
-          const res = await resend.emails.send({
+          const res = await getResend().emails.send({
             from: FROM,
             to: [r.email],
             subject,

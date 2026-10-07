@@ -7,7 +7,8 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const resend = new Resend(process.env["RESEND_API_KEY"]);
+// Env is read per call (Workers inject env per request).
+const getResend = () => new Resend(process.env["RESEND_API_KEY"]);
 
 const escapeHtml = (s: string): string =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
@@ -94,7 +95,7 @@ export const handler = async (req: Request): Promise<Response> => {
 
     const resetUrl = `https://vitaminkorgen.se/reset-password?token_hash=${encodeURIComponent(linkData.properties.hashed_token)}&type=recovery`;
 
-    const { error: emailError } = await resend.emails.send({
+    const { error: emailError } = await getResend().emails.send({
       from: 'Vitaminkorgen <kontakt@vitaminkorgen.se>',
       to: [email],
       subject: 'Välj nytt lösenord till din webshop',

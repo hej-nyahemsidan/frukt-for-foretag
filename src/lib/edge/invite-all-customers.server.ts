@@ -7,7 +7,8 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const resend = new Resend(process.env["RESEND_API_KEY"]);
+// Env is read per call (Workers inject env per request).
+const getResend = () => new Resend(process.env["RESEND_API_KEY"]);
 
 const escapeHtml = (s: string): string =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
@@ -152,7 +153,7 @@ export const handler = async (req: Request): Promise<Response> => {
           email
         );
 
-        const { error: sendError } = await resend.emails.send({
+        const { error: sendError } = await getResend().emails.send({
           from: 'Vitaminkorgen <kontakt@vitaminkorgen.se>',
           to: [email],
           subject: 'Inbjudan till Vitaminkorgens webshop',

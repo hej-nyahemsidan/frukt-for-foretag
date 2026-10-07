@@ -99,13 +99,13 @@ export const handler = async (req: Request): Promise<Response> => {
     console.log('Updating password for user:', userId);
 
     // Update the user's password using admin API
-    const { error: authError } = await supabaseAdmin.auth.admin.updateUserById(userId, {
+    const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(userId, {
       password: newPassword
     });
 
-    if (authError) {
-      console.error('Auth error:', authError);
-      throw authError;
+    if (updateError) {
+      console.error('Auth error:', updateError);
+      throw updateError;
     }
 
     console.log('Password updated successfully for user:', userId);
