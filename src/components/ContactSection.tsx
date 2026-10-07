@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from '@/lib/router-compat';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -11,6 +11,8 @@ import { trackConversionEvent } from '@/lib/conversionAnalytics';
 
 // Import images
 import officeWellnessImage from '@/assets/fruktkorg-halsa-kontor-stockholm.jpg';
+import { invokeServer } from "@/lib/invoke-server";
+import { sendContactEmail } from "@/lib/send-contact-email.functions";
 
 const ContactSection = () => {
   const [searchParams] = useSearchParams();
@@ -40,7 +42,7 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.functions.invoke('send-contact-email', {
+      const { error } = await invokeServer(sendContactEmail, {
         body: {
           formType: 'Offertförfrågan',
           name: formData.name,

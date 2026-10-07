@@ -7,6 +7,8 @@ import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { trackContactSubmitted } from '@/lib/gtm';
 import fruktKontorImg from '@/assets/frukt-pa-kontoret-tips.jpg';
+import { invokeServer } from "@/lib/invoke-server";
+import { sendContactEmail } from "@/lib/send-contact-email.functions";
 
 const LEFTOVER_OPTIONS = [
   'Äpplen',
@@ -63,7 +65,7 @@ const LeadCaptureSection = () => {
 
       if (dbError) throw dbError;
 
-      await supabase.functions.invoke('send-contact-email', {
+      await invokeServer(sendContactEmail, {
         body: {
           formType: 'Lead – Frukttips',
           name: formData.companyName,

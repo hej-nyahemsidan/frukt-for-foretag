@@ -16,6 +16,8 @@ import { trackConversionEvent } from '@/lib/conversionAnalytics';
 
 // Import images
 import officeWellnessImage from '@/assets/fruktkorg-halsa-kontor-stockholm.jpg';
+import { invokeServer } from "@/lib/invoke-server";
+import { sendContactEmail } from "@/lib/send-contact-email.functions";
 
 const QuoteRequestSection = () => {
   const [formData, setFormData] = useState({
@@ -59,7 +61,7 @@ const QuoteRequestSection = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.functions.invoke('send-contact-email', {
+      const { error } = await invokeServer(sendContactEmail, {
         body: {
           formType: 'Offertförfrågan',
           companyName: formData.companyName,

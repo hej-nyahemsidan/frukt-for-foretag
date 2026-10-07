@@ -11,6 +11,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Badge } from '@/components/ui/badge';
 import { Plus, Pencil, Users, ChevronLeft, ShoppingCart } from 'lucide-react';
 import ResellerPlaceOrderDialog from './ResellerPlaceOrderDialog';
+import { invokeServer } from "@/lib/invoke-server";
+import { createResellerCustomer } from "@/lib/create-reseller-customer.functions";
 
 interface ResellerCustomer {
   id: string;
@@ -130,7 +132,7 @@ const ResellerCustomerManagement = () => {
     setCreating(true);
     try {
       // Create auth user via edge function
-      const { data, error } = await supabase.functions.invoke('create-reseller-customer', {
+      const { data, error } = await invokeServer(createResellerCustomer, {
         body: {
           email: formEmail,
           password: formPassword,

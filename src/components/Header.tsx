@@ -1,6 +1,6 @@
 import { useState, Fragment, useRef, useEffect } from 'react';
 import { Menu, X, User, ChevronDown, LogOut, BookOpen, Shield, Phone, ShoppingBasket, Home, Flower2, Coffee, Info, MessageCircle, FileText, LayoutDashboard } from 'lucide-react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from '@/lib/router-compat';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@/contexts/AuthContext';

@@ -67,7 +67,7 @@ const StadTab: React.FC<StadTabProps> = ({ selectedDays, currentDay, orderType, 
         {products.map((product) => (
           <div 
             key={product.id} 
-            className="group relative bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer max-w-[280px]"
+            className="group relative bg-lightgray rounded-lg overflow-hidden shadow-xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer max-w-[280px]"
             onClick={() => setSelectedProduct(product)}
           >
             <div className="relative aspect-square bg-white overflow-hidden rounded-lg p-2 sm:p-3">
@@ -88,13 +88,13 @@ const StadTab: React.FC<StadTabProps> = ({ selectedDays, currentDay, orderType, 
                 {product.name}
               </h3>
               <div className="text-sm font-bold text-green-600 text-center">
-                {product.prices?.default || 0} kr
+                {product.prices?.['default'] || 0} kr
               </div>
               <div onClick={(e) => e.stopPropagation()}>
                 {isPublicPage ? (
-                  <PublicAddToCartButton productId={product.id} productName={product.name} price={product.prices?.default || 0} category={product.category} image={product.image_url} selectedDay={currentDay} className="w-full" />
+                  <PublicAddToCartButton productId={product.id} productName={product.name} price={product.prices?.['default'] || 0} category={product.category} image={product.image_url} selectedDay={currentDay} className="w-full" />
                 ) : (
-                  <AddToCartButton product={{ id: product.id, name: product.name, price: product.prices?.default || 0, category: product.category, image: product.image_url }} selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} className="w-full" />
+                  <AddToCartButton product={{ id: product.id, name: product.name, price: product.prices?.['default'] || 0, category: product.category, image: product.image_url }} selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} className="w-full" />
                 )}
               </div>
             </div>
@@ -133,7 +133,7 @@ const StadTab: React.FC<StadTabProps> = ({ selectedDays, currentDay, orderType, 
               
               <div className="pt-2">
                 <span className="text-3xl font-bold text-red-600">
-                  SEK {selectedProduct?.prices?.default || 0}.00
+                  SEK {selectedProduct?.prices?.['default'] || 0}.00
                 </span>
               </div>
             </div>

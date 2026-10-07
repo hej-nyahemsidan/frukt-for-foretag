@@ -8,7 +8,7 @@ import {
   Check, Star, TrendingUp, Heart, Users, Phone, Building2,
   Calendar, MapPin, ShieldCheck, Leaf, ChevronDown, ChevronUp
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import happyEmployees from '@/assets/glada-anstallda-fruktkorg-foretag.jpg';
 
 const faqItems = [

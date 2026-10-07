@@ -33,7 +33,8 @@ interface Product {
   category: string;
   image_url: string;
   prices: Record<string, number>;
-  description?: string;
+  description?: string | null;
+  display_order?: number | null;
   created_at?: string;
   updated_at?: string;
 }

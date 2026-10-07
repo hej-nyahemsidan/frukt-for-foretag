@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@/lib/router-compat';
 import { format } from 'date-fns';
 import { sv } from 'date-fns/locale';
 import { CalendarIcon, Check, ChevronLeft, ChevronRight, Plus, Minus, Trash2 } from 'lucide-react';
@@ -30,6 +30,8 @@ import imgEkoMjolk from '@/assets/mellanmjolk-eko-laktosfri.png';
 import imgKaffeMjolk from '@/assets/kaffemjolk-laktosfri.png';
 import imgKaffe from '@/assets/gevalia-mellanrost-new.png';
 import imgKaffe2 from '@/assets/arvid-nordquist-mellanrost-new.png';
+import { invokeServer } from "@/lib/invoke-server";
+import { sendContactEmail } from "@/lib/send-contact-email.functions";
 
 const imageMap: Record<string, string> = {
   '/assets/fruktkorg-standard-new.jpg': imgOriginal,
@@ -209,7 +211,7 @@ const Bestall = () => {
         message && `\nMeddelande: ${message}`,
       ].filter(Boolean).join('\n');
 
-      const { error } = await supabase.functions.invoke('send-contact-email', {
+      const { error } = await invokeServer(sendContactEmail, {
         body: {
           formType: 'Offertförfrågan',
           companyName,

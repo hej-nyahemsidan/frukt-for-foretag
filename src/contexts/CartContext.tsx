@@ -7,10 +7,10 @@ export interface CartItem {
   price: number;
   quantity: number;
   category: string;
-  image?: string;
-  size?: string; // For fruit baskets
-  assignedDay?: string; // For day-specific deliveries
-  orderType?: string; // 'subscription' or 'onetime'
+  image?: string | undefined;
+  size?: string | undefined; // For fruit baskets
+  assignedDay?: string | undefined; // For day-specific deliveries
+  orderType?: string | undefined; // 'subscription' or 'onetime'
 }
 
 interface CartContextType {

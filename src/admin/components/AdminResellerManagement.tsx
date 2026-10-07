@@ -9,6 +9,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Plus, Pencil, Trash2, Package, Upload, X, ChevronLeft, UserPlus } from 'lucide-react';
+import { invokeServer } from "@/lib/invoke-server";
+import { createResellerUser } from "@/lib/create-reseller-user.functions";
 
 interface Reseller {
   id: string;
@@ -221,7 +223,7 @@ const AdminResellerManagement = () => {
     setInviting(true);
     setInviteLink('');
     try {
-      const { data, error } = await supabase.functions.invoke('create-reseller-user', {
+      const { data, error } = await invokeServer(createResellerUser, {
         body: {
           email: inviteEmail.trim(),
           resellerId: inviteReseller.id,
@@ -309,8 +311,8 @@ const AdminResellerManagement = () => {
   };
 
   const groupedProducts = products.reduce<Record<string, Product[]>>((acc, p) => {
-    if (!acc[p.category]) acc[p.category] = [];
-    acc[p.category].push(p);
+    const bucket = acc[p.category] ?? (acc[p.category] = []);
+    bucket.push(p);
     return acc;
   }, {});
 

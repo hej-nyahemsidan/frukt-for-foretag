@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate } from '@/lib/router-compat';
 import { useResellerAuth } from '../contexts/ResellerAuthContext';
 
 interface ResellerProtectedRouteProps {

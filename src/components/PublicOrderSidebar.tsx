@@ -2,7 +2,7 @@ import { ShoppingCart, X, Plus, Minus, FileText, ArrowRight } from 'lucide-react
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { usePublicCart } from '@/contexts/PublicCartContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@/lib/router-compat';
 import { trackBeginCheckout } from '@/lib/gtm';
 
 const WEEKDAYS = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'];
@@ -30,7 +30,7 @@ const PublicOrderSidebar = ({ className = '' }: PublicOrderSidebarProps) => {
   };
 
   return (
-    <aside className={`rounded-xl border-2 border-primary/20 bg-card shadow-sm ${className}`}>
+    <aside className={`rounded-xl border-2 border-primary/20 bg-card shadow-xs ${className}`}>
       <div className="flex items-center justify-between gap-2 border-b p-4">
         <h2 className="flex items-center gap-2 text-lg font-bold text-foreground">
           <ShoppingCart className="h-5 w-5 text-primary" />

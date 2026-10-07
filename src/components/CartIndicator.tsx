@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@/lib/router-compat';
 import { ShoppingCart, X, Plus, Minus, Trash2 } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { Button } from '@/components/ui/button';
@@ -10,7 +10,7 @@ interface CartIndicatorProps {
   onCheckout?: () => void;
 }
 
-const CartIndicator = ({ orderType, onCheckout }: CartIndicatorProps = { orderType: undefined, onCheckout: undefined }) => {
+const CartIndicator = ({ orderType, onCheckout }: CartIndicatorProps = {}) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const { items, updateQuantity, removeItem, clearCart, getItemsByOrderType } = useCart();

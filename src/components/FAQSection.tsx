@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import { Button } from '@/components/ui/button';
 import { Plus, Minus } from 'lucide-react';
 import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';

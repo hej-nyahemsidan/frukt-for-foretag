@@ -20,7 +20,7 @@ import {
   CreditCard,
   Wrench
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import fruitPlatter2 from '@/assets/fruitplatter-2.jpg';
 
 
@@ -252,7 +252,7 @@ const Varuautomat = () => {
               </Link>
               
               <Link to="/kontakt">
-                <Button size="lg" variant="outline" className="border-2 border-white/80 text-white bg-white/10 backdrop-blur-sm hover:bg-white hover:text-blue-600 shadow-lg">
+                <Button size="lg" variant="outline" className="border-2 border-white/80 text-white bg-white/10 backdrop-blur-xs hover:bg-white hover:text-blue-600 shadow-lg">
                   Begär offert
                 </Button>
               </Link>

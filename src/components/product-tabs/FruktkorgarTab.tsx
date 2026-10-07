@@ -90,7 +90,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
           return (
             <div
               key={product.id}
-              className="group relative bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+              className="group relative bg-lightgray rounded-lg overflow-hidden shadow-xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer"
               onClick={() => setSelectedProduct(product)}
             >
               {product.name.toLowerCase().includes('banan') && (

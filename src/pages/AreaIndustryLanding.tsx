@@ -1,4 +1,4 @@
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link, Navigate } from '@/lib/router-compat';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -141,7 +141,7 @@ const AreaIndustryLanding = () => {
                 <h3 className="font-bold text-green-900 mb-3">Vi levererar till {shortLabel} bland annat vid:</h3>
                 <div className="flex flex-wrap gap-2">
                   {highlights.map((h, i) => (
-                    <span key={i} className="inline-flex items-center gap-1 bg-white px-3 py-1.5 rounded-full text-sm text-green-800 shadow-sm">
+                    <span key={i} className="inline-flex items-center gap-1 bg-white px-3 py-1.5 rounded-full text-sm text-green-800 shadow-xs">
                       <MapPin className="h-3 w-3" /> {h}
                     </span>
                   ))}
@@ -262,7 +262,7 @@ const AreaIndustryLanding = () => {
             </h2>
             <div className="space-y-6">
               {allFaqs.map((faq, i) => (
-                <div key={i} className="bg-white p-6 rounded-xl shadow-sm">
+                <div key={i} className="bg-white p-6 rounded-xl shadow-xs">
                   <h3 className="font-bold text-green-900 mb-2">{faq.q}</h3>
                   <p className="text-gray-600 text-sm">{faq.a}</p>
                 </div>
@@ -284,7 +284,7 @@ const AreaIndustryLanding = () => {
                   <Link
                     key={i.slug}
                     to={`/fruktkorg/${areaInfo.slug}/${i.slug}`}
-                    className="inline-flex items-center gap-1 bg-green-50 px-4 py-2 rounded-full text-sm font-medium text-green-800 hover:bg-green-100 transition-colors shadow-sm"
+                    className="inline-flex items-center gap-1 bg-green-50 px-4 py-2 rounded-full text-sm font-medium text-green-800 hover:bg-green-100 transition-colors shadow-xs"
                   >
                     <Briefcase className="h-3 w-3" /> {i.name} {areaName}
                   </Link>
@@ -309,7 +309,7 @@ const AreaIndustryLanding = () => {
                     <Link
                       key={s}
                       to={`/fruktkorg/${a.slug}/${industryInfo.slug}`}
-                      className="inline-flex items-center gap-1 bg-white px-4 py-2 rounded-full text-sm font-medium text-green-800 hover:bg-green-100 transition-colors shadow-sm"
+                      className="inline-flex items-center gap-1 bg-white px-4 py-2 rounded-full text-sm font-medium text-green-800 hover:bg-green-100 transition-colors shadow-xs"
                     >
                       <MapPin className="h-3 w-3" /> {industryName} {a.name}
                     </Link>

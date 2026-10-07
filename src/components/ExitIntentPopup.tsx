@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from '@/lib/router-compat';
 import { X, Apple } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { trackExitIntentLead } from '@/lib/gtm';
+import { invokeServer } from "@/lib/invoke-server";
+import { sendContactEmail } from "@/lib/send-contact-email.functions";
 
 const STORAGE_KEY = 'exitIntentDismissed';
 const DISMISS_DAYS = 14;
@@ -64,7 +66,7 @@ const ExitIntentPopup: React.FC = () => {
 
     setSending(true);
     try {
-      const { error } = await supabase.functions.invoke('send-contact-email', {
+      const { error } = await invokeServer(sendContactEmail, {
         body: {
           formType: 'Kontaktformulär',
           name: name || 'Exit-intent lead',
@@ -99,7 +101,7 @@ const ExitIntentPopup: React.FC = () => {
 
   return (
     <div
-      className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+      className="fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 z-50"
       onClick={(e) => e.target === e.currentTarget && dismiss()}
     >
       <div

@@ -5,7 +5,7 @@ import SEOHead from '@/components/SEOHead';
 import TrustedBySection from '@/components/TrustedBySection';
 import { Button } from '@/components/ui/button';
 import { Check, Star, Phone, ChevronDown, Truck, MapPin, Calendar, Leaf } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import leveransImg from '@/assets/fri-leverans-fruktkorgar-stockholm.webp';
 import hallbarImg from '@/assets/fruktleverans-stockholm-hallbar.webp';
 
@@ -122,7 +122,7 @@ const FruktleveransForetag = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-center text-green-900 mb-12">Vanliga frågor om leverans</h2>
             <div className="space-y-3">
               {faqItems.map((f, i) => (
-                <div key={i} className="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div key={i} className="bg-white rounded-xl shadow-xs overflow-hidden">
                   <button onClick={() => toggle(i)} className="w-full flex items-center justify-between p-5 text-left hover:bg-green-50/50 transition-colors">
                     <span className="font-semibold text-green-900">{f.question}</span>
                     <ChevronDown className={`h-5 w-5 text-green-700 transition-transform ${open.includes(i) ? 'rotate-180' : ''}`} />

@@ -1,4 +1,4 @@
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Navigate, Link } from '@/lib/router-compat';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -120,7 +120,7 @@ const FruktkorgProduct = () => {
                   <h3 className="font-bold text-green-900 mb-3">Priser per vecka</h3>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {product.sizes.map(s => (
-                      <div key={s.kg} className="bg-white rounded-lg p-3 text-center shadow-sm">
+                      <div key={s.kg} className="bg-white rounded-lg p-3 text-center shadow-xs">
                         <div className="text-sm text-gray-500">{s.kg}</div>
                         <div className="text-xl font-bold text-green-800">{s.price} kr</div>
                       </div>
@@ -169,7 +169,7 @@ const FruktkorgProduct = () => {
                   { icon: ShieldCheck, text: '100% nöjdhetsgaranti' },
                   { icon: Check, text: 'Gratis provkorg' },
                 ].map(({ icon: Icon, text }, i) => (
-                  <div key={i} className="bg-white rounded-xl p-4 text-center shadow-sm">
+                  <div key={i} className="bg-white rounded-xl p-4 text-center shadow-xs">
                     <Icon className="h-8 w-8 text-green-600 mx-auto mb-2" />
                     <span className="text-sm font-medium text-green-900">{text}</span>
                   </div>
@@ -187,7 +187,7 @@ const FruktkorgProduct = () => {
             </h2>
             <div className="space-y-6">
               {faqs.map((faq, i) => (
-                <div key={i} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <div key={i} className="bg-white p-6 rounded-xl shadow-xs border border-gray-100">
                   <h3 className="font-bold text-green-900 mb-2">{faq.q}</h3>
                   <p className="text-gray-600 text-sm">{faq.a}</p>
                 </div>
@@ -204,7 +204,7 @@ const FruktkorgProduct = () => {
             </h2>
             <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
               {otherProducts.map(p => (
-                <Link key={p.slug} to={`/produkt/${p.slug}`} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow flex items-center gap-4">
+                <Link key={p.slug} to={`/produkt/${p.slug}`} className="bg-white rounded-xl p-6 shadow-xs hover:shadow-md transition-shadow flex items-center gap-4">
                   <img src={imageMap[p.image]} alt={p.name} className="w-20 h-20 object-cover rounded-lg" />
                   <div>
                     <h3 className="font-bold text-green-900">{p.name}</h3>

@@ -5,6 +5,8 @@ import { Input } from '@/components/ui/input';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { trackContactSubmitted } from '@/lib/gtm';
+import { invokeServer } from "@/lib/invoke-server";
+import { sendContactEmail } from "@/lib/send-contact-email.functions";
 
 interface PricelistPopupProps {
   isOpen: boolean;
@@ -34,7 +36,7 @@ const PricelistPopup = ({ isOpen, onClose }: PricelistPopupProps) => {
 
       if (error) throw error;
 
-      await supabase.functions.invoke('send-contact-email', {
+      await invokeServer(sendContactEmail, {
         body: {
           formType: 'Lead – Hämta prislista',
           name: formData.name,

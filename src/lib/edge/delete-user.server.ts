@@ -1,0 +1,141 @@
+// Ported from supabase/functions/delete-user/index.ts (Deno edge function).
+import { createClient } from "@supabase/supabase-js";
+
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+};
+
+export const handler = async (req: Request): Promise<Response> => {
+  // Handle CORS preflight requests
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { headers: corsHeaders });
+  }
+
+  try {
+    // Verify authentication
+    const authHeader = req.headers.get('Authorization');
+    if (!authHeader) {
+      return new Response(
+        JSON.stringify({ error: 'Unauthorized' }),
+        { 
+          status: 401, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
+    // Create admin client for verification
+    const supabaseAdmin = createClient(
+      process.env['SUPABASE_URL'] ?? '',
+      process.env['SUPABASE_SERVICE_ROLE_KEY'] ?? '',
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false
+        }
+      }
+    );
+
+    // Verify the JWT token
+    const token = authHeader.replace('Bearer ', '');
+    const { data: { user }, error: authError } = await supabaseAdmin.auth.getUser(token);
+    
+    if (authError || !user) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid token' }),
+        { 
+          status: 401, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
+    // Verify admin status by checking user_roles table
+    const { data: roleData, error: roleError } = await supabaseAdmin
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', user.id)
+      .eq('role', 'admin')
+      .single();
+
+    if (roleError || !roleData) {
+      return new Response(
+        JSON.stringify({ error: 'Forbidden: Admin access required' }),
+        { 
+          status: 403, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
+    const { userId } = await req.json();
+
+    // Validate required fields
+    if (!userId) {
+      return new Response(
+        JSON.stringify({ error: 'User ID is required' }),
+        { 
+          status: 400, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
+    // Admin client already created during auth verification
+
+    console.log('Deleting user with ID:', userId);
+
+    // First delete from customers and profiles tables manually
+    const { error: customerDeleteError } = await supabaseAdmin
+      .from('customers')
+      .delete()
+      .eq('user_id', userId);
+
+    if (customerDeleteError) {
+      console.error('Error deleting customer record:', customerDeleteError);
+      // Continue with deletion even if customer record doesn't exist
+    }
+
+    const { error: profileDeleteError } = await supabaseAdmin
+      .from('profiles')
+      .delete()
+      .eq('id', userId);
+
+    if (profileDeleteError) {
+      console.error('Error deleting profile record:', profileDeleteError);
+      // Continue with deletion even if profile record doesn't exist
+    }
+
+    // Finally, delete the auth user using admin API
+    const { error: deleteError } = await supabaseAdmin.auth.admin.deleteUser(userId);
+
+    if (deleteError) {
+      console.error('Auth delete error:', deleteError);
+      throw deleteError;
+    }
+
+    console.log('User deleted successfully:', userId);
+
+    return new Response(
+      JSON.stringify({ 
+        success: true, 
+        message: 'User deleted successfully' 
+      }),
+      { 
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+      }
+    );
+
+  } catch (error) {
+    console.error('Error in delete-user function:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+    return new Response(
+      JSON.stringify({ error: errorMessage }),
+      { 
+        status: 500, 
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+      }
+    );
+  }
+};
