@@ -34,6 +34,17 @@ interface RelatedPost {
   published_at: string | null;
 }
 
+function serviceLinkFor(slug: string, category: string): { to: string; anchor: string } {
+  if (slug.includes('fruktbud')) return { to: '/fruktbud-stockholm', anchor: 'fruktbud Stockholm' };
+  if (slug.includes('fruktlada')) return { to: '/fruktlada', anchor: 'fruktlåda till företag' };
+  if (slug.includes('stockholm') && slug.includes('fruktkorg')) return { to: '/fruktkorg-stockholm', anchor: 'fruktkorg Stockholm' };
+  if (/frukt-pa-jobbet|personal|halso|formans/.test(slug)) return { to: '/fruktkorg-pa-jobbet', anchor: 'frukt till jobbet' };
+  if (slug.includes('kontor') || slug.includes('office')) return { to: '/fruktkorg-kontor', anchor: 'fruktkorg till kontoret' };
+  if (/foretag|abonnemang|kostnad/.test(slug)) return { to: '/fruktkorg-foretag', anchor: 'fruktkorg till företag' };
+  if (category === 'recept') return { to: '/produkter', anchor: 'våra fruktkorgar' };
+  return { to: '/fruktkorg-stockholm', anchor: 'fruktkorg Stockholm' };
+}
+
 const BlogPost = () => {
   const { category, slug } = useParams<{ category: string; slug: string }>();
   const [post, setPost] = useState<BlogPostType | null>(null);
@@ -347,6 +358,18 @@ const BlogPost = () => {
 
             {/* Internal links back to main pages */}
             <footer className="mt-12 pt-8 border-t space-y-6">
+              {(() => {
+                const svc = serviceLinkFor(post.slug, post.category);
+                return (
+                  <aside className="my-10 rounded-2xl bg-green-50 p-6" aria-label="Relaterad tjänst">
+                    <p className="text-lg text-green-900">
+                      Vill ni ha färsk frukt på kontoret? Läs mer om{' '}
+                      <Link to={svc.to} className="font-semibold underline">{svc.anchor}</Link>{' '}
+                      eller <Link to="/kontakt" className="font-semibold underline">begär en gratis offert</Link>.
+                    </p>
+                  </aside>
+                );
+              })()}
               {related.length > 0 && (
                 <section aria-labelledby="related-heading">
                   <h2 id="related-heading" className="text-2xl font-bold mb-4">
