@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 import { X, Apple } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,6 +18,8 @@ const ExitIntentPopup: React.FC = () => {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const { toast } = useToast();
+  const { pathname } = useLocation();
+  const isResellerRoute = pathname.startsWith('/af');
 
   const isDismissed = useCallback(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
