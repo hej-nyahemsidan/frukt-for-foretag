@@ -488,7 +488,6 @@ const ResellerCustomerShop = () => {
                                   {sizes.map(size => {
                                     const price = getPrice(product.id, size);
                                     if (price === null) return null;
-                                    const hasKgPrice = getKgPrice(product.id) !== null && /^(\d+(?:[.,]\d+)?)\s*kg$/i.test(size);
                                     return (
                                       <div key={size} className="flex items-center justify-between gap-1">
                                         <span className="text-xs text-muted-foreground">{size}</span>
@@ -669,7 +668,7 @@ const ResellerCustomerShop = () => {
                         <div key={size} className="flex items-center justify-between">
                           <span>{size}</span>
                           <Button size="sm" onClick={() => { addToCart(selectedProduct, size, price); setSelectedProduct(null); }}>
-                            {price} kr – Lägg till
+                            Lägg till
                           </Button>
                         </div>
                       );
