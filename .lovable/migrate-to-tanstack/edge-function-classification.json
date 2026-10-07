@@ -1,0 +1,19 @@
+{"functions": [
+  {"name": "admin-list-users", "classification": "internal-only", "signal": "called from AdminLoginActivity and AdminUserManagement", "outcome": "migrated"},
+  {"name": "consume-invite-token", "classification": "internal-only", "signal": "called from ResetPassword", "outcome": "migrated"},
+  {"name": "create-reseller-customer", "classification": "internal-only", "signal": "called from ResellerCustomerManagement", "outcome": "migrated"},
+  {"name": "create-reseller-user", "classification": "internal-only", "signal": "called from AdminResellerManagement", "outcome": "migrated"},
+  {"name": "create-user", "classification": "internal-only", "signal": "called from AdminUserManagement", "outcome": "migrated"},
+  {"name": "delete-user", "classification": "internal-only", "signal": "called from AdminUserManagement", "outcome": "migrated"},
+  {"name": "invite-all-customers", "classification": "internal-only", "signal": "called from AdminUserManagement", "outcome": "migrated"},
+  {"name": "invite-user", "classification": "internal-only", "signal": "called from AdminUserManagement", "outcome": "migrated"},
+  {"name": "request-password-reset", "classification": "internal-only", "signal": "called from CustomerPortal", "outcome": "migrated"},
+  {"name": "send-campaign", "classification": "internal-only", "signal": "called from AdminEmailCampaigns", "outcome": "migrated"},
+  {"name": "send-contact-email", "classification": "internal-only", "signal": "called from 10 src/ files", "outcome": "migrated"},
+  {"name": "update-user-email", "classification": "internal-only", "signal": "called from AdminEditUserModal", "outcome": "migrated"},
+  {"name": "update-user-password", "classification": "internal-only", "signal": "called from AdminEditUserModal", "outcome": "migrated"},
+  {"name": "forward-order-to-webshop", "classification": "Postgres trigger target", "signal": "net.http_post from triggers in supabase/migrations", "outcome": "left"},
+  {"name": "keep-alive", "classification": "cron target", "signal": "cron job URL in supabase/migrations/20251010214947", "outcome": "left"},
+  {"name": "sitemap", "classification": "unknown", "signal": "no internal call sites; public URL may be used by crawlers", "outcome": "left"},
+  {"name": "send-login-credentials", "classification": "unknown", "signal": "no internal call sites", "outcome": "left"}
+]}
