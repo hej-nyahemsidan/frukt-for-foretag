@@ -162,7 +162,26 @@ const ResellerProductPricing = () => {
                   {prods.map(product => {
                     const sizes = Object.keys(product.prices);
                     if (sizes.length > 1) {
-                      return sizes.map(size => {
+                      const isKgProduct = sizes.some(s => /^\d+(?:[.,]\d+)?\s*kg$/i.test(s));
+                      const kgRow = isKgProduct ? (
+                        <TableRow key={`${product.id}-kg`} className="bg-muted/40">
+                          <TableCell />
+                          <TableCell>
+                            <div className="font-medium">{product.name}</div>
+                            <div className="text-xs text-muted-foreground">Kg-pris – ersätter storlekspriserna för kunderna</div>
+                          </TableCell>
+                          <TableCell />
+                          <TableCell className="w-32">
+                            <Input
+                              type="number" min="0" step="0.5" placeholder="kr/kg"
+                              defaultValue={getStandardPrice(product.id, 'kg')}
+                              onBlur={(e) => { if (e.target.value) handleStandardPriceChange(product.id, 'kg', e.target.value); }}
+                              className="w-24 h-8 text-sm"
+                            />
+                          </TableCell>
+                        </TableRow>
+                      ) : null;
+                      return [kgRow, ...sizes.map(size => {
                         const pp = getPurchasePrice(product.id, size);
                         if (pp === null) return null;
                         return (
@@ -188,7 +207,7 @@ const ResellerProductPricing = () => {
                             </TableCell>
                           </TableRow>
                         );
-                      });
+                      })];
                     }
 
                     const pp = getPurchasePrice(product.id, null);

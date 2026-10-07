@@ -133,7 +133,19 @@ const ResellerCustomerShop = () => {
     setOrdersLoading(false);
   };
 
+  const getKgPrice = (productId: string): number | null => {
+    const cp = customerPrices.find(p => p.product_id === productId && p.size === 'kg');
+    if (cp) return cp.price;
+    const sp = standardPrices.find(p => p.product_id === productId && p.size === 'kg');
+    return sp ? sp.price : null;
+  };
+
   const getPrice = (productId: string, size: string | null): number | null => {
+    const kgMatch = size?.match(/^(\d+(?:[.,]\d+)?)\s*kg$/i);
+    if (kgMatch) {
+      const kgPrice = getKgPrice(productId);
+      if (kgPrice !== null) return Math.round(kgPrice * parseFloat(kgMatch[1].replace(',', '.')));
+    }
     const cp = customerPrices.find(p => p.product_id === productId && p.size === size);
     if (cp) return cp.price;
     const sp = standardPrices.find(p => p.product_id === productId && p.size === size);
@@ -468,6 +480,9 @@ const ResellerCustomerShop = () => {
                             </div>
                             <CardContent className="p-3 space-y-2">
                               <h3 className="font-medium text-sm line-clamp-2">{product.name}</h3>
+                              {getKgPrice(product.id) !== null && (
+                                <p className="text-sm font-semibold text-primary">{getKgPrice(product.id)} kr/kg</p>
+                              )}
                               {hasSizes ? (
                                 <div className="space-y-1">
                                   {sizes.map(size => {
