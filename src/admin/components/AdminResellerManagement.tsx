@@ -210,30 +210,40 @@ const AdminResellerManagement = () => {
     setInviteName('');
   };
 
-  const handleSendInvite = async () => {
+  const handleSendInvite = async (sendEmail: boolean) => {
     if (!inviteReseller) return;
     if (!inviteEmail.trim() || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(inviteEmail.trim())) {
       toast({ title: 'Fel', description: 'Ange en giltig e-postadress.', variant: 'destructive' });
       return;
     }
     setInviting(true);
+    setInviteLink('');
     try {
       const { data, error } = await supabase.functions.invoke('create-reseller-user', {
         body: {
           email: inviteEmail.trim(),
           resellerId: inviteReseller.id,
           contactName: inviteName.trim(),
+          sendEmail,
         },
       });
       if (error) throw new Error(error.message);
       if (data?.error) throw new Error(data.error);
-      toast({
-        title: 'Inloggning skickad',
-        description: `${data.email} fick ett mejl med aktiveringslänk (giltig i 7 dagar).`,
-      });
-      setInviteReseller(null);
-      setInviteEmail('');
-      setInviteName('');
+      if (sendEmail) {
+        toast({
+          title: 'Inloggning skickad',
+          description: `${data.email} fick ett mejl med aktiveringslänk (giltig i 7 dagar).`,
+        });
+        setInviteReseller(null);
+        setInviteEmail('');
+        setInviteName('');
+      } else {
+        setInviteLink(data.activation_url || '');
+        toast({
+          title: 'Konto skapat',
+          description: 'Inget mejl skickades. Kopiera länken nedan och skicka den själv.',
+        });
+      }
     } catch (e) {
       toast({
         title: 'Fel',
