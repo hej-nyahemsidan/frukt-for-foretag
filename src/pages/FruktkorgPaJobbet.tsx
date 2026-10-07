@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Check, Truck, Star, Apple, Coffee, Zap, Heart, Phone, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import fruktkorgBanan from '@/assets/fruktkorg-banan-new.webp';
 import premiumCoffee from '@/assets/kaffe-te-kontor-leverans.jpg';
 import professionalFruit from '@/assets/fruktkorg-premium-display.jpg';
@@ -187,7 +187,7 @@ const FruktkorgPaJobbet = () => {
                 { q: 'Kan vi byta leveransdag?', a: 'Absolut! Ni kan enkelt ändra leveransdag via vår kundportal eller genom att kontakta oss.' },
                 { q: 'Vilken frukt ingår i korgen?', a: 'Vi väljer säsongens bästa frukter – alltid färska och av hög kvalitet. Kontakta oss om ni har önskemål.' },
               ].map((faq, i) => (
-                <div key={i} className="bg-white p-6 rounded-xl shadow-sm">
+                <div key={i} className="bg-white p-6 rounded-xl shadow-xs">
                   <h3 className="font-bold text-green-900 mb-2">{faq.q}</h3>
                   <p className="text-gray-600 text-sm">{faq.a}</p>
                 </div>

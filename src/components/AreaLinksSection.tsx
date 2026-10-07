@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import { MapPin } from 'lucide-react';
 import { areas } from '@/data/areas';
 
@@ -29,7 +29,7 @@ const AreaLinksSection = () => {
             <Link
               key={area.slug}
               to={`/fruktkorg/${area.slug}`}
-              className="flex items-center gap-2 bg-white px-4 py-3 rounded-xl text-sm font-medium text-green-800 hover:bg-green-100 hover:shadow-md transition-all shadow-sm border border-green-100"
+              className="flex items-center gap-2 bg-white px-4 py-3 rounded-xl text-sm font-medium text-green-800 hover:bg-green-100 hover:shadow-md transition-all shadow-xs border border-green-100"
             >
               <MapPin className="h-4 w-4 text-green-600 flex-shrink-0" />
               <span>Fruktkorg {area.name}</span>

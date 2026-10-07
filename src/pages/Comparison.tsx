@@ -1,4 +1,4 @@
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link, Navigate } from '@/lib/router-compat';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -118,7 +118,7 @@ const Comparison = () => {
             </h2>
             <div className="space-y-6">
               {faqs.map((faq, i) => (
-                <div key={i} className="bg-white p-6 rounded-xl shadow-sm">
+                <div key={i} className="bg-white p-6 rounded-xl shadow-xs">
                   <h3 className="font-bold text-green-900 mb-2">{faq.q}</h3>
                   <p className="text-gray-600 text-sm">{faq.a}</p>
                 </div>
@@ -138,7 +138,7 @@ const Comparison = () => {
                 <Link
                   key={c.slug}
                   to={`/jamfor/${c.slug}`}
-                  className="inline-flex items-center gap-1 bg-green-50 px-4 py-2 rounded-full text-sm font-medium text-green-800 hover:bg-green-100 transition-colors shadow-sm"
+                  className="inline-flex items-center gap-1 bg-green-50 px-4 py-2 rounded-full text-sm font-medium text-green-800 hover:bg-green-100 transition-colors shadow-xs"
                 >
                   Fruktkorg vs {c.alternativeName.toLowerCase()}
                 </Link>

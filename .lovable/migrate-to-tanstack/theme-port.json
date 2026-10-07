@@ -1,0 +1,26 @@
+{
+  "customizations": [
+    { "token": "HSL palette variables (--primary, --secondary, --muted, --border, etc.)", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "primary-light / primary-dark", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "accent-orange / accent-red / accent-blue / accent-lightgreen", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "forest", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "fresh", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "lightgreen", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "orange", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "warmred", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "deepblue", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "charcoal", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "mediumgray", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "lightgray", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "screens xxl (1280px)", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "fontFamily sans", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "radius sm/md/lg + --radius 1rem", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "container (centered, 2rem, 1400px)", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "animations accordion/slide-in-right/fade-in/moveBasket", "source": "tailwind.config.ts", "reappliedIn": "src/styles.css" },
+    { "token": "--gradient-* variables and .gradient-* utilities", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "--shadow-* variables and .shadow-soft/.shadow-card", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "component classes (btn-hero, card-product, heading-*, price-*, site-logo, etc.)", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "float / basket / features / portal keyframes and utilities", "source": "src/index.css", "reappliedIn": "src/styles.css" },
+    { "token": "base layer (body font, overflow-x, header/hero containment)", "source": "src/index.css", "reappliedIn": "src/styles.css" }
+  ]
+}

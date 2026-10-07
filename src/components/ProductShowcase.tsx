@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import { ShoppingCart, Info } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 

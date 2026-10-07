@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -241,7 +241,7 @@ const FruktkorgStockholm = () => {
                 Priserna nedan är vårt ordinarie veckopris per fruktkorg, inklusive leverans till kontoret i Stockholm.
                 Ni väljer storlek efter hur många ni är och kan ändra storlek, leveransdag eller korgtyp när som helst.
               </p>
-              <div className="overflow-x-auto rounded-xl border border-gray-100 shadow-sm bg-white">
+              <div className="overflow-x-auto rounded-xl border border-gray-100 shadow-xs bg-white">
                 <table className="w-full text-left text-sm md:text-base">
                   <caption className="sr-only">Priser per vecka för fruktkorgar levererade i Stockholm</caption>
                   <thead className="bg-green-50 text-green-900">
@@ -281,7 +281,7 @@ const FruktkorgStockholm = () => {
               </p>
               <div className="grid sm:grid-cols-2 gap-4">
                 {sizeGuide.map((row) => (
-                  <div key={row.size} className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
+                  <div key={row.size} className="bg-white rounded-xl p-5 border border-gray-100 shadow-xs">
                     <p className="font-semibold text-green-900">{row.employees}</p>
                     <p className="text-green-700 font-bold text-lg">{row.size} fruktkorg</p>
                     <p className="text-sm text-gray-600 mt-1">{row.note}</p>
@@ -568,7 +568,7 @@ const FruktkorgStockholm = () => {
                 <Link
                   key={cat.to}
                   to={cat.to}
-                  className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow"
+                  className="bg-white rounded-xl p-6 border border-gray-100 shadow-xs hover:shadow-md transition-shadow"
                 >
                   <h3 className="text-lg font-bold text-green-900 mb-1">{cat.title}</h3>
                   <p className="text-sm text-gray-600">{cat.desc}</p>
@@ -591,7 +591,7 @@ const FruktkorgStockholm = () => {
               </p>
               <div className="space-y-4">
                 {faqItems.map((item, index) => (
-                  <div key={index} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                  <div key={index} className="bg-white rounded-xl shadow-xs border border-gray-100 overflow-hidden">
                     <button
                       onClick={() => toggleFaq(index)}
                       className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
@@ -633,7 +633,7 @@ const FruktkorgStockholm = () => {
                 <Link
                   key={area.slug}
                   to={`/fruktkorg/${area.slug}`}
-                  className="flex items-center gap-2 bg-white px-4 py-3 rounded-xl text-sm font-medium text-green-800 hover:bg-green-100 transition-colors shadow-sm border border-gray-100"
+                  className="flex items-center gap-2 bg-white px-4 py-3 rounded-xl text-sm font-medium text-green-800 hover:bg-green-100 transition-colors shadow-xs border border-gray-100"
                 >
                   <MapPin className="h-4 w-4 text-green-600 flex-shrink-0" />
                   Fruktkorg {area.name}

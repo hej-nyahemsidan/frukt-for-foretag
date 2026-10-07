@@ -1,5 +1,5 @@
  
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import qualityGuaranteeFeature from '@/assets/premium-frukt-kvalitetsgaranti.jpg';
 import officeWorkersFruit from '@/assets/medarbetare-fruktkorgar-kontor.jpg';
 import freeDeliveryFeature from '@/assets/fri-leverans-fruktkorgar-stockholm.webp';
@@ -72,7 +72,7 @@ const FeaturesSection = () => {
 
           {/* USP Boxes */}
           <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-8">
-            <div className="bg-white/70 backdrop-blur-md rounded-3xl p-8 border border-sky-200/60 hover:bg-white/90 transition-all duration-400 hover:scale-[1.02] hover:shadow-[0_20px_60px_-20px_rgba(2,132,199,0.25)] group shadow-sm">
+            <div className="bg-white/70 backdrop-blur-md rounded-3xl p-8 border border-sky-200/60 hover:bg-white/90 transition-all duration-400 hover:scale-[1.02] hover:shadow-[0_20px_60px_-20px_rgba(2,132,199,0.25)] group shadow-xs">
               <div className="text-5xl mb-5 transform group-hover:scale-110 transition-transform duration-300">⚡</div>
               <h3 className="text-xl font-bold text-slate-800 mb-3 min-h-[56px]">
                 Mer energi och bättre fokus
@@ -82,7 +82,7 @@ const FeaturesSection = () => {
               </p>
             </div>
 
-            <div className="bg-white/70 backdrop-blur-md rounded-3xl p-8 border border-sky-200/60 hover:bg-white/90 transition-all duration-400 hover:scale-[1.02] hover:shadow-[0_20px_60px_-20px_rgba(2,132,199,0.25)] group shadow-sm">
+            <div className="bg-white/70 backdrop-blur-md rounded-3xl p-8 border border-sky-200/60 hover:bg-white/90 transition-all duration-400 hover:scale-[1.02] hover:shadow-[0_20px_60px_-20px_rgba(2,132,199,0.25)] group shadow-xs">
               <div className="text-5xl mb-5 transform group-hover:scale-110 transition-transform duration-300">🍎</div>
               <h3 className="text-xl font-bold text-slate-800 mb-3 min-h-[56px]">
                 Färsk frukt av hög kvalitet
@@ -92,7 +92,7 @@ const FeaturesSection = () => {
               </p>
             </div>
 
-            <div className="bg-white/70 backdrop-blur-md rounded-3xl p-8 border border-sky-200/60 hover:bg-white/90 transition-all duration-400 hover:scale-[1.02] hover:shadow-[0_20px_60px_-20px_rgba(2,132,199,0.25)] group shadow-sm">
+            <div className="bg-white/70 backdrop-blur-md rounded-3xl p-8 border border-sky-200/60 hover:bg-white/90 transition-all duration-400 hover:scale-[1.02] hover:shadow-[0_20px_60px_-20px_rgba(2,132,199,0.25)] group shadow-xs">
               <div className="text-5xl mb-5 transform group-hover:scale-110 transition-transform duration-300">😊</div>
               <h3 className="text-xl font-bold text-slate-800 mb-3 min-h-[56px]">
                 Nöjda kunder över hela Stockholm
@@ -119,7 +119,7 @@ const FeaturesSection = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-2xl"></div>
                     <div className="absolute bottom-4 left-4">
-                      <span className="bg-white/95 backdrop-blur-sm text-foreground px-4 py-2.5 rounded-full text-sm font-semibold shadow-lg">
+                      <span className="bg-white/95 backdrop-blur-xs text-foreground px-4 py-2.5 rounded-full text-sm font-semibold shadow-lg">
                         {image.badge}
                       </span>
                     </div>
@@ -138,7 +138,7 @@ const FeaturesSection = () => {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-2xl"></div>
                     <div className="absolute bottom-4 left-4">
-                      <span className="bg-white/95 backdrop-blur-sm text-foreground px-4 py-2.5 rounded-full text-sm font-semibold shadow-lg">
+                      <span className="bg-white/95 backdrop-blur-xs text-foreground px-4 py-2.5 rounded-full text-sm font-semibold shadow-lg">
                         {image.badge}
                       </span>
                     </div>

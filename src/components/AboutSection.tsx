@@ -1,5 +1,5 @@
 import { useState, FormEvent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -326,7 +326,7 @@ const AboutSection = () => {
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Left Column - Contact Form */}
             <div className="space-y-6">
-              <div className="bg-white p-8 rounded-xl shadow-sm">
+              <div className="bg-white p-8 rounded-xl shadow-xs">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">
                   Kontakta oss
                 </h3>
@@ -391,7 +391,7 @@ const AboutSection = () => {
             {/* Right Column - FAQ */}
             <div className="space-y-4">
               {faqItems.map((item, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-sm overflow-hidden">
+                <div key={index} className="bg-white rounded-xl shadow-xs overflow-hidden">
                   <button
                     onClick={() => toggleFAQ(index)}
                     className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"

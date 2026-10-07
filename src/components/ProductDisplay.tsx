@@ -26,7 +26,7 @@ const ProductDisplay = ({ activeCategory, setActiveCategory, selectedDays, curre
   const isMobile = useIsMobile();
   
   return (
-    <div className="bg-white rounded-lg shadow-sm border">
+    <div className="bg-white rounded-lg shadow-xs border">
       {/* Cart Indicator */}
       <div className="p-3 sm:p-4 border-b bg-gray-50">
         <div className="flex justify-between sm:justify-end items-center">

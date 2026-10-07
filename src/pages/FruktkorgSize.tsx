@@ -1,4 +1,4 @@
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link, Navigate } from '@/lib/router-compat';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -129,7 +129,7 @@ const FruktkorgSize = () => {
                 </div>
               ))}
             </div>
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
+            <div className="bg-white rounded-2xl p-6 shadow-xs">
               <p className="text-sm font-medium text-green-900 mb-1">Uppskattad volym per vecka</p>
               <p className="text-2xl font-bold text-green-900">{recommendation.estimatedPerWeek}</p>
             </div>
@@ -161,7 +161,7 @@ const FruktkorgSize = () => {
             </h2>
             <div className="space-y-6">
               {faqs.map((faq, i) => (
-                <div key={i} className="bg-white p-6 rounded-xl shadow-sm">
+                <div key={i} className="bg-white p-6 rounded-xl shadow-xs">
                   <h3 className="font-bold text-green-900 mb-2">{faq.q}</h3>
                   <p className="text-gray-600 text-sm">{faq.a}</p>
                 </div>
@@ -181,7 +181,7 @@ const FruktkorgSize = () => {
                 <Link
                   key={s.slug}
                   to={`/fruktkorg/anstallda/${s.slug}`}
-                  className="inline-flex items-center gap-1 bg-green-50 px-4 py-2 rounded-full text-sm font-medium text-green-800 hover:bg-green-100 transition-colors shadow-sm"
+                  className="inline-flex items-center gap-1 bg-green-50 px-4 py-2 rounded-full text-sm font-medium text-green-800 hover:bg-green-100 transition-colors shadow-xs"
                 >
                   <Users className="h-3 w-3" /> Fruktkorg för {s.label}
                 </Link>

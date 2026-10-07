@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, MouseEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@/lib/router-compat';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
@@ -106,7 +106,7 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, se
   };
 
   return (
-    <div className="bg-gray-100 p-4 sm:p-6 rounded-lg shadow-sm border">
+    <div className="bg-gray-100 p-4 sm:p-6 rounded-lg shadow-xs border">
       {/* Step Indicator */}
       <div className="flex items-center justify-center sm:justify-start gap-2 sm:gap-3 mb-6 sm:mb-8">
         <div className="flex items-center gap-1 sm:gap-2">

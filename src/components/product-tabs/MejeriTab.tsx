@@ -69,7 +69,7 @@ const MejeriTab: React.FC<MejeriTabProps> = ({ selectedDays, currentDay, orderTy
         {products.map((product) => (
           <div 
             key={product.id} 
-            className="group relative bg-lightgray rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer max-w-[280px]"
+            className="group relative bg-lightgray rounded-lg overflow-hidden shadow-xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer max-w-[280px]"
             onClick={() => setSelectedProduct(product)}
           >
             <div className="relative aspect-square bg-white overflow-hidden rounded-lg p-2">

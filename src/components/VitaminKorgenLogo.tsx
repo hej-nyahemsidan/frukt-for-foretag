@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router-dom';
+import { Link } from '@/lib/router-compat';
 import vitaminKorgenLogo from '@/assets/vitamin-korgen-new-logo.webp';
 
 interface VitaminKorgenLogoProps {

@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { LogOut, Users, ShoppingCart, BarChart3, Home, FileText, Store, Inbox, Mail, LayoutDashboard, KeyRound } from 'lucide-react';
 import { useAdminAuth } from '../contexts/AdminAuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@/lib/router-compat';
 import { useToast } from '@/hooks/use-toast';
 import AdminUserManagement from '../components/AdminUserManagement';
 import AdminProductManagement from '../components/AdminProductManagement';
@@ -41,7 +41,7 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="admin-header bg-white shadow-sm border-b">
+      <header className="admin-header bg-white shadow-xs border-b">
         <div className="admin-header-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="admin-header-content flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 py-3 sm:py-0 sm:h-16">
             <div className="admin-header-left flex items-center w-full sm:w-auto">

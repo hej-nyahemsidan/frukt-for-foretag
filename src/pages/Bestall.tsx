@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from '@/lib/router-compat';
 import { format } from 'date-fns';
 import { sv } from 'date-fns/locale';
 import { CalendarIcon, Check, ChevronLeft, ChevronRight, Plus, Minus, Trash2 } from 'lucide-react';

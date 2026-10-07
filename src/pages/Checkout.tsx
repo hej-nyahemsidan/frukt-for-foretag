@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from '@/lib/router-compat';
 import { ArrowLeft } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import Header from '@/components/Header';
@@ -74,7 +74,7 @@ const Checkout: React.FC = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
             {/* Order Summary - Left Side */}
-            <div className="bg-white rounded-lg shadow-sm border p-4 sm:p-6">
+            <div className="bg-white rounded-lg shadow-xs border p-4 sm:p-6">
               <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-charcoal mb-4 sm:mb-6">Beställningssammanfattning</h2>
               
               {/* Delivery Plan */}
@@ -128,7 +128,7 @@ const Checkout: React.FC = () => {
             </div>
 
             {/* Customer Information Form - Right Side */}
-            <div className="bg-white rounded-lg shadow-sm border p-4 sm:p-6">
+            <div className="bg-white rounded-lg shadow-xs border p-4 sm:p-6">
               <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold text-charcoal mb-4 sm:mb-6">Kundinformation</h2>
               
               <form onSubmit={handleSubmit} className="space-y-6">

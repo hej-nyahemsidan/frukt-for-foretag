@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, CheckCircle2 } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from '@/lib/router-compat';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
@@ -131,7 +131,7 @@ const ResetPassword = () => {
           <VitaminKorgenLogo size="xl" variant="full" className="mx-auto h-16 w-auto" />
         </div>
 
-        <div className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-sm">
+        <div className="bg-card border border-border rounded-xl p-6 sm:p-8 shadow-xs">
           {checking ? (
             <div className="flex justify-center py-8">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />

@@ -36,7 +36,7 @@ const PromoPopup: React.FC<PromoPopupProps> = ({ isOpen, onClose }) => {
 
   return (
     <div 
-      className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+      className="fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 z-50"
       onClick={handleBackdropClick}
     >
       <div 
@@ -47,7 +47,7 @@ const PromoPopup: React.FC<PromoPopupProps> = ({ isOpen, onClose }) => {
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-white transition-colors shadow-lg"
+          className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur-xs rounded-full hover:bg-white transition-colors shadow-lg"
         >
           <X className="w-5 h-5 text-gray-600" />
         </button>
@@ -100,7 +100,7 @@ const PromoPopup: React.FC<PromoPopupProps> = ({ isOpen, onClose }) => {
                 
                 {/* Central Visual Element */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <div className="w-32 h-32 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center animate-float">
+                  <div className="w-32 h-32 bg-white/20 backdrop-blur-xs rounded-full flex items-center justify-center animate-float">
                     <Gift className="w-16 h-16 text-secondary" />
                   </div>
                 </div>
@@ -114,7 +114,7 @@ const PromoPopup: React.FC<PromoPopupProps> = ({ isOpen, onClose }) => {
           {/* Visual Header */}
           <div className="relative h-32 bg-gradient-to-br from-[hsl(120_60%_85%)] to-[hsl(120_50%_90%)]">
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 bg-white/20 backdrop-blur-xs rounded-full flex items-center justify-center">
                 <Gift className="w-8 h-8 text-secondary" />
               </div>
             </div>

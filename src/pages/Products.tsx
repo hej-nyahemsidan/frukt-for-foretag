@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { FileText, ShoppingCart, X, Plus, Minus } from 'lucide-react';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from '@/lib/router-compat';
 import { usePublicCart } from '@/contexts/PublicCartContext';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import FruktkorgarTab from '@/components/product-tabs/FruktkorgarTab';
@@ -58,7 +58,7 @@ const Products = () => {
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4 mb-4">
             Välj fruktkorg och tillbehör – allt du lägger till samlas i rutan till höger. När du är klar skickar du beställningen, så bekräftar vi upplägget.
           </p>
-          <div className="bg-white border border-gray-200 rounded-lg p-6 max-w-4xl mx-auto shadow-sm">
+          <div className="bg-white border border-gray-200 rounded-lg p-6 max-w-4xl mx-auto shadow-xs">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <div className="flex items-center gap-3">
                 <div className="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg">
@@ -98,63 +98,63 @@ const Products = () => {
           <TabsList className="grid w-full grid-cols-4 sm:grid-cols-10 gap-1 sm:gap-2 mb-6 sm:mb-8 bg-gray-100 p-1 rounded-lg h-auto">
             <TabsTrigger 
               value="fruktkorgar" 
-              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-xs"
             >
               Fruktkorgar
             </TabsTrigger>
             <TabsTrigger 
               value="fruktpasar" 
-              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-xs"
             >
               Fruktpåsar
             </TabsTrigger>
             <TabsTrigger 
               value="lask" 
-              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-xs"
             >
               Läsk
             </TabsTrigger>
             <TabsTrigger 
               value="mejeri" 
-              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-xs"
             >
               Mjölk
             </TabsTrigger>
             <TabsTrigger 
               value="kaffe" 
-              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-xs"
             >
               Kaffe
             </TabsTrigger>
 
             <TabsTrigger 
               value="frukost" 
-              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-xs"
             >
               Frukost & mellanmål
             </TabsTrigger>
 
             <TabsTrigger 
               value="snacks" 
-              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-xs"
             >
               Snacks
             </TabsTrigger>
             <TabsTrigger 
               value="annat" 
-              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-xs"
             >
               Skafferi
             </TabsTrigger>
             <TabsTrigger 
               value="gronsaker" 
-              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-xs"
             >
               Grönsaker
             </TabsTrigger>
             <TabsTrigger 
               value="stad" 
-              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              className="text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-white data-[state=active]:shadow-xs"
             >
               Städ
             </TabsTrigger>
@@ -314,7 +314,7 @@ const Products = () => {
 
         {/* Sticky bottom bar */}
         {items.length > 0 && (
-          <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-t shadow-lg p-3 sm:p-4 lg:hidden">
+          <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xs border-t shadow-lg p-3 sm:p-4 lg:hidden">
             <div className="container mx-auto flex items-center justify-between gap-4 max-w-4xl">
               <div className="flex items-center gap-2 text-sm sm:text-base">
                 <ShoppingCart className="h-5 w-5 text-primary" />

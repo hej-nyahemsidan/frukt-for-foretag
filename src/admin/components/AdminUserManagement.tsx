@@ -391,7 +391,7 @@ const AdminUserManagement = () => {
       </div>
 
       {/* Users Table */}
-      <div className="admin-user-table-container bg-white rounded-lg border shadow-sm overflow-x-auto">
+      <div className="admin-user-table-container bg-white rounded-lg border shadow-xs overflow-x-auto">
         <Table>
           <TableHeader>
             <TableRow className="admin-table-header">

@@ -1,5 +1,5 @@
 
-import { useParams, Link, Navigate } from 'react-router-dom';
+import { useParams, Link, Navigate } from '@/lib/router-compat';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
@@ -124,7 +124,7 @@ const AreaLanding = () => {
                   <h3 className="font-bold text-green-900 mb-3">Vi levererar bland annat till kontor vid:</h3>
                   <div className="flex flex-wrap gap-2">
                     {highlights.map((h, i) => (
-                      <span key={i} className="inline-flex items-center gap-1 bg-white px-3 py-1.5 rounded-full text-sm text-green-800 shadow-sm">
+                      <span key={i} className="inline-flex items-center gap-1 bg-white px-3 py-1.5 rounded-full text-sm text-green-800 shadow-xs">
                         <MapPin className="h-3 w-3" /> {h}
                       </span>
                     ))}
@@ -211,7 +211,7 @@ const AreaLanding = () => {
             </h2>
             <div className="space-y-6">
               {faqs.map((faq, i) => (
-                <div key={i} className="bg-white p-6 rounded-xl shadow-sm">
+                <div key={i} className="bg-white p-6 rounded-xl shadow-xs">
                   <h3 className="font-bold text-green-900 mb-2">{faq.q}</h3>
                   <p className="text-gray-600 text-sm">{faq.a}</p>
                 </div>
@@ -230,17 +230,17 @@ const AreaLanding = () => {
               {nearbyAreas.map((nearby, i) => {
                 const nearbyArea = areas.find(a => a.name === nearby);
                 return nearbyArea ? (
-                  <Link key={i} to={`/fruktkorg/${nearbyArea.slug}`} className="inline-flex items-center gap-1 bg-white px-4 py-2 rounded-full text-sm font-medium text-green-800 hover:bg-green-100 transition-colors shadow-sm">
+                  <Link key={i} to={`/fruktkorg/${nearbyArea.slug}`} className="inline-flex items-center gap-1 bg-white px-4 py-2 rounded-full text-sm font-medium text-green-800 hover:bg-green-100 transition-colors shadow-xs">
                     <MapPin className="h-3 w-3" /> Fruktkorg {nearby}
                   </Link>
                 ) : (
-                  <span key={i} className="inline-flex items-center gap-1 bg-white px-4 py-2 rounded-full text-sm font-medium text-green-800 shadow-sm">
+                  <span key={i} className="inline-flex items-center gap-1 bg-white px-4 py-2 rounded-full text-sm font-medium text-green-800 shadow-xs">
                     <MapPin className="h-3 w-3" /> {nearby}
                   </span>
                 );
               })}
               {areas.filter(a => a.slug !== areaInfo.slug && !nearbyAreas.includes(a.name)).slice(0, 6).map((a, i) => (
-                <Link key={`other-${i}`} to={`/fruktkorg/${a.slug}`} className="inline-flex items-center gap-1 bg-white px-4 py-2 rounded-full text-sm font-medium text-green-800 hover:bg-green-100 transition-colors shadow-sm">
+                <Link key={`other-${i}`} to={`/fruktkorg/${a.slug}`} className="inline-flex items-center gap-1 bg-white px-4 py-2 rounded-full text-sm font-medium text-green-800 hover:bg-green-100 transition-colors shadow-xs">
                   <MapPin className="h-3 w-3" /> Fruktkorg {a.name}
                 </Link>
               ))}

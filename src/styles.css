@@ -1,102 +1,182 @@
-/* Using system fonts instead of Google Fonts to avoid connection issues */
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@custom-variant dark (&:is(.dark *));
 
-/* Fruktexperten Professional Design System */
+/* Vitaminkorgen design system (ported from the Classic index.css + tailwind.config.ts).
+ * Color variables keep their HSL-channel format; @theme wraps them in hsl(). */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-light: hsl(var(--primary-light));
+  --color-primary-dark: hsl(var(--primary-dark));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent-orange));
+  --color-accent-foreground: hsl(var(--foreground));
+  --color-accent-orange: hsl(var(--accent-orange));
+  --color-accent-red: hsl(var(--accent-red));
+  --color-accent-blue: hsl(var(--accent-blue));
+  --color-accent-lightgreen: hsl(var(--accent-light-green));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-ring-offset-background: hsl(var(--background));
+}
+
+@theme {
+  --breakpoint-xxl: 1280px;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --color-forest: hsl(124 53% 24%);
+  --color-fresh: hsl(122 39% 49%);
+  --color-lightgreen: hsl(120 33% 93%);
+  --color-orange: hsl(34 100% 50%);
+  --color-warmred: hsl(0 66% 51%);
+  --color-deepblue: hsl(207 79% 42%);
+  --color-charcoal: hsl(0 0% 18%);
+  --color-mediumgray: hsl(0 0% 42%);
+  --color-lightgray: hsl(0 0% 96%);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-slide-in-right: slide-in-right 0.3s ease-out;
+  --animate-fade-in: fade-in 0.3s ease-out;
+  --animate-moveBasket: moveBasket 15s ease-in-out infinite;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+  @keyframes slide-in-right {
+    0% { transform: translateX(100%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+  }
+  @keyframes fade-in {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes moveBasket {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+  }
+}
+
+/* Classic tailwind.config container: centered, 2rem padding, max 1400px at 2xl */
+@utility container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= 40rem) { max-width: 40rem; }
+  @media (width >= 48rem) { max-width: 48rem; }
+  @media (width >= 64rem) { max-width: 64rem; }
+  @media (width >= 80rem) { max-width: 80rem; }
+  @media (width >= 96rem) { max-width: 1400px; }
+}
+
+:root {
+  /* Fresh & Light Color Palette */
+  --background: 0 0% 100%;
+  --foreground: 150 10% 20%;
+
+  --frukt-green: 82 196 52;
+  --frukt-orange: 255 112 67;
+  --frukt-purple: 107 70 193;
+
+  --primary: 152 50% 38%;
+  --primary-foreground: 0 0% 100%;
+  --primary-light: 148 42% 58%;
+  --primary-dark: 152 50% 28%;
+
+  --secondary: 155 40% 52%;
+  --secondary-foreground: 0 0% 100%;
+
+  --accent-orange: 32 90% 55%;
+  --accent-red: 4 70% 58%;
+  --accent-blue: 205 70% 55%;
+  --accent-light-green: 148 50% 96%;
+
+  --muted: 150 10% 96%;
+  --muted-foreground: 150 8% 46%;
+  --border: 150 12% 90%;
+  --input: 150 10% 97%;
+  --ring: 152 50% 38%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 150 10% 20%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 150 10% 20%;
+
+  --destructive: 4 70% 58%;
+  --destructive-foreground: 0 0% 100%;
+
+  --gradient-hero: linear-gradient(135deg, hsl(152 50% 38%), hsl(148 42% 52%));
+  --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(148 40% 98%));
+  --gradient-button: linear-gradient(135deg, hsl(148 42% 52%), hsl(152 50% 42%));
+  --gradient-forest: linear-gradient(135deg, hsl(152 50% 38%), hsl(152 50% 28%));
+  --gradient-warm: linear-gradient(135deg, hsl(0 0% 99%), hsl(148 40% 97%));
+  --gradient-organic: linear-gradient(160deg, hsl(0 0% 100%) 0%, hsl(148 35% 98%) 50%, hsl(32 40% 98%) 100%);
+
+  --shadow-soft: 0 4px 24px -6px hsl(152 20% 30% / 0.06);
+  --shadow-card: 0 2px 16px -4px hsl(152 20% 30% / 0.08), 0 1px 4px -1px hsl(150 10% 50% / 0.04);
+  --shadow-button: 0 4px 16px -4px hsl(152 40% 40% / 0.25);
+  --shadow-header: 0 1px 8px -2px hsl(152 20% 30% / 0.06);
+  --shadow-glow: 0 0 30px -8px hsl(148 42% 52% / 0.2);
+
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --radius: 1rem;
+}
 
 @layer base {
-  :root {
-    /* Fresh & Light Color Palette – airy, modern, nature-fresh */
-    --background: 0 0% 100%; /* Pure white */
-    --foreground: 150 10% 20%; /* Cool dark green-gray */
-    
-    /* VitaminKorgen Brand Colors */
-    --frukt-green: 82 196 52;
-    --frukt-orange: 255 112 67;
-    --frukt-purple: 107 70 193;
-    
-    /* Primary – Fresh Leaf Green */
-    --primary: 152 50% 38%; /* Bright fresh green */
-    --primary-foreground: 0 0% 100%; /* White */
-    --primary-light: 148 42% 58%; /* Light spring green */
-    --primary-dark: 152 50% 28%; /* Deeper green */
-    
-    /* Secondary – Soft Mint */
-    --secondary: 155 40% 52%; /* Fresh mint green */
-    --secondary-foreground: 0 0% 100%; /* White */
-    
-    /* Accent Colors – Bright & Fresh */
-    --accent-orange: 32 90% 55%; /* Bright citrus orange */
-    --accent-red: 4 70% 58%; /* Fresh coral */
-    --accent-blue: 205 70% 55%; /* Clear sky blue */
-    --accent-light-green: 148 50% 96%; /* Barely-there mint */
-    
-    /* Neutral Fresh Palette */
-    --muted: 150 10% 96%; /* Cool off-white */
-    --muted-foreground: 150 8% 46%; /* Medium gray-green */
-    --border: 150 12% 90%; /* Light cool border */
-    --input: 150 10% 97%; /* Almost white input */
-    --ring: 152 50% 38%; /* Green focus ring */
-    
-    /* Cards & Surfaces – Clean whites */
-    --card: 0 0% 100%; /* Pure white */
-    --card-foreground: 150 10% 20%; /* Dark text */
-    --popover: 0 0% 100%;
-    --popover-foreground: 150 10% 20%;
-    
-    /* Interactive States */
-    --destructive: 4 70% 58%;
-    --destructive-foreground: 0 0% 100%;
-    
-    /* Fresh Gradients – Light & Airy */
-    --gradient-hero: linear-gradient(135deg, hsl(152 50% 38%), hsl(148 42% 52%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(148 40% 98%));
-    --gradient-button: linear-gradient(135deg, hsl(148 42% 52%), hsl(152 50% 42%));
-    --gradient-forest: linear-gradient(135deg, hsl(152 50% 38%), hsl(152 50% 28%));
-    --gradient-warm: linear-gradient(135deg, hsl(0 0% 99%), hsl(148 40% 97%));
-    --gradient-organic: linear-gradient(160deg, hsl(0 0% 100%) 0%, hsl(148 35% 98%) 50%, hsl(32 40% 98%) 100%);
-    
-    /* Light Shadows – Crisp & Clean */
-    --shadow-soft: 0 4px 24px -6px hsl(152 20% 30% / 0.06);
-    --shadow-card: 0 2px 16px -4px hsl(152 20% 30% / 0.08), 0 1px 4px -1px hsl(150 10% 50% / 0.04);
-    --shadow-button: 0 4px 16px -4px hsl(152 40% 40% / 0.25);
-    --shadow-header: 0 1px 8px -2px hsl(152 20% 30% / 0.06);
-    --shadow-glow: 0 0 30px -8px hsl(148 42% 52% / 0.2);
-    
-    /* Smooth Animations */
-    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    
-    --radius: 1rem;
-  }
-
   * {
-    @apply border-border;
+    border-color: var(--color-border);
   }
 
   body {
-    @apply bg-background text-foreground font-['Inter',sans-serif] antialiased;
-    overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
-  
-  /* Ensure all containers handle mobile properly */
-  .container {
-    @apply w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8;
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
   }
-  
-  /* Prevent text from breaking layout on mobile */
+
   .text-responsive {
-    @apply break-words hyphens-auto;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
-  
-  /* Ensure header doesn't overlap content */
+
   header {
     contain: layout style;
   }
-  
-  /* Ensure hero section is properly contained */
+
   .hero-background {
     contain: layout style paint;
     clip-path: inset(0);
@@ -120,7 +200,7 @@
   .btn-outline {
     @apply bg-transparent text-primary px-6 py-3 rounded-xl font-medium;
     @apply border-2 border-muted-foreground/30 transition-all duration-300;
-    @apply hover:bg-muted hover:border-primary/40 hover:shadow-sm;
+    @apply hover:bg-muted hover:border-primary/40 hover:shadow-xs;
   }
   
   /* Soft Organic Card Styles */
