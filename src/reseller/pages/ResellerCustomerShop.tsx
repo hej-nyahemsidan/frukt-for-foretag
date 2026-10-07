@@ -488,6 +488,7 @@ const ResellerCustomerShop = () => {
                                   {sizes.map(size => {
                                     const price = getPrice(product.id, size);
                                     if (price === null) return null;
+                                    const hasKgPrice = getKgPrice(product.id) !== null && /^(\d+(?:[.,]\d+)?)\s*kg$/i.test(size);
                                     return (
                                       <div key={size} className="flex items-center justify-between gap-1">
                                         <span className="text-xs text-muted-foreground">{size}</span>
@@ -496,7 +497,7 @@ const ResellerCustomerShop = () => {
                                           className="h-7 text-xs gap-1"
                                           onClick={(e) => { e.stopPropagation(); addToCart(product, size, price); }}
                                         >
-                                          + {price} kr
+                                          {hasKgPrice ? '+ Lägg till' : `+ ${price} kr`}
                                         </Button>
                                       </div>
                                     );
@@ -664,11 +665,12 @@ const ResellerCustomerShop = () => {
                     return sizes.map(size => {
                       const price = getPrice(selectedProduct.id, size);
                       if (price === null) return null;
+                      const hasKgPrice = getKgPrice(selectedProduct.id) !== null && /^(\d+(?:[.,]\d+)?)\s*kg$/i.test(size);
                       return (
                         <div key={size} className="flex items-center justify-between">
                           <span>{size}</span>
                           <Button size="sm" onClick={() => { addToCart(selectedProduct, size, price); setSelectedProduct(null); }}>
-                            {price} kr – Lägg till
+                            {hasKgPrice ? 'Lägg till' : `${price} kr – Lägg till`}
                           </Button>
                         </div>
                       );
