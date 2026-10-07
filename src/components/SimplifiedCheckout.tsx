@@ -8,6 +8,8 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Check } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
+import { invokeServer } from "@/lib/invoke-server";
+import { sendContactEmail } from "@/lib/send-contact-email.functions";
 
 interface SimplifiedCheckoutProps {
   packagePlan: string;
@@ -93,7 +95,7 @@ const SimplifiedCheckout = ({
       }
 
       // Send order confirmation email
-      const { error } = await supabase.functions.invoke('send-contact-email', {
+      const { error } = await invokeServer(sendContactEmail, {
         body: {
           formType: 'Orderbekräftelse',
           customerInfo: {

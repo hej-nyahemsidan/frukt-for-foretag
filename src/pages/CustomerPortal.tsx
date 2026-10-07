@@ -10,6 +10,8 @@ import { useToast } from '@/hooks/use-toast';
 import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
 import citrusBackground from '@/assets/citrus-background.jpg';
+import { invokeServer } from "@/lib/invoke-server";
+import { requestPasswordReset } from "@/lib/request-password-reset.functions";
 
 const CustomerPortal = () => {
   const [email, setEmail] = useState('');
@@ -48,7 +50,7 @@ const CustomerPortal = () => {
     setIsLoading(true);
     // Use our own edge function so the link always points to vitaminkorgen.se
     // (Supabase's Site URL setting would otherwise send users to localhost).
-    const { error } = await supabase.functions.invoke('request-password-reset', {
+    const { error } = await invokeServer(requestPasswordReset, {
       body: { email: email.trim() },
     });
     setIsLoading(false);

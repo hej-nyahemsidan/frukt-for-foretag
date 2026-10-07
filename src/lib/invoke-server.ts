@@ -1,4 +1,4 @@
-import type { EdgeResult } from "@/lib/edge/run-edge-handler.server";
+import type { EdgeResult } from "@/lib/edge/types";
 
 type EdgeServerFn = (opts: { data: unknown }) => Promise<EdgeResult>;
 

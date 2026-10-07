@@ -8,6 +8,8 @@ import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import VitaminKorgenLogo from '@/components/VitaminKorgenLogo';
 import SEOHead from '@/components/SEOHead';
+import { invokeServer } from "@/lib/invoke-server";
+import { consumeInviteToken } from "@/lib/consume-invite-token.functions";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState('');
@@ -35,7 +37,7 @@ const ResetPassword = () => {
 
         if (inviteToken) {
           // Long-lived invitation token: exchange it for a fresh recovery link.
-          const { data, error } = await supabase.functions.invoke('consume-invite-token', {
+          const { data, error } = await invokeServer(consumeInviteToken, {
             body: { invite_token: inviteToken },
           });
           if (error || !data?.token_hash) {

@@ -10,6 +10,8 @@ import { Send, Loader2, Mail, Search } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { invokeServer } from "@/lib/invoke-server";
+import { sendCampaign } from "@/lib/send-campaign.functions";
 
 interface Campaign {
   id: string;
@@ -93,7 +95,7 @@ const AdminEmailCampaigns = () => {
         }
         body.emails = Array.from(selectedEmails);
       }
-      const { data, error } = await supabase.functions.invoke('send-campaign', {
+      const { data, error } = await invokeServer(sendCampaign, {
         body,
       });
       if (error) throw error;

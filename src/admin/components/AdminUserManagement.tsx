@@ -22,6 +22,12 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import AdminEditUserModal from './AdminEditUserModal';
 import AdminAddUserModal from './AdminAddUserModal';
+import { invokeServer } from "@/lib/invoke-server";
+import { adminListUsers } from "@/lib/admin-list-users.functions";
+import { createUser } from "@/lib/create-user.functions";
+import { deleteUser } from "@/lib/delete-user.functions";
+import { inviteAllCustomers } from "@/lib/invite-all-customers.functions";
+import { inviteUser } from "@/lib/invite-user.functions";
 
 interface Profile {
   id: string;
@@ -76,7 +82,7 @@ const AdminUserManagement = () => {
       // Fetch auth metadata (last sign in, order count) from edge function
       const authMap = new Map<string, { last_sign_in_at: string | null; email_confirmed_at: string | null; order_count: number }>();
       try {
-        const { data: authData, error: authErr } = await supabase.functions.invoke('admin-list-users');
+        const { data: authData, error: authErr } = await invokeServer(adminListUsers);
         if (!authErr && authData?.users) {
           authData.users.forEach((u: any) => {
             authMap.set(u.id, {
@@ -179,7 +185,7 @@ const AdminUserManagement = () => {
   const handleAddUser = async (email: string, password: string, fullName?: string, companyName?: string) => {
     try {
       // Call the Edge function to create user with email confirmation bypassed
-      const { data: functionData, error } = await supabase.functions.invoke('create-user', {
+      const { data: functionData, error } = await invokeServer(createUser, {
         body: { 
           email: email.trim(), 
           password: password, 
@@ -239,7 +245,7 @@ const AdminUserManagement = () => {
 
     try {
       // Use Edge function to properly delete user and all related data
-      const { data: functionData, error } = await supabase.functions.invoke('delete-user', {
+      const { data: functionData, error } = await invokeServer(deleteUser, {
         body: { userId: profile.id }
       });
       
@@ -268,7 +274,7 @@ const AdminUserManagement = () => {
     if (!inviteEmail.trim()) return;
     setIsInviting(true);
     try {
-      const { data, error } = await supabase.functions.invoke('invite-user', {
+      const { data, error } = await invokeServer(inviteUser, {
         body: {
           email: inviteEmail.trim(),
           fullName: inviteName,
@@ -306,7 +312,7 @@ const AdminUserManagement = () => {
     if (!confirmed) return;
     setIsInvitingAll(true);
     try {
-      const { data, error } = await supabase.functions.invoke('invite-all-customers', { body: {} });
+      const { data, error } = await invokeServer(inviteAllCustomers, { body: {} });
       if (error) throw error;
       if (data?.error) throw new Error(data.error);
       toast({

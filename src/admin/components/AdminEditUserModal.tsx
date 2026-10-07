@@ -14,6 +14,9 @@ import {
 import { Edit, Mail, User, Lock, AlertTriangle, Building2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { invokeServer } from "@/lib/invoke-server";
+import { updateUserEmail } from "@/lib/update-user-email.functions";
+import { updateUserPassword } from "@/lib/update-user-password.functions";
 
 interface Profile {
   id: string;
@@ -82,7 +85,7 @@ const AdminEditUserModal = ({
 
       // If email changed, use the edge function to update it everywhere
       if (formData.email !== user.email) {
-        const { data: emailData, error: emailError } = await supabase.functions.invoke('update-user-email', {
+        const { data: emailData, error: emailError } = await invokeServer(updateUserEmail, {
           body: {
             userId: user.id,
             newEmail: formData.email,
@@ -120,7 +123,7 @@ const AdminEditUserModal = ({
 
       // Reset password if requested
       if (formData.resetPassword && formData.newPassword) {
-        const { data: passwordData, error: passwordError } = await supabase.functions.invoke('update-user-password', {
+        const { data: passwordData, error: passwordError } = await invokeServer(updateUserPassword, {
           body: { 
             userId: user.id, 
             newPassword: formData.newPassword 

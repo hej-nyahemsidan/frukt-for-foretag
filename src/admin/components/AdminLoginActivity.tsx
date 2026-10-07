@@ -13,6 +13,8 @@ import {
 import { Search, RefreshCw } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { invokeServer } from "@/lib/invoke-server";
+import { adminListUsers } from "@/lib/admin-list-users.functions";
 
 interface ActivityUser {
   id: string;
@@ -46,7 +48,7 @@ const AdminLoginActivity = () => {
   const fetchUsers = async () => {
     try {
       setIsLoading(true);
-      const { data, error } = await supabase.functions.invoke('admin-list-users');
+      const { data, error } = await invokeServer(adminListUsers);
       if (error) throw error;
       setUsers((data?.users || []) as ActivityUser[]);
     } catch (e) {

@@ -6,6 +6,8 @@ import { Input } from '@/components/ui/input';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { trackExitIntentLead } from '@/lib/gtm';
+import { invokeServer } from "@/lib/invoke-server";
+import { sendContactEmail } from "@/lib/send-contact-email.functions";
 
 const STORAGE_KEY = 'exitIntentDismissed';
 const DISMISS_DAYS = 14;
@@ -64,7 +66,7 @@ const ExitIntentPopup: React.FC = () => {
 
     setSending(true);
     try {
-      const { error } = await supabase.functions.invoke('send-contact-email', {
+      const { error } = await invokeServer(sendContactEmail, {
         body: {
           formType: 'Kontaktformulär',
           name: name || 'Exit-intent lead',

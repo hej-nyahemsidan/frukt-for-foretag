@@ -1,6 +1,7 @@
 import { getRequestHeader } from "@tanstack/react-start/server";
 
-export type EdgeResult = { ok: boolean; status: number; body: string };
+import type { EdgeResult } from "./types";
+export type { EdgeResult };
 
 const FORWARDED_HEADERS = [
   "authorization",

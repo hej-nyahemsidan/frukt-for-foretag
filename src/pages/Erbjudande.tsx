@@ -9,6 +9,8 @@ import FruktexpertenLogo from '@/components/FruktexpertenLogo';
 import { trackContactSubmitted } from '@/lib/gtm';
 import { CheckCircle2, Phone, Star, Truck, Clock, Shield, Leaf, Gift } from 'lucide-react';
 import fruktKontorImg from '@/assets/frukt-pa-kontoret-tips.jpg';
+import { invokeServer } from "@/lib/invoke-server";
+import { sendContactEmail } from "@/lib/send-contact-email.functions";
 
 const PHONE = '010-183 98 36';
 const PHONE_TEL = '0101839836';
@@ -44,7 +46,7 @@ const Erbjudande = () => {
 
       if (dbError) throw dbError;
 
-      await supabase.functions.invoke('send-contact-email', {
+      await invokeServer(sendContactEmail, {
         body: {
           formType: 'Lead – Google Ads (Provkorg + 8% rabatt)',
           name: formData.companyName,

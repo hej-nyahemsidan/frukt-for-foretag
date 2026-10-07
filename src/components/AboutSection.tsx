@@ -11,6 +11,8 @@ import { supabase } from '@/integrations/supabase/client';
 import fruityImage from '@/assets/fruktkorg-leverans-foretag.jpg';
 import workplaceImage from '@/assets/fruktkorg-pa-jobbet-stockholm.jpg';
 import happyTeamImage from '@/assets/glada-anstallda-fruktkorg-foretag.jpg';
+import { invokeServer } from "@/lib/invoke-server";
+import { sendContactEmail } from "@/lib/send-contact-email.functions";
 
 const AboutSection = () => {
   const [expandedFAQ, setExpandedFAQ] = useState<number[]>([]);
@@ -70,7 +72,7 @@ const AboutSection = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.functions.invoke('send-contact-email', {
+      const { error } = await invokeServer(sendContactEmail, {
         body: {
           formType: 'Kontaktformulär (Om oss)',
           name: formData.name,
