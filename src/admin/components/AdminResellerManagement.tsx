@@ -208,6 +208,7 @@ const AdminResellerManagement = () => {
     setInviteReseller(reseller);
     setInviteEmail(reseller.contact_email || '');
     setInviteName('');
+    setInviteLink('');
   };
 
   const handleSendInvite = async (sendEmail: boolean) => {
