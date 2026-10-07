@@ -1,5 +1,5 @@
 // Ported from supabase/functions/create-reseller-user/index.ts (Deno edge function).
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "./supabase.server";
 import { Resend } from "resend";
 
 const corsHeaders = {

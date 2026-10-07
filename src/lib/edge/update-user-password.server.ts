@@ -1,5 +1,5 @@
 // Ported from supabase/functions/update-user-password/index.ts (Deno edge function).
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "./supabase.server";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',

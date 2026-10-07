@@ -1,5 +1,5 @@
 // Ported from supabase/functions/consume-invite-token/index.ts (Deno edge function).
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "./supabase.server";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
