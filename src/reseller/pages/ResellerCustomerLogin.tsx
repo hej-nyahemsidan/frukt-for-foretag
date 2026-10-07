@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
+import { ArrowLeft, Eye, EyeOff, Store } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useResellerCustomerAuth } from '../contexts/ResellerCustomerAuthContext';
 import { useToast } from '@/hooks/use-toast';
@@ -137,12 +137,19 @@ const ResellerCustomerLogin = () => {
           </form>
 
           {/* Reseller login link */}
-          <p className="text-center text-xs text-muted-foreground">
-            Är du återförsäljare?{' '}
-            <Link to="/af/login" className="underline hover:text-primary">
-              Logga in här
+          <div className="border-t pt-6 text-center space-y-3">
+            <p className="text-sm font-medium text-foreground">
+              Är du återförsäljare och inte kund?
+            </p>
+            <Link
+              to="/af/login"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-md border-2 border-primary px-4 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+            >
+              <Store className="h-4 w-4" />
+              Logga in som återförsäljare
             </Link>
-          </p>
+          </div>
+
 
           {/* Reseller contact */}
           {reseller?.contact_email && (
