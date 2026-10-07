@@ -204,6 +204,47 @@ const AdminResellerManagement = () => {
     setShowAddDialog(true);
   };
 
+  const openInviteDialog = (reseller: Reseller) => {
+    setInviteReseller(reseller);
+    setInviteEmail(reseller.contact_email || '');
+    setInviteName('');
+  };
+
+  const handleSendInvite = async () => {
+    if (!inviteReseller) return;
+    if (!inviteEmail.trim() || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(inviteEmail.trim())) {
+      toast({ title: 'Fel', description: 'Ange en giltig e-postadress.', variant: 'destructive' });
+      return;
+    }
+    setInviting(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('create-reseller-user', {
+        body: {
+          email: inviteEmail.trim(),
+          resellerId: inviteReseller.id,
+          contactName: inviteName.trim(),
+        },
+      });
+      if (error) throw new Error(error.message);
+      if (data?.error) throw new Error(data.error);
+      toast({
+        title: 'Inloggning skickad',
+        description: `${data.email} fick ett mejl med aktiveringslänk (giltig i 7 dagar).`,
+      });
+      setInviteReseller(null);
+      setInviteEmail('');
+      setInviteName('');
+    } catch (e) {
+      toast({
+        title: 'Fel',
+        description: e instanceof Error ? e.message : 'Kunde inte skapa kontot.',
+        variant: 'destructive',
+      });
+    } finally {
+      setInviting(false);
+    }
+  };
+
   const handleSelectReseller = async (reseller: Reseller) => {
     setSelectedReseller(reseller);
     await fetchResellerPrices(reseller.id);
