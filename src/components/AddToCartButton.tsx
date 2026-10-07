@@ -44,7 +44,7 @@ const AddToCartButton = ({
     if (showSizeSelector && product.prices && !selectedSize) {
       const sizes = Object.keys(product.prices);
       if (sizes.length > 0) {
-        setSelectedSize(sizes[0]); // Default to first size
+        setSelectedSize(sizes[0] ?? ''); // Default to first size
       }
     }
   }, [showSizeSelector, product.prices, selectedSize]);
@@ -57,8 +57,8 @@ const AddToCartButton = ({
     // Handle products with prices object but no size selection
     if (product.prices && !selectedSize) {
       // First try to get default price
-      if (product.prices.default !== undefined) {
-        return product.prices.default;
+      if (product.prices['default'] !== undefined) {
+        return product.prices['default'];
       }
       // If no default, use the first available price
       const firstPrice = Object.values(product.prices)[0];
@@ -113,13 +113,13 @@ const AddToCartButton = ({
       const itemToAdd = {
         id: product.id,
         name: product.name,
-        price: currentPrice,
+        price: currentPrice ?? 0,
         category: product.category,
         image: product.image,
         quantity: quantity,
         assignedDay: day,
         orderType: orderType,
-        ...((size || selectedSize) && { size: size || selectedSize })
+        size: size || selectedSize || undefined,
       };
 
       addItem(itemToAdd);

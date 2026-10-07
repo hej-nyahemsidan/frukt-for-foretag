@@ -10,7 +10,7 @@ interface CartIndicatorProps {
   onCheckout?: () => void;
 }
 
-const CartIndicator = ({ orderType, onCheckout }: CartIndicatorProps = { orderType: undefined, onCheckout: undefined }) => {
+const CartIndicator = ({ orderType, onCheckout }: CartIndicatorProps = {}) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const { items, updateQuantity, removeItem, clearCart, getItemsByOrderType } = useCart();
