@@ -104,7 +104,7 @@ const Footer = () => {
             <span className="text-green-600">·</span>
             <Link to="/fruktkorg-pa-jobbet" className="hover:text-yellow-400 transition-colors">Fruktkorg på jobbet</Link>
             <span className="text-green-600">·</span>
-            <Link to="/fruktlada" className="hover:text-yellow-400 transition-colors">Fruktlåda</Link>
+            <Link to="/fruktlada" className="hover:text-yellow-400 transition-colors">Fruktlåda till företag</Link>
             <span className="text-green-600">·</span>
             <Link to="/produkter" className="hover:text-yellow-400 transition-colors">Alla produkter</Link>
             <span className="text-green-600">·</span>

@@ -559,7 +559,7 @@ const FruktkorgStockholm = () => {
                 { to: '/fruktkorg-stockholm-pris', title: 'Priser i Stockholm', desc: 'Vad kostar en fruktkorg? Se prisexempel per kontorsstorlek.' },
                 { to: '/fruktkorg-foretag', title: 'Fruktkorg till företag', desc: 'Så fungerar avtal, fakturering och löpande leveranser.' },
                 { to: '/fruktkorg-kontor', title: 'Fruktkorg till kontoret', desc: 'Placering, påfyllning och tips för mindre svinn.' },
-                { to: '/fruktlada', title: 'Fruktlåda', desc: 'Fruktlåda i flera storlekar – Banan, Original och Premium.' },
+                { to: '/fruktlada', title: 'Fruktlåda till företag', desc: 'Fruktlåda i flera storlekar – Banan, Original och Premium.' },
                 { to: '/varuautomat', title: 'Varuautomat', desc: 'Självbetjäning med frukt och snacks på arbetsplatsen.' },
                 { to: '/blommor', title: 'Blommor till kontoret', desc: 'Färska buketter levererade tillsammans med frukten.' },
                 { to: '/provkorg', title: 'Prova en korg', desc: 'Testa kvaliteten innan ni bestämmer er.' },
