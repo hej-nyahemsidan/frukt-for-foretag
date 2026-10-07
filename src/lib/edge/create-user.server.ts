@@ -1,5 +1,4 @@
 // Ported from supabase/functions/create-user/index.ts (Deno edge function).
-import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { createClient } from "@supabase/supabase-js";
 
 const corsHeaders = {
