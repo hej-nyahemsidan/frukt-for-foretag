@@ -57,10 +57,10 @@ const FruktkorgPaJobbet = () => {
         <section className="py-16 md:py-24">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl md:text-4xl font-bold text-center text-green-900 mb-4">
-              Varför fruktkorg på jobbet?
+              Varför frukt till jobbet?
             </h2>
             <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-              Forskning visar att fruktkorg på jobbet är en av de mest kostnadseffektiva hälsoinsatserna ett företag kan göra.
+              Forskning visar att frukt till jobbet är en av de mest kostnadseffektiva hälsoinsatserna ett företag kan göra.
             </p>
             <div className="grid md:grid-cols-3 gap-8">
               {[
