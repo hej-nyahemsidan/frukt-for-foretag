@@ -29,7 +29,7 @@ const Products = () => {
   const currentDay = 'Beställning';
   const navigate = useNavigate();
   const { items, getTotalItems, getTotalPrice, updateQuantity, removeItem, clearCart, updateDay } = usePublicCart();
-  const weekdays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
+  const weekdays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'];
 
   useEffect(() => {
     if (tabParam) {

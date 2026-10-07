@@ -35,7 +35,7 @@ const FruktkorgarTab: React.FC<FruktkorgarTabProps> = ({ selectedDays, currentDa
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedSizes, setSelectedSizes] = useState<Record<string, string>>({});
   const [selectedDayPerProduct, setSelectedDayPerProduct] = useState<Record<string, string>>({});
-  const weekdays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
+  const weekdays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'];
 
   useEffect(() => {
     fetchFruktkorgar();
