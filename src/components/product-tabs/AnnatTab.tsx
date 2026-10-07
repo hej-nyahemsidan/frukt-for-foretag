@@ -90,13 +90,13 @@ const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays, currentDay, orderType
                 {product.name}
               </h3>
               <div className="text-sm font-bold text-green-600 text-center">
-                {product.prices?.default || 0} kr
+                {product.prices?.['default'] || 0} kr
               </div>
               <div onClick={(e) => e.stopPropagation()}>
                 {isPublicPage ? (
-                  <PublicAddToCartButton productId={product.id} productName={product.name} price={product.prices?.default || 0} category={product.category} image={product.image_url} selectedDay={currentDay} className="w-full" />
+                  <PublicAddToCartButton productId={product.id} productName={product.name} price={product.prices?.['default'] || 0} category={product.category} image={product.image_url} selectedDay={currentDay} className="w-full" />
                 ) : (
-                  <AddToCartButton product={{ id: product.id, name: product.name, price: product.prices?.default || 0, category: product.category, image: product.image_url }} selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} className="w-full" />
+                  <AddToCartButton product={{ id: product.id, name: product.name, price: product.prices?.['default'] || 0, category: product.category, image: product.image_url }} selectedDays={selectedDays} currentDay={currentDay} orderType={orderType} className="w-full" />
                 )}
               </div>
             </div>
@@ -135,7 +135,7 @@ const AnnatTab: React.FC<AnnatTabProps> = ({ selectedDays, currentDay, orderType
               
               <div className="pt-2">
                 <span className="text-3xl font-bold text-red-600">
-                  SEK {selectedProduct?.prices?.default || 0}.00
+                  SEK {selectedProduct?.prices?.['default'] || 0}.00
                 </span>
               </div>
             </div>
