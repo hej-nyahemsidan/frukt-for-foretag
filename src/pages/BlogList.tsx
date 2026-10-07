@@ -97,7 +97,7 @@ const BlogList = () => {
                       <CardTitle className="text-2xl">{post.title}</CardTitle>
                       <CardDescription>
                         {post.author} •{' '}
-                        {format(new Date(post.published_at), 'dd MMMM yyyy', { locale: sv })}
+                        {format(new Date(post.published_at ?? 0), 'dd MMMM yyyy', { locale: sv })}
                       </CardDescription>
                     </CardHeader>
                     {post.excerpt && (

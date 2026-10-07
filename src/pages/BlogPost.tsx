@@ -124,8 +124,9 @@ const BlogPost = () => {
     if (faqStart === -1) return null;
     const faqLines: string[] = [];
     for (let i = faqStart + 1; i < lines.length; i++) {
-      if (/^##\s/.test(lines[i].trim())) break;
-      faqLines.push(lines[i]);
+      const line = lines[i] ?? '';
+      if (/^##\s/.test(line.trim())) break;
+      faqLines.push(line);
     }
     const items: { q: string; a: string }[] = [];
     let current: { q: string; a: string } | null = null;
@@ -159,7 +160,7 @@ const BlogPost = () => {
     return parts.map((part, index) => {
       const linkMatch = part.match(/^\[(.*?)\]\((.*?)\)$/);
       if (linkMatch) {
-        const [, linkText, url] = linkMatch;
+        const [, linkText = '', url = ''] = linkMatch;
         const isExternal = url.startsWith('http');
         if (isExternal) {
           return (
@@ -305,7 +306,7 @@ const BlogPost = () => {
                   return (
                     <div key={index} className="flex gap-2 ml-4 mb-1">
                       <span className="font-semibold text-primary min-w-[1.5rem]">{orderedMatch[1]}.</span>
-                      <span className="leading-relaxed">{renderContent(orderedMatch[2])}</span>
+                      <span className="leading-relaxed">{renderContent(orderedMatch[2] ?? '')}</span>
                     </div>
                   );
                 }

@@ -106,8 +106,7 @@ const ResellerProductPricing = () => {
   };
 
   const groupedProducts = products.reduce<Record<string, Product[]>>((acc, p) => {
-    if (!acc[p.category]) acc[p.category] = [];
-    acc[p.category].push(p);
+    (acc[p.category] ??= []).push(p);
     return acc;
   }, {});
 
