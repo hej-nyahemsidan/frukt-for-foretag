@@ -7,6 +7,9 @@ import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Check, Truck, Star, Leaf, Clock, ShieldCheck, MapPin, Phone, Plus, Minus, Users, Heart, Zap } from 'lucide-react';
 import { areas } from '@/data/areas';
+import TrustProofSection from '@/components/TrustProofSection';
+import HowItWorksSteps from '@/components/HowItWorksSteps';
+import HubAreaLinks from '@/components/HubAreaLinks';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.webp';
 import fruktkorgStandard from '@/assets/fruktkorg-standard-new.webp';
 import fruktkorgBanan from '@/assets/fruktkorg-banan-new.webp';
@@ -40,6 +43,18 @@ const faqItems = [
   {
     question: "Kan vi lägga till andra varor som kaffe, mjölk eller snacks?",
     answer: "Ja! Förutom fruktkorgar erbjuder vi ett brett sortiment av kontorsprodukter – kaffe, te, mejeri, snacks, drycker och städprodukter. Allt levereras samtidigt som er fruktkorg för smidig hantering."
+  },
+  {
+    question: "Tillkommer det någon leveransavgift i Stockholm?",
+    answer: "Nej. Leveransen är kostnadsfri i hela Stockholm samt Södertälje och Uppsala. Priset ni ser per korg är det ni betalar – inga dolda avgifter eller uppstartskostnader."
+  },
+  {
+    question: "Hur snabbt kan vi få vår första fruktkorg?",
+    answer: "Efter att ni beställt eller godkänt offerten får ni normalt er första leverans inom 3–5 vardagar."
+  },
+  {
+    question: "Hur fungerar faktureringen?",
+    answer: "Ni får en samlad månadsfaktura för alla leveranser. Det gör det enkelt för ekonomiavdelningen och ni slipper hantera kvitton varje vecka."
   },
   {
     question: "Vad är minsta beställning för fruktkorgar?",
@@ -137,7 +152,6 @@ const FruktkorgStockholm = () => {
       <SEOHead 
         title="Fruktkorg Stockholm – fruktkorgar till företag & kontor"
         description="Fruktkorg Stockholm från 220 kr/vecka. Fri leverans till kontoret mån–fre, storlekar 4–11 kg och inga bindande avtal. Se priser och begär kostnadsfri offert."
-        keywords="fruktkorg stockholm, fruktkorgar stockholm, fruktkorg företag stockholm, fruktleverans stockholm, fruktbud stockholm, färsk frukt stockholm, fruktkorg leverans stockholm, beställa fruktkorg stockholm, frukt på jobbet stockholm, kontorsfrukt stockholm"
         type="products"
       />
       {/* FAQ Structured Data - using page-specific FAQ instead of generic one from StructuredData */}
@@ -157,7 +171,7 @@ const FruktkorgStockholm = () => {
                 📍 Stockholm & Södertälje & Uppsala
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Fruktkorg Stockholm – fruktkorgar till företag och kontor
+                Fruktkorg Stockholm
               </h1>
               <p className="text-lg md:text-xl text-gray-100 mb-8 leading-relaxed">
                 Som ert lokala fruktbud levererar vi handplockade fruktkorgar i hela Stockholmsområdet. 
@@ -231,7 +245,7 @@ const FruktkorgStockholm = () => {
         </section>
 
         {/* Priser – fruktkorg Stockholm */}
-        <section className="py-16 md:py-24">
+        <section id="priser" className="py-16 md:py-24">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold text-green-900 mb-4">
@@ -268,8 +282,8 @@ const FruktkorgStockholm = () => {
                 </table>
               </div>
               <p className="text-sm text-gray-500 mt-3">
-                Se fler prisexempel per kontorsstorlek på sidan{' '}
-                <Link to="/fruktkorg-stockholm" className="text-green-700 underline hover:text-green-900">fruktkorg Stockholm pris</Link>.
+                Leveransen ingår alltid. Vill ni ha leverans varje vecka från en fast leverantör? Läs om vårt{' '}
+                <Link to="/fruktbud-stockholm" className="text-green-700 underline hover:text-green-900">fruktbud i Stockholm</Link>.
               </p>
 
               <h2 className="text-3xl md:text-4xl font-bold text-green-900 mt-16 mb-4">
@@ -579,6 +593,10 @@ const FruktkorgStockholm = () => {
         </section>
 
         {/* FAQ Section */}
+
+        <HowItWorksSteps />
+        <HubAreaLinks />
+        <TrustProofSection />
 
         <section className="py-16 md:py-24 bg-green-50">
           <div className="container mx-auto px-6">
