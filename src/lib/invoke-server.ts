@@ -10,7 +10,8 @@ type EdgeServerFn = (opts: { data: unknown }) => Promise<EdgeResult>;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function invokeServer<T = any>(
   fn: EdgeServerFn,
-  options: { body?: unknown } = {},
+  // `headers` is accepted for call-site compatibility; auth is attached by middleware.
+  options: { body?: unknown; headers?: Record<string, string> } = {},
 ): Promise<{ data: T | null; error: Error | null }> {
   try {
     const result = await fn({ data: options.body ?? {} });
