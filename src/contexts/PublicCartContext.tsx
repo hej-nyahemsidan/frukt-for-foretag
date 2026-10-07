@@ -6,9 +6,9 @@ export interface PublicCartItem {
   price: number;
   quantity: number;
   category: string;
-  image?: string;
-  day?: string;
-  size?: string;
+  image?: string | undefined;
+  day?: string | undefined;
+  size?: string | undefined;
 }
 
 interface PublicCartContextType {

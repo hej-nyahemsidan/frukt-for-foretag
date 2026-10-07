@@ -33,9 +33,9 @@ interface Profile {
   id: string;
   email: string;
   full_name: string | null;
-  created_at: string;
-  updated_at: string;
-  company_name?: string;
+  created_at: string | null;
+  updated_at: string | null;
+  company_name?: string | null;
   last_sign_in_at?: string | null;
   email_confirmed_at?: string | null;
   order_count?: number;

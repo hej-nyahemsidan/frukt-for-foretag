@@ -311,8 +311,8 @@ const AdminResellerManagement = () => {
   };
 
   const groupedProducts = products.reduce<Record<string, Product[]>>((acc, p) => {
-    if (!acc[p.category]) acc[p.category] = [];
-    acc[p.category].push(p);
+    const bucket = acc[p.category] ?? (acc[p.category] = []);
+    bucket.push(p);
     return acc;
   }, {});
 
