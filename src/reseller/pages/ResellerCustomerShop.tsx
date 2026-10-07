@@ -144,7 +144,7 @@ const ResellerCustomerShop = () => {
     const kgMatch = size?.match(/^(\d+(?:[.,]\d+)?)\s*kg$/i);
     if (kgMatch) {
       const kgPrice = getKgPrice(productId);
-      if (kgPrice !== null) return Math.round(kgPrice * parseFloat(kgMatch[1].replace(',', '.')));
+      if (kgPrice !== null) return Math.round(kgPrice * parseFloat((kgMatch[1] ?? '0').replace(',', '.')));
     }
     const cp = customerPrices.find(p => p.product_id === productId && p.size === size);
     if (cp) return cp.price;
@@ -215,8 +215,9 @@ const ResellerCustomerShop = () => {
         const quantity = Number(item.quantity) || 1;
         const existingIndex = next.findIndex(i => i.product.id === product.id && i.size === size);
 
-        if (existingIndex >= 0) {
-          next[existingIndex] = { ...next[existingIndex], quantity: next[existingIndex].quantity + quantity };
+        const existing = existingIndex >= 0 ? next[existingIndex] : undefined;
+        if (existing) {
+          next[existingIndex] = { ...existing, quantity: existing.quantity + quantity };
         } else {
           next.push({ product, size, quantity, price });
         }
@@ -446,7 +447,7 @@ const ResellerCustomerShop = () => {
                 </CardContent>
               </Card>
             ) : (
-              <Tabs defaultValue={categories[0]} className="space-y-4">
+              <Tabs defaultValue={categories[0] ?? ''} className="space-y-4">
                 <TabsList className="flex-wrap h-auto gap-1">
                   {categories.map(cat => (
                     <TabsTrigger key={cat} value={cat} className="text-xs sm:text-sm">
@@ -458,7 +459,7 @@ const ResellerCustomerShop = () => {
                 {categories.map(cat => (
                   <TabsContent key={cat} value={cat}>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-                      {groupedProducts[cat].map(product => {
+                      {(groupedProducts[cat] ?? []).map(product => {
                         const sizes = Object.keys(product.prices);
                         const hasSizes = sizes.length > 1;
 
