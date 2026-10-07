@@ -46,13 +46,13 @@ const Header = () => {
   const handleTouchStart = (e: React.TouchEvent) => {
     if (!scrollRef.current) return;
     setIsDragging(true);
-    setStartX(e.touches[0].pageX - scrollRef.current.offsetLeft);
+    setStartX((e.touches[0]?.pageX ?? 0) - scrollRef.current.offsetLeft);
     setScrollLeft(scrollRef.current.scrollLeft);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDragging || !scrollRef.current) return;
-    const x = e.touches[0].pageX - scrollRef.current.offsetLeft;
+    const x = (e.touches[0]?.pageX ?? 0) - scrollRef.current.offsetLeft;
     const walk = (x - startX) * 2;
     scrollRef.current.scrollLeft = scrollLeft - walk;
   };
