@@ -29,7 +29,7 @@ import { deleteUser } from "@/lib/delete-user.functions";
 import { inviteAllCustomers } from "@/lib/invite-all-customers.functions";
 import { inviteUser } from "@/lib/invite-user.functions";
 
-interface Profile {
+export interface Profile {
   id: string;
   email: string;
   full_name: string | null;
@@ -153,7 +153,8 @@ const AdminUserManagement = () => {
     );
   };
 
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return 'Okänt';
     return new Date(dateString).toLocaleDateString('sv-SE', {
       year: 'numeric',
       month: 'short',

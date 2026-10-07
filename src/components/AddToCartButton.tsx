@@ -103,7 +103,7 @@ const AddToCartButton = ({
       return;
     }
 
-    addProductToCart([selectedDays[0]]);
+    addProductToCart([selectedDays[0] ?? '']);
   };
 
   const addProductToCart = (assignedDays: string[]) => {

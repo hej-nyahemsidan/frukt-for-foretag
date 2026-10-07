@@ -65,7 +65,7 @@ const OrderSidebar = ({ packagePlan, setPackagePlan, orderType, setOrderType, se
       setSelectedDays(newDays);
       // If we removed the current day, switch to another day or clear
       if (currentDay === day) {
-        setCurrentDay(newDays.length > 0 ? newDays[0] : '');
+        setCurrentDay(newDays.length > 0 ? (newDays[0] ?? '') : '');
       }
     }
   };

@@ -47,7 +47,7 @@ interface DBFruktkorg {
   name: string;
   image_url: string;
   prices: Record<string, number>;
-  description?: string;
+  description?: string | null;
 }
 
 const weekdays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lördag', 'Söndag'];
@@ -66,11 +66,11 @@ interface CartLine {
   type: 'basket' | 'addon';
   productId: string;
   name: string;
-  size?: string;
+  size?: string | undefined;
   price: number;
   qty: number;
   image: string;
-  day?: string;
+  day?: string | undefined;
 }
 
 const Bestall = () => {

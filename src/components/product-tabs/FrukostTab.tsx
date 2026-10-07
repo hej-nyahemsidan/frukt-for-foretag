@@ -18,7 +18,7 @@ interface Product {
   category: string;
   image_url: string;
   prices: Record<string, number>;
-  description?: string;
+  description?: string | null;
 }
 
 const FrukostTab: React.FC<FrukostTabProps> = ({ selectedDays, currentDay, orderType, isPublicPage = false }) => {

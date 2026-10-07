@@ -19,7 +19,7 @@ interface Product {
   category: string;
   image_url: string;
   prices: Record<string, number>;
-  description?: string;
+  description?: string | null;
 }
 
 const GronsakerTab: React.FC<GronsakerTabProps> = ({ selectedDays, currentDay, orderType, isPublicPage = false }) => {

@@ -66,7 +66,7 @@ const PublicOrderSidebar = ({ className = '' }: PublicOrderSidebarProps) => {
               <div key={day}>
                 <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">{day}</p>
                 <div className="space-y-3">
-                  {itemsByDay[day].map((item) => (
+                  {(itemsByDay[day] ?? []).map((item) => (
                     <div key={`${item.id}-${item.day}-${item.size || ''}`} className="rounded-lg border p-3">
                       <div className="flex items-start justify-between gap-2">
                         <div className="min-w-0">
