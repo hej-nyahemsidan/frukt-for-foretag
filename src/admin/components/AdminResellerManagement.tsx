@@ -52,6 +52,7 @@ const AdminResellerManagement = () => {
   const [inviteEmail, setInviteEmail] = useState('');
   const [inviteName, setInviteName] = useState('');
   const [inviting, setInviting] = useState(false);
+  const [inviteLink, setInviteLink] = useState('');
 
   // Form state
   const [formName, setFormName] = useState('');
@@ -558,9 +559,31 @@ const AdminResellerManagement = () => {
                 placeholder="Anna Andersson"
               />
             </div>
-            <Button onClick={handleSendInvite} disabled={inviting} className="w-full">
-              {inviting ? 'Skapar och skickar...' : 'Skapa konto och skicka inloggning'}
-            </Button>
+            <div className="flex flex-col gap-2">
+              <Button onClick={() => handleSendInvite(true)} disabled={inviting} className="w-full">
+                {inviting ? 'Skapar...' : 'Skapa konto och skicka inloggning'}
+              </Button>
+              <Button onClick={() => handleSendInvite(false)} disabled={inviting} variant="outline" className="w-full">
+                {inviting ? 'Skapar...' : 'Skapa konto utan att skicka mejl'}
+              </Button>
+            </div>
+            {inviteLink && (
+              <div className="rounded-md border bg-muted/50 p-3 space-y-2">
+                <p className="text-sm font-medium">Aktiveringslänk (giltig i 7 dagar):</p>
+                <p className="text-xs break-all text-muted-foreground">{inviteLink}</p>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="w-full"
+                  onClick={() => {
+                    navigator.clipboard.writeText(inviteLink);
+                    toast({ title: 'Kopierad', description: 'Länken kopierades till urklipp.' });
+                  }}
+                >
+                  Kopiera länk
+                </Button>
+              </div>
+            )}
           </div>
         </DialogContent>
       </Dialog>
