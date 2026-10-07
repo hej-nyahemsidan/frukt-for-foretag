@@ -553,6 +553,7 @@ const AdminResellerManagement = () => {
           </div>
         </DialogContent>
       </Dialog>
+      </div>
 
       {loading ? (
         <p className="text-muted-foreground text-sm">Laddar...</p>
