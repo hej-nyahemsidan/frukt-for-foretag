@@ -76,11 +76,11 @@ export const industries: IndustryInfo[] = [
       'Konkret, synlig personalförmån',
       'Banan-korg som extra energi under sprint-dagar',
       'Enkel uppskalning när teamet växer',
-      'Snabb start – leverans inom 3–5 vardagar'
+      'Snabb start – vi levererar när ni vill börja'
     ],
     faqs: [
       { q: 'Vilken fruktkorg passar bäst för ett tech-team på 15 utvecklare?', a: 'En Fruktkorg Original i mellanstorlek + en Fruktkorg Banan per vecka är en bra startpunkt. Bananerna går oftast åt snabbt under fokuserade kodsessioner.' },
-      { q: 'Hur snabbt kan vi komma igång?', a: 'Vi kan oftast starta leveranser inom 3–5 vardagar. Vill ni testa först erbjuder vi en kostnadsfri provkorg.' },
+      { q: 'Hur snabbt kan vi komma igång?', a: 'Vi levererar direkt när ni vill börja – ni väljer startdatum. Vill ni testa först erbjuder vi en kostnadsfri provkorg.' },
       { q: 'Kan vi ändra leveransfrekvens när vi växer?', a: 'Ja, ni kan när som helst uppgradera till fler leveransdagar per vecka eller större korgar.' }
     ]
   },

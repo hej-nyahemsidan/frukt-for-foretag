@@ -287,7 +287,7 @@ const FruktkorgForetag = () => {
                 <div className="space-y-4">
                   {[
                     { icon: Check, t: 'Välj korg och leveransdag', d: 'Original, Premium eller Banan – måndag till fredag.' },
-                    { icon: Calendar, t: 'Startdatum nästa vecka', d: 'Beställer ni innan torsdag startar leveransen redan veckan efter.' },
+                    { icon: Calendar, t: 'Ni väljer startdatum', d: 'Berätta när ni vill börja så levererar vi direkt.' },
                     { icon: MapPin, t: 'Direkt till receptionen', d: 'Vi ställer korgen där ni vill – pentry, reception eller mötesrum.' },
                     { icon: ShieldCheck, t: '15 dagars kredit', d: 'Vi fakturerar månadsvis. Inga uppstartsavgifter.' },
                     { icon: Leaf, t: 'Säsongens bästa frukt', d: 'Handplockad och kvalitetskontrollerad nära inpå leveransen. Anpassa bort allergener i kundportalen.' },

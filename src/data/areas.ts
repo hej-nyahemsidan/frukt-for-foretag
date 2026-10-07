@@ -28,7 +28,7 @@ export const areas: AreaInfo[] = [
       { q: 'Levererar ni fruktkorgar till hela Lidingö?', a: 'Ja, vi levererar till hela Lidingö – från Ropsten och Larsberg till Baggeby, Gåshaga, Torsvik, Aga och Käppala. Leveransen är alltid kostnadsfri oavsett var på ön ert kontor ligger.' },
       { q: 'Hur ofta kan vi få frukt levererat till vårt kontor på Lidingö?', a: 'De flesta kunder på Lidingö väljer leverans en gång i veckan, men vi kan leverera flera dagar per vecka eller varannan vecka – helt efter era behov. Ni kan enkelt pausa eller ändra leveranserna vid semester eller ändrade behov.' },
       { q: 'Kan ni leverera fruktkorgar till mindre kontor på Lidingö?', a: 'Absolut. Många av våra kunder på Lidingö är mindre kontor med 5–15 medarbetare. En 4 kg-korg i veckan räcker långt, och ni kan alltid komplettera med extra beställningar av frukost, mejeri eller snacks inför möten.' },
-      { q: 'Hur snabbt kan vi komma igång med fruktleverans på Lidingö?', a: 'Vi kan oftast starta leveranser inom 3–5 vardagar från beställning. Skicka en kostnadsfri offertförfrågan så återkommer vi inom 24 timmar med ett förslag anpassat för ert kontor.' }
+      { q: 'Hur snabbt kan vi komma igång med fruktleverans på Lidingö?', a: 'Vi levererar direkt när ni vill börja – ni väljer startdatum. Skicka en kostnadsfri offertförfrågan så återkommer vi inom 24 timmar med ett förslag anpassat för ert kontor.' }
     ]
   },
   {
@@ -64,7 +64,7 @@ export const areas: AreaInfo[] = [
       { q: 'Levererar ni fruktkorgar till Hornsbergs strand och Lindhagensgatan?', a: 'Ja, Hornsbergs strand, Lindhagensgatan, Stadshagen och hela Lindhagenområdet är en av våra största leveranszoner. Vi har dagliga leveranser till flera av de stora kontorshusen där.' },
       { q: 'Kan ni leverera till kontor vid Fridhemsplan och S:t Eriksgatan?', a: 'Absolut. Vi levererar varje vecka till företag både runt Fridhemsplan, S:t Eriksgatan och hela Kungsholms Strand. Fri leverans, oavsett adress i området.' },
       { q: 'Vilken fruktkorg passar bäst för techbolag och startups på Kungsholmen?', a: 'För techbolag och startups rekommenderar vi ofta Fruktkorg Original kompletterad med en Fruktkorg Banan. Bananerna är populära som snabb energikick under långa kodsessioner, medan Original ger den dagliga variationen.' },
-      { q: 'Hur snabbt kan vi komma igång med leveranser på Kungsholmen?', a: 'Vi kan oftast starta leveranser inom 3–5 vardagar från beställning. Vill ni testa först erbjuder vi en kostnadsfri provkorg som levereras till valfri adress på Kungsholmen.' }
+      { q: 'Hur snabbt kan vi komma igång med leveranser på Kungsholmen?', a: 'Vi levererar direkt när ni vill börja. Vill ni testa först erbjuder vi en kostnadsfri provkorg som levereras till valfri adress på Kungsholmen.' }
     ]
   },
   {
@@ -152,7 +152,7 @@ export const areas: AreaInfo[] = [
       { q: 'Levererar ni fruktkorgar till Sickla och Atrium Ljungbergs kontor?', a: 'Ja, Sickla är en av våra centrala leveranszoner i Hammarby sjöstad. Vi har dagliga leveranser till kontor i Atrium Ljungbergs fastigheter och kringliggande adresser.' },
       { q: 'Kan ni leverera till kontor vid Hammarby kaj och Lumaparken?', a: 'Absolut. Hammarby kaj, Lumaparken och Hammarby allé ingår i vår ordinarie Hammarbyrutt med fri leverans.' },
       { q: 'Vilken fruktkorg passar bäst för techbolag i Hammarby sjöstad?', a: 'För techbolag rekommenderar vi Fruktkorg Original som grund och en Fruktkorg Banan som komplement. Det ger både variation och snabb energi till långa kodsessioner.' },
-      { q: 'Hur snabbt kan vi få igång leveranser till Hammarby sjöstad?', a: 'Provleverans kan oftast ske inom 3–5 vardagar. Ordinarie veckoleverans kan starta redan kommande vecka beroende på vald leveransdag.' }
+      { q: 'Hur snabbt kan vi få igång leveranser till Hammarby sjöstad?', a: 'Vi levererar direkt när ni vill börja. Ni väljer leveransdag och startdatum, så sätter vi igång er löpande veckoleverans.' }
     ]
   },
   {
@@ -187,7 +187,7 @@ export const areas: AreaInfo[] = [
     localFaqs: [
       { q: 'Levererar ni fruktkorgar till Sundbybergs centrum och Esplanaden?', a: 'Ja, Sundbybergs centrum och Esplanaden är en del av vår dagliga leveransrutt med fri frakt.' },
       { q: 'Kan ni leverera till Stora Ursvik och Rissne?', a: 'Absolut. Stora Ursvik, Rissne och Hallonbergen ingår alla i vår Sundbyberg-leveranszon med fri frakt.' },
-      { q: 'Hur snabbt kan vi komma igång i Sundbyberg?', a: 'Vi kan oftast starta leveranser inom 3–5 vardagar. Vill ni testa först erbjuder vi en kostnadsfri provkorg.' },
+      { q: 'Hur snabbt kan vi komma igång i Sundbyberg?', a: 'Vi levererar direkt när ni vill börja. Vill ni testa först erbjuder vi en kostnadsfri provkorg.' },
       { q: 'Vilken fruktkorg passar mindre kontor i Sundbyberg?', a: 'För mindre kontor med 5–15 medarbetare är Fruktkorg Original i mindre storlek ett perfekt veckoval.' }
     ]
   },
@@ -205,7 +205,7 @@ export const areas: AreaInfo[] = [
     localFaqs: [
       { q: 'Levererar ni fruktkorgar till Hagalunds industriområde?', a: 'Ja, Hagalunds industriområde ingår i vår ordinarie Solnarutt. Vi har fri leverans till alla kontor i området.' },
       { q: 'Vilken dag i veckan kör ni Hagalund?', a: 'Vi kör Hagalund flera dagar per vecka. Vid beställning väljer ni själv vilken vardag mån–fre som passar bäst.' },
-      { q: 'Hur snabbt kan vi få igång leveranser i Hagalund?', a: 'En kostnadsfri provkorg kan oftast levereras inom 3–5 vardagar och löpande leverans kan starta veckan efter.' }
+      { q: 'Hur snabbt kan vi få igång leveranser i Hagalund?', a: 'Vi kan leverera en kostnadsfri provkorg direkt, och löpande leverans startar när ni vill.' }
     ]
   },
   {
@@ -328,7 +328,7 @@ export const areas: AreaInfo[] = [
     ],
     localFaqs: [
       { q: 'Levererar ni fruktkorgar till hela Botkyrka från Tumba?', a: 'Ja, från Tumba täcker vi hela Botkyrka kommun inklusive Salem, Hallunda och Norsborg med fri leverans.' },
-      { q: 'Hur lång framförhållning behövs för leverans i Tumba?', a: 'För en första provleverans räcker oftast 3–5 vardagar. Löpande leverans kan starta veckan efter beställning.' },
+      { q: 'Hur snabbt kan vi komma igång med leverans i Tumba?', a: 'Vi levererar direkt när ni vill börja – ni väljer startdatum och leveransdag.' },
       { q: 'Kan ni leverera till offentliga verksamheter i Tumba?', a: 'Ja, vi har erfarenhet av att leverera till både privata och offentliga arbetsplatser i kommunen.' }
     ]
   },
@@ -401,7 +401,7 @@ export const areas: AreaInfo[] = [
     localFaqs: [
       { q: 'Vilka delar av Haninge levererar ni till?', a: 'Vi täcker hela Haninge kommun inklusive Handen, Jordbro, Brandbergen, Västerhaninge och Vendelsö med fri leverans.' },
       { q: 'Kan ni leverera till stora logistikbolag i Jordbro?', a: 'Absolut. Vi har flera kunder i Jordbro företagsområde med leveranser flera gånger per vecka.' },
-      { q: 'Hur snabbt kan vi få igång leveranser i Haninge?', a: 'En kostnadsfri provkorg kan oftast levereras inom 3–5 vardagar. Löpande veckoleverans kan starta veckan efter.' }
+      { q: 'Hur snabbt kan vi få igång leveranser i Haninge?', a: 'Vi kan leverera en kostnadsfri provkorg direkt och löpande veckoleverans startar när ni vill.' }
     ]
   },
   {

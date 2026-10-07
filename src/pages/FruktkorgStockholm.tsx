@@ -50,7 +50,7 @@ const faqItems = [
   },
   {
     question: "Hur snabbt kan vi få vår första fruktkorg?",
-    answer: "Efter att ni beställt eller godkänt offerten får ni normalt er första leverans inom 3–5 vardagar."
+    answer: "Vi levererar direkt när ni vill börja. Ni anger önskat startdatum när ni beställer eller godkänner offerten."
   },
   {
     question: "Hur fungerar faktureringen?",

@@ -40,7 +40,7 @@ const FAQSection = () => {
     },
     {
       question: "Hur snabbt kan vi få vår första leverans?",
-      answer: "Nya kunder får normalt sin första leverans inom 3–5 vardagar. Vi faktureras månadsvis, så ni får en samlad faktura per månad."
+      answer: "Vi levererar direkt när ni vill börja – ni anger önskat startdatum. Ni får en samlad faktura per månad."
     }
   ];
 

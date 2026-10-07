@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const steps = [
   { n: 1, title: "Välj korg och storlek", text: "Original, Premium eller Banan i 4, 6, 9 eller 11 kg – efter hur många ni är på kontoret." },
-  { n: 2, title: "Välj leveransdag", text: "Vi levererar måndag–fredag till den plats ni önskar. Första leveransen sker normalt inom 3–5 vardagar." },
+  { n: 2, title: "Välj leveransdag", text: "Vi levererar måndag–fredag till den plats ni önskar. Ni väljer när ni vill börja, så levererar vi direkt." },
   { n: 3, title: "Vi levererar – ni får månadsfaktura", text: "Fri leverans varje vecka och en samlad faktura per månad. Ändra eller pausa enkelt." },
 ];
 
