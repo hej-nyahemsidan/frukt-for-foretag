@@ -47,6 +47,12 @@ const AdminResellerManagement = () => {
   const [editingReseller, setEditingReseller] = useState<Reseller | null>(null);
   const [uploading, setUploading] = useState(false);
 
+  // Reseller login (ÅF-konto) invite state
+  const [inviteReseller, setInviteReseller] = useState<Reseller | null>(null);
+  const [inviteEmail, setInviteEmail] = useState('');
+  const [inviteName, setInviteName] = useState('');
+  const [inviting, setInviting] = useState(false);
+
   // Form state
   const [formName, setFormName] = useState('');
   const [formDomain, setFormDomain] = useState('');
