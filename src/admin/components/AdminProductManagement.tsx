@@ -323,15 +323,17 @@ const AdminProductManagement = () => {
     }
   };
 
-  const getProductPriceSizes = (product: Product) => {
-    if (product.category === 'fruktkorgar') {
+  const getPriceSizesForCategory = (category: string) => {
+    if (category === 'fruktkorgar') {
       return ['4kg', '6kg', '9kg', '11kg'];
     }
-    if (product.category === 'gronsaker') {
+    if (category === 'gronsaker') {
       return ['styck', 'pase'];
     }
     return ['default'];
   };
+
+  const getProductPriceSizes = (product: Product) => getPriceSizesForCategory(product.category);
 
   const getPriceLabel = (size: string) => {
     if (size === 'default') return 'Styckpris';
