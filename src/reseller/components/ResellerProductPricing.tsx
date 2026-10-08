@@ -6,6 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 interface Product {
@@ -36,6 +39,11 @@ const ResellerProductPricing = () => {
   const [purchasePrices, setPurchasePrices] = useState<ResellerPrice[]>([]);
   const [standardPrices, setStandardPrices] = useState<ResellerProductPrice[]>([]);
   const [loading, setLoading] = useState(true);
+  const [markup, setMarkup] = useState('10');
+  const [scope, setScope] = useState<'all' | 'category' | 'product'>('all');
+  const [scopeCategory, setScopeCategory] = useState('');
+  const [scopeProduct, setScopeProduct] = useState('');
+  const [applying, setApplying] = useState(false);
 
   useEffect(() => {
     if (reseller) {
@@ -105,6 +113,47 @@ const ResellerProductPricing = () => {
     toast({ title: 'Sparat', description: 'Standardpriset har sparats.' });
   };
 
+  const applyMarkup = async () => {
+    if (!reseller) return;
+    const pct = parseFloat(markup.replace(',', '.'));
+    if (isNaN(pct) || pct < 0) {
+      toast({ title: 'Fel', description: 'Ange ett giltigt procenttal.', variant: 'destructive' });
+      return;
+    }
+    const targets = purchasePrices.filter(pp => {
+      if (scope === 'all') return true;
+      if (scope === 'product') return pp.product_id === scopeProduct;
+      return products.find(p => p.id === pp.product_id)?.category === scopeCategory;
+    });
+    if (targets.length === 0) {
+      toast({ title: 'Inget att uppdatera', description: 'Välj kategori eller produkt med inköpspris.', variant: 'destructive' });
+      return;
+    }
+    setApplying(true);
+    const inserts: { reseller_id: string; product_id: string; price: number; size: string | null }[] = [];
+    const updates: PromiseLike<{ error: unknown }>[] = [];
+    for (const t of targets) {
+      const price = Math.round(t.price * (1 + pct / 100) * 100) / 100;
+      const existing = standardPrices.find(sp => sp.product_id === t.product_id && sp.size === t.size);
+      if (existing?.id) {
+        updates.push(supabase.from('reseller_product_prices').update({ price }).eq('id', existing.id));
+      } else {
+        inserts.push({ reseller_id: reseller.id, product_id: t.product_id, price, size: t.size });
+      }
+    }
+    const results = await Promise.all(updates);
+    let failed = results.some(r => r.error);
+    if (inserts.length) {
+      const { error } = await supabase.from('reseller_product_prices').insert(inserts);
+      if (error) failed = true;
+    }
+    await fetchData();
+    setApplying(false);
+    toast(failed
+      ? { title: 'Delvis fel', description: 'Vissa priser kunde inte sparas.', variant: 'destructive' }
+      : { title: 'Klart', description: `${targets.length} priser satta till inköpspris + ${pct}%.` });
+  };
+
   const groupedProducts = products.reduce<Record<string, Product[]>>((acc, p) => {
     (acc[p.category] ??= []).push(p);
     return acc;
@@ -123,6 +172,63 @@ const ResellerProductPricing = () => {
       <p className="text-sm text-muted-foreground">
         Här ser du ert inköpspris och kan sätta det standardpris era kunder ser.
       </p>
+
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base">Lägg påslag i procent på inköpspriset</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="grid gap-3 sm:grid-cols-[120px_180px_1fr_auto] items-end">
+            <div>
+              <Label htmlFor="markup">Påslag (%)</Label>
+              <Input id="markup" type="number" min="0" step="1" value={markup} onChange={e => setMarkup(e.target.value)} />
+            </div>
+            <div>
+              <Label>Gäller</Label>
+              <Select value={scope} onValueChange={v => setScope(v as typeof scope)}>
+                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Alla artiklar</SelectItem>
+                  <SelectItem value="category">En kategori</SelectItem>
+                  <SelectItem value="product">En enskild artikel</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              {scope === 'category' && (
+                <>
+                  <Label>Kategori</Label>
+                  <Select value={scopeCategory} onValueChange={setScopeCategory}>
+                    <SelectTrigger><SelectValue placeholder="Välj kategori" /></SelectTrigger>
+                    <SelectContent>
+                      {Object.keys(groupedProducts).filter(c => (groupedProducts[c] ?? []).some(p => purchasePrices.some(pp => pp.product_id === p.id))).map(c => (
+                        <SelectItem key={c} value={c}>{categoryLabels[c] || c}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </>
+              )}
+              {scope === 'product' && (
+                <>
+                  <Label>Artikel</Label>
+                  <Select value={scopeProduct} onValueChange={setScopeProduct}>
+                    <SelectTrigger><SelectValue placeholder="Välj artikel" /></SelectTrigger>
+                    <SelectContent>
+                      {products.filter(p => purchasePrices.some(pp => pp.product_id === p.id)).map(p => (
+                        <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </>
+              )}
+            </div>
+            <Button onClick={applyMarkup} disabled={applying}>{applying ? 'Sparar...' : 'Lägg på påslag'}</Button>
+          </div>
+          <p className="text-xs text-muted-foreground">
+            Exempel: inköpspris 100 kr + 10 % = 110 kr. Kundpriset skrivs över för valda artiklar. Du kan alltid skriva ett exakt pris i tabellen nedan.
+          </p>
+        </CardContent>
+      </Card>
 
       <Accordion type="multiple" className="space-y-2">
         {Object.entries(groupedProducts).map(([category, prods]) => {
@@ -173,7 +279,8 @@ const ResellerProductPricing = () => {
                           <TableCell className="w-32">
                             <Input
                               type="number" min="0" step="0.5" placeholder="kr/kg"
-                              defaultValue={getStandardPrice(product.id, 'kg')}
+                              key={getStandardPrice(product.id, 'kg')}
+                defaultValue={getStandardPrice(product.id, 'kg')}
                               onBlur={(e) => { if (e.target.value) handleStandardPriceChange(product.id, 'kg', e.target.value); }}
                               className="w-24 h-8 text-sm"
                             />
@@ -199,7 +306,8 @@ const ResellerProductPricing = () => {
                             <TableCell className="w-32">
                               <Input
                                 type="number" min="0" step="1" placeholder="—"
-                                defaultValue={getStandardPrice(product.id, size)}
+                                key={getStandardPrice(product.id, size)}
+                defaultValue={getStandardPrice(product.id, size)}
                                 onBlur={(e) => { if (e.target.value) handleStandardPriceChange(product.id, size, e.target.value); }}
                                 className="w-24 h-8 text-sm"
                               />
@@ -222,7 +330,8 @@ const ResellerProductPricing = () => {
                         <TableCell className="w-32">
                           <Input
                             type="number" min="0" step="1" placeholder="—"
-                            defaultValue={getStandardPrice(product.id, null)}
+                            key={getStandardPrice(product.id, null)}
+                defaultValue={getStandardPrice(product.id, null)}
                             onBlur={(e) => { if (e.target.value) handleStandardPriceChange(product.id, null, e.target.value); }}
                             className="w-24 h-8 text-sm"
                           />
