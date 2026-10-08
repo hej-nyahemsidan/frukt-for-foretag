@@ -236,9 +236,8 @@ const AdminProductManagement = () => {
 
   const handleUpdateProduct = async (productId: string, fields: { name: string; description: string | null; category: string; image_url: string; prices?: Record<string, number> }) => {
     const { prices, ...rest } = fields;
-    const payload: Record<string, unknown> = { ...rest };
-    if (prices) payload.prices = prices as Json;
-    const { error } = await supabase.from('products').update(payload).eq('id', productId);
+    const update = prices ? { ...rest, prices: prices as Json } : rest;
+    const { error } = await supabase.from('products').update(update).eq('id', productId);
     if (error) {
       toast({ title: 'Fel', description: 'Kunde inte spara produkten.', variant: 'destructive' });
       return false;
