@@ -9,7 +9,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Pencil, Users, ChevronLeft, ShoppingCart, Trash2 } from 'lucide-react';
+import { Plus, Pencil, UserCog, Users, ChevronLeft, ShoppingCart, Trash2 } from 'lucide-react';
 import ResellerPlaceOrderDialog from './ResellerPlaceOrderDialog';
 import { invokeServer } from "@/lib/invoke-server";
 import { createResellerCustomer } from "@/lib/create-reseller-customer.functions";
@@ -60,6 +60,50 @@ const ResellerCustomerManagement = () => {
   const [orderForCustomer, setOrderForCustomer] = useState<ResellerCustomer | null>(null);
   const [customerToDelete, setCustomerToDelete] = useState<ResellerCustomer | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const [customerToEdit, setCustomerToEdit] = useState<ResellerCustomer | null>(null);
+  const [editCompany, setEditCompany] = useState('');
+  const [editContact, setEditContact] = useState('');
+  const [editPhone, setEditPhone] = useState('');
+  const [editAddress, setEditAddress] = useState('');
+  const [editActive, setEditActive] = useState(true);
+  const [saving, setSaving] = useState(false);
+
+  const openEdit = (c: ResellerCustomer) => {
+    setCustomerToEdit(c);
+    setEditCompany(c.company_name);
+    setEditContact(c.contact_person ?? '');
+    setEditPhone(c.phone ?? '');
+    setEditAddress(c.address ?? '');
+    setEditActive(c.active);
+  };
+
+  const handleSaveEdit = async () => {
+    if (!customerToEdit || !reseller) return;
+    if (!editCompany.trim()) {
+      toast({ title: 'Fel', description: 'Företagsnamn krävs.', variant: 'destructive' });
+      return;
+    }
+    setSaving(true);
+    const { error } = await supabase
+      .from('reseller_customers')
+      .update({
+        company_name: editCompany.trim().slice(0, 200),
+        contact_person: editContact.trim().slice(0, 200) || null,
+        phone: editPhone.trim().slice(0, 50) || null,
+        address: editAddress.trim().slice(0, 300) || null,
+        active: editActive,
+      })
+      .eq('id', customerToEdit.id)
+      .eq('reseller_id', reseller.id);
+    setSaving(false);
+    if (error) {
+      toast({ title: 'Fel', description: 'Kunde inte spara ändringarna.', variant: 'destructive' });
+      return;
+    }
+    toast({ title: 'Sparat', description: `${editCompany} har uppdaterats.` });
+    setCustomerToEdit(null);
+    fetchCustomers();
+  };
 
   // Form state
   const [formCompany, setFormCompany] = useState('');
@@ -411,6 +455,9 @@ const ResellerCustomerManagement = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
+                  <Button variant="outline" size="sm" onClick={() => openEdit(customer)}>
+                    <UserCog className="w-4 h-4 mr-1" /> Redigera
+                  </Button>
                   <Button variant="outline" size="sm" onClick={() => handleSelectCustomer(customer)}>
                     <Pencil className="w-4 h-4 mr-1" /> Priser
                   </Button>
@@ -440,6 +487,45 @@ const ResellerCustomerManagement = () => {
           onOpenChange={(o) => { if (!o) setOrderForCustomer(null); }}
         />
       )}
+
+      {/* Edit customer */}
+      <Dialog open={!!customerToEdit} onOpenChange={(open) => { if (!open && !saving) setCustomerToEdit(null); }}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Redigera kund</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-3">
+            <div>
+              <Label>Företagsnamn *</Label>
+              <Input value={editCompany} onChange={(e) => setEditCompany(e.target.value)} />
+            </div>
+            <div>
+              <Label>Kontaktperson</Label>
+              <Input value={editContact} onChange={(e) => setEditContact(e.target.value)} />
+            </div>
+            <div>
+              <Label>E-post (inloggning)</Label>
+              <Input value={customerToEdit?.email ?? ''} disabled />
+              <p className="text-xs text-muted-foreground mt-1">E-posten används för inloggning och kan inte ändras här.</p>
+            </div>
+            <div>
+              <Label>Telefon</Label>
+              <Input value={editPhone} onChange={(e) => setEditPhone(e.target.value)} />
+            </div>
+            <div>
+              <Label>Adress</Label>
+              <Input value={editAddress} onChange={(e) => setEditAddress(e.target.value)} />
+            </div>
+            <label className="flex items-center gap-2 text-sm">
+              <input type="checkbox" checked={editActive} onChange={(e) => setEditActive(e.target.checked)} />
+              Aktiv (kunden kan logga in och beställa)
+            </label>
+            <Button onClick={handleSaveEdit} disabled={saving} className="w-full">
+              {saving ? 'Sparar...' : 'Spara ändringar'}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Delete customer confirmation */}
       <Dialog open={!!customerToDelete} onOpenChange={(open) => { if (!open && !deleting) setCustomerToDelete(null); }}>
