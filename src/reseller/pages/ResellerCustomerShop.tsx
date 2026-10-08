@@ -534,6 +534,20 @@ const ResellerCustomerShop = () => {
                 ))}
               </Tabs>
             )}
+              </div>
+
+              {/* Sticky cart sidebar (desktop) */}
+              <aside className="hidden lg:block sticky top-20">
+                {cart.length > 0 ? cartPanel : (
+                  <div className="bg-white rounded-xl border border-dashed border-border p-6 text-center text-sm text-muted-foreground">
+                    <ShoppingCart className="w-8 h-8 mx-auto mb-2 opacity-40" />
+                    <p>Varukorgen är tom.</p>
+                    <p className="text-xs mt-1">Artiklar du lägger till hamnar här.</p>
+                    <p className="text-xs mt-3">Pant och moms tillkommer på fakturan.</p>
+                  </div>
+                )}
+              </aside>
+            </div>
           </TabsContent>
 
           {/* === HISTORY TAB === */}
