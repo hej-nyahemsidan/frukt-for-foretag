@@ -9,10 +9,11 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Pencil, Users, ChevronLeft, ShoppingCart } from 'lucide-react';
+import { Plus, Pencil, Users, ChevronLeft, ShoppingCart, Trash2 } from 'lucide-react';
 import ResellerPlaceOrderDialog from './ResellerPlaceOrderDialog';
 import { invokeServer } from "@/lib/invoke-server";
 import { createResellerCustomer } from "@/lib/create-reseller-customer.functions";
+import { deleteResellerCustomer } from "@/lib/delete-reseller-customer.functions";
 
 interface ResellerCustomer {
   id: string;
@@ -57,6 +58,8 @@ const ResellerCustomerManagement = () => {
   const [standardPrices, setStandardPrices] = useState<StandardPrice[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [orderForCustomer, setOrderForCustomer] = useState<ResellerCustomer | null>(null);
+  const [customerToDelete, setCustomerToDelete] = useState<ResellerCustomer | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   // Form state
   const [formCompany, setFormCompany] = useState('');
@@ -160,6 +163,32 @@ const ResellerCustomerManagement = () => {
       toast({ title: 'Fel', description: 'Något gick fel.', variant: 'destructive' });
     } finally {
       setCreating(false);
+    }
+  };
+
+  const handleDeleteCustomer = async () => {
+    if (!customerToDelete) return;
+    setDeleting(true);
+    try {
+      const { data, error } = await invokeServer(deleteResellerCustomer, {
+        body: { customerId: customerToDelete.id },
+      });
+
+      if (error || data?.error) {
+        toast({
+          title: 'Kunde inte ta bort kunden',
+          description: data?.error || error?.message || 'Något gick fel.',
+          variant: 'destructive',
+        });
+      } else {
+        toast({ title: 'Kund borttagen', description: `${customerToDelete.company_name} har tagits bort.` });
+        setCustomerToDelete(null);
+        fetchCustomers();
+      }
+    } catch {
+      toast({ title: 'Fel', description: 'Något gick fel.', variant: 'destructive' });
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -388,6 +417,14 @@ const ResellerCustomerManagement = () => {
                   <Button size="sm" onClick={() => setOrderForCustomer(customer)}>
                     <ShoppingCart className="w-4 h-4 mr-1" /> Lägg order
                   </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-destructive hover:text-destructive"
+                    onClick={() => setCustomerToDelete(customer)}
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -403,6 +440,27 @@ const ResellerCustomerManagement = () => {
           onOpenChange={(o) => { if (!o) setOrderForCustomer(null); }}
         />
       )}
+
+      {/* Delete customer confirmation */}
+      <Dialog open={!!customerToDelete} onOpenChange={(open) => { if (!open && !deleting) setCustomerToDelete(null); }}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Ta bort kund</DialogTitle>
+          </DialogHeader>
+          <p className="text-sm text-muted-foreground">
+            Är du säker på att du vill ta bort <span className="font-medium text-foreground">{customerToDelete?.company_name}</span>?
+            Kundens inloggning slutar fungera och kundspecifika priser raderas. Det går inte att ångra.
+          </p>
+          <div className="flex justify-end gap-2 pt-2">
+            <Button variant="outline" onClick={() => setCustomerToDelete(null)} disabled={deleting}>
+              Avbryt
+            </Button>
+            <Button variant="destructive" onClick={handleDeleteCustomer} disabled={deleting}>
+              {deleting ? 'Tar bort...' : 'Ta bort kund'}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
