@@ -234,6 +234,17 @@ const AdminProductManagement = () => {
     }));
   };
 
+  const handleUpdateProduct = async (productId: string, fields: { name: string; description: string | null; category: string; image_url: string }) => {
+    const { error } = await supabase.from('products').update(fields).eq('id', productId);
+    if (error) {
+      toast({ title: 'Fel', description: 'Kunde inte spara produkten.', variant: 'destructive' });
+      return false;
+    }
+    setProducts(prev => prev.map(p => (p.id === productId ? { ...p, ...fields } : p)));
+    toast({ title: 'Sparat', description: 'Produkten har uppdaterats.' });
+    return true;
+  };
+
   const handleUpdateDescription = async (productId: string, newDescription: string) => {
     try {
       const { error } = await supabase
@@ -379,6 +390,8 @@ const AdminProductManagement = () => {
                 onPriceChange={handlePriceChange}
                 onPriceSave={handleUpdatePrice}
                 onDelete={handleDeleteProduct}
+                onUpdateProduct={handleUpdateProduct}
+                categories={categories}
                 getProductPriceSizes={getProductPriceSizes}
                 getPriceLabel={getPriceLabel}
               />
