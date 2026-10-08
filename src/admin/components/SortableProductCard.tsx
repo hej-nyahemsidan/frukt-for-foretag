@@ -5,7 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { GripVertical, Save, Trash2 } from 'lucide-react';
+import { GripVertical, Save, Trash2, Pencil } from 'lucide-react';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 
 export interface Product {
   id: string;
@@ -25,6 +28,8 @@ interface SortableProductCardProps {
   onPriceChange: (productId: string, size: string, value: string) => void;
   onPriceSave: (productId: string, size: string, price: number) => void;
   onDelete: (productId: string) => void;
+  onUpdateProduct: (productId: string, fields: { name: string; description: string | null; category: string; image_url: string }) => Promise<boolean>;
+  categories: { value: string; label: string }[];
   getProductPriceSizes: (product: Product) => string[];
   getPriceLabel: (size: string) => string;
 }
@@ -38,6 +43,8 @@ const SortableProductCard: React.FC<SortableProductCardProps> = ({
   onPriceChange,
   onPriceSave,
   onDelete,
+  onUpdateProduct,
+  categories,
   getProductPriceSizes,
   getPriceLabel,
 }) => {
@@ -49,6 +56,26 @@ const SortableProductCard: React.FC<SortableProductCardProps> = ({
     transition,
     isDragging,
   } = useSortable({ id: product.id });
+
+  const [editOpen, setEditOpen] = React.useState(false);
+  const [saving, setSaving] = React.useState(false);
+  const [form, setForm] = React.useState({ name: '', description: '', category: '', image_url: '' });
+  const openEdit = () => {
+    setForm({ name: product.name, description: product.description ?? '', category: product.category, image_url: product.image_url });
+    setEditOpen(true);
+  };
+  const saveEdit = async () => {
+    if (!form.name.trim()) return;
+    setSaving(true);
+    const ok = await onUpdateProduct(product.id, {
+      name: form.name.trim(),
+      description: form.description.trim() || null,
+      category: form.category,
+      image_url: form.image_url.trim(),
+    });
+    setSaving(false);
+    if (ok) setEditOpen(false);
+  };
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -83,6 +110,9 @@ const SortableProductCard: React.FC<SortableProductCardProps> = ({
         <CardHeader className="pb-1 pt-2 px-3">
           <CardTitle className="text-xs flex justify-between items-start leading-tight">
             <span className="line-clamp-2">{product.name}</span>
+            <Button variant="outline" size="sm" onClick={openEdit} className="ml-1 h-6 w-6 p-0 flex-shrink-0" aria-label="Redigera produkt">
+              <Pencil className="w-2.5 h-2.5" />
+            </Button>
             <Button
               variant="destructive"
               size="sm"
@@ -149,6 +179,28 @@ const SortableProductCard: React.FC<SortableProductCardProps> = ({
           </div>
         </CardContent>
       </Card>
+      <Dialog open={editOpen} onOpenChange={setEditOpen}>
+        <DialogContent>
+          <DialogHeader><DialogTitle>Redigera produkt</DialogTitle></DialogHeader>
+          <div className="space-y-3">
+            <div className="space-y-1"><Label>Namn</Label>
+              <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></div>
+            <div className="space-y-1"><Label>Beskrivning</Label>
+              <Textarea rows={4} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} /></div>
+            <div className="space-y-1"><Label>Kategori</Label>
+              <Select value={form.category} onValueChange={(v) => setForm({ ...form, category: v })}>
+                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectContent>{categories.map(c => <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>)}</SelectContent>
+              </Select></div>
+            <div className="space-y-1"><Label>Bildlänk</Label>
+              <Input value={form.image_url} onChange={(e) => setForm({ ...form, image_url: e.target.value })} /></div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setEditOpen(false)}>Avbryt</Button>
+            <Button onClick={saveEdit} disabled={saving || !form.name.trim()}>{saving ? 'Sparar...' : 'Spara'}</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
