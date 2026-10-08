@@ -440,6 +440,27 @@ const ResellerCustomerManagement = () => {
           onOpenChange={(o) => { if (!o) setOrderForCustomer(null); }}
         />
       )}
+
+      {/* Delete customer confirmation */}
+      <Dialog open={!!customerToDelete} onOpenChange={(open) => { if (!open && !deleting) setCustomerToDelete(null); }}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Ta bort kund</DialogTitle>
+          </DialogHeader>
+          <p className="text-sm text-muted-foreground">
+            Är du säker på att du vill ta bort <span className="font-medium text-foreground">{customerToDelete?.company_name}</span>?
+            Kundens inloggning slutar fungera och kundspecifika priser raderas. Det går inte att ångra.
+          </p>
+          <div className="flex justify-end gap-2 pt-2">
+            <Button variant="outline" onClick={() => setCustomerToDelete(null)} disabled={deleting}>
+              Avbryt
+            </Button>
+            <Button variant="destructive" onClick={handleDeleteCustomer} disabled={deleting}>
+              {deleting ? 'Tar bort...' : 'Ta bort kund'}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
