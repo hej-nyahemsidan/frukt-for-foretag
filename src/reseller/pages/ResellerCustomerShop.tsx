@@ -438,43 +438,14 @@ const ResellerCustomerShop = () => {
               <p>Här beställer du tillval och kompletteringar utöver den fruktkorg du redan får levererad. Lägg till exempelvis frukost, mejeri, snacks, läsk eller extra frukt inför möten och event.</p>
             </div>
 
-            {/* Cart */}
+            {/* Cart (mobile toggle) */}
             {showCart && cart.length > 0 && (
-              <div className="bg-white rounded-xl border border-border p-4 space-y-3">
-                <h3 className="font-semibold flex items-center gap-2">
-                  <ShoppingCart className="w-4 h-4" /> Varukorg ({totalItems} artiklar)
-                </h3>
-                {cart.map(item => (
-                  <div key={`${item.product.id}-${item.size}`} className="flex items-center justify-between py-2 border-b last:border-0">
-                    <div className="flex-1">
-                      <span className="font-medium text-sm">{item.product.name}</span>
-                      {item.size && <span className="text-xs text-muted-foreground ml-1">({item.size})</span>}
-                      <span className="text-sm text-muted-foreground ml-2">{item.price} kr/st</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => updateCartQuantity(item.product.id, item.size, -1)}>
-                        <Minus className="w-3 h-3" />
-                      </Button>
-                      <span className="text-sm font-medium w-6 text-center">{item.quantity}</span>
-                      <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => updateCartQuantity(item.product.id, item.size, 1)}>
-                        <Plus className="w-3 h-3" />
-                      </Button>
-                      <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive" onClick={() => removeFromCart(item.product.id, item.size)}>
-                        <Trash2 className="w-3 h-3" />
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-                <div className="flex items-center justify-between pt-2">
-                  <span className="font-semibold">Totalt: {totalPrice} kr</span>
-                  <Button onClick={() => setShowOrderDialog(true)}>
-                    <Send className="w-4 h-4 mr-1" /> Skicka beställning
-                  </Button>
-                </div>
-              </div>
+              <div className="lg:hidden">{cartPanel}</div>
             )}
 
-            {/* Products */}
+            {/* Products + sticky cart sidebar */}
+            <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-6 lg:items-start">
+              <div className="min-w-0">
             {categories.length === 0 ? (
               <Card>
                 <CardContent className="py-12 text-center text-muted-foreground">
