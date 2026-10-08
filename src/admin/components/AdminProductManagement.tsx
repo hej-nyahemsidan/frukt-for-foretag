@@ -234,14 +234,58 @@ const AdminProductManagement = () => {
     }));
   };
 
-  const handleUpdateProduct = async (productId: string, fields: { name: string; description: string | null; category: string; image_url: string }) => {
-    const { error } = await supabase.from('products').update(fields).eq('id', productId);
+  const handleUpdateProduct = async (productId: string, fields: { name: string; description: string | null; category: string; image_url: string; prices?: Record<string, number> }) => {
+    const { prices, ...rest } = fields;
+    const payload: Record<string, unknown> = { ...rest };
+    if (prices) payload.prices = prices as Json;
+    const { error } = await supabase.from('products').update(payload).eq('id', productId);
     if (error) {
       toast({ title: 'Fel', description: 'Kunde inte spara produkten.', variant: 'destructive' });
       return false;
     }
-    setProducts(prev => prev.map(p => (p.id === productId ? { ...p, ...fields } : p)));
+    setProducts(prev => prev.map(p => (p.id === productId ? { ...p, ...rest, ...(prices ? { prices } : {}) } : p)));
     toast({ title: 'Sparat', description: 'Produkten har uppdaterats.' });
+    return true;
+  };
+
+  /** Flyttar en produkt till en annan kategori och placerar den sist i den nya listan. */
+  const handleMoveProduct = async (productId: string, targetCategory: string, prices: Record<string, number>) => {
+    const product = products.find(p => p.id === productId);
+    if (!product) return false;
+
+    const targetProducts = getProductsByCategory(targetCategory);
+    const nextOrder = targetProducts.reduce((max, p) => Math.max(max, p.display_order ?? 0), 0) + 1;
+
+    const { error } = await supabase
+      .from('products')
+      .update({ category: targetCategory, prices: prices as Json, display_order: nextOrder })
+      .eq('id', productId);
+
+    if (error) {
+      toast({ title: 'Fel', description: 'Kunde inte flytta produkten.', variant: 'destructive' });
+      return false;
+    }
+
+    setProducts(prev => prev.map(p => (
+      p.id === productId ? { ...p, category: targetCategory, prices, display_order: nextOrder } : p
+    )));
+
+    setEditingDescriptions(prev => {
+      const updated = { ...prev };
+      delete updated[productId];
+      return updated;
+    });
+    setEditingPrices(prev => {
+      const updated = { ...prev };
+      delete updated[productId];
+      return updated;
+    });
+
+    setActiveTab(targetCategory);
+    toast({
+      title: 'Produkten är flyttad',
+      description: `${product.name} ligger nu i ${categories.find(c => c.value === targetCategory)?.label ?? targetCategory}.`,
+    });
     return true;
   };
 

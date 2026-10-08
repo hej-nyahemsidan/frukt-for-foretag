@@ -349,7 +349,7 @@ const SortableProductCard: React.FC<SortableProductCardProps> = ({
               <span className="font-medium text-foreground">{categoryLabel(categories, product.category)}</span>.
             </p>
             <div className="space-y-1">
-              <Label>-flytta till kategori</Label>
+              <Label>NY kategori</Label>
               <Select value={moveTarget} onValueChange={chooseMoveTarget}>
                 <SelectTrigger><SelectValue placeholder="Välj kategori" /></SelectTrigger>
                 <SelectContent>
