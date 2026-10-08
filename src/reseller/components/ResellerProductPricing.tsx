@@ -201,7 +201,7 @@ const ResellerProductPricing = () => {
                   <Select value={scopeCategory} onValueChange={setScopeCategory}>
                     <SelectTrigger><SelectValue placeholder="Välj kategori" /></SelectTrigger>
                     <SelectContent>
-                      {Object.keys(groupedProducts).filter(c => groupedProducts[c].some(p => purchasePrices.some(pp => pp.product_id === p.id))).map(c => (
+                      {Object.keys(groupedProducts).filter(c => (groupedProducts[c] ?? []).some(p => purchasePrices.some(pp => pp.product_id === p.id))).map(c => (
                         <SelectItem key={c} value={c}>{categoryLabels[c] || c}</SelectItem>
                       ))}
                     </SelectContent>
