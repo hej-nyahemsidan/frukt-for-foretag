@@ -437,8 +437,10 @@ const AdminProductManagement = () => {
                 onPriceSave={handleUpdatePrice}
                 onDelete={handleDeleteProduct}
                 onUpdateProduct={handleUpdateProduct}
+                onMoveProduct={handleMoveProduct}
                 categories={categories}
                 getProductPriceSizes={getProductPriceSizes}
+                getPriceSizesForCategory={getPriceSizesForCategory}
                 getPriceLabel={getPriceLabel}
               />
             ))}
