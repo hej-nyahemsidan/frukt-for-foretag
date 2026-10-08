@@ -56,6 +56,7 @@ const ResellerCustomerManagement = () => {
   const [selectedCustomer, setSelectedCustomer] = useState<ResellerCustomer | null>(null);
   const [customerPrices, setCustomerPrices] = useState<CustomerPrice[]>([]);
   const [standardPrices, setStandardPrices] = useState<StandardPrice[]>([]);
+  const [purchasePrices, setPurchasePrices] = useState<StandardPrice[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [orderForCustomer, setOrderForCustomer] = useState<ResellerCustomer | null>(null);
   const [customerToDelete, setCustomerToDelete] = useState<ResellerCustomer | null>(null);
@@ -151,6 +152,11 @@ const ResellerCustomerManagement = () => {
       .select('product_id, price, size')
       .eq('reseller_id', reseller.id);
     if (data) setStandardPrices(data);
+    const { data: purchase } = await supabase
+      .from('reseller_prices')
+      .select('product_id, price, size')
+      .eq('reseller_id', reseller.id);
+    if (purchase) setPurchasePrices(purchase);
   };
 
   const fetchCustomerPrices = async (customerId: string) => {
@@ -246,6 +252,11 @@ const ResellerCustomerManagement = () => {
     return p ? p.price : null;
   };
 
+  const getPurchasePrice = (productId: string, size: string | null): number | null => {
+    const p = purchasePrices.find(pp => pp.product_id === productId && pp.size === size);
+    return p ? p.price : null;
+  };
+
   const getCustomerPrice = (productId: string, size: string | null): string => {
     const p = customerPrices.find(cp => cp.product_id === productId && cp.size === size);
     return p ? p.price.toString() : '';
@@ -314,8 +325,8 @@ const ResellerCustomerManagement = () => {
         {Object.entries(groupedProducts).map(([category, prods]) => {
           const hasStandard = prods.some(p => {
             const sizes = Object.keys(p.prices);
-            if (sizes.length > 1) return sizes.some(s => getStandardPrice(p.id, s) !== null);
-            return getStandardPrice(p.id, null) !== null;
+            if (sizes.length > 1) return sizes.some(s => getStandardPrice(p.id, s) !== null || getPurchasePrice(p.id, s) !== null);
+            return getStandardPrice(p.id, null) !== null || getPurchasePrice(p.id, null) !== null;
           });
           if (!hasStandard) return null;
 
@@ -326,6 +337,7 @@ const ResellerCustomerManagement = () => {
                   <TableHeader>
                     <TableRow>
                       <TableHead>Produkt</TableHead>
+                      <TableHead>Inköpspris</TableHead>
                       <TableHead>Standardpris</TableHead>
                       <TableHead>Kundpris (kr)</TableHead>
                     </TableRow>
@@ -336,17 +348,19 @@ const ResellerCustomerManagement = () => {
                       if (sizes.length > 1) {
                         return sizes.map(size => {
                           const sp = getStandardPrice(product.id, size);
-                          if (sp === null) return null;
+                          const pp = getPurchasePrice(product.id, size);
+                          if (sp === null && pp === null) return null;
                           return (
                             <TableRow key={`${product.id}-${size}`}>
                               <TableCell>
                                 <div>{product.name}</div>
                                 <div className="text-xs text-muted-foreground">{size}</div>
                               </TableCell>
-                              <TableCell>{sp} kr</TableCell>
+                              <TableCell className="text-muted-foreground">{pp !== null ? `${pp} kr` : '–'}</TableCell>
+                              <TableCell>{sp !== null ? `${sp} kr` : '–'}</TableCell>
                               <TableCell className="w-32">
                                 <Input
-                                  type="number" min="0" step="1" placeholder={`${sp}`}
+                                  type="number" min="0" step="1" placeholder={sp !== null ? `${sp}` : ''}
                                   defaultValue={getCustomerPrice(product.id, size)}
                                   onBlur={(e) => { if (e.target.value) handleCustomerPriceChange(product.id, size, e.target.value); }}
                                   className="w-24 h-8 text-sm"
@@ -357,14 +371,16 @@ const ResellerCustomerManagement = () => {
                         });
                       }
                       const sp = getStandardPrice(product.id, null);
-                      if (sp === null) return null;
+                      const pp = getPurchasePrice(product.id, null);
+                      if (sp === null && pp === null) return null;
                       return (
                         <TableRow key={product.id}>
                           <TableCell>{product.name}</TableCell>
-                          <TableCell>{sp} kr</TableCell>
+                          <TableCell className="text-muted-foreground">{pp !== null ? `${pp} kr` : '–'}</TableCell>
+                          <TableCell>{sp !== null ? `${sp} kr` : '–'}</TableCell>
                           <TableCell className="w-32">
                             <Input
-                              type="number" min="0" step="1" placeholder={`${sp}`}
+                              type="number" min="0" step="1" placeholder={sp !== null ? `${sp}` : ''}
                               defaultValue={getCustomerPrice(product.id, null)}
                               onBlur={(e) => { if (e.target.value) handleCustomerPriceChange(product.id, null, e.target.value); }}
                               className="w-24 h-8 text-sm"
