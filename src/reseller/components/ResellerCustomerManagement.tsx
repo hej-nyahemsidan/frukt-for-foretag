@@ -166,6 +166,32 @@ const ResellerCustomerManagement = () => {
     }
   };
 
+  const handleDeleteCustomer = async () => {
+    if (!customerToDelete) return;
+    setDeleting(true);
+    try {
+      const { data, error } = await invokeServer(deleteResellerCustomer, {
+        body: { customerId: customerToDelete.id },
+      });
+
+      if (error || data?.error) {
+        toast({
+          title: 'Kunde inte ta bort kunden',
+          description: data?.error || error?.message || 'Något gick fel.',
+          variant: 'destructive',
+        });
+      } else {
+        toast({ title: 'Kund borttagen', description: `${customerToDelete.company_name} har tagits bort.` });
+        setCustomerToDelete(null);
+        fetchCustomers();
+      }
+    } catch {
+      toast({ title: 'Fel', description: 'Något gick fel.', variant: 'destructive' });
+    } finally {
+      setDeleting(false);
+    }
+  };
+
   const handleSelectCustomer = async (customer: ResellerCustomer) => {
     setSelectedCustomer(customer);
     await fetchCustomerPrices(customer.id);
@@ -390,6 +416,14 @@ const ResellerCustomerManagement = () => {
                   </Button>
                   <Button size="sm" onClick={() => setOrderForCustomer(customer)}>
                     <ShoppingCart className="w-4 h-4 mr-1" /> Lägg order
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-destructive hover:text-destructive"
+                    onClick={() => setCustomerToDelete(customer)}
+                  >
+                    <Trash2 className="w-4 h-4" />
                   </Button>
                 </div>
               </CardContent>
