@@ -730,6 +730,7 @@ const ResellerCustomerShop = () => {
                 <span>{totalPrice} kr</span>
               </div>
             </div>
+            <p className="text-xs text-muted-foreground">Pant och moms tillkommer på fakturan.</p>
 
             {/* Delivery date picker */}
             <div className="space-y-2">
