@@ -9,10 +9,11 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Pencil, Users, ChevronLeft, ShoppingCart } from 'lucide-react';
+import { Plus, Pencil, Users, ChevronLeft, ShoppingCart, Trash2 } from 'lucide-react';
 import ResellerPlaceOrderDialog from './ResellerPlaceOrderDialog';
 import { invokeServer } from "@/lib/invoke-server";
 import { createResellerCustomer } from "@/lib/create-reseller-customer.functions";
+import { deleteResellerCustomer } from "@/lib/delete-reseller-customer.functions";
 
 interface ResellerCustomer {
   id: string;
@@ -57,6 +58,8 @@ const ResellerCustomerManagement = () => {
   const [standardPrices, setStandardPrices] = useState<StandardPrice[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [orderForCustomer, setOrderForCustomer] = useState<ResellerCustomer | null>(null);
+  const [customerToDelete, setCustomerToDelete] = useState<ResellerCustomer | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   // Form state
   const [formCompany, setFormCompany] = useState('');
