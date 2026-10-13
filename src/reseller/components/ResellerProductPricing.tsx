@@ -162,7 +162,7 @@ const ResellerProductPricing = () => {
   const categoryLabels: Record<string, string> = {
     fruktkorgar: 'Fruktkorgar', fruktpasar: 'Fruktpåsar', lask: 'Läsk',
     mejeri: 'Mejeri', kaffe: 'Kaffe & Te', frukost: 'Frukost',
-    snacks: 'Snacks', grönsaker: 'Grönsaker', stad: 'Städ', annat: 'Annat',
+    snacks: 'Snacks', grönsaker: 'Grönsaker', gronsaker: 'Grönsaker', stad: 'Städ', annat: 'Annat',
   };
 
   if (loading) return <p className="text-muted-foreground">Laddar produkter...</p>;
@@ -232,17 +232,11 @@ const ResellerProductPricing = () => {
 
       <Accordion type="multiple" className="space-y-2">
         {Object.entries(groupedProducts).map(([category, prods]) => {
-          const hasPrices = prods.some(p => {
-            const sizes = Object.keys(p.prices);
-            if (sizes.length > 1) return sizes.some(s => getPurchasePrice(p.id, s) !== null);
-            return getPurchasePrice(p.id, null) !== null;
-          });
-          if (!hasPrices) return null;
 
           const rowCount = prods.reduce((n, p) => {
             const sizes = Object.keys(p.prices);
-            if (sizes.length > 1) return n + sizes.filter(s => getPurchasePrice(p.id, s) !== null).length;
-            return n + (getPurchasePrice(p.id, null) !== null ? 1 : 0);
+            if (sizes.length > 1) return n + sizes.length;
+            return n + 1;
           }, 0);
 
           return (
@@ -289,7 +283,6 @@ const ResellerProductPricing = () => {
                       ) : null;
                       return [kgRow, ...sizes.map(size => {
                         const pp = getPurchasePrice(product.id, size);
-                        if (pp === null) return null;
                         return (
                           <TableRow key={`${product.id}-${size}`}>
                             <TableCell>
@@ -301,7 +294,7 @@ const ResellerProductPricing = () => {
                               <div className="text-xs text-muted-foreground">{size}</div>
                             </TableCell>
                             <TableCell>
-                              <Badge variant="secondary">{pp} kr</Badge>
+                              {pp === null ? <span className="text-muted-foreground">–</span> : <Badge variant="secondary">{pp} kr</Badge>}
                             </TableCell>
                             <TableCell className="w-32">
                               <Input
@@ -318,7 +311,6 @@ const ResellerProductPricing = () => {
                     }
 
                     const pp = getPurchasePrice(product.id, null);
-                    if (pp === null) return null;
                     return (
                       <TableRow key={product.id}>
                         <TableCell>
@@ -326,7 +318,7 @@ const ResellerProductPricing = () => {
                             onError={(e) => { (e.target as HTMLImageElement).src = '/assets/product-placeholder.jpg'; }} />
                         </TableCell>
                         <TableCell>{product.name}</TableCell>
-                        <TableCell><Badge variant="secondary">{pp} kr</Badge></TableCell>
+                        <TableCell>{pp === null ? <span className="text-muted-foreground">–</span> : <Badge variant="secondary">{pp} kr</Badge>}</TableCell>
                         <TableCell className="w-32">
                           <Input
                             type="number" min="0" step="1" placeholder="—"
