@@ -157,9 +157,10 @@ const ResellerCustomerShop = () => {
     return products.filter(p => {
       const sizes = Object.keys(p.prices);
       if (sizes.length > 1) {
-        return sizes.some(s => getPrice(p.id, s) !== null);
+        return sizes.some(s => { const pr = getPrice(p.id, s); return pr !== null && pr > 0; });
       }
-      return getPrice(p.id, null) !== null;
+      const pr = getPrice(p.id, null);
+      return pr !== null && pr > 0;
     });
   };
 
@@ -500,14 +501,14 @@ const ResellerCustomerShop = () => {
                             </div>
                             <CardContent className="p-3 space-y-2">
                               <h3 className="font-medium text-sm line-clamp-2">{product.name}</h3>
-                              {getKgPrice(product.id) !== null && (
+                              {(getKgPrice(product.id) ?? 0) > 0 && (
                                 <p className="text-sm font-semibold text-primary">{getKgPrice(product.id)} kr/kg</p>
                               )}
                               {hasSizes ? (
                                 <div className="space-y-1">
                                   {sizes.map(size => {
                                     const price = getPrice(product.id, size);
-                                    if (price === null) return null;
+                                    if (price === null || price <= 0) return null;
                                     const hasKgPrice = getKgPrice(product.id) !== null && /^(\d+(?:[.,]\d+)?)\s*kg$/i.test(size);
                                     return (
                                       <div key={size} className="flex items-center justify-between gap-1">
@@ -526,7 +527,7 @@ const ResellerCustomerShop = () => {
                               ) : (
                                 (() => {
                                   const price = getPrice(product.id, null);
-                                  if (price === null) return null;
+                                  if (price === null || price <= 0) return null;
                                   return (
                                     <Button
                                       size="sm"
