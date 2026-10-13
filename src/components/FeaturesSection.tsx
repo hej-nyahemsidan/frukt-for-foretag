@@ -103,6 +103,19 @@ const FeaturesSection = () => {
             </div>
           </div>
 
+          {/* Why choose us */}
+          <div className="max-w-6xl mx-auto bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-sky-200/60 shadow-xs">
+            <h3 className="text-2xl md:text-3xl font-bold text-slate-800 mb-6 text-center">Därför väljer företag Vitaminkorgen</h3>
+            <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 text-sm text-slate-700">
+              <li><strong className="block text-slate-800 text-base">💰 Fruktkorgar från 140 kr</strong>Tydliga priser – inga dolda avgifter.</li>
+              <li><strong className="block text-slate-800 text-base">🎁 Första korgen alltid gratis</strong>Så att ni själva kan säkerställa att kvaliteten är rätt.</li>
+              <li><strong className="block text-slate-800 text-base">🏆 Branschens högsta kvalitetssäkring</strong>Varje korg kontrolleras innan den lämnar oss.</li>
+              <li><strong className="block text-slate-800 text-base">🌅 Tidig leverans</strong>Vi levererar tidigt jämfört med andra – frukten står på plats när ni kommer.</li>
+              <li><strong className="block text-slate-800 text-base">🌱 Miljövänlig transport & digitala förare</strong>Inga papperskörlistor – allt sköts digitalt för våra förare.</li>
+              <li><strong className="block text-slate-800 text-base">🥛 Fika, mejeri & skivad frukt</strong>Komplettera fruktleveransen med fika och mejeri – och vår extremt omtyckta skivade frukt.</li>
+            </ul>
+          </div>
+
           {/* Moving Images */}
           <div className="relative">
             <div className="features-carousel-container overflow-hidden rounded-3xl">
