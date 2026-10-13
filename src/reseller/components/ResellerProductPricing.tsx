@@ -237,12 +237,12 @@ const ResellerProductPricing = () => {
             if (sizes.length > 1) return sizes.some(s => getPurchasePrice(p.id, s) !== null);
             return getPurchasePrice(p.id, null) !== null;
           });
-          if (!hasPrices) return null;
+          void hasPrices;
 
           const rowCount = prods.reduce((n, p) => {
             const sizes = Object.keys(p.prices);
-            if (sizes.length > 1) return n + sizes.filter(s => getPurchasePrice(p.id, s) !== null).length;
-            return n + (getPurchasePrice(p.id, null) !== null ? 1 : 0);
+            if (sizes.length > 1) return n + sizes.length;
+            return n + 1;
           }, 0);
 
           return (
@@ -289,7 +289,6 @@ const ResellerProductPricing = () => {
                       ) : null;
                       return [kgRow, ...sizes.map(size => {
                         const pp = getPurchasePrice(product.id, size);
-                        if (pp === null) return null;
                         return (
                           <TableRow key={`${product.id}-${size}`}>
                             <TableCell>
@@ -301,7 +300,7 @@ const ResellerProductPricing = () => {
                               <div className="text-xs text-muted-foreground">{size}</div>
                             </TableCell>
                             <TableCell>
-                              <Badge variant="secondary">{pp} kr</Badge>
+                              {pp === null ? <span className="text-muted-foreground">–</span> : <Badge variant="secondary">{pp} kr</Badge>}
                             </TableCell>
                             <TableCell className="w-32">
                               <Input
@@ -318,7 +317,6 @@ const ResellerProductPricing = () => {
                     }
 
                     const pp = getPurchasePrice(product.id, null);
-                    if (pp === null) return null;
                     return (
                       <TableRow key={product.id}>
                         <TableCell>
@@ -326,7 +324,7 @@ const ResellerProductPricing = () => {
                             onError={(e) => { (e.target as HTMLImageElement).src = '/assets/product-placeholder.jpg'; }} />
                         </TableCell>
                         <TableCell>{product.name}</TableCell>
-                        <TableCell><Badge variant="secondary">{pp} kr</Badge></TableCell>
+                        <TableCell>{pp === null ? <span className="text-muted-foreground">–</span> : <Badge variant="secondary">{pp} kr</Badge>}</TableCell>
                         <TableCell className="w-32">
                           <Input
                             type="number" min="0" step="1" placeholder="—"
