@@ -307,9 +307,12 @@ const ResellerCustomerShop = () => {
       <h3 className="font-semibold flex items-center gap-2">
         <ShoppingCart className="w-4 h-4" /> Varukorg ({totalItems} artiklar)
       </h3>
-      {cart.map(item => (
-        <div key={`${item.product.id}-${item.size}`} className="flex items-center justify-between py-2 border-b last:border-0">
-          <div className="flex-1">
+       {cart.map(item => (
+        <div key={`${item.product.id}-${item.size}`} className="flex items-center justify-between gap-2 py-2 border-b last:border-0">
+          {item.product.image_url && (
+            <img src={item.product.image_url} alt={item.product.name} className="w-10 h-10 object-contain rounded bg-white border shrink-0" loading="lazy" />
+          )}
+          <div className="flex-1 min-w-0">
             <span className="font-medium text-sm">{item.product.name}</span>
             {item.size && <span className="text-xs text-muted-foreground ml-1">({sizeLabel(item.product, item.size)})</span>}
             <span className="text-sm text-muted-foreground ml-2">{item.price} kr/st</span>
@@ -730,9 +733,14 @@ const ResellerCustomerShop = () => {
           <div className="space-y-4">
             <div className="border rounded-lg p-3 space-y-1 max-h-48 overflow-y-auto">
               {cart.map(item => (
-                <div key={`${item.product.id}-${item.size}`} className="flex justify-between text-sm">
-                  <span>{item.quantity}x {item.product.name} {item.size ? `(${item.size})` : ''}</span>
-                  <span>{item.price * item.quantity} kr</span>
+                <div key={`${item.product.id}-${item.size}`} className="flex items-center justify-between gap-2 text-sm">
+                  <div className="flex items-center gap-2 min-w-0">
+                    {item.product.image_url && (
+                      <img src={item.product.image_url} alt={item.product.name} className="w-8 h-8 object-contain rounded bg-white border shrink-0" loading="lazy" />
+                    )}
+                    <span className="truncate">{item.quantity}x {item.product.name} {item.size ? `(${item.size})` : ''}</span>
+                  </div>
+                  <span className="shrink-0">{item.price * item.quantity} kr</span>
                 </div>
               ))}
               <div className="border-t pt-1 mt-2 flex justify-between font-semibold text-sm">
