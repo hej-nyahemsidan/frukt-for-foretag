@@ -162,7 +162,7 @@ const ResellerProductPricing = () => {
   const categoryLabels: Record<string, string> = {
     fruktkorgar: 'Fruktkorgar', fruktpasar: 'Fruktpåsar', lask: 'Läsk',
     mejeri: 'Mejeri', kaffe: 'Kaffe & Te', frukost: 'Frukost',
-    snacks: 'Snacks', grönsaker: 'Grönsaker', stad: 'Städ', annat: 'Annat',
+    snacks: 'Snacks', grönsaker: 'Grönsaker', gronsaker: 'Grönsaker', stad: 'Städ', annat: 'Annat',
   };
 
   if (loading) return <p className="text-muted-foreground">Laddar produkter...</p>;
