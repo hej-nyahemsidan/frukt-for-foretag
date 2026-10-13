@@ -476,11 +476,11 @@ const ResellerCustomerShop = () => {
                             className="overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
                             onClick={() => setSelectedProduct(product)}
                           >
-                            <div className="aspect-square bg-white overflow-hidden p-4 flex items-center justify-center">
+                            <div className="relative aspect-square bg-white overflow-hidden">
                               <img
                                 src={product.image_url}
                                 alt={product.name}
-                                className="max-w-[72%] max-h-[85%] w-auto h-auto object-contain"
+                                className="absolute inset-0 w-full h-full object-contain p-[14%]"
                                 loading="lazy"
                                 onError={(e) => { (e.target as HTMLImageElement).src = '/assets/product-placeholder.jpg'; }}
                               />
