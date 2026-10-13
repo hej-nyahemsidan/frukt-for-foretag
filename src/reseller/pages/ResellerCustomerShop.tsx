@@ -480,7 +480,8 @@ const ResellerCustomerShop = () => {
                               <img
                                 src={product.image_url}
                                 alt={product.name}
-                                className="absolute inset-0 w-full h-full object-contain p-[14%]"
+                                className="absolute inset-0 w-full h-full object-contain"
+                                style={{ padding: '14%' }}
                                 loading="lazy"
                                 onError={(e) => { (e.target as HTMLImageElement).src = '/assets/product-placeholder.jpg'; }}
                               />
