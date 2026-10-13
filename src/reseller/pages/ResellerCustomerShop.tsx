@@ -163,6 +163,15 @@ const ResellerCustomerShop = () => {
     });
   };
 
+  const sizeLabel = (product: Product, size: string) => {
+    if (size === 'pase') {
+      const m = product.name.match(/(\d+(?:[.,]\d+)?)\s*kg/i);
+      return m ? `${m[1]}kg påse` : 'Påse';
+    }
+    if (size === 'styck') return 'Styck';
+    return size;
+  };
+
   const addToCart = (product: Product, size: string | null, price: number) => {
     setCart(prev => {
       const existing = prev.find(i => i.product.id === product.id && i.size === size);
@@ -302,7 +311,7 @@ const ResellerCustomerShop = () => {
         <div key={`${item.product.id}-${item.size}`} className="flex items-center justify-between py-2 border-b last:border-0">
           <div className="flex-1">
             <span className="font-medium text-sm">{item.product.name}</span>
-            {item.size && <span className="text-xs text-muted-foreground ml-1">({item.size})</span>}
+            {item.size && <span className="text-xs text-muted-foreground ml-1">({sizeLabel(item.product, item.size)})</span>}
             <span className="text-sm text-muted-foreground ml-2">{item.price} kr/st</span>
           </div>
           <div className="flex items-center gap-2">
@@ -499,7 +508,7 @@ const ResellerCustomerShop = () => {
                                     const hasKgPrice = getKgPrice(product.id) !== null && /^(\d+(?:[.,]\d+)?)\s*kg$/i.test(size);
                                     return (
                                       <div key={size} className="flex items-center justify-between gap-1">
-                                        <span className="text-xs text-muted-foreground">{size}</span>
+                                        <span className="text-xs text-muted-foreground">{sizeLabel(product, size)}</span>
                                         <Button
                                           size="sm"
                                           className="h-7 text-xs gap-1"
@@ -690,7 +699,7 @@ const ResellerCustomerShop = () => {
                       const hasKgPrice = getKgPrice(selectedProduct.id) !== null && /^(\d+(?:[.,]\d+)?)\s*kg$/i.test(size);
                       return (
                         <div key={size} className="flex items-center justify-between">
-                          <span>{size}</span>
+                          <span>{sizeLabel(selectedProduct, size)}</span>
                           <Button size="sm" onClick={() => { addToCart(selectedProduct, size, price); setSelectedProduct(null); }}>
                             {hasKgPrice ? 'Lägg till' : `${price} kr – Lägg till`}
                           </Button>
