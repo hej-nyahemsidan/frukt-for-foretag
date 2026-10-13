@@ -232,12 +232,6 @@ const ResellerProductPricing = () => {
 
       <Accordion type="multiple" className="space-y-2">
         {Object.entries(groupedProducts).map(([category, prods]) => {
-          const hasPrices = prods.some(p => {
-            const sizes = Object.keys(p.prices);
-            if (sizes.length > 1) return sizes.some(s => getPurchasePrice(p.id, s) !== null);
-            return getPurchasePrice(p.id, null) !== null;
-          });
-          void hasPrices;
 
           const rowCount = prods.reduce((n, p) => {
             const sizes = Object.keys(p.prices);
