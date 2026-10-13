@@ -476,11 +476,11 @@ const ResellerCustomerShop = () => {
                             className="overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
                             onClick={() => setSelectedProduct(product)}
                           >
-                            <div className="aspect-square bg-slate-100">
+                            <div className="aspect-square bg-white overflow-hidden p-3">
                               <img
                                 src={product.image_url}
                                 alt={product.name}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-contain"
                                 loading="lazy"
                                 onError={(e) => { (e.target as HTMLImageElement).src = '/assets/product-placeholder.jpg'; }}
                               />
@@ -674,7 +674,7 @@ const ResellerCustomerShop = () => {
               <img
                 src={selectedProduct.image_url}
                 alt={selectedProduct.name}
-                className="w-full h-48 object-cover rounded-lg"
+                className="w-full h-48 object-contain bg-white rounded-lg p-2"
               />
               {selectedProduct.description && (
                 <p className="text-sm text-muted-foreground">{selectedProduct.description}</p>
