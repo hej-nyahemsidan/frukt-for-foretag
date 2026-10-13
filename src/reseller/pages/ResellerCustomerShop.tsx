@@ -501,7 +501,7 @@ const ResellerCustomerShop = () => {
                             </div>
                             <CardContent className="p-3 space-y-2">
                               <h3 className="font-medium text-sm line-clamp-2">{product.name}</h3>
-                              {getKgPrice(product.id) !== null && (
+                              {(getKgPrice(product.id) ?? 0) > 0 && (
                                 <p className="text-sm font-semibold text-primary">{getKgPrice(product.id)} kr/kg</p>
                               )}
                               {hasSizes ? (
