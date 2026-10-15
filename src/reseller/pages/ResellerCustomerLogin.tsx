@@ -6,6 +6,7 @@ import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { Link, useNavigate } from '@/lib/router-compat';
 import { useResellerCustomerAuth } from '../contexts/ResellerCustomerAuthContext';
 import { useToast } from '@/hooks/use-toast';
+import ResellerLogo from '../components/ResellerLogo';
 
 const ResellerCustomerLogin = () => {
   const [email, setEmail] = useState('');
@@ -71,11 +72,7 @@ const ResellerCustomerLogin = () => {
           {/* Reseller branding */}
           <div className="text-center space-y-3">
             {reseller?.logo_url ? (
-              <img
-                src={reseller.logo_url}
-                alt={reseller.name}
-                className="h-16 mx-auto object-contain"
-              />
+              <ResellerLogo src={reseller.logo_url} name={reseller.name} className="px-4 py-3" />
             ) : (
               <h1 className="text-2xl font-bold text-foreground">
                 {reseller?.name || 'Beställningsportal'}

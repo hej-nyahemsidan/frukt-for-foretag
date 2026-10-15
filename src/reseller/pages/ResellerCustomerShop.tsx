@@ -16,6 +16,7 @@ import { useNavigate } from '@/lib/router-compat';
 import { format } from 'date-fns';
 import { sv } from 'date-fns/locale';
 import { cn } from '@/lib/utils';
+import ResellerLogo from '../components/ResellerLogo';
 
 interface Product {
   id: string;
@@ -357,7 +358,7 @@ const ResellerCustomerShop = () => {
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
             {reseller?.logo_url ? (
-              <img src={reseller.logo_url} alt={reseller?.name} className="h-10 object-contain" />
+              <ResellerLogo src={reseller.logo_url} name={reseller.name} />
             ) : (
               <span className="font-bold text-lg">{reseller?.name}</span>
             )}

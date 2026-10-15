@@ -10,3 +10,4 @@
 - Reseller custom domains are detected in `src/routes/index.tsx` `beforeLoad` (server via forwarded host, client via window) and redirected to `/af/kund/login`.
 - Design tokens live in `src/styles.css` (Tailwind v4, HSL channel variables wrapped by `@theme inline`); there is no tailwind.config.ts.
 - tsconfig is strict; fix type errors at the call site, never with @ts-nocheck/@ts-ignore or by loosening tsconfig.
+- Reseller logo images use the shared ResellerLogo component with a contrasting surface and name fallback so white partner logos remain visible on light portal pages.
