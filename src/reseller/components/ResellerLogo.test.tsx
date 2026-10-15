@@ -9,7 +9,7 @@ describe('ResellerLogo', () => {
     render(<ResellerLogo src="/logo.png" name="House of Service" />);
     const image = screen.getByRole('img', { name: 'House of Service' });
     expect(image).toHaveAttribute('src', '/logo.png');
-    expect(image.parentElement).toHaveClass('bg-foreground');
+    expect(image.parentElement).toHaveClass('bg-charcoal');
   });
 
   it('shows the partner name if the image fails and retries a changed source', () => {
