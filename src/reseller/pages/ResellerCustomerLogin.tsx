@@ -72,7 +72,7 @@ const ResellerCustomerLogin = () => {
           {/* Reseller branding */}
           <div className="text-center space-y-3">
             {reseller?.logo_url ? (
-              <ResellerLogo src={reseller.logo_url} name={reseller.name} className="px-4 py-3" />
+              <ResellerLogo src={reseller.logo_url} name={reseller.name} />
             ) : (
               <h1 className="text-2xl font-bold text-foreground">
                 {reseller?.name || 'Beställningsportal'}

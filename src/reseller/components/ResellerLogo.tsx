@@ -15,7 +15,7 @@ export default function ResellerLogo({ src, name, className }: ResellerLogoProps
   }
 
   return (
-    <span className={cn('inline-flex max-w-full shrink-0 items-center justify-center rounded-md bg-charcoal px-3 py-2', className)}>
+    <span className={cn('inline-flex max-w-full shrink-0 items-center justify-center overflow-hidden rounded-md bg-charcoal', className)}>
       <img
         src={src}
         alt={name}
