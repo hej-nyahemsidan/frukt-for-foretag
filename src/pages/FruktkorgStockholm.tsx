@@ -321,8 +321,11 @@ const FruktkorgStockholm = () => {
                 </p>
                 <p>
                   Fakturering sker månadsvis med 15 dagars kredit. Vill ni prova först beställer ni en{' '}
-                  <Link to="/provkorg" className="text-green-700 underline hover:text-green-900">kostnadsfri provkorg</Link>{' '}
-                  – ni binder er inte till något.
+                  <Link to="/provkorg" className="text-green-700 underline hover:text-green-900">kostnadsfri provkorg</Link>.
+                </p>
+                <p>
+                  Utöver frukt levererar vi fika, bullar, tårta, smörgåsar, mackor och frallor – både som catering
+                  till möten och som vanliga beställningar. Alla kunder får en egen kundportal och personlig kundservice.
                 </p>
               </div>
             </div>
