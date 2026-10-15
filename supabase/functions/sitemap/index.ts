@@ -16,7 +16,6 @@ const STATIC_URLS: Array<{ loc: string; changefreq: string; priority: string }> 
   { loc: "/blogg/recept", changefreq: "weekly", priority: "0.7" },
   // Landningssidor
   { loc: "/fruktkorg-stockholm", changefreq: "weekly", priority: "0.9" },
-  { loc: "/fruktkorg-stockholm-pris", changefreq: "weekly", priority: "0.9" },
   { loc: "/fruktkorg-foretag", changefreq: "weekly", priority: "0.9" },
   { loc: "/fruktkorg-pa-jobbet", changefreq: "weekly", priority: "0.9" },
   { loc: "/fruktkorg-kontor", changefreq: "weekly", priority: "0.9" },
