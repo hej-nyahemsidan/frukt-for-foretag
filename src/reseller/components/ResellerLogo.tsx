@@ -19,7 +19,7 @@ export default function ResellerLogo({ src, name, className }: ResellerLogoProps
       <img
         src={src}
         alt={name}
-        className="h-10 w-auto max-w-40 object-contain sm:max-w-48"
+        className="h-12 w-auto max-w-48 object-contain sm:h-14 sm:max-w-64"
         onError={() => setFailedSource(src)}
       />
     </span>
