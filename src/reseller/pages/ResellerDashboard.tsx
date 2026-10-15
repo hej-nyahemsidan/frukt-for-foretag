@@ -28,12 +28,13 @@ const ResellerDashboard = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-3">
-              {reseller?.logo_url && (
-                <img src={reseller.logo_url} alt={reseller.name} className="h-8 w-auto object-contain" />
+              {reseller?.logo_url ? (
+                <img src={reseller.logo_url} alt={reseller.name} className="h-10 w-auto object-contain" />
+              ) : (
+                <span className="text-lg font-semibold text-foreground">
+                  {reseller?.name || 'Återförsäljare'}
+                </span>
               )}
-              <span className="text-lg font-semibold text-foreground">
-                {reseller?.name || 'Återförsäljare'}
-              </span>
             </div>
             <div className="flex items-center gap-3">
               <span className="text-sm text-muted-foreground hidden sm:inline">{user?.email}</span>
