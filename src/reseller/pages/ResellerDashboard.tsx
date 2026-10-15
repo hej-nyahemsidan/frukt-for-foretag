@@ -9,6 +9,7 @@ import ResellerProductPricing from '../components/ResellerProductPricing';
 import ResellerCustomerManagement from '../components/ResellerCustomerManagement';
 import ResellerOrders from '../components/ResellerOrders';
 import ResellerOverview from '../components/ResellerOverview';
+import ResellerLogo from '../components/ResellerLogo';
 
 const ResellerDashboard = () => {
   const { logout, reseller, user } = useResellerAuth();
@@ -29,7 +30,7 @@ const ResellerDashboard = () => {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center gap-3">
               {reseller?.logo_url ? (
-                <img src={reseller.logo_url} alt={reseller.name} className="h-10 w-auto object-contain" />
+                <ResellerLogo src={reseller.logo_url} name={reseller.name} />
               ) : (
                 <span className="text-lg font-semibold text-foreground">
                   {reseller?.name || 'Återförsäljare'}
