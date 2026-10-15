@@ -128,8 +128,8 @@ const priceTable = [
 ];
 
 const sizeGuide = [
-  { employees: '5–8 medarbetare', size: '4 kg', note: 'En korg per vecka räcker oftast.' },
-  { employees: '10–15 medarbetare', size: '6 kg', note: 'Vanligast för mindre kontor i innerstaden.' },
+  { employees: '5–12 medarbetare', size: 'ca 6–7 kg', note: 'Vår tumregel för mindre kontor – en korg per vecka.' },
+  { employees: '12–20 medarbetare', size: '9 kg', note: 'Vanligast för mindre kontor i innerstaden.' },
   { employees: '20–30 medarbetare', size: '9 kg', note: 'Eller två mindre korgar på olika våningar.' },
   { employees: '35–50 medarbetare', size: '11 kg', note: 'Många väljer två leveransdagar i veckan.' },
 ];

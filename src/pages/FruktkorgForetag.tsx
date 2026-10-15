@@ -221,8 +221,9 @@ const FruktkorgForetag = () => {
                 </thead>
                 <tbody className="text-gray-700">
                   {[
-                    ['1–10', 'Fruktkorg Original (4 kg)', '1', 'från 220 kr'],
-                    ['10–20', 'Fruktkorg Premium (6 kg)', '1', 'från 250 kr'],
+                    ['1–4', 'Fruktkorg Original (4 kg)', '1', 'från 220 kr'],
+                    ['5–12', 'Ca 6–7 kg frukt', '1', 'offert'],
+                    ['12–20', 'Fruktkorg Premium (9 kg)', '1', 'offert'],
                     ['20–40', 'Original + Premium', '2', 'från 470 kr'],
                     ['40–75', 'Premium (9 kg)', '2', 'från 700 kr'],
                     ['75+', 'Flera korgar eller fruktlåda', '2–5', 'offert'],
