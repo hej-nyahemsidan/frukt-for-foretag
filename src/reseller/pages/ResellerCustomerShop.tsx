@@ -697,14 +697,15 @@ const ResellerCustomerShop = () => {
                 {(() => {
                   const sizes = Object.keys(selectedProduct.prices);
                   if (sizes.length > 1) {
-                    return sizes.map(size => {
-                      const price = getPrice(selectedProduct.id, size);
-                      if (price === null) return null;
+                    const buyableSizes = sizes
+                      .map(size => ({ size, price: getPrice(selectedProduct.id, size) }))
+                      .filter(entry => entry.price !== null && entry.price > 0);
+                    return buyableSizes.map(({ size, price }) => {
                       const hasKgPrice = getKgPrice(selectedProduct.id) !== null && /^(\d+(?:[.,]\d+)?)\s*kg$/i.test(size);
                       return (
                         <div key={size} className="flex items-center justify-between">
                           <span>{sizeLabel(selectedProduct, size)}</span>
-                          <Button size="sm" onClick={() => { addToCart(selectedProduct, size, price); setSelectedProduct(null); }}>
+                          <Button size="sm" onClick={() => { addToCart(selectedProduct, size, price!); setSelectedProduct(null); }}>
                             {hasKgPrice ? 'Lägg till' : `${price} kr – Lägg till`}
                           </Button>
                         </div>
@@ -712,7 +713,7 @@ const ResellerCustomerShop = () => {
                     });
                   }
                   const price = getPrice(selectedProduct.id, null);
-                  if (price === null) return <p className="text-muted-foreground">Pris ej satt.</p>;
+                  if (price === null || price <= 0) return null;
                   return (
                     <Button className="w-full" onClick={() => { addToCart(selectedProduct, null, price); setSelectedProduct(null); }}>
                       {price} kr – Lägg till i varukorg
