@@ -28,7 +28,7 @@ const AreaLanding = () => {
 
   const defaultFaqs = [
     { q: `Levererar ni fruktkorgar till ${name}?`, a: `Ja! Vi levererar fruktkorgar till alla adresser i ${name} med gratis frakt. Leverans sker den dag ni väljer.` },
-    { q: 'Hur mycket kostar en fruktkorg?', a: 'Våra fruktkorgar börjar från 220 kr per vecka för en Fruktkorg Original (4 kg). Premium från 250 kr och Banan från 230 kr. Se alla priser under Fruktkorgar.' },
+    { q: 'Hur mycket kostar en fruktkorg?', a: 'Våra fruktkorgar börjar från 140 kr per vecka. Premium från 250 kr och Banan från 230 kr. Se alla priser under Fruktkorgar.' },
     { q: 'Kan vi testa innan vi bestämmer oss?', a: 'Absolut! Vi erbjuder en kostnadsfri provkorg så ni kan uppleva kvaliteten själva innan ni bestämmer er.' },
   ];
   const faqs = localFaqs && localFaqs.length > 0 ? localFaqs : defaultFaqs;

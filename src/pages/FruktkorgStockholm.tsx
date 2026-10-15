@@ -30,7 +30,7 @@ const faqItems = [
   },
   {
     question: "Hur mycket kostar en fruktkorg i Stockholm?",
-    answer: "Våra fruktkorgar börjar från 220 kr per vecka för en Fruktkorg Original (8-10 frukter). Premium-korgen med 12-15 frukter kostar från 250 kr/vecka. Vi skräddarsyr gärna en offert baserat på antal medarbetare och era önskemål."
+    answer: "Våra fruktkorgar börjar från 140 kr per vecka. Premium-korgen med 12-15 frukter kostar från 250 kr/vecka. Vi skräddarsyr gärna en offert baserat på antal medarbetare och era önskemål."
   },
   {
     question: "Kan vi anpassa fruktkorgen efter allergier eller önskemål?",
@@ -151,7 +151,7 @@ const FruktkorgStockholm = () => {
     <div className="min-h-screen bg-background">
       <SEOHead 
         title="Fruktkorg Stockholm – fruktkorgar till företag & kontor"
-        description="Fruktkorg Stockholm från 220 kr/vecka. Fri leverans till kontoret mån–fre, storlekar 4–11 kg och inga bindande avtal. Se priser och begär kostnadsfri offert."
+        description="Fruktkorg Stockholm från 140 kr/vecka. Fri leverans till kontoret mån–fre, storlekar 4–11 kg och inga bindande avtal. Se priser och begär kostnadsfri offert."
         type="products"
       />
       {/* FAQ Structured Data - using page-specific FAQ instead of generic one from StructuredData */}

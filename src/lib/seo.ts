@@ -18,12 +18,12 @@ export const STATIC_SEO: Record<string, PageSeo> = {
   "/": {
     title: "Fruktkorg till företag i Stockholm | Vitaminkorgen",
     description:
-      "Fruktkorgar till kontoret i Stockholm från 220 kr/vecka. Fri leverans, gratis provkorg och offert utan bindning. Välj Original, Premium eller Banan.",
+      "Fruktkorgar till kontoret i Stockholm från 140 kr/vecka. Fri leverans, gratis provkorg och offert utan bindning. Välj Original, Premium eller Banan.",
   },
   "/fruktkorg-stockholm": {
     title: "Fruktkorg Stockholm – fri leverans | Vitaminkorgen",
     description:
-      "Färska fruktkorgar till kontoret i Stockholm från 220 kr/vecka. Fri leverans, flexibla abonnemang och gratis provkorg. Beställ eller begär offert.",
+      "Färska fruktkorgar till kontoret i Stockholm från 140 kr/vecka. Fri leverans, flexibla abonnemang och gratis provkorg. Beställ eller begär offert.",
     crumb: "Fruktkorg Stockholm",
   },
   "/fruktbud-stockholm": {
@@ -33,9 +33,9 @@ export const STATIC_SEO: Record<string, PageSeo> = {
     crumb: "Fruktbud Stockholm",
   },
   "/fruktkorg-foretag": {
-    title: "Fruktkorg företag Stockholm – från 220 kr | Vitaminkorgen",
+    title: "Fruktkorg företag Stockholm – från 140 kr | Vitaminkorgen",
     description:
-      "Fruktkorg till företag i Stockholm från 220 kr. Personalförmån med fri leverans, flexibla leveransdagar och faktura. Begär gratis offert.",
+      "Fruktkorg till företag i Stockholm från 140 kr. Personalförmån med fri leverans, flexibla leveransdagar och faktura. Begär gratis offert.",
     crumb: "Fruktkorg företag",
   },
   "/fruktkorg-pa-jobbet": {
