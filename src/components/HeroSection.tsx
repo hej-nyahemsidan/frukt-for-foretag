@@ -40,7 +40,7 @@ const HeroSection = () => {
               </h1>
               
               <p className="text-base sm:text-lg leading-relaxed text-slate-600 max-w-lg">
-                Vi levererar noggrant utvalda fruktkorgar och fruktlådor av högsta kvalitet direkt till ert kontor i Stockholm. Som ert pålitliga fruktbud hjälper vi företag att främja energi, fokus och välmående på arbetsplatsen – med färsk frukt på jobbet, varje vecka.
+                Beställ en fruktkorg till kontoret – vi levererar noggrant utvalda fruktkorgar och fruktlådor direkt till ert kontor i Stockholm. Som ert fruktbud sköter vi fruktleveransen varje vecka, så att ni får färsk frukt på jobbet utan extra arbete.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-3">
