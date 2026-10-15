@@ -21,7 +21,7 @@ Vi erbjuder tre fruktkorgar: Original (från 220 kr/vecka, 4 kg), Premium (från
 - [Fruktkorg på jobbet](/fruktkorg-pa-jobbet): Fruktleverans till arbetsplatsen.
 - [Fruktkorg kontor](/fruktkorg-kontor): Fruktkorg för kontorsmiljö.
 - [Fruktleverans företag](/fruktleverans-foretag): Veckovis fruktleverans till företag.
-- [Fruktkorg Stockholm pris](/fruktkorg-stockholm-pris): Prisinformation för fruktkorgar i Stockholm.
+- [Fruktkorg Stockholm pris](/fruktkorg-stockholm#priser): Prisinformation för fruktkorgar i Stockholm.
 - [Prova fruktkorg](/prova-fruktkorg): Provleverans-erbjudande.
 - [Erbjudande](/erbjudande): Aktuella kampanjer och rabatter.
 
