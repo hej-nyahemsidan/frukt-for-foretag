@@ -151,7 +151,7 @@ const FruktkorgStockholm = () => {
     <div className="min-h-screen bg-background">
       <SEOHead 
         title="Fruktkorg Stockholm – fruktkorgar till företag & kontor"
-        description="Fruktkorg Stockholm från 140 kr/vecka. Fri leverans till kontoret mån–fre, storlekar 4–11 kg och inga bindande avtal. Se priser och begär kostnadsfri offert."
+        description="Fruktkorg Stockholm från 140 kr/vecka. Fri leverans till kontoret mån–fre, och storlekar 4–11 kg. Se priser och begär kostnadsfri offert."
         type="products"
       />
       {/* FAQ Structured Data - using page-specific FAQ instead of generic one from StructuredData */}
