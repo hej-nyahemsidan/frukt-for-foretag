@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { ArrowLeft, Eye, EyeOff, Store } from 'lucide-react';
+import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { Link, useNavigate } from '@/lib/router-compat';
 import { useResellerCustomerAuth } from '../contexts/ResellerCustomerAuthContext';
 import { useToast } from '@/hooks/use-toast';
@@ -56,7 +56,7 @@ const ResellerCustomerLogin = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 p-4">
+    <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 p-4">
       <div className="w-full max-w-md">
         {/* Back link */}
         <Link
@@ -136,19 +136,6 @@ const ResellerCustomerLogin = () => {
             </Button>
           </form>
 
-          {/* Reseller login link */}
-          <div className="border-t pt-6 text-center space-y-3">
-            <p className="text-sm font-medium text-foreground">
-              Är du återförsäljare och inte kund?
-            </p>
-            <Link
-              to="/af/login"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-md border-2 border-primary px-4 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-            >
-              <Store className="h-4 w-4" />
-              Logga in som återförsäljare
-            </Link>
-          </div>
 
 
           {/* Reseller contact */}
@@ -162,6 +149,13 @@ const ResellerCustomerLogin = () => {
           )}
         </div>
       </div>
+      {/* Discreet reseller login dot */}
+      <Link
+        to="/af/login"
+        aria-label="Inloggning för återförsäljare"
+        title="Inloggning för återförsäljare"
+        className="absolute bottom-3 left-1/2 -translate-x-1/2 h-2.5 w-2.5 rounded-full bg-foreground/15 transition-colors hover:bg-foreground/50"
+      />
     </div>
   );
 };
