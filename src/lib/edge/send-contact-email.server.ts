@@ -99,6 +99,9 @@ interface ContactEmailRequest {
   }>;
   totalPrice?: number;
   startDate?: string;
+  basketType?: string;
+  basketSize?: string;
+  employeeCount?: number;
 }
 
 // --- Email styles ---
@@ -211,6 +214,11 @@ function buildQuoteEmail(data: ContactEmailRequest): { subject: string; html: st
             <div class="info-row"><span class="info-value" style="font-size: 16px; font-weight: bold; color: #4CAF50;">${sanitize(data.startDate, 30) || 'Ej angivet'}</span></div>
           </div>
           ${cartHtml}
+          ${data.basketType ? `<div class="section"><div class="section-title">🧺 Vald fruktkorg</div>
+            <div class="info-row"><span class="info-label">Korg:</span><span class="info-value">${sanitize(data.basketType, 100)}</span></div>
+            ${data.basketSize ? `<div class="info-row"><span class="info-label">Storlek:</span><span class="info-value">${sanitize(data.basketSize, 30)}</span></div>` : ''}
+            ${data.employeeCount ? `<div class="info-row"><span class="info-label">Antal personer:</span><span class="info-value">${safeNumber(data.employeeCount)}</span></div>` : ''}
+          </div>` : ''}
           ${data.message ? `<div class="section"><div class="section-title">💬 Meddelande</div><div class="message-box">${sanitize(data.message, 2000).replace(/\n/g, '<br>')}</div></div>` : ''}
         </div>
         <div class="footer">Skickat från vitaminkorgen.se<br>© ${new Date().getFullYear()} Vitaminkorgen</div>

@@ -6,3 +6,5 @@
 
 - [x] Kontrollera aktuell SEO, sökord och bloggens sökbarhet
 - [x] Skapa och kontrollera nytt blogginlägg om fruktkorgar till jobbet och fruktlådor
+
+- [x] Säkerställ att vald korg och storlek följer med i offertmejlet

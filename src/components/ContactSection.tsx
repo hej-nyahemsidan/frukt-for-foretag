@@ -13,9 +13,11 @@ import { trackConversionEvent } from '@/lib/conversionAnalytics';
 import officeWellnessImage from '@/assets/fruktkorg-halsa-kontor-stockholm.jpg';
 import { invokeServer } from "@/lib/invoke-server";
 import { sendContactEmail } from "@/lib/send-contact-email.functions";
+import { getQuoteSelection } from '@/lib/quote-selection';
 
 const ContactSection = () => {
   const [searchParams] = useSearchParams();
+  const selection = getQuoteSelection(searchParams);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -49,15 +51,15 @@ const ContactSection = () => {
           email: formData.email,
           phone: formData.phone,
           message: formData.message,
+          ...selection,
         }
       });
 
       if (error) throw error;
 
       trackContactSubmitted('quote_contact_form');
-      const basketParam = searchParams.get('korg');
-      const basketType = basketParam ? `${basketParam.charAt(0).toUpperCase()}${basketParam.slice(1)}` : null;
-      const employeeCount = Number(searchParams.get('anstallda')) || null;
+      const basketType = selection.basketType ?? null;
+      const employeeCount = selection.employeeCount ?? null;
       void trackConversionEvent('quote_submitted', { basketType, employeeCount });
 
       toast({
@@ -141,6 +143,12 @@ const ContactSection = () => {
                 <p className="text-gray-600 mb-6">Fyll i två fält – vi hör av oss med förslag och pris.</p>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {selection.basketType && (
+                    <div className="border-b border-border pb-4 text-foreground" aria-label="Ditt val">
+                      <p className="font-semibold">Vald fruktkorg: {selection.basketType}{selection.basketSize ? ` ${selection.basketSize.replace('kg', ' kg')}` : ''}</p>
+                      {selection.employeeCount && <p className="text-sm text-muted-foreground">För {selection.employeeCount} personer</p>}
+                    </div>
+                  )}
                   <div className="space-y-2">
                     <label className="text-sm text-gray-600 font-medium" htmlFor="contact-name">Namn*</label>
                     <Input
