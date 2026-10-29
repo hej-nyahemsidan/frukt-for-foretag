@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-const { send } = vi.hoisted(() => ({ send: vi.fn(async () => ({ data: { id: 'test' }, error: null })) }));
+const { send } = vi.hoisted(() => ({ send: vi.fn(async (_email: { html: string }) => ({ data: { id: 'test' }, error: null })) }));
 vi.mock('resend', () => ({ Resend: class { emails = { send }; } }));
 vi.mock('./supabase.server', () => ({ createClient: () => ({ rpc: async () => ({ data: 1, error: null }) }) }));
 import { handler } from './send-contact-email.server';
