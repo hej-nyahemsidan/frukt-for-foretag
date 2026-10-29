@@ -11,3 +11,4 @@
 - Design tokens live in `src/styles.css` (Tailwind v4, HSL channel variables wrapped by `@theme inline`); there is no tailwind.config.ts.
 - tsconfig is strict; fix type errors at the call site, never with @ts-nocheck/@ts-ignore or by loosening tsconfig.
 - Reseller logo images use the shared ResellerLogo component with a contrasting surface and name fallback so white partner logos remain visible on light portal pages.
+- Quote selection is parsed through the shared quote-selection helper and sent as structured email fields so product choices survive the contact-page handoff.
