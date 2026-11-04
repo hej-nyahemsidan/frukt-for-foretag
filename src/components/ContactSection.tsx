@@ -140,7 +140,7 @@ const ContactSection = () => {
             <div className="lg:col-span-3">
               <div className="bg-white p-8 rounded-xl shadow-lg border">
                 <h2 className="text-2xl font-bold text-gray-900 mb-1">Begär gratis offert</h2>
-                <p className="text-gray-600 mb-6">Fyll i två fält – vi hör av oss med förslag och pris.</p>
+                <p className="text-gray-600 mb-6">Fyll i två fält – du får din offert inom 2 minuter.</p>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {selection.basketType && (
@@ -207,7 +207,7 @@ const ContactSection = () => {
                   </Button>
 
                   <p className="text-sm text-gray-600 text-center">
-                    ✓ Kostnadsfri offert &nbsp; ✓ Du binder dig inte &nbsp; ✓ Svar inom 24 timmar
+                    ✓ Kostnadsfri offert &nbsp; ✓ Få en offert inom 2 minuter &nbsp; ✓ Svar inom 24 timmar
                   </p>
                   <p className="text-sm text-gray-600 text-center">
                     Hellre prata direkt?{' '}
