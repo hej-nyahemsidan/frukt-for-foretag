@@ -65,7 +65,7 @@ const HeroSection = () => {
                 </Button>
               </div>
               <p className="text-sm text-slate-600 pt-1">
-                ✓ Kostnadsfri offert &nbsp; ✓ Du binder dig inte &nbsp; ✓ Svar inom 24 timmar
+                ✓ Kostnadsfri offert &nbsp; ✓ Få en offert inom 2 minuter &nbsp; ✓ Svar inom 24 timmar
               </p>
               <p className="text-sm text-slate-600 pt-1">
                 Letar ni efter en <Link to="/fruktlada" className="text-primary font-semibold underline underline-offset-2 hover:text-primary-dark">fruktlåda till företag</Link>? Vi levererar fritt i Stockholm.
