@@ -12,3 +12,4 @@
 - tsconfig is strict; fix type errors at the call site, never with @ts-nocheck/@ts-ignore or by loosening tsconfig.
 - Reseller logo images use the shared ResellerLogo component with a contrasting surface and name fallback so white partner logos remain visible on light portal pages.
 - Quote selection is parsed through the shared quote-selection helper and sent as structured email fields so product choices survive the contact-page handoff.
+- AI-rekommendationer på produktsidor via servern (product-recommendations.functions.ts) med publik produktläsning; AI-fel ger tom lista så sidan aldrig går sönder.

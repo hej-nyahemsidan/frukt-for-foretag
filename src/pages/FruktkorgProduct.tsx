@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Check, Truck, Star, ShieldCheck, Phone, ArrowRight } from 'lucide-react';
+import YouMayAlsoLike from '@/components/YouMayAlsoLike';
 import { getFruktkorgBySlug, fruktkorgProducts } from '@/data/fruktkorg-products';
 import fruktkorgOriginal from '@/assets/fruktkorg-standard-new.webp';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.webp';
@@ -197,6 +198,8 @@ const FruktkorgProduct = () => {
         </section>
 
         {/* Other products */}
+        <YouMayAlsoLike name={product.name} description={product.description} />
+
         <section className="py-16 bg-green-50">
           <div className="container mx-auto px-6">
             <h2 className="text-2xl md:text-3xl font-bold text-center text-green-900 mb-8">
