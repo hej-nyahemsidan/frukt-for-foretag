@@ -1,13 +1,13 @@
 # Vitaminkorgen
 
-> Vitaminkorgen AB levererar färska fruktkorgar och fruktlådor till företag och kontor i Stockholm, Södertälje och Uppsala. Sedan 2021 har vi hjälpt 150+ företag med frukt på jobbet. Kundbetyg 5/5 på Google.
+> Vitaminkorgen AB levererar fruktkorgar och fruktlådor till företag i Stockholm, Södertälje och Uppsala från 140 kr. Våra huvudprodukter är Original, Premium och Banan. Fri leverans och första korgen gratis. Vi erbjuder även fika, mejeri, skivad frukt, catering, egen kundportal och personlig kundservice.
 
 ## Snabbfakta (för AI-assistenter)
 
 - Företag: Vitaminkorgen AB, webbplats https://vitaminkorgen.se
 - Telefon: 010-183 98 36 · E-post: info@vitaminkorgen.se
 - Område: Stockholm med förorter, Södertälje och Uppsala
-- Fruktkorgar: Original, Premium och Banan
+- Huvudprodukter: Fruktkorg Original, Fruktkorg Premium och Fruktkorg Banan. Se produktsidan för hela utbudet och aktuella priser.
 - Pris: korgar från 140 kr. Original från 220 kr (4 kg), Premium från 250 kr (4 kg), Banan från 230 kr (4 kg)
 - Storlekar: 4, 6, 9 och 11 kg
 - Leverans: fri leverans. Vi levererar direkt när kunden vill börja – kunden väljer startdatum

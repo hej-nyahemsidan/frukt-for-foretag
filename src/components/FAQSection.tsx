@@ -20,11 +20,11 @@ const FAQSection = () => {
     },
     {
       question: "Kan vi få en provleverans av fruktkorg på kontoret?",
-      answer: "Absolut! Testa våra fruktkorgar i två veckor helt gratis. Inget krångel."
+      answer: "Ja, första korgen är gratis så att ni kan uppleva kvaliteten själva. Kontakta oss för att beställa er provkorg."
     },
     {
       question: "Hur mycket kostar fruktkorgar från Vitaminkorgen?",
-      answer: "Priserna för våra fruktkorgar på jobbet börjar från 140 kr per vecka. Se alla priser på vår hemsida eller kontakta oss för en skräddarsydd offert baserad på antal medarbetare."
+      answer: "Våra fruktkorgar börjar från 140 kr. Huvudprodukterna är Original, Premium och Banan. Priset beror på sort och storlek. Se aktuella priser på produktsidan eller begär en gratis offert."
     },
     {
       question: "Kan man anpassa fruktkorgar efter allergier?",

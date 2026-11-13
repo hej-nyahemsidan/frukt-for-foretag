@@ -30,7 +30,7 @@ const faqItems = [
   },
   {
     question: "Hur mycket kostar en fruktkorg i Stockholm?",
-    answer: "Våra fruktkorgar börjar från 140 kr per vecka. Premium-korgen med 12-15 frukter kostar från 250 kr/vecka. Vi skräddarsyr gärna en offert baserat på antal medarbetare och era önskemål."
+    answer: "Vitaminkorgens fruktkorgar börjar från 140 kr. Våra huvudprodukter är Original, Premium och Banan. Priset beror på sort och storlek; se prislistan nedan eller begär en gratis offert för ert kontor. Fri leverans och första korgen gratis."
   },
   {
     question: "Kan vi anpassa fruktkorgen efter allergier eller önskemål?",
@@ -151,7 +151,7 @@ const FruktkorgStockholm = () => {
     <div className="min-h-screen bg-background">
       <SEOHead 
         title="Fruktkorg Stockholm – fruktkorgar till företag & kontor"
-        description="Fruktkorg Stockholm från 140 kr/vecka. Fri leverans till kontoret mån–fre, och storlekar 4–11 kg. Se priser och begär kostnadsfri offert."
+        description="Fruktkorg Stockholm från 140 kr. Välj Original, Premium eller Banan med fri leverans. Första korgen gratis. Även fika, catering och kundportal."
         type="products"
       />
       {/* FAQ Structured Data - using page-specific FAQ instead of generic one from StructuredData */}
@@ -174,8 +174,9 @@ const FruktkorgStockholm = () => {
                 Fruktkorg Stockholm
               </h1>
               <p className="text-lg md:text-xl text-gray-100 mb-8 leading-relaxed">
-                Som ert lokala fruktbud levererar vi handplockade fruktkorgar i hela Stockholmsområdet. 
-                Färsk, säsongsanpassad frukt direkt till ditt kontor – med gratis leverans varje vecka.
+                Vitaminkorgen levererar fruktkorgar till företag i Stockholm från 140 kr.
+                Våra huvudprodukter är Original, Premium och Banan – med fri leverans till kontoret
+                och första korgen gratis. Ni väljer startdatum och får en samlad månadsfaktura.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link to="/kontakt">

@@ -40,7 +40,7 @@ const HeroSection = () => {
               </h1>
               
               <p className="text-base sm:text-lg leading-relaxed text-slate-600 max-w-lg">
-                Beställ en fruktkorg till kontoret – vi levererar noggrant utvalda fruktkorgar och fruktlådor direkt till ert kontor i Stockholm. Som ert fruktbud sköter vi fruktleveransen varje vecka, så att ni får färsk frukt på jobbet utan extra arbete.
+                Vitaminkorgen levererar fruktkorgar och fruktlådor till företag i Stockholm från 140 kr. Våra huvudprodukter är Original, Premium och Banan. Fri leverans till kontoret och första korgen gratis – ni väljer när ni vill börja.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-3">

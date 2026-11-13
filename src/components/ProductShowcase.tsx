@@ -51,8 +51,9 @@ const ProductShowcase = () => {
             Fruktkorgar till jobbet – Stockholm
           </h2>
           <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-6">
-            Upptäck vårt kompletta utbud av fruktkorgar och hälsosamma mellanmål. 
-            Vi har flera artiklar och lösningar anpassade för alla typer av arbetsplatser. Frukt på jobbet Stockholm levererat direkt till kontoret.
+            Våra huvudprodukter är Fruktkorg Original, Fruktkorg Premium och Fruktkorg Banan.
+            Fruktkorgar från 140 kr – priset beror på sort och storlek. Komplettera med fika, bullar,
+            mejeri eller skivad frukt. Vi erbjuder även catering, egen kundportal och personlig kundservice.
           </p>
           <Link 
             to="/produkter" 

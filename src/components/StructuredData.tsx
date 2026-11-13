@@ -13,7 +13,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
     "@type": "LocalBusiness",
     "name": "Vitaminkorgen AB",
     "alternateName": "Fruktexperten",
-    "description": "Vi levererar färska fruktkorgar på jobbet i Stockholm. Handplockade fruktkorgar direkt till kontoret varje vecka.",
+    "description": "Vitaminkorgen levererar fruktkorgar till företag i Stockholm från 140 kr. Huvudprodukterna är Original, Premium och Banan. Fri leverans, första korgen gratis, fika, mejeri, skivad frukt, catering och egen kundportal.",
     "url": "https://vitaminkorgen.se",
     "telephone": "+46-10-183-98-36",
     "email": "info@vitaminkorgen.se",
@@ -116,7 +116,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
         "name": "Kan vi få en provleverans av fruktkorg på kontoret?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Absolut! Testa våra fruktkorgar i två veckor helt gratis. Inget krångel."
+          "text": "Ja, första korgen är gratis så att ni kan uppleva kvaliteten själva. Kontakta oss för att beställa er provkorg."
         }
       },
       {
@@ -124,7 +124,7 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
         "name": "Hur mycket kostar fruktkorgar från Vitaminkorgen?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Priserna för våra fruktkorgar på jobbet börjar från 140 kr per vecka. Se alla priser på vår hemsida eller kontakta oss för en skräddarsydd offert baserad på antal medarbetare."
+          "text": "Våra fruktkorgar börjar från 140 kr. Huvudprodukterna är Original, Premium och Banan. Priset beror på sort och storlek. Se aktuella priser på produktsidan eller begär en gratis offert."
         }
       },
       {
@@ -184,10 +184,9 @@ const StructuredData = ({ type = 'homepage' }: StructuredDataProps) => {
     "termsOfService": "https://vitaminkorgen.se/villkor",
     "offers": {
       "@type": "Offer",
-      "description": "Testa gratis i 2 veckor",
+      "description": "Första korgen gratis",
       "price": "0",
-      "priceCurrency": "SEK",
-      "eligibleDuration": { "@type": "QuantitativeValue", "value": "2", "unitCode": "WEE" }
+      "priceCurrency": "SEK"
     }
   };
 
