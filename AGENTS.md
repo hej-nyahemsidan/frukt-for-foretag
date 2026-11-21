@@ -16,3 +16,4 @@
 - Public blog routes load published editorial DTOs through a publishable-only server function and prime Query before rendering; pass loader data as initialData so SSR and hydration both contain the same article and lists.
 - Blog redirects and indexability are shared in blog-policy; sitemap maintenance must exclude redirected/private entries and only use page-specific change timestamps.
 - Run `bun scripts/update-blog-sitemap.ts` after publishing or editing articles to refresh the existing static sitemap from paginated public reads; preserve its origin and omit speculative lastmod values.
+- Stockholm's landing page reuses the public basket selector and order sidebar near the top; sharing these controls preserves the catalog and cart handoff without duplicating purchase logic.

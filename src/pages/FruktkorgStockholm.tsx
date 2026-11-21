@@ -10,6 +10,8 @@ import { areas } from '@/data/areas';
 import TrustProofSection from '@/components/TrustProofSection';
 import HowItWorksSteps from '@/components/HowItWorksSteps';
 import HubAreaLinks from '@/components/HubAreaLinks';
+import FruktkorgarTab from '@/components/product-tabs/FruktkorgarTab';
+import PublicOrderSidebar from '@/components/PublicOrderSidebar';
 import fruktkorgPremium from '@/assets/fruktkorg-premium-new.webp';
 import fruktkorgStandard from '@/assets/fruktkorg-standard-new.webp';
 import fruktkorgBanan from '@/assets/fruktkorg-banan-new.webp';
@@ -162,7 +164,7 @@ const FruktkorgStockholm = () => {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="relative py-20 md:py-28 overflow-hidden">
+        <section className="relative py-10 md:py-14 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-green-800 via-green-700 to-green-900" />
           <div className="absolute inset-0 bg-black/20" />
           <div className="container mx-auto px-6 relative z-10">
@@ -184,12 +186,34 @@ const FruktkorgStockholm = () => {
                     Beställ gratis provkorg
                   </Button>
                 </Link>
-                <Link to="/produkter">
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8">
-                    Se vårt sortiment
-                  </Button>
-                </Link>
+                <Button
+                  size="lg"
+                  variant="secondary"
+                  onClick={() => document.getElementById('valj-fruktkorg')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })}
+                >
+                  Välj fruktkorg
+                </Button>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="valj-fruktkorg" className="scroll-mt-24 bg-background py-10 md:py-14">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h2 className="text-3xl font-bold text-foreground">Välj fruktkorg till ert kontor</h2>
+                <p className="mt-3 text-muted-foreground">Original, Premium och Banan – med fri leverans i Stockholm.</p>
+              </div>
+              <Button asChild variant="outline">
+                <Link to="/produkter">Fika och tillbehör</Link>
+              </Button>
+            </div>
+            <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
+              <div className="min-w-0">
+                <FruktkorgarTab selectedDays={['Beställning']} currentDay="Beställning" orderType="onetime" isPublicPage />
+              </div>
+              <PublicOrderSidebar className="lg:sticky lg:top-24" />
             </div>
           </div>
         </section>
