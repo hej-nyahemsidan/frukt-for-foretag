@@ -1,53 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { blogQueryOptions, type BlogData } from '@/lib/blog-query';
+import { isIndexableBlogPost } from '@/lib/blog-policy';
 import { useParams, Link } from '@/lib/router-compat';
-import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { Loader2 } from 'lucide-react';
 import { format } from 'date-fns';
 import { sv } from 'date-fns/locale';
 
-interface BlogPost {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string | null;
-  image_url: string | null;
-  category: string;
-  author: string;
-  published_at: string | null;
-}
-
-const BlogList = () => {
+const BlogList = ({ initialData }: { initialData: BlogData }) => {
   const { category } = useParams<{ category: 'tips' | 'recept' }>();
-  const [posts, setPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchPosts();
-  }, [category]);
-
-  const fetchPosts = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select('id, title, slug, excerpt, image_url, category, author, published_at')
-        .eq('category', category)
-        .eq('published', true)
-        .order('published_at', { ascending: false });
-
-      if (error) throw error;
-      setPosts(data || []);
-    } catch (error) {
-      console.error('Error fetching posts:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { data } = useSuspenseQuery({ ...blogQueryOptions(category), initialData });
+  const posts = data.posts.filter(isIndexableBlogPost);
 
   const categoryTitle = category === 'tips' ? 'Tips' : 'Recept';
   const categoryDescription =
@@ -78,11 +45,7 @@ const BlogList = () => {
             <p className="text-xl text-muted-foreground">{categoryDescription}</p>
           </div>
 
-          {loading ? (
-            <div className="flex justify-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin" />
-            </div>
-          ) : posts.length === 0 ? (
+          {posts.length === 0 ? (
             <Card>
               <CardContent className="py-12 text-center">
                 <p className="text-muted-foreground">Inga inlägg hittades än.</p>

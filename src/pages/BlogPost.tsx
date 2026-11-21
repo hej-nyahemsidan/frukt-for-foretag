@@ -1,38 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { blogQueryOptions, type BlogData } from '@/lib/blog-query';
 import { useParams, Link } from '@/lib/router-compat';
-import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEOHead from '@/components/SEOHead';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { Loader2, ArrowLeft } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { format } from 'date-fns';
 import { sv } from 'date-fns/locale';
-
-interface BlogPostType {
-  id: string;
-  title: string;
-  slug: string;
-  content: string;
-  excerpt: string | null;
-  image_url: string | null;
-  category: string;
-  author: string;
-  published_at: string | null;
-  created_at?: string | null;
-}
-
-interface RelatedPost {
-  id: string;
-  title: string;
-  slug: string;
-  category: string;
-  excerpt: string | null;
-  author: string;
-  published_at: string | null;
-}
 
 function serviceLinkFor(slug: string, category: string): { to: string; anchor: string } {
   if (slug.includes('fruktbud')) return { to: '/fruktbud-stockholm', anchor: 'fruktbud Stockholm' };
@@ -45,86 +22,12 @@ function serviceLinkFor(slug: string, category: string): { to: string; anchor: s
   return { to: '/fruktkorg-stockholm', anchor: 'fruktkorg Stockholm' };
 }
 
-const BlogPost = () => {
+const BlogPost = ({ initialData }: { initialData: BlogData }) => {
   const { category, slug } = useParams<{ category: string; slug: string }>();
-  const [post, setPost] = useState<BlogPostType | null>(null);
-  const [related, setRelated] = useState<RelatedPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [notFound, setNotFound] = useState(false);
-
-  useEffect(() => {
-    fetchPost();
-  }, [category, slug]);
-
-  const fetchPost = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('blog_posts')
-        .select('*')
-        .eq('category', category)
-        .eq('slug', slug)
-        .eq('published', true)
-        .single();
-
-      if (error) {
-        setNotFound(true);
-        return;
-      }
-
-      setPost(data);
-
-      // Fetch related posts in same category (exclude current)
-      const { data: relatedData } = await supabase
-        .from('blog_posts')
-        .select('id, title, slug, category, excerpt, author, published_at')
-        .eq('category', category)
-        .eq('published', true)
-        .neq('slug', slug)
-        .order('published_at', { ascending: false })
-        .limit(3);
-      setRelated(relatedData || []);
-    } catch (error) {
-      console.error('Error fetching post:', error);
-      setNotFound(true);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { data } = useSuspenseQuery({ ...blogQueryOptions(category, slug), initialData });
+  const { post, posts: related } = data;
 
   const displayDate = post?.published_at || post?.created_at || null;
-
-  // Article (BlogPosting) JSON-LD schema for SEO + E-E-A-T
-  const articleSchema = post
-    ? {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        headline: post.title,
-        description: post.excerpt || post.title,
-        image: post.image_url
-          ? [post.image_url]
-          : ["https://vitaminkorgen.se/opengraph-image.png"],
-        datePublished: displayDate,
-        dateModified: displayDate,
-        author: {
-          "@type": "Person",
-          name: post.author,
-          url: "https://vitaminkorgen.se/om-oss",
-        },
-        publisher: {
-          "@type": "Organization",
-          name: "Vitaminkorgen AB",
-          logo: {
-            "@type": "ImageObject",
-            url: "https://vitaminkorgen.se/fruktexperten-logo.png",
-          },
-        },
-        mainEntityOfPage: {
-          "@type": "WebPage",
-          "@id": `https://vitaminkorgen.se/blogg/${post.category}/${post.slug}`,
-        },
-        articleSection: post.category === "tips" ? "Tips" : "Recept",
-      }
-    : null;
 
   // Auto-generate FAQPage JSON-LD from "## Vanliga frågor" section.
   // Pattern: H3 lines = questions, following non-empty paragraph lines = answer.
@@ -218,18 +121,12 @@ const BlogPost = () => {
           type="minimal"
         />
       )}
-      {!post && !loading && (
+      {!post && (
         <SEOHead
           title="Artikeln hittades inte | Vitaminkorgen Blogg"
           description="Artikeln kunde inte hittas."
           type="minimal"
           noindex
-        />
-      )}
-      {articleSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
         />
       )}
       {faqSchema && (
@@ -241,11 +138,7 @@ const BlogPost = () => {
       <Header />
       
       <main className="flex-1 container mx-auto px-4 py-12">
-        {loading ? (
-          <div className="flex justify-center py-12">
-            <Loader2 className="h-8 w-8 animate-spin" />
-          </div>
-        ) : notFound || !post ? (
+        {!post ? (
           <div className="max-w-4xl mx-auto text-center py-12">
             <h1 className="text-4xl font-bold mb-4">Inlägget hittades inte</h1>
             <p className="text-muted-foreground mb-8">

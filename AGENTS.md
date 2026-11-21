@@ -13,3 +13,6 @@
 - Reseller logo images use the shared ResellerLogo component with a contrasting surface and name fallback so white partner logos remain visible on light portal pages.
 - Quote selection is parsed through the shared quote-selection helper and sent as structured email fields so product choices survive the contact-page handoff.
 - AI-rekommendationer på produktsidor via servern (product-recommendations.functions.ts) med publik produktläsning; AI-fel ger tom lista så sidan aldrig går sönder.
+- Public blog routes load published editorial DTOs through a publishable-only server function and prime Query before rendering; pass loader data as initialData so SSR and hydration both contain the same article and lists.
+- Blog redirects and indexability are shared in blog-policy; sitemap maintenance must exclude redirected/private entries and only use page-specific change timestamps.
+- Run `bun scripts/update-blog-sitemap.ts` after publishing or editing articles to refresh the existing static sitemap from paginated public reads; preserve its origin and omit speculative lastmod values.

@@ -80,3 +80,25 @@ Alla tre grundkontroller var aktuella när resultaten hämtades. Övriga äldre 
 ## Avgränsning
 
 Kontrollen omfattar live-svar från huvuddomänen, webbplatskartan, bloggvisning i webbläsare, aktuella grundkontroller och verkliga Google-sökdata. Ingen fullständig hastighetsmätning, säkerhetsgranskning, länkjämförelse eller inventering av alla indexerade adresser har gjorts. Semrush-data finns för fortsatt konkurrentjämförelse men behövdes inte för dessa Google-siffror.
+
+## Godkända förbättringar genomförda 21 november
+
+- Bloggöversikt, kategorier och artiklar laddar nu publicerat innehåll före första visningen. Alla 70 indexerbara artiklar i den kompletterade webbplatskartan testades i förhandsvisningen: HTTP 200, artikeltext, en huvudrubrik och en hänvisning till rätt originaladress.
+- Saknade artiklar ger HTTP 404. Äldre `/blog/…`-länkar omdirigeras med HTTP 301 till rätt artikeladress.
+- Tre äldre mängdguider rättades till cirka 6–7 kg för 5–12 personer. Tre prisartiklar fick aktuella exempel och gamla produktnamn, felaktiga priser och obekräftade konkurrentjämförelser rensades i dessa artiklar. Detta var inte en fullständig faktagranskning av alla 73 publicerade inlägg.
+- Webbplatskartan omfattar nu 105 unika adresser, inklusive 70 indexerbara artiklar. Omdirigerade artiklar och det avsiktligt dolda inlägget utesluts. Huvuddomänen är fortfarande vitaminkorgen.se.
+- Den alternativa befintliga webbplatskartan rättades och dess svar verifierades. Den använder offentlig läsning, hämtar alla sidor av artikelregistret och visar inte ett ofullständigt resultat vid läsfel. Påhittade dagsaktuella ändringsdatum togs bort; artikelns egna datum används.
+- Artikelinformationen för sökmotorer finns direkt i sidans svar utan dubblerad BlogPosting. Privata inloggnings- och administrationssidor saknade egna regler i första svaret och fick noindex.
+- Mobil- och datortest gick från blogg till tips, storleksguide och kontakt utan sidfel eller innehåll utanför skärmen. Sju tester passerade och senaste automatiska kontrollen var felfri.
+
+### Stockholm-sökordets sidor
+
+En fördjupad Google Search Console-läsning för exakt ”fruktkorg stockholm” visade att startsidan fick 57 visningar, 2 klick och genomsnittlig position 6,0. Stockholm-sidan fick 25 visningar, 0 klick och position 9,7. Bloggartikeln `fruktkorg-foretag-stockholm-guide` fick 24 visningar, 1 klick och position 16,3. Dessa är per-sida-värden och är inte samma mått som hela webbplatsens genomsnitt. Samma sökning kan visa flera av era sidor, så sidvisningar ska inte summeras som webbplatsens unika visningar. Vi har därför inte omdirigerat eller tagit bort välfungerande sidor enbart på grund av rankingtappet.
+
+### Kvar att känna till
+
+Sidornas nya direkta läsbarhet och den statiska webbplatskartan når den riktiga sidan vid nästa publicering. Artikeltexternas ändringar är redan sparade i det publicerade artikelregistret. Ingen förbättrad Google-position är ännu verifierad.
+
+Den automatiska domänvarningen lämnades oförändrad: den föreslår fel huvuddomän för ert avsedda upplägg, och ingen relevant rättning skulle vara att byta bort vitaminkorgen.se.
+
+Vid textuppdateringen rapporterade kontrollverktyget fem äldre säkerhetsanmärkningar, utan att några nya skapades: en tabell utan åtkomstregler, ett tillägg i public, två funktioner med förhöjda rättigheter som inloggade kan köra och avstängt skydd mot läckta lösenord. De är inte granskade eller åtgärdade i detta SEO-arbete.

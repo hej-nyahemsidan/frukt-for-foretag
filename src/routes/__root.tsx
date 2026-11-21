@@ -124,13 +124,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: SITE_TITLE },
       { property: "og:description", content: SITE_DESCRIPTION },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "https://vitaminkorgen.se/opengraph-image.png" },
       { property: "og:site_name", content: "Vitaminkorgen" },
       { property: "og:locale", content: "sv_SE" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: SITE_TITLE },
       { name: "twitter:description", content: SITE_DESCRIPTION },
-      { name: "twitter:image", content: "https://vitaminkorgen.se/opengraph-image.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
